@@ -1,0 +1,60 @@
+.donations {
+    padding: 5em 17%;
+    text-align: center;
+}
+
+
+.f_p {
+        margin-bottom: 50px;
+}
+
+.contributors {
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+    height: 100px;
+    margin-bottom: 0px;
+}
+
+.contributors:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+.contributors:nth-child(even) {
+    background-color: #EEEEEE;
+}
+
+.contributors span {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.contributors span img {
+    height: 20px;
+    margin-bottom: -4px;
+}
+
+.avatar {
+    margin-top: 5px;
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.donate, .donate:hover, .donate:focus {
+    display: inline-block;
+    border-radius: 5px;
+    background: #ff922b;
+    height: 30px;
+    width: 100px;
+    padding: 0;
+    color: #ffffff;
+    text-decoration: none;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.donate:hover {
+    background-color: #f76707;
+}
