@@ -21,8 +21,18 @@ def main():
 
     if os.path.isfile('../Lychee/version.md'):
         with open('../Lychee/version.md', 'r', encoding="utf-8") as file:
+            print('\tfound version.md, ignoring default.')
             version = file.read()
             version = version.strip()
+
+    print('\tversion number: ' + version+'\n')
+
+    with open('index.html', 'r', encoding="utf-8") as file:
+        old_index = file.read()
+    with open('support.html', 'r', encoding="utf-8") as file:
+        old_support = file.read()
+    with open('update.json', 'r', encoding="utf-8") as file:
+        old_update = file.read()
 
     with open('template/head.tpl', 'r', encoding="utf-8") as file:
         head = file.read()
@@ -44,16 +54,36 @@ def main():
     support_full += support % version
     support_full += footer
 
+    update_full = update % numberify_version(version)
     with open("index.html", 'w', encoding="utf-8") as out:
     	out.write(index_full)
-    	print("\tdone : index.html")
+    	print("\tregenerated index.html")
 
     with open("support.html", 'w', encoding="utf-8") as out:
     	out.write(support_full)
-    	print("\tdone : support.html")
+    	print("\tregenerated support.html")
 
     with open("update.json", 'w', encoding="utf-8") as out:
-        out.write(update % numberify_version(version))
-        print("\tdone : update.json")
+        out.write(update_full)
+        print("\tregenerated update.json")
+
+    print("")
+    changes = False
+    if index_full != old_index:
+        print("\tNo changes in index.html")
+        changes = True
+    if support_full != old_support:
+        print("\tNo changes in support.html")
+        changes = True
+    if update_full != old_update:
+        print("\tNo changes in update.json")
+        changes = True
+
+    if changes:
+        print("")
+        print("[index/support/update] changed. Please commit them.")
+    else:
+        print("\tNo changes detected.")
+
 
 main()
