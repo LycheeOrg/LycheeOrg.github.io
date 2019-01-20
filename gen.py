@@ -9,6 +9,14 @@ import os.path
 # this script will directly use the version.md from Lychee to determine the current version
 version = '3.2.10'
 
+def numberify_version(v):
+    v = v.split('.')
+    if len(v[1]) < 2:
+        v[1] = '0'+v[1]
+    if len(v[2]) < 2:
+        v[2] = '0'+v[2]
+    return "".join(v)
+
 def main():
 
     if os.path.isfile('../Lychee/version.md'):
@@ -25,6 +33,9 @@ def main():
     with open('template/footer.tpl', 'r', encoding="utf-8") as file:
         footer = file.read()
 
+    with open('template/update.tpl', 'r', encoding="utf-8") as file:
+        update = file.read()
+
     index_full = head % version
     index_full += index % version
     index_full += footer
@@ -40,5 +51,9 @@ def main():
     with open("support.html", 'w', encoding="utf-8") as out:
     	out.write(support_full)
     	print("\tdone : support.html")
+
+    with open("update.json", 'w', encoding="utf-8") as out:
+        out.write(update % numberify_version(version))
+        print("\tdone : update.json")
 
 main()
