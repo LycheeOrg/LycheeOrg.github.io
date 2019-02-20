@@ -67,7 +67,7 @@
     <p class="contributors">
         <img class="avatar" src="https://avatars1.githubusercontent.com/u/1611702?s=400&v=4">
         <span>
-            d7415<br>
+            d7415 (Martin Stone)<br>
             <a href="https://github.com/d7415">GitHub</a>
              <!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
         </span>
@@ -100,6 +100,17 @@
         <span>
             roblandry<br>
             <a href="https://github.com/roblandry">GitHub</a>
+             <!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
+        </span>
+    </p>
+
+
+
+    <p class="contributors">
+        <img class="avatar" src="https://avatars0.githubusercontent.com/u/129883?s=400&v=4">
+        <span>
+            hermzz (Hermann Käser)<br>
+            <a href="https://github.com/hermzz">GitHub</a>
              <!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
         </span>
     </p>
