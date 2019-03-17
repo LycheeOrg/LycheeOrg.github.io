@@ -116,6 +116,16 @@
     </p>
 
 
+    <p class="contributors">
+        <img class="avatar" src="https://avatars2.githubusercontent.com/u/16415200?s=400&v=4">
+        <span>
+            kamil4<br>
+            <a href="https://github.com/kamil4">GitHub</a>
+             <!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
+        </span>
+    </p>
+
+
     </div>
 
 </div>
