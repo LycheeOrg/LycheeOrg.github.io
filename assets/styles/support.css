@@ -1,20 +1,18 @@
 .donations {
-    padding: 5em 17%;
     text-align: center;
 }
-
 
 .f_p {
         margin-bottom: 50px;
 }
 
 .contributors {
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 50px;
+    padding-right: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: left;
-    height: 100px;
+    min-height: 100px;
     margin-bottom: 0px;
 }
 
@@ -27,7 +25,7 @@
 
 .contributors span {
     display: inline-block;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 
 .contributors span img {
@@ -37,6 +35,7 @@
 
 .avatar {
     margin-top: 5px;
+    margin-right: 10px;
     width: 50px;
     height: 50px;
     float: left;
@@ -57,4 +56,57 @@
 
 .donate:hover {
     background-color: #f76707;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  .donations {
+    padding: 1em 0;
+  }
+
+  .f_p {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .donations {
+    padding: 1em 0;
+  }
+  .contributors {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 800px) {
+  .donations {
+      padding: 5em 17%;
+  }
+  .contributors {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .contributors {
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .contributors {
+      padding-left: 150px;
+      padding-right: 150px;
+    }
 }
