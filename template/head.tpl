@@ -36,7 +36,7 @@
 			"softwareVersion": "%s",
 			"applicationCategory": "Photo Management",
 			"sameAs": [
-				"https://www.twitter.com/getlychee"
+				"https://twitter.com/getlychee"
 			]
 		}
 		</script>
