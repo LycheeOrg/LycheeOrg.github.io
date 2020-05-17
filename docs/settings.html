@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Upgrade Guide - Laravel - The PHP Framework For Web Artisans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <link rel="canonical" href="https://laravel.comdocs/upgrade">
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
+    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
+    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#ff2d20">
+    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Load fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/ins2wgm.css">
+
+    <!-- Load styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    <!-- Load JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="js/vendor/require.js"></script>
+
+</head>
+
+<body class="language-php">
+
+    <div class="sidebar_layout" id="docsScreen">
+
+        <div class="page_contain">
+            <div class="contain">
+                <aside class="sidebar">
+                    <a href="/" class="logo">
+                        <img class="mark" src="img/logo.png" alt="Laravel">
+                        <img class="type" src="img/Lychee.png" alt="Laravel">
+                    </a>
+                    <nav>
+                        <div class="navigation_contain">
+                            <div class="docs_sidebar">
+                                <ul>
+                                    <li>
+                                        <h2>Prologue</h2>
+                                        <ul>
+                                            <li><a href="releases.html">Release Notes</a></li>
+                                            <li><a href="upgrade.html">Upgrade Guide</a></li>
+                                            <li><a href="contributions.html">Contribution Guide</a></li>
+                                            <li><a href="api.html">API Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h2>Getting Started</h2>
+                                        <ul>
+                                            <li><a href="installation.html">Installation</a></li>
+                                            <li><a href="configuration.html">Configuration</a></li>
+                                            <li><a href="structure.html">Directory Structure</a></li>
+                                            <!-- <li><a href="docs/homestead.html">Homestead</a></li> -->
+                                            <!-- <li><a href="docs/valet.html">Valet</a></li> -->
+                                            <!-- <li><a href="docs/deployment.html">Deployment</a></li> -->
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h2>Digging Deeper</h2>
+                                        <ul>
+                                            <li><a href="settings.html">Settings</a></li>
+                                            <!-- <li><a href="docs/container.html">Service Container</a></li>
+                                            <li><a href="docs/providers.html">Service Providers</a></li>
+                                            <li><a href="docs/facades.html">Facades</a></li>
+                                            <li><a href="docs/contracts.html">Contracts</a></li> -->
+                                        </ul>
+                                    </li>
+                                    <!-- <li>
+                                        <h2>Architecture Concepts</h2>
+                                        <ul>
+                                            <li><a href="docs/lifecycle.html">Request Lifecycle</a></li>
+                                            <li><a href="docs/container.html">Service Container</a></li>
+                                            <li><a href="docs/providers.html">Service Providers</a></li>
+                                            <li><a href="docs/facades.html">Facades</a></li>
+                                            <li><a href="docs/contracts.html">Contracts</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <li>
+                                        <h2>Laravel Basics</h2>
+                                        <ul>
+                                            <li><a href="http://laravel.com/docs/7.x/routing">Routing</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/middleware">Middleware</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/csrf">CSRF Protection</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/controllers">Controllers</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/requests">Requests</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/responses">Responses</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/views">Views</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/urls">URL Generation</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/session">Session</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/validation">Validation</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/errors">Error Handling</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/logging">Logging</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li>
+                                        <h2>Frontend</h2>
+                                        <ul>
+                                            <li><a href="docs/blade.html">Blade Templates</a></li>
+                                            <li><a href="docs/localization.html">Localization</a></li>
+                                            <li><a href="docs/frontend.html">Frontend Scaffolding</a></li>
+                                            <li><a href="docs/mix.html">Compiling Assets</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <!-- <li>
+                                        <h2>Security</h2>
+                                        <ul>
+                                            <li><a href="docs/authentication.html">Authentication</a></li>
+                                            <li><a href="docs/authorization.html">Authorization</a></li>
+                                            <li><a href="docs/verification.html">Email Verification</a></li>
+                                            <li><a href="docs/encryption.html">Encryption</a></li>
+                                            <li><a href="docs/hashing.html">Hashing</a></li>
+                                            <li><a href="docs/passwords.html">Password Reset</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <!-- <li>
+                                        <h2>Digging Deeper</h2>
+                                        <ul>
+                                            <li><a href="docs/artisan.html">Artisan Console</a></li>
+                                            <li><a href="docs/broadcasting.html">Broadcasting</a></li>
+                                            <li><a href="docs/cache.html">Cache</a></li>
+                                            <li><a href="docs/collections.html">Collections</a></li>
+                                            <li><a href="docs/events.html">Events</a></li>
+                                            <li><a href="docs/filesystem.html">File Storage</a></li>
+                                            <li><a href="docs/helpers.html">Helpers</a></li>
+                                            <li><a href="docs/http.html-client">HTTP Client</a></li>
+                                            <li><a href="docs/mail.html">Mail</a></li>
+                                            <li><a href="docs/notifications.html">Notifications</a></li>
+                                            <li><a href="docs/packages.html">Package Development</a></li>
+                                            <li><a href="docs/queues.html">Queues</a></li>
+                                            <li><a href="docs/scheduling.html">Task Scheduling</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <li>
+                                        <h2>Laravel Database</h2>
+                                        <ul>
+                                            <li><a href="http://laravel.com/docs/7.x/database">Getting Started</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/queries">Query Builder</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/pagination">Pagination</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/migrations">Migrations</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/seeding">Seeding</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/redis">Redis</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li>
+                                        <h2>Eloquent ORM</h2>
+                                        <ul>
+                                            <li><a href="docs/eloquent.html">Getting Started</a></li>
+                                            <li><a href="docs/eloquent.html-relationships">Relationships</a></li>
+                                            <li><a href="docs/eloquent.html-collections">Collections</a></li>
+                                            <li><a href="docs/eloquent.html-mutators">Mutators</a></li>
+                                            <li><a href="docs/eloquent.html-resources">API Resources</a></li>
+                                            <li><a href="docs/eloquent.html-serialization">Serialization</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <!-- <li>
+                                        <h2>Testing</h2>
+                                        <ul>
+                                            <li><a href="docs/testing.html">Getting Started</a></li>
+                                            <li><a href="docs/http.html-tests">HTTP Tests</a></li>
+                                            <li><a href="docs/console.html-tests">Console Tests</a></li>
+                                            <li><a href="docs/dusk.html">Browser Tests</a></li>
+                                            <li><a href="docs/database.html-testing">Database</a></li>
+                                            <li><a href="docs/mocking.html">Mocking</a></li>
+                                        </ul>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="trigger_contain">
+                        <a href="#" class="nav_trigger" aria-label="Menu">
+                            <div class="bar"></div>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="body_content">
+                    <section class="docs_body">
+                        <section class="docs_main">
+                            <h1>Settings</h1>
+                            
+<ul>
+<li><a href="#background">Background</a></li>
+<li><a href="#basic-settings">Basic Settings</a><ul>
+<li><a href="#login">Login</a></li>
+<li><a href="#sorting">Sorting</a></li>
+<li><a href="#dropbox-key">Dropbox Key</a></li>
+<li><a href="#language">Language</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#layout">Layout</a></li>
+<li><a href="#public-search">Public search</a></li>
+<li><a href="#overlay">Overlay</a></li>
+<li><a href="#maps">Maps</a></li>
+</ul>
+</li>
+<li><a href="#css-personalization">CSS Personalization</a></li>
+<li><a href="#full-settings">Full Settings</a><ul>
+<li><a href="#admin">Admin</a><ul>
+<li><a href="#version">version</a></li>
+<li><a href="#username-and-password">username and password</a></li>
+<li><a href="#check_for_updates">check_for_updates</a></li>
+<li><a href="#dropbox_key">dropbox_key</a></li>
+<li><a href="#api_key">api_key</a></li>
+<li><a href="#allow_online_git_pull-and-force_migration_in_production">allow_online_git_pull and force_migration_in_production</a></li>
+<li><a href="#gen_demo_js">gen_demo_js</a></li>
+</ul>
+</li>
+<li><a href="#config">Config</a><ul>
+<li><a href="#site_title">site_title</a></li>
+<li><a href="#site_copyright_enable">site_copyright_enable</a></li>
+<li><a href="#site_copyright_begin-and-site_copyright_end">site_copyright_begin and site_copyright_end</a></li>
+<li><a href="#additional_footer_text">additional_footer_text</a></li>
+<li><a href="#display_social_in_gallery">display_social_in_gallery</a></li>
+<li><a href="#public_search">public_search</a></li>
+<li><a href="#hide_version_number">hide_version_number</a></li>
+<li><a href="#downloadable">downloadable</a></li>
+<li><a href="#share_button_visible">share_button_visible</a></li>
+<li><a href="#raw_formats">raw_formats</a></li>
+<li><a href="#zip64">zip64</a></li>
+<li><a href="#force_32bit_ids">force_32bit_ids</a></li>
+<li><a href="#update_check_every_days">update_check_every_days</a></li>
+</ul>
+</li>
+<li><a href="#gallery">Gallery</a><ul>
+<li><a href="#sorting_photos_col">sorting_Photos_col</a></li>
+<li><a href="#sorting_albums_col">sorting_Albums_col</a></li>
+<li><a href="#sorting_photos_order-and-sorting_albums_order">sorting_Photos_order and sorting_Albums_order</a></li>
+<li><a href="#lang">lang</a></li>
+<li><a href="#layout_1">layout</a></li>
+<li><a href="#image_overlay">image_overlay</a></li>
+<li><a href="#image_overlay_type">image_overlay_type</a></li>
+<li><a href="#default_license">default_license</a></li>
+<li><a href="#full_photo">full_photo</a></li>
+<li><a href="#photos_wraparound">photos_wraparound</a></li>
+</ul>
+</li>
+<li><a href="#image-processing">Image Processing</a><ul>
+<li><a href="#imagick">imagick</a></li>
+<li><a href="#skip_duplicates">skip_duplicates</a></li>
+<li><a href="#small_max_width-and-small_max_height">small_max_width and small_max_height</a></li>
+<li><a href="#medium_max_width-and-medium_max_height">medium_max_width and medium_max_height</a></li>
+<li><a href="#compression_quality">compression_quality</a></li>
+<li><a href="#delete_imported">delete_imported</a></li>
+<li><a href="#thumb_2x-small_2x-and-medium_2x">thumb_2x, small_2x, and medium_2x</a></li>
+</ul>
+</li>
+<li><a href="#mod-frame">Mod Frame</a><ul>
+<li><a href="#mod_frame">Mod_Frame</a></li>
+<li><a href="#mod_frame_refresh">Mod_Frame_refresh</a></li>
+</ul>
+</li>
+<li><a href="#mod-map">Mod Map</a><ul>
+<li><a href="#map_display-and-map_display_public">map_display and map_display_public</a></li>
+<li><a href="#map_provider">map_provider</a></li>
+<li><a href="#map_include_subalbums">map_include_subalbums</a></li>
+</ul>
+</li>
+<li><a href="#mod-welcome">Mod Welcome</a><ul>
+<li><a href="#landing_page_enable">landing_page_enable</a></li>
+<li><a href="#landing_owner">landing_owner</a></li>
+<li><a href="#landing_title-and-landing_subtitle">landing_title and landing_subtitle</a></li>
+<li><a href="#landing_facebook-landing_flickr-landing_twitter-landing_instagram-and-landing_youtube">landing_facebook, landing_flickr, landing_twitter, landing_instagram, and landing_youtube</a></li>
+<li><a href="#landing_background">landing_background</a></li>
+</ul>
+</li>
+<li><a href="#smart-albums">Smart Albums</a><ul>
+<li><a href="#public_recent">public_recent</a></li>
+<li><a href="#recent_age">recent_age</a></li>
+<li><a href="#public_starred">public_starred</a></li>
+</ul>
+</li>
+<li><a href="#symbolic-link">Symbolic Link</a><ul>
+<li><a href="#sl_enable-and-sl_for_admin">SL_enable and SL_for_admin</a></li>
+<li><a href="#sl_life_time_days">SL_life_time_days</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+ <style>
+    .docs_main h4 a:before {
+    content: "#";
+    font-weight: 400;
+    margin-left: -25px;
+    position: absolute;
+    font-size: 20px;
+    color: #ff2d20;
+    opacity: .6;
+}
+</style>
+
+<p>
+    <a name="Introduction"></a>
+</p>
+
+<h2 id="background"><a class="toclink" href="#background">Background</a></h2>
+<p>Virtually all Lychee settings are stored in the database, alongside the metadata of the images and albums. While all the settings can be changed using the web browser, some of them are featured in an easy-to-use high-level GUI whereas others require the use of a more textual, lower-level interface.</p>
+<p>Settings are accessible to the administrator after logging in by clicking on the cogwheel icon in the top-left corner and selecting <em>Settings</em> from the menu that pops up.</p>
+<h2 id="basic-settings"><a class="toclink" href="#basic-settings">Basic Settings</a></h2>
+<p>The following settings can be changed via the easy-to-use GUI.</p>
+<h3 id="login"><a class="toclink" href="#login">Login</a></h3>
+<p>The text input fields at the top of the page can be used to change the username and password of the current user.  These settings are available for non-administrator users as well, provided that their account is not restricted.  Current username and password must be provided for verification (with the exception of the administrator, who does not need to provide the username).</p>
+<h3 id="sorting"><a class="toclink" href="#sorting">Sorting</a></h3>
+<p>Changes the order in which albums/subalbums and photos are displayed.</p>
+<p>Albums can be sorted by their <em>Creation Time</em>, <em>Title</em>, <em>Description</em>, <em>Public</em> status, and the earliest and latest <em>Take Date</em> of the photos inside the album.</p>
+<p>Photos can be sorted by their <em>Upload Time</em>, <em>Take Date</em> (extracted from the metadata inside the file such as EXIF), <em>Title</em> (which defaults to the file name), <em>Description</em>, <em>Public</em> status, <em>Star</em> (favorite) status, and <em>Photo Format</em>.</p>
+<p>Order can be either <em>Ascending</em> or <em>Descending</em>.</p>
+<p>Textual fields (<em>Title</em>, <em>Description</em>) are sorted case-insensitively and using natural ordering (<code>9</code> precedes <code>10</code>, etc.).</p>
+<h3 id="dropbox-key"><a class="toclink" href="#dropbox-key">Dropbox Key</a></h3>
+<p>This key is required to use the <em>Import from Dropbox</em> feature of Lychee. You can get your personal drop-ins app key from the <a href="https://www.dropbox.com/developers/apps/create">Dropbox website</a>.</p>
+<h3 id="language"><a class="toclink" href="#language">Language</a></h3>
+<p>Changes the language of the Lychee user interface.</p>
+<h3 id="license"><a class="toclink" href="#license">License</a></h3>
+<p>Sets the license of any <em>subsequently uploaded or imported</em> photos.  <a href="https://creativecommons.org/choose/">Need help choosing?</a></p>
+<h3 id="layout"><a class="toclink" href="#layout">Layout</a></h3>
+<p>Selects the layout of the photos inside the albums. Available options include:
+* <em>Square thumbnails</em>: The photos will be displayed as square thumbnails cropped from the center of each original photo, laid out in a uniform grid.
+* <em>With aspect, justified</em>: The photos will be displayed as thumbnails that preserve the originals' aspect ratio; each row will be scaled up or down to ensure that the photos are justified to both margins.
+* <em>With aspect, unjustified</em>: The photos will be displayed as thumbnails that preserve the originals' aspect ratio; all photos will have a uniform height, therefore the rows will not be justified to the right margin.</p>
+<p>Note: the albums/subalbums are always laid out using the <em>Square thumbnails</em> layout.</p>
+<h3 id="public-search"><a class="toclink" href="#public-search">Public search</a></h3>
+<p>Determines whether the search bar is available when nobody is logged in (in the public mode).</p>
+<h3 id="overlay"><a class="toclink" href="#overlay">Overlay</a></h3>
+<p>Determines if an overlay with metadata is displayed at the bottom of the screen in the photo view. The overlay can display the following data:
+* <em>Photo EXIF data</em>: shutter speed, aperture value, ISO value, focal length, and lens used
+* <em>Photo description</em>
+* <em>Photo date taken</em></p>
+<p>Note that these settings determine the defaults but the person viewing the gallery is free to override them. The overlay can be toggled on/off by clicking on the image in the photo view, and the data displayed can be changed using the <code>o</code> <a href="../Keyboard-Shortcuts">keyboard shortcut</a>.</p>
+<h3 id="maps"><a class="toclink" href="#maps">Maps</a></h3>
+<p>Determines the availability of the standalone map view as well as the small map preview in the info sidebar in the photo view, used for displaying the location where the photos were taken.  Maps can be enabled just for the logged-in users or also in the public mode.  The standalone map view can display photos from the current album only or also including its subalbums.</p>
+<p>Note that enabling the maps adds a viewing-time dependency of your gallery on an external server belonging to the map tile provider and, in the process, leaks coarse location data to that provider. You can choose between several available map tile providers.  All the providers use the OpenStreetMap data <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>.</p>
+<h2 id="css-personalization"><a class="toclink" href="#css-personalization">CSS Personalization</a></h2>
+<p>Much of the appearance of the Lychee web interface is determined by the CSS.  The bottom of the basic settings screen features a text input field where custom CSS can be entered to tweak the Lychee user interface.  Effective use of this feature requires the knowledge of CSS and the internals of the Lychee front end (see the <a href="https://github.com/LycheeOrg/Lychee-front">source code</a>), which go beyond the scope of this document, but check the <a href="../FAQ">FAQ</a> for a few examples.</p>
+<p>Unlike the rest of the config, this field is stored in the text file <code>public/dist/user.css</code> and can be modified directly there using your favorite editor.</p>
+<h2 id="full-settings"><a class="toclink" href="#full-settings">Full Settings</a></h2>
+<p>Clicking <em>More</em> at the bottom of the basic settings screen brings up the full settings, where every configuration option from the database can be modified. This is a low-level interface so be careful what you are doing! Any modifications made are validated and take effect after clicking on the <em>Save my modification, I accept the Risk!</em> button at the bottom of the screen.</p>
+<h3 id="admin"><a class="toclink" href="#admin">Admin</a></h3>
+<h4 id="version"><a class="toclink" href="#version"><code>version</code></a></h4>
+<p>(integer; default value: <code>040000</code>)</p>
+<p>Internal Lychee database version number. <em>Do not change it.</em></p>
+<h4 id="username-and-password"><a class="toclink" href="#username-and-password"><code>username</code> and <code>password</code></a></h4>
+<p>(string; empty by default)</p>
+<p>The administrator's username and password, encoded using <code>bcrypt</code>. If you ever forget either of them and can't access your gallery, see <a href="../FAQ#how-to-reset-username-and-password">this FAQ</a>.</p>
+<h4 id="check_for_updates"><a class="toclink" href="#check_for_updates"><code>check_for_updates</code></a></h4>
+<p>(boolean; default value: <code>0</code>)</p>
+<p>If activated, the server will periodically (at most once a day) check with GitHub if a newer release of Lychee is available and if so, it will display information about it in the login dialog and the <em>About Lychee</em> dialog.</p>
+<p>Note that this functionality is currently not available with Lychee v4.</p>
+<h4 id="dropbox_key"><a class="toclink" href="#dropbox_key"><code>dropbox_key</code></a></h4>
+<p>(string; empty by default)</p>
+<p>See <a href="#dropbox-key">Dropbox Key</a>.</p>
+<h4 id="api_key"><a class="toclink" href="#api_key"><code>api_key</code></a></h4>
+<p>(string; empty by default)</p>
+<p>Makes it possible to bypass the default Lychee CSRF token validation by providing a valid key in the request header. This is of importance exclusively for developers who want to interact with the Lychee server outside of the Lychee front end.</p>
+<h4 id="allow_online_git_pull-and-force_migration_in_production"><a class="toclink" href="#allow_online_git_pull-and-force_migration_in_production"><code>allow_online_git_pull</code> and <code>force_migration_in_production</code></a></h4>
+<p>(boolean; default values: <code>1</code> and <code>0</code>, respectively)</p>
+<p><strong>FIXME</strong> refer to installation or update wiki.</p>
+<h4 id="gen_demo_js"><a class="toclink" href="#gen_demo_js"><code>gen_demo_js</code></a></h4>
+<p>(boolean; default value: <code>0</code>)</p>
+<p>This feature is of importance for Lychee developers only.  It is used when creating the <a href="https://lycheeorg.github.io/demo/">live demo</a>.</p>
+<h3 id="config"><a class="toclink" href="#config">Config</a></h3>
+<h4 id="site_title"><a class="toclink" href="#site_title"><code>site_title</code></a></h4>
+<p>(string; default value: <code>Lychee v4</code>)</p>
+<p>Sets the site title of the Lychee gallery in the web browser.</p>
+<h4 id="site_copyright_enable"><a class="toclink" href="#site_copyright_enable"><code>site_copyright_enable</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>Determines whether to display the copyright message at the bottom of the gallery.  See also <a href="#site_copyright_begin-and-site_copyright_end">site_copyright_begin</a> and <a href="#landing_owner">landing_owner</a>.</p>
+<h4 id="site_copyright_begin-and-site_copyright_end"><a class="toclink" href="#site_copyright_begin-and-site_copyright_end"><code>site_copyright_begin</code> and <code>site_copyright_end</code></a></h4>
+<p>(integer; default values <code>2019</code>)</p>
+<p>Determine the year range in the copyright message at the bottom of the gallery (see <a href="#site_copyright_enable">site_copyright_enable</a>).</p>
+<h4 id="additional_footer_text"><a class="toclink" href="#additional_footer_text"><code>additional_footer_text</code></a></h4>
+<p>(string; empty by default)</p>
+<p>Adds an additional paragraph of personal text underneath the copyright message at the bottom of the gallery.</p>
+<h4 id="display_social_in_gallery"><a class="toclink" href="#display_social_in_gallery"><code>display_social_in_gallery</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Adds icons linking to social sites above the copyright message at the bottom of the gallery. See also <a href="#landing_facebook-landing_flickr-landing_twitter-landing_instagram-and-landing_youtube">landing_facebook</a>.</p>
+<h4 id="public_search"><a class="toclink" href="#public_search"><code>public_search</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>See <a href="#public-search">Public search</a>.</p>
+<h4 id="hide_version_number"><a class="toclink" href="#hide_version_number"><code>hide_version_number</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Suppresses the displaying of Lychee version information in the login dialog.</p>
+<h4 id="downloadable"><a class="toclink" href="#downloadable"><code>downloadable</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Determines whether users can download photos that are not owned by them.  Note that this setting is <em>not</em> applicable to the most common case of photos in a public album – in that case, the owner specifies download permissions on a per-album basis via the album visibility dialog while making the album public.  The setting is applicable in the remaining cases though, such as public photos in private albums and private albums shared with individual users.</p>
+<p>See also <a href="#full_photo">full_photo</a>.</p>
+<h4 id="share_button_visible"><a class="toclink" href="#share_button_visible"><code>share_button_visible</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Determines whether display social media sharing links. Note that this setting is <em>not</em> applicable to the most common case of photos in a public album – in that case, the owner specifies sharing links visibility per-album basis via the album visibility dialog while making the album public.  The setting is applicable in the remaining cases though, such as public photos in private albums and private albums shared with individual users.</p>
+<h4 id="raw_formats"><a class="toclink" href="#raw_formats"><code>raw_formats</code></a></h4>
+<p>(string; default value <code>.tex</code>)</p>
+<p>List of filename extensions of raw photos, <code>|</code>-separated.</p>
+<h4 id="zip64"><a class="toclink" href="#zip64"><code>zip64</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>Determines whether to use the <em>Zip64</em> archive format when downloading multiple photos at a time.  This is the preferred format as it is not subject to any restrictive limits, but some unzip implementations are reported to not support it.  Changing this value to <code>0</code> will use an older, more universally supported zip format that is, however, limited to a 4GB archive size and 64K archived files total.</p>
+<h4 id="force_32bit_ids"><a class="toclink" href="#force_32bit_ids"><code>force_32bit_ids</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Lychee uses 64-bit IDs for albums and photos when the server is running on a 64-bit platform, which ensures a better uniqueness of these IDs.  It uses shorter, 32-bit IDs when running on a 32-bit platform.  This setting
+forces the use of 32-bit IDs even on 64-bit platforms.  This may be required for proper operation in some strangely configured shared hosting environments but in general, using this setting is not recommended.</p>
+<h4 id="update_check_every_days"><a class="toclink" href="#update_check_every_days"><code>update_check_every_days</code></a></h4>
+<p>(integer; default value <code>3</code>)</p>
+<p><strong>FIXME</strong> refer to installation or update wiki.</p>
+<h3 id="gallery"><a class="toclink" href="#gallery">Gallery</a></h3>
+<h4 id="sorting_photos_col"><a class="toclink" href="#sorting_photos_col"><code>sorting_Photos_col</code></a></h4>
+<p>(possible values: <code>id|takestamp|title|description|public|star|type</code>; default value <code>takestamp</code>)</p>
+<p>See <a href="#sorting">Sorting</a>.</p>
+<h4 id="sorting_albums_col"><a class="toclink" href="#sorting_albums_col"><code>sorting_Albums_col</code></a></h4>
+<p>(possible values: <code>id|title|description|public|max_takestamp|min_takestamp|created_at</code>; default value <code>max_takestamp</code>)</p>
+<p>See <a href="#sorting">Sorting</a>.</p>
+<h4 id="sorting_photos_order-and-sorting_albums_order"><a class="toclink" href="#sorting_photos_order-and-sorting_albums_order"><code>sorting_Photos_order</code> and <code>sorting_Albums_order</code></a></h4>
+<p>(possible values: <code>ASC|DESC</code>; default values <code>ASC</code>)</p>
+<p>See <a href="#sorting">Sorting</a>.</p>
+<h4 id="lang"><a class="toclink" href="#lang"><code>lang</code></a></h4>
+<p>(string; default value <code>en</code>)</p>
+<p>See <a href="#language">Language</a>.</p>
+<h4 id="layout_1"><a class="toclink" href="#layout_1"><code>layout</code></a></h4>
+<p>(possible values: <code>0|1|2</code> for square, justified, and unjustified, respectively; default value <code>1</code>)</p>
+<p>See <a href="#layout">Layout</a>.</p>
+<h4 id="image_overlay"><a class="toclink" href="#image_overlay"><code>image_overlay</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>See <a href="#overlay">Overlay</a>.</p>
+<h4 id="image_overlay_type"><a class="toclink" href="#image_overlay_type"><code>image_overlay_type</code></a></h4>
+<p>(possible values: <code>exif|desc|takedate</code>; default value <code>desc</code>)</p>
+<p>See <a href="#overlay">Overlay</a>.</p>
+<h4 id="default_license"><a class="toclink" href="#default_license"><code>default_license</code></a></h4>
+<p>(string; default value <code>none</code>)</p>
+<p>See <a href="#license">License</a>.</p>
+<h4 id="full_photo"><a class="toclink" href="#full_photo"><code>full_photo</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>Determines whether users can view original (full-size) photos that are not owned by them.  Note that this setting is <em>not</em> applicable to the most common case of photos in a public album – in that case, the owner specifies full-photo permissions on a per-album basis via the album visibility dialog while making the album public.  The setting is applicable in the remaining cases though, such as public photos in private albums and private albums shared with individual users.</p>
+<p>See also <a href="#downloadable">downloadable</a>.</p>
+<h4 id="photos_wraparound"><a class="toclink" href="#photos_wraparound"><code>photos_wraparound</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>Determines whether the next/previous arrows (or left/right swipes) in the photo view wrap from the last photo in the album to the first one and vice versa.</p>
+<h3 id="image-processing"><a class="toclink" href="#image-processing">Image Processing</a></h3>
+<h4 id="imagick"><a class="toclink" href="#imagick"><code>imagick</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>Determines the use of ImageMagick for image processing during upload/import time, if it is available.  Otherwise, the built-in GD library will be used.</p>
+<p><strong>FIXME</strong> link to FAQ</p>
+<h4 id="skip_duplicates"><a class="toclink" href="#skip_duplicates"><code>skip_duplicates</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Determines whether to skip photos and albums during upload/import time if they already exist in the gallery.  Can be handy with the <em>Import from Server</em> if one wishes to periodically synchronize an external directory with the Lychee gallery, as it will import only the newly added albums and photos then.</p>
+<h4 id="small_max_width-and-small_max_height"><a class="toclink" href="#small_max_width-and-small_max_height"><code>small_max_width</code> and <code>small_max_height</code></a></h4>
+<p>(integer; default values <code>0</code> and <code>360</code>, respectively)</p>
+<p>Specify the size limits, in pixels, of the smaller of the aspect-preserving intermediate images generated during the photo upload/import time.  These images are used in the album view for displaying photo thumbnails in the justified and unjustified <a href="#Layout">layouts</a>.</p>
+<p>A value of <code>0</code> for one of the limits (as is the case with <code>small_max_width</code> by default) results in that limit being ignored while the other dimension equals the other limit (e.g., by default, a <code>6000x4000</code> original will be scaled down to <code>540x360</code>).  Setting <em>both</em> limits to <code>0</code> will disable the generation of that intermediate image size.</p>
+<p>Note that for a given intermediate image to be generated, the original must be larger than the generated intermediate image would be.  E.g., by default, a <code>320x240</code> original will result in no intermediate image.</p>
+<p><strong>FIXME</strong> link to FAQ</p>
+<h4 id="medium_max_width-and-medium_max_height"><a class="toclink" href="#medium_max_width-and-medium_max_height"><code>medium_max_width</code> and <code>medium_max_height</code></a></h4>
+<p>(integer; default values <code>1920</code> and <code>1080</code>, respectively)</p>
+<p>Specify the size limits, in pixels, of the larger of the aspect-preserving intermediate images generated during the photo upload/import time.  These images are used in the photo view and can thus be displayed in sizes up to full-screen.</p>
+<p>See <a href="#small_max_width-and-small_max_height">small_max_width</a> for a detailed explanation of how these limits work.  As an example, by default, a <code>6000x4000</code> original will be scaled down to <code>1620x1080</code>.</p>
+<p><strong>FIXME</strong> link to FAQ</p>
+<h4 id="compression_quality"><a class="toclink" href="#compression_quality"><code>compression_quality</code></a></h4>
+<p>(integer in the <code>0-100</code> range; default value <code>90</code>)</p>
+<p>Determines the compression quality of the intermediate images generated in the JPEG format.</p>
+<h4 id="delete_imported"><a class="toclink" href="#delete_imported"><code>delete_imported</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Specifies whether to delete the original files during an <em>Import from Server</em> operation.  Note that the initial dialog window has a checkbox that enables the user to override the value set here.</p>
+<h4 id="thumb_2x-small_2x-and-medium_2x"><a class="toclink" href="#thumb_2x-small_2x-and-medium_2x"><code>thumb_2x</code>, <code>small_2x</code>, and <code>medium_2x</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>Determine whether to generate HiDPI variants of each intermediate image type (in addition to the regular ones), for use on high-resolution displays. <code>thumb</code> refers to the thumbnails used in the square <a href="#Layout">layout</a>, <code>small</code> to the thumbnails used in the justified and unjustified <a href="#Layout">layouts</a> (see also <a href="#small_max_width-and-small_max_height">small_max_width</a>), and <code>medium</code> to the images used in the photo view (see also <a href="#medium_max_width-and-medium_max_height">medium_max_width</a>).</p>
+<p>For each intermediate image type, the size limits of the HiDPI variant are taken from the corresponding regular  variant, multiplied by <code>2</code>.  E.g., by default, a <code>6000x4000</code> original will be scaled down to a <code>small</code> image of <code>540x360</code> and a <code>small_2x</code> image of <code>1080x720</code>.</p>
+<p>Note that <code>thumb</code> images have a fixed size of <code>200x200</code> (<code>400x400</code> for <code>thumb_2x</code>).</p>
+<p><strong>FIXME</strong> link to FAQ</p>
+<h3 id="mod-frame"><a class="toclink" href="#mod-frame">Mod Frame</a></h3>
+<h4 id="mod_frame"><a class="toclink" href="#mod_frame"><code>Mod_Frame</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>Enables the picture frame mode.</p>
+<p><strong>FIXME</strong> link to usage page</p>
+<h4 id="mod_frame_refresh"><a class="toclink" href="#mod_frame_refresh"><code>Mod_Frame_refresh</code></a></h4>
+<p>(integer; default value <code>30</code>)</p>
+<p>Specifies the refresh time in the picture frame mode, in seconds.</p>
+<p><strong>FIXME</strong> link to usage page</p>
+<h3 id="mod-map"><a class="toclink" href="#mod-map">Mod Map</a></h3>
+<h4 id="map_display-and-map_display_public"><a class="toclink" href="#map_display-and-map_display_public"><code>map_display</code> and <code>map_display_public</code></a></h4>
+<p>(boolean; default values <code>0</code>)</p>
+<p>See <a href="#maps">Maps</a>.</p>
+<h4 id="map_provider"><a class="toclink" href="#map_provider"><code>map_provider</code></a></h4>
+<p>(possible values: <code>Wikimedia|OpenStreetMap.org|OpenStreetMap.de|OpenStreetMap.fr|RRZE</code>; default value <code>Wikimedia</code>)</p>
+<p>See <a href="#maps">Maps</a>.</p>
+<h4 id="map_include_subalbums"><a class="toclink" href="#map_include_subalbums"><code>map_include_subalbums</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>See <a href="#maps">Maps</a>.</p>
+<h3 id="mod-welcome"><a class="toclink" href="#mod-welcome">Mod Welcome</a></h3>
+<h4 id="landing_page_enable"><a class="toclink" href="#landing_page_enable"><code>landing_page_enable</code></a></h4>
+<p>(boolean; default value <code>1</code>)</p>
+<p>Enables the landing page.</p>
+<p><strong>FIXME</strong> link to usage</p>
+<h4 id="landing_owner"><a class="toclink" href="#landing_owner"><code>landing_owner</code></a></h4>
+<p>(string; default value <code>John Smith</code>)</p>
+<p>Specifies the name of the owner of the gallery, displayed in the copyright note at the bottom of the screen (see <a href="#site_copyright_enable">site_copyright_enable</a>).</p>
+<h4 id="landing_title-and-landing_subtitle"><a class="toclink" href="#landing_title-and-landing_subtitle"><code>landing_title</code> and <code>landing_subtitle</code></a></h4>
+<p>(string; default values <code>John Smith</code> and <code>Cats, Dogs &amp; Humans Photography</code>, respectively)</p>
+<p>Specify the title and subtitle displayed on the landing page of the gallery.</p>
+<h4 id="landing_facebook-landing_flickr-landing_twitter-landing_instagram-and-landing_youtube"><a class="toclink" href="#landing_facebook-landing_flickr-landing_twitter-landing_instagram-and-landing_youtube"><code>landing_facebook</code>, <code>landing_flickr</code>, <code>landing_twitter</code>, <code>landing_instagram</code>, and <code>landing_youtube</code></a></h4>
+<p>(string; default values <code>https://www.facebook.com/JohnSmith</code>, <code>https://www.flickr.com/JohnSmith</code>, <code>https://www.twitter.com/JohnSmith</code>, <code>https://instagram.com/JohnSmith</code>, and <code>https://www.youtube.com/JohnSmith</code>, respectively)</p>
+<p>Specify the URLs to the various social media spaces associated with the gallery.  To disable a particular media icon, set the corresponding setting to an empty string.</p>
+<h4 id="landing_background"><a class="toclink" href="#landing_background"><code>landing_background</code></a></h4>
+<p>(string; default value <code>dist/cat.jpg</code>)</p>
+<p>Image displayed in the background of the landing page.</p>
+<h3 id="smart-albums"><a class="toclink" href="#smart-albums">Smart Albums</a></h3>
+<h4 id="public_recent"><a class="toclink" href="#public_recent"><code>public_recent</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Determines whether the <em>Recent</em> smart album is displayed in the public mode.</p>
+<h4 id="recent_age"><a class="toclink" href="#recent_age"><code>recent_age</code></a></h4>
+<p>(integer; default value <code>1</code>)</p>
+<p>Specifies the age of photos to be included in the <em>Recent</em> smart album, in days.</p>
+<h4 id="public_starred"><a class="toclink" href="#public_starred"><code>public_starred</code></a></h4>
+<p>(boolean; default value <code>0</code>)</p>
+<p>Determines whether the <em>Starred</em> smart album is displayed in the public mode.</p>
+<h3 id="symbolic-link"><a class="toclink" href="#symbolic-link">Symbolic Link</a></h3>
+<h4 id="sl_enable-and-sl_for_admin"><a class="toclink" href="#sl_enable-and-sl_for_admin"><code>SL_enable</code> and <code>SL_for_admin</code></a></h4>
+<p>(boolean; default values <code>0</code>)</p>
+<p>This functionality is disabled by default.</p>
+<p>Specify whether symbolic linking should be enabled for regular users (including the public mode) and the administrator, respectively.</p>
+<p>The idea is to create symbolic links that will be removed after a set period of time. 
+The goal of this approach is to avoid someone finding
+upload/small/1234567890abcdef.jpg or upload/thumb/1234567890abcdef.jpeg and deduce the url of the full sized picture: upload/big/1234567890abcdef.jpg
+In such way we protect the access to full sized pictures.</p>
+<p>Enabling this might impact performances since when the life time expires, the entire set of links needs to be recreated before the gallery can be visible. This will impact on huge galleries.</p>
+<h4 id="sl_life_time_days"><a class="toclink" href="#sl_life_time_days"><code>SL_life_time_days</code></a></h4>
+<p>(integer; default value <code>1</code>)</p>
+<p>Specifies the life time of symbolic links, in days.  After that time, the links are removed and new ones are created in their place, as needed.</p>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>
