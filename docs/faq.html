@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lychee Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <link rel="canonical" href="https://lycheeorg.github.io/docs/">
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
+    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
+    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#ff2d20">
+    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Load fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/ins2wgm.css">
+
+    <!-- Load styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    <!-- Load JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="js/vendor/require.js"></script>
+
+</head>
+
+<body class="language-php">
+
+    <div class="sidebar_layout" id="docsScreen">
+
+        <div class="page_contain">
+            <div class="contain">
+                <aside class="sidebar">
+                    <a href="/" class="logo">
+                        <img class="mark" src="img/logo.png" alt="Laravel">
+                        <img class="type" src="img/Lychee.png" alt="Laravel">
+                    </a>
+                    <nav>
+                        <div class="navigation_contain">
+                            <div class="docs_sidebar">
+                                <ul>
+                                    <li class='sub--on'>
+<h2>Prologue</h2>
+<ul>
+<li><a href='releases.html'>Release Notes</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
+<li><a href='contributions.html'>Contribution Guide</a></li>
+<li><a href='api.html'>API Documentation</a></li>
+<li class='active'><a href='faq.html'>Frequently Asked Question</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Getting Started</h2>
+<ul>
+<li><a href='installation.html'>Installation</a></li>
+<li><a href='configuration.html'>Configuration</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Digging Deeper</h2>
+<ul>
+<li><a href='settings.html'>Settings</a></li>
+<li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+</ul>
+
+                                    <!-- <li>
+                                        <h2>Architecture Concepts</h2>
+                                        <ul>
+                                            <li><a href="docs/lifecycle.html">Request Lifecycle</a></li>
+                                            <li><a href="docs/container.html">Service Container</a></li>
+                                            <li><a href="docs/providers.html">Service Providers</a></li>
+                                            <li><a href="docs/facades.html">Facades</a></li>
+                                            <li><a href="docs/contracts.html">Contracts</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <li>
+                                        <h2>Laravel Basics</h2>
+                                        <ul>
+                                            <li><a href="http://laravel.com/docs/7.x/routing">Routing</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/middleware">Middleware</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/csrf">CSRF Protection</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/controllers">Controllers</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/requests">Requests</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/responses">Responses</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/views">Views</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/urls">URL Generation</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/session">Session</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/validation">Validation</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/errors">Error Handling</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/logging">Logging</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li>
+                                        <h2>Frontend</h2>
+                                        <ul>
+                                            <li><a href="docs/blade.html">Blade Templates</a></li>
+                                            <li><a href="docs/localization.html">Localization</a></li>
+                                            <li><a href="docs/frontend.html">Frontend Scaffolding</a></li>
+                                            <li><a href="docs/mix.html">Compiling Assets</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <!-- <li>
+                                        <h2>Security</h2>
+                                        <ul>
+                                            <li><a href="docs/authentication.html">Authentication</a></li>
+                                            <li><a href="docs/authorization.html">Authorization</a></li>
+                                            <li><a href="docs/verification.html">Email Verification</a></li>
+                                            <li><a href="docs/encryption.html">Encryption</a></li>
+                                            <li><a href="docs/hashing.html">Hashing</a></li>
+                                            <li><a href="docs/passwords.html">Password Reset</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <!-- <li>
+                                        <h2>Digging Deeper</h2>
+                                        <ul>
+                                            <li><a href="docs/artisan.html">Artisan Console</a></li>
+                                            <li><a href="docs/broadcasting.html">Broadcasting</a></li>
+                                            <li><a href="docs/cache.html">Cache</a></li>
+                                            <li><a href="docs/collections.html">Collections</a></li>
+                                            <li><a href="docs/events.html">Events</a></li>
+                                            <li><a href="docs/filesystem.html">File Storage</a></li>
+                                            <li><a href="docs/helpers.html">Helpers</a></li>
+                                            <li><a href="docs/http.html-client">HTTP Client</a></li>
+                                            <li><a href="docs/mail.html">Mail</a></li>
+                                            <li><a href="docs/notifications.html">Notifications</a></li>
+                                            <li><a href="docs/packages.html">Package Development</a></li>
+                                            <li><a href="docs/queues.html">Queues</a></li>
+                                            <li><a href="docs/scheduling.html">Task Scheduling</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <li>
+                                        <h2>Laravel Database</h2>
+                                        <ul>
+                                            <li><a href="http://laravel.com/docs/7.x/database">Getting Started</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/queries">Query Builder</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/pagination">Pagination</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/migrations">Migrations</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/seeding">Seeding</a></li>
+                                            <li><a href="http://laravel.com/docs/7.x/redis">Redis</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li>
+                                        <h2>Eloquent ORM</h2>
+                                        <ul>
+                                            <li><a href="docs/eloquent.html">Getting Started</a></li>
+                                            <li><a href="docs/eloquent.html-relationships">Relationships</a></li>
+                                            <li><a href="docs/eloquent.html-collections">Collections</a></li>
+                                            <li><a href="docs/eloquent.html-mutators">Mutators</a></li>
+                                            <li><a href="docs/eloquent.html-resources">API Resources</a></li>
+                                            <li><a href="docs/eloquent.html-serialization">Serialization</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <!-- <li>
+                                        <h2>Testing</h2>
+                                        <ul>
+                                            <li><a href="docs/testing.html">Getting Started</a></li>
+                                            <li><a href="docs/http.html-tests">HTTP Tests</a></li>
+                                            <li><a href="docs/console.html-tests">Console Tests</a></li>
+                                            <li><a href="docs/dusk.html">Browser Tests</a></li>
+                                            <li><a href="docs/database.html-testing">Database</a></li>
+                                            <li><a href="docs/mocking.html">Mocking</a></li>
+                                        </ul>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="trigger_contain">
+                        <a href="#" class="nav_trigger" aria-label="Menu">
+                            <div class="bar"></div>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="body_content">
+                    <section class="docs_body">
+                        <section class="docs_main">
+                            <h1>Frequently Asked Question</h1>
+                            
+<ul>
+<li><a href="#lychee-is-not-working">Lychee is not working</a></li>
+<li><a href="#what-do-i-need-to-run-lychee-on-my-server">What do I need to run Lychee on my server?</a></li>
+<li><a href="#i-cant-upload-photos">I can't upload photos</a></li>
+<li><a href="#what-does-upstream-sent-too-big-header-error-message-mean">What does Upstream sent too big header error message mean?</a></li>
+<li><a href="#which-browsers-are-supported">Which browsers are supported?</a></li>
+<li><a href="#which-file-formats-are-supported">Which file formats are supported?</a></li>
+<li><a href="#what-is-new">What is new?</a></li>
+<li><a href="#how-can-i-install-lychee-without-ssh-access">How can I install Lychee without SSH access ?</a></li>
+<li><a href="#how-do-i-upgrade-from-lychee-v3-to-lychee-v4">How do I upgrade from Lychee v3 to Lychee v4?</a></li>
+<li><a href="#how-can-i-easily-contact-the-lycheeorg-organization">How can I easily contact the LycheeOrg organization ?</a></li>
+<li><a href="#how-can-i-set-thumbnails-for-my-albums">How can I set thumbnails for my albums?</a></li>
+<li><a href="#is-it-possible-to-create-folders-inside-another-folder-if-so-how-to-do-that">Is it possible to create folders inside another folder? If so, how to do that?</a></li>
+<li><a href="#how-can-i-back-up-my-installation">How can I back up my installation?</a></li>
+<li><a href="#how-can-i-migrate-my-installation-to-a-new-host">How can I migrate my installation to a new host?</a></li>
+<li><a href="#can-i-use-my-existing-folder-structure">Can I use my existing folder structure?</a></li>
+<li><a href="#can-i-upload-videos">Can I upload videos?</a></li>
+<li><a href="#can-i-host-lychee-laravel-with-a-subpath-with-nginx-like-httpsexampledevlychee">Can I host Lychee-Laravel with a subpath with Nginx? Like https://example.dev/lychee/</a></li>
+<li><a href="#why-dont-my-videos-have-thumbnails">Why don't my videos have thumbnails?</a></li>
+<li><a href="#is-it-possible-to-create-multiple-users">Is it possible to create multiple users?</a></li>
+<li><a href="#does-lychee-use-imagemagick">Does Lychee use ImageMagick?</a></li>
+<li><a href="#how-to-change-the-title-of-the-site">How to change the title of the site?</a></li>
+<li><a href="#how-to-reset-username-and-password">How to reset username and password?</a></li>
+<li><a href="#how-to-hide-smart-albums">How to hide smart albums?</a></li>
+<li><a href="#how-to-disable-the-zoom-animation-while-browsing-pictures">How to disable the 'zoom' animation while browsing pictures?</a></li>
+<li><a href="#composer-cant-create-a-cache-directory">Composer can't create a cache directory</a></li>
+<li><a href="#do-we-really-need-writable-app">Do we really need writable app/?</a></li>
+<li><a href="#how-is-the-upload-folder-protected">How is the upload folder protected?</a></li>
+<li><a href="#my-login-is-timing-out-after-two-hours-how-can-this-be-changed">My login is timing out after two hours, how can this be changed?</a></li>
+<li><a href="#how-can-i-clear-the-logs">How can I clear the Logs?</a></li>
+<li><a href="#why-cant-i-see-the-check-for-update-button-in-the-gui">Why can't I see the check for update button in the GUI?</a></li>
+<li><a href="#is-it-possible-to-do-the-update-directly-from-the-gui-how">Is it possible to do the update directly from the GUI? How?</a></li>
+<li><a href="#can-i-migrate-from-a-64-bit-system-to-a-32-bit-system">Can I migrate from a 64-bit system to a 32-bit system?</a></li>
+<li><a href="#how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare">How can I see the correct client IP address when running Lychee behind Cloudflare?]</a></li>
+<li><a href="#can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums">Can I set up Lychee to watch a folder for new images and automatically add them to albums?</a></li>
+<li><a href="#special-right-click-menu-doesnt-appear-for-new-users">Special right-click menu doesn't appear for new users?</a></li>
+<li><a href="#i-cant-access-the-users-under-settings-server-error-or-api-not-found-lightspeed">I can't access the users under settings server error or api not found Lightspeed</a></li>
+<li><a href="#how-can-i-stop-artisan-migrate-and-composer-from-running-after-every-git-pull">How can I stop artisan migrate and composer from running after every git pull?</a></li>
+</ul>
+ <p>
+    <a name="installation"></a>
+</p>
+
+<h3 id="lychee-is-not-working"><a class="toclink" href="#lychee-is-not-working">Lychee is not working</a></h3>
+<p>If Lychee is not working properly, try to open <code>https://lychee.example.com/Diagnostics</code>. This script will display all errors it can find.</p>
+<h3 id="what-do-i-need-to-run-lychee-on-my-server"><a class="toclink" href="#what-do-i-need-to-run-lychee-on-my-server">What do I need to run Lychee on my server?</a></h3>
+<p>To run Lychee, everything you need is a web server with PHP 7.3 or later and an SQL database.</p>
+<p>Lychee uses a <code>.htaccess</code> file to configure the server and allow for some advanced options, like uploading from other sources via the API. If you're running an Apache server, you need to enable <code>.htaccess</code> write permissions.</p>
+<p>You can configure Apache globally in <code>/etc/apache2/apache2.conf</code> or per-directory in <code>/etc/apache2/sites-available/your-website.conf</code> (exact path and file names are distribution-dependent). Find the <code>&lt;Directory&gt;</code> directive, change <code>AllowOverride None</code> to <code>AllowOverride All</code> and save.</p>
+<pre><code>&lt;Directory /var/www/your-site&gt;
+  AllowOverride All
+&lt;/Directory&gt;
+</code></pre>
+
+<h3 id="i-cant-upload-photos"><a class="toclink" href="#i-cant-upload-photos">I can't upload photos</a></h3>
+<p>If you experience problems uploading large photos, you might want to change the PHP parameters in <code>.htaccess</code> (if you are using the PHP Apache module) or in <code>.user.ini</code> (if you are using PHP &gt;= 7.3 with CGI or FastCGI).</p>
+<blockquote>
+<p>If you modify the <code>.user.ini</code> file, you may want to run <code>git update-index --assume-unchanged .user.ini</code> afterwards.</p>
+</blockquote>
+<p>If possible, change these settings directly in your <code>php.ini</code>. We recommend to increase the values of the following properties:</p>
+<pre><code>max_execution_time = 200
+post_max_size = 100M
+upload_max_size = 100M
+upload_max_filesize = 20M
+memory_limit = 256M
+</code></pre>
+
+<h3 id="what-does-upstream-sent-too-big-header-error-message-mean"><a class="toclink" href="#what-does-upstream-sent-too-big-header-error-message-mean">What does <em>Upstream sent too big header</em> error message mean?</a></h3>
+<p>This error may be seen from your browser's console if you're trying to debug something with Lychee. If using <code>nginx</code>, try adding the following to Lychee's config and reload nginx's service:</p>
+<pre><code>fastcgi_buffers 16 16k;
+fastcgi_buffer_size 32k;
+</code></pre>
+
+<h3 id="which-browsers-are-supported"><a class="toclink" href="#which-browsers-are-supported">Which browsers are supported?</a></h3>
+<p>Lychee should work with any modern, standards-compliant web browser (note that having JavaScript enabled is a hard dependency). Lychee does take advantage of several HTML5 features, such as the <code>&lt;video&gt;</code> tag, responsive image sizing using <code>srcset</code>, or link data prefetching. In particular, Lychee supports the latest versions of Google Chrome, Apple's Safari, Mozilla Firefox, Opera, and Microsoft Internet Explorer.</p>
+<p>If you experience any issues with Lychee and wish to report it, make sure to specify the browser you're using and the version of it.</p>
+<h3 id="which-file-formats-are-supported"><a class="toclink" href="#which-file-formats-are-supported">Which file formats are supported?</a></h3>
+<p>Lychee supports major image formats, and since version 3.2.1 some video formats as well. Specifically, <code>*.jpg</code>, <code>*.jpeg</code>, <code>*.png</code>, <code>*.gif</code>, <code>*.ogv</code>, <code>*.mp4</code>, <code>*.webm</code>, and <code>*.mov</code> are accepted.</p>
+<p>If you're uploading video files, make sure to increase your upload limits in <code>php.ini</code>.  See the <a href="https://github.com/LycheeOrg/Lychee-Laravel/wiki/Install#72-php">Install</a> section for more information.</p>
+<h3 id="what-is-new"><a class="toclink" href="#what-is-new">What is new?</a></h3>
+<p>Take a look at the <a href="Changelog">Changelog</a> to see what's new.</p>
+<h3 id="how-can-i-install-lychee-without-ssh-access"><a class="toclink" href="#how-can-i-install-lychee-without-ssh-access">How can I install Lychee without SSH access ?</a></h3>
+<ol>
+<li>Download the latest release</li>
+<li>Extract and upload the folder via ftp</li>
+<li>access the website.
+If you are at the wrong address you will be told to go to the <code>public</code> folder.
+Once open, you will be redirected to the install procedure. Completed you will be able to create an admin account and enjoy Lychee.</li>
+</ol>
+<h3 id="how-do-i-upgrade-from-lychee-v3-to-lychee-v4"><a class="toclink" href="#how-do-i-upgrade-from-lychee-v3-to-lychee-v4">How do I upgrade from Lychee v3 to Lychee v4?</a></h3>
+<p>The process without docker supports the migration pretty well:</p>
+<p>Assuming the following tree:</p>
+<pre><code>/var/
+  |- www/
+         |- html/
+              |- Lychee/
+              |- &lt;you are here in html&gt;
+</code></pre>
+
+<p>You can do:</p>
+<pre><code class="sh">git clone https://github.com/LycheeOrg/Lychee-Laravel
+cd Lychee-Laravel
+# apply composer to install dependencies
+composer install --no-dev
+# move the pictures
+mv ../Lychee/uploads/big/* public/uploads/big/
+mv ../Lychee/uploads/medium/* public/uploads/medium/
+mv ../Lychee/uploads/small/* public/uploads/small/
+mv ../Lychee/uploads/thumb/* public/uploads/thumb/
+</code></pre>
+
+<p>From here there are two ways:</p>
+<ol>
+<li>open <code>public/</code> with your browser and follow the steps.</li>
+<li>apply the following steps in command line:
+  <code># copy .env
+  cp .env.example .env
+  # edit dot env
+  vim .env
+  # don't forget [:] [q] to quit ;)
+  php artisan migrate
+  # generate a secure key to encrypt the cookies
+  php artisan key:generate</code></li>
+</ol>
+<p>And finally, make apache point to the <code>public/</code> directory and enjoy.</p>
+<h3 id="how-can-i-easily-contact-the-lycheeorg-organization"><a class="toclink" href="#how-can-i-easily-contact-the-lycheeorg-organization">How can I easily contact the LycheeOrg organization ?</a></h3>
+<p>There is a gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby</p>
+<h3 id="how-can-i-set-thumbnails-for-my-albums"><a class="toclink" href="#how-can-i-set-thumbnails-for-my-albums">How can I set thumbnails for my albums?</a></h3>
+<p>Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the <a href="Settings#sorting">Settings</a>. <em>Precedence is given to starred photos</em>. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.</p>
+<h3 id="is-it-possible-to-create-folders-inside-another-folder-if-so-how-to-do-that"><a class="toclink" href="#is-it-possible-to-create-folders-inside-another-folder-if-so-how-to-do-that">Is it possible to create folders inside another folder? If so, how to do that?</a></h3>
+<p>Either press <code>n</code> (as <strong>N</strong>ew) or use the add menu.</p>
+<p><img alt="Screenshot (33)" src="https://user-images.githubusercontent.com/627094/80621138-2c5fac00-8a47-11ea-849e-050f740d3b7d.png" /></p>
+<h3 id="how-can-i-back-up-my-installation"><a class="toclink" href="#how-can-i-back-up-my-installation">How can I back up my installation?</a></h3>
+<p>To back up your Lychee installation you need to perform the following steps:</p>
+<ol>
+<li>Create a copy of at least the following parts of the Lychee directory tree (e.g., <code>/var/www/html/Lychee</code>):</li>
+</ol>
+<pre><code>.env
+public/dist/user.css
+public/uploads/
+</code></pre>
+
+<ol>
+<li>Dump the Lychee database to a file. E.g., if you are using MySQL, run:</li>
+</ol>
+<pre><code>mysqldump -u user -ppassword --databases lychee_database &gt; lychee_backup.sql
+</code></pre>
+
+<p>Replace <code>user</code>, <code>password</code>, and <code>lychee_database</code> by the values of <code>DB_USERNAME</code>, <code>DB_PASSWORD</code>, and <code>DB_DATABASE</code> from the <code>.env</code> file in the Lychee folder.</p>
+<h3 id="how-can-i-migrate-my-installation-to-a-new-host"><a class="toclink" href="#how-can-i-migrate-my-installation-to-a-new-host">How can I migrate my installation to a new host?</a></h3>
+<p>To move your Lychee installation, you need to perform the following steps:</p>
+<ol>
+<li>Copy the whole Lychee folder (e.g., <code>/var/www/html/Lychee</code>) to the new host.</li>
+<li>Dump the Lychee database to a file. E.g., if you are using MySQL, run:</li>
+</ol>
+<pre><code>mysqldump -u user -ppassword --databases lychee_database &gt; lychee_backup.sql
+</code></pre>
+
+<p>Replace <code>user</code>, <code>password</code>, and <code>lychee_database</code> by the values of <code>DB_USERNAME</code>, <code>DB_PASSWORD</code>, and <code>DB_DATABASE</code> from the <code>.env</code> file in the Lychee folder.</p>
+<ol>
+<li>Restore the database on the new host, e.g., for MySQL:</li>
+</ol>
+<pre><code>mysql -u user -ppassword &lt; lychee_backup.sql
+</code></pre>
+
+<h3 id="can-i-use-my-existing-folder-structure"><a class="toclink" href="#can-i-use-my-existing-folder-structure">Can I use my existing folder structure?</a></h3>
+<p>Not at this time. Lychee currently uses its own folder structure and database. Please upload or import all your photos to use them.</p>
+<h3 id="can-i-upload-videos"><a class="toclink" href="#can-i-upload-videos">Can I upload videos?</a></h3>
+<p>Yes, but you will need to change this property to a bigger value:</p>
+<pre><code>upload_max_filesize = 20M
+</code></pre>
+
+<h3 id="can-i-host-lychee-laravel-with-a-subpath-with-nginx-like-httpsexampledevlychee"><a class="toclink" href="#can-i-host-lychee-laravel-with-a-subpath-with-nginx-like-httpsexampledevlychee">Can I host Lychee-Laravel with a subpath with Nginx? Like <code>https://example.dev/lychee/</code></a></h3>
+<p>Yes, here is a configuration to help you:</p>
+<pre><code class="nginx">location ^~ /lychee {
+    alias /var/www/lychee/public;
+    index index.php;
+    try_files $uri $uri/ @lychee;
+    location ~ \.php$ {
+        if (!-e $request_filename) {
+            rewrite ^/lychee/?(.*)$ /lychee/index.php?/$1 last;
+            break;
+        }
+        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $request_filename;
+    }
+}
+location @lychee {
+    rewrite /lychee/(.*)$ /lychee/index.php?/$1 last;
+}
+
+</code></pre>
+
+<h3 id="why-dont-my-videos-have-thumbnails"><a class="toclink" href="#why-dont-my-videos-have-thumbnails">Why don't my videos have thumbnails?</a></h3>
+<p>You will need ffmpeg installed on your server, and to have installed php-ffmpeg using composer as detailed in the <a href="https://github.com/LycheeOrg/Lychee-laravel/wiki/Installation">Installation Guide</a>.</p>
+<p>If you are still having problems, check your Lychee log. If you are still getting a <code>Could not create thumbnail for video because FFMPEG is not available.</code> error, you may need to specify the location of your ffmpeg and ffprobe binaries. In https://github.com/LycheeOrg/Lychee-Laravel/blob/master/app/ModelFunctions/PhotoFunctions.php#L94 replace</p>
+<pre><code>$ffmpeg = FFMpeg\FFMpeg::create();
+</code></pre>
+
+<p>with</p>
+<pre><code>$ffmpeg = FFMpeg\FFMpeg::create(array(
+        'ffmpeg.binaries'  =&gt; '/usr/bin/ffmpeg',
+        'ffprobe.binaries' =&gt; '/usr/bin/ffprobe',
+));
+</code></pre>
+
+<p>using your correct binary locations. If unsure, you can try running <code>which ffmpeg</code> on the server.</p>
+<h3 id="is-it-possible-to-create-multiple-users"><a class="toclink" href="#is-it-possible-to-create-multiple-users">Is it possible to create multiple users?</a></h3>
+<p>Yes. Just go to the <code>Users</code> menu.</p>
+<h3 id="does-lychee-use-imagemagick"><a class="toclink" href="#does-lychee-use-imagemagick">Does Lychee use ImageMagick?</a></h3>
+<p>Yes. Lychee uses ImageMagick when available.</p>
+<h3 id="how-to-change-the-title-of-the-site"><a class="toclink" href="#how-to-change-the-title-of-the-site">How to change the title of the site?</a></h3>
+<p>Go to the advanced Settings menu and change the value of <code>site_title</code>.</p>
+<h3 id="how-to-reset-username-and-password"><a class="toclink" href="#how-to-reset-username-and-password">How to reset username and password?</a></h3>
+<p>via ssh, use the command <code>php artisan lychee:reset_admin</code></p>
+<h3 id="how-to-hide-smart-albums"><a class="toclink" href="#how-to-hide-smart-albums">How to hide smart albums?</a></h3>
+<p>Add the following custom CSS to your <code>user.css</code> or via the settings menu:</p>
+<pre><code class="css">[data-id=&quot;0&quot;] { display:none; }
+[data-id=&quot;s&quot;] { display:none; }
+[data-id=&quot;f&quot;] { display:none; }
+[data-id=&quot;r&quot;] { display:none; }
+</code></pre>
+
+<h3 id="how-to-disable-the-zoom-animation-while-browsing-pictures"><a class="toclink" href="#how-to-disable-the-zoom-animation-while-browsing-pictures">How to disable the 'zoom' animation while browsing pictures?</a></h3>
+<p>Add the following custom CSS to your <code>user.css</code> or via the settings menu:</p>
+<pre><code class="css">#imageview #image {
+  transition: none !important;
+  animation-name: none !important;
+  animation-duration: 0 !important;
+}
+</code></pre>
+
+<h3 id="composer-cant-create-a-cache-directory"><a class="toclink" href="#composer-cant-create-a-cache-directory">Composer can't create a cache directory</a></h3>
+<ul>
+<li>When running Composer, you may notice the following warning:</li>
+</ul>
+<pre><code>Cannot create cache directory /home/$USER/.composer/cache/files/, or directory is not writable. Proceeding without cache
+</code></pre>
+
+<ul>
+<li>You can specify Composer's cache directory with the environment variable <code>COMPOSER_CACHE_DIR=</code>. For Lychee, the cache is not necessary, and you can both disable it and hide the warning by specifying the location of the cache as <code>/dev/null</code> (<a href="https://github.com/composer/composer/commit/fd6455218e304e9b484bebb0efcdb67bb52d051d">information</a>):</li>
+</ul>
+<pre><code>COMPOSER_CACHE_DIR='/dev/null' composer update --working-dir='/var/www/Lychee'
+</code></pre>
+
+<h3 id="do-we-really-need-writable-app"><a class="toclink" href="#do-we-really-need-writable-app">Do we really need writable <code>app/</code>?</a></h3>
+<p>From <a href="../issues/311">#311</a></p>
+<p>Short answer: Lychee-Laravel will work without a writable <code>app/</code> folder.</p>
+<p>However, if you want to be able to update your Lychee installation with a click of a button in the web browser (which is supported with Lychee-Laravel, though it's disabled by default), your whole Lychee installation tree (and not just <code>app/</code>) must be http-writable.</p>
+<p>As far as I know, the minimum set of directories that need to be http-writable is as follows:</p>
+<pre><code>storage/framework/sessions
+storage/framework/views
+storage/logs
+public/uploads
+public/uploads/small
+public/uploads/big
+public/uploads/thumb
+public/uploads/medium
+public/uploads/import
+public/dist
+</code></pre>
+
+<h3 id="how-is-the-upload-folder-protected"><a class="toclink" href="#how-is-the-upload-folder-protected">How is the upload folder protected?</a></h3>
+<p>From <a href="../issues/304">#304</a></p>
+<p>Short version: It's not protected</p>
+<p>Long answer: <a href="../pull/295">#295</a> added some protection through symlinking, so that the URLs used are temporary.</p>
+<p>Right now, the protection is basically through the use of difficult to guess names (it's an MD5 checksum of the system time at the time of upload). <a href="../pull/295">#295</a> not only made those names temporary (this needs to be enabled in the Settings, BTW) but it also provided optional support for hiding the full-size version (this is only effective with symlinking as without it the URL can be derived from that of intermediate-size images).</p>
+<p>@ildyria recenlty posted the following link on how a more effective protection could be implemented: https://bedigit.com/blog/laravel-5-how-to-access-image-uploaded-in-storage-within-view/. He didn't go down that route himself due to performance concerns but I agree that if somebody contributed a clean implementation as an option, we'd probably accept it.</p>
+<h3 id="my-login-is-timing-out-after-two-hours-how-can-this-be-changed"><a class="toclink" href="#my-login-is-timing-out-after-two-hours-how-can-this-be-changed">My login is timing out after two hours, how can this be changed?</a></h3>
+<p>You can edit your <code>.env</code> and modify the <code>SESSION_LIFETIME=120</code> part (in minutes).</p>
+<h3 id="how-can-i-clear-the-logs"><a class="toclink" href="#how-can-i-clear-the-logs">How can I clear the Logs?</a></h3>
+<p>To remove the <code>Notice</code> and <code>Warnings</code>, simply click on the button at the top of the Log page.
+However if the page is too heavy to load, you can either manually empty the <code>Logs</code> table or use artisan:</p>
+<pre><code>cd Lychee
+php artisan lychee:logs clean
+</code></pre>
+
+<h3 id="why-cant-i-see-the-check-for-update-button-in-the-gui"><a class="toclink" href="#why-cant-i-see-the-check-for-update-button-in-the-gui">Why can't I see the <em>check for update</em> button in the GUI?</a></h3>
+<ul>
+<li>Make sure you are using a <code>git</code> installation and not a downloaded release</li>
+<li>Make sure you are on the <code>master</code> branch</li>
+<li>Make sure your web user has read and write access to <code>.git</code></li>
+<li>Check that <code>exec</code> is available.</li>
+<li>Check that 'allow_online_git_pull' setting is set to '1'</li>
+</ul>
+<h3 id="is-it-possible-to-do-the-update-directly-from-the-gui-how"><a class="toclink" href="#is-it-possible-to-do-the-update-directly-from-the-gui-how">Is it possible to do the update directly from the GUI? How?</a></h3>
+<p>You go to <code>Diagnostics</code> -&gt; <code>Check for Updates</code><br />
+Once done you need to update the <code>Diagnostic</code> page (click on it again in the left menu) 
+You will see a <code>Apply Update</code> button on the top. Click on it and done.
+If it breaks (error 500) you can still go back to command line and do your <code>git pull</code>, migrate etc...</p>
+<p>There are some securities that you need to disable via the advanced settings menu:</p>
+<ul>
+<li>you need to allow update if your .env specify <code>production</code>:<br />
+<code>force_migration_in_production</code> = <code>1</code></li>
+<li>you need to allow composer :<br />
+<code>apply_composer_update</code> = <code>1</code> (optional)</li>
+</ul>
+<p>The second one is really optional if updates don't need the composer (like 90% of the time) then it can just stay at <code>0</code>.</p>
+<h3 id="can-i-migrate-from-a-64-bit-system-to-a-32-bit-system"><a class="toclink" href="#can-i-migrate-from-a-64-bit-system-to-a-32-bit-system">Can I migrate from a 64-bit system to a 32-bit system?</a></h3>
+<p>Yes, but it's not trivial or recommended. After copying the database:
+1. Download <a href="https://github.com/LycheeOrg/Lychee-Laravel/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php">this</a> file to your <code>database/migrations/</code> folder.
+2. Run  the SQL command <code>delete from migrations where migration='2019_04_07_193345_fix_32bit';</code> to make sure it will run.
+3. Run <code>php artisan migrate</code>. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.</p>
+<p>This will only work on top-level albums. Subalbums will require <a href="https://github.com/LycheeOrg/Lychee-Laravel/issues/406#issuecomment-571378073">manual intervention</a>.</p>
+<h3 id="how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare"><a class="toclink" href="#how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare">How can I see the correct client IP address when running Lychee behind Cloudflare?]</a></h3>
+<p>Please see https://github.com/monicahq/laravel-cloudflare. The Lychee file that needs changing can be found <a href="https://github.com/LycheeOrg/Lychee-Laravel/blob/master/app/Http/Middleware/TrustProxies.php">here</a>.</p>
+<h3 id="can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums"><a class="toclink" href="#can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums">Can I set up Lychee to watch a folder for new images and automatically add them to albums?</a></h3>
+<p>Lychee can import photos from the command line using <code>php artisan lychee:sync /path/to/import</code>. Folders in this path will be converted to albums, and subfolders as subalbums using <code>php artisan lychee:sync /path/to/import --album_id="album ID"</code>.</p>
+<p>This command can be scheduled using <code>cron</code> or a systemd timer.</p>
+<pre><code class="sh">man crontab
+man systemd.timer
+</code></pre>
+
+<h3 id="special-right-click-menu-doesnt-appear-for-new-users"><a class="toclink" href="#special-right-click-menu-doesnt-appear-for-new-users">Special right-click menu doesn't appear for new users?</a></h3>
+<p>For example:<br />
+<img alt="" src="https://user-images.githubusercontent.com/14360110/74829349-22b41c80-5311-11ea-96e9-adb648a2c3fe.png" /></p>
+<p>No this is normal. This user does not have the ownership of that Album, so the right click is not available. You can see <em>sharing</em> as a <em>read</em> permission.</p>
+<blockquote>
+<p>Also, the divider h1 shows the text "Admin" when logged in with an ordinary user. I guess this should be "Albums"?</p>
+</blockquote>
+<p>Actually no, this is because the user does not have any albums (yet). The <code>h1</code> divider is to show who is the owner of those albums. See bellow.
+<img alt="2020-02-19_3840x1080_12:29:19" src="https://user-images.githubusercontent.com/627094/74830496-92c3a200-5313-11ea-9065-60cb8090c7ac.png" />
+And yes the right-click menu is available on the <em>PhD Defenses</em> part but not in the <em>Admin</em> parts.
+Also because this user has upload right, he can see the <em>Unsorted, Public, Starred, Recent</em> smart albums. </p>
+<h3 id="i-cant-access-the-users-under-settings-server-error-or-api-not-found-lightspeed"><a class="toclink" href="#i-cant-access-the-users-under-settings-server-error-or-api-not-found-lightspeed">I can't access the users under settings server error or api not found Lightspeed</a></h3>
+<p>If you receive a server error or api not found error under lightspeed web server try going to cPanel &gt; Mod Security and turning the feature off.</p>
+<h3 id="how-can-i-stop-artisan-migrate-and-composer-from-running-after-every-git-pull"><a class="toclink" href="#how-can-i-stop-artisan-migrate-and-composer-from-running-after-every-git-pull">How can I stop <code>artisan migrate</code> and <code>composer</code> from running after every <code>git pull</code>?</a></h3>
+<p>We've set composer to install git <code>pre-commit</code> and <code>post-merge</code> hooks by default.
+- The pre-commit is to help developers by checking and fixing and code style problems before they hit our testing. If you aren't committing and changes, this will not be run.
+- The post-merge ensures that your dependencies and database version are kept current. This can be disabled by creating a file <code>.NO_AUTO_COMPOSER_MIGRATE</code> in your Lychee root and deleting (if necessary) <code>.git/hooks/post-merge</code>. If you disable this script, you will need to run <code>composer</code> and <code>artisan migrate</code> manually. Alternatively, the Update UI can be set to handle this if you run your updates there.</p>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>

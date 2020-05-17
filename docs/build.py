@@ -20,37 +20,13 @@ pages_title['structure'] = 'Directory Structure'
 pages_title['contributions'] = 'Contribution Guide'
 pages_title['releases'] = 'Release Notes'
 pages_title['api'] = 'API Documentation'
+pages_title['faq'] = 'Frequently Asked Question'
 pages_title['settings'] = 'Settings'
 pages_title['keyboard'] = 'Keyboard Shortcuts'
 pages_title['upgrade'] = 'Upgrade from v3'
 
-#    <li class = "sub--on" >
-#         <h2 > Prologue < /h2 >
-#         <ul >
-#             <li {li-active-releases} > <a href = "releases.html" > Release Notes < /a > </li >
-#             <li {li-active-upgrade} > <a href = "upgrade.html" > Upgrade from v3 < /a > </li >
-#             <li {li-active-contributions} > <a href = "contributions.html" > Contribution Guide < /a > </li >
-#             <li {li-active-api} > <a href = "api.html" > API Documentation < /a > </li >
-#         </ul >
-#     </li >
-#    <li class = "sub--on" >
-#         <h2 > Getting Started < /h2 >
-#         <ul >
-#             <li {li-active-installation} > <a href = "installation.html" > Installation < /a > </li >
-#             <li {li-active-configuration} > <a href = "configuration.html" > Configuration < /a > </li >
-#             <li {li-active-structure} > <a href = "structure.html" > Directory Structure < /a > </li >
-#         </ul >
-#     </li >
-#    <li class = "sub--on" >
-#         <h2 >  < /h2 >
-#         <ul >
-#             <li > <a href = "settings.html" > Settings < /a > </li >
-#             <li > <a href = "keyboard.html" > Keyboard Shortcuts < /a > </li >
-#         </ul >
-#     </li >
-
 structure = [['Prologue',
-              ['releases', 'upgrade', 'contributions', 'api']]]
+              ['releases', 'upgrade', 'contributions', 'api', 'faq']]]
 structure += [['Getting Started',
                ['installation', 'configuration', 'structure']]]
 structure += [['Digging Deeper',
