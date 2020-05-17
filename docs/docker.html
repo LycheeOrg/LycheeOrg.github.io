@@ -51,7 +51,7 @@
 <h2>Prologue</h2>
 <ul>
 <li><a href='releases.html'>Release Notes</a></li>
-<li class='active'><a href='upgrade.html'>Upgrade from v3</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
 <li><a href='contributions.html'>Contribution Guide</a></li>
 <li><a href='api.html'>API Documentation</a></li>
 <li><a href='faq.html'>Frequently Asked Question</a></li>
@@ -62,7 +62,7 @@
 <li><a href='installation.html'>Installation</a></li>
 <li><a href='configuration.html'>Configuration</a></li>
 <li><a href='structure.html'>Directory Structure</a></li>
-<li><a href='docker.html'>Docker</a></li>
+<li class='active'><a href='docker.html'>Docker</a></li>
 </ul>
 <li class='sub--on'>
 <h2>Digging Deeper</h2>
@@ -183,118 +183,94 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>Upgrade from v3</h1>
+                            <h1>Docker</h1>
                             
 <ul>
-<li><a href="#checking-requirements">Checking requirements</a></li>
-<li><a href="#preparing-the-files">Preparing the files</a></li>
-<li><a href="#preparing-the-server">Preparing the server</a><ul>
-<li><a href="#using-apache">Using Apache</a></li>
-<li><a href="#using-nginx">Using Nginx</a></li>
+<li><a href="#image-content">Image Content</a></li>
+<li><a href="#setup">Setup</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#run-with-docker">Run with Docker</a></li>
+<li><a href="#run-with-docker-compose">Run with Docker Compose</a></li>
 </ul>
 </li>
+<li><a href="#available-environment-variables-and-defaults">Available environment variables and defaults</a></li>
+<li><a href="#advanced-configuration">Advanced configuration</a></li>
 </ul>
- <h2 id="checking-requirements"><a class="toclink" href="#checking-requirements">Checking requirements</a></h2>
-<p>Check that the server satisfifes the <a href="https://github.com/LycheeOrg/Lychee/issues">requirements</a>, in particular pay attention the php extensions.
-You can display them by using <code>phpinfo()</code>.</p>
-<h2 id="preparing-the-files"><a class="toclink" href="#preparing-the-files">Preparing the files</a></h2>
-<p>Assuming the following tree:</p>
-<pre><code>/var/
-  |- www/
-         |- html/
-              |- Lychee/
-              |- &lt;you are here&gt;
-</code></pre>
-
-<p>Rename Lychee into Lychee-v3:</p>
-<pre><code>mv Lychee Lychee-v3
-</code></pre>
-
-<p>Install Lychee files by either uploading the content of the released zip or cloning the repository:</p>
-<pre><code>git clone https://github.com/LycheeOrg/Lychee Lychee
-</code></pre>
-
-<p>Move the pictures from the version 3 to the newly created installation:</p>
-<pre><code>mv Lychee-v3/uploads/big/* Lychee/public/uploads/big/
-mv Lychee-v3/uploads/medium/* Lychee/public/uploads/medium/
-mv Lychee-v3/uploads/small/* Lychee/public/uploads/small/
-mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
-</code></pre>
-
-<h2 id="preparing-the-server"><a class="toclink" href="#preparing-the-server">Preparing the server</a></h2>
-<blockquote>
-<p>{note} The big difference between Lychee version 3 and Lychee version 4 is the served directory, i.e. where you webserver needs to point to.</p>
-</blockquote>
+ <p><br>
+<a href="https://travis-ci.com/LycheeOrg/Lychee-Laravel-Docker"><img alt="Build Status" src="https://img.shields.io/travis/com/LycheeOrg/Lychee-Laravel-Docker/master.svg?style=flat" /></a> <a href="https://hub.docker.com/r/lycheeorg/lychee-laravel"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/lycheeorg/lychee-laravel.svg?style=flat" /></a> <a href="https://github.com/LycheeOrg/Lychee-Laravel-Docker/releases"><img alt="Release" src="https://img.shields.io/github/release/LycheeOrg/Lychee-Laravel-Docker.svg?style=flat" /></a> <img alt="Last Commit" src="https://img.shields.io/github/last-commit/LycheeOrg/Lychee-Laravel-Docker.svg?style=flat" /></p>
+<p><img alt="Supports amd64 Architecture" src="https://img.shields.io/badge/amd64-yes-success.svg?style=flat" />
+<img alt="Supports aarch64 Architecture" src="https://img.shields.io/badge/aarch64-yes-success.svg?style=flat" />
+<img alt="Supports armv6 Architecture" src="https://img.shields.io/badge/armv6-yes-success.svg?style=flat" />
+<img alt="Supports armv7 Architecture" src="https://img.shields.io/badge/armv7-yes-success.svg?style=flat" /></p>
+<h2 id="image-content"><a class="toclink" href="#image-content">Image Content</a></h2>
+<p>This image features Lychee (Laravel version), nginx and PHP-FPM. The provided configuration (PHP, nginx...) follows Lychee's official recommandations.</p>
+<p>The following tags are available :</p>
 <ul>
-<li>In the version 3, this was the root <code>.</code> of Lychee.</li>
-<li>In the version 4, this is the <code>public</code> directory inside Lychee.</li>
+<li><code>latest</code>: current stable tag</li>
+<li><code>v[NUMBER]</code>: stable version tag</li>
+<li><code>dev</code>: current master branch tag</li>
+<li><code>testing</code>: branch and pr tag for testing</li>
 </ul>
-<h3 id="using-apache"><a class="toclink" href="#using-apache">Using Apache</a></h3>
-<p><strong>Make sure you have the module rewrite available and enabled: <code>a2enmod rewrite</code></strong>.</p>
-<p>Modify your <code>/etc/apache2/apache2.conf</code> to allow <code>.htaccess</code> to set up the rewrite rules:</p>
-<pre><code>&lt;Directory /var/www/html/Lychee&gt;
-    Options Indexes FollowSymLinks
-    AllowOverride All
-    Require all granted
-&lt;/Directory&gt;
+<h2 id="setup"><a class="toclink" href="#setup">Setup</a></h2>
+<h3 id="prerequisites"><a class="toclink" href="#prerequisites">Prerequisites</a></h3>
+<p>You must have a database docker running <strong>OR</strong> create one in your <code>docker-compose.yml</code>.</p>
+<ol>
+<li>Create the db, username, password.</li>
+<li>Edit the environment variables (db credentials, language...) by :<ul>
+<li>Supplying the environment variables via <code>docker run</code> / <code>docker-compose</code>, <strong>or</strong></li>
+<li>Creating a <code>.env</code> file with the appropriate info and mount it to <code>/conf/.env</code>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="run-with-docker"><a class="toclink" href="#run-with-docker">Run with Docker</a></h3>
+<p><strong>Make sure that you link to the container running your database !!</strong>  </p>
+<p>The example below shows <code>--net</code> and <code>--link</code> for these purposes. <code>--net</code> connects to the name of the network your database is on and  <code>--link</code> connects to the database container.</p>
+<pre><code class="bash">docker run -d \
+--name=lychee-laravel \
+-v /host_path/lychee-laravel/conf:/conf \
+-v /host_path/lychee-laravel/uploads:/uploads \
+-v /host_path/lychee-laravel/sym:/sym \
+-e PUID=1000 \
+-e PGID=1000 \
+-e PHP_TZ=America/New_York \
+-e DB_CONNECTION=mysql \
+-e DB_HOST=mariadb \
+-e DB_PORT=3306 \
+-e DB_DATABASE=homestead \
+-e DB_USERNAME=homestead \
+-e DB_PASSWORD=secret \
+-p 90:80 \
+--net network_name \
+--link db_name \
+lycheeorg/lychee-laravel
 </code></pre>
 
-<p>Modify or create <code>example.com.conf</code> in <code>/etc/apache2/site-available/</code> to point out the served directory:</p>
-<pre><code>&lt;VirtualHost *:80&gt;
-    ServerName example.com
-
-    DocumentRoot /var/www/html/Lychee/public
-
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-&lt;/VirtualHost&gt;
+<p><strong>Warning</strong> : if you use a MySQL database, make sure to use the <code>mysql_native_password</code> authentication plugin, either by using the <code>--default-authentication-plugin</code> option when starting mysql, or by running a query to enable the authentication plugin for the <code>lychee</code> user, e.g. :</p>
+<pre><code>alter user 'lychee' identified with mysql_native_password by '&lt;your password&gt;';
 </code></pre>
 
-<p>Enable the site:</p>
-<pre><code>a2ensite `example.com.conf`
-</code></pre>
-
-<p>Restart apache2:</p>
-<pre><code>systemctl restart apache2
-</code></pre>
-
-<p>Process with the </p>
-<h3 id="using-nginx"><a class="toclink" href="#using-nginx">Using Nginx</a></h3>
-<p>If you are using Nginx you may use the following as an example of set up:</p>
-<pre><code># serve static files directly
-location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
-  access_log off;
-  expires max;
-  log_not_found off;
-}
-
-# sets the limit on uploaded file sized
-client_max_body_size 50M;
-
-# removes trailing slashes (prevents SEO duplicate content issues)
-if (!-d $request_filename)
-{
-  rewrite ^/(.+)/$ /$1 permanent;
-}
-
-# enforce NO www
-if ($host ~* ^www\.(.*))
-{
-  set $host_without_www $1;
-  rewrite ^/(.*)$ $scheme://$host_without_www/$1 permanent;
-}
-
-# unless the request is for a valid file (image, js, css, etc.), send to bootstrap
-if (!-e $request_filename)
-{
-  rewrite ^/(.*)$ /index.php?/$1 last;
-  break;
-}
-
-location / {
-  try_files $uri $uri/ /index.php?$query_string;
-}
-</code></pre>
+<h3 id="run-with-docker-compose"><a class="toclink" href="#run-with-docker-compose">Run with Docker Compose</a></h3>
+<p>Change the environment variables in the <a href="https://github.com/LycheeOrg/Lychee-Laravel-Docker/docker-compose.yml">provided example</a> to reflect your database credentials.</p>
+<p>Note that in order to avoid writing credentials directly into the file, you can create a <code>db_secrets.env</code> and use the <code>env_file</code> directive (see the <a href="https://docs.docker.com/compose/environment-variables/#the-env_file-configuration-option">docs</a>).</p>
+<h2 id="available-environment-variables-and-defaults"><a class="toclink" href="#available-environment-variables-and-defaults">Available environment variables and defaults</a></h2>
+<p>If you do not provide environment variables or <code>.env</code> file, the <a href="https://github.com/LycheeOrg/Lychee-Laravel/blob/master/.env.example">example .env file</a> will be used with some values already set by default.</p>
+<p>Some variables are specific to Docker, and the default values are :</p>
+<ul>
+<li>PUID=1000  </li>
+<li>PGID=1000  </li>
+<li>USER=lychee</li>
+<li>PHP_TZ=America/New_York</li>
+</ul>
+<h2 id="advanced-configuration"><a class="toclink" href="#advanced-configuration">Advanced configuration</a></h2>
+<p>Note that nginx will accept by default images up to 100MB (<code>client_max_body_size 100M</code>) and that PHP parameters are overridden according to the <a href="faq.html#i-cant-upload-photos">recommendations of the Lychee-Laravel FAQ</a>.</p>
+<p>You may still want to further customize PHP configuration. The first method is to mount a custom <code>php.ini</code> to <code>/etc/php/7.3/fpm/php.ini</code> when starting the container. However, this method is kind of brutal as it will override all parameters.</p>
+<p>Instead, we recommend to use the <code>PHP_VALUE</code> directive of PHP-FPM to override specific parameters. To do so, you will need to mount a custom <code>nginx.conf</code> in your container :</p>
+<ol>
+<li>Take the <a href="https://github.com/LycheeOrg/Lychee-Laravel-Docker/default.conf">default.conf</a> file as a base</li>
+<li>Find the line starting by <code>fastcgi_param PHP_VALUE [...]</code></li>
+<li>Add a new line and set your new parameter</li>
+<li>Mount your new file to <code>/etc/nginx/nginx.conf</code></li>
+</ol>
                         </section>
                     </section>
                 </section>

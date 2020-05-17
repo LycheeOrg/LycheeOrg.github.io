@@ -24,11 +24,12 @@ pages_title['faq'] = 'Frequently Asked Question'
 pages_title['settings'] = 'Settings'
 pages_title['keyboard'] = 'Keyboard Shortcuts'
 pages_title['upgrade'] = 'Upgrade from v3'
+pages_title['docker'] = 'Docker'
 
 structure = [['Prologue',
               ['releases', 'upgrade', 'contributions', 'api', 'faq']]]
 structure += [['Getting Started',
-               ['installation', 'configuration', 'structure']]]
+               ['installation', 'configuration', 'structure', 'docker']]]
 structure += [['Digging Deeper',
                ['settings', 'keyboard']]]
 
