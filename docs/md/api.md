@@ -1,6 +1,7 @@
 <style>
 .docs_main ul:not(:first-of-type) {
     margin: 0 0 0;
+}
 </style>
 
 <br><br>

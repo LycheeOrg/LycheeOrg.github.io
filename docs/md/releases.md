@@ -1,8 +1,8 @@
 <style>
-    .docs_main h1+ul ul li {
-        display: inline-block;
-        width: 7em;
-    }
+.docs_main h1+ul ul li {
+    display: inline-block;
+    width: 7em;
+}
 </style>
 
 ## Master branch
