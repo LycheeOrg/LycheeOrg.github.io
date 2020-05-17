@@ -37,18 +37,18 @@ $('.docs_main blockquote p').each(function() {
     if (type) {
         switch (type) {
             case "note":
-                img = '/img/callouts/exclamation.min.svg';
+                img = 'img/callouts/exclamation.min.svg';
                 color = 'red';
                 break;
             case "tip":
-                img = '/img/callouts/lightbulb.min.svg';
+                img = 'img/callouts/lightbulb.min.svg';
                 color = 'purple';
                 break;
-            case "laracasts":
-            case "video":
-                img = '/img/callouts/laracast.min.svg';
-                color = 'blue';
-                break;
+                // case "laracasts":
+                // case "video":
+                //     img = '/img/callouts/laracast.min.svg';
+                //     color = 'blue';
+                //     break;
         }
 
         $(this).wrap('<div></div>');

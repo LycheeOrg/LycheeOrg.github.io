@@ -179,96 +179,170 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>Installation</h1>
+                            <h1>Configuration</h1>
                             
 <ul>
-<li><a href="#installation">Installation</a><ul>
-<li><a href="#server-requirements">Server Requirements</a></li>
-<li><a href="#installing-lychee">Installing Lychee</a></li>
-<li><a href="#configuration">Configuration</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#environment-configuration">Environment Configuration</a><ul>
+<li><a href="#environment-variable-types">Environment Variable Types</a></li>
+<li><a href="#retrieving-environment-configuration">Retrieving Environment Configuration</a></li>
+<li><a href="#determining-the-current-environment">Determining The Current Environment</a></li>
+<li><a href="#hiding-environment-variables-from-debug-pages">Hiding Environment Variables From Debug Pages</a></li>
 </ul>
 </li>
-<li><a href="#web-server-configuration">Web Server Configuration</a><ul>
-<li><a href="#directory-configuration">Directory Configuration</a></li>
-<li><a href="#pretty-urls">Pretty URLs</a></li>
-</ul>
-</li>
+<li><a href="#accessing-configuration-values">Accessing Configuration Values</a></li>
+<li><a href="#configuration-caching">Configuration Caching</a></li>
+<li><a href="#maintenance-mode">Maintenance Mode</a></li>
 </ul>
  <p>
-    <a name="installation"></a>
+    <a name="Introduction"></a>
 </p>
 
-<h2 id="installation"><a class="toclink" href="#installation">Installation</a></h2>
-<h3 id="server-requirements"><a class="toclink" href="#server-requirements">Server Requirements</a></h3>
-<p>The Lychee gallery has a few system requirements. You will need to make sure your server meets the following:</p>
-<ul>
-<li>A web server such as Apache or nginx</li>
-<li>A Database access such as MySQL/MariaDB, PostgreSQL.<br />
-Lychee also comes with SQLite3 support.</li>
-<li>PHP &gt;= 7.3</li>
-<li>BCMath PHP Extension</li>
-<li>Ctype PHP Extension</li>
-<li>Exif PHP Extension</li>
-<li>Ffmpeg PHP Extension (optional &mdash; to generate video thumbnails)</li>
-<li>Fileinfo PHP Extension</li>
-<li>GD PHP Extension</li>
-<li>Imagick PHP Extension (optional &mdash; to generate better thumbnails)</li>
-<li>JSON PHP Extension</li>
-<li>Mbstring PHP Extension</li>
-<li>OpenSSL PHP Extension</li>
-<li>PDO PHP Extension</li>
-<li>Tokenizer PHP Extension</li>
-<li>XML PHP Extension</li>
-<li>ZIP PHP Extension</li>
-</ul>
-<h3 id="installing-lychee"><a class="toclink" href="#installing-lychee">Installing Lychee</a></h3>
-<p>Lychee utilizes Composer to manage its dependencies. So, before using Lychee from source, make sure you have Composer installed on your machine.</p>
-<h4>From Release</h4>
-<p>Download the release zipfile from the Releases page and extract it (usually in <code>/var/www/html</code>).</p>
-<h4>From the Master branch</h4>
-<pre><code>git clone https://www.github.com/LycheeOrg/Lychee /var/www/Lychee
+<h2 id="introduction"><a class="toclink" href="#introduction">Introduction</a></h2>
+<p>All of the configuration files for Lychee are stored in the config directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
+<h2 id="environment-configuration"><a class="toclink" href="#environment-configuration">Environment Configuration</a></h2>
+<p>It is often helpful to have different configuration values based on the environment where the application is running. For example, you may wish to use a different cache driver locally than you do on your production server.</p>
+<p>To make this a cinch, Lychee utilizes the <a href="https://github.com/vlucas/phpdotenv">DotEnv</a> PHP library by Vance Lucas. In a fresh Laravel installation, the root directory of your application will contain a <code>.env.example</code> file. If you install Laravel via Composer, this file will automatically be renamed to <code>.env</code>. Otherwise, you should rename the file manually.</p>
+<p>Your <code>.env</code> file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration. Furthermore, this would be a security risk in the event an intruder gains access to your source control repository, since any sensitive credentials would get exposed.</p>
+<p>If you are developing with a team, you may wish to continue including a .env.example file with your application. By putting placeholder values in the example configuration file, other developers on your team can clearly see which environment variables are needed to run your application. You may also create a .env.testing file. This file will override the .env file when running PHPUnit tests or executing Artisan commands with the --env=testing option.</p>
+<blockquote>
+<p>{tip} Any variable in your <code>.env</code> file can be overridden by external environment variables such as server-level or system-level environment variables.</p>
+</blockquote>
+<h3 id="environment-variable-types"><a class="toclink" href="#environment-variable-types">Environment Variable Types</a></h3>
+<p>All variables in your <code>.env</code> files are parsed as strings, so some reserved values have been created to allow you to return a wider range of types from the <code>env()</code> function:</p>
+<table>
+<thead>
+<tr>
+<th><code>.env</code> Value</th>
+<th><code>env()</code> Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>(bool) true</td>
+</tr>
+<tr>
+<td>(true)</td>
+<td>(bool) true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>(bool) false</td>
+</tr>
+<tr>
+<td>(false)</td>
+<td>(bool) false</td>
+</tr>
+<tr>
+<td>empty</td>
+<td>(string) ''</td>
+</tr>
+<tr>
+<td>(empty)</td>
+<td>(string) ''</td>
+</tr>
+<tr>
+<td>null</td>
+<td>(null) null</td>
+</tr>
+<tr>
+<td>(null)</td>
+<td>(null) null</td>
+</tr>
+</tbody>
+</table>
+
+<p>If you need to define an environment variable with a value that contains spaces, you may do so by enclosing the value in double quotes.</p>
+<pre><code>APP_NAME=&quot;My Application&quot;
 </code></pre>
 
-<h3 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h3>
-<h4>Public Directory</h4>
-<p>After installing Lychee, you should configure your web server's document / web root to be the <code>public</code> directory. The <code>index.php</code> in this directory serves as the front controller for all HTTP requests entering your application.</p>
-<h4>Configuration Files</h4>
-<p>All of the configuration files for Lychee are stored in the <code>config</code> directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
-<h4>Directory Permissions</h4>
-<p>After installing Lychee, you may need to configure some permissions. Directories within the <code>storage</code> and the <code>bootstrap/cache</code> directories should be writable by your web server or Lychee will not run.</p>
-<h4>Application Key</h4>
-<p>The next thing you should do after installing Lychee is set your application key to a random string. If you installed Lychee via Composer or the Laravel installer, this key has already been set for you by the <code>php artisan key:generate</code> command.</p>
-<p>Typically, this string should be 32 characters long. The key can be set in the <code>.env</code> environment file. If you have not copied the <code>.env.example</code> file to a new file named <code>.env</code>, you should do that now. <strong>If the application key is not set, your user sessions and other encrypted data will not be secure!</strong></p>
-<h4>Additional Configuration</h4>
-<p>Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the <code>config/app.php</code> file and its documentation. It contains several options such as <code>timezone</code> <!-- and locale--> that you may wish to change according to your application.</p>
-<p>You may also want to configure a few additional components of Lychee, such as:
-- Cache
-- Database
-- Session</p>
-<h2 id="web-server-configuration"><a class="toclink" href="#web-server-configuration">Web Server Configuration</a></h2>
-<h3 id="directory-configuration"><a class="toclink" href="#directory-configuration">Directory Configuration</a></h3>
-<p>Lychee should always be served out of the root of the "web directory" configured for your web server. You should not attempt to serve a Laravel application out of a subdirectory of the "web directory". Attempting to do so could expose sensitive files present within your application.</p>
-<h3 id="pretty-urls"><a class="toclink" href="#pretty-urls">Pretty URLs</a></h3>
-<h4>Apache</h4>
-<p>Lychee includes a <code>public/.htaccess</code> file that is used to provide URLs without the <code>index.php</code> front controller in the path. Before serving Lychee with Apache, be sure to enable the <code>mod_rewrite</code> module so the <code>.htaccess</code> file will be honored by the server.</p>
-<p>If the <code>.htaccess</code> file that ships with Lychee does not work with your Apache installation, try this alternative:</p>
-<pre><code>Options +FollowSymLinks -Indexes
-RewriteEngine On
-
-RewriteCond %{HTTP:Authorization} .
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [L]
+<h3 id="retrieving-environment-configuration"><a class="toclink" href="#retrieving-environment-configuration">Retrieving Environment Configuration</a></h3>
+<p>All of the variables listed in this file will be loaded into the $_ENV PHP super-global when your application receives a request. However, you may use the env helper to retrieve values from these variables in your configuration files. In fact, if you review the Laravel configuration files, you will notice several of the options already using this helper:</p>
+<pre><code>'debug' =&gt; env('APP_DEBUG', false),
 </code></pre>
 
-<h4>Nginx</h4>
-<p>If you are using Nginx, the following directive in your site configuration will direct all requests to the <code>index.php</code> front controller:</p>
-<pre><code>location / {
-    try_files $uri $uri/ /index.php?$query_string;
+<p>The second value passed to the env function is the "default value". This value will be used if no environment variable exists for the given key.</p>
+<h3 id="determining-the-current-environment"><a class="toclink" href="#determining-the-current-environment">Determining The Current Environment</a></h3>
+<p>The current application environment is determined via the APP_ENV variable from your .env file. You may access this value via the environment method on the App facade:</p>
+<pre><code>$environment = App::environment();
+</code></pre>
+
+<p>You may also pass arguments to the environment method to check if the environment matches a given value. The method will return true if the environment matches any of the given values:</p>
+<pre><code>if (App::environment('local')) {
+    // The environment is local
+}
+
+if (App::environment(['local', 'staging'])) {
+    // The environment is either local OR staging...
 }
 </code></pre>
+
+<blockquote>
+<p>{tip} The current application environment detection can be overridden by a server-level <code>APP_ENV</code> environment variable. This can be useful when you need to share the same application for different environment configurations, so you can set up a given host to match a given environment in your server's configurations.</p>
+</blockquote>
+
+<h3 id="hiding-environment-variables-from-debug-pages"><a class="toclink" href="#hiding-environment-variables-from-debug-pages">Hiding Environment Variables From Debug Pages</a></h3>
+<p>When an exception is uncaught and the <code>APP_DEBUG</code> environment variable is <code>true</code>, the debug page will show all environment variables and their contents. In some cases you may want to obscure certain variables. You may do this by updating the <code>debug_blacklist</code> option in your <code>config/app.php</code> configuration file.</p>
+<p>Some variables are available in both the environment variables and the server / request data. Therefore, you may need to blacklist them for both <code>$_ENV</code> and <code>$_SERVER</code>:</p>
+<pre><code>return [
+
+    // ...
+
+    'debug_blacklist' =&gt; [
+        '_ENV' =&gt; [
+            'APP_KEY',
+            'DB_PASSWORD',
+        ],
+
+        '_SERVER' =&gt; [
+            'APP_KEY',
+            'DB_PASSWORD',
+        ],
+
+        '_POST' =&gt; [
+            'password',
+        ],
+    ],
+];
+</code></pre>
+
+<h2 id="accessing-configuration-values"><a class="toclink" href="#accessing-configuration-values">Accessing Configuration Values</a></h2>
+<p>You may easily access your configuration values using the global <code>config</code> helper function from anywhere in your application. The configuration values may be accessed using "dot" syntax, which includes the name of the file and option you wish to access. A default value may also be specified and will be returned if the configuration option does not exist:</p>
+<pre><code>$value = config('app.timezone');
+</code></pre>
+
+<p>To set configuration values at runtime, pass an array to the config helper:</p>
+<pre><code>config(['app.timezone' =&gt; 'America/Chicago']);
+</code></pre>
+
+<h2 id="configuration-caching"><a class="toclink" href="#configuration-caching">Configuration Caching</a></h2>
+<p>To give your application a speed boost, you should cache all of your configuration files into a single file using the <code>config:cache</code> Artisan command. This will combine all of the configuration options for your application into a single file which will be loaded quickly by the framework.</p>
+<p>You should typically run the <code>php artisan config:cache</code> command as part of your production deployment routine. The command should not be run during local development as configuration options will frequently need to be changed during the course of your application's development.</p>
+<blockquote>
+<p>{note} If you execute the <code>config:cache</code> command during your deployment process, you should be sure that you are only calling the <code>env</code> function from within your configuration files. Once the configuration has been cached, the <code>.env</code> file will not be loaded and all calls to the <code>env</code> function will return <code>null</code>.</p>
+</blockquote>
+<h2 id="maintenance-mode"><a class="toclink" href="#maintenance-mode">Maintenance Mode</a></h2>
+<p>When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a <code>MaintenanceModeException</code> will be thrown with a status code of 503.</p>
+<p>To enable maintenance mode, execute the <code>down</code> Artisan command:</p>
+<pre><code>php artisan down
+</code></pre>
+
+<p>You may also provide <code>message</code> and <code>retry</code> options to the <code>down</code> command. The <code>message</code> value may be used to display or log a custom message, while the <code>retry</code> value will be set as the <code>Retry-After</code> HTTP header's value:</p>
+<pre><code>php artisan down --message=&quot;Upgrading Database&quot; --retry=60
+</code></pre>
+
+<p>Even while in maintenance mode, specific IP addresses or networks may be allowed to access the application using the command's <code>allow</code> option:</p>
+<pre><code>php artisan down --allow=127.0.0.1 --allow=192.168.0.0/16
+</code></pre>
+
+<p>To disable maintenance mode, use the <code>up</code> command:</p>
+<pre><code>php artisan up
+</code></pre>
+
+<blockquote>
+<p>{tip} You may customize the default maintenance mode template by defining your own template at resources/views/errors/503.blade.php.</p>
+</blockquote>
                         </section>
                     </section>
                 </section>
