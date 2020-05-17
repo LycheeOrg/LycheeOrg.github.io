@@ -23,8 +23,8 @@ The following tags are available :
 
 You must have a database docker running **OR** create one in your `docker-compose.yml`.
 
-1.  Create the db, username, password.
-2.  Edit the environment variables (db credentials, language...) by :
+* 1 &mdash; Create the db, username, password.
+* 2 &mdash; Edit the environment variables (db credentials, language...) by :
     *  Supplying the environment variables via `docker run` / `docker-compose`, **or**
     *  Creating a `.env` file with the appropriate info and mount it to `/conf/.env`.
 
@@ -86,10 +86,10 @@ You may still want to further customize PHP configuration. The first method is t
 
 Instead, we recommend to use the `PHP_VALUE` directive of PHP-FPM to override specific parameters. To do so, you will need to mount a custom `nginx.conf` in your container :
 
-1. Take the [default.conf](https://github.com/LycheeOrg/Lychee-Laravel-Docker/default.conf) file as a base
-2. Find the line starting by `fastcgi_param PHP_VALUE [...]`
-3. Add a new line and set your new parameter
-4. Mount your new file to `/etc/nginx/nginx.conf`
+* 1 &mdash; Take the [default.conf](https://github.com/LycheeOrg/Lychee-Laravel-Docker/default.conf) file as a base
+* 2 &mdash; Find the line starting by `fastcgi_param PHP_VALUE [...]`
+* 3 &mdash; Add a new line and set your new parameter
+* 4 &mdash; Mount your new file to `/etc/nginx/nginx.conf`
 
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-success.svg?style=flat
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-success.svg?style=flat

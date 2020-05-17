@@ -216,14 +216,14 @@
 <h2 id="setup"><a class="toclink" href="#setup">Setup</a></h2>
 <h3 id="prerequisites"><a class="toclink" href="#prerequisites">Prerequisites</a></h3>
 <p>You must have a database docker running <strong>OR</strong> create one in your <code>docker-compose.yml</code>.</p>
-<ol>
-<li>Create the db, username, password.</li>
-<li>Edit the environment variables (db credentials, language...) by :<ul>
+<ul>
+<li>1 &mdash; Create the db, username, password.</li>
+<li>2 &mdash; Edit the environment variables (db credentials, language...) by :<ul>
 <li>Supplying the environment variables via <code>docker run</code> / <code>docker-compose</code>, <strong>or</strong></li>
 <li>Creating a <code>.env</code> file with the appropriate info and mount it to <code>/conf/.env</code>.</li>
 </ul>
 </li>
-</ol>
+</ul>
 <h3 id="run-with-docker"><a class="toclink" href="#run-with-docker">Run with Docker</a></h3>
 <p><strong>Make sure that you link to the container running your database !!</strong>  </p>
 <p>The example below shows <code>--net</code> and <code>--link</code> for these purposes. <code>--net</code> connects to the name of the network your database is on and  <code>--link</code> connects to the database container.</p>
@@ -267,12 +267,12 @@ lycheeorg/lychee-laravel
 <p>Note that nginx will accept by default images up to 100MB (<code>client_max_body_size 100M</code>) and that PHP parameters are overridden according to the <a href="faq.html#i-cant-upload-photos">recommendations of the Lychee-Laravel FAQ</a>.</p>
 <p>You may still want to further customize PHP configuration. The first method is to mount a custom <code>php.ini</code> to <code>/etc/php/7.3/fpm/php.ini</code> when starting the container. However, this method is kind of brutal as it will override all parameters.</p>
 <p>Instead, we recommend to use the <code>PHP_VALUE</code> directive of PHP-FPM to override specific parameters. To do so, you will need to mount a custom <code>nginx.conf</code> in your container :</p>
-<ol>
-<li>Take the <a href="https://github.com/LycheeOrg/Lychee-Laravel-Docker/default.conf">default.conf</a> file as a base</li>
-<li>Find the line starting by <code>fastcgi_param PHP_VALUE [...]</code></li>
-<li>Add a new line and set your new parameter</li>
-<li>Mount your new file to <code>/etc/nginx/nginx.conf</code></li>
-</ol>
+<ul>
+<li>1 &mdash; Take the <a href="https://github.com/LycheeOrg/Lychee-Laravel-Docker/default.conf">default.conf</a> file as a base</li>
+<li>2 &mdash; Find the line starting by <code>fastcgi_param PHP_VALUE [...]</code></li>
+<li>3 &mdash; Add a new line and set your new parameter</li>
+<li>4 &mdash; Mount your new file to <code>/etc/nginx/nginx.conf</code></li>
+</ul>
                         </section>
                     </section>
                 </section>
