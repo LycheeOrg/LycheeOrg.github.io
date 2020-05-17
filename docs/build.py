@@ -20,6 +20,7 @@ pages['Contribution Guide'] = 'contributions'
 pages['Release Notes'] = 'releases'
 pages['API Documentation'] = 'api'
 pages['Settings'] = 'settings'
+pages['Keyboard Shortcuts'] = 'keyboard'
 
 
 for page_title in pages:
