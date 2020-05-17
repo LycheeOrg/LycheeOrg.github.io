@@ -62,7 +62,7 @@
 <li><a href='installation.html'>Installation</a></li>
 <li><a href='configuration.html'>Configuration</a></li>
 <li><a href='docker.html'>Docker</a></li>
-<li class='active'><a href='update.html'>Update</a></li>
+<li><a href='update.html'>Update</a></li>
 </ul>
 <li class='sub--on'>
 <h2>Digging Deeper</h2>
@@ -71,7 +71,7 @@
 <li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
 <li><a href='read-more.html'>Lychee logic overview</a></li>
 <li><a href='structure.html'>Directory Structure</a></li>
-<li><a href='node.html'>Front-end</a></li>
+<li class='active'><a href='node.html'>Front-end</a></li>
 </ul>
 
                                     <!-- <li>
@@ -186,87 +186,44 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>Update</h1>
+                            <h1>Front-end</h1>
                             
 <ul>
-<li><a href="#update-requirements">Update requirements</a></li>
-<li><a href="#update-using-git">Update using Git</a></li>
-<li><a href="#update-manually">Update manually</a></li>
-<li><a href="#update-via-the-gui">Update via the GUI</a></li>
+<li><a href="#git-submodule">Git Submodule</a></li>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#build">Build</a></li>
+<li><a href="#creating-pull-requests">Creating Pull Requests</a></li>
 </ul>
  <p>
     <a name="Introduction"></a>
 </p>
 
-<p>The way you can update Lychee depends of how you did your installation:</p>
-<ul>
-<li>If you used the release channel (downloading a zip file), go to <a href="update-manually">Update manually</a></li>
-<li>If you installed via <code>git clone</code> then you can either use a <a href="update-using-git">similar process</a> or do it directly online via the <a href="update-via-the-gui">Graphical User Interface</a> of Lychee.</li>
-</ul>
-<h2 id="update-requirements"><a class="toclink" href="#update-requirements">Update requirements</a></h2>
-<ul>
-<li>Your system must comply with the latest <a href="installation.html">system requirements</a> of the latest version of Lychee.</li>
-<li>Ensure that you are using the version 4 of Lychee. Updates from older version of Lychee are more complex.</li>
-</ul>
-<p>Don't forget to take a look at the <a href="releases.html">Changelog</a> to see what's new and to check for any actions that may be required.</p>
-<h2 id="update-using-git"><a class="toclink" href="#update-using-git">Update using Git</a></h2>
-<p>Fully updating Lychee with <code>git</code> is the easiest way:</p>
-<pre><code class="sh"># download the lastest files
-git pull
-# update the dependencies
-composer install --no-dev
-# apply the database migration
-php artisan migrate
+<p>The current Front-end of Lychee is 100% JS generated. In order to modify it you will need to recompile it.</p>
+<h3 id="git-submodule"><a class="toclink" href="#git-submodule">Git Submodule</a></h3>
+<p>At the moment, the current strategy of Lychee is to separate the front-end from the back-end.
+This allowed us to easily develop the version 4 while having the version 3 still live.
+It also kept the consistency of the GUI between the two major versions.</p>
+<p>As a result you will find the front-end files in the <code>public/Lychee-front</code> directory after you initialized it as follows:</p>
+<pre><code>git submodule init
+git submodule update
 </code></pre>
 
-<p>If you have the <code>post-merge</code> hook set up the following is enough:</p>
-<pre><code class="sh">git pull
+<h3 id="dependencies"><a class="toclink" href="#dependencies">Dependencies</a></h3>
+<p>In order to compile the front-end, you have to install the following dependencies:</p>
+<ul>
+<li><code>node</code> <a href="http://nodejs.org">Node.js</a> v5.7.0 or later</li>
+<li><code>npm</code> <a href="https://www.npmjs.org">Node Packaged Modules</a></li>
+</ul>
+<p>After installing <a href="http://nodejs.org">Node.js</a> you can use the included <code>npm</code> package manager to download all dependencies:</p>
+<pre><code>npm install
 </code></pre>
 
-<h2 id="update-manually"><a class="toclink" href="#update-manually">Update manually</a></h2>
-<p>This update will be the one you have to use if you are following the Release channel.</p>
-<ul>
-<li>1 &mdash; Download the <a href="https://github.com/LycheeOrg/Lychee/releases">newest Version</a></li>
-<li>2 &mdash; Replace all existing files, excluding <code>uploads/</code> and <code>dist/user.css</code></li>
-<li>3 &mdash; Go into the <code>Diagnostic</code> page and click on the <code>Apply migration</code> button.</li>
-</ul>
-<h2 id="update-via-the-gui"><a class="toclink" href="#update-via-the-gui">Update via the GUI</a></h2>
-<p>This requires:</p>
-<ul>
-<li><code>git</code> to be installed</li>
-<li>write access for your web user (<code>www-data</code> for apache2) to all the folders, files <strong>and <code>.git/</code></strong>.</li>
-<li><code>exec</code> to be available as a php function.</li>
-<li><code>allow_online_git_pull</code> has to be set to <code>1</code></li>
-</ul>
-<h4>1. Go to your Diagnostic page and check for updates</h4>
-<p>Notice that <em>Lychee version (git)</em> tells you:</p>
-<ul>
-<li>the commit number &mdash; <em>"dfad796"</em>,</li>
-<li>which branch you are on &mdash; <em>"master"</em>,</li>
-<li>you do not have information if you are up to date or not &mdash; <em>"Data not in Cache"</em>.</li>
-</ul>
-<p>However you should see a "check for Updates" button:</p>
-<p><img alt="" src="img/update/update_1.png" /></p>
-<p>If you click on it, it will ask your server to check how far behind you are from the bleeding edge version of Lychee:</p>
-<p><img alt="" src="img/update/update_2.png" /></p>
-<h4>2. Refresh your Diagnostic page</h4>
-<p>Notice that <em>Lychee version (git)</em> now tells you:</p>
-<ul>
-<li>that you are behind &mdash; "<em>1 commits behind master (dc5f03a)</em>"</li>
-<li>that the last check for update was done some times ago &mdash; "<em>(9 seconds ago)</em>"</li>
-</ul>
-<p><img alt="" src="img/update/update_3.png" /></p>
-<h4>3. Apply the update</h4>
-<p>By clicking on <em>"Update available"</em> this will trigger server side a <code>git pull</code> and <code>artisan migrate</code>.</p>
-<p><img alt="" src="img/update/update_4.png" /></p>
-<p>You can see the log result of the command line printed above the diagnostic information.
-By default composer calls are disabled.</p>
-<p><img alt="" src="img/update/update_5.png" /></p>
-<h4>4. Check for updates</h4>
-<p>We can once again check for updates:</p>
-<p><img alt="" src="img/update/update_6.png" /></p>
-<p><img alt="" src="img/update/update_7.png" /></p>
-<p>And we are done.</p>
+<h3 id="build"><a class="toclink" href="#build">Build</a></h3>
+<p>The Gulpfile is located in <code>public/Lychee-front/</code> and can be executed using the <code>npm run compile</code> command.
+This will take care of concatenating and minimizing the files.</p>
+<p>Do not forget to clear your cache in order to see the change done.</p>
+<h3 id="creating-pull-requests"><a class="toclink" href="#creating-pull-requests">Creating Pull Requests</a></h3>
+<p>Please be sure to submit any front end pull requests to <a href="https://github.com/LycheeOrg/Lychee-front">LycheeOrg/Lychee-front</a>.</p>
                         </section>
                     </section>
                 </section>
