@@ -27,19 +27,34 @@ Lychee also comes with SQLite3 support.
 - XML PHP Extension
 - ZIP PHP Extension
 
+While Lychee works on 32bit systems, we do recommend the use of a 64bit OS.
+
 ### Installing Lychee
 
-Lychee utilizes Composer to manage its dependencies. So, before using Lychee from source, make sure you have Composer installed on your machine.
+We provide two methods to install Lychee, from the latest release &mdash;simple unzip&mdash; or from source &mdash;uses Composer.
 
 #### From Release 
 
-Download the release zipfile from the Releases page and extract it (usually in `/var/www/html`).
+Download the release zip-file from the Releases page and extract it (usually in `/var/www/html`).
+It contains a trimmed down version of the Lychee files.
 
 #### From the Master branch
 
+Lychee utilizes [Composer][1] to manage its dependencies. Make sure you have Composer installed on your machine.
+
 ```
-git clone https://www.github.com/LycheeOrg/Lychee /var/www/Lychee
+git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
 ```
+Get into the directory:
+```
+cd /var/www/html/Lychee
+```
+Install the required dependencies.
+```
+composer install --no-dev
+```
+If you want to help Lychee to develop, you can enable the dev option by simply removing the `--no-dev`.
+
 
 ### Configuration
 
@@ -50,15 +65,17 @@ After installing Lychee, you should configure your web server's document / web r
 All of the configuration files for Lychee are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
 
 #### Directory Permissions
-After installing Lychee, you may need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Lychee will not run.
+After installing Lychee, you need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Lychee will not run. Additionaly `public/dist`, `public/uploads` and `public/sym` needs to be writable for you to be able to change the CSS,
+upload photos, generate symbolic links to protect the originals.
 
 #### Application Key
-The next thing you should do after installing Lychee is set your application key to a random string. If you installed Lychee via Composer or the Laravel installer, this key has already been set for you by the `php artisan key:generate` command.
+The next thing you should do after installing Lychee is set your application key to a random string. This is easily done by using the `php artisan key:generate` command.
 
-Typically, this string should be 32 characters long. The key can be set in the `.env` environment file. If you have not copied the `.env.example` file to a new file named `.env`, you should do that now. **If the application key is not set, your user sessions and other encrypted data will not be secure!**
+Typically, this string should be 32 characters long. The key can be set in the `.env` environment file. If you have not copied the `.env.example` file to a new file named `.env`, you should do that now.
+**If the application key is not set, your user sessions and other encrypted data will not be secure!**
 
 #### Additional Configuration
-Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains several options such as `timezone` <!-- and locale--> that you may wish to change according to your application.
+Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains several options such as `timezone` <!-- and locale--> that you may wish to change according to your installation.
 
 You may also want to configure a few additional components of Lychee, such as:
 - Cache
@@ -68,8 +85,7 @@ You may also want to configure a few additional components of Lychee, such as:
 ## Web Server Configuration
 
 ### Directory Configuration
-Lychee should always be served out of the root of the "web directory" configured for your web server. You should not attempt to serve a Laravel application out of a subdirectory of the "web directory". Attempting to do so could expose sensitive files present within your application.
-
+Lychee should always be served out of the root of the "web directory" configured for your web server. You should not attempt to serve a Lychee out of a subdirectory of the "web directory". Attempting to do so could expose sensitive files present within your installation (e.g. `.env`).
 
 ### Pretty URLs
 
@@ -99,3 +115,5 @@ location / {
     try_files $uri $uri/ /index.php?$query_string;
 }
 ```
+
+[1]: https://getcomposer.org/
