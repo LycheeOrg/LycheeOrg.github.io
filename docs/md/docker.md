@@ -8,7 +8,7 @@
 
 ## Image Content
 
-This image features Lychee (Laravel version), nginx and PHP-FPM. The provided configuration (PHP, nginx...) follows Lychee's official recommandations.
+This image features Lychee (version 4), nginx and PHP-FPM. The provided configuration (PHP, nginx...) follows Lychee's official recommandations.
 
 The following tags are available :
 

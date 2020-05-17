@@ -61,14 +61,16 @@
 <ul>
 <li><a href='installation.html'>Installation</a></li>
 <li><a href='configuration.html'>Configuration</a></li>
-<li><a href='structure.html'>Directory Structure</a></li>
 <li><a href='docker.html'>Docker</a></li>
+<li><a href='update.html'>Update</a></li>
 </ul>
 <li class='sub--on'>
 <h2>Digging Deeper</h2>
 <ul>
 <li><a href='settings.html'>Settings</a></li>
 <li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+<li><a href='read-more.html'>Lychee logic overview</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
 </ul>
 
                                     <!-- <li>
@@ -326,37 +328,39 @@ And yes the right-click menu is available on the <em>PhD Defenses</em> part but 
 Also because this user has upload right, he can see the <em>Unsorted, Public, Starred, Recent</em> smart albums. </p>
 <h2 id="installation-migration-upgrade-update"><a class="toclink" href="#installation-migration-upgrade-update">Installation, migration, upgrade, update</a></h2>
 <h3 id="how-can-i-install-lychee-without-ssh-access"><a class="toclink" href="#how-can-i-install-lychee-without-ssh-access">How can I install Lychee without SSH access ?</a></h3>
-<ol>
-<li>Download the latest release</li>
-<li>Extract and upload the folder via ftp</li>
-<li>access the website.
+<ul>
+<li>1 &mdash; Download the latest release.</li>
+<li>2 &mdash; Extract and upload the folder via ftp.</li>
+<li>3 &mdash; access the website.
 If you are at the wrong address you will be told to go to the <code>public</code> folder.
 Once open, you will be redirected to the install procedure. Completed you will be able to create an admin account and enjoy Lychee.</li>
-</ol>
+</ul>
 <h3 id="how-do-i-upgrade-from-lychee-v3-to-lychee-v4"><a class="toclink" href="#how-do-i-upgrade-from-lychee-v3-to-lychee-v4">How do I upgrade from Lychee v3 to Lychee v4?</a></h3>
 <p>The process is described <a href="upgrade.html">here</a>.</p>
 <h3 id="how-can-i-back-up-my-installation"><a class="toclink" href="#how-can-i-back-up-my-installation">How can I back up my installation?</a></h3>
 <p>To back up your Lychee installation you need to perform the following steps:</p>
-<ol>
-<li>Create a copy of at least the following parts of the Lychee directory tree (e.g., <code>/var/www/html/Lychee</code>):</li>
-</ol>
+<ul>
+<li>1 &mdash; Create a copy of at least the following parts of the Lychee directory tree (e.g., <code>/var/www/html/Lychee</code>):</li>
+</ul>
 <pre><code>.env
 public/dist/user.css
 public/uploads/
 </code></pre>
 
-<ol>
-<li>Dump the Lychee database to a file. E.g., if you are using MySQL, run:</li>
-</ol>
+<ul>
+<li>2 &mdash; Dump the Lychee database to a file. E.g., if you are using MySQL, run:</li>
+</ul>
 <pre><code>mysqldump -u user -ppassword --databases lychee_database &gt; lychee_backup.sql
 </code></pre>
 
 <p>Replace <code>user</code>, <code>password</code>, and <code>lychee_database</code> by the values of <code>DB_USERNAME</code>, <code>DB_PASSWORD</code>, and <code>DB_DATABASE</code> from the <code>.env</code> file in the Lychee folder.</p>
 <h3 id="how-can-i-migrate-my-installation-to-a-new-host"><a class="toclink" href="#how-can-i-migrate-my-installation-to-a-new-host">How can I migrate my installation to a new host?</a></h3>
 <p>Back up your installation as describe above:</p>
-<ol>
-<li>Restore the database on the new host, e.g., for MySQL:</li>
-</ol>
+<ul>
+<li>3 &mdash; Download the latest release of Lychee.</li>
+<li>4 &mdash; Overwrite the files with your back up</li>
+<li>5 &mdash; Restore the database on the new host, e.g., for MySQL:</li>
+</ul>
 <pre><code>mysql -u user -ppassword &lt; lychee_backup.sql
 </code></pre>
 
@@ -414,9 +418,9 @@ If it breaks (error 500) you can still go back to command line and do your <code
 <p>The second one is really optional if updates don't need the composer (like 90% of the time) then it can just stay at <code>0</code>.</p>
 <h3 id="can-i-migrate-from-a-64-bit-system-to-a-32-bit-system"><a class="toclink" href="#can-i-migrate-from-a-64-bit-system-to-a-32-bit-system">Can I migrate from a 64-bit system to a 32-bit system?</a></h3>
 <p>Yes, but it's not trivial or recommended. After copying the database:
-1. Download <a href="https://github.com/LycheeOrg/Lychee-Laravel/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php">this</a> file to your <code>database/migrations/</code> folder.
-2. Run  the SQL command <code>delete from migrations where migration='2019_04_07_193345_fix_32bit';</code> to make sure it will run.
-3. Run <code>php artisan migrate</code>. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.</p>
+* 1 &mdash; Download <a href="https://github.com/LycheeOrg/Lychee-Laravel/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php">this</a> file to your <code>database/migrations/</code> folder.
+* 2 &mdash; Run  the SQL command <code>delete from migrations where migration='2019_04_07_193345_fix_32bit';</code> to make sure it will run.
+* 3 &mdash; Run <code>php artisan migrate</code>. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.</p>
 <p>This will only work on top-level albums. Subalbums will require <a href="https://github.com/LycheeOrg/Lychee-Laravel/issues/406#issuecomment-571378073">manual intervention</a>.</p>
 <h3 id="why-cant-i-see-the-check-for-update-button-in-the-gui"><a class="toclink" href="#why-cant-i-see-the-check-for-update-button-in-the-gui">Why can't I see the <em>check for update</em> button in the GUI?</a></h3>
 <ul>

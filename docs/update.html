@@ -59,10 +59,10 @@
 <li class='sub--on'>
 <h2>Getting Started</h2>
 <ul>
-<li class='active'><a href='installation.html'>Installation</a></li>
+<li><a href='installation.html'>Installation</a></li>
 <li><a href='configuration.html'>Configuration</a></li>
 <li><a href='docker.html'>Docker</a></li>
-<li><a href='update.html'>Update</a></li>
+<li class='active'><a href='update.html'>Update</a></li>
 </ul>
 <li class='sub--on'>
 <h2>Digging Deeper</h2>
@@ -185,112 +185,87 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>Installation</h1>
+                            <h1>Update</h1>
                             
 <ul>
-<li><a href="#installation">Installation</a><ul>
-<li><a href="#server-requirements">Server Requirements</a></li>
-<li><a href="#installing-lychee">Installing Lychee</a></li>
-<li><a href="#configuration">Configuration</a></li>
-</ul>
-</li>
-<li><a href="#web-server-configuration">Web Server Configuration</a><ul>
-<li><a href="#directory-configuration">Directory Configuration</a></li>
-<li><a href="#pretty-urls">Pretty URLs</a></li>
-</ul>
-</li>
+<li><a href="#update-requirements">Update requirements</a></li>
+<li><a href="#update-using-git">Update using Git</a></li>
+<li><a href="#update-manually">Update manually</a></li>
+<li><a href="#update-via-the-gui">Update via the GUI</a></li>
 </ul>
  <p>
-    <a name="installation"></a>
+    <a name="Introduction"></a>
 </p>
 
-<h2 id="installation"><a class="toclink" href="#installation">Installation</a></h2>
-<h3 id="server-requirements"><a class="toclink" href="#server-requirements">Server Requirements</a></h3>
-<p>The Lychee gallery has a few system requirements. You will need to make sure your server meets the following:</p>
+<p>The way you can update Lychee depends of how you did your installation:</p>
 <ul>
-<li>A web server such as Apache or nginx</li>
-<li>A Database access such as MySQL/MariaDB, PostgreSQL.<br />
-Lychee also comes with SQLite3 support.</li>
-<li>PHP &gt;= 7.3</li>
-<li>BCMath PHP Extension</li>
-<li>Ctype PHP Extension</li>
-<li>Exif PHP Extension</li>
-<li>Ffmpeg PHP Extension (optional &mdash; to generate video thumbnails)</li>
-<li>Fileinfo PHP Extension</li>
-<li>GD PHP Extension</li>
-<li>Imagick PHP Extension (optional &mdash; to generate better thumbnails)</li>
-<li>JSON PHP Extension</li>
-<li>Mbstring PHP Extension</li>
-<li>OpenSSL PHP Extension</li>
-<li>PDO PHP Extension</li>
-<li>Tokenizer PHP Extension</li>
-<li>XML PHP Extension</li>
-<li>ZIP PHP Extension</li>
+<li>If you used the release channel (downloading a zip file), go to <a href="update-manually">Update manually</a></li>
+<li>If you installed via <code>git clone</code> then you can either use a <a href="update-using-git">similar process</a> or do it directly online via the <a href="update-via-the-gui">Graphical User Interface</a> of Lychee.</li>
 </ul>
-<p>While Lychee works on 32bit systems, we do recommend the use of a 64bit OS.</p>
-<h3 id="installing-lychee"><a class="toclink" href="#installing-lychee">Installing Lychee</a></h3>
-<p>We provide three methods to install Lychee, from the latest release &mdash;simple unzip&mdash; or from source &mdash;uses Composer.</p>
-<h4>With Docker</h4>
-<p>Read <a href="docker.html">here</a>.</p>
-<h4>From Release</h4>
-<p>Download the release zip-file from the Releases page and extract it (usually in <code>/var/www/html</code>).
-It contains a trimmed down version of the Lychee files.</p>
-<h4>From the Master branch</h4>
-<p>Lychee utilizes <a href="https://getcomposer.org/">Composer</a> to manage its dependencies. Make sure you have Composer installed on your machine.</p>
-<pre><code>git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
+<h2 id="update-requirements"><a class="toclink" href="#update-requirements">Update requirements</a></h2>
+<ul>
+<li>Your system must comply with the latest <a href="installation.html">system requirements</a> of the latest version of Lychee.</li>
+<li>Ensure that you are using the version 4 of Lychee. Updates from older version of Lychee are more complex.</li>
+</ul>
+<p>Don't forget to take a look at the <a href="releases.html">Changelog</a> to see what's new and to check for any actions that may be required.</p>
+<h2 id="update-using-git"><a class="toclink" href="#update-using-git">Update using Git</a></h2>
+<p>Fully updating Lychee with <code>git</code> is the easiest way:</p>
+<pre><code class="sh"># download the lastest files
+git pull
+# update the dependencies
+composer install --no-dev
+# apply the database migration
+php artisan migrate
 </code></pre>
 
-<p>Get into the directory:</p>
-<pre><code>cd /var/www/html/Lychee
+<p>If you have the <code>post-merge</code> hook set up the following is enough:</p>
+<pre><code class="sh">git pull
 </code></pre>
 
-<p>Install the required dependencies.</p>
-<pre><code>composer install --no-dev
-</code></pre>
-
-<p>If you want to help Lychee to develop, you can enable the dev option by simply removing the <code>--no-dev</code>.</p>
-<h3 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h3>
-<h4>Public Directory</h4>
-<p>After installing Lychee, you should configure your web server's document / web root to be the <code>public</code> directory. The <code>index.php</code> in this directory serves as the front controller for all HTTP requests entering your application.</p>
-<h4>Configuration Files</h4>
-<p>All of the configuration files for Lychee are stored in the <code>config</code> directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
-<h4>Directory Permissions</h4>
-<p>After installing Lychee, you need to configure some permissions. Directories within the <code>storage</code> and the <code>bootstrap/cache</code> directories should be writable by your web server or Lychee will not run. Additionaly <code>public/dist</code>, <code>public/uploads</code> and <code>public/sym</code> needs to be writable for you to be able to change the CSS,
-upload photos, generate symbolic links to protect the originals.</p>
-<h4>Application Key</h4>
-<p>The next thing you should do after installing Lychee is set your application key to a random string. This is easily done by using the <code>php artisan key:generate</code> command.</p>
-<p>Typically, this string should be 32 characters long. The key can be set in the <code>.env</code> environment file. If you have not copied the <code>.env.example</code> file to a new file named <code>.env</code>, you should do that now.
-<strong>If the application key is not set, your user sessions and other encrypted data will not be secure!</strong></p>
-<h4>Additional Configuration</h4>
-<p>Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the <code>config/app.php</code> file and its documentation. It contains several options such as <code>timezone</code> <!-- and locale--> that you may wish to change according to your installation.</p>
-<p>You may also want to configure a few additional components of Lychee, such as:
-- Cache
-- Database
-- Session</p>
-<h2 id="web-server-configuration"><a class="toclink" href="#web-server-configuration">Web Server Configuration</a></h2>
-<h3 id="directory-configuration"><a class="toclink" href="#directory-configuration">Directory Configuration</a></h3>
-<p>Lychee should always be served out of the root of the "web directory" configured for your web server. You should not attempt to serve a Lychee out of a subdirectory of the "web directory". Attempting to do so could expose sensitive files present within your installation (e.g. <code>.env</code>).</p>
-<h3 id="pretty-urls"><a class="toclink" href="#pretty-urls">Pretty URLs</a></h3>
-<h4>Apache</h4>
-<p>Lychee includes a <code>public/.htaccess</code> file that is used to provide URLs without the <code>index.php</code> front controller in the path. Before serving Lychee with Apache, be sure to enable the <code>mod_rewrite</code> module so the <code>.htaccess</code> file will be honored by the server.</p>
-<p>If the <code>.htaccess</code> file that ships with Lychee does not work with your Apache installation, try this alternative:</p>
-<pre><code>Options +FollowSymLinks -Indexes
-RewriteEngine On
-
-RewriteCond %{HTTP:Authorization} .
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [L]
-</code></pre>
-
-<h4>Nginx</h4>
-<p>If you are using Nginx, the following directive in your site configuration will direct all requests to the <code>index.php</code> front controller:</p>
-<pre><code>location / {
-    try_files $uri $uri/ /index.php?$query_string;
-}
-</code></pre>
+<h2 id="update-manually"><a class="toclink" href="#update-manually">Update manually</a></h2>
+<p>This update will be the one you have to use if you are following the Release channel.</p>
+<ul>
+<li>1 &mdash; Download the <a href="https://github.com/LycheeOrg/Lychee/releases">newest Version</a></li>
+<li>2 &mdash; Replace all existing files, excluding <code>uploads/</code> and <code>dist/user.css</code></li>
+<li>3 &mdash; Go into the <code>Diagnostic</code> page and click on the <code>Apply migration</code> button.</li>
+</ul>
+<h2 id="update-via-the-gui"><a class="toclink" href="#update-via-the-gui">Update via the GUI</a></h2>
+<p>This requires:</p>
+<ul>
+<li><code>git</code> to be installed</li>
+<li>write access for your web user (<code>www-data</code> for apache2) to all the folders, files <strong>and <code>.git/</code></strong>.</li>
+<li><code>exec</code> to be available as a php function.</li>
+<li><code>allow_online_git_pull</code> has to be set to <code>1</code></li>
+</ul>
+<h4>1. Go to your Diagnostic page and check for updates</h4>
+<p>Notice that <em>Lychee version (git)</em> tells you:</p>
+<ul>
+<li>the commit number &mdash; <em>"dfad796"</em>,</li>
+<li>which branch you are on &mdash; <em>"master"</em>,</li>
+<li>you do not have information if you are up to date or not &mdash; <em>"Data not in Cache"</em>.</li>
+</ul>
+<p>However you should see a "check for Updates" button:</p>
+<p><img alt="" src="https://raw.githubusercontent.com/LycheeOrg/Lychee-Laravel/master/docs/images/update_1.png" /></p>
+<p>If you click on it, it will ask your server to check how far behind you are from the bleeding edge version of Lychee:</p>
+<p><img alt="" src="https://raw.githubusercontent.com/LycheeOrg/Lychee-Laravel/master/docs/images/update_2.png" /></p>
+<h4>2. Refresh your Diagnostic page</h4>
+<p>Notice that <em>Lychee version (git)</em> now tells you:</p>
+<ul>
+<li>that you are behind &mdash; "<em>1 commits behind master (dc5f03a)</em>"</li>
+<li>that the last check for update was done some times ago &mdash; "<em>(9 seconds ago)</em>"</li>
+</ul>
+<p><img alt="" src="https://raw.githubusercontent.com/LycheeOrg/Lychee-Laravel/master/docs/images/update_3.png" /></p>
+<h4>3. Apply the update</h4>
+<p>By clicking on <em>"Update available"</em> this will trigger server side a <code>git pull</code> and <code>artisan migrate</code>.</p>
+<p><img alt="" src="https://raw.githubusercontent.com/LycheeOrg/Lychee-Laravel/master/docs/images/update_4.png" /></p>
+<p>You can see the log result of the command line printed above the diagnostic information.
+By default composer calls are disabled.</p>
+<p><img alt="" src="https://raw.githubusercontent.com/LycheeOrg/Lychee-Laravel/master/docs/images/update_5.png" /></p>
+<h4>4. Check for updates</h4>
+<p>We can once again check for updates:</p>
+<p><img alt="" src="https://raw.githubusercontent.com/LycheeOrg/Lychee-Laravel/master/docs/images/update_6.png" /></p>
+<p><img alt="" src="https://raw.githubusercontent.com/LycheeOrg/Lychee-Laravel/master/docs/images/update_7.png" /></p>
+<p>And we are done.</p>
                         </section>
                     </section>
                 </section>

@@ -144,9 +144,9 @@ Also because this user has upload right, he can see the _Unsorted, Public, Starr
 
 ### How can I install Lychee without SSH access ?
 
-1. Download the latest release
-2. Extract and upload the folder via ftp
-3. access the website.
+* 1 &mdash; Download the latest release.
+* 2 &mdash; Extract and upload the folder via ftp.
+* 3 &mdash; access the website.
 If you are at the wrong address you will be told to go to the `public` folder.
 Once open, you will be redirected to the install procedure. Completed you will be able to create an admin account and enjoy Lychee.
 
@@ -157,13 +157,13 @@ The process is described [here](upgrade.html).
 ### How can I back up my installation?
 To back up your Lychee installation you need to perform the following steps:
 
-1. Create a copy of at least the following parts of the Lychee directory tree (e.g., `/var/www/html/Lychee`):
+* 1 &mdash; Create a copy of at least the following parts of the Lychee directory tree (e.g., `/var/www/html/Lychee`):
 ```
 .env
 public/dist/user.css
 public/uploads/
 ```
-2. Dump the Lychee database to a file. E.g., if you are using MySQL, run:
+* 2 &mdash; Dump the Lychee database to a file. E.g., if you are using MySQL, run:
 ```
 mysqldump -u user -ppassword --databases lychee_database > lychee_backup.sql
 ```
@@ -173,7 +173,9 @@ Replace `user`, `password`, and `lychee_database` by the values of `DB_USERNAME`
 
 Back up your installation as describe above:
 
-3. Restore the database on the new host, e.g., for MySQL:
+* 3 &mdash; Download the latest release of Lychee.
+* 4 &mdash; Overwrite the files with your back up
+* 5 &mdash; Restore the database on the new host, e.g., for MySQL:
 ```
 mysql -u user -ppassword < lychee_backup.sql
 ```
@@ -244,9 +246,9 @@ The second one is really optional if updates don't need the composer (like 90% o
 ### Can I migrate from a 64-bit system to a 32-bit system?
 
 Yes, but it's not trivial or recommended. After copying the database:
-1. Download [this](https://github.com/LycheeOrg/Lychee-Laravel/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php) file to your `database/migrations/` folder.
-2. Run  the SQL command `delete from migrations where migration='2019_04_07_193345_fix_32bit';` to make sure it will run.
-3. Run `php artisan migrate`. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.
+* 1 &mdash; Download [this](https://github.com/LycheeOrg/Lychee-Laravel/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php) file to your `database/migrations/` folder.
+* 2 &mdash; Run  the SQL command `delete from migrations where migration='2019_04_07_193345_fix_32bit';` to make sure it will run.
+* 3 &mdash; Run `php artisan migrate`. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.
 
 This will only work on top-level albums. Subalbums will require [manual intervention](https://github.com/LycheeOrg/Lychee-Laravel/issues/406#issuecomment-571378073).
 

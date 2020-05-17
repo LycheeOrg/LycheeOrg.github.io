@@ -25,13 +25,15 @@ pages_title['settings'] = 'Settings'
 pages_title['keyboard'] = 'Keyboard Shortcuts'
 pages_title['upgrade'] = 'Upgrade from v3'
 pages_title['docker'] = 'Docker'
+pages_title['read-more'] = 'Lychee logic overview'
+pages_title['update'] = 'Update'
 
 structure = [['Prologue',
               ['releases', 'upgrade', 'contributions', 'api', 'faq']]]
 structure += [['Getting Started',
-               ['installation', 'configuration', 'structure', 'docker']]]
+               ['installation', 'configuration', 'docker', 'update']]]
 structure += [['Digging Deeper',
-               ['settings', 'keyboard']]]
+               ['settings', 'keyboard', 'read-more', 'structure']]]
 
 
 def gen_sidebar(page):

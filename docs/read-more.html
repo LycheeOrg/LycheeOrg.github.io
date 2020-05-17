@@ -59,7 +59,7 @@
 <li class='sub--on'>
 <h2>Getting Started</h2>
 <ul>
-<li class='active'><a href='installation.html'>Installation</a></li>
+<li><a href='installation.html'>Installation</a></li>
 <li><a href='configuration.html'>Configuration</a></li>
 <li><a href='docker.html'>Docker</a></li>
 <li><a href='update.html'>Update</a></li>
@@ -69,7 +69,7 @@
 <ul>
 <li><a href='settings.html'>Settings</a></li>
 <li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
-<li><a href='read-more.html'>Lychee logic overview</a></li>
+<li class='active'><a href='read-more.html'>Lychee logic overview</a></li>
 <li><a href='structure.html'>Directory Structure</a></li>
 </ul>
 
@@ -185,112 +185,35 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>Installation</h1>
+                            <h1>Lychee logic overview</h1>
                             
 <ul>
-<li><a href="#installation">Installation</a><ul>
-<li><a href="#server-requirements">Server Requirements</a></li>
-<li><a href="#installing-lychee">Installing Lychee</a></li>
-<li><a href="#configuration">Configuration</a></li>
-</ul>
-</li>
-<li><a href="#web-server-configuration">Web Server Configuration</a><ul>
-<li><a href="#directory-configuration">Directory Configuration</a></li>
-<li><a href="#pretty-urls">Pretty URLs</a></li>
-</ul>
-</li>
+<li><a href="#brief-introduction-to-laravel">Brief introduction to Laravel</a></li>
+<li><a href="#interesting-readings">Interesting readings</a></li>
 </ul>
  <p>
-    <a name="installation"></a>
+    <a name="Introduction"></a>
 </p>
 
-<h2 id="installation"><a class="toclink" href="#installation">Installation</a></h2>
-<h3 id="server-requirements"><a class="toclink" href="#server-requirements">Server Requirements</a></h3>
-<p>The Lychee gallery has a few system requirements. You will need to make sure your server meets the following:</p>
+<h3 id="brief-introduction-to-laravel"><a class="toclink" href="#brief-introduction-to-laravel">Brief introduction to Laravel</a></h3>
+<p>Laravel is a MVC (Model-View-Controller) framework for PHP. Its process is as follows.</p>
 <ul>
-<li>A web server such as Apache or nginx</li>
-<li>A Database access such as MySQL/MariaDB, PostgreSQL.<br />
-Lychee also comes with SQLite3 support.</li>
-<li>PHP &gt;= 7.3</li>
-<li>BCMath PHP Extension</li>
-<li>Ctype PHP Extension</li>
-<li>Exif PHP Extension</li>
-<li>Ffmpeg PHP Extension (optional &mdash; to generate video thumbnails)</li>
-<li>Fileinfo PHP Extension</li>
-<li>GD PHP Extension</li>
-<li>Imagick PHP Extension (optional &mdash; to generate better thumbnails)</li>
-<li>JSON PHP Extension</li>
-<li>Mbstring PHP Extension</li>
-<li>OpenSSL PHP Extension</li>
-<li>PDO PHP Extension</li>
-<li>Tokenizer PHP Extension</li>
-<li>XML PHP Extension</li>
-<li>ZIP PHP Extension</li>
+<li>1 &mdash; A Request is made, it goes through the routes.</li>
+<li>2 &mdash; The route decide which controller is being applied.<br>
+We apply a  middleware if requested (User Access verification mainly).</li>
+<li>3 &mdash; The controller makes calls to models which is hides the calls to the database through clever queries.</li>
+<li>4 &mdash; After applying logic, we return a view (template) or a JSON response.</li>
 </ul>
-<p>While Lychee works on 32bit systems, we do recommend the use of a 64bit OS.</p>
-<h3 id="installing-lychee"><a class="toclink" href="#installing-lychee">Installing Lychee</a></h3>
-<p>We provide three methods to install Lychee, from the latest release &mdash;simple unzip&mdash; or from source &mdash;uses Composer.</p>
-<h4>With Docker</h4>
-<p>Read <a href="docker.html">here</a>.</p>
-<h4>From Release</h4>
-<p>Download the release zip-file from the Releases page and extract it (usually in <code>/var/www/html</code>).
-It contains a trimmed down version of the Lychee files.</p>
-<h4>From the Master branch</h4>
-<p>Lychee utilizes <a href="https://getcomposer.org/">Composer</a> to manage its dependencies. Make sure you have Composer installed on your machine.</p>
-<pre><code>git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
-</code></pre>
-
-<p>Get into the directory:</p>
-<pre><code>cd /var/www/html/Lychee
-</code></pre>
-
-<p>Install the required dependencies.</p>
-<pre><code>composer install --no-dev
-</code></pre>
-
-<p>If you want to help Lychee to develop, you can enable the dev option by simply removing the <code>--no-dev</code>.</p>
-<h3 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h3>
-<h4>Public Directory</h4>
-<p>After installing Lychee, you should configure your web server's document / web root to be the <code>public</code> directory. The <code>index.php</code> in this directory serves as the front controller for all HTTP requests entering your application.</p>
-<h4>Configuration Files</h4>
-<p>All of the configuration files for Lychee are stored in the <code>config</code> directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
-<h4>Directory Permissions</h4>
-<p>After installing Lychee, you need to configure some permissions. Directories within the <code>storage</code> and the <code>bootstrap/cache</code> directories should be writable by your web server or Lychee will not run. Additionaly <code>public/dist</code>, <code>public/uploads</code> and <code>public/sym</code> needs to be writable for you to be able to change the CSS,
-upload photos, generate symbolic links to protect the originals.</p>
-<h4>Application Key</h4>
-<p>The next thing you should do after installing Lychee is set your application key to a random string. This is easily done by using the <code>php artisan key:generate</code> command.</p>
-<p>Typically, this string should be 32 characters long. The key can be set in the <code>.env</code> environment file. If you have not copied the <code>.env.example</code> file to a new file named <code>.env</code>, you should do that now.
-<strong>If the application key is not set, your user sessions and other encrypted data will not be secure!</strong></p>
-<h4>Additional Configuration</h4>
-<p>Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the <code>config/app.php</code> file and its documentation. It contains several options such as <code>timezone</code> <!-- and locale--> that you may wish to change according to your installation.</p>
-<p>You may also want to configure a few additional components of Lychee, such as:
-- Cache
-- Database
-- Session</p>
-<h2 id="web-server-configuration"><a class="toclink" href="#web-server-configuration">Web Server Configuration</a></h2>
-<h3 id="directory-configuration"><a class="toclink" href="#directory-configuration">Directory Configuration</a></h3>
-<p>Lychee should always be served out of the root of the "web directory" configured for your web server. You should not attempt to serve a Lychee out of a subdirectory of the "web directory". Attempting to do so could expose sensitive files present within your installation (e.g. <code>.env</code>).</p>
-<h3 id="pretty-urls"><a class="toclink" href="#pretty-urls">Pretty URLs</a></h3>
-<h4>Apache</h4>
-<p>Lychee includes a <code>public/.htaccess</code> file that is used to provide URLs without the <code>index.php</code> front controller in the path. Before serving Lychee with Apache, be sure to enable the <code>mod_rewrite</code> module so the <code>.htaccess</code> file will be honored by the server.</p>
-<p>If the <code>.htaccess</code> file that ships with Lychee does not work with your Apache installation, try this alternative:</p>
-<pre><code>Options +FollowSymLinks -Indexes
-RewriteEngine On
-
-RewriteCond %{HTTP:Authorization} .
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [L]
-</code></pre>
-
-<h4>Nginx</h4>
-<p>If you are using Nginx, the following directive in your site configuration will direct all requests to the <code>index.php</code> front controller:</p>
-<pre><code>location / {
-    try_files $uri $uri/ /index.php?$query_string;
-}
-</code></pre>
+<p>The following figure illustrate the process.</p>
+<p><img alt="https://cdn.auth0.com/blog/laravel-auth/mvc-diagram.png" src="img/mvc-diagram.png" /></p>
+<p>A detailed description of the directory structure is provided <a href="structure.html">here</a>.</p>
+<h3 id="interesting-readings"><a class="toclink" href="#interesting-readings">Interesting readings</a></h3>
+<ul>
+<li><a href="https://laravel.com/docs/7.x/">Laravel documentation</a> &mdash; a very detailed and nicely written.</li>
+<li><a href="https://github.com/alexeymezenin/laravel-best-practices">Best Practices</a> &mdash; we try to follow them on Lychee.</li>
+<li><a href="http://pwm.github.io/dynamic-dependency-injection/">Dynamic Dependency Injection</a> &mdash; Lychee and Laravel uses them a lot.</li>
+<li><a href="https://medium.com/@kamerk22/the-smart-way-to-handle-request-validation-in-laravel-5e8886279271">Request Validation</a> &mdash; We still need to see if this can be applied here.</li>
+</ul>
                         </section>
                     </section>
                 </section>
