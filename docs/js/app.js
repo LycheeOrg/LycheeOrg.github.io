@@ -70,6 +70,6 @@ $('.docs_main ul li').each(function() {
     var str = $(this).html();
     str = str.replace(/e\#([0-9]+)/g, replacer_e);
     str = str.replace(/3\#([0-9]+)/g, replacer_v3);
-    str = str.replace(/\#([0-9]+)/gm, replacer);
+    str = str.replace(/\#([0-9]+)/g, replacer);
     $(this).html(str);
 });

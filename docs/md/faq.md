@@ -273,7 +273,22 @@ If Lychee is not working properly, try to open `https://lychee.example.com/Diagn
 
 Another way to see this screen is to use the command: `php artisan lychee:diagnostics`
 
-### I can't upload photos
+### When I do X, I get an error api not found, what can I do ?
+
+Open the dev modules of your browser (usually by pressing `F12`) and open the Network tab.
+Redo the action with Network tab open and look at the response of the last query (most likely a red line).
+If it is an error 404 or 500, see below, otherwise look at our [issue](https://github.com/LycheeOrg/Lychee/issues) (including the closed ones).
+If nothing helps, don't hesitate to open a new one.
+
+### I have an error 404, what can I do ?
+
+Verify that the rewrite rules of your server are correctly applied. See [here](upgrade.html#using-apache).
+
+### I have an error 500, what can I do ?
+
+Edit the `.env` file and set `APP_DEBUG` to `true`, this will allow the errors to be displayed with the trace.
+
+### I can't upload photos.
 If you experience problems uploading large photos, you might want to change the PHP parameters in `.htaccess` (if you are using the PHP Apache module) or in `.user.ini` (if you are using PHP >= 7.3 with CGI or FastCGI).
 
 > If you modify the `.user.ini` file, you may want to run `git update-index --assume-unchanged .user.ini` afterwards.

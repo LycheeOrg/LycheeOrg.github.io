@@ -228,7 +228,10 @@
 </li>
 <li><a href="#problems">Problems</a><ul>
 <li><a href="#lychee-is-not-working">Lychee is not working</a></li>
-<li><a href="#i-cant-upload-photos">I can't upload photos</a></li>
+<li><a href="#when-i-do-x-i-get-an-error-api-not-found-what-can-i-do">When I do X, I get an error api not found, what can I do ?</a></li>
+<li><a href="#i-have-an-error-404-what-can-i-do">I have an error 404, what can I do ?</a></li>
+<li><a href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do ?</a></li>
+<li><a href="#i-cant-upload-photos">I can't upload photos.</a></li>
 <li><a href="#what-does-upstream-sent-too-big-header-error-message-mean">What does Upstream sent too big header error message mean?</a></li>
 <li><a href="#why-dont-my-videos-have-thumbnails">Why don't my videos have thumbnails?</a></li>
 <li><a href="#composer-cant-create-a-cache-directory">Composer can't create a cache directory</a></li>
@@ -439,7 +442,16 @@ If it breaks (error 500) you can still go back to command line and do your <code
 <h3 id="lychee-is-not-working"><a class="toclink" href="#lychee-is-not-working">Lychee is not working</a></h3>
 <p>If Lychee is not working properly, try to open <code>https://lychee.example.com/Diagnostics</code>. This script will display all errors it can find.</p>
 <p>Another way to see this screen is to use the command: <code>php artisan lychee:diagnostics</code></p>
-<h3 id="i-cant-upload-photos"><a class="toclink" href="#i-cant-upload-photos">I can't upload photos</a></h3>
+<h3 id="when-i-do-x-i-get-an-error-api-not-found-what-can-i-do"><a class="toclink" href="#when-i-do-x-i-get-an-error-api-not-found-what-can-i-do">When I do X, I get an error api not found, what can I do ?</a></h3>
+<p>Open the dev modules of your browser (usually by pressing <code>F12</code>) and open the Network tab.
+Redo the action with Network tab open and look at the response of the last query (most likely a red line).
+If it is an error 404 or 500, see below, otherwise look at our <a href="https://github.com/LycheeOrg/Lychee/issues">issue</a> (including the closed ones).
+If nothing helps, don't hesitate to open a new one.</p>
+<h3 id="i-have-an-error-404-what-can-i-do"><a class="toclink" href="#i-have-an-error-404-what-can-i-do">I have an error 404, what can I do ?</a></h3>
+<p>Verify that the rewrite rules of your server are correctly applied. See <a href="upgrade.html#using-apache">here</a>.</p>
+<h3 id="i-have-an-error-500-what-can-i-do"><a class="toclink" href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do ?</a></h3>
+<p>Edit the <code>.env</code> file and set <code>APP_DEBUG</code> to <code>true</code>, this will allow the errors to be displayed with the trace.</p>
+<h3 id="i-cant-upload-photos"><a class="toclink" href="#i-cant-upload-photos">I can't upload photos.</a></h3>
 <p>If you experience problems uploading large photos, you might want to change the PHP parameters in <code>.htaccess</code> (if you are using the PHP Apache module) or in <code>.user.ini</code> (if you are using PHP &gt;= 7.3 with CGI or FastCGI).</p>
 <blockquote>
 <p>If you modify the <code>.user.ini</code> file, you may want to run <code>git update-index --assume-unchanged .user.ini</code> afterwards.</p>
