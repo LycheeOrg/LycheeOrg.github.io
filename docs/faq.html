@@ -218,7 +218,7 @@
 <li><a href="#how-do-i-upgrade-from-lychee-v3-to-lychee-v4">How do I upgrade from Lychee v3 to Lychee v4?</a></li>
 <li><a href="#how-can-i-back-up-my-installation">How can I back up my installation?</a></li>
 <li><a href="#how-can-i-migrate-my-installation-to-a-new-host">How can I migrate my installation to a new host?</a></li>
-<li><a href="#can-i-host-lychee-laravel-with-a-subpath-with-nginx-like-httpsexampledevlychee">Can I host Lychee-Laravel with a subpath with Nginx? Like https://example.dev/lychee/</a></li>
+<li><a href="#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee">Can I host Lychee with a subpath with Nginx? Like https://example.dev/lychee/</a></li>
 <li><a href="#do-we-really-need-writable-app">Do we really need writable app/?</a></li>
 <li><a href="#is-it-possible-to-do-the-update-directly-from-the-gui-how">Is it possible to do the update directly from the GUI? How?</a></li>
 <li><a href="#can-i-migrate-from-a-64-bit-system-to-a-32-bit-system">Can I migrate from a 64-bit system to a 32-bit system?</a></li>
@@ -311,7 +311,7 @@ php artisan lychee:logs clean
 </code></pre>
 
 <h3 id="how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare"><a class="toclink" href="#how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare">How can I see the correct client IP address when running Lychee behind Cloudflare?]</a></h3>
-<p>Please see https://github.com/monicahq/laravel-cloudflare. The Lychee file that needs changing can be found <a href="https://github.com/LycheeOrg/Lychee-Laravel/blob/master/app/Http/Middleware/TrustProxies.php">here</a>.</p>
+<p>Please see https://github.com/monicahq/laravel-cloudflare. The Lychee file that needs changing can be found <a href="https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/TrustProxies.php">here</a>.</p>
 <h3 id="can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums"><a class="toclink" href="#can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums">Can I set up Lychee to watch a folder for new images and automatically add them to albums?</a></h3>
 <p>Lychee can import photos from the command line using <code>php artisan lychee:sync /path/to/import</code>. Folders in this path will be converted to albums, and subfolders as subalbums using <code>php artisan lychee:sync /path/to/import --album_id="album ID"</code>.</p>
 <p>This command can be scheduled using <code>cron</code> or a systemd timer.</p>
@@ -368,7 +368,7 @@ public/uploads/
 <pre><code>mysql -u user -ppassword &lt; lychee_backup.sql
 </code></pre>
 
-<h3 id="can-i-host-lychee-laravel-with-a-subpath-with-nginx-like-httpsexampledevlychee"><a class="toclink" href="#can-i-host-lychee-laravel-with-a-subpath-with-nginx-like-httpsexampledevlychee">Can I host Lychee-Laravel with a subpath with Nginx? Like <code>https://example.dev/lychee/</code></a></h3>
+<h3 id="can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee"><a class="toclink" href="#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee">Can I host Lychee with a subpath with Nginx? Like <code>https://example.dev/lychee/</code></a></h3>
 <p>Yes, here is a configuration to help you:</p>
 <pre><code class="nginx">location ^~ /lychee {
     alias /var/www/lychee/public;
@@ -394,7 +394,7 @@ location @lychee {
 <h3 id="do-we-really-need-writable-app"><a class="toclink" href="#do-we-really-need-writable-app">Do we really need writable <code>app/</code>?</a></h3>
 <p>From <a href="https://github.com/LycheeOrg/Lychee/issues/311">#311</a></p>
 <p>Short answer: Lychee will work without a writable <code>app/</code> folder.</p>
-<p>However, if you want to be able to update your Lychee installation with a click of a button in the web browser (which is supported with Lychee-Laravel, though it's disabled by default), your whole Lychee installation tree (and not just <code>app/</code>) must be http-writable.</p>
+<p>However, if you want to be able to update your Lychee installation with a click of a button in the web browser (though it's disabled by default), your whole Lychee installation tree (and not just <code>app/</code>) must be http-writable.</p>
 <p>As far as I know, the minimum set of directories that need to be http-writable is as follows:</p>
 <pre><code>storage/
 storage/
@@ -422,10 +422,10 @@ If it breaks (error 500) you can still go back to command line and do your <code
 <p>The second one is really optional if updates don't need the composer (like 90% of the time) then it can just stay at <code>0</code>.</p>
 <h3 id="can-i-migrate-from-a-64-bit-system-to-a-32-bit-system"><a class="toclink" href="#can-i-migrate-from-a-64-bit-system-to-a-32-bit-system">Can I migrate from a 64-bit system to a 32-bit system?</a></h3>
 <p>Yes, but it's not trivial or recommended. After copying the database:
-* 1 &mdash; Download <a href="https://github.com/LycheeOrg/Lychee-Laravel/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php">this</a> file to your <code>database/migrations/</code> folder.
+* 1 &mdash; Download <a href="https://github.com/LycheeOrg/Lychee/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php">this</a> file to your <code>database/migrations/</code> folder.
 * 2 &mdash; Run  the SQL command <code>delete from migrations where migration='2019_04_07_193345_fix_32bit';</code> to make sure it will run.
 * 3 &mdash; Run <code>php artisan migrate</code>. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.</p>
-<p>This will only work on top-level albums. Subalbums will require <a href="https://github.com/LycheeOrg/Lychee-Laravel/issues/406#issuecomment-571378073">manual intervention</a>.</p>
+<p>This will only work on top-level albums. Subalbums will require <a href="https://github.com/LycheeOrg/Lychee/issues/406#issuecomment-571378073">manual intervention</a>.</p>
 <h3 id="why-cant-i-see-the-check-for-update-button-in-the-gui"><a class="toclink" href="#why-cant-i-see-the-check-for-update-button-in-the-gui">Why can't I see the <em>check for update</em> button in the GUI?</a></h3>
 <ul>
 <li>Make sure you are using a <code>git</code> installation and not a downloaded release</li>
@@ -471,8 +471,8 @@ fastcgi_buffer_size 32k;
 </code></pre>
 
 <h3 id="why-dont-my-videos-have-thumbnails"><a class="toclink" href="#why-dont-my-videos-have-thumbnails">Why don't my videos have thumbnails?</a></h3>
-<p>You will need ffmpeg installed on your server, and to have installed php-ffmpeg using composer as detailed in the <a href="https://github.com/LycheeOrg/Lychee-laravel/wiki/Installation">Installation Guide</a>.</p>
-<p>If you are still having problems, check your Lychee log. If you are still getting a <code>Could not create thumbnail for video because FFMPEG is not available.</code> error, you may need to specify the location of your ffmpeg and ffprobe binaries. In https://github.com/LycheeOrg/Lychee-Laravel/blob/master/app/ModelFunctions/PhotoFunctions.php#L94 replace</p>
+<p>You will need ffmpeg installed on your server, and to have installed php-ffmpeg using composer as detailed in the <a href="installation.html">Installation Guide</a>.</p>
+<p>If you are still having problems, check your Lychee log. If you are still getting a <code>Could not create thumbnail for video because FFMPEG is not available.</code> error, you may need to specify the location of your ffmpeg and ffprobe binaries. In https://github.com/LycheeOrg/Lychee/blob/master/app/ModelFunctions/PhotoFunctions.php#L94 replace</p>
 <pre><code>$ffmpeg = FFMpeg\FFMpeg::create();
 </code></pre>
 

@@ -108,7 +108,7 @@ php artisan lychee:logs clean
 
 ### How can I see the correct client IP address when running Lychee behind Cloudflare?]
 
-Please see https://github.com/monicahq/laravel-cloudflare. The Lychee file that needs changing can be found [here](https://github.com/LycheeOrg/Lychee-Laravel/blob/master/app/Http/Middleware/TrustProxies.php).
+Please see https://github.com/monicahq/laravel-cloudflare. The Lychee file that needs changing can be found [here](https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/TrustProxies.php).
 
 ### Can I set up Lychee to watch a folder for new images and automatically add them to albums?
 
@@ -180,7 +180,7 @@ Back up your installation as describe above:
 mysql -u user -ppassword < lychee_backup.sql
 ```
 
-### Can I host Lychee-Laravel with a subpath with Nginx? Like `https://example.dev/lychee/`
+### Can I host Lychee with a subpath with Nginx? Like `https://example.dev/lychee/`
 
 Yes, here is a configuration to help you:
 
@@ -212,7 +212,7 @@ From [#311](https://github.com/LycheeOrg/Lychee/issues/311)
 
 Short answer: Lychee will work without a writable `app/` folder.
 
-However, if you want to be able to update your Lychee installation with a click of a button in the web browser (which is supported with Lychee-Laravel, though it's disabled by default), your whole Lychee installation tree (and not just `app/`) must be http-writable.
+However, if you want to be able to update your Lychee installation with a click of a button in the web browser (though it's disabled by default), your whole Lychee installation tree (and not just `app/`) must be http-writable.
 
 As far as I know, the minimum set of directories that need to be http-writable is as follows:
 ```
@@ -246,11 +246,11 @@ The second one is really optional if updates don't need the composer (like 90% o
 ### Can I migrate from a 64-bit system to a 32-bit system?
 
 Yes, but it's not trivial or recommended. After copying the database:
-* 1 &mdash; Download [this](https://github.com/LycheeOrg/Lychee-Laravel/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php) file to your `database/migrations/` folder.
+* 1 &mdash; Download [this](https://github.com/LycheeOrg/Lychee/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php) file to your `database/migrations/` folder.
 * 2 &mdash; Run  the SQL command `delete from migrations where migration='2019_04_07_193345_fix_32bit';` to make sure it will run.
 * 3 &mdash; Run `php artisan migrate`. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.
 
-This will only work on top-level albums. Subalbums will require [manual intervention](https://github.com/LycheeOrg/Lychee-Laravel/issues/406#issuecomment-571378073).
+This will only work on top-level albums. Subalbums will require [manual intervention](https://github.com/LycheeOrg/Lychee/issues/406#issuecomment-571378073).
 
 ### Why can't I see the *check for update* button in the GUI?
 
@@ -311,9 +311,9 @@ fastcgi_buffer_size 32k;
 ```
 
 ### Why don't my videos have thumbnails?
-You will need ffmpeg installed on your server, and to have installed php-ffmpeg using composer as detailed in the [Installation Guide](https://github.com/LycheeOrg/Lychee-laravel/wiki/Installation).
+You will need ffmpeg installed on your server, and to have installed php-ffmpeg using composer as detailed in the [Installation Guide](installation.html).
 
-If you are still having problems, check your Lychee log. If you are still getting a `Could not create thumbnail for video because FFMPEG is not available.` error, you may need to specify the location of your ffmpeg and ffprobe binaries. In https://github.com/LycheeOrg/Lychee-Laravel/blob/master/app/ModelFunctions/PhotoFunctions.php#L94 replace
+If you are still having problems, check your Lychee log. If you are still getting a `Could not create thumbnail for video because FFMPEG is not available.` error, you may need to specify the location of your ffmpeg and ffprobe binaries. In https://github.com/LycheeOrg/Lychee/blob/master/app/ModelFunctions/PhotoFunctions.php#L94 replace
 ```
 $ffmpeg = FFMpeg\FFMpeg::create();
 ```

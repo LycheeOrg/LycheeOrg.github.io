@@ -10,7 +10,7 @@ All of the configuration files for Lychee are stored in the config directory. Ea
 
 It is often helpful to have different configuration values based on the environment where the application is running. For example, you may wish to use a different cache driver locally than you do on your production server.
 
-To make this a cinch, Lychee utilizes the [DotEnv][1] PHP library by Vance Lucas. In a fresh Laravel installation, the root directory of your application will contain a `.env.example` file. If you install Laravel via Composer, this file will automatically be renamed to `.env`. Otherwise, you should rename the file manually.
+To make this a cinch, Lychee utilizes the [DotEnv][1] PHP library by Vance Lucas. In a fresh Lychee installation, the root directory of your application will contain a `.env.example` file. You should make a copy of this file as `.env`.
 
 Your `.env` file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration. Furthermore, this would be a security risk in the event an intruder gains access to your source control repository, since any sensitive credentials would get exposed.
 
@@ -71,7 +71,7 @@ APP_NAME="My Application"
 ```
 
 ### Retrieving Environment Configuration
-All of the variables listed in this file will be loaded into the $_ENV PHP super-global when your application receives a request. However, you may use the env helper to retrieve values from these variables in your configuration files. In fact, if you review the Laravel configuration files, you will notice several of the options already using this helper:
+All of the variables listed in this file will be loaded into the $_ENV PHP super-global when your application receives a request. However, you may use the env helper to retrieve values from these variables in your configuration files. In fact, if you review the Lychee configuration files, you will notice several of the options already using this helper:
 
 ```
 'debug' => env('APP_DEBUG', false),

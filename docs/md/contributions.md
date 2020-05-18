@@ -32,10 +32,6 @@ git push -u
 
 You can then open a [pull request][3].
 
-<!-- ## Security Vulnerabilities
-If you discover a security vulnerability within Laravel, please send an email to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed. -->
-
-
 ## Coding Style
 Our coding style is defined by the `.php-ps` file, it is mostly the Symfony style but we use tabs instead of spaces.
 

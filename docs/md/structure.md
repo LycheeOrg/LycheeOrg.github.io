@@ -139,8 +139,6 @@ The `Providers` directory contains all of the [service providers][4] for Lychee.
 
 ### The Redirection Directory
 The `Redirection` directory houses main redirection to handle the installation (database not set) and safety cases (security key not set).
-<!-- In a fresh Laravel application, this directory will already contain several providers. You are free to add your own providers to this directory as needed. -->
-
 
 <!-- The Rules Directory
 This directory does not exist by default, but will be created for you if you execute the make:rule Artisan command. The Rules directory contains the custom validation rule objects for your application. Rules are used to encapsulate complicated validation logic in a simple object. For more information, check out the validation documentation. -->

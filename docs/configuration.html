@@ -209,7 +209,7 @@
 <p>All of the configuration files for Lychee are stored in the config directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
 <h2 id="environment-configuration"><a class="toclink" href="#environment-configuration">Environment Configuration</a></h2>
 <p>It is often helpful to have different configuration values based on the environment where the application is running. For example, you may wish to use a different cache driver locally than you do on your production server.</p>
-<p>To make this a cinch, Lychee utilizes the <a href="https://github.com/vlucas/phpdotenv">DotEnv</a> PHP library by Vance Lucas. In a fresh Laravel installation, the root directory of your application will contain a <code>.env.example</code> file. If you install Laravel via Composer, this file will automatically be renamed to <code>.env</code>. Otherwise, you should rename the file manually.</p>
+<p>To make this a cinch, Lychee utilizes the <a href="https://github.com/vlucas/phpdotenv">DotEnv</a> PHP library by Vance Lucas. In a fresh Lychee installation, the root directory of your application will contain a <code>.env.example</code> file. You should make a copy of this file as <code>.env</code>.</p>
 <p>Your <code>.env</code> file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration. Furthermore, this would be a security risk in the event an intruder gains access to your source control repository, since any sensitive credentials would get exposed.</p>
 <p>If you are developing with a team, you may wish to continue including a .env.example file with your application. By putting placeholder values in the example configuration file, other developers on your team can clearly see which environment variables are needed to run your application. You may also create a .env.testing file. This file will override the .env file when running PHPUnit tests or executing Artisan commands with the --env=testing option.</p>
 <blockquote>
@@ -265,7 +265,7 @@
 </code></pre>
 
 <h3 id="retrieving-environment-configuration"><a class="toclink" href="#retrieving-environment-configuration">Retrieving Environment Configuration</a></h3>
-<p>All of the variables listed in this file will be loaded into the $_ENV PHP super-global when your application receives a request. However, you may use the env helper to retrieve values from these variables in your configuration files. In fact, if you review the Laravel configuration files, you will notice several of the options already using this helper:</p>
+<p>All of the variables listed in this file will be loaded into the $_ENV PHP super-global when your application receives a request. However, you may use the env helper to retrieve values from these variables in your configuration files. In fact, if you review the Lychee configuration files, you will notice several of the options already using this helper:</p>
 <pre><code>'debug' =&gt; env('APP_DEBUG', false),
 </code></pre>
 
