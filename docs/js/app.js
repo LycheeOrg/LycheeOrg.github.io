@@ -44,11 +44,6 @@ $('.docs_main blockquote p').each(function() {
                 img = 'img/callouts/lightbulb.min.svg';
                 color = 'purple';
                 break;
-                // case "laracasts":
-                // case "video":
-                //     img = '/img/callouts/laracast.min.svg';
-                //     color = 'blue';
-                //     break;
         }
 
         $(this).wrap('<div></div>');
@@ -57,4 +52,24 @@ $('.docs_main blockquote p').each(function() {
         $(this).addClass('content');
         $(this).parent().addClass('callout');
     }
+});
+
+function replacer(match, p1, offset, string) {
+    return "<a href='https://github.com/LycheeOrg/Lychee/issues/" + p1 + "'>&sharp;" + p1 + "</a>";
+}
+
+function replacer_v3(match, p1, offset, string) {
+    return "<a href='https://github.com/LycheeOrg/Lychee-v3/issues/" + p1 + "'>&sharp;" + p1 + "</a>";
+}
+
+function replacer_e(match, p1, offset, string) {
+    return "<a onclick=\"alert('Destination is dead (404).');\" style=\"cursor: pointer;\">&sharp;" + p1 + "</a>";
+}
+
+$('.docs_main ul li').each(function() {
+    var str = $(this).html();
+    str = str.replace(/e\#([0-9]+)/g, replacer_e);
+    str = str.replace(/3\#([0-9]+)/g, replacer_v3);
+    str = str.replace(/\#([0-9]+)/gm, replacer);
+    $(this).html(str);
 });

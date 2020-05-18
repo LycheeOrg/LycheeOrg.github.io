@@ -49,8 +49,7 @@ Released May 11, 2020
 
 Released April 29, 2020
 
-- `fixes` #498
-  > remove Lychee-front version number alltogether
+- `fixes` #498 remove Lychee-front version number alltogether
   > add Diagnostic information:
     - Composer install type
     - release type (git vs release)
@@ -167,34 +166,34 @@ Released April 18, 2020
 
 Released June 17, 2019
 
-- `new` : hides lychee version number by default (https://github.com/LycheeOrg/Lychee-Laravel/issues/282)
+- `new` : hides lychee version number by default (e#82)
 
 ### v3.2.15
 
 Released June 16, 2019
 
-- `update` : improve stability when getting bad EXIF data ( https://github.com/LycheeOrg/Lychee-Laravel/pull/205 )
-- ` fixes` : ignore bad shutter data (#240)
+- `update` : improve stability when getting bad EXIF data (e#205)
+- ` fixes` : ignore bad shutter data (3#240)
 - `update` : switch the git commit format number to only 7 characters in Diagnostics
-- `fixes` : takedate format string (#215, #256) 
-- `new` : add setting to allow public search (#262)
-- `fixes` : wrong version number displayed in Lychee (#268)
+- `fixes` : takedate format string (3#215, 3#256) 
+- `new` : add setting to allow public search (3#262)
+- `fixes` : wrong version number displayed in Lychee (3#268)
 - `update` : credits.
 
 ### v3.2.14
 
 Released March 28, 2019
 
-- `Updates` Add primary key to settings table (#221)
+- `Updates` Add primary key to settings table (3#221)
 - `Updates` Add git source commit/branch/repo to Diagnostics page
-- `Updates` Use better lens tags from exiftool if present (if exiftool is enabled) (#235)
+- `Updates` Use better lens tags from exiftool if present (if exiftool is enabled) (3#235)
 - `Updates` Accept larger input from exiftool
 - `Updates` Make photo/album IDs more consistent
-- `New` Add fullscreen support to album and photo views (#228)
+- `New` Add fullscreen support to album and photo views (3#228)
 - `Updates` Use sortingAlbums and sortingPhotos even if logged out.
 - `Updates` Hide passwords. Add password confirmation.
 
-- `Fixes` #220, #222, #234, 'F' and 'f' hotkey behaviour and some spelling mistakes (#229)
+- `Fixes` 3#220, 3#222, 3#234, 'F' and 'f' hotkey behaviour and some spelling mistakes (3#229)
 
 ### v3.2.13
 
@@ -202,7 +201,7 @@ Released February 20, 2019
 
 - `New` Add "unjustified" layout
 - `Updates` Improve Diagnostics page
-- `Fixes` #194, #196, #205, #208
+- `Fixes` 3#194, 3#196, 3#205, 3#208
 
 ### v3.2.12
 
@@ -211,14 +210,14 @@ Released February 12, 2019
 - `New` Add usage of exiftool to get exif tags from camera #189 
 Using exiftool for getting exif tags make available a lot more tags than the built-in functionality in PHP. Using exiftool will make eg. lens info available without having to rely on that users have exported a raw from Ligthroom.
 **This setting needs to be enabled via the `more` menu as it makes system calls.**
-- `Fixes` image size missing from about #188
+- `Fixes` image size missing from about 3#188
 
 ### v3.2.11
 
 Released February 3, 2019
 
-- `New` Add description overlay and takestamps overlay in addition to Exif. Closes #167
-- `New` Add Setting to remove script execution time limit during imports. Fixes #177
+- `New` Add description overlay and takestamps overlay in addition to Exif. Closes 3#167
+- `New` Add Setting to remove script execution time limit during imports. Fixes 3#177
   This setting can only be activated via the `More` setting and at user owns risks.
 
 ### v3.2.10
@@ -226,7 +225,7 @@ Released February 3, 2019
 Released January 19, 2019
 
 - `New` Switch to InnoDB engine. Closes #169
-- `New` Add setting to decide whether to delete photos from source when imported. Fixes #173
+- `New` Add setting to decide whether to delete photos from source when imported. Fixes 3#173
 - `New` Use existing albums (if available) when importing from server
 - Remove '[Import] ' prefix for albums created by import
 
@@ -238,33 +237,33 @@ Nothing major here. Just a bunch of small bug fixes
 
 **WARNING**: Lychee now requires PHP 7.1 ( http://php.net/supported-versions.php )
 
-- `Fixes`  Cross-Origin Request Blocked: https://lycheeorg.github.io/update.json ( #121 )
+- `Fixes`  Cross-Origin Request Blocked: https://lycheeorg.github.io/update.json ( 3#121 )
  The server is now doing the check for update (on `Session::init`) if this one fail, the user will do an ajax request to check if an update is available.
-- `Fixes` Syntax Error in Session.php ( #153 )
-- `Fixes` Small bugs ( #136 ,  #157 , #159 ,  #163 , #166 )
-- `Fixes` lychee uploading pics into uploads/thumb folder only  ( #148 , #165 )
-- `Updates` German translations ( #161 )
+- `Fixes` Syntax Error in Session.php ( 3#153 )
+- `Fixes` Small bugs ( 3#136 ,  3#157 , 3#159 ,  3#163 , 3#166 )
+- `Fixes` lychee uploading pics into uploads/thumb folder only  ( 3#148 , 3#165 )
+- `Updates` German translations ( 3#161 )
 
 ### v3.2.8
 
 Released December 26, 2018
 
-- `Fixes` Site broken (#157)
+- `Fixes` Site broken (3#157)
 
 - `New` Admins can now access all settings via `Settings -> more` at the bottom of the page.
 **WARNING**: it is now easier to break your installation.
 - `New` Admins can now create a specific `user.css` file that will be loaded in addition to the `main.css` one. This css file can be modified at the bottom of the `Settings` screen.
 - `New` Admins can now define the default size for their medium and small images (via the advanced settings).
 
-- `Fixes` Turn off zoom-in animation when switching photos (#154)
-- `Fixes` Setting // Image Size Definition // Small, Medium, large // With Default values (#152)
-- `Fixes` "Display EXIF data overlay" can toggled with click on image (#151)
-- `Fixes` "play-icon.png" should be in "lychee-front/images" not root (#150) It is now placed in `dist`
-- `Fixes` Shutter speed for long time exposures is displayed as fraction (#149)
-- `Fixes` [Wish] Custom Size Image Creation (#141)
-- `Fixes` New album doesn't show after create unless you refresh page (#135)
-- `Fixes` Unable to edit settings table in database (#80)
-- `Fixes` Hover-Over Blue Border/Square Highlights (#51)
+- `Fixes` Turn off zoom-in animation when switching photos (3#154)
+- `Fixes` Setting // Image Size Definition // Small, Medium, large // With Default values (3#152)
+- `Fixes` "Display EXIF data overlay" can toggled with click on image (3#151)
+- `Fixes` "play-icon.png" should be in "lychee-front/images" not root (3#150) It is now placed in `dist`
+- `Fixes` Shutter speed for long time exposures is displayed as fraction (3#149)
+- `Fixes` [Wish] Custom Size Image Creation (3#141)
+- `Fixes` New album doesn't show after create unless you refresh page (3#135)
+- `Fixes` Unable to edit settings table in database (3#80)
+- `Fixes` Hover-Over Blue Border/Square Highlights (3#51)
 
 ### v3.2.7
 
@@ -274,8 +273,8 @@ Released December 11, 2018
 (**WARNING**: All photo-level licenses will be reset when this update is applied.)
 - `New` Added script to generate "small" size files for existing images
 - `Improved` Update link on login dialog directs to the [Releases](https://github.com/LycheeOrg/Lychee/releases) page rather than the Readme.
-- `Fixes` Center align play icon in video thumbnail ([#133](https://github.com/LycheeOrg/Lychee/issues/133))
-- `Fixes` Missing "small" folder in 3.2.6 release ([#146](https://github.com/LycheeOrg/Lychee/issues/146))
+- `Fixes` Center align play icon in video thumbnail (3#133)
+- `Fixes` Missing "small" folder in 3.2.6 release (3#146)
 - `Fixes` Other minor bugfixes
 
 ### v3.2.6
@@ -284,21 +283,21 @@ Released November 30, 2018
 
 - `New` Default Creative Commons license field in Settings. Applies to new uploads only.
 - `Fixes` Misspelling of 'Starred' Smart Album (English)
-- `Fixes` Albums not showing when 'Move' was selected on a single photo ([#129](https://github.com/LycheeOrg/Lychee/issues/129))
-- `Fixes` Previously set license saved in License field ([#120](https://github.com/LycheeOrg/Lychee/issues/120))
+- `Fixes` Albums not showing when 'Move' was selected on a single photo (3#129)
+- `Fixes` Previously set license saved in License field (3#120)
 
 ### v3.2.5
 
 Released November 26, 2018
 
-- `New` Creative Commons licenses available as photo metadata ([#71](https://github.com/LycheeOrg/Lychee/issues/71))
+- `New` Creative Commons licenses available as photo metadata (3#71)
 - `New` "Copy to..." option is now available
 
 ### v3.2.{3,4}
 
 Released November 22, 2018
 
-- `Fixes` [#112](https://github.com/LycheeOrg/Lychee/issues/112), [#111](https://github.com/LycheeOrg/Lychee/issues/111) (quick fix), [#110](https://github.com/LycheeOrg/Lychee/issues/110), [#109](https://github.com/LycheeOrg/Lychee/issues/109), [#105](https://github.com/LycheeOrg/Lychee/issues/105), LycheeOrg/Lychee-front [#16](https://github.com/LycheeOrg/Lychee/issues/16).
+- `Fixes` 3#112, 3#111 (quick fix), 3#110, 3#109, 3#105, LycheeOrg/Lychee-front 3#16.
 - `New` small pictures (for the justified-layout)
 - `New` Lens information
 - `New` Displaying EXIF data as an overlay in the image view.
@@ -307,8 +306,8 @@ Released November 22, 2018
 
 Released November 21, 2018
 
-- `New` German translations (#104)
-- `New` support for justified-layout (#95)
+- `New` German translations (3#104)
+- `New` support for justified-layout (3#95)
 
 Justified Layout is available as an option in the settings. It will only works with Imagick and medium.
 Lychee-front will require a npm install (only for devs).
@@ -319,9 +318,9 @@ Released November 20,2018
 
 - `Fixed` small bugs
 - `Fixed` SQL updated not applied
-- `New` Swedish support (#101)
-- `New` multi selection with CTRL (#36)
-- `New` Content Security Policy via .htaccess  (#91, #92)
+- `New` Swedish support (3#101)
+- `New` multi selection with CTRL (3#36)
+- `New` Content Security Policy via .htaccess  (3#91, 3#92)
 
 ### v3.2.0
 
@@ -329,8 +328,8 @@ Released November 12, 2018
 
 * `Fixes` Picture ordering bug.
 * `New` Panel for settings.
-* `New` Allow video upload. (#4)
-* `New` localization (so far in English, French, Dutch and Simplified Chinese) (#48, #53, #54, #55, #87, #94)
+* `New` Allow video upload. (3#4)
+* `New` localization (so far in English, French, Dutch and Simplified Chinese) (3#48, 3#53, 3#54, 3#55, 3#87, 3#94)
 
 [OPTIONAL] In order to have Thumbnail for video you will need to use [composer](https://getcomposer.org/):
 ```
@@ -342,58 +341,58 @@ composer update
 
 Released March 20, 2017
 
-- `Fixed` Downloading a SmartAlbum results in crash (#652)
-- `Fixed` htaccess IfModule for PHP7 (#653)
+- `Fixed` Downloading a SmartAlbum results in crash (e#652)
+- `Fixed` htaccess IfModule for PHP7 (e#653)
 
 ### v3.1.5
 
 Released October 25, 2016
 
-- `New` Hide mouse pointer in full screen mode (#620)
-- `Improved` Smoothing rotation of album (#626)
+- `New` Hide mouse pointer in full screen mode (e#620)
+- `Improved` Smoothing rotation of album (e#626)
 
 ### v3.1.4
 
 Released August 28, 2016
 
-- `Fixed` Search stopped working because of an undefined index error (#605)
+- `Fixed` Search stopped working because of an undefined index error (e#605)
 - `Fixed` Better next/previous photo check to prevent an error when opening an album with only one photo
 
 ### v3.1.3
 
 Released August 22, 2016
 
-- `Improved` rotate and flip images with GD based on EXIF orientation (Thanks @qligier, #600)
-- `Improved` enter/leave fullscreen-mode by (not) moving the mouse for one second (Thanks @hrniels, #583)
-- `Improved` Prefetch the medium photo instead of the big one (Thanks @Bramas, #446)
-- `Improved` Added "session" to required extensions (#579)
-- `Improved` Added warning if Imagick is not installed/enabled (Thanks @hrniels, #590)
-- `Fixed` Don't assume that gd_info exists when running diagnostics (Thanks @hrniels, #589 #565)
+- `Improved` rotate and flip images with GD based on EXIF orientation (Thanks @qligier, e#600)
+- `Improved` enter/leave fullscreen-mode by (not) moving the mouse for one second (Thanks @hrniels, e#583)
+- `Improved` Prefetch the medium photo instead of the big one (Thanks @Bramas, e#446)
+- `Improved` Added "session" to required extensions (e#579)
+- `Improved` Added warning if Imagick is not installed/enabled (Thanks @hrniels, e#590)
+- `Fixed` Don't assume that gd_info exists when running diagnostics (Thanks @hrniels, e#589 e#565)
 - `Fixed` Sidebar showing up in smart albums when navigating back from the photo-view
 
 ### v3.1.2
 
 Released June 12, 2016
 
-- `Improved` Added indexes to SQL fields to improve query execution time (Thanks @qligier, #533)
-- `Improved` Protocol-relative URLs for open graph metadata (#546)
-- `Improved` Remove metadata from medium-sized images and thumbnails (Imagick only) (#556)
-- `Improved` Reduce quality of medium-sized images (Imagick only) (#556)
-- `Improved` orientation-handling with Imagick (#556)
+- `Improved` Added indexes to SQL fields to improve query execution time (Thanks @qligier, e#533)
+- `Improved` Protocol-relative URLs for open graph metadata (e#546)
+- `Improved` Remove metadata from medium-sized images and thumbnails (Imagick only) (e#556)
+- `Improved` Reduce quality of medium-sized images (Imagick only) (e#556)
+- `Improved` orientation-handling with Imagick (e#556)
 
 ### v3.1.1
 
 Released April 30, 2016
 
-- `New` share button when logged out (#473)
-- `New` Import of IPTC photo tags (Thanks @qligier, #514)
-- `New` Added reset username and password to FAQ (#500 #128)
-- `Improved` Removed will-change from the main image to improve the image rendering in Chrome (#501)
+- `New` share button when logged out (e#473)
+- `New` Import of IPTC photo tags (Thanks @qligier, e#514)
+- `New` Added reset username and password to FAQ (e#500 e#128)
+- `Improved` Removed will-change from the main image to improve the image rendering in Chrome (e#501)
 - `Improved` scroll and rendering performance by removing will-change
 - `Improved` Open Facebook and Twitter sharing sheet in new window
-- `Improved` EXIF and IPTC extraction (Thanks @qligier, #518)
-- `Fixed` broken URL in Update.md (#516)
-- `Fixed` error 500 on database connect error (Thanks @tribut, #530)
+- `Improved` EXIF and IPTC extraction (Thanks @qligier, e#518)
+- `Fixed` broken URL in Update.md (e#516)
+- `Fixed` error 500 on database connect error (Thanks @tribut, e#530)
 
 ### v3.1.0
 
@@ -410,22 +409,22 @@ Released March 29, 2016
 This updates includes a huge rewrite of the back-end. We are now using namespaces and the singleton pattern for Settings::get(), Database::get() and Plugins::get(). Everything is way better documented thanks to PHPDoc comments. Ugly `#` comments have been replaced with the more known `//`. Unused functions are gone and returns are more strict. We also added a handy module to output messages. Failed database updates and invalid queries will be saved to the log.
 
 - `New` Empty titles for albums
-- `New` Share albums as hidden so they are only viewable with a direct link (#27)
-- `New` Log failed and successful login attempts (Thanks @qligier, #382 #246)
+- `New` Share albums as hidden so they are only viewable with a direct link (e#27)
+- `New` Log failed and successful login attempts (Thanks @qligier, e#382 e#246)
 - `Improved` error messages and log output
-- `Improved` The search shows albums above photos (#434)
-- `Improved` Album id now based on the current microtime (#27)
+- `Improved` The search shows albums above photos (e#434)
+- `Improved` Album id now based on the current microtime (e#27)
 - `Improved` Back-end modules and plugins
 - `Improved` Database connect function and update mechanism
 - `Improved` Default photo title now "Untitled"
-- `Improved` Move to next photo after after moving a picture (#437)
+- `Improved` Move to next photo after after moving a picture (e#437)
 - `Improved` Return to album overview when canceling album password input
-- `Improved` URL import now accepts photo URLs containing "?" and ":" (Thanks @qligier, #482)
-- `Improved` Replaced date by strftime to simplify date translations (Thanks @qligier, #461)
+- `Improved` URL import now accepts photo URLs containing "?" and ":" (Thanks @qligier, e#482)
+- `Improved` Replaced date by strftime to simplify date translations (Thanks @qligier, e#461)
 - `Fixed` Missing icons in Safari 9.1
-- `Fixed` duplicate uploads (Thanks @qligier, #433)
+- `Fixed` duplicate uploads (Thanks @qligier, e#433)
 - `Fixed` incorrect escaping when using backslashes
-- `Fixed` session_start() after sending headers (#433)
+- `Fixed` session_start() after sending headers (e#433)
 - `Fixed` error when deleting last open photo in album
 - `Fixed` Photo sometimes not loading when visiting directly
 - `Fixed` Move album, merge album and switch album/photo menus no longer show empty titles for untitled albums/photos
@@ -437,15 +436,15 @@ Released January 10, 2016
 - `Improved` Disabled dragging for thumbnails
 - `Improved` Avoided unnecessary devicePixelRatio checks by using srcset for all thumbnails
 - `Improved` Avoided devicePixelRatio check by using srcset for the imageview image
-- `Improved` Don't show log and system information when logged out (Thanks @Bramas, #421)
+- `Improved` Don't show log and system information when logged out (Thanks @Bramas, e#421)
 - `Fixed` Swipe-gestures on mobile devices
 
 ### v3.0.8
 
 Released December 20, 2015
 
-- `Improved` Lychee update site now with SSL (#317)
-- `Improved` Set undefined vars, remove unused vars and code that cannot be reached (Thanks @mattsches, #435)
+- `Improved` Lychee update site now with SSL (e#317)
+- `Improved` Set undefined vars, remove unused vars and code that cannot be reached (Thanks @mattsches, e#435)
 
 ### v3.0.7
 
@@ -453,16 +452,16 @@ Released November 15, 2015
 
 - Internal changes and updated dependencies
 - `New` PHP-version-check now requires PHP >= 5.5
-- `New` Preloading of big photos (#185)
+- `New` Preloading of big photos (e#185)
 
 ### v3.0.6
 
 Released September 13, 2015
 
-- `Improved` Share photo now shares view.php link (#392)
-- `Fixed` Incorrect error messages for failed uploads (#393)
+- `Improved` Share photo now shares view.php link (e#392)
+- `Fixed` Incorrect error messages for failed uploads (e#393)
 - `Fixed` XSS issues and escaping problems
-- `Fixed` Broken "Download album" when album has an ampersand in the password (#356)
+- `Fixed` Broken "Download album" when album has an ampersand in the password (e#356)
 
 ### v3.0.5
 
@@ -481,19 +480,19 @@ Released July 17, 2015
 - `Improved` Added skipDuplicates- and identifier-check to the diagnostics
 - `Fixed` error when using "Merge All" with one selected album
 - `Fixed` error when saving username and password after the initial setup
-- `Fixed` Clicks not recognized when using a mouse on a touchscreen-device (#345)
+- `Fixed` Clicks not recognized when using a mouse on a touchscreen-device (e#345)
 
 ### v3.0.3
 
 Released June 28, 2015
 
-- `New` Skip duplicates on upload (#367, [How to activate](settings.md))
+- `New` Skip duplicates on upload (e#367, [How to activate](settings.md))
 
 ### v3.0.2
 
 Released June 13, 2015
 
-- `Improved` Permission errors are now easier to understand (#351)
+- `Improved` Permission errors are now easier to understand (e#351)
 - `Improved` Escape data from database before inserting into `view.php`
 - `Fixed` PHP-version-check now requires PHP >= 5.3 like written in the docs
 
@@ -501,10 +500,10 @@ Released June 13, 2015
 
 Released May 24, 2015
 
-- `New` Album Sorting (Thanks @ophian, #98)
-- `New` Identifier to prevent login of multiple Lychee-instances (#344)
-- `Improved` Albums and photos now can have a title with up to 50 chars (#332)
-- `Fixed` Removing last Tag from photo not possible in Firefox (#269)
+- `New` Album Sorting (Thanks @ophian, e#98)
+- `New` Identifier to prevent login of multiple Lychee-instances (e#344)
+- `Improved` Albums and photos now can have a title with up to 50 chars (e#332)
+- `Fixed` Removing last Tag from photo not possible in Firefox (e#269)
 
 ### v3.0.0
 
@@ -525,7 +524,7 @@ Released May 6, 2015
 - `New` Edit the sharing options of a public album
 - `New` Quickly switch between albums and photos by clicking the title in the header
 - `New` Renamed API functions
-- `New` Merge albums (Thanks @rhurling, #340, #341, #166)
+- `New` Merge albums (Thanks @rhurling, e#340, e#341, e#166)
 - `New` iPhone 6 Homescreen icon
 - `Improved` Performance of animations
 - `Improved` Prevent download of deleted albums/photos
@@ -535,10 +534,10 @@ Released May 6, 2015
 - `Improved` Username and password now stored in a safer way
 - `Improved` Album passwords now stored in a safer way
 - `Improved` Don't refresh albums when password-input canceled by user
-- `Improved` Additional Open Graph Metadata (#299)
-- `Improved` Check allow_url_fopen (#302)
-- `Fixed` Prevent ctrl+a from selecting the sidebar (#230)
-- `Fixed` Removed unused scrolling bars in FF (#316, #289)
+- `Improved` Additional Open Graph Metadata (e#299)
+- `Improved` Check allow_url_fopen (e#302)
+- `Fixed` Prevent ctrl+a from selecting the sidebar (e#230)
+- `Fixed` Removed unused scrolling bars in FF (e#316, e#289)
 
 And much more…
 
@@ -562,82 +561,82 @@ Released January 26, 2015
 - `Fixed` error when using apostrophes in text #290
 - `Fixed` $medium is now a tinyint like defined in the database structure
 - `Fixed` incorrect height calculation for photos
-- `Fixed` creation of test db #295
-- `Fixed` a warning caused by set_charset #291
+- `Fixed` creation of test db e#295
+- `Fixed` a warning caused by set_charset e#291
 
 ### v2.7
 
 Released December 6, 2014
 
 - `New` Intermediate sized images for small screen devices #67
-- `New` Added Docker help (@renfredxh, #252)
+- `New` Added Docker help (@renfredxh, e#252)
 - `New` Move-Photo context shows album previews
 - `Improved` Upload shows server-errors
 - `Improved` Improved thumb creation
-- `Improved` Docker (@renfredxh, #252)
+- `Improved` Docker (@renfredxh, e#252)
 - `Improved` CSS has been rewritten partly
-- `Improved` Front-end has been rewritten partly #245
+- `Improved` Front-end has been rewritten partly e#245
 - `Improved` Folder- and code-structure has been updated
-- `Improved` Context-menu now based on [basicContext](https://github.com/electerious/basicContext) #245
-- `Fixed` OpenGraph image too big for some sites #69
+- `Improved` Context-menu now based on [basicContext](https://github.com/electerious/basicContext) e#245
+- `Fixed` OpenGraph image too big for some sites e#69
 - `Fixed` Wrong sizes after EXIF rotation
 - `Fixed` Returning to 'Albums' after searching failed
-- `Fixed` Move-Photo not scrollable #215
+- `Fixed` Move-Photo not scrollable e#215
 
 ### v2.6.3
 
 Released October 10, 2014
 
-- `New` Caching for albums (Thanks @r0x0r, #232)
-- `New` Save scroll position of albums (Thanks @r0x0r, #232)
-- `New` Added Dockerfile (@renfredxh, #236)
-- `Improved` Newest album on the top (Thanks @r0x0r, #232)
+- `New` Caching for albums (Thanks @r0x0r, e#232)
+- `New` Save scroll position of albums (Thanks @r0x0r, e#232)
+- `New` Added Dockerfile (@renfredxh, e#236)
+- `Improved` Newest album on the top (Thanks @r0x0r, e#232)
 - `Fixed` Login in private mode (Safari)
 - `Fixed` Drag & Drop with open photo
 - `Fixed` Wrong modified date of the photo files
-- `Fixed` Search function always returned all photos (Thanks @powentan, #234)
+- `Fixed` Search function always returned all photos (Thanks @powentan, e#234)
 
 ### v2.6.2
 
 Released September 12, 2014
 
 - `New` Select all albums/photos with `cmd+a` or `ctrl+a`
-- `New` Detect duplicates and only save one file (#48)
-- `New` Duplicate photos (#186)
+- `New` Detect duplicates and only save one file (e#48)
+- `New` Duplicate photos (e#186)
 - `New` Added contributing guide
-- `New` Database table prefix for multiple Lychee installations (#196)
-- `Improved` Use IPTC Title when Headline not available (#216)
+- `New` Database table prefix for multiple Lychee installations (e#196)
+- `Improved` Use IPTC Title when Headline not available (e#216)
 - `Improved` Diagnostics are showing system information
-- `Improved` Harden against SQL injection attacks (#38)
-- `Fixed` a problem with htmlentities and older PHP versions (#212)
+- `Improved` Harden against SQL injection attacks (e#38)
+- `Fixed` a problem with htmlentities and older PHP versions (e#212)
 
 ### v2.6.1
 
 Released August 22, 2014
 
-- `New` Support for IE >= 11 (#148)
-- `New` Choose if public album is downloadable or not (#191)
-- `Improved` Albums gradient overlay is less harsh (#200)
+- `New` Support for IE >= 11 (e#148)
+- `New` Choose if public album is downloadable or not (e#191)
+- `Improved` Albums gradient overlay is less harsh (e#200)
 
 ### v2.6
 
 Released August 16, 2014
 
-- `New` Rewritten and redesigned Uploader (#101)
-- `New` Custom server-import directory (#187)
+- `New` Rewritten and redesigned Uploader (e#101)
+- `New` Custom server-import directory (e#187)
 - `New` Plugin documentation
-- `Improved` Database and installation process (#202 #195)
-- `Improved` "No public albums" now easier to read (#205)
-- `Fixed` Don't show EXIF info when not available (#194)
+- `Improved` Database and installation process (e#202 #195)
+- `Improved` "No public albums" now easier to read (e#205)
+- `Fixed` Don't show EXIF info when not available (e#194)
 
 ### v2.5.6
 
 Released July 25, 2014
 
-- `New` Choose if album should be listed public (#177)
+- `New` Choose if album should be listed public (e#177)
 - `New` Gulp instead of Grunt with autoprefixer
 - `Improved` Slightly better performance when opening big albums
-- `Improved` Checksum with sha1 instead of md5 (#179)
+- `Improved` Checksum with sha1 instead of md5 (e#179)
 - `Fixed` Missing public badge on public albums
 - `Fixed` Wrong path for public photos in view.php
 - `Fixed` Wrong link to thumbs when searching
@@ -650,9 +649,9 @@ Released July 25, 2014
 Released July 5, 2014
 
 - `New` Smart Album "Recent"
-- `New` Checksum of photo in database (#48)
+- `New` Checksum of photo in database (e#48)
 - `New` Show takedate in photo-overlay (when available)
-- `Improved` Permission check when running with the same UID (#174)
+- `Improved` Permission check when running with the same UID (e#174)
 
 ### v2.5
 
@@ -694,17 +693,17 @@ Released March 4, 2014
 
 Important: You need to reenter your database credentials and set the correct rights for `data/`, when updating from a previous version.
 
-- `New` Multi-select (#32)
-- `New` Multi-folder import from server (#47)
-- `New` Tagging (#5)
-- `New` Import of original image name (#39)
+- `New` Multi-select (e#32)
+- `New` Multi-folder import from server (e#47)
+- `New` Tagging (e#5)
+- `New` Import of original image name (e#39)
 - `New` Makefile
 - `Improved` Upload-process
 - `Improved` Documentation
 - `Improved` Overlay for photos
-- `Fixed` Dropbox import (#84)
-- `Fixed` Wrong login or password annotation (#71)
-- `Fixed` Escaping issue (#89)
+- `Fixed` Dropbox import (e#84)
+- `Fixed` Wrong login or password annotation (e#71)
+- `Fixed` Escaping issue (e#89)
 - `Moved` Config now located in `data/`
 
 ### v2.0.3
@@ -718,11 +717,11 @@ Released February 26, 2014
 
 Released January 30, 2014
 
-- Clear search button (#62)
-- Speed improvements (#57)
-- Show tooltip when album/photo title too long (#66)
+- Clear search button (e#62)
+- Speed improvements (e#57)
+- Show tooltip when album/photo title too long (e#66)
 - Fixed php notices
-- Avoid empty downloads in empty albums (#56)
+- Avoid empty downloads in empty albums (e#56)
 - Correct position of upload modal on mobile devices
 - Improved security
 
@@ -731,9 +730,9 @@ Released January 30, 2014
 Released January 24, 2014
 
 - Share > Direct Link
-- Download individual images (Issue #43)
-- ContextMenu stays within the window (Issue #41)
-- Prevent default ContextMenu (Issue #45)
+- Download individual images (e#43)
+- ContextMenu stays within the window (e#41)
+- Prevent default ContextMenu (e#45)
 - Small ContextMenu improvements
 - Small security improvements
 

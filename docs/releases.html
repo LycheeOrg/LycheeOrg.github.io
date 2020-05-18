@@ -325,9 +325,8 @@ it will contains the last <code>rss_max_items</code> (default: 100) over the las
 <h3 id="v403"><a class="toclink" href="#v403">v4.0.3</a></h3>
 <p>Released April 29, 2020</p>
 <ul>
-<li><code>fixes</code> #498<blockquote>
-<p>remove Lychee-front version number alltogether
-add Diagnostic information:</p>
+<li><code>fixes</code> #498 remove Lychee-front version number alltogether<blockquote>
+<p>add Diagnostic information:</p>
 </blockquote>
 <ul>
 <li>Composer install type</li>
@@ -499,34 +498,34 @@ For example: <code>php artisan lychee:logs</code> will display the last 100 logs
 <h3 id="v3216"><a class="toclink" href="#v3216">v3.2.16</a></h3>
 <p>Released June 17, 2019</p>
 <ul>
-<li><code>new</code> : hides lychee version number by default (https://github.com/LycheeOrg/Lychee-Laravel/issues/282)</li>
+<li><code>new</code> : hides lychee version number by default (e#82)</li>
 </ul>
 <h3 id="v3215"><a class="toclink" href="#v3215">v3.2.15</a></h3>
 <p>Released June 16, 2019</p>
 <ul>
-<li><code>update</code> : improve stability when getting bad EXIF data ( https://github.com/LycheeOrg/Lychee-Laravel/pull/205 )</li>
-<li><code>fixes</code> : ignore bad shutter data (#240)</li>
+<li><code>update</code> : improve stability when getting bad EXIF data (e#205)</li>
+<li><code>fixes</code> : ignore bad shutter data (3#240)</li>
 <li><code>update</code> : switch the git commit format number to only 7 characters in Diagnostics</li>
-<li><code>fixes</code> : takedate format string (#215, #256) </li>
-<li><code>new</code> : add setting to allow public search (#262)</li>
-<li><code>fixes</code> : wrong version number displayed in Lychee (#268)</li>
+<li><code>fixes</code> : takedate format string (3#215, 3#256) </li>
+<li><code>new</code> : add setting to allow public search (3#262)</li>
+<li><code>fixes</code> : wrong version number displayed in Lychee (3#268)</li>
 <li><code>update</code> : credits.</li>
 </ul>
 <h3 id="v3214"><a class="toclink" href="#v3214">v3.2.14</a></h3>
 <p>Released March 28, 2019</p>
 <ul>
-<li><code>Updates</code> Add primary key to settings table (#221)</li>
+<li><code>Updates</code> Add primary key to settings table (3#221)</li>
 <li><code>Updates</code> Add git source commit/branch/repo to Diagnostics page</li>
-<li><code>Updates</code> Use better lens tags from exiftool if present (if exiftool is enabled) (#235)</li>
+<li><code>Updates</code> Use better lens tags from exiftool if present (if exiftool is enabled) (3#235)</li>
 <li><code>Updates</code> Accept larger input from exiftool</li>
 <li><code>Updates</code> Make photo/album IDs more consistent</li>
-<li><code>New</code> Add fullscreen support to album and photo views (#228)</li>
+<li><code>New</code> Add fullscreen support to album and photo views (3#228)</li>
 <li><code>Updates</code> Use sortingAlbums and sortingPhotos even if logged out.</li>
 <li>
 <p><code>Updates</code> Hide passwords. Add password confirmation.</p>
 </li>
 <li>
-<p><code>Fixes</code> #220, #222, #234, 'F' and 'f' hotkey behaviour and some spelling mistakes (#229)</p>
+<p><code>Fixes</code> 3#220, 3#222, 3#234, 'F' and 'f' hotkey behaviour and some spelling mistakes (3#229)</p>
 </li>
 </ul>
 <h3 id="v3213"><a class="toclink" href="#v3213">v3.2.13</a></h3>
@@ -534,7 +533,7 @@ For example: <code>php artisan lychee:logs</code> will display the last 100 logs
 <ul>
 <li><code>New</code> Add "unjustified" layout</li>
 <li><code>Updates</code> Improve Diagnostics page</li>
-<li><code>Fixes</code> #194, #196, #205, #208</li>
+<li><code>Fixes</code> 3#194, 3#196, 3#205, 3#208</li>
 </ul>
 <h3 id="v3212"><a class="toclink" href="#v3212">v3.2.12</a></h3>
 <p>Released February 12, 2019</p>
@@ -542,20 +541,20 @@ For example: <code>php artisan lychee:logs</code> will display the last 100 logs
 <li><code>New</code> Add usage of exiftool to get exif tags from camera #189 
 Using exiftool for getting exif tags make available a lot more tags than the built-in functionality in PHP. Using exiftool will make eg. lens info available without having to rely on that users have exported a raw from Ligthroom.
 <strong>This setting needs to be enabled via the <code>more</code> menu as it makes system calls.</strong></li>
-<li><code>Fixes</code> image size missing from about #188</li>
+<li><code>Fixes</code> image size missing from about 3#188</li>
 </ul>
 <h3 id="v3211"><a class="toclink" href="#v3211">v3.2.11</a></h3>
 <p>Released February 3, 2019</p>
 <ul>
-<li><code>New</code> Add description overlay and takestamps overlay in addition to Exif. Closes #167</li>
-<li><code>New</code> Add Setting to remove script execution time limit during imports. Fixes #177
+<li><code>New</code> Add description overlay and takestamps overlay in addition to Exif. Closes 3#167</li>
+<li><code>New</code> Add Setting to remove script execution time limit during imports. Fixes 3#177
   This setting can only be activated via the <code>More</code> setting and at user owns risks.</li>
 </ul>
 <h3 id="v3210"><a class="toclink" href="#v3210">v3.2.10</a></h3>
 <p>Released January 19, 2019</p>
 <ul>
 <li><code>New</code> Switch to InnoDB engine. Closes #169</li>
-<li><code>New</code> Add setting to decide whether to delete photos from source when imported. Fixes #173</li>
+<li><code>New</code> Add setting to decide whether to delete photos from source when imported. Fixes 3#173</li>
 <li><code>New</code> Use existing albums (if available) when importing from server</li>
 <li>Remove '[Import] ' prefix for albums created by import</li>
 </ul>
@@ -564,18 +563,18 @@ Using exiftool for getting exif tags make available a lot more tags than the bui
 <p>Nothing major here. Just a bunch of small bug fixes</p>
 <p><strong>WARNING</strong>: Lychee now requires PHP 7.1 ( http://php.net/supported-versions.php )</p>
 <ul>
-<li><code>Fixes</code>  Cross-Origin Request Blocked: https://lycheeorg.github.io/update.json ( #121 )
+<li><code>Fixes</code>  Cross-Origin Request Blocked: https://lycheeorg.github.io/update.json ( 3#121 )
  The server is now doing the check for update (on <code>Session::init</code>) if this one fail, the user will do an ajax request to check if an update is available.</li>
-<li><code>Fixes</code> Syntax Error in Session.php ( #153 )</li>
-<li><code>Fixes</code> Small bugs ( #136 ,  #157 , #159 ,  #163 , #166 )</li>
-<li><code>Fixes</code> lychee uploading pics into uploads/thumb folder only  ( #148 , #165 )</li>
-<li><code>Updates</code> German translations ( #161 )</li>
+<li><code>Fixes</code> Syntax Error in Session.php ( 3#153 )</li>
+<li><code>Fixes</code> Small bugs ( 3#136 ,  3#157 , 3#159 ,  3#163 , 3#166 )</li>
+<li><code>Fixes</code> lychee uploading pics into uploads/thumb folder only  ( 3#148 , 3#165 )</li>
+<li><code>Updates</code> German translations ( 3#161 )</li>
 </ul>
 <h3 id="v328"><a class="toclink" href="#v328">v3.2.8</a></h3>
 <p>Released December 26, 2018</p>
 <ul>
 <li>
-<p><code>Fixes</code> Site broken (#157)</p>
+<p><code>Fixes</code> Site broken (3#157)</p>
 </li>
 <li>
 <p><code>New</code> Admins can now access all settings via <code>Settings -&gt; more</code> at the bottom of the page.
@@ -586,16 +585,16 @@ Using exiftool for getting exif tags make available a lot more tags than the bui
 <p><code>New</code> Admins can now define the default size for their medium and small images (via the advanced settings).</p>
 </li>
 <li>
-<p><code>Fixes</code> Turn off zoom-in animation when switching photos (#154)</p>
+<p><code>Fixes</code> Turn off zoom-in animation when switching photos (3#154)</p>
 </li>
-<li><code>Fixes</code> Setting // Image Size Definition // Small, Medium, large // With Default values (#152)</li>
-<li><code>Fixes</code> "Display EXIF data overlay" can toggled with click on image (#151)</li>
-<li><code>Fixes</code> "play-icon.png" should be in "lychee-front/images" not root (#150) It is now placed in <code>dist</code></li>
-<li><code>Fixes</code> Shutter speed for long time exposures is displayed as fraction (#149)</li>
-<li><code>Fixes</code> [Wish] Custom Size Image Creation (#141)</li>
-<li><code>Fixes</code> New album doesn't show after create unless you refresh page (#135)</li>
-<li><code>Fixes</code> Unable to edit settings table in database (#80)</li>
-<li><code>Fixes</code> Hover-Over Blue Border/Square Highlights (#51)</li>
+<li><code>Fixes</code> Setting // Image Size Definition // Small, Medium, large // With Default values (3#152)</li>
+<li><code>Fixes</code> "Display EXIF data overlay" can toggled with click on image (3#151)</li>
+<li><code>Fixes</code> "play-icon.png" should be in "lychee-front/images" not root (3#150) It is now placed in <code>dist</code></li>
+<li><code>Fixes</code> Shutter speed for long time exposures is displayed as fraction (3#149)</li>
+<li><code>Fixes</code> [Wish] Custom Size Image Creation (3#141)</li>
+<li><code>Fixes</code> New album doesn't show after create unless you refresh page (3#135)</li>
+<li><code>Fixes</code> Unable to edit settings table in database (3#80)</li>
+<li><code>Fixes</code> Hover-Over Blue Border/Square Highlights (3#51)</li>
 </ul>
 <h3 id="v327"><a class="toclink" href="#v327">v3.2.7</a></h3>
 <p>Released December 11, 2018</p>
@@ -604,8 +603,8 @@ Using exiftool for getting exif tags make available a lot more tags than the bui
 (<strong>WARNING</strong>: All photo-level licenses will be reset when this update is applied.)</li>
 <li><code>New</code> Added script to generate "small" size files for existing images</li>
 <li><code>Improved</code> Update link on login dialog directs to the <a href="https://github.com/LycheeOrg/Lychee/releases">Releases</a> page rather than the Readme.</li>
-<li><code>Fixes</code> Center align play icon in video thumbnail (<a href="https://github.com/LycheeOrg/Lychee/issues/133">#133</a>)</li>
-<li><code>Fixes</code> Missing "small" folder in 3.2.6 release (<a href="https://github.com/LycheeOrg/Lychee/issues/146">#146</a>)</li>
+<li><code>Fixes</code> Center align play icon in video thumbnail (3#133)</li>
+<li><code>Fixes</code> Missing "small" folder in 3.2.6 release (3#146)</li>
 <li><code>Fixes</code> Other minor bugfixes</li>
 </ul>
 <h3 id="v326"><a class="toclink" href="#v326">v3.2.6</a></h3>
@@ -613,19 +612,19 @@ Using exiftool for getting exif tags make available a lot more tags than the bui
 <ul>
 <li><code>New</code> Default Creative Commons license field in Settings. Applies to new uploads only.</li>
 <li><code>Fixes</code> Misspelling of 'Starred' Smart Album (English)</li>
-<li><code>Fixes</code> Albums not showing when 'Move' was selected on a single photo (<a href="https://github.com/LycheeOrg/Lychee/issues/129">#129</a>)</li>
-<li><code>Fixes</code> Previously set license saved in License field (<a href="https://github.com/LycheeOrg/Lychee/issues/120">#120</a>)</li>
+<li><code>Fixes</code> Albums not showing when 'Move' was selected on a single photo (3#129)</li>
+<li><code>Fixes</code> Previously set license saved in License field (3#120)</li>
 </ul>
 <h3 id="v325"><a class="toclink" href="#v325">v3.2.5</a></h3>
 <p>Released November 26, 2018</p>
 <ul>
-<li><code>New</code> Creative Commons licenses available as photo metadata (<a href="https://github.com/LycheeOrg/Lychee/issues/71">#71</a>)</li>
+<li><code>New</code> Creative Commons licenses available as photo metadata (3#71)</li>
 <li><code>New</code> "Copy to..." option is now available</li>
 </ul>
 <h3 id="v3234"><a class="toclink" href="#v3234">v3.2.{3,4}</a></h3>
 <p>Released November 22, 2018</p>
 <ul>
-<li><code>Fixes</code> <a href="https://github.com/LycheeOrg/Lychee/issues/112">#112</a>, <a href="https://github.com/LycheeOrg/Lychee/issues/111">#111</a> (quick fix), <a href="https://github.com/LycheeOrg/Lychee/issues/110">#110</a>, <a href="https://github.com/LycheeOrg/Lychee/issues/109">#109</a>, <a href="https://github.com/LycheeOrg/Lychee/issues/105">#105</a>, LycheeOrg/Lychee-front <a href="https://github.com/LycheeOrg/Lychee/issues/16">#16</a>.</li>
+<li><code>Fixes</code> 3#112, 3#111 (quick fix), 3#110, 3#109, 3#105, LycheeOrg/Lychee-front 3#16.</li>
 <li><code>New</code> small pictures (for the justified-layout)</li>
 <li><code>New</code> Lens information</li>
 <li><code>New</code> Displaying EXIF data as an overlay in the image view.</li>
@@ -633,8 +632,8 @@ Using exiftool for getting exif tags make available a lot more tags than the bui
 <h3 id="v322"><a class="toclink" href="#v322">v3.2.2</a></h3>
 <p>Released November 21, 2018</p>
 <ul>
-<li><code>New</code> German translations (#104)</li>
-<li><code>New</code> support for justified-layout (#95)</li>
+<li><code>New</code> German translations (3#104)</li>
+<li><code>New</code> support for justified-layout (3#95)</li>
 </ul>
 <p>Justified Layout is available as an option in the settings. It will only works with Imagick and medium.
 Lychee-front will require a npm install (only for devs).</p>
@@ -643,17 +642,17 @@ Lychee-front will require a npm install (only for devs).</p>
 <ul>
 <li><code>Fixed</code> small bugs</li>
 <li><code>Fixed</code> SQL updated not applied</li>
-<li><code>New</code> Swedish support (#101)</li>
-<li><code>New</code> multi selection with CTRL (#36)</li>
-<li><code>New</code> Content Security Policy via .htaccess  (#91, #92)</li>
+<li><code>New</code> Swedish support (3#101)</li>
+<li><code>New</code> multi selection with CTRL (3#36)</li>
+<li><code>New</code> Content Security Policy via .htaccess  (3#91, 3#92)</li>
 </ul>
 <h3 id="v320"><a class="toclink" href="#v320">v3.2.0</a></h3>
 <p>Released November 12, 2018</p>
 <ul>
 <li><code>Fixes</code> Picture ordering bug.</li>
 <li><code>New</code> Panel for settings.</li>
-<li><code>New</code> Allow video upload. (#4)</li>
-<li><code>New</code> localization (so far in English, French, Dutch and Simplified Chinese) (#48, #53, #54, #55, #87, #94)</li>
+<li><code>New</code> Allow video upload. (3#4)</li>
+<li><code>New</code> localization (so far in English, French, Dutch and Simplified Chinese) (3#48, 3#53, 3#54, 3#55, 3#87, 3#94)</li>
 </ul>
 <p>[OPTIONAL] In order to have Thumbnail for video you will need to use <a href="https://getcomposer.org/">composer</a>:</p>
 <pre><code>cd Lychee
@@ -663,53 +662,53 @@ composer update
 <h3 id="v316"><a class="toclink" href="#v316">v3.1.6</a></h3>
 <p>Released March 20, 2017</p>
 <ul>
-<li><code>Fixed</code> Downloading a SmartAlbum results in crash (#652)</li>
-<li><code>Fixed</code> htaccess IfModule for PHP7 (#653)</li>
+<li><code>Fixed</code> Downloading a SmartAlbum results in crash (e#652)</li>
+<li><code>Fixed</code> htaccess IfModule for PHP7 (e#653)</li>
 </ul>
 <h3 id="v315"><a class="toclink" href="#v315">v3.1.5</a></h3>
 <p>Released October 25, 2016</p>
 <ul>
-<li><code>New</code> Hide mouse pointer in full screen mode (#620)</li>
-<li><code>Improved</code> Smoothing rotation of album (#626)</li>
+<li><code>New</code> Hide mouse pointer in full screen mode (e#620)</li>
+<li><code>Improved</code> Smoothing rotation of album (e#626)</li>
 </ul>
 <h3 id="v314"><a class="toclink" href="#v314">v3.1.4</a></h3>
 <p>Released August 28, 2016</p>
 <ul>
-<li><code>Fixed</code> Search stopped working because of an undefined index error (#605)</li>
+<li><code>Fixed</code> Search stopped working because of an undefined index error (e#605)</li>
 <li><code>Fixed</code> Better next/previous photo check to prevent an error when opening an album with only one photo</li>
 </ul>
 <h3 id="v313"><a class="toclink" href="#v313">v3.1.3</a></h3>
 <p>Released August 22, 2016</p>
 <ul>
-<li><code>Improved</code> rotate and flip images with GD based on EXIF orientation (Thanks @qligier, #600)</li>
-<li><code>Improved</code> enter/leave fullscreen-mode by (not) moving the mouse for one second (Thanks @hrniels, #583)</li>
-<li><code>Improved</code> Prefetch the medium photo instead of the big one (Thanks @Bramas, #446)</li>
-<li><code>Improved</code> Added "session" to required extensions (#579)</li>
-<li><code>Improved</code> Added warning if Imagick is not installed/enabled (Thanks @hrniels, #590)</li>
-<li><code>Fixed</code> Don't assume that gd_info exists when running diagnostics (Thanks @hrniels, #589 #565)</li>
+<li><code>Improved</code> rotate and flip images with GD based on EXIF orientation (Thanks @qligier, e#600)</li>
+<li><code>Improved</code> enter/leave fullscreen-mode by (not) moving the mouse for one second (Thanks @hrniels, e#583)</li>
+<li><code>Improved</code> Prefetch the medium photo instead of the big one (Thanks @Bramas, e#446)</li>
+<li><code>Improved</code> Added "session" to required extensions (e#579)</li>
+<li><code>Improved</code> Added warning if Imagick is not installed/enabled (Thanks @hrniels, e#590)</li>
+<li><code>Fixed</code> Don't assume that gd_info exists when running diagnostics (Thanks @hrniels, e#589 e#565)</li>
 <li><code>Fixed</code> Sidebar showing up in smart albums when navigating back from the photo-view</li>
 </ul>
 <h3 id="v312"><a class="toclink" href="#v312">v3.1.2</a></h3>
 <p>Released June 12, 2016</p>
 <ul>
-<li><code>Improved</code> Added indexes to SQL fields to improve query execution time (Thanks @qligier, #533)</li>
-<li><code>Improved</code> Protocol-relative URLs for open graph metadata (#546)</li>
-<li><code>Improved</code> Remove metadata from medium-sized images and thumbnails (Imagick only) (#556)</li>
-<li><code>Improved</code> Reduce quality of medium-sized images (Imagick only) (#556)</li>
-<li><code>Improved</code> orientation-handling with Imagick (#556)</li>
+<li><code>Improved</code> Added indexes to SQL fields to improve query execution time (Thanks @qligier, e#533)</li>
+<li><code>Improved</code> Protocol-relative URLs for open graph metadata (e#546)</li>
+<li><code>Improved</code> Remove metadata from medium-sized images and thumbnails (Imagick only) (e#556)</li>
+<li><code>Improved</code> Reduce quality of medium-sized images (Imagick only) (e#556)</li>
+<li><code>Improved</code> orientation-handling with Imagick (e#556)</li>
 </ul>
 <h3 id="v311"><a class="toclink" href="#v311">v3.1.1</a></h3>
 <p>Released April 30, 2016</p>
 <ul>
-<li><code>New</code> share button when logged out (#473)</li>
-<li><code>New</code> Import of IPTC photo tags (Thanks @qligier, #514)</li>
-<li><code>New</code> Added reset username and password to FAQ (#500 #128)</li>
-<li><code>Improved</code> Removed will-change from the main image to improve the image rendering in Chrome (#501)</li>
+<li><code>New</code> share button when logged out (e#473)</li>
+<li><code>New</code> Import of IPTC photo tags (Thanks @qligier, e#514)</li>
+<li><code>New</code> Added reset username and password to FAQ (e#500 e#128)</li>
+<li><code>Improved</code> Removed will-change from the main image to improve the image rendering in Chrome (e#501)</li>
 <li><code>Improved</code> scroll and rendering performance by removing will-change</li>
 <li><code>Improved</code> Open Facebook and Twitter sharing sheet in new window</li>
-<li><code>Improved</code> EXIF and IPTC extraction (Thanks @qligier, #518)</li>
-<li><code>Fixed</code> broken URL in Update.md (#516)</li>
-<li><code>Fixed</code> error 500 on database connect error (Thanks @tribut, #530)</li>
+<li><code>Improved</code> EXIF and IPTC extraction (Thanks @qligier, e#518)</li>
+<li><code>Fixed</code> broken URL in Update.md (e#516)</li>
+<li><code>Fixed</code> error 500 on database connect error (Thanks @tribut, e#530)</li>
 </ul>
 <h3 id="v310"><a class="toclink" href="#v310">v3.1.0</a></h3>
 <p>Released March 29, 2016</p>
@@ -720,22 +719,22 @@ composer update
 <p>This updates includes a huge rewrite of the back-end. We are now using namespaces and the singleton pattern for Settings::get(), Database::get() and Plugins::get(). Everything is way better documented thanks to PHPDoc comments. Ugly <code>#</code> comments have been replaced with the more known <code>//</code>. Unused functions are gone and returns are more strict. We also added a handy module to output messages. Failed database updates and invalid queries will be saved to the log.</p>
 <ul>
 <li><code>New</code> Empty titles for albums</li>
-<li><code>New</code> Share albums as hidden so they are only viewable with a direct link (#27)</li>
-<li><code>New</code> Log failed and successful login attempts (Thanks @qligier, #382 #246)</li>
+<li><code>New</code> Share albums as hidden so they are only viewable with a direct link (e#27)</li>
+<li><code>New</code> Log failed and successful login attempts (Thanks @qligier, e#382 e#246)</li>
 <li><code>Improved</code> error messages and log output</li>
-<li><code>Improved</code> The search shows albums above photos (#434)</li>
-<li><code>Improved</code> Album id now based on the current microtime (#27)</li>
+<li><code>Improved</code> The search shows albums above photos (e#434)</li>
+<li><code>Improved</code> Album id now based on the current microtime (e#27)</li>
 <li><code>Improved</code> Back-end modules and plugins</li>
 <li><code>Improved</code> Database connect function and update mechanism</li>
 <li><code>Improved</code> Default photo title now "Untitled"</li>
-<li><code>Improved</code> Move to next photo after after moving a picture (#437)</li>
+<li><code>Improved</code> Move to next photo after after moving a picture (e#437)</li>
 <li><code>Improved</code> Return to album overview when canceling album password input</li>
-<li><code>Improved</code> URL import now accepts photo URLs containing "?" and ":" (Thanks @qligier, #482)</li>
-<li><code>Improved</code> Replaced date by strftime to simplify date translations (Thanks @qligier, #461)</li>
+<li><code>Improved</code> URL import now accepts photo URLs containing "?" and ":" (Thanks @qligier, e#482)</li>
+<li><code>Improved</code> Replaced date by strftime to simplify date translations (Thanks @qligier, e#461)</li>
 <li><code>Fixed</code> Missing icons in Safari 9.1</li>
-<li><code>Fixed</code> duplicate uploads (Thanks @qligier, #433)</li>
+<li><code>Fixed</code> duplicate uploads (Thanks @qligier, e#433)</li>
 <li><code>Fixed</code> incorrect escaping when using backslashes</li>
-<li><code>Fixed</code> session_start() after sending headers (#433)</li>
+<li><code>Fixed</code> session_start() after sending headers (e#433)</li>
 <li><code>Fixed</code> error when deleting last open photo in album</li>
 <li><code>Fixed</code> Photo sometimes not loading when visiting directly</li>
 <li><code>Fixed</code> Move album, merge album and switch album/photo menus no longer show empty titles for untitled albums/photos</li>
@@ -746,29 +745,29 @@ composer update
 <li><code>Improved</code> Disabled dragging for thumbnails</li>
 <li><code>Improved</code> Avoided unnecessary devicePixelRatio checks by using srcset for all thumbnails</li>
 <li><code>Improved</code> Avoided devicePixelRatio check by using srcset for the imageview image</li>
-<li><code>Improved</code> Don't show log and system information when logged out (Thanks @Bramas, #421)</li>
+<li><code>Improved</code> Don't show log and system information when logged out (Thanks @Bramas, e#421)</li>
 <li><code>Fixed</code> Swipe-gestures on mobile devices</li>
 </ul>
 <h3 id="v308"><a class="toclink" href="#v308">v3.0.8</a></h3>
 <p>Released December 20, 2015</p>
 <ul>
-<li><code>Improved</code> Lychee update site now with SSL (#317)</li>
-<li><code>Improved</code> Set undefined vars, remove unused vars and code that cannot be reached (Thanks @mattsches, #435)</li>
+<li><code>Improved</code> Lychee update site now with SSL (e#317)</li>
+<li><code>Improved</code> Set undefined vars, remove unused vars and code that cannot be reached (Thanks @mattsches, e#435)</li>
 </ul>
 <h3 id="v307"><a class="toclink" href="#v307">v3.0.7</a></h3>
 <p>Released November 15, 2015</p>
 <ul>
 <li>Internal changes and updated dependencies</li>
 <li><code>New</code> PHP-version-check now requires PHP &gt;= 5.5</li>
-<li><code>New</code> Preloading of big photos (#185)</li>
+<li><code>New</code> Preloading of big photos (e#185)</li>
 </ul>
 <h3 id="v306"><a class="toclink" href="#v306">v3.0.6</a></h3>
 <p>Released September 13, 2015</p>
 <ul>
-<li><code>Improved</code> Share photo now shares view.php link (#392)</li>
-<li><code>Fixed</code> Incorrect error messages for failed uploads (#393)</li>
+<li><code>Improved</code> Share photo now shares view.php link (e#392)</li>
+<li><code>Fixed</code> Incorrect error messages for failed uploads (e#393)</li>
 <li><code>Fixed</code> XSS issues and escaping problems</li>
-<li><code>Fixed</code> Broken "Download album" when album has an ampersand in the password (#356)</li>
+<li><code>Fixed</code> Broken "Download album" when album has an ampersand in the password (e#356)</li>
 </ul>
 <h3 id="v305"><a class="toclink" href="#v305">v3.0.5</a></h3>
 <p>Released August 9, 2015</p>
@@ -785,27 +784,27 @@ composer update
 <li><code>Improved</code> Added skipDuplicates- and identifier-check to the diagnostics</li>
 <li><code>Fixed</code> error when using "Merge All" with one selected album</li>
 <li><code>Fixed</code> error when saving username and password after the initial setup</li>
-<li><code>Fixed</code> Clicks not recognized when using a mouse on a touchscreen-device (#345)</li>
+<li><code>Fixed</code> Clicks not recognized when using a mouse on a touchscreen-device (e#345)</li>
 </ul>
 <h3 id="v303"><a class="toclink" href="#v303">v3.0.3</a></h3>
 <p>Released June 28, 2015</p>
 <ul>
-<li><code>New</code> Skip duplicates on upload (#367, <a href="settings.md">How to activate</a>)</li>
+<li><code>New</code> Skip duplicates on upload (e#367, <a href="settings.md">How to activate</a>)</li>
 </ul>
 <h3 id="v302"><a class="toclink" href="#v302">v3.0.2</a></h3>
 <p>Released June 13, 2015</p>
 <ul>
-<li><code>Improved</code> Permission errors are now easier to understand (#351)</li>
+<li><code>Improved</code> Permission errors are now easier to understand (e#351)</li>
 <li><code>Improved</code> Escape data from database before inserting into <code>view.php</code></li>
 <li><code>Fixed</code> PHP-version-check now requires PHP &gt;= 5.3 like written in the docs</li>
 </ul>
 <h3 id="v301"><a class="toclink" href="#v301">v3.0.1</a></h3>
 <p>Released May 24, 2015</p>
 <ul>
-<li><code>New</code> Album Sorting (Thanks @ophian, #98)</li>
-<li><code>New</code> Identifier to prevent login of multiple Lychee-instances (#344)</li>
-<li><code>Improved</code> Albums and photos now can have a title with up to 50 chars (#332)</li>
-<li><code>Fixed</code> Removing last Tag from photo not possible in Firefox (#269)</li>
+<li><code>New</code> Album Sorting (Thanks @ophian, e#98)</li>
+<li><code>New</code> Identifier to prevent login of multiple Lychee-instances (e#344)</li>
+<li><code>Improved</code> Albums and photos now can have a title with up to 50 chars (e#332)</li>
+<li><code>Fixed</code> Removing last Tag from photo not possible in Firefox (e#269)</li>
 </ul>
 <h3 id="v300"><a class="toclink" href="#v300">v3.0.0</a></h3>
 <p>Released May 6, 2015</p>
@@ -821,7 +820,7 @@ composer update
 <li><code>New</code> Edit the sharing options of a public album</li>
 <li><code>New</code> Quickly switch between albums and photos by clicking the title in the header</li>
 <li><code>New</code> Renamed API functions</li>
-<li><code>New</code> Merge albums (Thanks @rhurling, #340, #341, #166)</li>
+<li><code>New</code> Merge albums (Thanks @rhurling, e#340, e#341, e#166)</li>
 <li><code>New</code> iPhone 6 Homescreen icon</li>
 <li><code>Improved</code> Performance of animations</li>
 <li><code>Improved</code> Prevent download of deleted albums/photos</li>
@@ -831,10 +830,10 @@ composer update
 <li><code>Improved</code> Username and password now stored in a safer way</li>
 <li><code>Improved</code> Album passwords now stored in a safer way</li>
 <li><code>Improved</code> Don't refresh albums when password-input canceled by user</li>
-<li><code>Improved</code> Additional Open Graph Metadata (#299)</li>
-<li><code>Improved</code> Check allow_url_fopen (#302)</li>
-<li><code>Fixed</code> Prevent ctrl+a from selecting the sidebar (#230)</li>
-<li><code>Fixed</code> Removed unused scrolling bars in FF (#316, #289)</li>
+<li><code>Improved</code> Additional Open Graph Metadata (e#299)</li>
+<li><code>Improved</code> Check allow_url_fopen (e#302)</li>
+<li><code>Fixed</code> Prevent ctrl+a from selecting the sidebar (e#230)</li>
+<li><code>Fixed</code> Removed unused scrolling bars in FF (e#316, e#289)</li>
 </ul>
 <p>And much more…</p>
 <hr />
@@ -853,76 +852,76 @@ composer update
 <li><code>Fixed</code> error when using apostrophes in text #290</li>
 <li><code>Fixed</code> $medium is now a tinyint like defined in the database structure</li>
 <li><code>Fixed</code> incorrect height calculation for photos</li>
-<li><code>Fixed</code> creation of test db #295</li>
-<li><code>Fixed</code> a warning caused by set_charset #291</li>
+<li><code>Fixed</code> creation of test db e#295</li>
+<li><code>Fixed</code> a warning caused by set_charset e#291</li>
 </ul>
 <h3 id="v27"><a class="toclink" href="#v27">v2.7</a></h3>
 <p>Released December 6, 2014</p>
 <ul>
 <li><code>New</code> Intermediate sized images for small screen devices #67</li>
-<li><code>New</code> Added Docker help (@renfredxh, #252)</li>
+<li><code>New</code> Added Docker help (@renfredxh, e#252)</li>
 <li><code>New</code> Move-Photo context shows album previews</li>
 <li><code>Improved</code> Upload shows server-errors</li>
 <li><code>Improved</code> Improved thumb creation</li>
-<li><code>Improved</code> Docker (@renfredxh, #252)</li>
+<li><code>Improved</code> Docker (@renfredxh, e#252)</li>
 <li><code>Improved</code> CSS has been rewritten partly</li>
-<li><code>Improved</code> Front-end has been rewritten partly #245</li>
+<li><code>Improved</code> Front-end has been rewritten partly e#245</li>
 <li><code>Improved</code> Folder- and code-structure has been updated</li>
-<li><code>Improved</code> Context-menu now based on <a href="https://github.com/electerious/basicContext">basicContext</a> #245</li>
-<li><code>Fixed</code> OpenGraph image too big for some sites #69</li>
+<li><code>Improved</code> Context-menu now based on <a href="https://github.com/electerious/basicContext">basicContext</a> e#245</li>
+<li><code>Fixed</code> OpenGraph image too big for some sites e#69</li>
 <li><code>Fixed</code> Wrong sizes after EXIF rotation</li>
 <li><code>Fixed</code> Returning to 'Albums' after searching failed</li>
-<li><code>Fixed</code> Move-Photo not scrollable #215</li>
+<li><code>Fixed</code> Move-Photo not scrollable e#215</li>
 </ul>
 <h3 id="v263"><a class="toclink" href="#v263">v2.6.3</a></h3>
 <p>Released October 10, 2014</p>
 <ul>
-<li><code>New</code> Caching for albums (Thanks @r0x0r, #232)</li>
-<li><code>New</code> Save scroll position of albums (Thanks @r0x0r, #232)</li>
-<li><code>New</code> Added Dockerfile (@renfredxh, #236)</li>
-<li><code>Improved</code> Newest album on the top (Thanks @r0x0r, #232)</li>
+<li><code>New</code> Caching for albums (Thanks @r0x0r, e#232)</li>
+<li><code>New</code> Save scroll position of albums (Thanks @r0x0r, e#232)</li>
+<li><code>New</code> Added Dockerfile (@renfredxh, e#236)</li>
+<li><code>Improved</code> Newest album on the top (Thanks @r0x0r, e#232)</li>
 <li><code>Fixed</code> Login in private mode (Safari)</li>
 <li><code>Fixed</code> Drag &amp; Drop with open photo</li>
 <li><code>Fixed</code> Wrong modified date of the photo files</li>
-<li><code>Fixed</code> Search function always returned all photos (Thanks @powentan, #234)</li>
+<li><code>Fixed</code> Search function always returned all photos (Thanks @powentan, e#234)</li>
 </ul>
 <h3 id="v262"><a class="toclink" href="#v262">v2.6.2</a></h3>
 <p>Released September 12, 2014</p>
 <ul>
 <li><code>New</code> Select all albums/photos with <code>cmd+a</code> or <code>ctrl+a</code></li>
-<li><code>New</code> Detect duplicates and only save one file (#48)</li>
-<li><code>New</code> Duplicate photos (#186)</li>
+<li><code>New</code> Detect duplicates and only save one file (e#48)</li>
+<li><code>New</code> Duplicate photos (e#186)</li>
 <li><code>New</code> Added contributing guide</li>
-<li><code>New</code> Database table prefix for multiple Lychee installations (#196)</li>
-<li><code>Improved</code> Use IPTC Title when Headline not available (#216)</li>
+<li><code>New</code> Database table prefix for multiple Lychee installations (e#196)</li>
+<li><code>Improved</code> Use IPTC Title when Headline not available (e#216)</li>
 <li><code>Improved</code> Diagnostics are showing system information</li>
-<li><code>Improved</code> Harden against SQL injection attacks (#38)</li>
-<li><code>Fixed</code> a problem with htmlentities and older PHP versions (#212)</li>
+<li><code>Improved</code> Harden against SQL injection attacks (e#38)</li>
+<li><code>Fixed</code> a problem with htmlentities and older PHP versions (e#212)</li>
 </ul>
 <h3 id="v261"><a class="toclink" href="#v261">v2.6.1</a></h3>
 <p>Released August 22, 2014</p>
 <ul>
-<li><code>New</code> Support for IE &gt;= 11 (#148)</li>
-<li><code>New</code> Choose if public album is downloadable or not (#191)</li>
-<li><code>Improved</code> Albums gradient overlay is less harsh (#200)</li>
+<li><code>New</code> Support for IE &gt;= 11 (e#148)</li>
+<li><code>New</code> Choose if public album is downloadable or not (e#191)</li>
+<li><code>Improved</code> Albums gradient overlay is less harsh (e#200)</li>
 </ul>
 <h3 id="v26"><a class="toclink" href="#v26">v2.6</a></h3>
 <p>Released August 16, 2014</p>
 <ul>
-<li><code>New</code> Rewritten and redesigned Uploader (#101)</li>
-<li><code>New</code> Custom server-import directory (#187)</li>
+<li><code>New</code> Rewritten and redesigned Uploader (e#101)</li>
+<li><code>New</code> Custom server-import directory (e#187)</li>
 <li><code>New</code> Plugin documentation</li>
-<li><code>Improved</code> Database and installation process (#202 #195)</li>
-<li><code>Improved</code> "No public albums" now easier to read (#205)</li>
-<li><code>Fixed</code> Don't show EXIF info when not available (#194)</li>
+<li><code>Improved</code> Database and installation process (e#202 #195)</li>
+<li><code>Improved</code> "No public albums" now easier to read (e#205)</li>
+<li><code>Fixed</code> Don't show EXIF info when not available (e#194)</li>
 </ul>
 <h3 id="v256"><a class="toclink" href="#v256">v2.5.6</a></h3>
 <p>Released July 25, 2014</p>
 <ul>
-<li><code>New</code> Choose if album should be listed public (#177)</li>
+<li><code>New</code> Choose if album should be listed public (e#177)</li>
 <li><code>New</code> Gulp instead of Grunt with autoprefixer</li>
 <li><code>Improved</code> Slightly better performance when opening big albums</li>
-<li><code>Improved</code> Checksum with sha1 instead of md5 (#179)</li>
+<li><code>Improved</code> Checksum with sha1 instead of md5 (e#179)</li>
 <li><code>Fixed</code> Missing public badge on public albums</li>
 <li><code>Fixed</code> Wrong path for public photos in view.php</li>
 <li><code>Fixed</code> Wrong link to thumbs when searching</li>
@@ -934,9 +933,9 @@ composer update
 <p>Released July 5, 2014</p>
 <ul>
 <li><code>New</code> Smart Album "Recent"</li>
-<li><code>New</code> Checksum of photo in database (#48)</li>
+<li><code>New</code> Checksum of photo in database (e#48)</li>
 <li><code>New</code> Show takedate in photo-overlay (when available)</li>
-<li><code>Improved</code> Permission check when running with the same UID (#174)</li>
+<li><code>Improved</code> Permission check when running with the same UID (e#174)</li>
 </ul>
 <h3 id="v25"><a class="toclink" href="#v25">v2.5</a></h3>
 <p>Released June 24, 2014</p>
@@ -974,17 +973,17 @@ composer update
 <p>Released March 4, 2014</p>
 <p>Important: You need to reenter your database credentials and set the correct rights for <code>data/</code>, when updating from a previous version.</p>
 <ul>
-<li><code>New</code> Multi-select (#32)</li>
-<li><code>New</code> Multi-folder import from server (#47)</li>
-<li><code>New</code> Tagging (#5)</li>
-<li><code>New</code> Import of original image name (#39)</li>
+<li><code>New</code> Multi-select (e#32)</li>
+<li><code>New</code> Multi-folder import from server (e#47)</li>
+<li><code>New</code> Tagging (e#5)</li>
+<li><code>New</code> Import of original image name (e#39)</li>
 <li><code>New</code> Makefile</li>
 <li><code>Improved</code> Upload-process</li>
 <li><code>Improved</code> Documentation</li>
 <li><code>Improved</code> Overlay for photos</li>
-<li><code>Fixed</code> Dropbox import (#84)</li>
-<li><code>Fixed</code> Wrong login or password annotation (#71)</li>
-<li><code>Fixed</code> Escaping issue (#89)</li>
+<li><code>Fixed</code> Dropbox import (e#84)</li>
+<li><code>Fixed</code> Wrong login or password annotation (e#71)</li>
+<li><code>Fixed</code> Escaping issue (e#89)</li>
 <li><code>Moved</code> Config now located in <code>data/</code></li>
 </ul>
 <h3 id="v203"><a class="toclink" href="#v203">v2.0.3</a></h3>
@@ -996,11 +995,11 @@ composer update
 <h3 id="v202"><a class="toclink" href="#v202">v2.0.2</a></h3>
 <p>Released January 30, 2014</p>
 <ul>
-<li>Clear search button (#62)</li>
-<li>Speed improvements (#57)</li>
-<li>Show tooltip when album/photo title too long (#66)</li>
+<li>Clear search button (e#62)</li>
+<li>Speed improvements (e#57)</li>
+<li>Show tooltip when album/photo title too long (e#66)</li>
 <li>Fixed php notices</li>
-<li>Avoid empty downloads in empty albums (#56)</li>
+<li>Avoid empty downloads in empty albums (e#56)</li>
 <li>Correct position of upload modal on mobile devices</li>
 <li>Improved security</li>
 </ul>
@@ -1008,9 +1007,9 @@ composer update
 <p>Released January 24, 2014</p>
 <ul>
 <li>Share &gt; Direct Link</li>
-<li>Download individual images (Issue #43)</li>
-<li>ContextMenu stays within the window (Issue #41)</li>
-<li>Prevent default ContextMenu (Issue #45)</li>
+<li>Download individual images (e#43)</li>
+<li>ContextMenu stays within the window (e#41)</li>
+<li>Prevent default ContextMenu (e#45)</li>
 <li>Small ContextMenu improvements</li>
 <li>Small security improvements</li>
 </ul>
