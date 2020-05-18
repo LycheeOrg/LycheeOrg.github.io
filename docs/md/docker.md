@@ -80,7 +80,7 @@ Some variables are specific to Docker, and the default values are :
 
 ## Advanced configuration
 
-Note that nginx will accept by default images up to 100MB (`client_max_body_size 100M`) and that PHP parameters are overridden according to the [recommendations of the Lychee-Laravel FAQ](faq.html#i-cant-upload-photos).
+Note that nginx will accept by default images up to 100MB (`client_max_body_size 100M`) and that PHP parameters are overridden according to the [recommendations of the FAQ](faq.html#i-cant-upload-photos).
 
 You may still want to further customize PHP configuration. The first method is to mount a custom `php.ini` to `/etc/php/7.3/fpm/php.ini` when starting the container. However, this method is kind of brutal as it will override all parameters.
 

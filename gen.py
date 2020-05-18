@@ -4,6 +4,7 @@
 import urllib.request
 import pytest
 
+
 def numberify_version(v):
     v = v.split('.')
     if len(v[1]) < 2:
@@ -12,11 +13,13 @@ def numberify_version(v):
         v[2] = '0'+v[2]
     return "".join(v)
 
+
 def generate():
-    version = urllib.request.urlopen("https://raw.githubusercontent.com/LycheeOrg/Lychee/master/version.md").read().decode("utf-8")
+    version = urllib.request.urlopen(
+        "https://raw.githubusercontent.com/LycheeOrg/Lychee/master/version.md").read().decode("utf-8")
     version = version.strip()
 
-    print('\tversion number: ' + version+'\n')
+    print('version number: ' + version+'\n')
 
     with open('template/head.tpl', 'r', encoding="utf-8") as file:
         head = file.read()
@@ -43,27 +46,27 @@ def generate():
     return index_full, support_full, update_full
 
     with open("index.html", 'w', encoding="utf-8") as out:
-    	out.write(index_full)
-    	print("\tregenerated index.html")
+        out.write(index_full)
+        print("regenerated index.html")
 
     with open("support.html", 'w', encoding="utf-8") as out:
-    	out.write(support_full)
-    	print("\tregenerated support.html")
+        out.write(support_full)
+        print("regenerated support.html")
 
     with open("update.json", 'w', encoding="utf-8") as out:
         out.write(update_full)
-        print("\tregenerated update.json")
+        print("regenerated update.json")
 
     print("")
     changes = False
     if index_full != old_index:
-        print("\tNo changes in index.html")
+        print("No changes in index.html")
         changes = True
     if support_full != old_support:
-        print("\tNo changes in support.html")
+        print("No changes in support.html")
         changes = True
     if update_full != old_update:
-        print("\tNo changes in update.json")
+        print("No changes in update.json")
         changes = True
 
     if changes:
@@ -91,12 +94,11 @@ def check(index_full, support_full, update_full):
 
     return changes
 
+
 def test_main():
     index_full, support_full, update_full = generate()
 
-    assert( not check(index_full, support_full, update_full))
-
-
+    assert(not check(index_full, support_full, update_full))
 
 
 def main():
@@ -112,22 +114,22 @@ def main():
     changes = check(index_full, support_full, update_full)
 
     with open("index.html", 'w', encoding="utf-8") as out:
-    	out.write(index_full)
-    	print("\tregenerated index.html")
+        out.write(index_full)
+        print("regenerated index.html")
 
     with open("support.html", 'w', encoding="utf-8") as out:
-    	out.write(support_full)
-    	print("\tregenerated support.html")
+        out.write(support_full)
+        print("regenerated support.html")
 
     with open("update.json", 'w', encoding="utf-8") as out:
         out.write(update_full)
-        print("\tregenerated update.json")
+        print("regenerated update.json")
 
     print("")
     if changes:
         print("[index/support/update] changed. Please commit them.")
     else:
-        print("\tNo changes detected.")
+        print("No changes detected.")
 
 
 if __name__ == '__main__':

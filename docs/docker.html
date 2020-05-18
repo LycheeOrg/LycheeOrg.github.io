@@ -39,7 +39,7 @@
         <div class="page_contain">
             <div class="contain">
                 <aside class="sidebar">
-                    <a href="/" class="logo">
+                    <a href="../" class="logo">
                         <img class="mark" src="img/logo.png" alt="Laravel">
                         <img class="type" src="img/Lychee.png" alt="Laravel">
                     </a>
@@ -265,7 +265,7 @@ lycheeorg/lychee-laravel
 <li>PHP_TZ=America/New_York</li>
 </ul>
 <h2 id="advanced-configuration"><a class="toclink" href="#advanced-configuration">Advanced configuration</a></h2>
-<p>Note that nginx will accept by default images up to 100MB (<code>client_max_body_size 100M</code>) and that PHP parameters are overridden according to the <a href="faq.html#i-cant-upload-photos">recommendations of the Lychee-Laravel FAQ</a>.</p>
+<p>Note that nginx will accept by default images up to 100MB (<code>client_max_body_size 100M</code>) and that PHP parameters are overridden according to the <a href="faq.html#i-cant-upload-photos">recommendations of the FAQ</a>.</p>
 <p>You may still want to further customize PHP configuration. The first method is to mount a custom <code>php.ini</code> to <code>/etc/php/7.3/fpm/php.ini</code> when starting the container. However, this method is kind of brutal as it will override all parameters.</p>
 <p>Instead, we recommend to use the <code>PHP_VALUE</code> directive of PHP-FPM to override specific parameters. To do so, you will need to mount a custom <code>nginx.conf</code> in your container :</p>
 <ul>

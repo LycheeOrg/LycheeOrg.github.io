@@ -31,7 +31,7 @@ While Lychee works on 32bit systems, we do recommend the use of a 64bit OS.
 
 ### Installing Lychee
 
-We provide three methods to install Lychee, from the latest release &mdash;simple unzip&mdash; or from source &mdash;uses Composer.
+We provide three methods to install Lychee; using Docker, from the latest release &mdash;simple unzip&mdash;, or from source &mdash;uses Composer.
 
 #### With Docker
 
