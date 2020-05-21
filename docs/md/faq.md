@@ -288,6 +288,13 @@ Verify that the rewrite rules of your server are correctly applied. See [here](u
 
 Edit the `.env` file and set `APP_DEBUG` to `true`, this will allow the errors to be displayed with the trace.
 
+### I have an errror 419 in the Network tab, what is going on?
+
+Verify that your `SESSION_DRIVER` is not `array`. With `array`, the data is stored a non-persisting PHP array, it is only meant for testing !
+More [here](https://laracasts.com/discuss/channels/general-discussion/how-does-cache-driver-array-work).  
+Prefer `file` or `database` (but that last one require some [more configuration](https://laravel.com/docs/7.x/session#driver-prerequisites))
+
+
 ### I can't upload photos.
 If you experience problems uploading large photos, you might want to change the PHP parameters in `.htaccess` (if you are using the PHP Apache module) or in `.user.ini` (if you are using PHP >= 7.3 with CGI or FastCGI).
 

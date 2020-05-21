@@ -231,6 +231,7 @@
 <li><a href="#when-i-do-x-i-get-an-error-api-not-found-what-can-i-do">When I do X, I get an error api not found, what can I do ?</a></li>
 <li><a href="#i-have-an-error-404-what-can-i-do">I have an error 404, what can I do ?</a></li>
 <li><a href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do ?</a></li>
+<li><a href="#i-have-an-errror-419-in-the-network-tab-what-is-going-on">I have an errror 419 in the Network tab, what is going on?</a></li>
 <li><a href="#i-cant-upload-photos">I can't upload photos.</a></li>
 <li><a href="#what-does-upstream-sent-too-big-header-error-message-mean">What does Upstream sent too big header error message mean?</a></li>
 <li><a href="#why-dont-my-videos-have-thumbnails">Why don't my videos have thumbnails?</a></li>
@@ -451,6 +452,10 @@ If nothing helps, don't hesitate to open a new one.</p>
 <p>Verify that the rewrite rules of your server are correctly applied. See <a href="upgrade.html#using-apache">here</a>.</p>
 <h3 id="i-have-an-error-500-what-can-i-do"><a class="toclink" href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do ?</a></h3>
 <p>Edit the <code>.env</code> file and set <code>APP_DEBUG</code> to <code>true</code>, this will allow the errors to be displayed with the trace.</p>
+<h3 id="i-have-an-errror-419-in-the-network-tab-what-is-going-on"><a class="toclink" href="#i-have-an-errror-419-in-the-network-tab-what-is-going-on">I have an errror 419 in the Network tab, what is going on?</a></h3>
+<p>Verify that your <code>SESSION_DRIVER</code> is not <code>array</code>. With <code>array</code>, the data is stored a non-persisting PHP array, it is only meant for testing !
+More <a href="https://laracasts.com/discuss/channels/general-discussion/how-does-cache-driver-array-work">here</a>.<br />
+Prefer <code>file</code> or <code>database</code> (but that last one require some <a href="https://laravel.com/docs/7.x/session#driver-prerequisites">more configuration</a>)</p>
 <h3 id="i-cant-upload-photos"><a class="toclink" href="#i-cant-upload-photos">I can't upload photos.</a></h3>
 <p>If you experience problems uploading large photos, you might want to change the PHP parameters in <code>.htaccess</code> (if you are using the PHP Apache module) or in <code>.user.ini</code> (if you are using PHP &gt;= 7.3 with CGI or FastCGI).</p>
 <blockquote>
