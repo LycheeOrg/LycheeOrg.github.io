@@ -263,7 +263,28 @@
 </style>
 
 <h2 id="master-branch"><a class="toclink" href="#master-branch">Master branch</a></h2>
+<!-- - `new` #574 : jpeg for raw files.
+  > if a raw file is imported such as .nef, php-imagick will try to generate
+  > a thumbnail jpeg for it. -->
+
 <ul>
+<li><code>new</code> #579 : Ghostbuster command to clean up dead symlinks<blockquote>
+<p>The ghostbuster command also parses the database and see if some symlinks are dead.
+It will delete the photo from the database in such case.
+As this behaviour can modify the database, we disable it by default. </p>
+</blockquote>
+</li>
+<li><code>new</code> #577 : Parse additional xmp sidecars files to update metadata<blockquote>
+<p>This reads in XMP sidecar files (if they exist).
+Thankfully, exiftool supports reading in sidecars, so we can use the same
+technique we're using to read the files. We merge both file and sidecar metadata,
+taking priority based on user settings (default to prefer image metadata)</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #581 : Undefined property errors when migrating from 3.1.6<blockquote>
+<p>The missing <code>license</code>, <code>lens</code> are now taken care off. </p>
+</blockquote>
+</li>
 <li><code>fixes</code> #565 : No Dropbox Import with Lychee 4.0.0<blockquote>
 <p>The CSP was a bit too tight, preventing the execution of the script from dropbox.</p>
 </blockquote>
