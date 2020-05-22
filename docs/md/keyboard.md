@@ -1,7 +1,3 @@
-<p>
-    <a name="Introduction"></a>
-</p>
-
 ## About
 
 The following keys and shortcuts can be used in Lychee.

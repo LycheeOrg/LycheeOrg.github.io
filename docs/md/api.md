@@ -3,8 +3,6 @@
     margin: 0 0 0;
 }
 </style>
-
-<br><br>
 The current API provide the following entry points:
 See:
 

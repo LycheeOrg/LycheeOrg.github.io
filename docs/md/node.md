@@ -1,7 +1,3 @@
-<p>
-    <a name="Introduction"></a>
-</p>
-
 The current Front-end of Lychee is 100% JS generated. In order to modify it you will need to recompile it.
 
 ### Git Submodule

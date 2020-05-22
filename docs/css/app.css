@@ -114,6 +114,11 @@ figure {
 }
 
 hr {
+    border: 1px solid #ff2d20;
+    margin-top: 2em;
+    margin-left: -25px;
+    margin-bottom: 2em;
+    opacity: .6;
     box-sizing: content-box;
     height: 0
 }
