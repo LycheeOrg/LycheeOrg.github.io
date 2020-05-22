@@ -1,7 +1,3 @@
-<p>
-    <a name="Introduction"></a>
-</p>
-
 ## Introduction
 All of the configuration files for Lychee are stored in the config directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
 

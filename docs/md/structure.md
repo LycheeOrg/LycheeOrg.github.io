@@ -1,10 +1,5 @@
-<p>
-    <a name="Introduction"></a>
-</p>
-
 <!-- ## Introduction
 For this reason, we choose to place Eloquent models in the app directory by default, and allow the developer to place them somewhere else if they choose. -->
-
 
 ## The Root Directory
 

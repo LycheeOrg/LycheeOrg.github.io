@@ -1,7 +1,3 @@
-<p>
-    <a name="installation"></a>
-</p>
-
 ## General questions
 
 ### Which browsers are supported?

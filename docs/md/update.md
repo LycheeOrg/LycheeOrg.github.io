@@ -1,7 +1,3 @@
-<p>
-    <a name="Introduction"></a>
-</p>
-
 The way you can update Lychee depends of how you did your installation:
 
 * If you used the release channel (downloading a zip file), go to [Update manually](update-manually)

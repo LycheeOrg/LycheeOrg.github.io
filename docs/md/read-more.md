@@ -1,7 +1,3 @@
-<p>
-    <a name="Introduction"></a>
-</p>
-
 ### Brief introduction to Laravel
 
 Laravel is a MVC (Model-View-Controller) framework for PHP. Its process is as follows.

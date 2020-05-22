@@ -10,10 +10,6 @@
 }
 </style>
 
-<p>
-    <a name="Introduction"></a>
-</p>
-
 ## Background
 
 Virtually all Lychee settings are stored in the database, alongside the metadata of the images and albums. While all the settings can be changed using the web browser, some of them are featured in an easy-to-use high-level GUI whereas others require the use of a more textual, lower-level interface.

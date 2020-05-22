@@ -1,5 +1,3 @@
-
-
 ## Checking requirements
 
 Check that the server satisfifes the [requirements][1], in particular pay attention the php extensions.
