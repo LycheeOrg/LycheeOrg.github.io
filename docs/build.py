@@ -28,9 +28,10 @@ pages_title['docker'] = 'Docker'
 pages_title['read-more'] = 'Lychee logic overview'
 pages_title['update'] = 'Update'
 pages_title['node'] = 'Front-end'
+pages_title['org'] = 'Lychee & LycheeOrg'
 
 structure = [['Prologue',
-              ['releases', 'upgrade', 'contributions', 'api', 'faq']]]
+              ['org', 'releases', 'upgrade', 'contributions', 'api', 'faq']]]
 structure += [['Getting Started',
                ['installation', 'configuration', 'docker', 'update']]]
 structure += [['Digging Deeper',
