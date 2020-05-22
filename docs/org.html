@@ -50,7 +50,7 @@
                                     <li class='sub--on'>
 <h2>Prologue</h2>
 <ul>
-<li><a href='org.html'>Lychee & LycheeOrg</a></li>
+<li class='active'><a href='org.html'>Lychee & LycheeOrg</a></li>
 <li><a href='releases.html'>Release Notes</a></li>
 <li><a href='upgrade.html'>Upgrade from v3</a></li>
 <li><a href='contributions.html'>Contribution Guide</a></li>
@@ -63,7 +63,7 @@
 <li><a href='installation.html'>Installation</a></li>
 <li><a href='configuration.html'>Configuration</a></li>
 <li><a href='docker.html'>Docker</a></li>
-<li class='active'><a href='update.html'>Update</a></li>
+<li><a href='update.html'>Update</a></li>
 </ul>
 <li class='sub--on'>
 <h2>Digging Deeper</h2>
@@ -187,83 +187,27 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>Update</h1>
+                            <h1>Lychee & LycheeOrg</h1>
                             
 <ul>
-<li><a href="#update-requirements">Update requirements</a></li>
-<li><a href="#update-using-git">Update using Git</a></li>
-<li><a href="#update-manually">Update manually</a></li>
-<li><a href="#update-via-the-gui">Update via the GUI</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#schedule-releases-roadmap">Schedule releases &amp; Roadmap.</a></li>
+<li><a href="#security">Security</a></li>
+<li><a href="#lycheeorg">LycheeOrg</a></li>
 </ul>
- <hr> <p>The way you can update Lychee depends of how you did your installation:</p>
-<ul>
-<li>If you used the release channel (downloading a zip file), go to <a href="update-manually">Update manually</a></li>
-<li>If you installed via <code>git clone</code> then you can either use a <a href="update-using-git">similar process</a> or do it directly online via the <a href="update-via-the-gui">Graphical User Interface</a> of Lychee.</li>
-</ul>
-<h2 id="update-requirements"><a class="toclink" href="#update-requirements">Update requirements</a></h2>
-<ul>
-<li>Your system must comply with the latest <a href="installation.html">system requirements</a> of the latest version of Lychee.</li>
-<li>Ensure that you are using the version 4 of Lychee. Updates from older version of Lychee are more complex.</li>
-</ul>
-<p>Don't forget to take a look at the <a href="releases.html">Changelog</a> to see what's new and to check for any actions that may be required.</p>
-<h2 id="update-using-git"><a class="toclink" href="#update-using-git">Update using Git</a></h2>
-<p>Fully updating Lychee with <code>git</code> is the easiest way:</p>
-<pre><code class="sh"># download the lastest files
-git pull
-# update the dependencies
-composer install --no-dev
-# apply the database migration
-php artisan migrate
-</code></pre>
-
-<p>If you have the <code>post-merge</code> hook set up the following is enough:</p>
-<pre><code class="sh">git pull
-</code></pre>
-
-<h2 id="update-manually"><a class="toclink" href="#update-manually">Update manually</a></h2>
-<p>This update will be the one you have to use if you are following the Release channel.</p>
-<ul>
-<li>1 &mdash; Download the <a href="https://github.com/LycheeOrg/Lychee/releases">newest Version</a></li>
-<li>2 &mdash; Replace all existing files, excluding <code>uploads/</code> and <code>dist/user.css</code></li>
-<li>3 &mdash; Go into the <code>Diagnostic</code> page and click on the <code>Apply migration</code> button.</li>
-</ul>
-<h2 id="update-via-the-gui"><a class="toclink" href="#update-via-the-gui">Update via the GUI</a></h2>
-<p>This requires:</p>
-<ul>
-<li><code>git</code> to be installed</li>
-<li>write access for your web user (<code>www-data</code> for apache2) to all the folders, files <strong>and <code>.git/</code></strong>.</li>
-<li><code>exec</code> to be available as a php function.</li>
-<li><code>allow_online_git_pull</code> has to be set to <code>1</code></li>
-</ul>
-<h4>1. Go to your Diagnostic page and check for updates</h4>
-<p>Notice that <em>Lychee version (git)</em> tells you:</p>
-<ul>
-<li>the commit number &mdash; <em>"dfad796"</em>,</li>
-<li>which branch you are on &mdash; <em>"master"</em>,</li>
-<li>you do not have information if you are up to date or not &mdash; <em>"Data not in Cache"</em>.</li>
-</ul>
-<p>However you should see a "check for Updates" button:</p>
-<p><img alt="" src="img/update/update_1.png" /></p>
-<p>If you click on it, it will ask your server to check how far behind you are from the bleeding edge version of Lychee:</p>
-<p><img alt="" src="img/update/update_2.png" /></p>
-<h4>2. Refresh your Diagnostic page</h4>
-<p>Notice that <em>Lychee version (git)</em> now tells you:</p>
-<ul>
-<li>that you are behind &mdash; "<em>1 commits behind master (dc5f03a)</em>"</li>
-<li>that the last check for update was done some times ago &mdash; "<em>(9 seconds ago)</em>"</li>
-</ul>
-<p><img alt="" src="img/update/update_3.png" /></p>
-<h4>3. Apply the update</h4>
-<p>By clicking on <em>"Update available"</em> this will trigger server side a <code>git pull</code> and <code>artisan migrate</code>.</p>
-<p><img alt="" src="img/update/update_4.png" /></p>
-<p>You can see the log result of the command line printed above the diagnostic information.
-By default composer calls are disabled.</p>
-<p><img alt="" src="img/update/update_5.png" /></p>
-<h4>4. Check for updates</h4>
-<p>We can once again check for updates:</p>
-<p><img alt="" src="img/update/update_6.png" /></p>
-<p><img alt="" src="img/update/update_7.png" /></p>
-<p>And we are done.</p>
+ <hr> <h2 id="introduction"><a class="toclink" href="#introduction">Introduction</a></h2>
+<p>Lychee was originally developped by <a href="https://github.com/electerious">electerious</a> (<a href="https://electerious.com">Tobias Reich</a>). Lychee aims to be a great looking and easy-to-use photo-management-system that nearly anyone can use on their webserver.</p>
+<p>Since April 1st, 2018 this project has moved to it's own Organisation (LycheeOrg) where people are able to submit their fixes to it. We, the Organisation owners, want to thank electerious (Tobias Reich) for the opportunity to make this project live on.</p>
+<h2 id="schedule-releases-roadmap"><a class="toclink" href="#schedule-releases-roadmap">Schedule releases &amp; Roadmap.</a></h2>
+<p>We do not have schedule for releases such as every 6 months, however we still follow the <a href="https://semver.org/">semantic versionning</a>. Our releases should never contain breaking changes. That being said, we do not provide backward compatibility or hotfix for older versions. The <code>master</code> branch is the bleeding edge of Lychee. It contains the latest bugfix and newest features. Once a sufficient number of hotfixes or new features and has been reached we release a minor version.</p>
+<h2 id="security"><a class="toclink" href="#security">Security</a></h2>
+<p>In order to ensure maximum security some actions on Lychee are restricted by an admin authentication. The username and password are stored hashed with bcrypt in the database.</p>
+<p>However as precaution, we provide a serverside command to easily erase those two data from the database in order to recover admin access. We consider this command as safe as they require a command line access to the server. A user gaining such rights is outside of our security scope as the server would be compromised.</p>
+<h2 id="lycheeorg"><a class="toclink" href="#lycheeorg">LycheeOrg</a></h2>
+<p>LycheeOrg is a github organization grouping enthousiast developpers determined to keep this project alive.
+There is no commitment in time to the project. We understand that each member has their personnal live and dedicate time as they see fit to the project.</p>
+<p>If you start to contribute by opening multiple Pull Request and adding more code to the database. It is likely you will be proposed to join us.</p>
+<p>There is no governance model, we currently have three admins: <a href="https://github.com/d7415">d4715</a>, <a href="https://github.com/ildyria">ildyria</a>, <a href="https://github.com/LudovicRousseau">LudovicRousseau</a>. Decisions are made after discussions.</p>
                         </section>
                     </section>
                 </section>
