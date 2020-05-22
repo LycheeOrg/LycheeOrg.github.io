@@ -8,6 +8,12 @@ Since April 1st, 2018 this project has moved to it's own Organisation (LycheeOrg
 
 We do not have schedule for releases such as every 6 months, however we still follow the [semantic versionning][3]. Our releases should never contain breaking changes. That being said, we do not provide backward compatibility or hotfix for older versions. The `master` branch is the bleeding edge of Lychee. It contains the latest bugfix and newest features. Once a sufficient number of hotfixes or new features and has been reached we release a minor version.
 
+## Security
+
+In order to ensure maximum security some actions on Lychee are restricted by an admin authentication. The username and password are stored hashed with bcrypt in the database.
+
+However as precaution, we provide a serverside command to easily erase those two data from the database in order to recover admin access. We consider this command as safe as they require a command line access to the server. A user gaining such rights is outside of our security scope as the server would be compromised.
+
 ## LycheeOrg
 
 LycheeOrg is a github organization grouping enthousiast developpers determined to keep this project alive.
