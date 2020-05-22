@@ -9,8 +9,11 @@ Remember, bug reports are created in the hope that others with the same problem 
 Lychee's GitHub issue trackers are not intended to provide Lychee help or support. Please instead, contact us directly [here][2] on gitter.
 
 
+## Security Vulnerabilities
+If you discover a security vulnerability within Lychee, please contact us directly on [gitter][2]. All security vulnerabilities will be promptly addressed.
+
 ## Core Development Discussion
-You may propose new features or improvements of existing Lychee behavior in the issue board. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
+You may propose new features or improvements of existing Lychee behavior in the [issue board][1]. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
 
 ## Which Branch?
 
@@ -79,3 +82,4 @@ The Lychee code of conduct is the same as Laravel's code of conduct:
 [1]: https://github.com/LycheeOrg/Lychee/issues
 [2]: https://gitter.im/LycheeOrg/Lobby
 [3]: https://github.com/LycheeOrg/Lychee/pulls
+
