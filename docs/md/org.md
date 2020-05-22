@@ -12,7 +12,7 @@ We do not have schedule for releases such as every 6 months, however we still fo
 
 In order to ensure maximum security some actions on Lychee are restricted by an admin authentication. The username and password are stored hashed with bcrypt in the database.
 
-However as precaution, we provide a serverside command to easily erase those two data from the database in order to recover admin access. We consider this command as safe as they require a command line access to the server. A user gaining such rights is outside of our security scope as the server would be compromised.
+However as precaution, we provide a serverside command to easily erase those two data from the database in order to recover admin access. We consider this command safe as it requires a command line access to the server. A user gaining such rights is outside of our security scope as the server would be compromised.
 
 ## LycheeOrg
 
