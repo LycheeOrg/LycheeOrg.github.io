@@ -63,7 +63,7 @@
 <li><a href='installation.html'>Installation</a></li>
 <li><a href='configuration.html'>Configuration</a></li>
 <li><a href='docker.html'>Docker</a></li>
-<li class='active'><a href='update.html'>Update</a></li>
+<li><a href='update.html'>Update</a></li>
 </ul>
 <li class='sub--on'>
 <h2>Digging Deeper</h2>
@@ -73,7 +73,7 @@
 <li><a href='read-more.html'>Lychee logic overview</a></li>
 <li><a href='structure.html'>Directory Structure</a></li>
 <li><a href='node.html'>Front-end</a></li>
-<li><a href='testing-platform.html'>Working with VirtualBox</a></li>
+<li class='active'><a href='testing-platform.html'>Working with VirtualBox</a></li>
 </ul>
 
                                     <!-- <li>
@@ -188,83 +188,102 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>Update</h1>
+                            <h1>Working with VirtualBox</h1>
                             
 <ul>
-<li><a href="#update-requirements">Update requirements</a></li>
-<li><a href="#update-using-git">Update using Git</a></li>
-<li><a href="#update-manually">Update manually</a></li>
-<li><a href="#update-via-the-gui">Update via the GUI</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#set-up-port-forwarding">Set Up &amp; Port Forwarding</a></li>
+<li><a href="#apache-and-proxy-in-the-host">Apache and Proxy in the Host</a></li>
+<li><a href="#apache-in-the-guest">Apache in the Guest</a></li>
+<li><a href="#visual-studio-code">Visual Studio Code</a></li>
 </ul>
- <hr> <p>The way you can update Lychee depends of how you did your installation:</p>
+ <hr> <h2 id="introduction"><a class="toclink" href="#introduction">Introduction</a></h2>
+<p>In this page we describe one of the multiple ways to develop on Lychee.</p>
 <ul>
-<li>If you used the release channel (downloading a zip file), go to <a href="update-manually">Update manually</a></li>
-<li>If you installed via <code>git clone</code> then you can either use a <a href="update-using-git">similar process</a> or do it directly online via the <a href="update-via-the-gui">Graphical User Interface</a> of Lychee.</li>
+<li>Requires an Apache server with <code>proxy</code> and <code>proxy_http</code> enabled.</li>
+<li>Requires a Virtual Machine (using e.g. VirtualBox)</li>
 </ul>
-<h2 id="update-requirements"><a class="toclink" href="#update-requirements">Update requirements</a></h2>
+<h2 id="set-up-port-forwarding"><a class="toclink" href="#set-up-port-forwarding">Set Up &amp; Port Forwarding</a></h2>
+<p>Set up your VM as if you would install any server.</p>
+<p>Set up the following port forwarding:</p>
 <ul>
-<li>Your system must comply with the latest <a href="installation.html">system requirements</a> of the latest version of Lychee.</li>
-<li>Ensure that you are using the version 4 of Lychee. Updates from older version of Lychee are more complex.</li>
+<li><code>host:10180</code> &Rarr; <code>guest:80</code></li>
+<li><code>host:10122</code> &Rarr; <code>guest:22</code></li>
 </ul>
-<p>Don't forget to take a look at the <a href="releases.html">Changelog</a> to see what's new and to check for any actions that may be required.</p>
-<h2 id="update-using-git"><a class="toclink" href="#update-using-git">Update using Git</a></h2>
-<p>Fully updating Lychee with <code>git</code> is the easiest way:</p>
-<pre><code class="sh"># download the lastest files
-git pull
-# update the dependencies
-composer install --no-dev
-# apply the database migration
-php artisan migrate
+<p>The first one will allow us to access the server from Local host, the second will allow us to connect to it via SSH.</p>
+<h2 id="apache-and-proxy-in-the-host"><a class="toclink" href="#apache-and-proxy-in-the-host">Apache and Proxy in the Host</a></h2>
+<p>Edit your <code>/etc/hosts</code> to contain:</p>
+<pre><code>127.0.0.1   lychee.test
+127.0.0.1   lycheeorg.test
 </code></pre>
 
-<p>If you have the <code>post-merge</code> hook set up the following is enough:</p>
-<pre><code class="sh">git pull
+<p>Create configuration files in <code>/etc/apache2/sites-available</code>: <code>001-lychee-test.conf</code> and <code>002-lycheeorg-test.conf</code></p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName lychee.test
+
+    ProxyPass / http://localhost:10180/
+    ProxyPassReverse / http://lychee.test/
+    ProxyPreserveHost On
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
 </code></pre>
 
-<h2 id="update-manually"><a class="toclink" href="#update-manually">Update manually</a></h2>
-<p>This update will be the one you have to use if you are following the Release channel.</p>
-<ul>
-<li>1 &mdash; Download the <a href="https://github.com/LycheeOrg/Lychee/releases">newest Version</a></li>
-<li>2 &mdash; Replace all existing files, excluding <code>uploads/</code> and <code>dist/user.css</code></li>
-<li>3 &mdash; Go into the <code>Diagnostic</code> page and click on the <code>Apply migration</code> button.</li>
-</ul>
-<h2 id="update-via-the-gui"><a class="toclink" href="#update-via-the-gui">Update via the GUI</a></h2>
-<p>This requires:</p>
-<ul>
-<li><code>git</code> to be installed</li>
-<li>write access for your web user (<code>www-data</code> for apache2) to all the folders, files <strong>and <code>.git/</code></strong>.</li>
-<li><code>exec</code> to be available as a php function.</li>
-<li><code>allow_online_git_pull</code> has to be set to <code>1</code></li>
-</ul>
-<h4>1. Go to your Diagnostic page and check for updates</h4>
-<p>Notice that <em>Lychee version (git)</em> tells you:</p>
-<ul>
-<li>the commit number &mdash; <em>"dfad796"</em>,</li>
-<li>which branch you are on &mdash; <em>"master"</em>,</li>
-<li>you do not have information if you are up to date or not &mdash; <em>"Data not in Cache"</em>.</li>
-</ul>
-<p>However you should see a "check for Updates" button:</p>
-<p><img alt="" src="img/update/update_1.png" /></p>
-<p>If you click on it, it will ask your server to check how far behind you are from the bleeding edge version of Lychee:</p>
-<p><img alt="" src="img/update/update_2.png" /></p>
-<h4>2. Refresh your Diagnostic page</h4>
-<p>Notice that <em>Lychee version (git)</em> now tells you:</p>
-<ul>
-<li>that you are behind &mdash; "<em>1 commits behind master (dc5f03a)</em>"</li>
-<li>that the last check for update was done some times ago &mdash; "<em>(9 seconds ago)</em>"</li>
-</ul>
-<p><img alt="" src="img/update/update_3.png" /></p>
-<h4>3. Apply the update</h4>
-<p>By clicking on <em>"Update available"</em> this will trigger server side a <code>git pull</code> and <code>artisan migrate</code>.</p>
-<p><img alt="" src="img/update/update_4.png" /></p>
-<p>You can see the log result of the command line printed above the diagnostic information.
-By default composer calls are disabled.</p>
-<p><img alt="" src="img/update/update_5.png" /></p>
-<h4>4. Check for updates</h4>
-<p>We can once again check for updates:</p>
-<p><img alt="" src="img/update/update_6.png" /></p>
-<p><img alt="" src="img/update/update_7.png" /></p>
-<p>And we are done.</p>
+<p>and</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName lycheeorg.test
+
+    ProxyPass / http://localhost:10180/
+    ProxyPassReverse / http://lycheeorg.test/
+    ProxyPreserveHost On
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>Enable the sites and reload apache:</p>
+<pre><code>sudo a2ensite 001-lychee-test.conf
+sudo a2ensite 002-lycheeorg-test.conf
+sudo systemctl restart apache2
+</code></pre>
+
+<h2 id="apache-in-the-guest"><a class="toclink" href="#apache-in-the-guest">Apache in the Guest</a></h2>
+<p>In your guest OS, clone the Lychee repository (requires ssh key to be set up):</p>
+<pre><code>git clone git@github.com:LycheeOrg/Lychee.git /var/www/html/Lychee
+git clone git@github.con:LycheeOrg/LycheeOrg.github.io /var/www/html/LycheeOrg.github.io
+</code></pre>
+
+<p>Similarily in <code>/etc/apache2/sites-available</code> create 2 configuration files: <code>001-lychee.conf</code> and <code>002-lycheeorg.conf</code></p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName lychee.test
+
+    DocumentRoot /var/www/html/Lychee/public
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>and</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName lycheeorg.test
+
+    DocumentRoot /var/www/html/LycheeOrg.github.io
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>Enable the sites and reload apache:</p>
+<pre><code>sudo a2ensite 001-lychee-test.conf
+sudo a2ensite 002-lycheeorg-test.conf
+sudo systemctl restart apache2
+</code></pre>
+
+<p>Open a browser on your host and navigate to <a href="http://lychee.test">http://lychee.test</a> and <a href="http://lycheeorg.test">http://lycheeorg.test</a> enjoy.</p>
+<h2 id="visual-studio-code"><a class="toclink" href="#visual-studio-code">Visual Studio Code</a></h2>
+<p>If you use <a href="https://code.visualstudio.com/">Visual Studio Code</a>, you can use the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">remote ssh extension</a>. It will allow you to directly edit your files in your VM without having to upload and download the files.</p>
                         </section>
                     </section>
                 </section>
