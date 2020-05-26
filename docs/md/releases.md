@@ -29,6 +29,15 @@
 </style>
 
 ## Master branch
+
+Nothing new so far.
+
+## Version 4
+
+### v4.0.6
+
+Released May 26, 2020
+
 - `new` #588 : add an option to the sync command to 're-sync' images that already exist.
   > Since XMP sidecars are now allowed, images with the same checksum will not get
   > updated metadata if the sidecar changes but the checksum remains the same. This
@@ -66,8 +75,6 @@
   > The missing `license`, `lens` are now taken care off. 
 - `fixes` #565 : No Dropbox Import with Lychee 4.0.0.
   > The CSP was a bit too tight, preventing the execution of the script from dropbox.
-
-## Version 4
 
 ### v4.0.5
 
