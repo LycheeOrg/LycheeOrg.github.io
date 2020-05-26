@@ -262,32 +262,80 @@
     display: inline-block;
     width: 7em;
 }
+
+.docs_main ul li p {
+  text-align: justify;
+}
+
+.docs_main ul li blockquote {
+  margin-top: 0.75em;
+  border-left: 1px dotted #ff2d20;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.docs_main ul li p ~ ul{
+  margin-top: -1em;
+}
+
+.docs_main ul li blockquote ul {
+    padding-left: 0.5em;
+}
 </style>
 
 <h2 id="master-branch"><a class="toclink" href="#master-branch">Master branch</a></h2>
-<!-- - `new` #574 : jpeg for raw files.
-  > if a raw file is imported such as .nef, php-imagick will try to generate
-  > a thumbnail jpeg for it. -->
-
 <ul>
-<li><code>new</code> #579 : Ghostbuster command to clean up dead symlinks<blockquote>
+<li><code>new</code> #588 : add an option to the sync command to 're-sync' images that already exist.<blockquote>
+<p>Since XMP sidecars are now allowed, images with the same checksum will not get
+updated metadata if the sidecar changes but the checksum remains the same. This
+adds an optional flag to the <code>lychee:sync</code> command that forces existing images
+with no change in checksum to get updated metadata from XMP files (if they exist).
+It only updates the image if the metadata read in differs from the metadata that
+the image aleady has.</p>
+</blockquote>
+</li>
+<li><code>new</code> #599 : Added method to get the full path of albums.<blockquote>
+<p>Specifically in the sharing screen, when albums are sometimes named the same
+(if they are organized by Year and Month), then it is impossible to tell which
+album you are actually sharing. This adds the ability to get the album's
+"full path" and sends it down for the sharing settings.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #596 : Failing xmp file read results in fallback to native exif extraction.<blockquote>
+<p>If the EXIF succeeds but sidecar fails, it reverts falls into the catch.</p>
+</blockquote>
+</li>
+<li><code>new</code> #574 : Support of HEIC files and subsequently convert raw files (e.g. .NEF) into jpeg.<blockquote>
+<p>if a raw file is imported such as .nef, php-imagick will try to generate a thumbnail jpeg for it.
+Note that the extension still needs to be added in your advanced settings.</p>
+<p><strong>Important:</strong> Lychee was never meant to convert RAW files such as .nef, .cr2 .arw etc.
+If you shoot RAW, it is to be able to change <em>exposure</em>, <em>dodge</em>&amp;<em>burn</em>, <em>crop</em> etc. later in
+a proper image processing software such as Lightroom, &gt; Photoshop, Capture One, Luminar, Darktable &hellip;
+otherwise you better shoot JPEG. Lychee does not intend to provide those functionality.</p>
+</blockquote>
+</li>
+<li><code>new</code> #594 : Add debug bar for <code>dev</code> install.<blockquote>
+<p>It is disabled by default, even in debug mode. To enable it, set <code>DEBUGBAR_ENABLED</code> to <code>true</code> in your <code>.env</code> file.</p>
+</blockquote>
+</li>
+<li><code>new</code> #579 : Ghostbuster command to clean up dead symlinks.<blockquote>
 <p>The ghostbuster command also parses the database and see if some symlinks are dead.
 It will delete the photo from the database in such case.
 As this behaviour can modify the database, we disable it by default. </p>
 </blockquote>
 </li>
-<li><code>new</code> #577 : Parse additional xmp sidecars files to update metadata<blockquote>
+<li><code>new</code> #577 : Parse additional xmp sidecars files to update metadata.<blockquote>
 <p>This reads in XMP sidecar files (if they exist).
 Thankfully, exiftool supports reading in sidecars, so we can use the same
 technique we're using to read the files. We merge both file and sidecar metadata,
 taking priority based on user settings (default to prefer image metadata)</p>
 </blockquote>
 </li>
-<li><code>fixes</code> #581 : Undefined property errors when migrating from 3.1.6<blockquote>
+<li><code>fixes</code> #581 : Undefined property errors when migrating from 3.1.6.<blockquote>
 <p>The missing <code>license</code>, <code>lens</code> are now taken care off. </p>
 </blockquote>
 </li>
-<li><code>fixes</code> #565 : No Dropbox Import with Lychee 4.0.0<blockquote>
+<li><code>fixes</code> #565 : No Dropbox Import with Lychee 4.0.0.<blockquote>
 <p>The CSP was a bit too tight, preventing the execution of the script from dropbox.</p>
 </blockquote>
 </li>
@@ -296,16 +344,16 @@ taking priority based on user settings (default to prefer image metadata)</p>
 <h3 id="v405"><a class="toclink" href="#v405">v4.0.5</a></h3>
 <p>Released May 15, 2020</p>
 <ul>
-<li><code>new</code> : Add RSS module.<blockquote>
+<li><code>new</code> #551 : Add RSS module.<blockquote>
 <p>we provide a RSS feed, available at the <code>/rss</code> address.
 it will contains the last <code>rss_max_items</code> (default: 100) over the last <code>rss_recent_days</code> (default: 7) days.</p>
 </blockquote>
 </li>
-<li><code>fixes</code> #557 : report files not imported by sync<blockquote>
+<li><code>fixes</code> #557 : report files not imported by sync.<blockquote>
 <p>When using the command <code>lychee:sync</code> if a file is not imported for some reason, the Log will contains more detailed information instead of just an error message.</p>
 </blockquote>
 </li>
-<li><code>fixes</code> #550 : Version 4.0.4 database is not updated<blockquote>
+<li><code>fixes</code> #550 : Version 4.0.4 database is not updated.<blockquote>
 <p>Simply forgot to add the bump version.</p>
 </blockquote>
 </li>
@@ -317,14 +365,14 @@ it will contains the last <code>rss_max_items</code> (default: 100) over the las
 <h3 id="v404"><a class="toclink" href="#v404">v4.0.4</a></h3>
 <p>Released May 11, 2020</p>
 <ul>
-<li><code>new</code> : More idiot proof safeties (and avoid some 404 errors complaints).<blockquote>
+<li><code>new</code> #543 : More idiot proof safeties (and avoid some 404 errors complaints).<blockquote>
 <ul>
 <li>We add a check in the public directory that composer has indeed been run.</li>
 <li>We add a check that if apache is being used, the rewrite module is enabled (avoid silly 404 error when redirected to <code>/install</code>).</li>
 </ul>
 </blockquote>
 </li>
-<li><code>new</code> : Better support for SQLite<blockquote>
+<li><code>new</code> #541 : Better support for SQLite<blockquote>
 <p>We create a file in <code>database/database.sqlite</code> to avoid issues in the case where some user decides to use this type of database without giving a path. </p>
 </blockquote>
 </li>
@@ -350,12 +398,12 @@ it will contains the last <code>rss_max_items</code> (default: 100) over the las
 <ul>
 <li><code>fixes</code> #498 remove Lychee-front version number alltogether<blockquote>
 <p>add Diagnostic information:</p>
-</blockquote>
 <ul>
 <li>Composer install type</li>
 <li>release type (git vs release)</li>
 <li>add button to allow migration for users using the release channel instead of master.</li>
 </ul>
+</blockquote>
 </li>
 <li><code>fixes</code> #508<blockquote>
 <p>Diagnostic was checking the existence of mysqli only if postgresql is not used. With the added support of SQLite we now thoroughly check each possibilities.</p>
@@ -477,18 +525,20 @@ optionally add a global map to see where all your pictures have been taken.</p>
 </li>
 <li><code>new</code> : Provide command line access from server side<blockquote>
 <p>This should replace the use of <code>lycheeupload</code>, <code>lycheesync</code>, <code>lychee-create-medium</code>
-available commands are:
- <code>lychee:exif_lens            Get EXIF data from pictures if missing                                          
- lychee:reset_admin          Reset Login and Password of the admin user.                                     
- lychee:logs                 Print the logs table.                                                           
- lychee:diagnostics          Show the diagnostics informations.                                              
- lychee:decode_GPS_locations Decodes the GPS location data and adds street, city, country, etc. to the tags  
- lychee:generate_thumbs      Generate intermediate thumbs if missing                                         
- lychee:video_data           Generate video thumbnails and metadata if missing                               
- lychee:sync                 Sync a directory to lychee                                                      
- lychee:npm                  Launch npm on the public/src folder                                             
- lychee:takedate             Make sure takedate is correct.</code>
-use <code>php artisan lychee:&lt;command&gt; -h</code> for more informations about the command.
+available commands are:  </p>
+<ul>
+<li><code>lychee:exif_lens</code>: Get EXIF data from pictures if missing                                          </li>
+<li><code>lychee:reset_admin</code> : Reset Login and Password of the admin user.                                     </li>
+<li><code>lychee:logs</code> : Print the logs table.                                                           </li>
+<li><code>lychee:diagnostics</code> : Show the diagnostics informations.                                              </li>
+<li><code>lychee:decode_GPS_locations</code> : Decodes the GPS location data and adds street, city, country, etc. to the tags  </li>
+<li><code>lychee:generate_thumbs</code> : Generate intermediate thumbs if missing                                         </li>
+<li><code>lychee:video_data</code> : Generate video thumbnails and metadata if missing                               </li>
+<li><code>lychee:sync</code> : Sync a directory to lychee                                                      </li>
+<li><code>lychee:npm</code> : Launch npm on the public/src folder                                             </li>
+<li><code>lychee:takedate</code> : Make sure takedate is correct.                                                  </li>
+</ul>
+<p>use <code>php artisan lychee:&lt;command&gt; -h</code> for more informations about the command.
 For example: <code>php artisan lychee:logs</code> will display the last 100 logs (requires the database).</p>
 </blockquote>
 </li>

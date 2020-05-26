@@ -3,25 +3,64 @@
     display: inline-block;
     width: 7em;
 }
+
+.docs_main ul li p {
+  text-align: justify;
+}
+
+.docs_main ul li blockquote {
+  margin-top: 0.75em;
+  border-left: 1px dotted #ff2d20;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.docs_main ul li p ~ ul{
+  margin-top: -1em;
+}
+
+.docs_main ul li blockquote ul {
+    padding-left: 0.5em;
+}
 </style>
 
 ## Master branch
-
-<!-- - `new` #574 : jpeg for raw files.
-  > if a raw file is imported such as .nef, php-imagick will try to generate
-  > a thumbnail jpeg for it. -->
-- `new` #579 : Ghostbuster command to clean up dead symlinks
+- `new` #588 : add an option to the sync command to 're-sync' images that already exist.
+  > Since XMP sidecars are now allowed, images with the same checksum will not get
+  > updated metadata if the sidecar changes but the checksum remains the same. This
+  > adds an optional flag to the `lychee:sync` command that forces existing images
+  > with no change in checksum to get updated metadata from XMP files (if they exist).
+  > It only updates the image if the metadata read in differs from the metadata that
+  > the image aleady has.
+- `new` #599 : Added method to get the full path of albums.
+  > Specifically in the sharing screen, when albums are sometimes named the same
+  > (if they are organized by Year and Month), then it is impossible to tell which
+  > album you are actually sharing. This adds the ability to get the album's
+  > "full path" and sends it down for the sharing settings.
+- `fixes` #596 : Failing xmp file read results in fallback to native exif extraction.
+  > If the EXIF succeeds but sidecar fails, it reverts falls into the catch.
+- `new` #574 : Support of HEIC files and subsequently convert raw files (e.g. .NEF) into jpeg.
+  > if a raw file is imported such as .nef, php-imagick will try to generate a thumbnail jpeg for it.
+  > Note that the extension still needs to be added in your advanced settings.
+  > 
+  > **Important:** Lychee was never meant to convert RAW files such as .nef, .cr2 .arw etc.
+  > If you shoot RAW, it is to be able to change *exposure*, *dodge*&*burn*, *crop* etc. later in
+  > a proper image processing software such as Lightroom, > Photoshop, Capture One, Luminar, Darktable &hellip;
+  > otherwise you better shoot JPEG. Lychee does not intend to provide those functionality.
+- `new` #594 : Add debug bar for `dev` install.
+  > It is disabled by default, even in debug mode. To enable it, set `DEBUGBAR_ENABLED` to `true` in your `.env` file.
+- `new` #579 : Ghostbuster command to clean up dead symlinks.
   > The ghostbuster command also parses the database and see if some symlinks are dead.
   > It will delete the photo from the database in such case.
   > As this behaviour can modify the database, we disable it by default. 
-- `new` #577 : Parse additional xmp sidecars files to update metadata
+- `new` #577 : Parse additional xmp sidecars files to update metadata.
   > This reads in XMP sidecar files (if they exist).
   > Thankfully, exiftool supports reading in sidecars, so we can use the same
   > technique we're using to read the files. We merge both file and sidecar metadata,
   > taking priority based on user settings (default to prefer image metadata)
-- `fixes` #581 : Undefined property errors when migrating from 3.1.6
+- `fixes` #581 : Undefined property errors when migrating from 3.1.6.
   > The missing `license`, `lens` are now taken care off. 
-- `fixes` #565 : No Dropbox Import with Lychee 4.0.0
+- `fixes` #565 : No Dropbox Import with Lychee 4.0.0.
   > The CSP was a bit too tight, preventing the execution of the script from dropbox.
 
 ## Version 4
@@ -30,12 +69,12 @@
 
 Released May 15, 2020
 
-- `new` : Add RSS module.
+- `new` #551 : Add RSS module.
   > we provide a RSS feed, available at the `/rss` address.
   > it will contains the last `rss_max_items` (default: 100) over the last `rss_recent_days` (default: 7) days.
-- `fixes` #557 : report files not imported by sync
+- `fixes` #557 : report files not imported by sync.
   > When using the command `lychee:sync` if a file is not imported for some reason, the Log will contains more detailed information instead of just an error message.
-- `fixes` #550 : Version 4.0.4 database is not updated
+- `fixes` #550 : Version 4.0.4 database is not updated.
   > Simply forgot to add the bump version.
 - `fixes` #460 : Wrong rotation of photos when imported from server via symlink.
   > thumbnails are now also rotated in the proper direction.
@@ -44,10 +83,10 @@ Released May 15, 2020
 
 Released May 11, 2020
 
-- `new` : More idiot proof safeties (and avoid some 404 errors complaints).
+- `new` #543 : More idiot proof safeties (and avoid some 404 errors complaints).
   > - We add a check in the public directory that composer has indeed been run.
   > - We add a check that if apache is being used, the rewrite module is enabled (avoid silly 404 error when redirected to `/install`).
-- `new` : Better support for SQLite
+- `new` #541 : Better support for SQLite
   > We create a file in `database/database.sqlite` to avoid issues in the case where some user decides to use this type of database without giving a path. 
 - `fixes` #539 : Invalid exif geolocation causes db error
   >  We now check that the latitude is between -90 and 90 degrees, we also check that the longitude is between -180 and 180 degrees. Any other values are discarded.
@@ -65,9 +104,10 @@ Released April 29, 2020
 
 - `fixes` #498 remove Lychee-front version number alltogether
   > add Diagnostic information:
-    - Composer install type
-    - release type (git vs release)
-    - add button to allow migration for users using the release channel instead of master.
+  > 
+  > - Composer install type
+  > - release type (git vs release)
+  > - add button to allow migration for users using the release channel instead of master.
 - `fixes` #508
   > Diagnostic was checking the existence of mysqli only if postgresql is not used. With the added support of SQLite we now thoroughly check each possibilities.
 - `fixes` #510
@@ -143,19 +183,19 @@ Released April 18, 2020
   > Add support to 32 bits version of PHP (even though we don't like it).
 - `new` : Provide command line access from server side
   > This should replace the use of `lycheeupload`, `lycheesync`, `lychee-create-medium`
-  > available commands are:
-  >  ```
-  >  lychee:exif_lens            Get EXIF data from pictures if missing                                          
-  >  lychee:reset_admin          Reset Login and Password of the admin user.                                     
-  >  lychee:logs                 Print the logs table.                                                           
-  >  lychee:diagnostics          Show the diagnostics informations.                                              
-  >  lychee:decode_GPS_locations Decodes the GPS location data and adds street, city, country, etc. to the tags  
-  >  lychee:generate_thumbs      Generate intermediate thumbs if missing                                         
-  >  lychee:video_data           Generate video thumbnails and metadata if missing                               
-  >  lychee:sync                 Sync a directory to lychee                                                      
-  >  lychee:npm                  Launch npm on the public/src folder                                             
-  >  lychee:takedate             Make sure takedate is correct.                                                  
-  >  ```
+  > available commands are:  
+  >  
+  >  - `lychee:exif_lens`: Get EXIF data from pictures if missing                                          
+  >  - `lychee:reset_admin` : Reset Login and Password of the admin user.                                     
+  >  - `lychee:logs` : Print the logs table.                                                           
+  >  - `lychee:diagnostics` : Show the diagnostics informations.                                              
+  >  - `lychee:decode_GPS_locations` : Decodes the GPS location data and adds street, city, country, etc. to the tags  
+  >  - `lychee:generate_thumbs` : Generate intermediate thumbs if missing                                         
+  >  - `lychee:video_data` : Generate video thumbnails and metadata if missing                               
+  >  - `lychee:sync` : Sync a directory to lychee                                                      
+  >  - `lychee:npm` : Launch npm on the public/src folder                                             
+  >  - `lychee:takedate` : Make sure takedate is correct.                                                  
+  >  
   > use `php artisan lychee:<command> -h` for more informations about the command.
   > For example: `php artisan lychee:logs` will display the last 100 logs (requires the database).
 
