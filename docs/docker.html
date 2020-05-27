@@ -270,7 +270,8 @@ lycheeorg/lychee
 <li>1 &mdash; Take the <a href="https://github.com/LycheeOrg/Lychee-Docker/blob/master/default.conf">default.conf</a> file as a base</li>
 <li>2 &mdash; Find the line starting by <code>fastcgi_param PHP_VALUE [...]</code></li>
 <li>3 &mdash; Add a new line and set your new parameter</li>
-<li>4 &mdash; Mount your new file to <code>/etc/nginx/nginx.conf</code></li>
+<li>4 &mdash; Add or change any other parameters (e.g. <code>client_max_body_size</code>)</li>
+<li>5 &mdash; Mount your new file to <code>/etc/nginx/nginx.conf</code></li>
 </ul>
                         </section>
                     </section>

@@ -84,4 +84,5 @@ Instead, we recommend to use the `PHP_VALUE` directive of PHP-FPM to override sp
 * 1 &mdash; Take the [default.conf](https://github.com/LycheeOrg/Lychee-Docker/blob/master/default.conf) file as a base
 * 2 &mdash; Find the line starting by `fastcgi_param PHP_VALUE [...]`
 * 3 &mdash; Add a new line and set your new parameter
-* 4 &mdash; Mount your new file to `/etc/nginx/nginx.conf`
+* 4 &mdash; Add or change any other parameters (e.g. `client_max_body_size`)
+* 5 &mdash; Mount your new file to `/etc/nginx/nginx.conf`
