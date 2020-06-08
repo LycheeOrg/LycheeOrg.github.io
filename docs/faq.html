@@ -195,7 +195,7 @@
 <li><a href="#which-browsers-are-supported">Which browsers are supported?</a></li>
 <li><a href="#which-file-formats-are-supported">Which file formats are supported?</a></li>
 <li><a href="#what-is-new">What is new?</a></li>
-<li><a href="#how-can-i-easily-contact-the-lycheeorg-organization">How can I easily contact the LycheeOrg organization ?</a></li>
+<li><a href="#how-can-i-easily-contact-the-lycheeorg-organization">How can I easily contact the LycheeOrg organization?</a></li>
 <li><a href="#how-can-i-set-thumbnails-for-my-albums">How can I set thumbnails for my albums?</a></li>
 <li><a href="#is-it-possible-to-create-folders-inside-another-folder-if-so-how-to-do-that">Is it possible to create folders inside another folder? If so, how to do that?</a></li>
 <li><a href="#what-headers-need-to-be-used-to-authenticate-with-the-custom-api_key-in-the-settings">What headers need to be used to authenticate with the custom api_key in the settings?</a></li>
@@ -216,11 +216,12 @@
 </ul>
 </li>
 <li><a href="#installation-migration-upgrade-update">Installation, migration, upgrade, update</a><ul>
-<li><a href="#how-can-i-install-lychee-without-ssh-access">How can I install Lychee without SSH access ?</a></li>
+<li><a href="#how-can-i-install-lychee-without-ssh-access">How can I install Lychee without SSH access?</a></li>
 <li><a href="#how-do-i-upgrade-from-lychee-v3-to-lychee-v4">How do I upgrade from Lychee v3 to Lychee v4?</a></li>
 <li><a href="#how-can-i-back-up-my-installation">How can I back up my installation?</a></li>
 <li><a href="#how-can-i-migrate-my-installation-to-a-new-host">How can I migrate my installation to a new host?</a></li>
 <li><a href="#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee">Can I host Lychee with a subpath with Nginx? Like https://example.dev/lychee/</a></li>
+<li><a href="#can-i-host-lychee-with-a-subpath-with-apache-like-httpsexampledevlychee">Can I host Lychee with a subpath with Apache? Like https://example.dev/lychee/</a></li>
 <li><a href="#do-we-really-need-writable-app">Do we really need writable app/?</a></li>
 <li><a href="#is-it-possible-to-do-the-update-directly-from-the-gui-how">Is it possible to do the update directly from the GUI? How?</a></li>
 <li><a href="#can-i-migrate-from-a-64-bit-system-to-a-32-bit-system">Can I migrate from a 64-bit system to a 32-bit system?</a></li>
@@ -230,9 +231,11 @@
 </li>
 <li><a href="#problems">Problems</a><ul>
 <li><a href="#lychee-is-not-working">Lychee is not working</a></li>
-<li><a href="#when-i-do-x-i-get-an-error-api-not-found-what-can-i-do">When I do X, I get an error api not found, what can I do ?</a></li>
-<li><a href="#i-have-an-error-404-what-can-i-do">I have an error 404, what can I do ?</a></li>
-<li><a href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do ?</a></li>
+<li><a href="#when-i-do-x-i-get-an-error-api-not-found-what-can-i-do">When I do X, I get an error api not found, what can I do?</a></li>
+<li><a href="#i-have-an-error-404-and-im-using-apache-what-can-i-do">I have an error 404 and I'm using Apache, what can I do?</a></li>
+<li><a href="#i-have-an-error-404-and-im-using-nginx-what-can-i-do">I have an error 404 and I'm using Nginx, what can I do?</a></li>
+<li><a href="#i-have-an-error-404-and-im-using-php-s-what-can-i-do">I have an error 404 and I'm using php -S, what can I do?</a></li>
+<li><a href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do?</a></li>
 <li><a href="#i-have-an-errror-419-in-the-network-tab-what-is-going-on">I have an errror 419 in the Network tab, what is going on?</a></li>
 <li><a href="#i-cant-upload-photos">I can't upload photos.</a></li>
 <li><a href="#what-does-upstream-sent-too-big-header-error-message-mean">What does Upstream sent too big header error message mean?</a></li>
@@ -251,7 +254,7 @@
 <p>If you're uploading video files, make sure to increase your upload limits in <code>php.ini</code>.  See the <a href="installation.html">Install</a> section for more information.</p>
 <h3 id="what-is-new"><a class="toclink" href="#what-is-new">What is new?</a></h3>
 <p>Take a look at the <a href="Changelog">Changelog</a> to see what's new.</p>
-<h3 id="how-can-i-easily-contact-the-lycheeorg-organization"><a class="toclink" href="#how-can-i-easily-contact-the-lycheeorg-organization">How can I easily contact the LycheeOrg organization ?</a></h3>
+<h3 id="how-can-i-easily-contact-the-lycheeorg-organization"><a class="toclink" href="#how-can-i-easily-contact-the-lycheeorg-organization">How can I easily contact the LycheeOrg organization?</a></h3>
 <p>There is a gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby</p>
 <h3 id="how-can-i-set-thumbnails-for-my-albums"><a class="toclink" href="#how-can-i-set-thumbnails-for-my-albums">How can I set thumbnails for my albums?</a></h3>
 <p>Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the <a href="Settings#sorting">Settings</a>. <em>Precedence is given to starred photos</em>. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.</p>
@@ -310,7 +313,7 @@ php artisan lychee:logs clean
 </code></pre>
 
 <h3 id="how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare"><a class="toclink" href="#how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare">How can I see the correct client IP address when running Lychee behind Cloudflare?]</a></h3>
-<p>Please see https://github.com/monicahq/laravel-cloudflare. The Lychee file that needs changing can be found <a href="https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/TrustProxies.php">here</a>.</p>
+<p>Please see <a href="https://github.com/monicahq/laravel-cloudflare">https://github.com/monicahq/laravel-cloudflare</a>. The Lychee file that needs changing can be found <a href="https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/TrustProxies.php">here</a>.</p>
 <h3 id="can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums"><a class="toclink" href="#can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums">Can I set up Lychee to watch a folder for new images and automatically add them to albums?</a></h3>
 <p>Lychee can import photos from the command line using <code>php artisan lychee:sync /path/to/import</code>. Folders in this path will be converted to albums, and subfolders as subalbums using <code>php artisan lychee:sync /path/to/import --album_id="album ID"</code>.</p>
 <p>This command can be scheduled using <code>cron</code> or a systemd timer.</p>
@@ -330,7 +333,7 @@ man systemd.timer
 And yes the right-click menu is available on the <em>PhD Defenses</em> part but not in the <em>Admin</em> parts.
 Also because this user has upload right, he can see the <em>Unsorted, Public, Starred, Recent</em> smart albums. </p>
 <h2 id="installation-migration-upgrade-update"><a class="toclink" href="#installation-migration-upgrade-update">Installation, migration, upgrade, update</a></h2>
-<h3 id="how-can-i-install-lychee-without-ssh-access"><a class="toclink" href="#how-can-i-install-lychee-without-ssh-access">How can I install Lychee without SSH access ?</a></h3>
+<h3 id="how-can-i-install-lychee-without-ssh-access"><a class="toclink" href="#how-can-i-install-lychee-without-ssh-access">How can I install Lychee without SSH access?</a></h3>
 <ul>
 <li>1 &mdash; Download the latest release.</li>
 <li>2 &mdash; Extract and upload the folder via ftp.</li>
@@ -390,6 +393,9 @@ location @lychee {
 
 </code></pre>
 
+<h3 id="can-i-host-lychee-with-a-subpath-with-apache-like-httpsexampledevlychee"><a class="toclink" href="#can-i-host-lychee-with-a-subpath-with-apache-like-httpsexampledevlychee">Can I host Lychee with a subpath with Apache? Like <code>https://example.dev/lychee/</code></a></h3>
+<p>Yes, just create a Symbolic Link and allow your apache configuration to follow them.
+At website.com root <code>ln -s Lychee/public pics</code> and you will get exactly what you want: <code>website.com/pics</code></p>
 <h3 id="do-we-really-need-writable-app"><a class="toclink" href="#do-we-really-need-writable-app">Do we really need writable <code>app/</code>?</a></h3>
 <p>From <a href="https://github.com/LycheeOrg/Lychee/issues/311">#311</a></p>
 <p>Short answer: Lychee will work without a writable <code>app/</code> folder.</p>
@@ -441,19 +447,29 @@ If it breaks (error 500) you can still go back to command line and do your <code
 <h3 id="lychee-is-not-working"><a class="toclink" href="#lychee-is-not-working">Lychee is not working</a></h3>
 <p>If Lychee is not working properly, try to open <code>https://lychee.example.com/Diagnostics</code>. This script will display all errors it can find.</p>
 <p>Another way to see this screen is to use the command: <code>php artisan lychee:diagnostics</code></p>
-<h3 id="when-i-do-x-i-get-an-error-api-not-found-what-can-i-do"><a class="toclink" href="#when-i-do-x-i-get-an-error-api-not-found-what-can-i-do">When I do X, I get an error api not found, what can I do ?</a></h3>
+<h3 id="when-i-do-x-i-get-an-error-api-not-found-what-can-i-do"><a class="toclink" href="#when-i-do-x-i-get-an-error-api-not-found-what-can-i-do">When I do X, I get an error api not found, what can I do?</a></h3>
 <p>Open the dev modules of your browser (usually by pressing <code>F12</code>) and open the Network tab.
 Redo the action with Network tab open and look at the response of the last query (most likely a red line).
 If it is an error 404 or 500, see below, otherwise look at our <a href="https://github.com/LycheeOrg/Lychee/issues">issue</a> (including the closed ones).
 If nothing helps, don't hesitate to open a new one.</p>
-<h3 id="i-have-an-error-404-what-can-i-do"><a class="toclink" href="#i-have-an-error-404-what-can-i-do">I have an error 404, what can I do ?</a></h3>
+<h3 id="i-have-an-error-404-and-im-using-apache-what-can-i-do"><a class="toclink" href="#i-have-an-error-404-and-im-using-apache-what-can-i-do">I have an error 404 and I'm using Apache, what can I do?</a></h3>
 <p>Verify that the rewrite rules of your server are correctly applied. See <a href="upgrade.html#using-apache">here</a>.</p>
-<h3 id="i-have-an-error-500-what-can-i-do"><a class="toclink" href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do ?</a></h3>
+<h3 id="i-have-an-error-404-and-im-using-nginx-what-can-i-do"><a class="toclink" href="#i-have-an-error-404-and-im-using-nginx-what-can-i-do">I have an error 404 and I'm using Nginx, what can I do?</a></h3>
+<p>Verify that the rewrite rules of your server are correctly applied. See <a href="upgrade.html#using-nginx">here</a>.</p>
+<h3 id="i-have-an-error-404-and-im-using-php-s-what-can-i-do"><a class="toclink" href="#i-have-an-error-404-and-im-using-php-s-what-can-i-do">I have an error 404 and I'm using php -S, what can I do?</a></h3>
+<p>Instead of doing <code>php -S 127.0.0.1:8888</code> inside <code>Lychee/public</code> do <code>php artisan serve --port=8888</code> inside Lychee.
+This will ensure that the paths and routes are correctly followed.</p>
+<blockquote>
+<p>{note} Note that the <code>serve</code> command should only be used for testing and debuging. It should not be used on a production server.</p>
+</blockquote>
+<h3 id="i-have-an-error-500-what-can-i-do"><a class="toclink" href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do?</a></h3>
 <p>Edit the <code>.env</code> file and set <code>APP_DEBUG</code> to <code>true</code>, this will allow the errors to be displayed with the trace.</p>
 <h3 id="i-have-an-errror-419-in-the-network-tab-what-is-going-on"><a class="toclink" href="#i-have-an-errror-419-in-the-network-tab-what-is-going-on">I have an errror 419 in the Network tab, what is going on?</a></h3>
 <p>Verify that your <code>SESSION_DRIVER</code> is not <code>array</code>. With <code>array</code>, the data is stored a non-persisting PHP array, it is only meant for testing !
 More <a href="https://laracasts.com/discuss/channels/general-discussion/how-does-cache-driver-array-work">here</a>.<br />
 Prefer <code>file</code> or <code>database</code> (but that last one require some <a href="https://laravel.com/docs/7.x/session#driver-prerequisites">more configuration</a>)</p>
+<p>Warning
+<code>php -S</code> web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.</p>
 <h3 id="i-cant-upload-photos"><a class="toclink" href="#i-cant-upload-photos">I can't upload photos.</a></h3>
 <p>If you experience problems uploading large photos, you might want to change the PHP parameters in <code>.htaccess</code> (if you are using the PHP Apache module) or in <code>.user.ini</code> (if you are using PHP &gt;= 7.3 with CGI or FastCGI).</p>
 <blockquote>

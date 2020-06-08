@@ -13,7 +13,7 @@ If you're uploading video files, make sure to increase your upload limits in `ph
 ### What is new?
 Take a look at the [Changelog](Changelog) to see what's new.
 
-### How can I easily contact the LycheeOrg organization ?
+### How can I easily contact the LycheeOrg organization?
 There is a gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby
 
 ### How can I set thumbnails for my albums?
@@ -104,7 +104,7 @@ php artisan lychee:logs clean
 
 ### How can I see the correct client IP address when running Lychee behind Cloudflare?]
 
-Please see https://github.com/monicahq/laravel-cloudflare. The Lychee file that needs changing can be found [here](https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/TrustProxies.php).
+Please see [https://github.com/monicahq/laravel-cloudflare](https://github.com/monicahq/laravel-cloudflare). The Lychee file that needs changing can be found [here](https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/TrustProxies.php).
 
 ### Can I set up Lychee to watch a folder for new images and automatically add them to albums?
 
@@ -135,10 +135,11 @@ Also because this user has upload right, he can see the _Unsorted, Public, Starr
 
 
 
+
 ## Installation, migration, upgrade, update
 
 
-### How can I install Lychee without SSH access ?
+### How can I install Lychee without SSH access?
 
 * 1 &mdash; Download the latest release.
 * 2 &mdash; Extract and upload the folder via ftp.
@@ -202,6 +203,11 @@ location @lychee {
 
 ```
 
+### Can I host Lychee with a subpath with Apache? Like `https://example.dev/lychee/`
+
+Yes, just create a Symbolic Link and allow your apache configuration to follow them.
+At website.com root `ln -s Lychee/public pics` and you will get exactly what you want: `website.com/pics`
+
 ### Do we really need writable `app/`?
 
 From [#311](https://github.com/LycheeOrg/Lychee/issues/311)
@@ -262,6 +268,8 @@ We've set composer to install git `pre-commit` and `post-merge` hooks by default
 - The post-merge ensures that your dependencies and database version are kept current. This can be disabled by creating a file `.NO_AUTO_COMPOSER_MIGRATE` in your Lychee root and deleting (if necessary) `.git/hooks/post-merge`. If you disable this script, you will need to run `composer` and `artisan migrate` manually. Alternatively, the Update UI can be set to handle this if you run your updates there.
 
 
+
+
 ## Problems
 
 ### Lychee is not working
@@ -269,18 +277,29 @@ If Lychee is not working properly, try to open `https://lychee.example.com/Diagn
 
 Another way to see this screen is to use the command: `php artisan lychee:diagnostics`
 
-### When I do X, I get an error api not found, what can I do ?
+### When I do X, I get an error api not found, what can I do?
 
 Open the dev modules of your browser (usually by pressing `F12`) and open the Network tab.
 Redo the action with Network tab open and look at the response of the last query (most likely a red line).
 If it is an error 404 or 500, see below, otherwise look at our [issue](https://github.com/LycheeOrg/Lychee/issues) (including the closed ones).
 If nothing helps, don't hesitate to open a new one.
 
-### I have an error 404, what can I do ?
+### I have an error 404 and I'm using Apache, what can I do?
 
 Verify that the rewrite rules of your server are correctly applied. See [here](upgrade.html#using-apache).
 
-### I have an error 500, what can I do ?
+### I have an error 404 and I'm using Nginx, what can I do?
+
+Verify that the rewrite rules of your server are correctly applied. See [here](upgrade.html#using-nginx).
+
+### I have an error 404 and I'm using php -S, what can I do?
+
+Instead of doing `php -S 127.0.0.1:8888` inside `Lychee/public` do `php artisan serve --port=8888` inside Lychee.
+This will ensure that the paths and routes are correctly followed.
+
+> {note} Note that the `serve` command should only be used for testing and debuging. It should not be used on a production server.
+
+### I have an error 500, what can I do?
 
 Edit the `.env` file and set `APP_DEBUG` to `true`, this will allow the errors to be displayed with the trace.
 
@@ -290,6 +309,8 @@ Verify that your `SESSION_DRIVER` is not `array`. With `array`, the data is stor
 More [here](https://laracasts.com/discuss/channels/general-discussion/how-does-cache-driver-array-work).  
 Prefer `file` or `database` (but that last one require some [more configuration](https://laravel.com/docs/7.x/session#driver-prerequisites))
 
+Warning
+`php -S` web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.
 
 ### I can't upload photos.
 If you experience problems uploading large photos, you might want to change the PHP parameters in `.htaccess` (if you are using the PHP Apache module) or in `.user.ini` (if you are using PHP >= 7.3 with CGI or FastCGI).
