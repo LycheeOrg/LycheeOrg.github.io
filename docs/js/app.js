@@ -2,6 +2,13 @@ require(['js/vendor/prism.js']);
 
 $(document).ready(function() {
     $('.navigation_contain').show();
+
+    // Navigation Menu opener for small screens...
+    $(".nav_trigger").click(function(e) {
+        e.preventDefault();
+        $("html").toggleClass("nav--on");
+        $(".bar").toggleClass("animate");
+    });
 });
 
 // var current = $('.docs_sidebar ul').find('li a[href="' + window.location.pathname + '"]');
