@@ -115,3 +115,5 @@ location / {
   try_files $uri $uri/ /index.php?$query_string;
 }
 ```
+
+[1]: https://lycheeorg.github.io/docs/installation.html#server-requirements

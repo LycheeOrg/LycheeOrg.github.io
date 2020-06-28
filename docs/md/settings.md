@@ -68,7 +68,7 @@ Determines if an overlay with metadata is displayed at the bottom of the screen 
 * _Photo description_
 * _Photo date taken_
 
-Note that these settings determine the defaults but the person viewing the gallery is free to override them. The overlay can be toggled on/off by clicking on the image in the photo view, and the data displayed can be changed using the `o` [keyboard shortcut](../Keyboard-Shortcuts).
+Note that these settings determine the defaults but the person viewing the gallery is free to override them. The overlay can be toggled on/off by clicking on the image in the photo view, and the data displayed can be changed using the `o` [keyboard shortcut](Keyboard-Shortcuts).
 
 ### Maps
 
