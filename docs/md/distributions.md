@@ -174,7 +174,7 @@ We give the reader a link to their websites as they provide our software.
 You are free to use their installation, however we will not be providing you support with their solution.
 
 
-## With Cloudron (Princing)
+## With Cloudron (Paid)
 
 Cloudron is a complete solution for running apps on your server and keeping them up-to-date and secure.
 
