@@ -73,7 +73,7 @@ function replacer_e(match, p1, offset, string) {
     return "<a onclick=\"alert('Destination is dead (404).');\" style=\"cursor: pointer;\">&sharp;" + p1 + "</a>";
 }
 
-$('.docs_main ul li').each(function() {
+$('.docs_main ul li, .issuelinks').each(function() {
     var str = $(this).html();
     str = str.replace(/e\#([0-9]+)/g, replacer_e);
     str = str.replace(/3\#([0-9]+)/g, replacer_v3);

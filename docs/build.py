@@ -29,17 +29,14 @@ pages_title['read-more'] = 'Lychee logic overview'
 pages_title['update'] = 'Update'
 pages_title['node'] = 'Front-end'
 pages_title['org'] = 'Lychee & LycheeOrg'
-pages_title['testing-platform'] = 'Working with VirtualBox'
+pages_title['distributions'] = 'Distributions Examples'
 
 structure = [['Prologue',
               ['org', 'releases', 'upgrade', 'contributions', 'api', 'faq']]]
 structure += [['Getting Started',
                ['installation', 'configuration', 'docker', 'update']]]
 structure += [['Digging Deeper',
-               #    ['settings', 'keyboard', 'read-more', 'structure', 'node']]]
-               ['settings', 'keyboard', 'read-more', 'structure', 'node', 'testing-platform']]]
-# structure += [['Development Setup',
-#                []]]
+               ['settings', 'keyboard', 'read-more', 'structure', 'node', 'distributions']]]
 
 
 def gen_sidebar(page):

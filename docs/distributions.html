@@ -52,7 +52,7 @@
 <ul>
 <li><a href='org.html'>Lychee & LycheeOrg</a></li>
 <li><a href='releases.html'>Release Notes</a></li>
-<li class='active'><a href='upgrade.html'>Upgrade from v3</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
 <li><a href='contributions.html'>Contribution Guide</a></li>
 <li><a href='api.html'>API Documentation</a></li>
 <li><a href='faq.html'>Frequently Asked Question</a></li>
@@ -73,7 +73,7 @@
 <li><a href='read-more.html'>Lychee logic overview</a></li>
 <li><a href='structure.html'>Directory Structure</a></li>
 <li><a href='node.html'>Front-end</a></li>
-<li><a href='distributions.html'>Distributions Examples</a></li>
+<li class='active'><a href='distributions.html'>Distributions Examples</a></li>
 </ul>
 
                                     <!-- <li>
@@ -188,65 +188,125 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>Upgrade from v3</h1>
+                            <h1>Distributions Examples</h1>
                             
 <ul>
-<li><a href="#checking-requirements">Checking requirements</a></li>
-<li><a href="#preparing-the-files">Preparing the files</a></li>
-<li><a href="#preparing-the-server">Preparing the server</a><ul>
-<li><a href="#using-apache">Using Apache</a></li>
-<li><a href="#using-nginx">Using Nginx</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#separating-data-from-the-code">Separating Data from the Code</a></li>
+<li><a href="#virutal-box-with-visual-studio-code">Virutal Box with Visual Studio Code</a><ul>
+<li><a href="#set-up-port-forwarding">Set Up &amp; Port Forwarding</a></li>
+<li><a href="#apache-and-proxy-in-the-host">Apache and Proxy in the Host</a></li>
+<li><a href="#apache-in-the-guest">Apache in the Guest</a></li>
+<li><a href="#visual-studio-code">Visual Studio Code</a></li>
 </ul>
 </li>
+<li><a href="#with-linuxserverio-free">With Linuxserver.io (Free)</a></li>
+<li><a href="#with-cloudron-princing">With Cloudron (Princing)</a></li>
 </ul>
- <hr> <h2 id="checking-requirements"><a class="toclink" href="#checking-requirements">Checking requirements</a></h2>
-<p>Check that the server satisfifes the <a href="https://lycheeorg.github.io/docs/installation.html#server-requirements">requirements</a>, in particular pay attention the php extensions.
-You can display them by using <code>phpinfo()</code>.</p>
-<h2 id="preparing-the-files"><a class="toclink" href="#preparing-the-files">Preparing the files</a></h2>
-<p>Assuming the following tree:</p>
-<pre><code>/var/
-  |- www/
-         |- html/
-              |- Lychee/
-              |- &lt;you are here&gt;
+ <hr> <div class="issuelinks">
+<h2 id="introduction"><a class="toclink" href="#introduction">Introduction</a></h2>
+<p>In this page we describe additional ways to install and potentially to develop on Lychee.</p>
+<h2 id="separating-data-from-the-code"><a class="toclink" href="#separating-data-from-the-code">Separating Data from the Code</a></h2>
+<p>As described in issue #486 , LudovicRousseau proposes a data-code separation way of installing Lychee.</p>
+<p>He splits Lychee itself and the pictures he has 2 directories:
+- <code>Lychee</code> with the code of Lychee
+- <code>Lychee-data</code> containing:</p>
+<pre><code>Lychee-data/
+└── public
+    ├── dist
+    │   ├── fonts
+    │   └── resources
+    └── uploads
+        ├── big
+        ├── import
+        ├── medium
+        ├── raw
+        ├── small
+        └── thumb
 </code></pre>
 
-<p>Rename Lychee into Lychee-v3:</p>
-<pre><code>mv Lychee Lychee-v3
-</code></pre>
-
-<p>Install Lychee files by either uploading the content of the released zip or cloning the repository:</p>
-<pre><code>git clone https://github.com/LycheeOrg/Lychee Lychee
-</code></pre>
-
-<p>Move the pictures from the version 3 to the newly created installation:</p>
-<pre><code>mv Lychee-v3/uploads/big/* Lychee/public/uploads/big/
-mv Lychee-v3/uploads/medium/* Lychee/public/uploads/medium/
-mv Lychee-v3/uploads/small/* Lychee/public/uploads/small/
-mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
-</code></pre>
-
-<h2 id="preparing-the-server"><a class="toclink" href="#preparing-the-server">Preparing the server</a></h2>
-<blockquote>
-<p>{note} The big difference between Lychee version 3 and Lychee version 4 is the served directory, i.e. where you webserver needs to point to.</p>
-</blockquote>
 <ul>
-<li>In the version 3, this was the root <code>.</code> of Lychee.</li>
-<li>In the version 4, this is the <code>public</code> directory inside Lychee.</li>
+<li>his <code>Lychee/.env</code> contains:</li>
 </ul>
-<h3 id="using-apache"><a class="toclink" href="#using-apache">Using Apache</a></h3>
-<p><strong>Make sure you have the module rewrite available and enabled: <code>a2enmod rewrite</code></strong>.</p>
-<p>Modify your <code>/etc/apache2/apache2.conf</code> to allow <code>.htaccess</code> to set up the rewrite rules:</p>
-<pre><code>&lt;Directory /var/www/html/Lychee&gt;
-    Options Indexes FollowSymLinks
-    AllowOverride All
-    Require all granted
-&lt;/Directory&gt;
+<pre><code>LYCHEE_DIST=&quot;/var/www/Lychee-data/public/dist/&quot;
+LYCHEE_UPLOADS=&quot;/var/www/Lychee-data/public/uploads/&quot;
 </code></pre>
 
-<p>Modify or create <code>example.com.conf</code> in <code>/etc/apache2/site-available/</code> to point out the served directory:</p>
+<blockquote>
+<p>{note} Note that the <strong>path needs to be absolute</strong>.</p>
+</blockquote>
+<p>The upgrade script when a new version of Lychee is available is simple:</p>
+<pre><code>mv Lychee Lychee.old
+unzip Lychee.zip
+cp Lychee.old/.env Lychee
+chmod g+w -R Lychee/storage
+sudo chgrp www-data -R Lychee/storage
+cd Lychee
+php artisan key:generate
+php artisan migrate
+</code></pre>
+
+<p>It worked fine with the migration from 4.0.4 to 4.0.5 of Lychee.</p>
+<p>The hierarchy <code>Lychee-data/public/</code> is writeable by the group <code>www-data</code> so that apache process can modify the files.
+The files in <code>Lychee</code> are read only for apache. No write access needed.</p>
+<h2 id="virutal-box-with-visual-studio-code"><a class="toclink" href="#virutal-box-with-visual-studio-code">Virutal Box with Visual Studio Code</a></h2>
+<ul>
+<li>Requires an Apache server with <code>proxy</code> and <code>proxy_http</code> enabled.</li>
+<li>Requires a Virtual Machine (using e.g. VirtualBox)</li>
+</ul>
+<h3 id="set-up-port-forwarding"><a class="toclink" href="#set-up-port-forwarding">Set Up &amp; Port Forwarding</a></h3>
+<p>Set up your VM as if you would install any server.</p>
+<p>Set up the following port forwarding:</p>
+<ul>
+<li><code>host:10180</code> &Rarr; <code>guest:80</code></li>
+<li><code>host:10122</code> &Rarr; <code>guest:22</code></li>
+</ul>
+<p>The first one will allow us to access the server from Local host, the second will allow us to connect to it via SSH.</p>
+<h3 id="apache-and-proxy-in-the-host"><a class="toclink" href="#apache-and-proxy-in-the-host">Apache and Proxy in the Host</a></h3>
+<p>Edit your <code>/etc/hosts</code> to contain:</p>
+<pre><code>127.0.0.1   lychee.test
+127.0.0.1   lycheeorg.test
+</code></pre>
+
+<p>Create configuration files in <code>/etc/apache2/sites-available</code>: <code>001-lychee-test.conf</code> and <code>002-lycheeorg-test.conf</code></p>
 <pre><code>&lt;VirtualHost *:80&gt;
-    ServerName example.com
+    ServerName lychee.test
+
+    ProxyPass / http://localhost:10180/
+    ProxyPassReverse / http://lychee.test/
+    ProxyPreserveHost On
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>and</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName lycheeorg.test
+
+    ProxyPass / http://localhost:10180/
+    ProxyPassReverse / http://lycheeorg.test/
+    ProxyPreserveHost On
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>Enable the sites and reload apache:</p>
+<pre><code>sudo a2ensite 001-lychee-test.conf
+sudo a2ensite 002-lycheeorg-test.conf
+sudo systemctl restart apache2
+</code></pre>
+
+<h3 id="apache-in-the-guest"><a class="toclink" href="#apache-in-the-guest">Apache in the Guest</a></h3>
+<p>In your guest OS, clone the Lychee repository (requires ssh key to be set up):</p>
+<pre><code>git clone git@github.com:LycheeOrg/Lychee.git /var/www/html/Lychee
+git clone git@github.con:LycheeOrg/LycheeOrg.github.io /var/www/html/LycheeOrg.github.io
+</code></pre>
+
+<p>Similarily in <code>/etc/apache2/sites-available</code> create 2 configuration files: <code>001-lychee.conf</code> and <code>002-lycheeorg.conf</code></p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName lychee.test
 
     DocumentRoot /var/www/html/Lychee/public
 
@@ -255,51 +315,47 @@ mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
 &lt;/VirtualHost&gt;
 </code></pre>
 
-<p>Enable the site:</p>
-<pre><code>a2ensite `example.com.conf`
+<p>and</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName lycheeorg.test
+
+    DocumentRoot /var/www/html/LycheeOrg.github.io
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
 </code></pre>
 
-<p>Restart apache2:</p>
-<pre><code>systemctl restart apache2
+<p>Enable the sites and reload apache:</p>
+<pre><code>sudo a2ensite 001-lychee-test.conf
+sudo a2ensite 002-lycheeorg-test.conf
+sudo systemctl restart apache2
 </code></pre>
 
-<p>Process with the </p>
-<h3 id="using-nginx"><a class="toclink" href="#using-nginx">Using Nginx</a></h3>
-<p>If you are using Nginx you may use the following as an example of set up:</p>
-<pre><code># serve static files directly
-location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
-  access_log off;
-  expires max;
-  log_not_found off;
-}
-
-# sets the limit on uploaded file sized
-client_max_body_size 50M;
-
-# removes trailing slashes (prevents SEO duplicate content issues)
-if (!-d $request_filename)
-{
-  rewrite ^/(.+)/$ /$1 permanent;
-}
-
-# enforce NO www
-if ($host ~* ^www\.(.*))
-{
-  set $host_without_www $1;
-  rewrite ^/(.*)$ $scheme://$host_without_www/$1 permanent;
-}
-
-# unless the request is for a valid file (image, js, css, etc.), send to bootstrap
-if (!-e $request_filename)
-{
-  rewrite ^/(.*)$ /index.php?/$1 last;
-  break;
-}
-
-location / {
-  try_files $uri $uri/ /index.php?$query_string;
-}
-</code></pre>
+<p>Open a browser on your host and navigate to <a href="http://lychee.test">http://lychee.test</a> and <a href="http://lycheeorg.test">http://lycheeorg.test</a> enjoy.</p>
+<h3 id="visual-studio-code"><a class="toclink" href="#visual-studio-code">Visual Studio Code</a></h3>
+<p>If you use <a href="https://code.visualstudio.com/">Visual Studio Code</a>, you can use the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">remote ssh extension</a>. It will allow you to directly edit your files in your VM without having to upload and download the files.</p>
+<h2 id="with-linuxserverio-free"><a class="toclink" href="#with-linuxserverio-free">With Linuxserver.io (Free)</a></h2>
+<p>Linuxserver.io is a group of like minded enthusiasts from across the world who build and maintain the largest collection of Docker images on the web,
+and at our core are the principles behind Free and Open Source Software.
+Their primary goal is to provide easy-to-use and streamlined Docker images with clear and concise documentation.</p>
+<p>You can find the corresponding Lychee image <a href="https://fleet.linuxserver.io/image?name=linuxserver/lychee">here</a>.</p>
+<blockquote>
+<p>{tip} Please note that we, at LycheeOrg, do not endorse LinuxServer.io.
+We give the reader a link to their websites as they provide our software.
+You are free to use their installation, however we will not be providing you support with their solution.</p>
+</blockquote>
+<h2 id="with-cloudron-princing"><a class="toclink" href="#with-cloudron-princing">With Cloudron (Princing)</a></h2>
+<p>Cloudron is a complete solution for running apps on your server and keeping them up-to-date and secure.</p>
+<p><a href="https://cloudron.io/store/com.electerious.lychee.cloudronapp.html"><img alt="Install" src="https://cloudron.io/img/button.svg" /></a></p>
+<p>The source code for the package can be found <a href="https://git.cloudron.io/cloudron/lychee-app">here</a>.</p>
+</div>
+<p>See their pricing <a href="https://cloudron.io/pricing.html">here</a>.</p>
+<blockquote>
+<p>{tip} Please note that we, at LycheeOrg, do not endorse Couldron.
+We give the reader a link to their websites as they provide our software.
+You are free to use their installation, however we will not be providing you support with their solution.</p>
+</blockquote>
                         </section>
                     </section>
                 </section>
