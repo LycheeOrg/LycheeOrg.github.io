@@ -6,8 +6,7 @@ In this page we describe additional ways to install and potentially to develop o
 
 ## Separating Data from the Code
 
-As described in issue #486 , LudovicRousseau proposes a data-code separation way of installing Lychee.
-
+As described in issue #486 , LudovicRousseau proposes a solution to separate your photo from the Lychee code.
 
 He splits Lychee itself and the pictures into 2 directories:
 - `Lychee` with the code of Lychee
