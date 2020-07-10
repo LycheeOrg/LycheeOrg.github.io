@@ -9,7 +9,7 @@ In this page we describe additional ways to install and potentially to develop o
 As described in issue #486 , LudovicRousseau proposes a data-code separation way of installing Lychee.
 
 
-He splits Lychee itself and the pictures he has 2 directories:
+He splits Lychee itself and the pictures into 2 directories:
 - `Lychee` with the code of Lychee
 - `Lychee-data` containing:
 ```
