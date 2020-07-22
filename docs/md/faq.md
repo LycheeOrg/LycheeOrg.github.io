@@ -364,3 +364,19 @@ COMPOSER_CACHE_DIR='/dev/null' composer update --working-dir='/var/www/Lychee'
 ### I can't access the users under settings server error or api not found on Lightspeed
 If you receive a server error or "api not found" error under lightspeed web server try going to `cPanel` > `Mod Security` and turning the feature off.
 
+### I know my file permissions for `storage`, `bootstrap/cache`, `public/uploads`, and `public/dist` are correct and accessible by my web server user, but I'm still getting a PHP error when writing to any of these directories.
+
+1. Make sure your PHP user and group is the same user and group as your web server by editing PHP's `www.conf`. For example, on a Fedora 32 Server system, the default user/group for php from Fedora's standard repo defaults to `apache`, even if you do not have Apache installed. 
+1. On some operating systems with more restrictive SELinux rules (like Fedora 32 Server at the time of writing), you need to set the SELinux security context of these directories for them to be accessible by your web server user: 
+```
+chcon -R -t httpd_sys_rw_content_t storage
+chcon -R -t httpd_sys_rw_content_t bootstrap/cache
+chcon -R -t httpd_sys_rw_content_t public/uploads
+chcon -R -t httpd_sys_rw_content_t public/dist
+```
+
+### I know port 80/443 are open on my machine, but Lychee/my server is still refusing all connections.
+On some operating systems with more restrictive SELinux rules (like Fedora 32 Server at the time of writing), you need to allow your web server user to connect over the network with `setsebool -P httpd_can_network_connect on`. You can view the status of your SELinux booleans with `getsebool -a`.
+
+### I know my SQL database is setup correctly, but Lychee is showing `SQLSTATE[HY000] [2002] No such file or directory` and is not able to make changes to the database. 
+In `/var/www/html/Lychee/.env`, change `DB_HOST=localhost` to `DB_HOST=127.0.0.1`. Additionally, if `DB_PORT=` is not set, it should be set to `DB_PORT=3306` for mysql/MariaDB's default port, or whatever custom port you selected when configuring your SQL server software after installation. 
