@@ -51,7 +51,7 @@ The hierarchy `Lychee-data/public/` is writeable by the group `www-data` so that
 The files in `Lychee` are read only for apache. No write access needed.
 
 
-## Virutal Box with Visual Studio Code
+## VirtualBox with Visual Studio Code
 
 - Requires an Apache server with `proxy` and `proxy_http` enabled.
 - Requires a Virtual Machine (using e.g. VirtualBox)
