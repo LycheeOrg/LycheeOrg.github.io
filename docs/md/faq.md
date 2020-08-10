@@ -362,5 +362,9 @@ COMPOSER_CACHE_DIR='/dev/null' composer update --working-dir='/var/www/Lychee'
 ```
 
 ### I can't access the users under settings server error or api not found on Lightspeed
+
 If you receive a server error or "api not found" error under lightspeed web server try going to `cPanel` > `Mod Security` and turning the feature off.
 
+### Why are there messages about git files in my logs? (e.g. `.git/HEAD): failed to open stream: No such file or directory`)
+
+Lychee checks for the presence of certain files to detect whether Lychee was installed as a git repository or from a release archive (.zip). It also uses them to determine which git commit is in use where applicable. This is included in the Diagnostics page to assist us in diagnosing issues.
