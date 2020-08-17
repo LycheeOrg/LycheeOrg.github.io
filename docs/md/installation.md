@@ -108,7 +108,7 @@ RewriteRule ^ index.php [L]
 ```
 
 #### Nginx
-Use the following configuration for Nginx.
+Use the following configuration (typically placed under `sites-available`) for Nginx.
 
 ```
 # Example Lychee 4 configuration server block for Nginx. To use, search for (1), (2), and (3) and alter these sections
