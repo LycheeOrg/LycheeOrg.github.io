@@ -1,7 +1,7 @@
 ## Checking requirements
 
-Check that the server satisfifes the [requirements][1], in particular pay attention the php extensions.
-You can display them by using `phpinfo()`.
+Check that the server satisfifes the [requirements](https://lycheeorg.github.io/docs/installation.html#server-requirements), in
+particular pay attention the php extensions. You can display them by using `phpinfo()`.
 
 ## Preparing the files
 
@@ -78,42 +78,4 @@ Process with the
 
 ### Using Nginx
 
-If you are using Nginx you may use the following as an example of set up:
-
-```
-# serve static files directly
-location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
-  access_log off;
-  expires max;
-  log_not_found off;
-}
-
-# sets the limit on uploaded file sized
-client_max_body_size 50M;
-
-# removes trailing slashes (prevents SEO duplicate content issues)
-if (!-d $request_filename)
-{
-  rewrite ^/(.+)/$ /$1 permanent;
-}
-
-# enforce NO www
-if ($host ~* ^www\.(.*))
-{
-  set $host_without_www $1;
-  rewrite ^/(.*)$ $scheme://$host_without_www/$1 permanent;
-}
-
-# unless the request is for a valid file (image, js, css, etc.), send to bootstrap
-if (!-e $request_filename)
-{
-  rewrite ^/(.*)$ /index.php?/$1 last;
-  break;
-}
-
-location / {
-  try_files $uri $uri/ /index.php?$query_string;
-}
-```
-
-[1]: https://lycheeorg.github.io/docs/installation.html#server-requirements
+See the Nginx section of the [installation instructions](https://lycheeorg.github.io/docs/installation.html#web-server-configuration).
