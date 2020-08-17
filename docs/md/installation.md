@@ -21,9 +21,10 @@ The Lychee gallery requires:
 
 Lychee also supports, but does not require:
 
-- MySQL/MariaDB, PostgreSQ, and, SQL Server databases. If no database is available, Lychee can be configured to use SQLite3.
-- FFMPEG PHP Extension (optional &mdash; to generate video thumbnails)
-- Imagick PHP Extension (optional &mdash; to generate better thumbnails)
+- Lychee can use either MySQL/MariaDB, PostgreSQL, or, SQL Server database backends. However, if no database is available,
+  Lychee can be configured to use SQLite3.
+- FFMPEG PHP Extension (used to generate video thumbnails)
+- Imagick PHP Extension (used to generate better thumbnails)
 
 Recommended, but not required:
 
