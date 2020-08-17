@@ -290,7 +290,7 @@ Verify that the rewrite rules of your server are correctly applied. See [here](u
 
 ### I have an error 404 and I'm using Nginx, what can I do?
 
-Verify that the rewrite rules of your server are correctly applied. See [here](upgrade.html#using-nginx).
+Verify that the rewrite rules of your server are correctly applied. See the Nginx section of the [installation instructions](https://lycheeorg.github.io/docs/installation.html#web-server-configuration).
 
 ### I have an error 404 and I'm using php -S, what can I do?
 
