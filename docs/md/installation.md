@@ -2,19 +2,15 @@
 
 ### Server Requirements
 
-The Lychee gallery has a few system requirements. You will need to make sure your server meets the following:
+The Lychee gallery requires:
 
-- A web server such as Apache or nginx
-- A Database access such as MySQL/MariaDB, PostgreSQL.  
-Lychee also comes with SQLite3 support.
-- PHP >= 7.3
+- A web server capable of serving PHP applications, such as Apache or Nginx.
+- PHP >= 7.3 with the following extensions:
 - BCMath PHP Extension
 - Ctype PHP Extension
 - Exif PHP Extension
-- Ffmpeg PHP Extension (optional &mdash; to generate video thumbnails)
 - Fileinfo PHP Extension
 - GD PHP Extension
-- Imagick PHP Extension (optional &mdash; to generate better thumbnails)
 - JSON PHP Extension
 - Mbstring PHP Extension
 - OpenSSL PHP Extension
@@ -23,11 +19,19 @@ Lychee also comes with SQLite3 support.
 - XML PHP Extension
 - ZIP PHP Extension
 
-While Lychee works on 32bit systems, we do recommend the use of a 64bit OS.
+Lychee also supports, but does not require:
+
+- MySQL/MariaDB, PostgreSQ, and, SQL Server databases. If no database is available, Lychee can be configured to use SQLite3.
+- FFMPEG PHP Extension (optional &mdash; to generate video thumbnails)
+- Imagick PHP Extension (optional &mdash; to generate better thumbnails)
+
+Recommended, but not required:
+
+- While Lychee works on 32bit systems, we do recommend the use of a 64bit OS.
 
 ### Installing Lychee
 
-We provide three methods to install Lychee; using Docker, from the latest release &mdash;simple unzip&mdash;, or from source &mdash;uses Composer.
+We provide three methods to install Lychee; using Docker, from the latest release &mdash;simple unzip&mdash;, or from source.
 
 #### With Docker
 
@@ -40,7 +44,7 @@ It contains a trimmed down version of the Lychee files.
 
 #### From the Master branch
 
-Lychee utilizes [Composer][1] to manage its dependencies. Make sure you have Composer installed on your machine.
+Lychee utilizes [Composer](https://getcomposer.org/) to manage its dependencies. Make sure you have Composer installed on your machine.
 
 ```
 git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
@@ -53,25 +57,25 @@ Install the required dependencies.
 ```
 composer install --no-dev
 ```
-If you want to help Lychee to develop, you can enable the dev option by simply removing the `--no-dev`.
+If you want to help develop Lychee, you can enable development features by removing the `--no-dev`.
 
 
 ### Configuration
 
 #### Public Directory
-After installing Lychee, you should configure your web server's document / web root to be the `public` directory. The `index.php` in this directory serves as the front controller for all HTTP requests entering your application.
+After installing Lychee, configure your web server's document / web root to be the `public` directory. The `index.php` in this directory serves as the front controller for all HTTP requests entering your application.
 
 #### Configuration Files
 All of the configuration files for Lychee are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
 
 #### Directory Permissions
-After installing Lychee, you need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Lychee will not run. Additionaly `public/dist`, `public/uploads` and `public/sym` needs to be writable for you to be able to change the CSS,
-upload photos, generate symbolic links to protect the originals.
+After installing Lychee, you need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Lychee will not run. Additionaly `public/dist`, `public/uploads` and `public/sym` needs to be writable for you to be able to change the CSS, upload photos, generate symbolic links to protect the originals.
 
 #### Application Key
 The next thing you should do after installing Lychee is set your application key to a random string. This is easily done by using the `php artisan key:generate` command.
 
 Typically, this string should be 32 characters long. The key can be set in the `.env` environment file. If you have not copied the `.env.example` file to a new file named `.env`, you should do that now.
+
 **If the application key is not set, your user sessions and other encrypted data will not be secure!**
 
 #### Additional Configuration
@@ -83,11 +87,6 @@ You may also want to configure a few additional components of Lychee, such as:
 - Session
 
 ## Web Server Configuration
-
-### Directory Configuration
-Lychee should always be served out of the root of the "web directory" configured for your web server. You should not attempt to serve a Lychee out of a subdirectory of the "web directory". Attempting to do so could expose sensitive files present within your installation (e.g. `.env`).
-
-### Pretty URLs
 
 #### Apache
 
@@ -108,12 +107,111 @@ RewriteRule ^ index.php [L]
 ```
 
 #### Nginx
-If you are using Nginx, the following directive in your site configuration will direct all requests to the `index.php` front controller:
+Use the following configuration for Nginx.
 
 ```
-location / {
-    try_files $uri $uri/ /index.php?$query_string;
+# Example Lychee 4 configuration server block for Nginx. To use, search for (1), (2), and (3) and alter these sections
+# to match your configuration. With the exception of the optional settings at the bottom of this file, nothing else
+# needs to be modified.
+
+server {
+    #Required: Nginx listen and server_name configuration. If TLS support is required, use LetsEncrypt certbot, which
+    #(1)       will acquire certificates and make the required configuration changes to support TLS automatically.
+    
+    listen 80;
+    server_name <mydomain>.<tld>;
+    
+    #Required: root path of Lychee public/ directory. This is the directory that contains index.php and a only few
+    #(2)       subdirectories, not the git root directory that contains readme.md (etc).
+    
+    root /var/www/lychee/public/;
+    
+    #Optional, but highly recommended: ensure directory listings are disabled. This is the Nginx default, but better
+    #                                  safe than sorry if the default has been changed.
+    autoindex off;
+    
+    #Required: the front-end expects to find icons and other graphical resources in /Lychee-front/images/ but the
+    #          git repo path structure places these resources in /img/. Rewrite requests to the correct path.
+    #          !!! Do not modify unless you know what you're doing. !!!
+
+    location  /Lychee-front/images/ { rewrite ^/Lychee-front/images/(.*)$ /img/$1 last; }
+
+    #Required: the front end sends some requests to the the back-end via POST requests sent to /php/index.php,
+    #          but this file is actually /index.php. Rewrite requests to the correct path.
+    #          !!! Do not modify unless you know what you're doing. !!!
+    
+    location = /php/index.php { rewrite ^/(.*)$ /index.php?/$1 last; }
+
+    #Required: the front end sends most requests to the back end via POST requests sent to endpoints in /api.
+    #          Rewrite these requests so they reach /index.php
+    #          !!! Do not modify unless you know what you're doing. !!!
+    
+    location ^~ /api/ { rewrite ^(.*)$ /index.php?/$1 last; }
+
+    #Required: Serve requests for / to index.php (via index directive), otherwise serve files with the specified
+    #          extensions directly. Return 404 for all other file extensions to prevent any erroneously placed
+    #          files from leaking.
+    #          !!! Do not modify unless you know what you're doing. !!!
+    
+    location ~* ^\/$|\.(jpg|jpeg|gif|css|png|js|ico|html|txt|svg)$ { index index.php; }
+    location / { return 404; }
+
+    #Required: serve /index.php through php. Restricting this location block to Lychee's only php endpoint provides
+    #(3)       defense-in-depth against malicious php scripts being executed by an attacker. This block must be
+    #          altered to match your PHP configuration. Security implications if modified inappropriately.
+
+    location = /index.php {
+        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+
+        # Mitigate https://httpoxy.org/ vulnerabilities
+        fastcgi_param HTTP_PROXY "";
+
+    # Modify between these lines (down) to match your PHP configuration
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PHP_VALUE "post_max_size=100M
+            max_execution_time=200
+            upload_max_filesize=20M
+            memory_limit=300MM";
+        fastcgi_param PATH /usr/local/bin:/usr/bin:/bin;
+        include fastcgi_params;
+    # Modify between these lines (up) to match your PHP configuration    
+    }
+
+    #Optional, but highly recommended: lychee-specific logs. For security reasons, do not disable logging on any public
+    #                                  server.
+    
+    error_log  /var/log/nginx/lychee.error.log;
+    access_log /var/log/nginx/lychee.access.log;
+    
+    #Optional: Override default favicon
+
+    #location = /favicon.ico { alias <path to favicon>; }
+
+    #Optional: Remove trailing slashes from incoming requests (prevents SEO duplicate content issues)
+
+    rewrite ^/(.+)/$ /$1 permanent;
+
+    #Optional: Remove www prefix from domain name. Note that DNS and server_name directives for www.<mydomain>.<tld>
+    #          must exist for this to work.
+    
+    rewrite ^www\.(.+)$ $1 permanent;
+   
+    #Optional: Drop http/1.0 connections. On the modern web, the only clients using http 1.0 are usually bots looking
+    #          for security vulnerabilities.
+
+    if ($server_protocol ~* "HTTP/1.0") { return 444; }
+    
+    #Optional: Drop requests that result in errors rather than returning an error message. Marginally reduces server
+    #          load and bandwidth use if your server is bombarded by attackers probing for insecure php pages.
+    
+    #error_page 400 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 421 422 423 424 425 426 428 429
+    #        431 451 500 501 502 503 504 505 506 507 508 510 511 =444 /444.html;
+    #location = /444.html { return 444; }
 }
-```
 
-[1]: https://getcomposer.org/
+```
+### Troubleshooting
+
+See the [FAQ](https://lycheeorg.github.io/docs/faq.html#problems).
