@@ -5,19 +5,20 @@
 The Lychee gallery requires:
 
 - A web server capable of serving PHP applications, such as Apache or Nginx.
-- PHP >= 7.3 with the following extensions:
-- BCMath PHP Extension
-- Ctype PHP Extension
-- Exif PHP Extension
-- Fileinfo PHP Extension
-- GD PHP Extension
-- JSON PHP Extension
-- Mbstring PHP Extension
-- OpenSSL PHP Extension
-- PDO PHP Extension
-- Tokenizer PHP Extension
-- XML PHP Extension
-- ZIP PHP Extension
+- PHP >= 7.3
+- The following PHP extensions (typically installed with your distribution's package manager e.g. `apt` on Ubuntu):
+  - BCMath PHP Extension
+  - Ctype PHP Extension
+  - Exif PHP Extension
+  - Fileinfo PHP Extension
+  - GD PHP Extension
+  - JSON PHP Extension
+  - Mbstring PHP Extension
+  - OpenSSL PHP Extension
+  - PDO PHP Extension
+  - Tokenizer PHP Extension
+  - XML PHP Extension
+  - ZIP PHP Extension
 
 Lychee also supports, but does not require:
 
