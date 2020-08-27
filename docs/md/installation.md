@@ -109,7 +109,7 @@ RewriteRule ^ index.php [L]
 ```
 
 #### Nginx
-Use the following configuration (typically placed under `sites-available`) for Nginx.
+Use the following configuration (typically placed under `/etc/nginx/sites-available`) for Nginx.
 
 ```
 # Example Lychee 4 configuration server block for Nginx. To use, search for (1), (2), and (3) and alter these sections
@@ -159,8 +159,8 @@ server {
     location / { return 404; }
 
     #Required: serve /index.php through php. Restricting this location block to Lychee's only php endpoint provides
-    #(3)       defense-in-depth against malicious php scripts being executed by an attacker. This block must be
-    #          altered to match your PHP configuration. Security implications if modified inappropriately.
+    #(3)       defense-in-depth against malicious php scripts being uploaded and executed by an attacker. This block must
+    #          be altered to match your PHP configuration.
 
     location = /index.php {
         fastcgi_split_path_info ^(.+?\.php)(/.*)$;
@@ -195,12 +195,12 @@ server {
 
     rewrite ^/(.+)/$ /$1 permanent;
 
-    #Optional: Remove www prefix from domain name. Note that DNS and server_name directives for www.<mydomain>.<tld>
+    #Optional: Remove www prefix from domain name. Note that DNS entries and server_name directives for www.<mydomain>.<tld>
     #          must exist for this to work.
     
     rewrite ^www\.(.+)$ $1 permanent;
    
-    #Optional: Drop http/1.0 connections. On the modern web, the only clients using http 1.0 are usually bots looking
+    #Optional: Drop http/1.0 connections. On the modern web, the only clients still using http 1.0 are usually bots looking
     #          for security vulnerabilities.
 
     if ($server_protocol ~* "HTTP/1.0") { return 444; }
