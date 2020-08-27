@@ -25,7 +25,7 @@ Lychee also supports, but does not require:
 - Lychee can use either MySQL/MariaDB, PostgreSQL, or, SQL Server database backends. However, if no database is available,
   Lychee can be configured to use SQLite3.
 - FFMPEG PHP Extension (used to generate video thumbnails)
-- Imagick PHP Extension (used to generate better thumbnails)
+- Imagick PHP Extension (*Required to support upload formats other than jpeg.*)
 
 Recommended, but not required:
 
