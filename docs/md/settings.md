@@ -78,7 +78,7 @@ Note that enabling the maps adds a viewing-time dependency of your gallery on an
 
 ## CSS Personalization
 
-Much of the appearance of the Lychee web interface is determined by the CSS.  The bottom of the basic settings screen features a text input field where custom CSS can be entered to tweak the Lychee user interface.  Effective use of this feature requires the knowledge of CSS and the internals of the Lychee front end (see the [source code](https://github.com/LycheeOrg/Lychee-front)), which go beyond the scope of this document, but check the [FAQ](../FAQ) for a few examples.
+Much of the appearance of the Lychee web interface is determined by the CSS.  The bottom of the basic settings screen features a text input field where custom CSS can be entered to tweak the Lychee user interface.  Effective use of this feature requires the knowledge of CSS and the internals of the Lychee front end (see the [source code](https://github.com/LycheeOrg/Lychee-front)), which go beyond the scope of this document, but check the [FAQ](faq.html) for a few examples.
 
 Unlike the rest of the config, this field is stored in the text file `public/dist/user.css` and can be modified directly there using your favorite editor.
 
@@ -98,7 +98,7 @@ Internal Lychee database version number. _Do not change it._
 
 (string; empty by default)
 
-The administrator's username and password, encoded using `bcrypt`. If you ever forget either of them and can't access your gallery, see [this FAQ](../FAQ#how-to-reset-username-and-password).
+The administrator's username and password, encoded using `bcrypt`. If you ever forget either of them and can't access your gallery, see [this FAQ](faq.html#how-to-reset-username-and-password).
 
 #### `check_for_updates`
 

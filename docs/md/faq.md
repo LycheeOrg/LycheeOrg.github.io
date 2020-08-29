@@ -8,16 +8,16 @@ If you experience any issues with Lychee and wish to report it, make sure to spe
 ### Which file formats are supported?
 Lychee supports major image formats, and since version 3.2.1 some video formats as well. Specifically, `*.jpg`, `*.jpeg`, `*.png`, `*.gif`, `*.ogv`, `*.mp4`, `*.webm`, and `*.mov` are accepted.
 
-If you're uploading video files, make sure to increase your upload limits in `php.ini`.  See the [Install](installation.html) section for more information.
+If you're uploading video files, make sure to increase your upload limits in `php.ini`.  See the [Installation](installation.html) section for more information.
 
 ### What is new?
-Take a look at the [Changelog](Changelog) to see what's new.
+Take a look at the [Release Notes](releases.html) to see what's new.
 
 ### How can I easily contact the LycheeOrg organization?
 There is a gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby
 
 ### How can I set thumbnails for my albums?
-Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the [Settings](Settings#sorting). _Precedence is given to starred photos_. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.
+Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the [Settings](settings.html#sorting). _Precedence is given to starred photos_. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.
 
 ### Is it possible to create folders inside another folder? If so, how to do that?
 
@@ -281,7 +281,7 @@ Another way to see this screen is to use the command: `php artisan lychee:diagno
 
 Open the dev modules of your browser (usually by pressing `F12`) and open the Network tab.
 Redo the action with Network tab open and look at the response of the last query (most likely a red line).
-If it is an error 404 or 500, see below, otherwise look at our [issue](https://github.com/LycheeOrg/Lychee/issues) (including the closed ones).
+If it is an error 404 or 500, see below, otherwise look at our [issues](https://github.com/LycheeOrg/Lychee/issues) (including the closed ones).
 If nothing helps, don't hesitate to open a new one.
 
 ### I have an error 404 and I'm using Apache, what can I do?
