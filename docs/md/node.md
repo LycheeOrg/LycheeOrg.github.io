@@ -17,7 +17,7 @@ git submodule update
 
 In order to compile the front-end, you have to install the following dependencies:
 
-- `node` [Node.js](http://nodejs.org) v5.7.0 or later
+- `node` [Node.js](http://nodejs.org) v10.0.0 or later
 - `npm` [Node Packaged Modules](https://www.npmjs.org)
 
 After installing [Node.js](http://nodejs.org) you can use the included `npm` package manager to download all dependencies:
