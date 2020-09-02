@@ -368,3 +368,5 @@ If you receive a server error or "api not found" error under lightspeed web serv
 ### Why are there messages about git files in my logs? (e.g. `.git/HEAD): failed to open stream: No such file or directory`)
 
 Lychee checks for the presence of certain files to detect whether Lychee was installed as a git repository or from a release archive (.zip). It also uses them to determine which git commit is in use where applicable. This is included in the Diagnostics page to assist us in diagnosing issues.
+
+These messages can be safely ignored.
