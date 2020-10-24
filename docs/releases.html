@@ -123,6 +123,7 @@
 <ul>
 <li><a href="#master-branch">Master branch</a></li>
 <li><a href="#version-4">Version 4</a><ul>
+<li><a href="#v407">v4.0.7</a></li>
 <li><a href="#v406">v4.0.6</a></li>
 <li><a href="#v405">v4.0.5</a></li>
 <li><a href="#v404">v4.0.4</a></li>
@@ -220,8 +221,63 @@
 </style>
 
 <h2 id="master-branch"><a class="toclink" href="#master-branch">Master branch</a></h2>
-<p>Nothing new so far.</p>
+<ul>
+<li><code>new</code> #764 : Add Diagnotics warnings if the php init values are too low (less than 30M). </li>
+<li><code>new</code> #757 : Add limits on the number of logs seen.<blockquote>
+<p>Too many logs lines where crashing php by using too much memory.</p>
+</blockquote>
+</li>
+<li><code>new</code> #758 : Add the possibility to chose the picture ordering per album<blockquote>
+<p>the admin can now chose whether to order by name etc per album instead of globally.</p>
+</blockquote>
+</li>
+</ul>
 <h2 id="version-4"><a class="toclink" href="#version-4">Version 4</a></h2>
+<h3 id="v407"><a class="toclink" href="#v407">v4.0.7</a></h3>
+<p>Released Oct 9, 2020</p>
+<ul>
+<li><code>fixes</code> #584 : Albums that do not allow photo downloads cannot be included as enclosures.<blockquote>
+<p>This checks album permissions before creating the enclosure to add to the feed.</p>
+</blockquote>
+</li>
+<li><code>new</code> #616 : Add picture rotations<blockquote>
+<p>As known improvements, this code will rotate all images.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #621 ( #623 ) : Original migration from v3 is less prone to break</li>
+<li><code>new</code> #625 : Better new smart albums<blockquote>
+<p>this allows the ability to add more smart albums and more flexibility in using them.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #642 : Permission problem on Windows<blockquote>
+<p>Windows does not understand the concept of readable but not writable permission.</p>
+</blockquote>
+</li>
+<li><code>new</code> #656 : Add support for FireTV</li>
+<li><code>fixes</code> #662 : Error code changes in PhP</li>
+<li><code>new</code> #660 : Add new available licenses</li>
+<li><code>new</code> #659 : Add lossless image optimization support</li>
+<li><code>fixes</code> #668 : Improved French translation</li>
+<li><code>new</code> #671 : Add a redirection system<blockquote>
+<p>Instagram uses the hashtag for topics as a result, sharing a lychee link to an album does not work on it.
+Given example.com/r/123456 will be redirected to example.com/gallery#123456<br />
+and example.com/r/123456/7890 will be redirected to example.com/gallery#123456/7890<br />
+to allow sharing on such plateform.</p>
+</blockquote>
+</li>
+<li><code>new</code> #667 : Add support for traditional Chinese language</li>
+<li><code>new</code> #678 : Add support for Norvegian language</li>
+<li><code>new</code> #677 : Make swipping tolerances configurable.</li>
+<li><code>fixes</code> #680 : Distinguish UTC vs local video takestamps</li>
+<li><code>fixes</code> #708 : More failsafe when migrating from V3.</li>
+<li><code>new</code> #704 : Add smart albums by tag<blockquote>
+<p>it is now possible to create smart albums which will take a list of tag and return an album containing the pictures with those tags.</p>
+</blockquote>
+</li>
+<li><code>new</code> #721 : Upgrade to Laravel version 8</li>
+<li><code>new</code> #727 : When checking a password on an album, upon success we also unlock the other albums with that same password.</li>
+<li><code>new</code> #749 : Add webp support to the GD handler</li>
+</ul>
 <h3 id="v406"><a class="toclink" href="#v406">v4.0.6</a></h3>
 <p>Released May 26, 2020</p>
 <ul>
