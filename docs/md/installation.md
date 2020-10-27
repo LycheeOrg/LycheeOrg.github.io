@@ -65,7 +65,7 @@ If you want to help develop Lychee, you can enable development features by remov
 ### Configuration
 
 #### Public Directory
-After installing Lychee, configure your web server's document / web root to be the `public` directory. The `index.php` in this directory serves as the front controller for all HTTP requests entering your application.
+After installing Lychee, configure your web server's document / web root to be the `public` directory. The `index.php` in this directory serves as the front controller for all HTTP requests entering your application. Note that `.env` should not be externally accessible as it contains the encryption keys for the cookies and access to the database.
 
 #### Configuration Files
 All of the configuration files for Lychee are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
@@ -132,12 +132,6 @@ server {
     #                                  safe than sorry if the default has been changed.
     autoindex off;
     
-    #Required: the front-end expects to find icons and other graphical resources in /Lychee-front/images/ but the
-    #          git repo path structure places these resources in /img/. Rewrite requests to the correct path.
-    #          !!! Do not modify unless you know what you're doing. !!!
-
-    location  /Lychee-front/images/ { rewrite ^/Lychee-front/images/(.*)$ /img/$1 last; }
-
     #Required: the front end sends some requests to the the back-end via POST requests sent to /php/index.php,
     #          but this file is actually /index.php. Rewrite requests to the correct path.
     #          !!! Do not modify unless you know what you're doing. !!!
@@ -203,7 +197,7 @@ server {
     #Optional: Drop http/1.0 connections. On the modern web, the only clients still using http 1.0 are usually bots looking
     #          for security vulnerabilities.
 
-    if ($server_protocol ~* "HTTP/1.0") { return 444; }
+    # if ($server_protocol ~* "HTTP/1.0") { return 444; }
     
     #Optional: Drop requests that result in errors rather than returning an error message. Marginally reduces server
     #          load and bandwidth use if your server is bombarded by attackers probing for insecure php pages.

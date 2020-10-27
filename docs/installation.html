@@ -187,7 +187,7 @@ It contains a trimmed down version of the Lychee files.</p>
 <p>If you want to help develop Lychee, you can enable development features by removing the <code>--no-dev</code>.</p>
 <h3 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h3>
 <h4>Public Directory</h4>
-<p>After installing Lychee, configure your web server's document / web root to be the <code>public</code> directory. The <code>index.php</code> in this directory serves as the front controller for all HTTP requests entering your application.</p>
+<p>After installing Lychee, configure your web server's document / web root to be the <code>public</code> directory. The <code>index.php</code> in this directory serves as the front controller for all HTTP requests entering your application. Note that <code>.env</code> should not be externally accessible as it contains the encryption keys for the cookies and access to the database.</p>
 <h4>Configuration Files</h4>
 <p>All of the configuration files for Lychee are stored in the <code>config</code> directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
 <h4>Directory Permissions</h4>
@@ -238,12 +238,6 @@ server {
     #Optional, but highly recommended: ensure directory listings are disabled. This is the Nginx default, but better
     #                                  safe than sorry if the default has been changed.
     autoindex off;
-
-    #Required: the front-end expects to find icons and other graphical resources in /Lychee-front/images/ but the
-    #          git repo path structure places these resources in /img/. Rewrite requests to the correct path.
-    #          !!! Do not modify unless you know what you're doing. !!!
-
-    location  /Lychee-front/images/ { rewrite ^/Lychee-front/images/(.*)$ /img/$1 last; }
 
     #Required: the front end sends some requests to the the back-end via POST requests sent to /php/index.php,
     #          but this file is actually /index.php. Rewrite requests to the correct path.
@@ -310,7 +304,7 @@ server {
     #Optional: Drop http/1.0 connections. On the modern web, the only clients still using http 1.0 are usually bots looking
     #          for security vulnerabilities.
 
-    if ($server_protocol ~* &quot;HTTP/1.0&quot;) { return 444; }
+    # if ($server_protocol ~* &quot;HTTP/1.0&quot;) { return 444; }
 
     #Optional: Drop requests that result in errors rather than returning an error message. Marginally reduces server
     #          load and bandwidth use if your server is bombarded by attackers probing for insecure php pages.
