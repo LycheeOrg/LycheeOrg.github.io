@@ -1,23 +1,28 @@
 ## General questions
 
 ### Which browsers are supported?
+
 Lychee should work with any modern, standards-compliant web browser (note that having JavaScript enabled is a hard dependency). Lychee does take advantage of several HTML5 features, such as the `<video>` tag, responsive image sizing using `srcset`, or link data prefetching. In particular, Lychee supports the latest versions of Google Chrome, Apple's Safari, Mozilla Firefox, Opera, and Microsoft Internet Explorer.
 
 If you experience any issues with Lychee and wish to report it, make sure to specify the browser you're using and the version of it.
 
 ### Which file formats are supported?
+
 Lychee supports major image formats, and since version 3.2.1 some video formats as well. Specifically, `*.jpg`, `*.jpeg`, `*.png`, `*.gif`, `*.ogv`, `*.mp4`, `*.webm`, and `*.mov` are accepted.
 
-If you're uploading video files, make sure to increase your upload limits in `php.ini`.  See the [Install](installation.html) section for more information.
+If you're uploading video files, make sure to increase your upload limits in `php.ini`.  See the [Installation](installation.html) section for more information.
 
 ### What is new?
-Take a look at the [Changelog](Changelog) to see what's new.
+
+Take a look at the [Release Notes](releases.html) to see what's new.
 
 ### How can I easily contact the LycheeOrg organization?
+
 There is a gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby
 
 ### How can I set thumbnails for my albums?
-Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the [Settings](Settings#sorting). _Precedence is given to starred photos_. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.
+
+Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the [Settings](settings.html#sorting). _Precedence is given to starred photos_. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.
 
 ### Is it possible to create folders inside another folder? If so, how to do that?
 
@@ -33,9 +38,11 @@ Note that you will still need to authenticate yourself to the server, this disab
 The related code is available [here](https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/VerifyCsrfToken.php#L55)
 
 ### Can I use my existing folder structure?
+
 Not at this time. Lychee currently uses its own folder structure and database. Please upload or import all your photos to use them.
 
 ### Can I upload videos?
+
 Yes, but you will need to change this property to a bigger value:
 ```
 upload_max_filesize = 20M
@@ -45,6 +52,7 @@ upload_max_filesize = 20M
 Yes. Just go to the `Users` menu.
 
 ### Does Lychee use ImageMagick?
+
 Yes. Lychee uses ImageMagick when available.
 
 ### How to change the title of the site?
@@ -152,6 +160,7 @@ Once open, you will be redirected to the install procedure. Completed you will b
 The process is described [here](upgrade.html).
 
 ### How can I back up my installation?
+
 To back up your Lychee installation you need to perform the following steps:
 
 * 1 &mdash; Create a copy of at least the following parts of the Lychee directory tree (e.g., `/var/www/html/Lychee`):
@@ -263,6 +272,7 @@ This will only work on top-level albums. Subalbums will require [manual interven
 - Check that `allow_online_git_pull` setting is set to `1`
 
 ### How can I stop `artisan migrate` and `composer` from running after every `git pull`?
+
 We've set composer to install git `pre-commit` and `post-merge` hooks by default.
 - The pre-commit is to help developers by checking and fixing and code style problems before they hit our testing. If you aren't committing and changes, this will not be run.
 - The post-merge ensures that your dependencies and database version are kept current. This can be disabled by creating a file `.NO_AUTO_COMPOSER_MIGRATE` in your Lychee root and deleting (if necessary) `.git/hooks/post-merge`. If you disable this script, you will need to run `composer` and `artisan migrate` manually. Alternatively, the Update UI can be set to handle this if you run your updates there.
@@ -273,6 +283,7 @@ We've set composer to install git `pre-commit` and `post-merge` hooks by default
 ## Problems
 
 ### Lychee is not working
+
 If Lychee is not working properly, try to open `https://lychee.example.com/Diagnostics`. This script will display all errors it can find.
 
 Another way to see this screen is to use the command: `php artisan lychee:diagnostics`
@@ -281,7 +292,7 @@ Another way to see this screen is to use the command: `php artisan lychee:diagno
 
 Open the dev modules of your browser (usually by pressing `F12`) and open the Network tab.
 Redo the action with Network tab open and look at the response of the last query (most likely a red line).
-If it is an error 404 or 500, see below, otherwise look at our [issue](https://github.com/LycheeOrg/Lychee/issues) (including the closed ones).
+If it is an error 404 or 500, see below, otherwise look at our [issues](https://github.com/LycheeOrg/Lychee/issues) (including the closed ones).
 If nothing helps, don't hesitate to open a new one.
 
 ### I have an error 404 and I'm using Apache, what can I do?
@@ -313,6 +324,7 @@ Warning
 `php -S` web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.
 
 ### I can't upload photos.
+
 If you experience problems uploading large photos, you might want to change the PHP parameters in `.htaccess` (if you are using the PHP Apache module) or in `.user.ini` (if you are using PHP >= 7.3 with CGI or FastCGI).
 
 > If you modify the `.user.ini` file, you may want to run `git update-index --assume-unchanged .user.ini` afterwards.
@@ -328,6 +340,7 @@ memory_limit = 256M
 ```
 
 ### What does _Upstream sent too big header_ error message mean?
+
 This error may be seen from your browser's console if you're trying to debug something with Lychee. If using `nginx`, try adding the following to Lychee's config and reload nginx's service:
 ```
 fastcgi_buffers 16 16k;
@@ -335,6 +348,7 @@ fastcgi_buffer_size 32k;
 ```
 
 ### Why don't my videos have thumbnails?
+
 You will need ffmpeg installed on your server, and to have installed php-ffmpeg using composer as detailed in the [Installation Guide](installation.html).
 
 If you are still having problems, check your Lychee log. If you are still getting a `Could not create thumbnail for video because FFMPEG is not available.` error, you may need to specify the location of your ffmpeg and ffprobe binaries. In https://github.com/LycheeOrg/Lychee/blob/master/app/ModelFunctions/PhotoFunctions.php#L94 replace
@@ -365,6 +379,27 @@ COMPOSER_CACHE_DIR='/dev/null' composer update --working-dir='/var/www/Lychee'
 
 If you receive a server error or "api not found" error under lightspeed web server try going to `cPanel` > `Mod Security` and turning the feature off.
 
+### I know my file permissions for `storage`, `bootstrap/cache`, `public/uploads`, and `public/dist` are correct and accessible by my web server user, but I'm still getting a PHP error when writing to any of these directories.
+
+1. Make sure your PHP user and group is the same user and group as your web server by editing PHP's `www.conf`. For example, on a Fedora 32 Server system, the default user/group for php from Fedora's standard repo defaults to `apache`, even if you do not have Apache installed. 
+2. On some operating systems with more restrictive SELinux rules (like Fedora 32 Server at the time of writing), you need to set the SELinux security context of these directories for them to be accessible by your web server user: 
+```
+chcon -R -t httpd_sys_rw_content_t storage
+chcon -R -t httpd_sys_rw_content_t bootstrap/cache
+chcon -R -t httpd_sys_rw_content_t public/uploads
+chcon -R -t httpd_sys_rw_content_t public/dist
+```
+
+### I know port 80/443 are open on my machine, but Lychee/my server is still refusing all connections.
+
+On some operating systems with more restrictive SELinux rules (like Fedora 32 Server at the time of writing), you need to allow your web server user to connect over the network with `setsebool -P httpd_can_network_connect on`. You can view the status of your SELinux booleans with `getsebool -a`.
+
+### I know my SQL database is setup correctly, but Lychee is showing `SQLSTATE[HY000] [2002] No such file or directory` and is not able to make changes to the database. 
+
+In `/var/www/html/Lychee/.env`, change `DB_HOST=localhost` to `DB_HOST=127.0.0.1`. Additionally, if `DB_PORT=` is not set, it should be set to `DB_PORT=3306` for mysql/MariaDB's default port, or whatever custom port you selected when configuring your SQL server software after installation. 
+
 ### Why are there messages about git files in my logs? (e.g. `.git/HEAD): failed to open stream: No such file or directory`)
 
 Lychee checks for the presence of certain files to detect whether Lychee was installed as a git repository or from a release archive (.zip). It also uses them to determine which git commit is in use where applicable. This is included in the Diagnostics page to assist us in diagnosing issues.
+
+These messages can be safely ignored.

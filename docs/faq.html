@@ -172,6 +172,9 @@
 <li><a href="#why-dont-my-videos-have-thumbnails">Why don't my videos have thumbnails?</a></li>
 <li><a href="#composer-cant-create-a-cache-directory">Composer can't create a cache directory</a></li>
 <li><a href="#i-cant-access-the-users-under-settings-server-error-or-api-not-found-on-lightspeed">I can't access the users under settings server error or api not found on Lightspeed</a></li>
+<li><a href="#i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories">I know my file permissions for storage, bootstrap/cache, public/uploads, and public/dist are correct and accessible by my web server user, but I'm still getting a PHP error when writing to any of these directories.</a></li>
+<li><a href="#i-know-port-80443-are-open-on-my-machine-but-lycheemy-server-is-still-refusing-all-connections">I know port 80/443 are open on my machine, but Lychee/my server is still refusing all connections.</a></li>
+<li><a href="#i-know-my-sql-database-is-setup-correctly-but-lychee-is-showing-sqlstatehy000-2002-no-such-file-or-directory-and-is-not-able-to-make-changes-to-the-database">I know my SQL database is setup correctly, but Lychee is showing SQLSTATE[HY000] [2002] No such file or directory and is not able to make changes to the database.</a></li>
 <li><a href="#why-are-there-messages-about-git-files-in-my-logs-eg-githead-failed-to-open-stream-no-such-file-or-directory">Why are there messages about git files in my logs? (e.g. .git/HEAD): failed to open stream: No such file or directory)</a></li>
 </ul>
 </li>
@@ -183,13 +186,13 @@
 <p>If you experience any issues with Lychee and wish to report it, make sure to specify the browser you're using and the version of it.</p>
 <h3 id="which-file-formats-are-supported"><a class="toclink" href="#which-file-formats-are-supported">Which file formats are supported?</a></h3>
 <p>Lychee supports major image formats, and since version 3.2.1 some video formats as well. Specifically, <code>*.jpg</code>, <code>*.jpeg</code>, <code>*.png</code>, <code>*.gif</code>, <code>*.ogv</code>, <code>*.mp4</code>, <code>*.webm</code>, and <code>*.mov</code> are accepted.</p>
-<p>If you're uploading video files, make sure to increase your upload limits in <code>php.ini</code>.  See the <a href="installation.html">Install</a> section for more information.</p>
+<p>If you're uploading video files, make sure to increase your upload limits in <code>php.ini</code>.  See the <a href="installation.html">Installation</a> section for more information.</p>
 <h3 id="what-is-new"><a class="toclink" href="#what-is-new">What is new?</a></h3>
-<p>Take a look at the <a href="Changelog">Changelog</a> to see what's new.</p>
+<p>Take a look at the <a href="releases.html">Release Notes</a> to see what's new.</p>
 <h3 id="how-can-i-easily-contact-the-lycheeorg-organization"><a class="toclink" href="#how-can-i-easily-contact-the-lycheeorg-organization">How can I easily contact the LycheeOrg organization?</a></h3>
 <p>There is a gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby</p>
 <h3 id="how-can-i-set-thumbnails-for-my-albums"><a class="toclink" href="#how-can-i-set-thumbnails-for-my-albums">How can I set thumbnails for my albums?</a></h3>
-<p>Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the <a href="Settings#sorting">Settings</a>. <em>Precedence is given to starred photos</em>. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.</p>
+<p>Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the <a href="settings.html#sorting">Settings</a>. <em>Precedence is given to starred photos</em>. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.</p>
 <h3 id="is-it-possible-to-create-folders-inside-another-folder-if-so-how-to-do-that"><a class="toclink" href="#is-it-possible-to-create-folders-inside-another-folder-if-so-how-to-do-that">Is it possible to create folders inside another folder? If so, how to do that?</a></h3>
 <p>Either press <code>n</code> (as <strong>N</strong>ew) or use the add menu.</p>
 <p><img alt="Screenshot" src="img/create-album.png" /></p>
@@ -382,12 +385,12 @@ If it breaks (error 500) you can still go back to command line and do your <code
 <h3 id="when-i-do-x-i-get-an-error-api-not-found-what-can-i-do"><a class="toclink" href="#when-i-do-x-i-get-an-error-api-not-found-what-can-i-do">When I do X, I get an error api not found, what can I do?</a></h3>
 <p>Open the dev modules of your browser (usually by pressing <code>F12</code>) and open the Network tab.
 Redo the action with Network tab open and look at the response of the last query (most likely a red line).
-If it is an error 404 or 500, see below, otherwise look at our <a href="https://github.com/LycheeOrg/Lychee/issues">issue</a> (including the closed ones).
+If it is an error 404 or 500, see below, otherwise look at our <a href="https://github.com/LycheeOrg/Lychee/issues">issues</a> (including the closed ones).
 If nothing helps, don't hesitate to open a new one.</p>
 <h3 id="i-have-an-error-404-and-im-using-apache-what-can-i-do"><a class="toclink" href="#i-have-an-error-404-and-im-using-apache-what-can-i-do">I have an error 404 and I'm using Apache, what can I do?</a></h3>
 <p>Verify that the rewrite rules of your server are correctly applied. See <a href="upgrade.html#using-apache">here</a>.</p>
 <h3 id="i-have-an-error-404-and-im-using-nginx-what-can-i-do"><a class="toclink" href="#i-have-an-error-404-and-im-using-nginx-what-can-i-do">I have an error 404 and I'm using Nginx, what can I do?</a></h3>
-<p>Verify that the rewrite rules of your server are correctly applied. See <a href="upgrade.html#using-nginx">here</a>.</p>
+<p>Verify that the rewrite rules of your server are correctly applied. See the Nginx section of the <a href="https://lycheeorg.github.io/docs/installation.html#web-server-configuration">installation instructions</a>.</p>
 <h3 id="i-have-an-error-404-and-im-using-php-s-what-can-i-do"><a class="toclink" href="#i-have-an-error-404-and-im-using-php-s-what-can-i-do">I have an error 404 and I'm using php -S, what can I do?</a></h3>
 <p>Instead of doing <code>php -S 127.0.0.1:8888</code> inside <code>Lychee/public</code> do <code>php artisan serve --port=8888</code> inside Lychee.
 This will ensure that the paths and routes are correctly followed.</p>
@@ -450,8 +453,24 @@ fastcgi_buffer_size 32k;
 
 <h3 id="i-cant-access-the-users-under-settings-server-error-or-api-not-found-on-lightspeed"><a class="toclink" href="#i-cant-access-the-users-under-settings-server-error-or-api-not-found-on-lightspeed">I can't access the users under settings server error or api not found on Lightspeed</a></h3>
 <p>If you receive a server error or "api not found" error under lightspeed web server try going to <code>cPanel</code> &gt; <code>Mod Security</code> and turning the feature off.</p>
+<h3 id="i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories"><a class="toclink" href="#i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories">I know my file permissions for <code>storage</code>, <code>bootstrap/cache</code>, <code>public/uploads</code>, and <code>public/dist</code> are correct and accessible by my web server user, but I'm still getting a PHP error when writing to any of these directories.</a></h3>
+<ol>
+<li>Make sure your PHP user and group is the same user and group as your web server by editing PHP's <code>www.conf</code>. For example, on a Fedora 32 Server system, the default user/group for php from Fedora's standard repo defaults to <code>apache</code>, even if you do not have Apache installed. </li>
+<li>On some operating systems with more restrictive SELinux rules (like Fedora 32 Server at the time of writing), you need to set the SELinux security context of these directories for them to be accessible by your web server user: </li>
+</ol>
+<pre><code>chcon -R -t httpd_sys_rw_content_t storage
+chcon -R -t httpd_sys_rw_content_t bootstrap/cache
+chcon -R -t httpd_sys_rw_content_t public/uploads
+chcon -R -t httpd_sys_rw_content_t public/dist
+</code></pre>
+
+<h3 id="i-know-port-80443-are-open-on-my-machine-but-lycheemy-server-is-still-refusing-all-connections"><a class="toclink" href="#i-know-port-80443-are-open-on-my-machine-but-lycheemy-server-is-still-refusing-all-connections">I know port 80/443 are open on my machine, but Lychee/my server is still refusing all connections.</a></h3>
+<p>On some operating systems with more restrictive SELinux rules (like Fedora 32 Server at the time of writing), you need to allow your web server user to connect over the network with <code>setsebool -P httpd_can_network_connect on</code>. You can view the status of your SELinux booleans with <code>getsebool -a</code>.</p>
+<h3 id="i-know-my-sql-database-is-setup-correctly-but-lychee-is-showing-sqlstatehy000-2002-no-such-file-or-directory-and-is-not-able-to-make-changes-to-the-database"><a class="toclink" href="#i-know-my-sql-database-is-setup-correctly-but-lychee-is-showing-sqlstatehy000-2002-no-such-file-or-directory-and-is-not-able-to-make-changes-to-the-database">I know my SQL database is setup correctly, but Lychee is showing <code>SQLSTATE[HY000] [2002] No such file or directory</code> and is not able to make changes to the database.</a></h3>
+<p>In <code>/var/www/html/Lychee/.env</code>, change <code>DB_HOST=localhost</code> to <code>DB_HOST=127.0.0.1</code>. Additionally, if <code>DB_PORT=</code> is not set, it should be set to <code>DB_PORT=3306</code> for mysql/MariaDB's default port, or whatever custom port you selected when configuring your SQL server software after installation. </p>
 <h3 id="why-are-there-messages-about-git-files-in-my-logs-eg-githead-failed-to-open-stream-no-such-file-or-directory"><a class="toclink" href="#why-are-there-messages-about-git-files-in-my-logs-eg-githead-failed-to-open-stream-no-such-file-or-directory">Why are there messages about git files in my logs? (e.g. <code>.git/HEAD): failed to open stream: No such file or directory</code>)</a></h3>
 <p>Lychee checks for the presence of certain files to detect whether Lychee was installed as a git repository or from a release archive (.zip). It also uses them to determine which git commit is in use where applicable. This is included in the Diagnostics page to assist us in diagnosing issues.</p>
+<p>These messages can be safely ignored.</p>
                         </section>
                     </section>
                 </section>

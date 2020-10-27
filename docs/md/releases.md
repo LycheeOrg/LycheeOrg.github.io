@@ -30,9 +30,49 @@
 
 ## Master branch
 
-Nothing new so far.
+- `new` #764 : Add Diagnotics warnings if the php init values are too low (less than 30M). 
+- `new` #757 : Add limits on the number of logs seen.
+  > Too many logs lines where crashing php by using too much memory.
+- `new` #758 : Add the possibility to chose the picture ordering per album
+  > the admin can now chose whether to order by name etc per album instead of globally.
 
 ## Version 4
+
+### v4.0.7
+
+Released Oct 9, 2020
+
+
+- `fixes` #584 : Albums that do not allow photo downloads cannot be included as enclosures.
+  > This checks album permissions before creating the enclosure to add to the feed.
+- `new` #616 : Add picture rotations
+  > As known improvements, this code will rotate all images.
+- `fixes` #621 ( #623 ) : Original migration from v3 is less prone to break
+- `new` #625 : Better new smart albums
+  > this allows the ability to add more smart albums and more flexibility in using them.
+- `fixes` #642 : Permission problem on Windows
+  > Windows does not understand the concept of readable but not writable permission.
+- `new` #656 : Add support for FireTV
+- `fixes` #662 : Error code changes in PhP
+- `new` #660 : Add new available licenses
+- `new` #659 : Add lossless image optimization support
+- `fixes` #668 : Improved French translation
+- `new` #671 : Add a redirection system
+  > Instagram uses the hashtag for topics as a result, sharing a lychee link to an album does not work on it.
+  > Given example.com/r/123456 will be redirected to example.com/gallery#123456  
+  > and example.com/r/123456/7890 will be redirected to example.com/gallery#123456/7890  
+  > to allow sharing on such plateform.
+- `new` #667 : Add support for traditional Chinese language
+- `new` #678 : Add support for Norvegian language
+- `new` #677 : Make swipping tolerances configurable.
+- `fixes` #680 : Distinguish UTC vs local video takestamps
+- `fixes` #708 : More failsafe when migrating from V3.
+- `new` #704 : Add smart albums by tag
+  > it is now possible to create smart albums which will take a list of tag and return an album containing the pictures with those tags.
+- `new` #721 : Upgrade to Laravel version 8
+- `new` #727 : When checking a password on an album, upon success we also unlock the other albums with that same password.
+- `new` #749 : Add webp support to the GD handler
+
 
 ### v4.0.6
 
