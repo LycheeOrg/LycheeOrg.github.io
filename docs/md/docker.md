@@ -13,9 +13,15 @@ Note that only the `:dev` tag is available for armv6 and armv7 systems. This is 
 
 ## Setup
 
+### Quick Start
+
+To use the built-in SQLite support, no external dependencies are required. At its simplest, `docker run -p 80 lycheeorg/lychee:dev` will start Lychee listening on a random port on the local host.
+
+For more runtime options, look below in [Run with Docker](#run-with-docker) and [Available environment variables and defaults](#available-environment-variables-and-defaults).
+
 ### Prerequisites
 
-You must have a database docker running **OR** create one in your `docker-compose.yml`.
+To use this image with MySQL, MariaDB or PostgreSQL you will need a suitable database running externally. This may be through a Docker image, possibly in your `docker-compose.yml`.
 
 * 1 &mdash; Create the db, username, password.
 * 2 &mdash; Edit the environment variables (db credentials, language...) by :
