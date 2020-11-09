@@ -30,6 +30,8 @@
 
 ## Master branch
 
+- `fixes` #783 : Can't rename tag album
+  > Tag-albums were not accessible by `albums.getByID`
 - `fixes` #781 : Fixes a bug which prevented the use of sharing albums between users
   > This rare bug was only triggered if a non-admin user was sharing an album with
   > another user.
