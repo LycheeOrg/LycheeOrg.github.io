@@ -34,7 +34,7 @@ To use this image with MySQL, MariaDB or PostgreSQL you will need a suitable dat
 
 The example below shows `--net` and `--link` for these purposes. `--net` connects to the name of the network your database is on and  `--link` connects to the database container.
 
-```bash
+```language-bash
 docker run -d \
 --name=lychee \
 -v /host_path/lychee/conf:/conf \

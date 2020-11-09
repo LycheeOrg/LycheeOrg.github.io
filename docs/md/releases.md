@@ -30,6 +30,29 @@
 
 ## Master branch
 
+- `fixes` #781 : Fixes a bug which prevented the use of sharing albums between users
+  > This rare bug was only triggered if a non-admin user was sharing an album with
+  > another user.
+- `fixes` #779 : Fixes some missing information on Tag Albums in the front end.
+- `fixes` #766 : It is no longer possible to use the 'photo rotation' functionality
+  > While the buttons are still accessible we now return an error instead of filling up
+  > the entire disk space of the server.
+- `fixes` #751 : In some rare instance, it was not possible to generate video thumbnails
+  > this is fixed. We try to reextract the 'aperture' property to get the thumbnail.
+  > We also added a warning in the case where FFmpeg was not enabled.
+- `fixes` #769 : when moving pictures in Image view, the second try resulted in failure
+  > we no longer clear the content of `json.album` when moving an image.
+  > This ensure that the required properties are still accessible
+- `fixes` : Settings are accessible in Image view
+  > There were rare sequence of events which prevented the settings view to open.
+- `new` : /Frame will now display a warning if no pictures are found.
+  > instead of staying a black screen, we now send an `alert()`
+- `new` : Share information are no longer displayed in public mode
+  > They are still available in the Ajax query
+- `upd` #773 : Update French localization
+  > spacing typos in French localization
+- `new` #771 : Update French localization
+  > minor changes in the French localization.
 - `new` #764 : Add Diagnotics warnings if the php init values are too low (less than 30M). 
 - `new` #757 : Add limits on the number of logs seen.
   > Too many logs lines where crashing php by using too much memory.

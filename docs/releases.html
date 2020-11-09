@@ -222,6 +222,47 @@
 
 <h2 id="master-branch"><a class="toclink" href="#master-branch">Master branch</a></h2>
 <ul>
+<li><code>fixes</code> #781 : Fixes a bug which prevented the use of sharing albums between users<blockquote>
+<p>This rare bug was only triggered if a non-admin user was sharing an album with 
+another user.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #779 : Fixes some missing information on Tag Albums in the front end.</li>
+<li><code>fixes</code> #766 : It is no longer possible to use the 'photo rotation' functionality<blockquote>
+<p>While the buttons are still accessible we now return an error instead of filling up
+the entire disk space of the server. </p>
+</blockquote>
+</li>
+<li><code>fixes</code> #751 : In some rare instance, it was not possible to generate video thumbnails<blockquote>
+<p>this is fixed. We try to reextract the 'aperture' property to get the thumbnail.
+We also added a warning in the case where FFmpeg was not enabled. </p>
+</blockquote>
+</li>
+<li><code>fixes</code> #769 : when moving pictures in Image view, the second try resulted in failure<blockquote>
+<p>we no longer clear the content of <code>json.album</code> when moving an image.
+This ensure that the required properties are still accessible</p>
+</blockquote>
+</li>
+<li><code>fixes</code> : Settings are accessible in Image view<blockquote>
+<p>There were rare sequence of events which prevented the settings view to open.</p>
+</blockquote>
+</li>
+<li><code>new</code> : /Frame will now display a warning if no pictures are found.<blockquote>
+<p>instead of staying a black screen, we now send an <code>alert()</code></p>
+</blockquote>
+</li>
+<li><code>new</code> : Share information are no longer displayed in public mode<blockquote>
+<p>They are still available in the Ajax query</p>
+</blockquote>
+</li>
+<li><code>upd</code> #773 : Update French localization<blockquote>
+<p>spacing typos in French localization</p>
+</blockquote>
+</li>
+<li><code>new</code> #771 : Update French localization<blockquote>
+<p>minor changes in the French localization.</p>
+</blockquote>
+</li>
 <li><code>new</code> #764 : Add Diagnotics warnings if the php init values are too low (less than 30M). </li>
 <li><code>new</code> #757 : Add limits on the number of logs seen.<blockquote>
 <p>Too many logs lines where crashing php by using too much memory.</p>

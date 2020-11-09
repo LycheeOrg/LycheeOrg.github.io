@@ -179,9 +179,11 @@
 --link db_name \
 lycheeorg/lychee
 </code></pre>
+
 <p><strong>Warning</strong> : if you use a MySQL database, make sure to use the <code>mysql_native_password</code> authentication plugin, either by using the <code>--default-authentication-plugin</code> option when starting mysql, or by running a query to enable the authentication plugin for the <code>lychee</code> user, e.g. :</p>
 <pre><code>alter user 'lychee' identified with mysql_native_password by '&lt;your password&gt;';
 </code></pre>
+
 <h3 id="run-with-docker-compose"><a class="toclink" href="#run-with-docker-compose">Run with Docker Compose</a></h3>
 <p>Change the environment variables in the <a href="https://github.com/LycheeOrg/Lychee-Docker/blob/master/docker-compose.yml">provided example</a> to reflect your database credentials.</p>
 <p>Note that in order to avoid writing credentials directly into the file, you can create a <code>db_secrets.env</code> and use the <code>env_file</code> directive (see the <a href="https://docs.docker.com/compose/environment-variables/#the-env_file-configuration-option">docs</a>).</p>
