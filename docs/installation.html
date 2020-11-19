@@ -239,25 +239,19 @@ server {
     #                                  safe than sorry if the default has been changed.
     autoindex off;
 
-    #Required: the front end sends some requests to the the back-end via POST requests sent to /php/index.php,
-    #          but this file is actually /index.php. Rewrite requests to the correct path.
-    #          !!! Do not modify unless you know what you're doing. !!!
+    #Required: unless the request is for a valid file (image, js, css, etc.), send to bootstrap
+    if (!-e $request_filename)
+    {
+        rewrite ^/(.*)$ /index.php?/$1 last;
+        break;
+    }
 
-    location = /php/index.php { rewrite ^/(.*)$ /index.php?/$1 last; }
-
-    #Required: the front end sends most requests to the back end via POST requests sent to endpoints in /api.
-    #          Rewrite these requests so they reach /index.php
-    #          !!! Do not modify unless you know what you're doing. !!!
-
-    location ^~ /api/ { rewrite ^(.*)$ /index.php?/$1 last; }
-
-    #Required: Serve requests for / to index.php (via index directive), otherwise serve files with the specified
+    #Optional: Serve requests for / to index.php (via index directive), otherwise serve files with the specified
     #          extensions directly. Return 404 for all other file extensions to prevent any erroneously placed
     #          files from leaking.
     #          !!! Do not modify unless you know what you're doing. !!!
-
-    location ~* ^\/$|\.(jpg|jpeg|gif|css|png|js|ico|html|txt|svg)$ { index index.php; }
-    location / { return 404; }
+    #location ~* ^\/$|\.(jpg|jpeg|gif|css|png|js|ico|html|txt|svg)$ { index index.php; }
+    #location / { return 404; }
 
     #Required: serve /index.php through php. Restricting this location block to Lychee's only php endpoint provides
     #(3)       defense-in-depth against malicious php scripts being uploaded and executed by an attacker. This block must
@@ -275,7 +269,7 @@ server {
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE &quot;post_max_size=100M
             max_execution_time=200
-            upload_max_filesize=20M
+            upload_max_filesize=30M
             memory_limit=300MM&quot;;
         fastcgi_param PATH /usr/local/bin:/usr/bin:/bin;
         include fastcgi_params;
