@@ -123,6 +123,7 @@
 <ul>
 <li><a href="#image-content">Image Content</a></li>
 <li><a href="#setup">Setup</a><ul>
+<li><a href="#quick-start">Quick Start</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#run-with-docker">Run with Docker</a></li>
 <li><a href="#run-with-docker-compose">Run with Docker Compose</a></li>
@@ -143,8 +144,11 @@
 </ul>
 <p>Note that only the <code>:dev</code> tag is available for armv6 and armv7 systems. This is due to an issue with the build environment and is hopefully temporary.</p>
 <h2 id="setup"><a class="toclink" href="#setup">Setup</a></h2>
+<h3 id="quick-start"><a class="toclink" href="#quick-start">Quick Start</a></h3>
+<p>To use the built-in SQLite support, no external dependencies are required. At its simplest, <code>docker run -p 80 lycheeorg/lychee:dev</code> will start Lychee listening on a random port on the local host.</p>
+<p>For more runtime options, look below in <a href="#run-with-docker">Run with Docker</a> and <a href="#available-environment-variables-and-defaults">Available environment variables and defaults</a>.</p>
 <h3 id="prerequisites"><a class="toclink" href="#prerequisites">Prerequisites</a></h3>
-<p>You must have a database docker running <strong>OR</strong> create one in your <code>docker-compose.yml</code>.</p>
+<p>To use this image with MySQL, MariaDB or PostgreSQL you will need a suitable database running externally. This may be through a Docker image, possibly in your <code>docker-compose.yml</code>.</p>
 <ul>
 <li>1 &mdash; Create the db, username, password.</li>
 <li>2 &mdash; Edit the environment variables (db credentials, language...) by :<ul>
@@ -156,7 +160,7 @@
 <h3 id="run-with-docker"><a class="toclink" href="#run-with-docker">Run with Docker</a></h3>
 <p><strong>Make sure that you link to the container running your database !!</strong>  </p>
 <p>The example below shows <code>--net</code> and <code>--link</code> for these purposes. <code>--net</code> connects to the name of the network your database is on and  <code>--link</code> connects to the database container.</p>
-<pre><code class="bash">docker run -d \
+<pre><code class="language-bash">docker run -d \
 --name=lychee \
 -v /host_path/lychee/conf:/conf \
 -v /host_path/lychee/uploads:/uploads \
