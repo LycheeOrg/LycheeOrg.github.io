@@ -155,14 +155,12 @@
         ├── small
         └── thumb
 </code></pre>
-
 <ul>
 <li>his <code>Lychee/.env</code> contains:</li>
 </ul>
 <pre><code>LYCHEE_DIST=&quot;/var/www/Lychee-data/public/dist/&quot;
 LYCHEE_UPLOADS=&quot;/var/www/Lychee-data/public/uploads/&quot;
 </code></pre>
-
 <blockquote>
 <p>{note} Note that the <strong>path needs to be absolute</strong>.</p>
 </blockquote>
@@ -176,7 +174,6 @@ cd Lychee
 php artisan key:generate
 php artisan migrate
 </code></pre>
-
 <p>It worked fine with the migration from 4.0.4 to 4.0.5 of Lychee.</p>
 <p>The hierarchy <code>Lychee-data/public/</code> is writeable by the group <code>www-data</code> so that apache process can modify the files.
 The files in <code>Lychee</code> are read only for apache. No write access needed.</p>
@@ -198,7 +195,6 @@ The files in <code>Lychee</code> are read only for apache. No write access neede
 <pre><code>127.0.0.1   lychee.test
 127.0.0.1   lycheeorg.test
 </code></pre>
-
 <p>Create configuration files in <code>/etc/apache2/sites-available</code>: <code>001-lychee-test.conf</code> and <code>002-lycheeorg-test.conf</code></p>
 <pre><code>&lt;VirtualHost *:80&gt;
     ServerName lychee.test
@@ -210,7 +206,6 @@ The files in <code>Lychee</code> are read only for apache. No write access neede
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 &lt;/VirtualHost&gt;
 </code></pre>
-
 <p>and</p>
 <pre><code>&lt;VirtualHost *:80&gt;
     ServerName lycheeorg.test
@@ -222,19 +217,16 @@ The files in <code>Lychee</code> are read only for apache. No write access neede
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 &lt;/VirtualHost&gt;
 </code></pre>
-
 <p>Enable the sites and reload apache:</p>
 <pre><code>sudo a2ensite 001-lychee-test.conf
 sudo a2ensite 002-lycheeorg-test.conf
 sudo systemctl restart apache2
 </code></pre>
-
 <h3 id="apache-in-the-guest"><a class="toclink" href="#apache-in-the-guest">Apache in the Guest</a></h3>
 <p>In your guest OS, clone the Lychee repository (requires ssh key to be set up):</p>
 <pre><code>git clone git@github.com:LycheeOrg/Lychee.git /var/www/html/Lychee
 git clone git@github.con:LycheeOrg/LycheeOrg.github.io /var/www/html/LycheeOrg.github.io
 </code></pre>
-
 <p>Similarily in <code>/etc/apache2/sites-available</code> create 2 configuration files: <code>001-lychee.conf</code> and <code>002-lycheeorg.conf</code></p>
 <pre><code>&lt;VirtualHost *:80&gt;
     ServerName lychee.test
@@ -245,7 +237,6 @@ git clone git@github.con:LycheeOrg/LycheeOrg.github.io /var/www/html/LycheeOrg.g
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 &lt;/VirtualHost&gt;
 </code></pre>
-
 <p>and</p>
 <pre><code>&lt;VirtualHost *:80&gt;
     ServerName lycheeorg.test
@@ -256,13 +247,11 @@ git clone git@github.con:LycheeOrg/LycheeOrg.github.io /var/www/html/LycheeOrg.g
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 &lt;/VirtualHost&gt;
 </code></pre>
-
 <p>Enable the sites and reload apache:</p>
 <pre><code>sudo a2ensite 001-lychee-test.conf
 sudo a2ensite 002-lycheeorg-test.conf
 sudo systemctl restart apache2
 </code></pre>
-
 <p>Open a browser on your host and navigate to <a href="http://lychee.test">http://lychee.test</a> and <a href="http://lycheeorg.test">http://lycheeorg.test</a> enjoy.</p>
 <h3 id="visual-studio-code"><a class="toclink" href="#visual-studio-code">Visual Studio Code</a></h3>
 <p>If you use <a href="https://code.visualstudio.com/">Visual Studio Code</a>, you can use the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">remote ssh extension</a>. It will allow you to directly edit your files in your VM without having to upload and download the files.</p>
@@ -280,13 +269,13 @@ You are free to use their installation, however we will not be providing you sup
 <p>Cloudron is a complete solution for running apps on your server and keeping them up-to-date and secure.</p>
 <p><a href="https://cloudron.io/store/com.electerious.lychee.cloudronapp.html"><img alt="Install" src="https://cloudron.io/img/button.svg" /></a></p>
 <p>The source code for the package can be found <a href="https://git.cloudron.io/cloudron/lychee-app">here</a>.</p>
-</div>
 <p>See their pricing <a href="https://cloudron.io/pricing.html">here</a>.</p>
 <blockquote>
 <p>{tip} Please note that we, at LycheeOrg, do not endorse Couldron.
 We give the reader a link to their websites as they provide our software.
 You are free to use their installation, however we will not be providing you support with their solution.</p>
 </blockquote>
+</div>
                         </section>
                     </section>
                 </section>

@@ -171,20 +171,17 @@ Those are the versions where we accept vulnerability reports.</p>
 git pull master
 git checkout -b &lt;fix-issue-number&gt;
 </code></pre>
-
 <p>Modify the desired files.</p>
 <pre><code>git add &lt;files-you-modified&gt;
 git commit -m &quot;&lt;mesage-of-what-is-going-on&gt;&quot;
 git push -u
 </code></pre>
-
 <p>You can then open a <a href="https://github.com/LycheeOrg/Lychee/pulls">pull request</a>.</p>
 <h2 id="coding-style"><a class="toclink" href="#coding-style">Coding Style</a></h2>
 <p>Our coding style is defined by the <code>.php-ps</code> file, it is mostly the Symfony style but we use tabs instead of spaces.</p>
 <p>Before submitting a PR, we highly encourage you to do:</p>
 <pre><code>./vendor/bin/php-cs-fixer fix --config=.php_cs
 </code></pre>
-
 <p>This will ensure that the code is consistent with our style.</p>
 <p>In order to make this less constraining, you can copy the <code>pre-commit</code> file in the root into the <code>.git/hooks</code> folder. This will execute the fixer to keep the consistency.</p>
 <p>Our current configuration can be found <a href="https://github.com/LycheeOrg/Lychee/blob/master/.php_cs">here</a>.
@@ -206,7 +203,6 @@ public function bind($abstract, $concrete = null, $shared = false)
     //
 }
 </code></pre>
-
 <h2 id="code-of-conduct"><a class="toclink" href="#code-of-conduct">Code of Conduct</a></h2>
 <p>The Lychee code of conduct is the same as Laravel's code of conduct:</p>
 <ul>

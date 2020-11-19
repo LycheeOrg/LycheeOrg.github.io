@@ -140,18 +140,16 @@
 <p>Don't forget to take a look at the <a href="releases.html">Changelog</a> to see what's new and to check for any actions that may be required.</p>
 <h2 id="update-using-git"><a class="toclink" href="#update-using-git">Update using Git</a></h2>
 <p>Fully updating Lychee with <code>git</code> is the easiest way:</p>
-<pre><code class="sh"># download the lastest files
+<pre><code class="language-sh"># download the lastest files
 git pull
 # update the dependencies
 composer install --no-dev
 # apply the database migration
 php artisan migrate
 </code></pre>
-
 <p>If you have the <code>post-merge</code> hook set up the following is enough:</p>
-<pre><code class="sh">git pull
+<pre><code class="language-sh">git pull
 </code></pre>
-
 <h2 id="update-manually"><a class="toclink" href="#update-manually">Update manually</a></h2>
 <p>This update will be the one you have to use if you are following the Release channel.</p>
 <ul>

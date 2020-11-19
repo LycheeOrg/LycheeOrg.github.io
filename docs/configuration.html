@@ -192,18 +192,15 @@
 <p>If you need to define an environment variable with a value that contains spaces, you may do so by enclosing the value in double quotes.</p>
 <pre><code>APP_NAME=&quot;My Application&quot;
 </code></pre>
-
 <h3 id="retrieving-environment-configuration"><a class="toclink" href="#retrieving-environment-configuration">Retrieving Environment Configuration</a></h3>
 <p>All of the variables listed in this file will be loaded into the $_ENV PHP super-global when your application receives a request. However, you may use the env helper to retrieve values from these variables in your configuration files. In fact, if you review the Lychee configuration files, you will notice several of the options already using this helper:</p>
 <pre><code>'debug' =&gt; env('APP_DEBUG', false),
 </code></pre>
-
 <p>The second value passed to the env function is the "default value". This value will be used if no environment variable exists for the given key.</p>
 <h3 id="determining-the-current-environment"><a class="toclink" href="#determining-the-current-environment">Determining The Current Environment</a></h3>
 <p>The current application environment is determined via the APP_ENV variable from your .env file. You may access this value via the environment method on the App facade:</p>
 <pre><code>$environment = App::environment();
 </code></pre>
-
 <p>You may also pass arguments to the environment method to check if the environment matches a given value. The method will return true if the environment matches any of the given values:</p>
 <pre><code>if (App::environment('local')) {
     // The environment is local
@@ -213,7 +210,6 @@ if (App::environment(['local', 'staging'])) {
     // The environment is either local OR staging...
 }
 </code></pre>
-
 <blockquote>
 <p>{tip} The current application environment detection can be overridden by a server-level <code>APP_ENV</code> environment variable. This can be useful when you need to share the same application for different environment configurations, so you can set up a given host to match a given environment in your server's configurations.</p>
 </blockquote>
@@ -242,16 +238,13 @@ if (App::environment(['local', 'staging'])) {
     ],
 ];
 </code></pre>
-
 <h2 id="accessing-configuration-values"><a class="toclink" href="#accessing-configuration-values">Accessing Configuration Values</a></h2>
 <p>You may easily access your configuration values using the global <code>config</code> helper function from anywhere in your application. The configuration values may be accessed using "dot" syntax, which includes the name of the file and option you wish to access. A default value may also be specified and will be returned if the configuration option does not exist:</p>
 <pre><code>$value = config('app.timezone');
 </code></pre>
-
 <p>To set configuration values at runtime, pass an array to the config helper:</p>
 <pre><code>config(['app.timezone' =&gt; 'America/Chicago']);
 </code></pre>
-
 <h2 id="configuration-caching"><a class="toclink" href="#configuration-caching">Configuration Caching</a></h2>
 <p>To give your application a speed boost, you should cache all of your configuration files into a single file using the <code>config:cache</code> Artisan command. This will combine all of the configuration options for your application into a single file which will be loaded quickly by the framework.</p>
 <p>You should typically run the <code>php artisan config:cache</code> command as part of your production deployment routine. The command should not be run during local development as configuration options will frequently need to be changed during the course of your application's development.</p>
@@ -263,19 +256,15 @@ if (App::environment(['local', 'staging'])) {
 <p>To enable maintenance mode, execute the <code>down</code> Artisan command:</p>
 <pre><code>php artisan down
 </code></pre>
-
 <p>You may also provide <code>message</code> and <code>retry</code> options to the <code>down</code> command. The <code>message</code> value may be used to display or log a custom message, while the <code>retry</code> value will be set as the <code>Retry-After</code> HTTP header's value:</p>
 <pre><code>php artisan down --message=&quot;Upgrading Database&quot; --retry=60
 </code></pre>
-
 <p>Even while in maintenance mode, specific IP addresses or networks may be allowed to access the application using the command's <code>allow</code> option:</p>
 <pre><code>php artisan down --allow=127.0.0.1 --allow=192.168.0.0/16
 </code></pre>
-
 <p>To disable maintenance mode, use the <code>up</code> command:</p>
 <pre><code>php artisan up
 </code></pre>
-
 <blockquote>
 <p>{tip} You may customize the default maintenance mode template by defining your own template at resources/views/errors/503.blade.php.</p>
 </blockquote>

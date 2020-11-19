@@ -128,80 +128,78 @@
 </ul>
 </li>
 <li><a href="#web-server-configuration">Web Server Configuration</a><ul>
-<li><a href="#directory-configuration">Directory Configuration</a></li>
-<li><a href="#pretty-urls">Pretty URLs</a></li>
+<li><a href="#general">General</a></li>
+<li><a href="#apache">Apache</a></li>
+<li><a href="#nginx">Nginx</a></li>
 </ul>
 </li>
 </ul>
 
                             <hr> <h2 id="installation"><a class="toclink" href="#installation">Installation</a></h2>
 <h3 id="server-requirements"><a class="toclink" href="#server-requirements">Server Requirements</a></h3>
-<p>The Lychee gallery has a few system requirements. You will need to make sure your server meets the following:</p>
+<p>The Lychee gallery has a few system requirements. You will need to make sure your server has the following:</p>
 <ul>
 <li>A web server such as Apache or nginx</li>
-<li>A Database access such as MySQL/MariaDB, PostgreSQL.<br />
-Lychee also comes with SQLite3 support.</li>
-<li>PHP &gt;= 7.3</li>
-<li>BCMath PHP Extension</li>
-<li>Ctype PHP Extension</li>
-<li>Exif PHP Extension</li>
-<li>Ffmpeg PHP Extension (optional &mdash; to generate video thumbnails)</li>
-<li>Fileinfo PHP Extension</li>
-<li>GD PHP Extension</li>
-<li>Imagick PHP Extension (optional &mdash; to generate better thumbnails)</li>
-<li>JSON PHP Extension</li>
-<li>Mbstring PHP Extension</li>
-<li>OpenSSL PHP Extension</li>
-<li>PDO PHP Extension</li>
-<li>Tokenizer PHP Extension</li>
-<li>XML PHP Extension</li>
-<li>ZIP PHP Extension</li>
+<li>A database &amp;mdash using e.g. MySQL/MariaDB, PostgreSQL or Lychee's inbuilt SQLite3 support</li>
+<li>PHP &gt;= 7.3 with these PHP extensions:</li>
+<li>BCMath</li>
+<li>Ctype</li>
+<li>Exif</li>
+<li>Ffmpeg (optional &mdash; to generate video thumbnails)</li>
+<li>Fileinfo</li>
+<li>GD</li>
+<li>Imagick (optional &mdash; to generate better thumbnails)</li>
+<li>JSON</li>
+<li>Mbstring</li>
+<li>OpenSSL</li>
+<li>PDO</li>
+<li>Tokenizer</li>
+<li>XML</li>
+<li>ZIP</li>
 </ul>
-<p>While Lychee works on 32bit systems, we do recommend the use of a 64bit OS.</p>
+<p>While Lychee works on 32bit systems, we <strong>strongly</strong> recommend the use of a 64bit OS.</p>
 <h3 id="installing-lychee"><a class="toclink" href="#installing-lychee">Installing Lychee</a></h3>
-<p>We provide three methods to install Lychee; using Docker, from the latest release &mdash;simple unzip&mdash;, or from source &mdash;uses Composer.</p>
+<p>We provide three methods to install Lychee: using a Docker image, the latest release .zip or from source, using Composer.</p>
 <h4>With Docker</h4>
 <p>Read <a href="docker.html">here</a>.</p>
 <h4>From Release</h4>
-<p>Download the release zip-file from the Releases page and extract it (usually in <code>/var/www/html</code>).
+<p>Download the release zip-file from the <a href="https://github.com/LycheeOrg/Lychee/releases">Releases</a> page and extract it (usually in <code>/var/www/html</code>).
 It contains a trimmed down version of the Lychee files.</p>
 <h4>From the Master branch</h4>
 <p>Lychee utilizes <a href="https://getcomposer.org/">Composer</a> to manage its dependencies. Make sure you have Composer installed on your machine.</p>
 <pre><code>git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
 </code></pre>
-
 <p>Get into the directory:</p>
 <pre><code>cd /var/www/html/Lychee
 </code></pre>
-
 <p>Install the required dependencies.</p>
 <pre><code>composer install --no-dev
 </code></pre>
-
-<p>If you want to help Lychee to develop, you can enable the dev option by simply removing the <code>--no-dev</code>.</p>
+<p>If you want to help develop Lychee, install the development dependencies by removing the <code>--no-dev</code> or replacing it with --dev.</p>
 <h3 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h3>
 <h4>Public Directory</h4>
-<p>After installing Lychee, you should configure your web server's document / web root to be the <code>public</code> directory. The <code>index.php</code> in this directory serves as the front controller for all HTTP requests entering your application.</p>
+<p>After installing Lychee, configure your web server's root to be the <code>public</code> directory. The <code>index.php</code> in this directory serves as the interface for all HTTP requests to Lychee's API. Note that the <code>.env</code> file should <strong>not</strong> be exposed online as it contains the encryption key used for cookies as well as database credentials.</p>
 <h4>Configuration Files</h4>
 <p>All of the configuration files for Lychee are stored in the <code>config</code> directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
 <h4>Directory Permissions</h4>
-<p>After installing Lychee, you need to configure some permissions. Directories within the <code>storage</code> and the <code>bootstrap/cache</code> directories should be writable by your web server or Lychee will not run. Additionaly <code>public/dist</code>, <code>public/uploads</code> and <code>public/sym</code> needs to be writable for you to be able to change the CSS,
-upload photos, generate symbolic links to protect the originals.</p>
+<p>After installing Lychee, you need to configure some permissions. Directories within the <code>storage</code> and the <code>bootstrap/cache</code> directories should be writable by your web server or Lychee will not run. Additionaly <code>public/uploads</code>, <code>public/dist</code> and <code>public/sym</code> need to be writable to upload files, customise the CSS and utilise <a href="https://lycheeorg.github.io/docs/settings.html#symbolic-link">symbolic links</a> respectively.</p>
 <h4>Application Key</h4>
 <p>The next thing you should do after installing Lychee is set your application key to a random string. This is easily done by using the <code>php artisan key:generate</code> command.</p>
-<p>Typically, this string should be 32 characters long. The key can be set in the <code>.env</code> environment file. If you have not copied the <code>.env.example</code> file to a new file named <code>.env</code>, you should do that now.
-<strong>If the application key is not set, your user sessions and other encrypted data will not be secure!</strong></p>
+<p>Typically, this string should be 32 characters long. The key can be set in the <code>.env</code> environment file. If you have not copied the <code>.env.example</code> file to a new file named <code>.env</code>, you should do that now.</p>
+<p><strong>If the application key is not set, your user sessions and other encrypted data will not be secure!</strong></p>
 <h4>Additional Configuration</h4>
 <p>Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the <code>config/app.php</code> file and its documentation. It contains some options that aren't included from <code>.env</code> that you may wish to change according to your installation.</p>
-<p>You may also want to configure a few additional components of Lychee, such as:
-- Cache
-- Database
-- Session</p>
+<p>You may also want to configure a few additional components of Lychee in <code>.env</code>, such as:</p>
+<ul>
+<li>Cache</li>
+<li>Database</li>
+<li>Session</li>
+</ul>
 <h2 id="web-server-configuration"><a class="toclink" href="#web-server-configuration">Web Server Configuration</a></h2>
-<h3 id="directory-configuration"><a class="toclink" href="#directory-configuration">Directory Configuration</a></h3>
-<p>Lychee should always be served out of the root of the "web directory" configured for your web server. You should not attempt to serve a Lychee out of a subdirectory of the "web directory". Attempting to do so could expose sensitive files present within your installation (e.g. <code>.env</code>).</p>
-<h3 id="pretty-urls"><a class="toclink" href="#pretty-urls">Pretty URLs</a></h3>
-<h4>Apache</h4>
+<h3 id="general"><a class="toclink" href="#general">General</a></h3>
+<p>It is strongly recommented that Lychee is served out of the root of your web server, not a subdirectory.</p>
+<p>It is also strongly recommended to serve Lychee over TLS. You may wish to consider <a href="https://letsencrypt.org/">Let's Encrypt</a> for certificates and <a href="https://ssl-config.mozilla.org/">Mozilla's SSL Configuration Generator</a> for server configuration examples.</p>
+<h3 id="apache"><a class="toclink" href="#apache">Apache</a></h3>
 <p>Lychee includes a <code>public/.htaccess</code> file that is used to provide URLs without the <code>index.php</code> front controller in the path. Before serving Lychee with Apache, be sure to enable the <code>mod_rewrite</code> module so the <code>.htaccess</code> file will be honored by the server.</p>
 <p>If the <code>.htaccess</code> file that ships with Lychee does not work with your Apache installation, try this alternative:</p>
 <pre><code>Options +FollowSymLinks -Indexes
@@ -214,11 +212,51 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [L]
 </code></pre>
+<h3 id="nginx"><a class="toclink" href="#nginx">Nginx</a></h3>
+<p>This is a sample nginx server block. It does not include TLS, but covers the Lychee-specific requirements.</p>
+<pre><code>server {
+    listen 80;
+    server_name &lt;mydomain&gt;.&lt;tld&gt;;
 
-<h4>Nginx</h4>
-<p>If you are using Nginx, the following directive in your site configuration will direct all requests to the <code>index.php</code> front controller:</p>
-<pre><code>location / {
-    try_files $uri $uri/ /index.php?$query_string;
+##### Path to the Lychee public/ directory.
+    root /var/www/lychee/public/;
+
+    # If the request is not for a valid file (image, js, css, etc.), send to bootstrap
+    if (!-e $request_filename)
+    {
+        rewrite ^/(.*)$ /index.php?/$1 last;
+        break;
+    }
+
+    # Serve /index.php through PHP
+    location = /index.php {
+        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+
+        # Mitigate https://httpoxy.org/ vulnerabilities
+        fastcgi_param HTTP_PROXY &quot;&quot;;
+
+######### Make sure this is the correct socket for your system
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PHP_VALUE &quot;post_max_size=100M
+            max_execution_time=200
+            upload_max_filesize=30M
+            memory_limit=300M&quot;;
+        fastcgi_param PATH /usr/local/bin:/usr/bin:/bin;
+        include fastcgi_params;
+    }
+    # Deny access to other .php files, rather than exposing their contents
+    location ~ [^/]\.php(/|$) {
+        return 403;
+    }
+
+    # [Optional] Lychee-specific logs
+    error_log  /var/log/nginx/lychee.error.log;
+    access_log /var/log/nginx/lychee.access.log;
+
+    # [Optional] Remove trailing slashes from requests (prevents SEO duplicate content issues)
+    rewrite ^/(.+)/$ /$1 permanent;
 }
 </code></pre>
                         </section>

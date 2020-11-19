@@ -206,7 +206,6 @@ Note that you will still need to authenticate yourself to the server, this disab
 <p>Yes, but you will need to change this property to a bigger value:</p>
 <pre><code>upload_max_filesize = 20M
 </code></pre>
-
 <h3 id="is-it-possible-to-create-multiple-users"><a class="toclink" href="#is-it-possible-to-create-multiple-users">Is it possible to create multiple users?</a></h3>
 <p>Yes. Just go to the <code>Users</code> menu.</p>
 <h3 id="does-lychee-use-imagemagick"><a class="toclink" href="#does-lychee-use-imagemagick">Does Lychee use ImageMagick?</a></h3>
@@ -217,21 +216,19 @@ Note that you will still need to authenticate yourself to the server, this disab
 <p>via ssh, use the command <code>php artisan lychee:reset_admin</code></p>
 <h3 id="how-to-hide-smart-albums"><a class="toclink" href="#how-to-hide-smart-albums">How to hide smart albums?</a></h3>
 <p>Add the following custom CSS to your <code>user.css</code> or via the settings menu:</p>
-<pre><code class="css">[data-id=&quot;0&quot;] { display:none; }
+<pre><code class="language-css">[data-id=&quot;0&quot;] { display:none; }
 [data-id=&quot;s&quot;] { display:none; }
 [data-id=&quot;f&quot;] { display:none; }
 [data-id=&quot;r&quot;] { display:none; }
 </code></pre>
-
 <h3 id="how-to-disable-the-zoom-animation-while-browsing-pictures"><a class="toclink" href="#how-to-disable-the-zoom-animation-while-browsing-pictures">How to disable the 'zoom' animation while browsing pictures?</a></h3>
 <p>Add the following custom CSS to your <code>user.css</code> or via the settings menu:</p>
-<pre><code class="css">#imageview #image {
+<pre><code class="language-css">#imageview #image {
   transition: none !important;
   animation-name: none !important;
   animation-duration: 0 !important;
 }
 </code></pre>
-
 <h3 id="how-is-the-upload-folder-protected"><a class="toclink" href="#how-is-the-upload-folder-protected">How is the upload folder protected?</a></h3>
 <p>From <a href="https://github.com/LycheeOrg/Lychee/issues/304">#304</a></p>
 <p>Short version: It's not protected</p>
@@ -246,16 +243,14 @@ However if the page is too heavy to load, you can either manually empty the <cod
 <pre><code>cd Lychee
 php artisan lychee:logs clean
 </code></pre>
-
 <h3 id="how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare"><a class="toclink" href="#how-can-i-see-the-correct-client-ip-address-when-running-lychee-behind-cloudflare">How can I see the correct client IP address when running Lychee behind Cloudflare?]</a></h3>
 <p>Please see <a href="https://github.com/monicahq/laravel-cloudflare">https://github.com/monicahq/laravel-cloudflare</a>. The Lychee file that needs changing can be found <a href="https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/TrustProxies.php">here</a>.</p>
 <h3 id="can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums"><a class="toclink" href="#can-i-set-up-lychee-to-watch-a-folder-for-new-images-and-automatically-add-them-to-albums">Can I set up Lychee to watch a folder for new images and automatically add them to albums?</a></h3>
 <p>Lychee can import photos from the command line using <code>php artisan lychee:sync /path/to/import</code>. Folders in this path will be converted to albums, and subfolders as subalbums using <code>php artisan lychee:sync /path/to/import --album_id="album ID"</code>.</p>
 <p>This command can be scheduled using <code>cron</code> or a systemd timer.</p>
-<pre><code class="sh">man crontab
+<pre><code class="language-sh">man crontab
 man systemd.timer
 </code></pre>
-
 <h3 id="special-right-click-menu-doesnt-appear-for-new-users"><a class="toclink" href="#special-right-click-menu-doesnt-appear-for-new-users">Special right-click menu doesn't appear for new users?</a></h3>
 <p>For example:<br />
 <img alt="" src="https://user-images.githubusercontent.com/14360110/74829349-22b41c80-5311-11ea-96e9-adb648a2c3fe.png" /></p>
@@ -287,13 +282,11 @@ Once open, you will be redirected to the install procedure. Completed you will b
 public/dist/user.css
 public/uploads/
 </code></pre>
-
 <ul>
 <li>2 &mdash; Dump the Lychee database to a file. E.g., if you are using MySQL, run:</li>
 </ul>
 <pre><code>mysqldump -u user -ppassword --databases lychee_database &gt; lychee_backup.sql
 </code></pre>
-
 <p>Replace <code>user</code>, <code>password</code>, and <code>lychee_database</code> by the values of <code>DB_USERNAME</code>, <code>DB_PASSWORD</code>, and <code>DB_DATABASE</code> from the <code>.env</code> file in the Lychee folder.</p>
 <h3 id="how-can-i-migrate-my-installation-to-a-new-host"><a class="toclink" href="#how-can-i-migrate-my-installation-to-a-new-host">How can I migrate my installation to a new host?</a></h3>
 <p>Back up your installation as describe above:</p>
@@ -304,10 +297,9 @@ public/uploads/
 </ul>
 <pre><code>mysql -u user -ppassword &lt; lychee_backup.sql
 </code></pre>
-
 <h3 id="can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee"><a class="toclink" href="#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee">Can I host Lychee with a subpath with Nginx? Like <code>https://example.dev/lychee/</code></a></h3>
 <p>Yes, here is a configuration to help you:</p>
-<pre><code class="nginx">location ^~ /lychee {
+<pre><code class="language-nginx">location ^~ /lychee {
     alias /var/www/lychee/public;
     index index.php;
     try_files $uri $uri/ @lychee;
@@ -327,7 +319,6 @@ location @lychee {
 }
 
 </code></pre>
-
 <h3 id="can-i-host-lychee-with-a-subpath-with-apache-like-httpsexampledevlychee"><a class="toclink" href="#can-i-host-lychee-with-a-subpath-with-apache-like-httpsexampledevlychee">Can I host Lychee with a subpath with Apache? Like <code>https://example.dev/lychee/</code></a></h3>
 <p>Yes, just create a Symbolic Link and allow your apache configuration to follow them.
 At website.com root <code>ln -s Lychee/public pics</code> and you will get exactly what you want: <code>website.com/pics</code></p>
@@ -346,7 +337,6 @@ public/uploads/medium
 public/uploads/import
 public/dist
 </code></pre>
-
 <h3 id="is-it-possible-to-do-the-update-directly-from-the-gui-how"><a class="toclink" href="#is-it-possible-to-do-the-update-directly-from-the-gui-how">Is it possible to do the update directly from the GUI? How?</a></h3>
 <p>You go to <code>Diagnostics</code> -&gt; <code>Check for Updates</code><br />
 Once done you need to update the <code>Diagnostic</code> page (click on it again in the left menu) 
@@ -417,26 +407,22 @@ upload_max_size = 100M
 upload_max_filesize = 20M
 memory_limit = 256M
 </code></pre>
-
 <h3 id="what-does-upstream-sent-too-big-header-error-message-mean"><a class="toclink" href="#what-does-upstream-sent-too-big-header-error-message-mean">What does <em>Upstream sent too big header</em> error message mean?</a></h3>
 <p>This error may be seen from your browser's console if you're trying to debug something with Lychee. If using <code>nginx</code>, try adding the following to Lychee's config and reload nginx's service:</p>
 <pre><code>fastcgi_buffers 16 16k;
 fastcgi_buffer_size 32k;
 </code></pre>
-
 <h3 id="why-dont-my-videos-have-thumbnails"><a class="toclink" href="#why-dont-my-videos-have-thumbnails">Why don't my videos have thumbnails?</a></h3>
 <p>You will need ffmpeg installed on your server, and to have installed php-ffmpeg using composer as detailed in the <a href="installation.html">Installation Guide</a>.</p>
 <p>If you are still having problems, check your Lychee log. If you are still getting a <code>Could not create thumbnail for video because FFMPEG is not available.</code> error, you may need to specify the location of your ffmpeg and ffprobe binaries. In https://github.com/LycheeOrg/Lychee/blob/master/app/ModelFunctions/PhotoFunctions.php#L94 replace</p>
 <pre><code>$ffmpeg = FFMpeg\FFMpeg::create();
 </code></pre>
-
 <p>with</p>
 <pre><code>$ffmpeg = FFMpeg\FFMpeg::create(array(
         'ffmpeg.binaries'  =&gt; '/usr/bin/ffmpeg',
         'ffprobe.binaries' =&gt; '/usr/bin/ffprobe',
 ));
 </code></pre>
-
 <p>using your correct binary locations. If unsure, you can try running <code>which ffmpeg</code> on the server.</p>
 <h3 id="composer-cant-create-a-cache-directory"><a class="toclink" href="#composer-cant-create-a-cache-directory">Composer can't create a cache directory</a></h3>
 <ul>
@@ -444,13 +430,11 @@ fastcgi_buffer_size 32k;
 </ul>
 <pre><code>Cannot create cache directory /home/$USER/.composer/cache/files/, or directory is not writable. Proceeding without cache
 </code></pre>
-
 <ul>
 <li>You can specify Composer's cache directory with the environment variable <code>COMPOSER_CACHE_DIR=</code>. For Lychee, the cache is not necessary, and you can both disable it and hide the warning by specifying the location of the cache as <code>/dev/null</code> (<a href="https://github.com/composer/composer/commit/fd6455218e304e9b484bebb0efcdb67bb52d051d">information</a>):</li>
 </ul>
 <pre><code>COMPOSER_CACHE_DIR='/dev/null' composer update --working-dir='/var/www/Lychee'
 </code></pre>
-
 <h3 id="i-cant-access-the-users-under-settings-server-error-or-api-not-found-on-lightspeed"><a class="toclink" href="#i-cant-access-the-users-under-settings-server-error-or-api-not-found-on-lightspeed">I can't access the users under settings server error or api not found on Lightspeed</a></h3>
 <p>If you receive a server error or "api not found" error under lightspeed web server try going to <code>cPanel</code> &gt; <code>Mod Security</code> and turning the feature off.</p>
 <h3 id="i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories"><a class="toclink" href="#i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories">I know my file permissions for <code>storage</code>, <code>bootstrap/cache</code>, <code>public/uploads</code>, and <code>public/dist</code> are correct and accessible by my web server user, but I'm still getting a PHP error when writing to any of these directories.</a></h3>
@@ -463,7 +447,6 @@ chcon -R -t httpd_sys_rw_content_t bootstrap/cache
 chcon -R -t httpd_sys_rw_content_t public/uploads
 chcon -R -t httpd_sys_rw_content_t public/dist
 </code></pre>
-
 <h3 id="i-know-port-80443-are-open-on-my-machine-but-lycheemy-server-is-still-refusing-all-connections"><a class="toclink" href="#i-know-port-80443-are-open-on-my-machine-but-lycheemy-server-is-still-refusing-all-connections">I know port 80/443 are open on my machine, but Lychee/my server is still refusing all connections.</a></h3>
 <p>On some operating systems with more restrictive SELinux rules (like Fedora 32 Server at the time of writing), you need to allow your web server user to connect over the network with <code>setsebool -P httpd_can_network_connect on</code>. You can view the status of your SELinux booleans with <code>getsebool -a</code>.</p>
 <h3 id="i-know-my-sql-database-is-setup-correctly-but-lychee-is-showing-sqlstatehy000-2002-no-such-file-or-directory-and-is-not-able-to-make-changes-to-the-database"><a class="toclink" href="#i-know-my-sql-database-is-setup-correctly-but-lychee-is-showing-sqlstatehy000-2002-no-such-file-or-directory-and-is-not-able-to-make-changes-to-the-database">I know my SQL database is setup correctly, but Lychee is showing <code>SQLSTATE[HY000] [2002] No such file or directory</code> and is not able to make changes to the database.</a></h3>

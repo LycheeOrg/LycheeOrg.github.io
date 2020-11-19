@@ -200,7 +200,6 @@
     margin: 0 0 0;
 }
 </style>
-
 <p>The current API provide the following entry points:
 See:</p>
 <ul>
@@ -224,7 +223,6 @@ See:</p>
     'password' =&gt; 'required',
 ]);
 </code></pre>
-
 <h3 id="apisessionlogout"><a class="toclink" href="#apisessionlogout"><code>/api/Session::logout</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -248,7 +246,6 @@ See:</p>
 </ul>
 <pre><code>$request-&gt;validate(['albumID' =&gt; 'string|required']);
 </code></pre>
-
 <h3 id="apialbumgetpositiondata"><a class="toclink" href="#apialbumgetpositiondata"><code>/api/Album::getPositionData</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -263,7 +260,6 @@ See:</p>
     'password' =&gt; 'string|nullable',
 ]);
 </code></pre>
-
 <h3 id="apialbumadd"><a class="toclink" href="#apialbumadd"><code>/api/Album::add</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -274,7 +270,6 @@ See:</p>
     'parent_id' =&gt; 'int|nullable',
 ]);
 </code></pre>
-
 <h3 id="apialbumsettitle"><a class="toclink" href="#apialbumsettitle"><code>/api/Album::setTitle</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -285,7 +280,6 @@ See:</p>
     'title' =&gt; 'string|required|max:100',
 ]);
 </code></pre>
-
 <h3 id="apialbumsetdescription"><a class="toclink" href="#apialbumsetdescription"><code>/api/Album::setDescription</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -296,7 +290,6 @@ See:</p>
     'description' =&gt; 'string|nullable|max:1000',
 ]);
 </code></pre>
-
 <h3 id="apialbumsetpublic"><a class="toclink" href="#apialbumsetpublic"><code>/api/Album::setPublic</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -311,7 +304,6 @@ See:</p>
     'full_photo' =&gt; 'integer|required',
 ]);
 </code></pre>
-
 <h3 id="apialbumdelete"><a class="toclink" href="#apialbumdelete"><code>/api/Album::delete</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -321,7 +313,6 @@ See:</p>
     'albumIDs' =&gt; 'string|required',
 ]);
 </code></pre>
-
 <h3 id="apialbummerge"><a class="toclink" href="#apialbummerge"><code>/api/Album::merge</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -332,7 +323,6 @@ See:</p>
     'albumIDs' =&gt; 'string|required',
 ]);
 </code></pre>
-
 <h3 id="apialbummove"><a class="toclink" href="#apialbummove"><code>/api/Album::move</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -341,7 +331,6 @@ See:</p>
 </ul>
 <pre><code>$request-&gt;validate(['albumIDs' =&gt; 'string|required']);
 </code></pre>
-
 <h3 id="apialbumsetlicense"><a class="toclink" href="#apialbumsetlicense"><code>/api/Album::setLicense</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -353,7 +342,6 @@ See:</p>
     'license' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apialbumgetarchive"><a class="toclink" href="#apialbumgetarchive"><code>/api/Album::getArchive</code></a></h3>
 <ul>
 <li><strong>GET</strong> request</li>
@@ -363,7 +351,6 @@ See:</p>
     'albumIDs' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apiframegetsettings"><a class="toclink" href="#apiframegetsettings"><code>/api/Frame::getSettings</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -377,7 +364,6 @@ See:</p>
     'photoID' =&gt; 'string|required',
 ]);
 </code></pre>
-
 <h3 id="apiphotogetrandom"><a class="toclink" href="#apiphotogetrandom"><code>/api/Photo::getRandom</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -392,7 +378,6 @@ See:</p>
     'title' =&gt; 'required|string|max:100',
 ]);
 </code></pre>
-
 <h3 id="apiphotosetdescription"><a class="toclink" href="#apiphotosetdescription"><code>/api/Photo::setDescription</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -403,7 +388,6 @@ See:</p>
     'description' =&gt; 'string|nullable',
 ]);
 </code></pre>
-
 <h3 id="apiphotosetstar"><a class="toclink" href="#apiphotosetstar"><code>/api/Photo::setStar</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -413,7 +397,6 @@ See:</p>
     'photoIDs' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apiphotosetpublic"><a class="toclink" href="#apiphotosetpublic"><code>/api/Photo::setPublic</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -423,7 +406,6 @@ See:</p>
     'photoID' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apiphotosetalbum"><a class="toclink" href="#apiphotosetalbum"><code>/api/Photo::setAlbum</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -434,7 +416,6 @@ See:</p>
     'albumID' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apiphotosettags"><a class="toclink" href="#apiphotosettags"><code>/api/Photo::setTags</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -445,7 +426,6 @@ See:</p>
     'tags' =&gt; 'string|nullable',
 ]);
 </code></pre>
-
 <h3 id="apiphotoadd"><a class="toclink" href="#apiphotoadd"><code>/api/Photo::add</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -457,7 +437,6 @@ See:</p>
     '0' =&gt; 'required',
 ]);
 </code></pre>
-
 <h3 id="apiphotodelete"><a class="toclink" href="#apiphotodelete"><code>/api/Photo::delete</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -467,7 +446,6 @@ See:</p>
     'photoIDs' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apiphotoduplicate"><a class="toclink" href="#apiphotoduplicate"><code>/api/Photo::duplicate</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -478,7 +456,6 @@ See:</p>
     'albumID' =&gt; 'string',
 ]);
 </code></pre>
-
 <h3 id="apiphotosetlicense"><a class="toclink" href="#apiphotosetlicense"><code>/api/Photo::setLicense</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -490,7 +467,6 @@ See:</p>
     'license' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apiphotogetarchive"><a class="toclink" href="#apiphotogetarchive"><code>/api/Photo::getArchive</code></a></h3>
 <ul>
 <li><strong>GET</strong> request</li>
@@ -502,7 +478,6 @@ See:</p>
     'kind' =&gt; 'nullable|string',
 ]);
 </code></pre>
-
 <h3 id="apiphotoclearsymlink"><a class="toclink" href="#apiphotoclearsymlink"><code>/api/Photo::clearSymLink</code></a></h3>
 <ul>
 <li><strong>GET</strong> request</li>
@@ -522,7 +497,6 @@ See:</p>
     'albumIDs' =&gt; 'string|required',
 ]);
 </code></pre>
-
 <h3 id="apisharingadd"><a class="toclink" href="#apisharingadd"><code>/api/Sharing::Add</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -533,7 +507,6 @@ See:</p>
     'albumIDs' =&gt; 'string|required',
 ]);
 </code></pre>
-
 <h3 id="apisharingdelete"><a class="toclink" href="#apisharingdelete"><code>/api/Sharing::Delete</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -543,7 +516,6 @@ See:</p>
     'ShareIDs' =&gt; 'string|required',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetlogin"><a class="toclink" href="#apisettingssetlogin"><code>/api/Settings::setLogin</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -555,7 +527,6 @@ See:</p>
 $oldPassword = $request-&gt;has('oldPassword') ? $request['oldPassword']: '';
 $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
 </code></pre>
-
 <h3 id="apiimporturl"><a class="toclink" href="#apiimporturl"><code>/api/Import::url</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -566,7 +537,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'albumID' =&gt; 'string|required',
 ]);
 </code></pre>
-
 <h3 id="apiimportserver"><a class="toclink" href="#apiimportserver"><code>/api/Import::server</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -579,7 +549,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'delete_imported' =&gt; 'int',
 ]);
 </code></pre>
-
 <h3 id="apiuserlist"><a class="toclink" href="#apiuserlist"><code>/api/User::List</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -597,7 +566,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'lock' =&gt; 'required',
 ]);
 </code></pre>
-
 <h3 id="apiuserdelete"><a class="toclink" href="#apiuserdelete"><code>/api/User::Delete</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -607,7 +575,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'id' =&gt; 'required',
 ]);
 </code></pre>
-
 <h3 id="apiusercreate"><a class="toclink" href="#apiusercreate"><code>/api/User::Create</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -620,7 +587,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'lock' =&gt; 'required',
 ]);
 </code></pre>
-
 <h3 id="apilogs"><a class="toclink" href="#apilogs"><code>/api/Logs</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -676,7 +642,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'term' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetsorting"><a class="toclink" href="#apisettingssetsorting"><code>/api/Settings::setSorting</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -689,7 +654,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'orderPhotos' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetlang"><a class="toclink" href="#apisettingssetlang"><code>/api/Settings::setLang</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -699,7 +663,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'lang' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetlayout"><a class="toclink" href="#apisettingssetlayout"><code>/api/Settings::setLayout</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -709,7 +672,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'layout' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetpublicsearch"><a class="toclink" href="#apisettingssetpublicsearch"><code>/api/Settings::setPublicSearch</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -719,7 +681,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'public_search' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetimageoverlay"><a class="toclink" href="#apisettingssetimageoverlay"><code>/api/Settings::setImageOverlay</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -729,7 +690,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'image_overlay' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetdefaultlicense"><a class="toclink" href="#apisettingssetdefaultlicense"><code>/api/Settings::setDefaultLicense</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -739,7 +699,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'license' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <ul>
 <li>License is one of the following: <code>none</code>, <code>reserved</code>, <code>CC0</code>, <code>CC-BY</code>, <code>CC-BY-ND</code>, <code>CC-BY-SA</code>, <code>CC-BY-ND</code>, <code>CC-BY-NC-ND</code>, <code>CC-BY-NC-SA</code></li>
 </ul>
@@ -752,7 +711,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'map_display' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetmapdisplaypublic"><a class="toclink" href="#apisettingssetmapdisplaypublic"><code>/api/Settings::setMapDisplayPublic</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -762,7 +720,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'map_display_public' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetmapprovider"><a class="toclink" href="#apisettingssetmapprovider"><code>/api/Settings::setMapProvider</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -772,7 +729,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'map_provider' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetmapincludesubalbums"><a class="toclink" href="#apisettingssetmapincludesubalbums"><code>/api/Settings::setMapIncludeSubalbums</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -782,7 +738,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'map_include_subalbums' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetlocationdecoding"><a class="toclink" href="#apisettingssetlocationdecoding"><code>/api/Settings::setLocationDecoding</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -792,7 +747,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'location_decoding' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetlocationshow"><a class="toclink" href="#apisettingssetlocationshow"><code>/api/Settings::setLocationShow</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -802,7 +756,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'location_show' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetlocationshowpublic"><a class="toclink" href="#apisettingssetlocationshowpublic"><code>/api/Settings::setLocationShowPublic</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -812,7 +765,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'location_show_public' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetcss"><a class="toclink" href="#apisettingssetcss"><code>/api/Settings::setCSS</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -820,7 +772,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
 </ul>
 <pre><code>$request-&gt;validate(['css' =&gt; 'nullable|string']);
 </code></pre>
-
 <h3 id="apisettingsgetall"><a class="toclink" href="#apisettingsgetall"><code>/api/Settings::getAll</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -840,7 +791,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     $no_error &amp;= Configs::set($key, $value);
 }
 </code></pre>
-
 <h3 id="apisettingssetoverlaytype"><a class="toclink" href="#apisettingssetoverlaytype"><code>/api/Settings::setOverlayType</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>
@@ -850,7 +800,6 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
     'image_overlay_type' =&gt; 'required|string',
 ]);
 </code></pre>
-
 <h3 id="apisettingssetdropboxkey"><a class="toclink" href="#apisettingssetdropboxkey"><code>/api/Settings::setDropboxKey</code></a></h3>
 <ul>
 <li><strong>POST</strong> request</li>

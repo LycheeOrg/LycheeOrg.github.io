@@ -131,8 +131,8 @@
 </ul>
 
                             <hr> <h2 id="checking-requirements"><a class="toclink" href="#checking-requirements">Checking requirements</a></h2>
-<p>Check that the server satisfifes the <a href="https://lycheeorg.github.io/docs/installation.html#server-requirements">requirements</a>, in particular pay attention the php extensions.
-You can display them by using <code>phpinfo()</code>.</p>
+<p>Check that the server satisfifes the <a href="installation.html#web-server-configuration">requirements</a>. In particular pay attention the PHP extensions.
+You can display installed PHP extensions using <code>phpinfo()</code>.</p>
 <h2 id="preparing-the-files"><a class="toclink" href="#preparing-the-files">Preparing the files</a></h2>
 <p>Assuming the following tree:</p>
 <pre><code>/var/
@@ -141,22 +141,18 @@ You can display them by using <code>phpinfo()</code>.</p>
               |- Lychee/
               |- &lt;you are here&gt;
 </code></pre>
-
 <p>Rename Lychee into Lychee-v3:</p>
 <pre><code>mv Lychee Lychee-v3
 </code></pre>
-
 <p>Install Lychee files by either uploading the content of the released zip or cloning the repository:</p>
 <pre><code>git clone https://github.com/LycheeOrg/Lychee Lychee
 </code></pre>
-
 <p>Move the pictures from the version 3 to the newly created installation:</p>
 <pre><code>mv Lychee-v3/uploads/big/* Lychee/public/uploads/big/
 mv Lychee-v3/uploads/medium/* Lychee/public/uploads/medium/
 mv Lychee-v3/uploads/small/* Lychee/public/uploads/small/
 mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
 </code></pre>
-
 <h2 id="preparing-the-server"><a class="toclink" href="#preparing-the-server">Preparing the server</a></h2>
 <blockquote>
 <p>{note} The big difference between Lychee version 3 and Lychee version 4 is the served directory, i.e. where you webserver needs to point to.</p>
@@ -174,7 +170,6 @@ mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
     Require all granted
 &lt;/Directory&gt;
 </code></pre>
-
 <p>Modify or create <code>example.com.conf</code> in <code>/etc/apache2/site-available/</code> to point out the served directory:</p>
 <pre><code>&lt;VirtualHost *:80&gt;
     ServerName example.com
@@ -185,52 +180,15 @@ mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 &lt;/VirtualHost&gt;
 </code></pre>
-
 <p>Enable the site:</p>
 <pre><code>a2ensite `example.com.conf`
 </code></pre>
-
 <p>Restart apache2:</p>
 <pre><code>systemctl restart apache2
 </code></pre>
-
 <p>Process with the </p>
 <h3 id="using-nginx"><a class="toclink" href="#using-nginx">Using Nginx</a></h3>
-<p>If you are using Nginx you may use the following as an example of set up:</p>
-<pre><code># serve static files directly
-location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
-  access_log off;
-  expires max;
-  log_not_found off;
-}
-
-# sets the limit on uploaded file sized
-client_max_body_size 50M;
-
-# removes trailing slashes (prevents SEO duplicate content issues)
-if (!-d $request_filename)
-{
-  rewrite ^/(.+)/$ /$1 permanent;
-}
-
-# enforce NO www
-if ($host ~* ^www\.(.*))
-{
-  set $host_without_www $1;
-  rewrite ^/(.*)$ $scheme://$host_without_www/$1 permanent;
-}
-
-# unless the request is for a valid file (image, js, css, etc.), send to bootstrap
-if (!-e $request_filename)
-{
-  rewrite ^/(.*)$ /index.php?/$1 last;
-  break;
-}
-
-location / {
-  try_files $uri $uri/ /index.php?$query_string;
-}
-</code></pre>
+<p>If you are using Nginx, an example configuration can be found <a href="installation.html#web-server-configuration">here</a>.</p>
                         </section>
                     </section>
                 </section>
