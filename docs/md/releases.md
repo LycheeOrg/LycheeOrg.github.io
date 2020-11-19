@@ -30,6 +30,12 @@
 
 ## Master branch
 
+## Version 4
+
+### v4.0.8
+
+Released Nov 19, 2020
+
 - `fixes` #783 : Can't rename tag album
   > Tag-albums were not accessible by `albums.getByID`
 - `fixes` #781 : Fixes a bug which prevented the use of sharing albums between users
@@ -60,8 +66,6 @@
   > Too many logs lines where crashing php by using too much memory.
 - `new` #758 : Add the possibility to chose the picture ordering per album
   > the admin can now chose whether to order by name etc per album instead of globally.
-
-## Version 4
 
 ### v4.0.7
 
