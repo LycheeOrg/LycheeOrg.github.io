@@ -152,8 +152,9 @@
 <ul>
 <li>1 &mdash; Create the db, username, password.</li>
 <li>2 &mdash; Edit the environment variables (db credentials, language...) by :<ul>
-<li>Supplying the environment variables via <code>docker run</code> / <code>docker-compose</code>, <strong>or</strong></li>
-<li>Creating a <code>.env</code> file with the appropriate info and mount it to <code>/conf/.env</code>.</li>
+<li>Supplying the environment variables via <code>docker run</code> / <code>docker-compose</code> <strong>or</strong></li>
+<li>Creating a <code>.env</code> file with the appropriate info and mount it to <code>/conf/.env</code> <strong>or</strong></li>
+<li>Use the Lychee installer by passing <code>-e DB_CONNECTION=</code> on the command line and connecting to the container with your browser</li>
 </ul>
 </li>
 </ul>
