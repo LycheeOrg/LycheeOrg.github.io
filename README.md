@@ -21,11 +21,4 @@ $ pip install -U pytest markdown
 
 # Generating
 
-This assumes the current directory structure:
-```
-<path>/LycheeOrg.github.io
-<path>/Lychee
-```
-The script will look for: `../Lychee/version.md`
-
-If this is the case, just do `make` and commit the changed files. :)
+Just do `make` and commit the changed files. :)
