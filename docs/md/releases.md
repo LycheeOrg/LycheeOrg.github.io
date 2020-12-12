@@ -36,6 +36,8 @@
 
 Released Nov 19, 2020
 
+**BREAKING CHANGE: REQUIRE PHP 7.4**
+
 - `fixes` #783 : Can't rename tag album
   > Tag-albums were not accessible by `albums.getByID`
 - `fixes` #781 : Fixes a bug which prevented the use of sharing albums between users
