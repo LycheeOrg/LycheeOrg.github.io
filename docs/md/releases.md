@@ -32,6 +32,39 @@
 
 ## Version 4
 
+### v4.1.0
+
+Released Dec 27, 2020
+
+- `new` #798 : Force migration page.
+  > when the database is behind the file version, we immediately redirect to a migration page to ensure that
+  > database columns are not missing, generating error 500.
+- `new` #800 : Move to GitHub actions instead of Travis CI.
+  > They are still available in the Ajax query
+- `upd` #799 #816 : **Require PHP 7.4**
+  > PHP 7.3 is EOL.
+- `new` #807 : add new command: `php artisan lychee:rebuild_albums_takestamps`
+  > there are instances where the album min max takestamps are broken. This allows the user to reset it.
+- `upd` #808 : Update traditional Chinese files.
+- `fixes` #813 : some error 500 during installations were not properly caught.
+- `fixes` #806 : Direct Links of albums do not respect url if lychee installed in subdirectory
+- `fixes` #811 : fall back to native metadata extraction on error
+- `fixes` #810 : fix(rss): avoid display feed link in HTML if RSS option is disabled
+- `new` #819 : add support for WebAuth: Yubikeys & fingerprint & other authentication devices.
+  > This is only available to the admin login (for now)
+  > Also implements shortcut `k` to pop-up the passwordless login interface.
+- `new` #822 : add sensitive albums
+  > - adds a new "flag" so that such folders can be recognized at first glance while being logged in.
+  > - adds a key-bind `h` who hides all folders previously marked as sensitive.
+  > - adds a pink star in the header to notify the user is in a Sensitive folder.
+  > - Changing this property is either done on clicking on the star or toggling it in the visibility parameters.
+  > - makes it possible to hide Sensitive folder by default.
+  >
+  > **Important note: if a sensitive folder is set as public, it will be revealed by `h`.** If you do not wish such public folder to be visible, set it as _hidden_.
+- `fixes` #831 : Use correct file name for small/medium downloads
+  > fixes a regression bug introduced by #777
+
+
 ### v4.0.8
 
 Released Nov 19, 2020

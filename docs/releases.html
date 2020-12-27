@@ -123,6 +123,7 @@
 <ul>
 <li><a href="#master-branch">Master branch</a></li>
 <li><a href="#version-4">Version 4</a><ul>
+<li><a href="#v410">v4.1.0</a></li>
 <li><a href="#v408">v4.0.8</a></li>
 <li><a href="#v407">v4.0.7</a></li>
 <li><a href="#v406">v4.0.6</a></li>
@@ -223,6 +224,52 @@
 
 <h2 id="master-branch"><a class="toclink" href="#master-branch">Master branch</a></h2>
 <h2 id="version-4"><a class="toclink" href="#version-4">Version 4</a></h2>
+<h3 id="v410"><a class="toclink" href="#v410">v4.1.0</a></h3>
+<p>Released Dec 27, 2020</p>
+<ul>
+<li><code>new</code> #798 : Force migration page.<blockquote>
+<p>when the database is behind the file version, we immediately redirect to a migration page to ensure that
+database columns are not missing, generating error 500.</p>
+</blockquote>
+</li>
+<li><code>new</code> #800 : Move to GitHub actions instead of Travis CI.<blockquote>
+<p>They are still available in the Ajax query</p>
+</blockquote>
+</li>
+<li><code>upd</code> #799 #816 : <strong>Require PHP 7.4</strong><blockquote>
+<p>PHP 7.3 is EOL.</p>
+</blockquote>
+</li>
+<li><code>new</code> #807 : add new command: <code>php artisan lychee:rebuild_albums_takestamps</code><blockquote>
+<p>there are instances where the album min max takestamps are broken. This allows the user to reset it.</p>
+</blockquote>
+</li>
+<li><code>upd</code> #808 : Update traditional Chinese files.</li>
+<li><code>fixes</code> #813 : some error 500 during installations were not properly caught.</li>
+<li><code>fixes</code> #806 : Direct Links of albums do not respect url if lychee installed in subdirectory</li>
+<li><code>fixes</code> #811 : fall back to native metadata extraction on error</li>
+<li><code>fixes</code> #810 : fix(rss): avoid display feed link in HTML if RSS option is disabled</li>
+<li><code>new</code> #819 : add support for WebAuth: Yubikeys &amp; fingerprint &amp; other authentication devices.<blockquote>
+<p>This is only available to the admin login (for now)
+Also implements shortcut <code>k</code> to pop-up the passwordless login interface.</p>
+</blockquote>
+</li>
+<li><code>new</code> #822 : add sensitive albums<blockquote>
+<ul>
+<li>adds a new "flag" so that such folders can be recognized at first glance while being logged in.</li>
+<li>adds a key-bind <code>h</code> who hides all folders previously marked as sensitive.</li>
+<li>adds a pink star in the header to notify the user is in a Sensitive folder.</li>
+<li>Changing this property is either done on clicking on the star or toggling it in the visibility parameters.</li>
+<li>makes it possible to hide Sensitive folder by default.</li>
+</ul>
+<p><strong>Important note: if a sensitive folder is set as public, it will be revealed by <code>h</code>.</strong> If you do not wish such public folder to be visible, set it as <em>hidden</em>.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #831 : Use correct file name for small/medium downloads<blockquote>
+<p>fixes a regression bug introduced by #777</p>
+</blockquote>
+</li>
+</ul>
 <h3 id="v408"><a class="toclink" href="#v408">v4.0.8</a></h3>
 <p>Released Nov 19, 2020</p>
 <p><strong>BREAKING CHANGE: REQUIRE PHP 7.4</strong></p>
