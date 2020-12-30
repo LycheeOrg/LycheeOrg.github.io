@@ -6,7 +6,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
 
 - A web server such as Apache or nginx
 - A database &mdash; using one of the following: 
-    - MySQL _(version > 5.7.8)_ / MaruaDB _(version > 10.2)_
+    - MySQL _(version > 5.7.8)_ / MariaDB _(version > 10.2)_
 	- PostgreSQL _(version > 9.2)_
 	- Lychee's inbuilt SQLite3 support
 - PHP >= 7.4 with these PHP extensions:
