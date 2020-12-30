@@ -321,11 +321,14 @@ More [here](https://laracasts.com/discuss/channels/general-discussion/how-does-c
 Prefer `file` or `database` (but that last one require some [more configuration](https://laravel.com/docs/7.x/session#driver-prerequisites))
 
 Warning
+
 `php -S` web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.
 
-### I can't upload photos.
+### I can't upload (large) photos.
 
-If you experience problems uploading large photos, you might want to change the PHP parameters in `.htaccess` (if you are using the PHP Apache module) or in `.user.ini` (if you are using PHP >= 7.3 with CGI or FastCGI).
+Issues may occur when trying to upload photos with large **file sizes** or large **resolutions**.
+
+If you experience problems uploading photos with large **file sizes**, you might want to change the PHP parameters in `.htaccess` (if you are using the PHP Apache module) or in `.user.ini` (if you are using PHP >= 7.3 with CGI or FastCGI).
 
 > If you modify the `.user.ini` file, you may want to run `git update-index --assume-unchanged .user.ini` afterwards.
 
@@ -338,6 +341,8 @@ upload_max_size = 100M
 upload_max_filesize = 20M
 memory_limit = 256M
 ```
+
+If problems occur when uploading photos with large **resolutions**, try these steps ...
 
 ### What does _Upstream sent too big header_ error message mean?
 
