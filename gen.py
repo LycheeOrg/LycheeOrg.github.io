@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
 # this script will directly use the version.md from Lychee to determine the current version
+from docs.utils.tools import read, save, bcolors
 import urllib.request
 import pytest
+import os
+from git import Repo
 
 
 def numberify_version(v):
@@ -19,19 +22,13 @@ def generate():
         "https://raw.githubusercontent.com/LycheeOrg/Lychee/master/version.md").read().decode("utf-8")
     version = version.strip()
 
-    print('version number: ' + version+'\n')
+    print(bcolors.YELLOW + 'version number: '  + bcolors.NORMAL + version+'\n')
 
-    with open('template/head.tpl', 'r', encoding="utf-8") as file:
-        head = file.read()
-    with open('template/index.tpl', 'r', encoding="utf-8") as file:
-        index = file.read()
-    with open('template/support.tpl', 'r', encoding="utf-8") as file:
-        support = file.read()
-    with open('template/footer.tpl', 'r', encoding="utf-8") as file:
-        footer = file.read()
-
-    with open('template/update.tpl', 'r', encoding="utf-8") as file:
-        update = file.read()
+    head = read('template/head.tpl')
+    index = read('template/index.tpl')
+    support = read('template/support.tpl')
+    footer = read('template/footer.tpl')
+    update = read('template/update.tpl')
 
     index_full = head % version
     index_full += index % version
@@ -43,94 +40,36 @@ def generate():
 
     update_full = update % numberify_version(version)
 
-    return index_full, support_full, update_full
-
-    with open("index.html", 'w', encoding="utf-8") as out:
-        out.write(index_full)
-        print("regenerated index.html")
-
-    with open("support.html", 'w', encoding="utf-8") as out:
-        out.write(support_full)
-        print("regenerated support.html")
-
-    with open("update.json", 'w', encoding="utf-8") as out:
-        out.write(update_full)
-        print("regenerated update.json")
-
+    save("index.html", index_full)
+    print(bcolors.GREEN + 'index' + bcolors.NORMAL + " generated.")
+    save("support.html", support_full)
+    print(bcolors.GREEN + 'support' + bcolors.NORMAL + " generated.")
+    save("update.json", update_full)
+    print(bcolors.GREEN + 'update' + bcolors.NORMAL + " generated.")
     print("")
-    changes = False
-    if index_full != old_index:
-        print("No changes in index.html")
-        changes = True
-    if support_full != old_support:
-        print("No changes in support.html")
-        changes = True
-    if update_full != old_update:
-        print("No changes in update.json")
-        changes = True
 
-    if changes:
+def check():
+    repo = Repo.init('.')
+    if repo.is_dirty():  # check the dirty state
+        for item in repo.index.diff(None):
+            print(bcolors.RED + item.a_path + " changed." + bcolors.NORMAL)
         print("")
-        print("[index/support/update] changed. Please commit them.")
+        print(bcolors.RED + "Please commit them." + bcolors.NORMAL)
+        return True
     else:
-        print("\tNo changes detected.")
-
-
-def check(index_full, support_full, update_full):
-    with open('index.html', 'r', encoding="utf-8") as file:
-        old_index = file.read()
-    with open('support.html', 'r', encoding="utf-8") as file:
-        old_support = file.read()
-    with open('update.json', 'r', encoding="utf-8") as file:
-        old_update = file.read()
-
-    changes = False
-    if index_full != old_index:
-        changes = True
-    if support_full != old_support:
-        changes = True
-    if update_full != old_update:
-        changes = True
-
-    return changes
+        print(bcolors.GREEN + "No changes detected." + bcolors.NORMAL)
+        return False
+    
 
 
 def test_main():
-    index_full, support_full, update_full = generate()
-
-    assert(not check(index_full, support_full, update_full))
+    generate()
+    assert(not check())
 
 
 def main():
-
-    with open('index.html', 'r', encoding="utf-8") as file:
-        old_index = file.read()
-    with open('support.html', 'r', encoding="utf-8") as file:
-        old_support = file.read()
-    with open('update.json', 'r', encoding="utf-8") as file:
-        old_update = file.read()
-
-    index_full, support_full, update_full = generate()
-    changes = check(index_full, support_full, update_full)
-
-    with open("index.html", 'w', encoding="utf-8") as out:
-        out.write(index_full)
-        print("regenerated index.html")
-
-    with open("support.html", 'w', encoding="utf-8") as out:
-        out.write(support_full)
-        print("regenerated support.html")
-
-    with open("update.json", 'w', encoding="utf-8") as out:
-        out.write(update_full)
-        print("regenerated update.json")
-
-    print("")
-    if changes:
-        print("[index/support/update] changed. Please commit them.")
-    else:
-        print("No changes detected.")
-
+    generate()
+    check()
 
 if __name__ == '__main__':
     main()

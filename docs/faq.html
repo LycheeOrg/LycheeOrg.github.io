@@ -167,7 +167,7 @@
 <li><a href="#i-have-an-error-404-and-im-using-php-s-what-can-i-do">I have an error 404 and I'm using php -S, what can I do?</a></li>
 <li><a href="#i-have-an-error-500-what-can-i-do">I have an error 500, what can I do?</a></li>
 <li><a href="#i-have-an-errror-419-in-the-network-tab-what-is-going-on">I have an errror 419 in the Network tab, what is going on?</a></li>
-<li><a href="#i-cant-upload-photos">I can't upload photos.</a></li>
+<li><a href="#i-cant-upload-large-photos">I can't upload (large) photos.</a></li>
 <li><a href="#what-does-upstream-sent-too-big-header-error-message-mean">What does Upstream sent too big header error message mean?</a></li>
 <li><a href="#why-dont-my-videos-have-thumbnails">Why don't my videos have thumbnails?</a></li>
 <li><a href="#composer-cant-create-a-cache-directory">Composer can't create a cache directory</a></li>
@@ -393,10 +393,12 @@ This will ensure that the paths and routes are correctly followed.</p>
 <p>Verify that your <code>SESSION_DRIVER</code> is not <code>array</code>. With <code>array</code>, the data is stored a non-persisting PHP array, it is only meant for testing !
 More <a href="https://laracasts.com/discuss/channels/general-discussion/how-does-cache-driver-array-work">here</a>.<br />
 Prefer <code>file</code> or <code>database</code> (but that last one require some <a href="https://laravel.com/docs/7.x/session#driver-prerequisites">more configuration</a>)</p>
-<p>Warning
-<code>php -S</code> web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.</p>
-<h3 id="i-cant-upload-photos"><a class="toclink" href="#i-cant-upload-photos">I can't upload photos.</a></h3>
-<p>If you experience problems uploading large photos, you might want to change the PHP parameters in <code>.htaccess</code> (if you are using the PHP Apache module) or in <code>.user.ini</code> (if you are using PHP &gt;= 7.3 with CGI or FastCGI).</p>
+<blockquote>
+<p>{note} <code>php -S</code> web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.</p>
+</blockquote>
+<h3 id="i-cant-upload-large-photos"><a class="toclink" href="#i-cant-upload-large-photos">I can't upload (large) photos.</a></h3>
+<p>Issues may occur when trying to upload photos with large <strong>file sizes</strong> or large <strong>resolutions</strong>.</p>
+<p>If you experience problems uploading photos with large <strong>file sizes</strong>, you might want to change the PHP parameters in <code>.htaccess</code> (if you are using the PHP Apache module) or in <code>.user.ini</code> (if you are using PHP &gt;= 7.3 with CGI or FastCGI).</p>
 <blockquote>
 <p>If you modify the <code>.user.ini</code> file, you may want to run <code>git update-index --assume-unchanged .user.ini</code> afterwards.</p>
 </blockquote>
@@ -407,6 +409,10 @@ upload_max_size = 100M
 upload_max_filesize = 20M
 memory_limit = 256M
 </code></pre>
+<p>If problems occur when uploading photos with large <strong>resolutions</strong>, the issue may lie with <strong>ImageMagick Security Policy</strong>.
+Review and edit the options in <code>/etc/ImageMagick-6/policy.xml</code>.
+Editing the <code>width</code>, <code>height</code> and <code>memory</code> options can help with enabling upload of images with larger resolutions.</p>
+<p>For more information, see https://legacy.imagemagick.org/script/security-policy.php for ImageMagick 6 and https://imagemagick.org/script/security-policy.php for ImageMagick 7.</p>
 <h3 id="what-does-upstream-sent-too-big-header-error-message-mean"><a class="toclink" href="#what-does-upstream-sent-too-big-header-error-message-mean">What does <em>Upstream sent too big header</em> error message mean?</a></h3>
 <p>This error may be seen from your browser's console if you're trying to debug something with Lychee. If using <code>nginx</code>, try adding the following to Lychee's config and reload nginx's service:</p>
 <pre><code>fastcgi_buffers 16 16k;

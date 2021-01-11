@@ -1,8 +1,0 @@
-language: python
-python:
-  - "3.6"
-# command to run tests
-install:
-  - pip install -U pytest
-script:
-  - make test
