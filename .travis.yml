@@ -4,5 +4,6 @@ python:
 # command to run tests
 install:
   - pip install -U pytest
+  
 script:
   - make test

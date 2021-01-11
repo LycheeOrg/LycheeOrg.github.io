@@ -320,9 +320,7 @@ Verify that your `SESSION_DRIVER` is not `array`. With `array`, the data is stor
 More [here](https://laracasts.com/discuss/channels/general-discussion/how-does-cache-driver-array-work).  
 Prefer `file` or `database` (but that last one require some [more configuration](https://laravel.com/docs/7.x/session#driver-prerequisites))
 
-Warning
-
-`php -S` web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.
+> {note} `php -S` web server was designed to aid application development. It may also be useful for testing purposes or for application demonstrations that are run in controlled environments. It is not intended to be a full-featured web server. It should not be used on a public network.
 
 ### I can't upload (large) photos.
 
