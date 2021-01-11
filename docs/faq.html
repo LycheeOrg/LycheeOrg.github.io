@@ -412,7 +412,7 @@ memory_limit = 256M
 <p>If problems occur when uploading photos with large <strong>resolutions</strong>, the issue may lie with <strong>ImageMagick Security Policy</strong>.
 Review and edit the options in <code>/etc/ImageMagick-6/policy.xml</code>.
 Editing the <code>width</code>, <code>height</code> and <code>memory</code> options can help with enabling upload of images with larger resolutions.</p>
-<p>For more information, see https://legacy.imagemagick.org/script/security-policy.php for ImageMagick 6 and https://imagemagick.org/script/security-policy.php for ImageMagick 7.</p>
+<p>For more information, see <a href="https://legacy.imagemagick.org/script/security-policy.php">here</a> for ImageMagick 6 and <a href="https://imagemagick.org/script/security-policy.php">here</a> for ImageMagick 7.</p>
 <h3 id="what-does-upstream-sent-too-big-header-error-message-mean"><a class="toclink" href="#what-does-upstream-sent-too-big-header-error-message-mean">What does <em>Upstream sent too big header</em> error message mean?</a></h3>
 <p>This error may be seen from your browser's console if you're trying to debug something with Lychee. If using <code>nginx</code>, try adding the following to Lychee's config and reload nginx's service:</p>
 <pre><code>fastcgi_buffers 16 16k;

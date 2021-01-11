@@ -344,7 +344,7 @@ If problems occur when uploading photos with large **resolutions**, the issue ma
 Review and edit the options in `/etc/ImageMagick-6/policy.xml`.
 Editing the `width`, `height` and `memory` options can help with enabling upload of images with larger resolutions.
 
-For more information, see https://legacy.imagemagick.org/script/security-policy.php for ImageMagick 6 and https://imagemagick.org/script/security-policy.php for ImageMagick 7.
+For more information, see [here](https://legacy.imagemagick.org/script/security-policy.php) for ImageMagick 6 and [here](https://imagemagick.org/script/security-policy.php) for ImageMagick 7.
 
 ### What does _Upstream sent too big header_ error message mean?
 
