@@ -11,10 +11,6 @@ jobs:
 
     name: Build
 
-    env:
-      extensions: bcmath, curl, dom, gd, imagick, json, libxml, mbstring, pcntl, pdo, pdo_sqlite, pdo_mysql, pdo_pgsql, pgsql, sqlite3, zip
-      key: cache-v1 # can be any string, change to clear the extension cache.
-
     steps:
       # Checks out a copy of your repository on the ubuntu machine
       - name: Checkout code
@@ -28,8 +24,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest gitpython markdown
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pytest gitpython markdown
 
       - name: Tests
         run: |
