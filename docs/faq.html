@@ -216,10 +216,16 @@ Note that you will still need to authenticate yourself to the server, this disab
 <p>via ssh, use the command <code>php artisan lychee:reset_admin</code></p>
 <h3 id="how-to-hide-smart-albums"><a class="toclink" href="#how-to-hide-smart-albums">How to hide smart albums?</a></h3>
 <p>Add the following custom CSS to your <code>user.css</code> or via the settings menu:</p>
-<pre><code class="language-css">[data-id=&quot;0&quot;] { display:none; }
-[data-id=&quot;s&quot;] { display:none; }
-[data-id=&quot;f&quot;] { display:none; }
-[data-id=&quot;r&quot;] { display:none; }
+<pre><code class="language-css">[data-id=&quot;unsorted&quot;] { display:none; }
+[data-id=&quot;public&quot;] { display:none; }
+[data-id=&quot;starred&quot;] { display:none; }
+[data-id=&quot;recent&quot;] { display:none; }
+div.content &gt; div.divider:first-child { display:none; }
+div.content &gt; div.divider:nth-child(6) {
+    margin-top: 10px;
+    border-top: 0;
+    box-shadow: none;
+}
 </code></pre>
 <h3 id="how-to-disable-the-zoom-animation-while-browsing-pictures"><a class="toclink" href="#how-to-disable-the-zoom-animation-while-browsing-pictures">How to disable the 'zoom' animation while browsing pictures?</a></h3>
 <p>Add the following custom CSS to your <code>user.css</code> or via the settings menu:</p>

@@ -67,10 +67,16 @@ via ssh, use the command `php artisan lychee:reset_admin`
 
 Add the following custom CSS to your `user.css` or via the settings menu:
 ```css
-[data-id="0"] { display:none; }
-[data-id="s"] { display:none; }
-[data-id="f"] { display:none; }
-[data-id="r"] { display:none; }
+[data-id="unsorted"] { display:none; }
+[data-id="public"] { display:none; }
+[data-id="starred"] { display:none; }
+[data-id="recent"] { display:none; }
+div.content > div.divider:first-child { display:none; }
+div.content > div.divider:nth-child(6) {
+    margin-top: 10px;
+    border-top: 0;
+    box-shadow: none;
+}
 ```
 
 ### How to disable the 'zoom' animation while browsing pictures?
