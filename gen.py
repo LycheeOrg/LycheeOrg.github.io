@@ -28,7 +28,6 @@ def generate():
     index = read('template/index.tpl')
     support = read('template/support.tpl')
     footer = read('template/footer.tpl')
-
     update = read('template/update.tpl')
 
     index_full = head % version
@@ -52,10 +51,13 @@ def generate():
 def check():
     repo = Repo.init('.')
     if repo.is_dirty():  # check the dirty state
-        print(bcolors.RED + "[index/support/update] changed. Please commit them." + bcolors.NORMAL)
+        for item in repo.index.diff(None):
+            print(bcolors.RED + item.a_path + " changed." + bcolors.NORMAL)
+        print("")
+        print(bcolors.RED + "Please commit them." + bcolors.NORMAL)
         return True
     else:
-        print(bcolors.GREEN + "\tNo changes detected." + bcolors.NORMAL)
+        print(bcolors.GREEN + "No changes detected." + bcolors.NORMAL)
         return False
     
 
