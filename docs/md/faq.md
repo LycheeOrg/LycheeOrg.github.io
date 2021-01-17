@@ -370,7 +370,7 @@ to `0` if it can't find the binaries the first time it tries.  The Lychee
 log will contain a `Failed to extract snapshot: bad config` notice if that
 is the case.
 
-If that doesn't help, check if metadata is extracted correctly form the
+If that doesn't help, check if metadata is extracted correctly from the
 video files.  While viewing a video file in Lychee, simply open the info
 sidebar (_i_) and check if the resolution, duration, and frame rate are
 reported correctly.  If they are not, you may need to let the metadata
