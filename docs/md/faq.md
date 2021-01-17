@@ -364,18 +364,66 @@ fastcgi_buffer_size 32k;
 
 You will need ffmpeg installed on your server, and to have installed php-ffmpeg using composer as detailed in the [Installation Guide](installation.html).
 
-If you are still having problems, check your Lychee log. If you are still getting a `Could not create thumbnail for video because FFMPEG is not available.` error, you may need to specify the location of your ffmpeg and ffprobe binaries. In https://github.com/LycheeOrg/Lychee/blob/master/app/ModelFunctions/PhotoFunctions.php#L94 replace
+Once this is taken care of, check that the
+[`has_ffmpeg` setting](settings.html) is set to `1`.  Lychee can reset it
+to `0` if it can't find the binaries the first time it tries.  The Lychee
+log will contain a `Failed to extract snapshot: bad config` notice if that
+is the case.
+
+If that doesn't help, check if metadata is extracted correctly form the
+video files.  While viewing a video file in Lychee, simply open the info
+sidebar (_i_) and check if the resolution, duration, and frame rate are
+reported correctly.  If they are not, you may need to let the metadata
+extractor know the location of your `ffprobe` binary.  The Lychee log will
+contain a `Given path () to the ffprobe binary is invalid` error if this is
+the issue.
+
+Edit the file
+`Lychee/vendor/lychee-org/php-exif/lib/PHPExif/Adapter/FFprobe.php`,
+replacing the line:
+```
+protected $toolPath;
+```
+(here's a
+[sample location](https://github.com/LycheeOrg/php-exif/blob/1ea3468d4ea6a5cf0ea6c748a3a2376de38bbbfd/lib/PHPExif/Adapter/FFprobe.php#L36))
+with:
+```
+protected $toolPath = '/usr/bin/ffprobe';
+```
+using your correct binary location. If unsure, you can try running
+`which ffprobe` on the server.
+
+This will likely need to be repeated for the video frame extraction code;
+otherwise, you will see in the Lychee log an `Unable to load FFProbe` error.
+To fix that, in Lychee versions prior to 4.2.0, edit the file
+`Lychee/app/ModelFunctions/PhotoFunctions.php`, replacing the line:
 ```
 $ffmpeg = FFMpeg\FFMpeg::create();
 ```
-with
+(here's the
+[location for version 4.1.0](https://github.com/LycheeOrg/Lychee/blob/v4.1.0/app/ModelFunctions/PhotoFunctions.php#L566))
+with:
 ```
 $ffmpeg = FFMpeg\FFMpeg::create(array(
         'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
         'ffprobe.binaries' => '/usr/bin/ffprobe',
 ));
 ```
-using your correct binary locations. If unsure, you can try running `which ffmpeg` on the server.
+again, using your correct binary locations.
+
+Starting with version 4.2.0, the file to edit is instead `Lychee/app/Actions/Photo/Extensions/VideoEditing.php`; replace the line:
+```
+$ffmpeg = FFMpeg::create();
+```
+(here's a
+[sample location](https://github.com/LycheeOrg/Lychee/blob/23731e104737175f51a9acef199bf7d8829e5d5c/app/Actions/Photo/Extensions/VideoEditing.php#L48))
+with:
+```
+$ffmpeg = FFMpeg::create(array(
+        'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+        'ffprobe.binaries' => '/usr/bin/ffprobe',
+));
+```
 
 ### Composer can't create a cache directory
 
