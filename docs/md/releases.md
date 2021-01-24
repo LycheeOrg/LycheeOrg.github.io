@@ -32,6 +32,38 @@
 
 ## Version 4
 
+### v4.2.1
+
+Released Jan 24, 2021
+
+- `new` #875 : Add custom cover for albums
+  > - custom album covers
+  > - IMPORTANT: support for 3 distinct images for albums dropped (overkill given that 2 are barely visible)
+
+### v4.2.0
+
+Released Jan 24, 2021
+
+- `fixes` #831 - Bad extension filename when you upload *.jpg
+  > The regression was introduced in 4.0.8 as part of #777.
+- `new` #874 - Update CLI Takedate
+  > - add option --timestamp added to set create_at to timestamp of media file for media that lacks EXIF information
+  > - use same formatting for 'sysdate' as for 'takedate'
+- `new` #832 - Major rework of backend
+  > * start using Livewire for the front-end, for now accessible at `example.com/livewire` if enabled via `LIVEWIRE_ENABLED` in `.env` (DO NOT USE, still in development)
+  > * use Facade `AccessControl` to access `Session` information (basically home-brewed `Auth` Facade)
+  > * use Facade `Lang` to access `Lang` information (Easier to use through the blade template)
+  > * heavy refactoring of the core, introducing more granularity:
+  >      * Interfaces are Contracts
+  >      * Group Factories
+  >      * use `trait` on album for smaller dedicated operations
+  >      * add Nested Set theory to Album to allow access to all descendants  
+  > 
+  > * fixes #843 
+  > * fixes #846
+  > * fixes #858
+
+
 ### v4.1.0
 
 Released Dec 27, 2020

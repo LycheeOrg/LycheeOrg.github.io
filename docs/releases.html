@@ -123,6 +123,8 @@
 <ul>
 <li><a href="#master-branch">Master branch</a></li>
 <li><a href="#version-4">Version 4</a><ul>
+<li><a href="#v421">v4.2.1</a></li>
+<li><a href="#v420">v4.2.0</a></li>
 <li><a href="#v410">v4.1.0</a></li>
 <li><a href="#v408">v4.0.8</a></li>
 <li><a href="#v407">v4.0.7</a></li>
@@ -224,6 +226,54 @@
 
 <h2 id="master-branch"><a class="toclink" href="#master-branch">Master branch</a></h2>
 <h2 id="version-4"><a class="toclink" href="#version-4">Version 4</a></h2>
+<h3 id="v421"><a class="toclink" href="#v421">v4.2.1</a></h3>
+<p>Released Jan 24, 2021</p>
+<ul>
+<li><code>new</code> #875 : Add custom cover for albums<blockquote>
+<ul>
+<li>custom album covers</li>
+<li>IMPORTANT: support for 3 distinct images for albums dropped (overkill given that 2 are barely visible)</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="v420"><a class="toclink" href="#v420">v4.2.0</a></h3>
+<p>Released Jan 24, 2021</p>
+<ul>
+<li><code>fixes</code> #831 - Bad extension filename when you upload *.jpg<blockquote>
+<p>The regression was introduced in 4.0.8 as part of #777.</p>
+</blockquote>
+</li>
+<li><code>new</code> #874 - Update CLI Takedate<blockquote>
+<ul>
+<li>add option --timestamp added to set create_at to timestamp of media file for media that lacks EXIF information</li>
+<li>use same formatting for 'sysdate' as for 'takedate'</li>
+</ul>
+</blockquote>
+</li>
+<li><code>new</code> #832 - Major rework of backend<blockquote>
+<ul>
+<li>start using Livewire for the front-end, for now accessible at <code>example.com/livewire</code> if enabled via <code>LIVEWIRE_ENABLED</code> in <code>.env</code> (DO NOT USE, still in development)</li>
+<li>use Facade <code>AccessControl</code> to access <code>Session</code> information (basically home-brewed <code>Auth</code> Facade)</li>
+<li>use Facade <code>Lang</code> to access <code>Lang</code> information (Easier to use through the blade template)</li>
+<li>
+<p>heavy refactoring of the core, introducing more granularity:</p>
+<ul>
+<li>Interfaces are Contracts</li>
+<li>Group Factories</li>
+<li>use <code>trait</code> on album for smaller dedicated operations</li>
+<li>add Nested Set theory to Album to allow access to all descendants  </li>
+</ul>
+</li>
+<li>
+<p>fixes #843 </p>
+</li>
+<li>fixes #846</li>
+<li>fixes #858</li>
+</ul>
+</blockquote>
+</li>
+</ul>
 <h3 id="v410"><a class="toclink" href="#v410">v4.1.0</a></h3>
 <p>Released Dec 27, 2020</p>
 <ul>
