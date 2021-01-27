@@ -505,7 +505,7 @@ chcon -R -t httpd_sys_rw_content_t public/dist
 <p>In <code>/var/www/html/Lychee/.env</code>, change <code>DB_HOST=localhost</code> to <code>DB_HOST=127.0.0.1</code>. Additionally, if <code>DB_PORT=</code> is not set, it should be set to <code>DB_PORT=3306</code> for mysql/MariaDB's default port, or whatever custom port you selected when configuring your SQL server software after installation. </p>
 <h3 id="why-are-there-messages-about-git-files-in-my-logs-eg-githead-failed-to-open-stream-no-such-file-or-directory"><a class="toclink" href="#why-are-there-messages-about-git-files-in-my-logs-eg-githead-failed-to-open-stream-no-such-file-or-directory">Why are there messages about git files in my logs? (e.g. <code>.git/HEAD): failed to open stream: No such file or directory</code>)</a></h3>
 <p>Lychee checks for the presence of certain files to detect whether Lychee was installed as a git repository or from a release archive (.zip). It also uses them to determine which git commit is in use where applicable. This is included in the Diagnostics page to assist us in diagnosing issues.</p>
-<p>These messages can be safely ignored.</p>
+<p>These messages can be safely ignored.</p><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/md/faq.md">Edit this page on Github!</a></p></blockquote>
                         </section>
                     </section>
                 </section>

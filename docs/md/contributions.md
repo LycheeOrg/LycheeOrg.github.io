@@ -10,7 +10,6 @@ Lychee's GitHub issue trackers are not intended to provide Lychee help or suppor
 
 
 ## Security Vulnerabilities
-
 Lychee uses a rolling release system, **we do not backport fixes to previously released versions**.
 Those are the versions where we accept vulnerability reports.
 
@@ -25,8 +24,12 @@ If you discover a security vulnerability within Lychee, please contact us direct
 ## Core Development Discussion
 You may propose new features or improvements of existing Lychee behavior in the [issue board][1]. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
 
-## Which Branch?
 
+## How to properly submit a pull-request to Lychee?
+
+Pull request need to respect a few simple constraints described below which make the life of everyone easier.
+
+### Which Branch to use?
 When submitting a new feature or fixing a bug, please create a new branch from master:
 
 ```
@@ -45,12 +48,31 @@ git push -u
 
 You can then open a [pull request][3].
 
-## Coding Style
+### Back-end and Front-end
+As you may have noticed already we have two repositories to manage separately the front-end and the back-end.
+This was necessary at times to ensure the parallel development of Lychee version 4 and Lychee version 3.
+As a result, the process of submitting a PR which modified both sides (Lychee-front and Lychee) goes as follows:
+
+* 1 &ndash; we take the 2 PR.
+* 2 &ndash; we review them both.
+* 3 &ndash; we merge on Lychee-front.
+* 4 &ndash; switch Lychee-front to master, rebuild & commit on the Lychee PR.
+* 5 &ndash; merge to Lychee master
+* 6 &ndash; Enjoy!
+
+### Our Coding Style
+In order to ease the review of pull requests we adopt a uniform code style. Our Continuous Integration suite will 
+fail if the later is not respected.
+
+#### PHP
+
 Our coding style is defined by the `.php-ps` file, it is mostly the Symfony style but we use tabs instead of spaces.
 
 Before submitting a PR, we highly encourage you to do:
 ```
 ./vendor/bin/php-cs-fixer fix --config=.php_cs
+# or
+make formatting
 ```
 This will ensure that the code is consistent with our style.
 
@@ -59,7 +81,14 @@ In order to make this less constraining, you can copy the `pre-commit` file in t
 Our current configuration can be found [here](https://github.com/LycheeOrg/Lychee/blob/master/.php_cs).
 For details about the options you can have a look at the [php-cs-fixer-configurator](https://mlocati.github.io/php-cs-fixer-configurator)
 
-## PHPDoc
+#### Javascript
+
+Similarly to described above, you can format the code automatically with the command.
+```
+npm run format
+```
+
+### PHPDoc
 Below is an example of a valid Laravel documentation block. Note that the @param attribute is followed by two spaces, the argument type, two more spaces, and finally the variable name:
 
 ```
@@ -79,6 +108,8 @@ public function bind($abstract, $concrete = null, $shared = false)
 }
 ```
 
+In addition to code documentation, we highly encourage you to use the types system of php for the function arguments.
+This will increase the trust and safety of the code.
 
 ## Code of Conduct
 The Lychee code of conduct is the same as Laravel's code of conduct:

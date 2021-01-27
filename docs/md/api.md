@@ -22,7 +22,7 @@ See:
 - Returns `true` if login was successful, `false` otherwise.
 ```
 $request->validate([
-    'user' => 'required',
+    'username' => 'required',
     'password' => 'required',
 ]);
 ```

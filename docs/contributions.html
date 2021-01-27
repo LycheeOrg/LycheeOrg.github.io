@@ -125,9 +125,13 @@
 <li><a href="#support-questions">Support Questions</a></li>
 <li><a href="#security-vulnerabilities">Security Vulnerabilities</a></li>
 <li><a href="#core-development-discussion">Core Development Discussion</a></li>
-<li><a href="#which-branch">Which Branch?</a></li>
-<li><a href="#coding-style">Coding Style</a></li>
+<li><a href="#how-to-properly-submit-a-pull-request-to-lychee">How to properly submit a pull-request to Lychee?</a><ul>
+<li><a href="#which-branch-to-use">Which Branch to use?</a></li>
+<li><a href="#back-end-and-front-end">Back-end and Front-end</a></li>
+<li><a href="#our-coding-style">Our Coding Style</a></li>
 <li><a href="#phpdoc">PHPDoc</a></li>
+</ul>
+</li>
 <li><a href="#code-of-conduct">Code of Conduct</a></li>
 </ul>
 
@@ -165,7 +169,9 @@ Those are the versions where we accept vulnerability reports.</p>
 <p>If you discover a security vulnerability within Lychee, please contact us directly on <a href="https://gitter.im/LycheeOrg/Lobby">gitter</a>. All security vulnerabilities will be promptly addressed.</p>
 <h2 id="core-development-discussion"><a class="toclink" href="#core-development-discussion">Core Development Discussion</a></h2>
 <p>You may propose new features or improvements of existing Lychee behavior in the <a href="https://github.com/LycheeOrg/Lychee/issues">issue board</a>. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.</p>
-<h2 id="which-branch"><a class="toclink" href="#which-branch">Which Branch?</a></h2>
+<h2 id="how-to-properly-submit-a-pull-request-to-lychee"><a class="toclink" href="#how-to-properly-submit-a-pull-request-to-lychee">How to properly submit a pull-request to Lychee?</a></h2>
+<p>Pull request need to respect a few simple constraints described below which make the life of everyone easier.</p>
+<h3 id="which-branch-to-use"><a class="toclink" href="#which-branch-to-use">Which Branch to use?</a></h3>
 <p>When submitting a new feature or fixing a bug, please create a new branch from master:</p>
 <pre><code>git checkout master
 git pull master
@@ -177,16 +183,37 @@ git commit -m &quot;&lt;mesage-of-what-is-going-on&gt;&quot;
 git push -u
 </code></pre>
 <p>You can then open a <a href="https://github.com/LycheeOrg/Lychee/pulls">pull request</a>.</p>
-<h2 id="coding-style"><a class="toclink" href="#coding-style">Coding Style</a></h2>
+<h3 id="back-end-and-front-end"><a class="toclink" href="#back-end-and-front-end">Back-end and Front-end</a></h3>
+<p>As you may have noticed already we have two repositories to manage separately the front-end and the back-end.
+This was necessary at times to ensure the parallel development of Lychee version 4 and Lychee version 3.
+As a result, the process of submitting a PR which modified both sides (Lychee-front and Lychee) goes as follows:</p>
+<ul>
+<li>1 &ndash; we take the 2 PR.</li>
+<li>2 &ndash; we review them both.</li>
+<li>3 &ndash; we merge on Lychee-front.</li>
+<li>4 &ndash; switch Lychee-front to master, rebuild &amp; commit on the Lychee PR.</li>
+<li>5 &ndash; merge to Lychee master</li>
+<li>6 &ndash; Enjoy!</li>
+</ul>
+<h3 id="our-coding-style"><a class="toclink" href="#our-coding-style">Our Coding Style</a></h3>
+<p>In order to ease the review of pull requests we adopt a uniform code style. Our Continuous Integration suite will 
+fail if the later is not respected.</p>
+<h4>PHP</h4>
 <p>Our coding style is defined by the <code>.php-ps</code> file, it is mostly the Symfony style but we use tabs instead of spaces.</p>
 <p>Before submitting a PR, we highly encourage you to do:</p>
 <pre><code>./vendor/bin/php-cs-fixer fix --config=.php_cs
+# or
+make formatting
 </code></pre>
 <p>This will ensure that the code is consistent with our style.</p>
 <p>In order to make this less constraining, you can copy the <code>pre-commit</code> file in the root into the <code>.git/hooks</code> folder. This will execute the fixer to keep the consistency.</p>
 <p>Our current configuration can be found <a href="https://github.com/LycheeOrg/Lychee/blob/master/.php_cs">here</a>.
 For details about the options you can have a look at the <a href="https://mlocati.github.io/php-cs-fixer-configurator">php-cs-fixer-configurator</a></p>
-<h2 id="phpdoc"><a class="toclink" href="#phpdoc">PHPDoc</a></h2>
+<h4>Javascript</h4>
+<p>Similarly to described above, you can format the code automatically with the command.</p>
+<pre><code>npm run format
+</code></pre>
+<h3 id="phpdoc"><a class="toclink" href="#phpdoc">PHPDoc</a></h3>
 <p>Below is an example of a valid Laravel documentation block. Note that the @param attribute is followed by two spaces, the argument type, two more spaces, and finally the variable name:</p>
 <pre><code>/**
  * Register a binding with the container.
@@ -203,6 +230,8 @@ public function bind($abstract, $concrete = null, $shared = false)
     //
 }
 </code></pre>
+<p>In addition to code documentation, we highly encourage you to use the types system of php for the function arguments.
+This will increase the trust and safety of the code.</p>
 <h2 id="code-of-conduct"><a class="toclink" href="#code-of-conduct">Code of Conduct</a></h2>
 <p>The Lychee code of conduct is the same as Laravel's code of conduct:</p>
 <ul>
@@ -210,7 +239,7 @@ public function bind($abstract, $concrete = null, $shared = false)
 <li>Participants must ensure that their language and actions are free of personal attacks and disparaging personal remarks.</li>
 <li>When interpreting the words and actions of others, participants should always assume good intentions.</li>
 <li>Behavior that can be reasonably considered harassment will not be tolerated.</li>
-</ul>
+</ul><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/md/contributions.md">Edit this page on Github!</a></p></blockquote>
                         </section>
                     </section>
                 </section>

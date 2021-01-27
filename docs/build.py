@@ -38,6 +38,10 @@ structure += [['Getting Started',
 structure += [['Digging Deeper',
                ['settings', 'keyboard', 'read-more', 'structure', 'node', 'distributions']]]
 
+def gen_github_link(page):
+    html = '<blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;'
+    html += '<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/md/' + page + '.md">Edit this page on Github!</a></p></blockquote>'
+    return html
 
 def gen_sidebar(page):
 
@@ -68,6 +72,7 @@ for page_name in pages_title:
         toc = md.toc[17:-7]
     aside = gen_sidebar(page_name)
     # print(aside)
+    html += gen_github_link(page_name)
 
     html = frame.format(content=html, title=page_title, toc=toc, aside=aside)
     save(page_name + '.html', html)

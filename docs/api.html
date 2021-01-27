@@ -219,7 +219,7 @@ See:</p>
 <li>Returns <code>true</code> if login was successful, <code>false</code> otherwise.</li>
 </ul>
 <pre><code>$request-&gt;validate([
-    'user' =&gt; 'required',
+    'username' =&gt; 'required',
     'password' =&gt; 'required',
 ]);
 </code></pre>
@@ -808,7 +808,7 @@ $oldUsername = $request-&gt;has('oldUsername') ? $request['oldUsername']: '';
 <pre><code>$request-&gt;validate([
     'key' =&gt; 'string|nullable',
 ]);
-</code></pre>
+</code></pre><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/md/api.md">Edit this page on Github!</a></p></blockquote>
                         </section>
                     </section>
                 </section>
