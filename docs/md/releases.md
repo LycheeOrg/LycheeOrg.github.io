@@ -32,6 +32,28 @@
 
 ## Version 4
 
+### v4.2.2
+
+Released Feb 16, 2021
+
+- `fixes` #882 : Password albums were broken.
+- `fixes` #891 : Download: file not found on password protected Album
+- `fixes` #895 : Default license display
+- `fixes` #888 : Refactoring of the rotation code
+- `new` #887 : Add the possibility to not display the GPS direction on the map
+- `new` #892 : Add `--force` option to the Command Line Interface for Takedate
+- `fixes` #890 : Fix delete bug when selecting multiple sub albums
+- `new` #901 : Add more diagnostics checks
+- `new` #905 : Improve Chinese translation
+- `fixes` #908 : Migration from v3 was broken since version 4.2
+  >  By adding nested set tree, column `_lft` and `_rgt` did not exist on first import while the code required it.
+- `new` #919 : Add the possibility to limit the number of image being processed
+  > This will lower the memory load on the server, especially on RAM limited instances.
+- `fixes` #925 : Some user decided to upload pictures without extension, this broke our code...
+- `fixes` #903 : Windows `microtime()` was a bit slow, generating collisions in the uploaded file names.
+  > The file name are now generated from the sha1 hash of the file.
+- `new` #894 : Extend the functionality of _Import from server_ to have the same interface as from the command line.
+
 ### v4.2.1
 
 Released Jan 24, 2021
