@@ -1,7 +1,7 @@
 The way you can update Lychee depends of how you did your installation:
 
-* If you used the release channel (downloading a zip file), go to [Update manually](update-manually)
-* If you installed via `git clone` then you can either use a [similar process](update-using-git) or do it directly online via the [Graphical User Interface](update-via-the-gui) of Lychee.
+* If you used the release channel (downloading a zip file), go to [Update manually](#update-manually)
+* If you installed via `git clone` then you can either use a [similar process](#update-using-git) or do it directly online via the [Graphical User Interface](#update-via-the-gui) of Lychee.
 
 ## Update requirements
 
