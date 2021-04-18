@@ -123,6 +123,7 @@
 <ul>
 <li><a href="#master-branch">Master branch</a></li>
 <li><a href="#version-4">Version 4</a><ul>
+<li><a href="#v430">v4.3.0</a></li>
 <li><a href="#v422">v4.2.2</a></li>
 <li><a href="#v421">v4.2.1</a></li>
 <li><a href="#v420">v4.2.0</a></li>
@@ -227,6 +228,20 @@
 
 <h2 id="master-branch"><a class="toclink" href="#master-branch">Master branch</a></h2>
 <h2 id="version-4"><a class="toclink" href="#version-4">Version 4</a></h2>
+<h3 id="v430"><a class="toclink" href="#v430">v4.3.0</a></h3>
+<p>Released April 18, 2021</p>
+<ul>
+<li><code>new</code> #940 : Improved support for touch devices.</li>
+<li><code>new</code> #939 : Responsive web design for small screens.</li>
+<li><code>fixes</code> #959 : Excluded '/api/Session::init' from CSRF protection (as per the API specs).</li>
+<li><code>fixes</code> #959 : Fixes <em>.lycheeignore</em> support.</li>
+<li><code>new</code> #942 : Add support for Portuguese language.</li>
+<li><code>fixes</code> #927 : Also copy over the password column when migrating from the very old version 3 of Lychee</li>
+<li><code>fixes</code> #932 : Public photos hidden <blockquote>
+<p>It adds a new config variable public_photos_hidden, which defaults to 1 (preserving the current behavior). If set to 0, photos individually made public (rather than through an album) will be included in the results of a public search or in public tagged albums. Basically, they will no longer be treated as hidden (even though they still won't be findable through browsing; we could address that as well by making the Public smart album, well, public -- I welcome your input if we should, and if so, what to name the config variable to enabled that, other than public_public wink).</p>
+</blockquote>
+</li>
+</ul>
 <h3 id="v422"><a class="toclink" href="#v422">v4.2.2</a></h3>
 <p>Released Feb 16, 2021</p>
 <ul>

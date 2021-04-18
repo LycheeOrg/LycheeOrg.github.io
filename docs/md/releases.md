@@ -32,6 +32,20 @@
 
 ## Version 4
 
+### v4.3.0
+
+Released April 18, 2021
+
+- `new` #940 : Improved support for touch devices.
+- `new` #939 : Responsive web design for small screens.
+- `fixes` #959 : Excluded '/api/Session::init' from CSRF protection (as per the API specs).
+- `fixes` #959 : Fixes _.lycheeignore_ support.
+- `new` #942 : Add support for Portuguese language.
+- `fixes` #927 : Also copy over the password column when migrating from the very old version 3 of Lychee
+- `fixes` #932 : Public photos hidden 
+  > It adds a new config variable public_photos_hidden, which defaults to 1 (preserving the current behavior). If set to 0, photos individually made public (rather than through an album) will be included in the results of a public search or in public tagged albums. Basically, they will no longer be treated as hidden (even though they still won't be findable through browsing; we could address that as well by making the Public smart album, well, public -- I welcome your input if we should, and if so, what to name the config variable to enabled that, other than public_public wink).
+
+
 ### v4.2.2
 
 Released Feb 16, 2021
