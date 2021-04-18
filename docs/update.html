@@ -165,7 +165,7 @@ php artisan migrate
 <li><code>exec</code> to be available as a php function.</li>
 <li><code>allow_online_git_pull</code> has to be set to <code>1</code></li>
 </ul>
-<h4 id="1-go-to-your-diagnostic-page-and-check-for-updates"><a class="toclink" href="#1-go-to-your-diagnostic-page-and-check-for-updates">1. Go to your Diagnostic page and check for updates</a></h4>
+<h4>1. Go to your Diagnostic page and check for updates</h4>
 <p>Notice that <em>Lychee version (git)</em> tells you:</p>
 <ul>
 <li>the commit number &mdash; <em>"dfad796"</em>,</li>
@@ -176,20 +176,20 @@ php artisan migrate
 <p><img alt="" src="img/update/update_1.png" /></p>
 <p>If you click on it, it will ask your server to check how far behind you are from the bleeding edge version of Lychee:</p>
 <p><img alt="" src="img/update/update_2.png" /></p>
-<h4 id="2-refresh-your-diagnostic-page"><a class="toclink" href="#2-refresh-your-diagnostic-page">2. Refresh your Diagnostic page</a></h4>
+<h4>2. Refresh your Diagnostic page</h4>
 <p>Notice that <em>Lychee version (git)</em> now tells you:</p>
 <ul>
 <li>that you are behind &mdash; "<em>1 commits behind master (dc5f03a)</em>"</li>
 <li>that the last check for update was done some times ago &mdash; "<em>(9 seconds ago)</em>"</li>
 </ul>
 <p><img alt="" src="img/update/update_3.png" /></p>
-<h4 id="3-apply-the-update"><a class="toclink" href="#3-apply-the-update">3. Apply the update</a></h4>
+<h4>3. Apply the update</h4>
 <p>By clicking on <em>"Update available"</em> this will trigger server side a <code>git pull</code> and <code>artisan migrate</code>.</p>
 <p><img alt="" src="img/update/update_4.png" /></p>
 <p>You can see the log result of the command line printed above the diagnostic information.
 By default composer calls are disabled.</p>
 <p><img alt="" src="img/update/update_5.png" /></p>
-<h4 id="4-check-for-updates"><a class="toclink" href="#4-check-for-updates">4. Check for updates</a></h4>
+<h4>4. Check for updates</h4>
 <p>We can once again check for updates:</p>
 <p><img alt="" src="img/update/update_6.png" /></p>
 <p><img alt="" src="img/update/update_7.png" /></p>

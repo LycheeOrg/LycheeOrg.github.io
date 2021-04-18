@@ -167,12 +167,12 @@
 <p>While Lychee works on 32bit systems, we <strong>strongly</strong> recommend the use of a 64bit OS.</p>
 <h3 id="installing-lychee"><a class="toclink" href="#installing-lychee">Installing Lychee</a></h3>
 <p>We provide three methods to install Lychee: using a Docker image, the latest release .zip or from source, using Composer.</p>
-<h4 id="with-docker"><a class="toclink" href="#with-docker">With Docker</a></h4>
+<h4>With Docker</h4>
 <p>Read <a href="docker.html">here</a>.</p>
-<h4 id="from-release"><a class="toclink" href="#from-release">From Release</a></h4>
+<h4>From Release</h4>
 <p>Download the release zip-file from the <a href="https://github.com/LycheeOrg/Lychee/releases">Releases</a> page and extract it (usually in <code>/var/www/html</code>).
 It contains a trimmed down version of the Lychee files.</p>
-<h4 id="from-the-master-branch"><a class="toclink" href="#from-the-master-branch">From the Master branch</a></h4>
+<h4>From the Master branch</h4>
 <p>Lychee utilizes <a href="https://getcomposer.org/">Composer</a> to manage its dependencies. Make sure you have Composer installed on your machine.</p>
 <pre><code>git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
 </code></pre>
@@ -184,17 +184,17 @@ It contains a trimmed down version of the Lychee files.</p>
 </code></pre>
 <p>If you want to help develop Lychee, install the development dependencies by removing the <code>--no-dev</code> or replacing it with --dev.</p>
 <h3 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h3>
-<h4 id="public-directory"><a class="toclink" href="#public-directory">Public Directory</a></h4>
+<h4>Public Directory</h4>
 <p>After installing Lychee, configure your web server's root to be the <code>public</code> directory. The <code>index.php</code> in this directory serves as the interface for all HTTP requests to Lychee's API. Note that the <code>.env</code> file should <strong>not</strong> be exposed online as it contains the encryption key used for cookies as well as database credentials.</p>
-<h4 id="configuration-files"><a class="toclink" href="#configuration-files">Configuration Files</a></h4>
+<h4>Configuration Files</h4>
 <p>All of the configuration files for Lychee are stored in the <code>config</code> directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
-<h4 id="directory-permissions"><a class="toclink" href="#directory-permissions">Directory Permissions</a></h4>
+<h4>Directory Permissions</h4>
 <p>After installing Lychee, you need to configure some permissions. Directories within the <code>storage</code> and the <code>bootstrap/cache</code> directories should be writable by your web server or Lychee will not run. Additionaly <code>public/uploads</code>, <code>public/dist</code> and <code>public/sym</code> need to be writable to upload files, customise the CSS and utilise <a href="https://lycheeorg.github.io/docs/settings.html#symbolic-link">symbolic links</a> respectively.</p>
-<h4 id="application-key"><a class="toclink" href="#application-key">Application Key</a></h4>
+<h4>Application Key</h4>
 <p>The next thing you should do after installing Lychee is set your application key to a random string. This is easily done by using the <code>php artisan key:generate</code> command.</p>
 <p>Typically, this string should be 32 characters long. The key can be set in the <code>.env</code> environment file. If you have not copied the <code>.env.example</code> file to a new file named <code>.env</code>, you should do that now.</p>
 <p><strong>If the application key is not set, your user sessions and other encrypted data will not be secure!</strong></p>
-<h4 id="additional-configuration"><a class="toclink" href="#additional-configuration">Additional Configuration</a></h4>
+<h4>Additional Configuration</h4>
 <p>Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the <code>config/app.php</code> file and its documentation. It contains some options that aren't included from <code>.env</code> that you may wish to change according to your installation.</p>
 <p>You may also want to configure a few additional components of Lychee in <code>.env</code>, such as:</p>
 <ul>
