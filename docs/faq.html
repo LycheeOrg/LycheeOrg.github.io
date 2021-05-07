@@ -203,8 +203,8 @@ Note that you will still need to authenticate yourself to the server, this disab
 <h3 id="can-i-use-my-existing-folder-structure"><a class="toclink" href="#can-i-use-my-existing-folder-structure">Can I use my existing folder structure?</a></h3>
 <p>Not at this time. Lychee currently uses its own folder structure and database. Please upload or import all your photos to use them.</p>
 <h3 id="can-i-upload-videos"><a class="toclink" href="#can-i-upload-videos">Can I upload videos?</a></h3>
-<p>Yes, but you will need to change this property to a bigger value:</p>
-<pre><code>upload_max_filesize = 20M
+<p>Yes, but you may need to change this property to a bigger value:</p>
+<pre><code>upload_max_filesize = 100M
 </code></pre>
 <h3 id="is-it-possible-to-create-multiple-users"><a class="toclink" href="#is-it-possible-to-create-multiple-users">Is it possible to create multiple users?</a></h3>
 <p>Yes. Just go to the <code>Users</code> menu.</p>
@@ -314,7 +314,7 @@ public/uploads/
             rewrite ^/lychee/?(.*)$ /lychee/index.php?/$1 last;
             break;
         }
-        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $request_filename;
@@ -404,7 +404,7 @@ Prefer <code>file</code> or <code>database</code> (but that last one require som
 </blockquote>
 <h3 id="i-cant-upload-large-photos"><a class="toclink" href="#i-cant-upload-large-photos">I can't upload (large) photos.</a></h3>
 <p>Issues may occur when trying to upload photos with large <strong>file sizes</strong> or large <strong>resolutions</strong>.</p>
-<p>If you experience problems uploading photos with large <strong>file sizes</strong>, you might want to change the PHP parameters in <code>.htaccess</code> (if you are using the PHP Apache module) or in <code>.user.ini</code> (if you are using PHP &gt;= 7.3 with CGI or FastCGI).</p>
+<p>If you experience problems uploading photos with large <strong>file sizes</strong>, you might want to change the PHP parameters in <code>.htaccess</code> (if you are using the PHP Apache module) or in <code>.user.ini</code> (if you are using PHP with CGI or FastCGI).</p>
 <blockquote>
 <p>If you modify the <code>.user.ini</code> file, you may want to run <code>git update-index --assume-unchanged .user.ini</code> afterwards.</p>
 </blockquote>
@@ -412,7 +412,7 @@ Prefer <code>file</code> or <code>database</code> (but that last one require som
 <pre><code>max_execution_time = 200
 post_max_size = 100M
 upload_max_size = 100M
-upload_max_filesize = 20M
+upload_max_filesize = 100M
 memory_limit = 256M
 </code></pre>
 <p>If problems occur when uploading photos with large <strong>resolutions</strong>, the issue may lie with <strong>ImageMagick Security Policy</strong>.

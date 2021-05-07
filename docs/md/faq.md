@@ -43,9 +43,9 @@ Not at this time. Lychee currently uses its own folder structure and database. P
 
 ### Can I upload videos?
 
-Yes, but you will need to change this property to a bigger value:
+Yes, but you may need to change this property to a bigger value:
 ```
-upload_max_filesize = 20M
+upload_max_filesize = 100M
 ```
 ### Is it possible to create multiple users?
 
@@ -206,7 +206,7 @@ location ^~ /lychee {
             rewrite ^/lychee/?(.*)$ /lychee/index.php?/$1 last;
             break;
         }
-        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $request_filename;
@@ -332,7 +332,7 @@ Prefer `file` or `database` (but that last one require some [more configuration]
 
 Issues may occur when trying to upload photos with large **file sizes** or large **resolutions**.
 
-If you experience problems uploading photos with large **file sizes**, you might want to change the PHP parameters in `.htaccess` (if you are using the PHP Apache module) or in `.user.ini` (if you are using PHP >= 7.3 with CGI or FastCGI).
+If you experience problems uploading photos with large **file sizes**, you might want to change the PHP parameters in `.htaccess` (if you are using the PHP Apache module) or in `.user.ini` (if you are using PHP with CGI or FastCGI).
 
 > If you modify the `.user.ini` file, you may want to run `git update-index --assume-unchanged .user.ini` afterwards.
 
@@ -342,7 +342,7 @@ If possible, change these settings directly in your `php.ini`. We recommend to i
 max_execution_time = 200
 post_max_size = 100M
 upload_max_size = 100M
-upload_max_filesize = 20M
+upload_max_filesize = 100M
 memory_limit = 256M
 ```
 

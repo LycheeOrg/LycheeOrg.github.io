@@ -197,8 +197,8 @@ lycheeorg/lychee
 <li><code>STARTUP_DELAY=0</code></li>
 </ul>
 <h2 id="advanced-configuration"><a class="toclink" href="#advanced-configuration">Advanced configuration</a></h2>
-<p>Note that nginx will accept by default images up to 100MB (<code>client_max_body_size 100M</code>) and that PHP parameters are overridden according to the <a href="https://lycheeorg.github.io/docs/faq.html#i-cant-upload-photos">recommendations of the Lychee FAQ</a>.</p>
-<p>You may still want to further customize PHP configuration. The first method is to mount a custom <code>php.ini</code> to <code>/etc/php/7.3/fpm/php.ini</code> when starting the container. However, this method is kind of brutal as it will override all parameters.</p>
+<p>Note that nginx will accept by default images up to 100MB (<code>client_max_body_size 100M</code>) and that PHP parameters are overridden according to the <a href="https://lycheeorg.github.io/docs/faq.html#i-cant-upload-large-photos">recommendations of the Lychee FAQ</a>.</p>
+<p>You may still want to further customize PHP configuration. The first method is to mount a custom <code>php.ini</code> to <code>/etc/php/7.4/fpm/php.ini</code> when starting the container. However, this method is kind of brutal as it will override all parameters. It will also need to be remapped whenever an image is released with a new version of PHP.</p>
 <p>Instead, we recommend to use the <code>PHP_VALUE</code> directive of PHP-FPM to override specific parameters. To do so, you will need to mount a custom <code>nginx.conf</code> in your container :</p>
 <ul>
 <li>1 &mdash; Take the <a href="https://github.com/LycheeOrg/Lychee-Docker/blob/master/default.conf">default.conf</a> file as a base</li>
