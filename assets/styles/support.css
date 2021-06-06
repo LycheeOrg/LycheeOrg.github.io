@@ -16,6 +16,10 @@
     margin-bottom: 0px;
 }
 
+.contributors_list {
+	margin-bottom: 100px;
+}
+
 .contributors:nth-child(odd) {
     background-color: #FFFFFF;
 }

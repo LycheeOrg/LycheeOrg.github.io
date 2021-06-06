@@ -47,7 +47,7 @@
 
             <div class="contributors_list">
                 <p class="contributors">
-                    <img class="avatar" src="https://avatars2.githubusercontent.com/u/627094?s=400&v=4">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/627094?s=400&v=4">
                     <span>
             ildyria (Beno&icirc;t Viguier)<br>
             <a href="https://github.com/ildyria">GitHub</a>
@@ -57,7 +57,7 @@
 
 
                 <p class="contributors">
-                    <img class="avatar" src="https://avatars1.githubusercontent.com/u/1611702?s=400&v=4">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/1611702?s=400&v=4">
                     <span>
             d7415 (Martin Stone)<br>
             <a href="https://github.com/d7415">GitHub</a>
@@ -67,7 +67,7 @@
 
 
                 <p class="contributors">
-                    <img class="avatar" src="https://avatars3.githubusercontent.com/u/1869257?s=400&v=4">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/1869257?s=400&v=4">
                     <span>
             tmp-hallenser<br>
             <a href="https://github.com/tmp-hallenser">GitHub</a>
@@ -77,7 +77,7 @@
 
 
                 <p class="contributors">
-                    <img class="avatar" src="https://avatars2.githubusercontent.com/u/16415200?s=400&v=4">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/16415200?s=400&v=4">
                     <span>
             kamil4<br>
             <a href="https://github.com/kamil4">GitHub</a>
@@ -85,9 +85,17 @@
         </span>
                 </p>
 
+                <p class="contributors">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/7428426?s=400&v=4">
+                    <span>
+            nagmat84 (Matthias Nagel)<br>
+            <a href="https://github.com/nagmat84">GitHub</a>
+             <!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
+        </span>
+                </p>
 
                 <p class="contributors">
-                    <img class="avatar" src="https://avatars3.githubusercontent.com/u/398496?s=400&v=4">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/398496?s=400&v=4">
                     <span>
               LudovicRousseau (Ludovic Rousseau)<br>
               <a href="https://github.com/LudovicRousseau">GitHub</a>
@@ -97,17 +105,7 @@
 
 
                 <p class="contributors">
-                    <img class="avatar" src="https://avatars2.githubusercontent.com/u/2447419?s=400&v=4">
-                    <span>
-            clementlamoureux (Cl&eacute;ment Lamoureux)<br>
-            <a href="https://github.com/clementlamoureux">GitHub</a>
-             <!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
-        </span>
-                </p>
-
-
-                <p class="contributors">
-                    <img class="avatar" src="https://avatars0.githubusercontent.com/u/1853884?s=400&v=4">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/1853884?s=400&v=4">
                     <span>
             roblandry<br>
             <a href="https://github.com/roblandry">GitHub</a>
@@ -116,8 +114,14 @@
                 </p>
 
 
+
+
+            </div>
+			<h1>Past Contributors</h1>
+            <h4>Thank you for your help!</h4>
+			<div class="contributors_list">
                 <p class="contributors">
-                    <img class="avatar" src="https://avatars0.githubusercontent.com/u/129883?s=400&v=4">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/129883?s=400&v=4">
                     <span>
             hermzz (Hermann Käser)<br>
             <a href="https://github.com/hermzz">GitHub</a>
@@ -126,6 +130,15 @@
                 </p>
 
 
-            </div>
+                <p class="contributors">
+                    <img class="avatar" src="https://avatars.githubusercontent.com/u/2447419?s=400&v=4">
+                    <span>
+            clementlamoureux (Cl&eacute;ment Lamoureux)<br>
+            <a href="https://github.com/clementlamoureux">GitHub</a>
+             <!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
+        </span>
+                </p>
+
+			</div>
 
         </div>
