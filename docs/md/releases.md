@@ -32,6 +32,22 @@
 
 ## Version 4
 
+### v4.3.4
+
+Released Jul 11, 2021
+
+- `new` #972 : more versions and dependencies check
+- `fixes` #954 : Google Motion Photo
+- `new` #988 : Added raw values of attributes to JSON API
+- `new` #1000 : Extended search for cameramodel and date.
+- `fixes` #998 : Use Guzzle7 instead of Guzzle6
+- `fixes` #994 : Disable login with Legacy if UserAdmin exists
+- `new` #991 : Add attribute 'filesize_raw' to entity 'Photo'
+- `new` #1016 : Refactor timestamps
+- `fixes` #1008 : null error on live photo import
+- `new` #1041 : Enhance German Translation
+
+
 ### v4.3.0
 
 Released April 18, 2021
