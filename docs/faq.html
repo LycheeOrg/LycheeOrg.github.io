@@ -415,6 +415,7 @@ upload_max_size = 100M
 upload_max_filesize = 100M
 memory_limit = 256M
 </code></pre>
+<p>Also check the settings for your web server (e.g. <code>client_max_body_size</code> in nginx) allow for large uploads.</p>
 <p>If problems occur when uploading photos with large <strong>resolutions</strong>, the issue may lie with <strong>ImageMagick Security Policy</strong>.
 Review and edit the options in <code>/etc/ImageMagick-6/policy.xml</code>.
 Editing the <code>width</code>, <code>height</code> and <code>memory</code> options can help with enabling upload of images with larger resolutions.</p>
