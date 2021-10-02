@@ -16,7 +16,7 @@
 
 ```sh
 // Install dependencies
-$ pip install -U pytest markdown
+$ pip install -U pytest markdown gitpython
 ```
 
 # Generating
