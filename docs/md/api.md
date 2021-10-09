@@ -20,7 +20,7 @@ See:
 
 - **POST** request
 - Returns `true` if login was successful, `false` otherwise.
-- Also returns a laravel session cookie (`lychee_session`) that should be provided in order to do anything that needs to be logged in to do (such as listing private Albums).
+- Returns a laravel session cookie (`lychee_session`) needed for logged-in operations.
 ```
 $request->validate([
     'username' => 'required',
