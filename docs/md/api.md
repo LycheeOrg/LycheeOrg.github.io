@@ -20,6 +20,7 @@ See:
 
 - **POST** request
 - Returns `true` if login was successful, `false` otherwise.
+- Returns a laravel session cookie (`lychee_session`) which must be passed to subsequent requests that require an authenticated user.
 ```
 $request->validate([
     'username' => 'required',
