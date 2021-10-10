@@ -217,6 +217,7 @@ See:</p>
 <ul>
 <li><strong>POST</strong> request</li>
 <li>Returns <code>true</code> if login was successful, <code>false</code> otherwise.</li>
+<li>Returns a laravel session cookie (<code>lychee_session</code>) which must be passed to subsequent requests that require an authenticated user.</li>
 </ul>
 <pre><code>$request-&gt;validate([
     'username' =&gt; 'required',

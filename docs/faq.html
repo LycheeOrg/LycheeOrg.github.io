@@ -197,8 +197,9 @@
 <p>Either press <code>n</code> (as <strong>N</strong>ew) or use the add menu.</p>
 <p><img alt="Screenshot" src="img/create-album.png" /></p>
 <h3 id="what-headers-need-to-be-used-to-authenticate-with-the-custom-api_key-in-the-settings"><a class="toclink" href="#what-headers-need-to-be-used-to-authenticate-with-the-custom-api_key-in-the-settings">What headers need to be used to authenticate with the custom <code>api_key</code> in the settings?</a></h3>
-<p>In order to bypass the CSRF protection, you can set up the <code>api_key</code> setting to a secret value and send that value over in the <code>Authorization</code> header.
-Note that you will still need to authenticate yourself to the server, this disable only the CSRF protection.</p>
+<p>In order to bypass the CSRF protection, you can set up the <code>api_key</code> setting to a secret value and send that value over in the <code>Authorization</code> header.<br />
+Note that <code>api_key</code> only disables the CSRF protection, you still need to authenticate to the server.</p>
+<p>In order to authenticate, use <a href="https://lycheeorg.github.io/docs/api.html#apisessionlogin">Session::login</a> and pass the returned <code>lychee_session</code> cookie to all subsequent requests.</p>
 <p>The related code is available <a href="https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/VerifyCsrfToken.php#L55">here</a></p>
 <h3 id="can-i-use-my-existing-folder-structure"><a class="toclink" href="#can-i-use-my-existing-folder-structure">Can I use my existing folder structure?</a></h3>
 <p>Not at this time. Lychee currently uses its own folder structure and database. Please upload or import all your photos to use them.</p>
