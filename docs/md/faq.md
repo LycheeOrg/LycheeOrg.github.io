@@ -32,8 +32,10 @@ Either press `n` (as **N**ew) or use the add menu.
 
 ### What headers need to be used to authenticate with the custom `api_key` in the settings?
 
-In order to bypass the CSRF protection, you can set up the `api_key` setting to a secret value and send that value over in the `Authorization` header.
-Note that you will still need to authenticate yourself to the server (using [Session::login](https://lycheeorg.github.io/docs/api.html#apisessionlogin) and the returned `lychee_session` cookie), this disable only the CSRF protection.
+In order to bypass the CSRF protection, you can set up the `api_key` setting to a secret value and send that value over in the `Authorization` header.  
+Note that `api_key` only disables the CSRF protection, you still need to authenticate to the server.
+
+In order to authenticate, use [Session::login](https://lycheeorg.github.io/docs/api.html#apisessionlogin) and pass the returned `lychee_session` cookie to all subsequent requests.
 
 The related code is available [here](https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/VerifyCsrfToken.php#L55)
 
