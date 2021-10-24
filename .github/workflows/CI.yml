@@ -3,7 +3,8 @@ name: Build
 # Run this workflow every time a new commit pushed to your repository
 on:
   push:
-
+    branches:
+      - main
 jobs:
   tests:
 
@@ -30,3 +31,11 @@ jobs:
       - name: Tests
         run: |
           make test
+
+      - name: Deploy 🚀 # Deploy to pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.
+          clean: true # Automatically remove deleted files from the deploy branch
