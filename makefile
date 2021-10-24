@@ -1,5 +1,10 @@
-all:
+all: assets
 	@echo ""
+	@python3 gen.py
+
+.PHONY: assets
+
+assets:
 	mkdir -p build
 	cp -r assets build/
 	cp -r demo build/
@@ -7,9 +12,8 @@ all:
 	cp -r docs/css build/docs/
 	cp -r docs/img build/docs/
 	cp -r docs/js build/docs/
-	@python3 gen.py
 
-test:
+test: assets
 	@echo ""
 	@python3 -m pytest gen.py
 
