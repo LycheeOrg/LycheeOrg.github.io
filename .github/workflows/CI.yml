@@ -3,8 +3,7 @@ name: Build
 # Run this workflow every time a new commit pushed to your repository
 on:
   push:
-    branches:
-      - main
+
 jobs:
   tests:
 
@@ -33,6 +32,7 @@ jobs:
           make test
 
       - name: Deploy 🚀 # Deploy to pages
+        if: github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
