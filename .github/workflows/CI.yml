@@ -6,11 +6,8 @@ on:
 
 jobs:
   tests:
-
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-20.04
     name: Build
-
     steps:
       # Checks out a copy of your repository on the ubuntu machine
       - name: Checkout code
