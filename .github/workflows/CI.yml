@@ -6,11 +6,8 @@ on:
 
 jobs:
   tests:
-
     runs-on: ubuntu-20.04
-
     name: Build
-
     steps:
       # Checks out a copy of your repository on the ubuntu machine
       - name: Checkout code
@@ -30,3 +27,12 @@ jobs:
       - name: Tests
         run: |
           make test
+
+      - name: Deploy 🚀 # Deploy to pages
+        if: github.ref == 'refs/heads/master'
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.
+          clean: true # Automatically remove deleted files from the deploy branch
