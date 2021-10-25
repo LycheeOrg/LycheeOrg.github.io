@@ -8,7 +8,7 @@ If you experience any issues with Lychee and wish to report it, make sure to spe
 
 ### Which file formats are supported?
 
-Lychee supports major image formats, and since version 3.2.1 some video formats as well. Specifically, `*.jpg`, `*.jpeg`, `*.png`, `*.gif`, `*.ogv`, `*.mp4`, `*.mpg`, `*.webm`, `*.webp`, `*.mov`, `*.m4v`, `*.avi` and `*.wmv` are accepted.
+Lychee supports major image formats, and since version 3.2.1 some video formats as well. Specifically, `*.jpg`, `*.jpeg`, `*.png`, `*.gif`, `*.webp`, `*.ogv`, `*.mp4`, `*.mpg`, `*.webm`, `*.mov`, `*.m4v`, `*.avi` and `*.wmv` are accepted.
 
 If you're uploading video files, make sure to increase your upload limits in `php.ini`.  See the [Installation](installation.html) section for more information.
 
