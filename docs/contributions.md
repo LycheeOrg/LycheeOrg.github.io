@@ -111,6 +111,43 @@ public function bind($abstract, $concrete = null, $shared = false)
 In addition to code documentation, we highly encourage you to use the types system of php for the function arguments.
 This will increase the trust and safety of the code.
 
+### Illustrated example
+
+As follows we present a simple pull request modifying the `readme.md`.
+
+#### 1. Fork the repository.
+![Screenshot](img/contribute1.png)
+#### 2. select your own account as destination of the fork.
+![Screenshot](img/contribute2.png)
+#### 3. Create a new branch.
+
+1. Click on the drop down menu.
+2. Enter the name of the new branch.
+3. Click **Create branch:...**.
+
+![Screenshot](img/contribute3.png)
+#### 4. Make sure the new branch is selected.
+![Screenshot](img/contribute4.png)
+#### 5. Edit the desired files.
+![Screenshot](img/contribute5.png)
+#### 6. Commit the changes.
+If possible, provide a summary of the changes done by the commit in the description before clicking **Commit changes**.
+
+![Screenshot](img/contribute6.png)
+#### 7. Create a new pull request.
+![Screenshot](img/contribute7.png)
+#### 8. Fill-in and submit the pull request.
+
+1. Make sure that the base repository is the one from `LycheeOrg` on the branch `master`.
+2. Provide a good title to the changes you would like to be applied.
+3. Add a description of the changes, motivations, what is being done. etc.
+Also make sure that **Allow edit by the maintainers is being checked**.
+This will allow us to fix the pull request if necessary.
+4. Submit the pull request.
+
+![Screenshot](img/contribute8.png)
+
+#### 9. Wait for the team to get back at you and review the PR.
 ## Code of Conduct
 The Lychee code of conduct is the same as Laravel's code of conduct:
 
