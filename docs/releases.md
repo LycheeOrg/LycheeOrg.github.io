@@ -32,6 +32,45 @@
 
 ## Version 4
 
+### v4.4.0
+
+- `new` #1145 : Upgrade Composer and PHP Version
+  > **Attention**: Support for PHP < 8 has been removed.
+- `fixes` #1152 : Fix diagnostics
+- `fixes` #1154 : Set configuration option `user_agent` during init.
+
+### v4.3.6
+
+- `fixes` #1059 : Add Cache busting.
+- `new` #1049 / `fixes` #1011 : New Photos Email Notification
+  > - Send an email when new photos were added to albums that have been shared.
+  > - Use the laravel notification system to send via SMTP, `env` settings will need to be set up.
+  > - It is set to send out emails once a week via cron, so the laravel cron job would need to be set up.
+  > - Neither is required so if people don't want to set those up then it won't affect the operation of Lychee.
+  > - Add admin setting to toggle the notification option, which enables a user level menu item to change their email. This is purely opt-in, so users can clear their email if they don't wish to receive the emails anymore.
+  > - The email that gets sent out has been branded lychee, and will group the last week's worth of notifications and send them all out in one email to each user that has an email set up.
+- `new` #1065 : Add Polish translation.
+- `new` #1071 : Avoid git rebase conflicts during development on other branches
+- `new` #1086 : cli sync from from server with option to delete, import via symlink, etc.
+- `new` #1097 : Make language more gender neutral.
+- `fixes` #1102 : Character limitation of table column logs.function causes server error 500 for deployments with long installation path
+- `fixes` #1105 : Fix type issues related to thumbs
+- `fixes` #1108 : Fixes takestamps.
+  > - This should correct all instances of incorrect album min/max takestamps and as a bonus be computationally much less expensive.
+- `fixes` #1110 : `round` in php8 requires an `int` or `float` as the first argument.
+- `fixes` #1119 : No video upload when ffmpeg is missing
+- `new` #1122 : Improved French translations.
+- `fixes` #1121 : Fix lychee:video_data
+- `fixes` #1033 : A bit of JS to prevent multiple submissions of the migration form.
+- `fixes` #1127 : The upload_processing_limit parameter only works when uploading images in the admin account. It does not work for images uploaded by other users
+- `new` #1142 : also support Caps on size format in diagnostics.
+- `fixes` #1146 : _artisan optimize_ crashes with _Unable to prepare route_
+- `fixes` https://github.com/LycheeOrg/Lychee-front/pull/270: _Copy To..._ didn't work correctly
+- `fixes` https://github.com/LycheeOrg/Lychee-front/issues/273: Wrong support of ' (single quote) in some places
+- `fixes` #1123: Album renaming did not work reliably
+- `new` https://github.com/LycheeOrg/Lychee-front/pull/276: Remember user preference for the visibility of the info sidebar
+- `fixes` https://github.com/LycheeOrg/Lychee-front/pull/278: Fix the menu for smart and tag albums and in public mode, fix import into top-level albums view, fix empty info sidebar for albums
+
 ### v4.3.4
 
 Released Jul 11, 2021
