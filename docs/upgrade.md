@@ -52,7 +52,7 @@ Modify your `/etc/apache2/apache2.conf` to allow `.htaccess` to set up the rewri
 </Directory>
 ```
 
-Modify or create `example.com.conf` in `/etc/apache2/site-available/` to point out the served directory:
+Modify or create `example.com.conf` in `/etc/apache2/sites-available/` to point out the served directory:
 ```
 <VirtualHost *:80>
 	ServerName example.com
