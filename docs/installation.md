@@ -9,7 +9,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
     - MySQL _(version > 5.7.8)_ / MariaDB _(version > 10.2)_
 	- PostgreSQL _(version > 9.2)_
 	- Lychee's inbuilt SQLite3 support
-- PHP >= 8.0 with these PHP extensions:
+- PHP >= 7.4 with these PHP extensions:
     - BCMath
     - Ctype
     - Exif
@@ -17,6 +17,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
     - Fileinfo
     - GD
     - Imagick (optional &mdash; to generate better thumbnails)
+    - Intl
     - JSON
     - Mbstring
     - OpenSSL
@@ -95,6 +96,8 @@ It is also strongly recommended to serve Lychee over TLS. You may wish to consid
 ### Apache
 
 Lychee includes a `public/.htaccess` file that is used to provide URLs without the `index.php` front controller in the path. Before serving Lychee with Apache, be sure to enable the `mod_rewrite` module so the `.htaccess` file will be honored by the server.
+
+Also check the Apache [upgrade instructions](https://lycheeorg.github.io/docs/upgrade.html#using-apache) for required permissions in your /etc/apache2/sites-available/example.com.conf file.
 
 If the `.htaccess` file that ships with Lychee does not work with your Apache installation, try this alternative:
 
