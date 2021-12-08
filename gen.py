@@ -85,7 +85,7 @@ structure += [['Digging Deeper',
 
 def gen_github_link(page):
     html = '<blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;'
-    html += '<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/md/' + page + '.md">Edit this page on Github!</a></p></blockquote>'
+    html += '<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/' + page + '.md">Edit this page on Github!</a></p></blockquote>'
     return html
 
 def gen_sidebar(page):
