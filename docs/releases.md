@@ -459,6 +459,7 @@ Released April 18, 2020
 Released June 17, 2019
 
 - `new` : hides lychee version number by default (e#82)
+- `tofix`: CVE-2021-43675 - Lychee-v3 3.2.16 is affected by a Cross Site Scripting (XSS) vulnerability in php/Access/Guest.php. The function exit will terminate the script and print the message to the user. The message will contain albumID which is controlled by the user.
 
 ### v3.2.15
 
