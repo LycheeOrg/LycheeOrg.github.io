@@ -135,6 +135,7 @@ server {
 
         # Mitigate https://httpoxy.org/ vulnerabilities
         fastcgi_param HTTP_PROXY "";
+    }
 
 ######### Make sure this is the correct socket for your system
         fastcgi_pass unix:/run/php/php7.4-fpm.sock;
