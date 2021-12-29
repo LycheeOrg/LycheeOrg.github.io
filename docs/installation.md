@@ -120,7 +120,7 @@ server {
     server_name <mydomain>.<tld>;
 
 ##### Path to the Lychee public/ directory.
-    root /var/www/lychee/public/;
+    root /var/www/Lychee/public/;
 
     # If the request is not for a valid file (image, js, css, etc.), send to bootstrap
     if (!-e $request_filename)
@@ -137,7 +137,7 @@ server {
         fastcgi_param HTTP_PROXY "";
 
 ######### Make sure this is the correct socket for your system
-        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_pass unix:/run/php/php8.1-fpm.sock;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "post_max_size=100M
