@@ -16,7 +16,7 @@ However as precaution, we provide a server-side command to easily erase those tw
 
 ## LycheeOrg
 
-LycheeOrg is a GitHub organization grouping enthusiastic developers determined to keep this project alive.
+LycheeOrg is a GitHub organization of enthusiast developers determined to keep this project alive.
 There is no commitment in time to the project. We understand that each member has their personal life and dedicate time as they see fit to the project.
 
 If you start to contribute by opening multiple Pull Requests and adding more code to the database. It is likely you will be asked to join us.
