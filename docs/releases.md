@@ -30,6 +30,17 @@
 
 ## Master branch
 
+Lychee is currently undergoing a major architectural refactoring of its internals.
+The master branch already includes the first part of that refactoring which mostly concentrates on the backend.
+
+These changes and information only affect those users who directly follow the master branch:
+
+- While we have made every effort to ensure that your existing photos and albums are as safe as with any other commit to the master branch, due to the sheer size of current changes we recommend that you take additional precautions, such as creating a backup of your SQL database before migrating.
+- While we did our best to ensure that Lychee behaves as before, the large amount of recent changes means that you may encounter more regression bugs than usual. Please make sure to test the functionality you depend on and promptly report any regressions you observe; we will do our best to address any such bugs as quickly as possible.
+- **New ID scheme:** Albums and photos are migrated to a new ID scheme. Previously, albums and photos used time-based integer IDs. The new IDs are truly 144bit of randomness encoded in Base64 as a 24-character string, e.g., if your photo had the URL `https://my-domain.tld/r/16102925744307/16102927818284` before, it may have the URL `https://my-domain.tld/r/GTqZfSso3nPeCnTNW4ovisgC/jM6KkmlK7X0LtVas5MjrHtTO` after the migration. This means, **external links to your albums or photos will stop working.** However, we implemented a redirection service. You can enable/disable the re-direction service under `Settings` > `More` > `legacy_id_redirection`. This gives you time to migrate any external reference to the new IDs. We also generate a log entry every time the redirection service is used. This log contains the legacy and new ID as well as information where the request came from. This may help you with the migration of your external links.
+- **Annoying regressions already known:** This is a list of already known regressions to be fixed by the second part of the refactoring which will concentrate on the JSON API and front-end:
+  - _Password-dialog is shown for non-existing and private albums:_ If a user requests a URL for a non-existing or private album, the password dialog will be presented to the user as if the album was password-protected. The password dialog will be presented repeatedly to the user independent of the provided password as the authentication will never succeed.
+
 ## Version 4
 
 ### v4.4.0
