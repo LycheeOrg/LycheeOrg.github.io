@@ -54,18 +54,39 @@ If you are affected, you have two options:
  - Option 1: Re-run the migration
  - Option 2: Add the missing indices manually (recommended)
 
-Option 1 (all DB engines): First roll back the original migration via `./artisan migrate:rollback`, update the master branch via `git pull` and re-run the migration again via `./artisan migrate`. As always make a backup of your DB first. Note, that the necessary rollback migration may not have been tested as well as the forward migration. Moreover, a repeated forward migration generates new random IDs for your photos and albums. If you are able to avoid option 1 and use option 2 instead, we recommend to use option 2.
+_Option 1 (all DB engines):_ First roll back the original migration via `./artisan migrate:rollback`, update the master branch via `git pull` and re-run the migration again via `./artisan migrate`. As always make a backup of your DB first. Note, that the necessary rollback migration may not have been tested as well as the forward migration. Moreover, a repeated forward migration generates new random IDs for your photos and albums. If you are able to avoid option 1 and use option 2 instead, we recommend to use option 2.
 
-Option 2 (MySQL/PostgreSQL only): If you use MySQL or PostgreSQL and you have access to your SQL console, you can add the missing indices manually.
+_Option 2 (MySQL/PostgreSQL only):_ If you use MySQL or PostgreSQL and you have access to your SQL console, you can add the missing indices manually.
 These are the SQL statements to create the missing indices:
 
-    CREATE INDEX photos_album_id_type_index ON photos (album_id, "type");
-    CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
-    CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
-    CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
-    CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, "type");
+ - For MySQL:
 
-Note that MySQL requires backticks (`` ` ``) around `type` instead of ANSI SQL quotes (`"`).
+       CREATE INDEX photos_album_id_type_index ON photos (album_id, `type`);
+       CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
+       CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
+       CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
+       CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, `type`);
+       ANALYZE TABLE `albums`, `base_albums`, `notifications`, `page_contents`, `pages`, `photos`, `size_variants`, `sym_links`, `tag_albums`, `user_base_album`, `users`, `web_authn_credentials`;
+   
+ - For PosgreSQL:
+
+       CREATE INDEX photos_album_id_type_index ON photos (album_id, "type");
+       CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
+       CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
+       CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
+       CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, "type");
+       ANALYZE "albums";
+       ANALYZE "base_albums";
+       ANALYZE "notifications";
+       ANALYZE "page_contents";
+       ANALYZE "pages";
+       ANALYZE "photos";
+       ANALYZE "size_variants";
+       ANALYZE "sym_links";
+       ANALYZE "tag_albums";
+       ANALYZE "user_base_album";
+       ANALYZE "users";
+       ANALYZE "web_authn_credentials";
 
   
 ## Version 4
