@@ -41,22 +41,22 @@ These changes and information only affect those users who directly follow the ma
 - **Annoying regressions already known:** This is a list of already known regressions to be fixed by the second part of the refactoring which will concentrate on the JSON API and front-end:
   - _Password-dialog is shown for non-existing and private albums:_ If a user requests a URL for a non-existing or private album, the password dialog will be presented to the user as if the album was password-protected. The password dialog will be presented repeatedly to the user independent of the provided password as the authentication will never succeed.
 
-_Addendum for those who migrated between 2022-01-13 and 2022-01-15:_
+_Addendum for those who migrated between 2022-01-13 and 2022-01-16:_
 
 After the initial merge to the master branch we became aware of some performance regressions due to missing indices on the DB.
 We have patched the migration script to create the indices.
-If you migrated to the head of master after 2022-01-15 you are fine.
+If you migrated to the head of master after 2022-01-16 you are fine.
 If you were an early adopter and migrated between 2022-01-13 (when the original merge came out) and 2022-01-15, the indices are missing.
 
 Unfortunately, the migration script can only add these indices while the affected table is being created, not after table creation.
 If you are affected, you have two options:
 
  - Option 1: Re-run the migration
- - Option 2: Add the missing indices manually
+ - Option 2: Add the missing indices manually (recommended)
 
-For Option 1 (all DB engines): First rollback the original migration via `./artisan migrate:rollback`, update the master branch via `git pull` and re-run the migration again via `./artisan migrate`. As always make a backup of your DB first.
+Option 1 (all DB engines): First roll back the original migration via `./artisan migrate:rollback`, update the master branch via `git pull` and re-run the migration again via `./artisan migrate`. As always make a backup of your DB first. Note, that the necessary rollback migration may not have been tested as well as the forward migration. Moreover, a repeated forward migration generates new random IDs for your photos and albums. If you are able to avoid option 1 and use option 2 instead, we recommend to use option 2.
 
-For Option 2 (MySQL/PostgreSQL only): If you don't want to spend the time the migration takes, you use MySQL or PostgreSQL and you have access to your SQL console, you can also add the missing indices manually.
+Option 2 (MySQL/PostgreSQL only): If you use MySQL or PostgreSQL and you have access to your SQL console, you can add the missing indices manually.
 These are the SQL statements to create the missing indices:
 
     CREATE INDEX photos_album_id_type_index ON photos (album_id, "type");
