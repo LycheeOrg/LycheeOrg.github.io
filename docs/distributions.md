@@ -196,7 +196,7 @@ You can use their Marketplace to [install Lychee](https://www.alwaysdata.com/en/
 
 See their pricing [here](https://www.alwaysdata.com/en/).
 
-> {tip} Please note that we, at LycheeOrg, do not endorse Couldron.
+> {tip} Please note that we, at LycheeOrg, do not endorse alwaysdata
 We give the reader a link to their websites as they provide our software.
 You are free to use their installation, however we will not be providing you support with their solution.
 
