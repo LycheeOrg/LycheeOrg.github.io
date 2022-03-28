@@ -187,4 +187,17 @@ See their pricing [here](https://cloudron.io/pricing.html).
 We give the reader a link to their websites as they provide our software.
 You are free to use their installation, however we will not be providing you support with their solution.
 
+
+## With alwaysdata (Paid)
+
+alwaysdata.com is a modern hosting platform allowing you to host all your services in one place: files, emails, sites, media, databases, workers, etc.
+
+You can use their Marketplace to [install Lychee](https://www.alwaysdata.com/en/marketplace/lychee/) and have your own instance available (with HTTPS) within a minute!
+
+See their pricing [here](https://www.alwaysdata.com/en/).
+
+> {tip} Please note that we, at LycheeOrg, do not endorse Couldron.
+We give the reader a link to their websites as they provide our software.
+You are free to use their installation, however we will not be providing you support with their solution.
+
 </div>
