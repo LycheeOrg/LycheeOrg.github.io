@@ -34,7 +34,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
    	 	- SQLite3 for SQLite3 databases
    	 	- MySQLi (or PDO_MySQL) for MySQL or MariaDB databases
    	 	- PgSql (or PDO_PGSQL) for PostgreSQL databases
-- You also need install composer to complete installation, visit https://getcomposer.org/download/ for help.
+- To install from git you will also need composer. See [below](#from-the-master-branch) for details.
 
 While Lychee works on 32bit systems, we **strongly** recommend the use of a 64bit OS.
 
