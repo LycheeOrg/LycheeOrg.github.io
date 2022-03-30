@@ -30,10 +30,10 @@ The Lychee gallery has a few system requirements. You will need to make sure you
 		- Dom
    	 	- Session
    	 	- Zlib
-   	- For database, you will need these PHP extensions:
-   	 	- SQLite3 (For Lychee's inbuilt SQLite3)
-   	 	- MySQLi (For MySQL or MariaDB)
-   	 	- PDO_MySQL (For MySQL or MariaDB)
+   	- You will also need one of these PHP extensions:
+   	 	- SQLite3 for SQLite3 databases
+   	 	- MySQLi (or PDO_MySQL) for MySQL or MariaDB databases
+   	 	- PgSql (or PDO_PGSQL) for PostgreSQL databases
 - You also need install composer to complete installation, visit https://getcomposer.org/download/ for help.
 
 While Lychee works on 32bit systems, we **strongly** recommend the use of a 64bit OS.
