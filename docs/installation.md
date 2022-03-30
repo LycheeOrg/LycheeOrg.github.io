@@ -153,9 +153,8 @@ server {
 ######### Make sure this is the correct socket for your system
         fastcgi_pass unix:/run/php/php8.1-fpm.sock;
         fastcgi_index index.php;
+######## You may need to replace $document_root with the absolute path to your public folder.
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-######## You may need change #document_root to your public folder if you are running a FreeBSD system.
-	# fastcgi_param SCRIPT_FILENAME /var/www/Lychee/public$fastcgi_script_name;
         fastcgi_param PHP_VALUE "post_max_size=100M
             max_execution_time=200
             upload_max_filesize=30M
