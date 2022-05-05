@@ -45,6 +45,5 @@
 
 		<!-- CSS -->
 
-			<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400">
 			<link rel="stylesheet" href="assets/bower/normalize-css/normalize.css">
 			<link rel="stylesheet" href="assets/styles/main.css">
