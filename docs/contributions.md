@@ -70,7 +70,7 @@ Our coding style is defined by the `.php-ps` file, it is mostly the Symfony styl
 
 Before submitting a PR, we highly encourage you to do:
 ```bash
-./vendor/bin/php-cs-fixer fix --config=.php_cs
+./vendor/bin/php-cs-fixer fix -v --config=.php-cs-fixer.php
 # or
 make formatting
 ```
