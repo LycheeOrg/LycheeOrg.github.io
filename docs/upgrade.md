@@ -53,7 +53,7 @@ Modify your `/etc/apache2/apache2.conf` to allow `.htaccess` to set up the rewri
 ```
 
 Modify or create `example.com.conf` in `/etc/apache2/sites-available/` to point out the served directory:
-```nginx
+```apacheconf
 <VirtualHost *:80>
 	ServerName example.com
 
