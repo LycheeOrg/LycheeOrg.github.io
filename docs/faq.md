@@ -185,16 +185,10 @@ Replace `user`, `password`, and `lychee_database` by the values of `DB_USERNAME`
 
 ### How can I migrate my installation to a new host?
 
-Back up your installation as describe above and:
-
-<ol start="3">
-<li>Download the latest release of Lychee.</li>
-<li>Overwrite the files with your back up</li>
-<li>
-Restore the database on the new host, e.g., for MySQL:
-<p><code class="language-bash">mysql -u user -ppassword < lychee_backup.sql</code></p>
-</li>
-</ol>
+1. Back up your installation as described above
+2. Download the latest release of Lychee.
+3. Overwrite the files with your back up
+4. Restore the database on the new host, e.g., for MySQL: `mysql -u user -ppassword < lychee_backup.sql`
 
 ### Can I host Lychee with a subpath with Nginx? Like `https://example.dev/lychee/`
 
