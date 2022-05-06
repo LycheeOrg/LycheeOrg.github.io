@@ -6,7 +6,7 @@ In this page we describe additional ways to install and potentially to develop o
 
 ## Separating Data from the Code
 
-As described in issue #486 , LudovicRousseau proposes a solution to separate your photo from the Lychee code.
+As described in issue #486, LudovicRousseau proposes a solution to separate your photo from the Lychee code.
 
 He splits Lychee itself and the pictures into 2 directories:
 - `Lychee` with the code of Lychee
@@ -26,7 +26,7 @@ Lychee-data/
         └── thumb
 ```
 - his `Lychee/.env` contains:
-```
+```ini
 LYCHEE_DIST="/var/www/Lychee-data/public/dist/"
 LYCHEE_UPLOADS="/var/www/Lychee-data/public/uploads/"
 ```
@@ -35,7 +35,7 @@ LYCHEE_UPLOADS="/var/www/Lychee-data/public/uploads/"
 
 
 The upgrade script when a new version of Lychee is available is simple:
-```
+```bash
 mv Lychee Lychee.old
 unzip Lychee.zip
 cp Lychee.old/.env Lychee
@@ -77,7 +77,7 @@ Edit your `/etc/hosts` to contain:
 
 Create configuration files in `/etc/apache2/sites-available`: `001-lychee-test.conf` and `002-lycheeorg-test.conf`
 
-```
+```apacheconf
 <VirtualHost *:80>
 	ServerName lychee.test
 
@@ -89,7 +89,7 @@ Create configuration files in `/etc/apache2/sites-available`: `001-lychee-test.c
 </VirtualHost>
 ```
 and
-```
+```apacheconf
 <VirtualHost *:80>
 	ServerName lycheeorg.test
 
@@ -102,7 +102,7 @@ and
 ```
 
 Enable the sites and reload apache:
-```
+```bash
 sudo a2ensite 001-lychee-test.conf
 sudo a2ensite 002-lycheeorg-test.conf
 sudo systemctl restart apache2
@@ -112,14 +112,14 @@ sudo systemctl restart apache2
 
 In your guest OS, clone the Lychee repository (requires ssh key to be set up):
 
-```
+```bash
 git clone git@github.com:LycheeOrg/Lychee.git /var/www/html/Lychee
 git clone git@github.con:LycheeOrg/LycheeOrg.github.io /var/www/html/LycheeOrg.github.io
 ```
 
 Similarily in `/etc/apache2/sites-available` create 2 configuration files: `001-lychee.conf` and `002-lycheeorg.conf`
 
-```
+```apacheconf
 <VirtualHost *:80>
 	ServerName lychee.test
 
@@ -130,7 +130,7 @@ Similarily in `/etc/apache2/sites-available` create 2 configuration files: `001-
 </VirtualHost>
 ```
 and
-```
+```apacheconf
 <VirtualHost *:80>
 	ServerName lycheeorg.test
 
@@ -142,7 +142,7 @@ and
 ```
 
 Enable the sites and reload apache:
-```
+```bash
 sudo a2ensite 001-lychee-test.conf
 sudo a2ensite 002-lycheeorg-test.conf
 sudo systemctl restart apache2
@@ -196,7 +196,7 @@ You can use their Marketplace to [install Lychee](https://www.alwaysdata.com/en/
 
 See their pricing [here](https://www.alwaysdata.com/en/).
 
-> {tip} Please note that we, at LycheeOrg, do not endorse alwaysdata
+> {tip} Please note that we, at LycheeOrg, do not endorse alwaysdata.
 We give the reader a link to their websites as they provide our software.
 You are free to use their installation, however we will not be providing you support with their solution.
 

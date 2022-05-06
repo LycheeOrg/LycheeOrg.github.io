@@ -45,15 +45,15 @@ It contains a trimmed down version of the Lychee files.
 
 Lychee utilizes [Composer][1] to manage its dependencies. Make sure you have Composer installed on your machine.
 
-```
+```bash
 git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
 ```
 Get into the directory:
-```
+```bash
 cd /var/www/html/Lychee
 ```
 Install the required dependencies.
-```
+```bash
 composer install --no-dev
 ```
 If you want to help develop Lychee, install the development dependencies by removing the `--no-dev` or replacing it with --dev.
@@ -101,7 +101,7 @@ Also check the Apache [upgrade instructions](https://lycheeorg.github.io/docs/up
 
 If the `.htaccess` file that ships with Lychee does not work with your Apache installation, try this alternative:
 
-```
+```apacheconf
 Options +FollowSymLinks -Indexes
 RewriteEngine On
 
@@ -117,7 +117,7 @@ RewriteRule ^ index.php [L]
 
 This is a sample nginx server block. It does not include TLS, but covers the Lychee-specific requirements.
 
-```
+```nginx
 server {
     listen 80;
     server_name <mydomain>.<tld>;

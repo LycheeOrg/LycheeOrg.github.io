@@ -13,13 +13,13 @@ Lychee's GitHub issue trackers are not intended to provide Lychee help or suppor
 Lychee uses a rolling release system, **we do not backport fixes to previously released versions**.
 Those are the versions where we accept vulnerability reports.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| master  | 	 &#10004;      |
-| latest release  |  &#10004;  |
-| < 4.0   |      &#10005;      |
+| Version      | Supported|
+|--------------|----------|
+|master        |&#10004;  |
+|latest release|&#10004;  |
+|< 4.0         |&#10005;  |
 
-If you discover a security vulnerability within Lychee, please contact us directly on [gitter][2]. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Lychee, please contact us directly on [Gitter][2]. All security vulnerabilities will be promptly addressed.
 
 ## Core Development Discussion
 You may propose new features or improvements of existing Lychee behavior in the [issue board][1]. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
@@ -32,7 +32,7 @@ Pull request need to respect a few simple constraints described below which make
 ### Which Branch to use?
 When submitting a new feature or fixing a bug, please create a new branch from master:
 
-```
+```bash
 git checkout master
 git pull master
 git checkout -b <fix-issue-number>
@@ -40,7 +40,7 @@ git checkout -b <fix-issue-number>
 
 Modify the desired files.
 
-```
+```bash
 git add <files-you-modified>
 git commit -m "<mesage-of-what-is-going-on>"
 git push -u
@@ -53,12 +53,12 @@ As you may have noticed already we have two repositories to manage separately th
 This was necessary at times to ensure the parallel development of Lychee version 4 and Lychee version 3.
 As a result, the process of submitting a PR which modified both sides (Lychee-front and Lychee) goes as follows:
 
-* 1 &ndash; we take the 2 PR.
-* 2 &ndash; we review them both.
-* 3 &ndash; we merge on Lychee-front.
-* 4 &ndash; switch Lychee-front to master, rebuild & commit on the Lychee PR.
-* 5 &ndash; merge to Lychee master
-* 6 &ndash; Enjoy!
+1. we take the 2 PR.
+2. we review them both.
+3. we merge on Lychee-front.
+4. switch Lychee-front to master, rebuild & commit on the Lychee PR.
+5. merge to Lychee master
+6. Enjoy!
 
 ### Our Coding Style
 In order to ease the review of pull requests we adopt a uniform code style. Our Continuous Integration suite will 
@@ -69,7 +69,7 @@ fail if the later is not respected.
 Our coding style is defined by the `.php-ps` file, it is mostly the Symfony style but we use tabs instead of spaces.
 
 Before submitting a PR, we highly encourage you to do:
-```
+```bash
 ./vendor/bin/php-cs-fixer fix --config=.php_cs
 # or
 make formatting
@@ -83,15 +83,16 @@ For details about the options you can have a look at the [php-cs-fixer-configura
 
 #### Javascript
 
-Similarly to described above, you can format the code automatically with the command.
-```
+Similarly to described above, you can format the code automatically with:
+
+```bash
 npm run format
 ```
 
 ### PHPDoc
 Below is an example of a valid Laravel documentation block. Note that the @param attribute is followed by two spaces, the argument type, two more spaces, and finally the variable name:
 
-```
+```php
 /**
  * Register a binding with the container.
  *
@@ -115,39 +116,66 @@ This will increase the trust and safety of the code.
 
 As follows we present a simple pull request modifying the `readme.md`.
 
-#### 1. Fork the repository.
-![Screenshot](img/contribute1.png)
-#### 2. select your own account as destination of the fork.
-![Screenshot](img/contribute2.png)
-#### 3. Create a new branch.
+<ol>
+<li>Fork the repository.
 
-1. Click on the drop down menu.
-2. Enter the name of the new branch.
-3. Click **Create branch:...**.
+<p><img alt="Screenshot" src="img/contribute1.png" /></p>
+</li>
 
-![Screenshot](img/contribute3.png)
-#### 4. Make sure the new branch is selected.
-![Screenshot](img/contribute4.png)
-#### 5. Edit the desired files.
-![Screenshot](img/contribute5.png)
-#### 6. Commit the changes.
-If possible, provide a summary of the changes done by the commit in the description before clicking **Commit changes**.
+<li>select your own account as destination of the fork.
 
-![Screenshot](img/contribute6.png)
-#### 7. Create a new pull request.
-![Screenshot](img/contribute7.png)
-#### 8. Fill-in and submit the pull request.
+<p><img alt="Screenshot" src="img/contribute2.png" /></p>
+</li>
 
-1. Make sure that the base repository is the one from `LycheeOrg` on the branch `master`.
-2. Provide a good title to the changes you would like to be applied.
-3. Add a description of the changes, motivations, what is being done. etc.
-Also make sure that **Allow edit by the maintainers is being checked**.
-This will allow us to fix the pull request if necessary.
-4. Submit the pull request.
+<li>Create a new branch.
 
-![Screenshot](img/contribute8.png)
+<ol style="margin-left:1em">
+<li>Click on the drop down menu.</li>
+<li>Enter the name of the new branch.</li>
+<li>Click <strong>Create branch:...</strong>.</li>
+</ol>
 
-#### 9. Wait for the team to get back at you and review the PR.
+<p><img alt="Screenshot" src="img/contribute3.png" /></p>
+</li>
+
+<li>Make sure the new branch is selected.
+
+<p><img alt="Screenshot" src="img/contribute4.png" /></p>
+</li>
+
+<li>Edit the desired files.
+
+<p><img alt="Screenshot" src="img/contribute5.png" /></p>
+</li>
+
+<li>Commit the changes.
+
+If possible, provide a summary of the changes done by the commit in the description before clicking <strong>Commit changes</strong>
+
+<p><img alt="Screenshot" src="img/contribute6.png" /></p>
+</li>
+
+<li>Create a new pull request.
+
+<p><img alt="Screenshot" src="img/contribute7.png" /></p>
+</li>
+
+<li>Fill-in and submit the pull request.
+
+<ol style="margin-left:1em">
+<li>Make sure that the base repository is the one from <code>LycheeOrg</code> on the branch <code>master</code>.</li>
+<li>Provide a good title to the changes you would like to be applied.</li>
+<li>Add a description of the changes, motivations, what is being done etc. Also make sure that <strong>Allow edit by the maintainers is being checked</strong>This will allow us to fix the pull request if necessary.</li>
+<li>Submit the pull request.</li>
+</ol>
+
+<p><img alt="Screenshot" src="img/contribute8.png" /></p>
+</li>
+
+<li>Wait for the team to get back at you and review the PR.</li>
+
+</ol>
+
 ## Code of Conduct
 The Lychee code of conduct is the same as Laravel's code of conduct:
 
