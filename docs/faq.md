@@ -102,7 +102,7 @@ Long answer: [#295](https://github.com/LycheeOrg/Lychee/pull/295) added some pro
 
 Right now, the protection is basically through the use of difficult to guess names (it's an MD5 checksum of the system time at the time of upload). [#295](https://github.com/LycheeOrg/Lychee/pull/295) not only made those names temporary (this needs to be enabled in the Settings, BTW) but it also provided optional support for hiding the full-size version (this is only effective with symlinking as without it the URL can be derived from that of intermediate-size images).
 
-[@ildyria](https://github.com/ildyria) recently posted the following link on how a more effective protection could be implemented: https://bedigit.com/blog/laravel-5-how-to-access-image-uploaded-in-storage-within-view/. He didn't go down that route himself due to performance concerns but I agree that if somebody contributed a clean implementation as an option, we'd probably accept it.
+[@ildyria](https://github.com/ildyria) recently posted the following link on how a more effective protection could be implemented: https://bedigit.com/blog/laravel-5-how-to-access-image-uploaded-in-storage-within-view/. He didn't go down that route himself due to performance concerns but we agree that if somebody contributed a clean implementation as an option, we'd probably accept it.
 
 ### My login is timing out after two hours, how can this be changed?
 
