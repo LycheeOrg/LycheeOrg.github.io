@@ -92,6 +92,64 @@ Add the following custom CSS to your `user.css` or via the settings menu:
 }
 ```
 
+### How to use a custom font on the landing page?
+
+For example, if you want to change it to Roboto, add the following custom CSS to the your `user.css` or via the settings menu:
+
+```css
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 200;
+    src: local(""), url("<font URL for weigth 200>") format("woff2");
+}
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 300;
+    src: local(""), url("<font URL for weigth 300>") format("woff2");
+}
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""), url("<font URL for weigth 400>") format("woff2");
+}
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    src: local(""), url("<font URL for weigth 500>") format("woff2");
+}
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""), url("<font URL for weigth 700>") format("woff2");
+}
+
+#logo h1 span,
+#logo h1,
+#intro,
+.menu .menu-item {
+    font-family: "Roboto", sans-serif !important;
+}
+
+#intro .subtitle,
+#logo .subtitle {
+    margin-top: 0 !important;
+}
+```
+
+Probably, you have to customize this:
+* Replace the placeholders with your actual URLs.
+* To use a different font, just change the URLs to match your font and the word `Roboto` to your font's name.
+* If you want to use a hosted service like Google Fonts, replace the `@font-face` blocks with `@import url("https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700");` and change `Roboto` to your font's name on Google Fonts.
+
+### How to add custom scripts?
+
+If you want to add custom scripts, for example to add an analytics service, you can add the script code to the `additional_footer_text` setting. For example, adding `<script>alert('Hello World!');</script>` to it will display an alert dialog with `Hello World!` in it every time you load the page.
+
 ### How is the upload folder protected?
 
 From [#304](https://github.com/LycheeOrg/Lychee/issues/304)
