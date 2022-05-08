@@ -156,6 +156,7 @@ The necessary CSS consists of two parts: firstly, the font face and its differen
 
 If you want to use an external font-hosting service, replace the `@font-face` blocks of the template above with an `@import`-directive which points to the externally hosted font. The name of the font-family must be replaced by the font name as documented by the external font-service.
 For example, let's assume you want to restore the old look-and-feel of the landing page which used Google's Roboto font. Then the CSS has to look like
+
 ```css
 @import url("https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700");
 #logo h1 span,
