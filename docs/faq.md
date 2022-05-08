@@ -94,45 +94,56 @@ Add the following custom CSS to your `user.css` or via the settings menu:
 
 ### How to use a custom font on the landing page?
 
-For example, if you want to change it to Roboto, add the following custom CSS to the your `user.css` or via the settings menu:
+In order to use a specific font on the landing page which does not rely on some font provided by the client-side browser, you have two options:
+
+ 1. self-host the necessary set of font files as part of your Lychee installation
+ 2. use an external font-hosting service such as Google Fonts
+
+Both options require to tweak the custom `user.css` via the settings menu.
+
+#### Option 1: Self-hosted font files
+
+Let's assume that your favorite font is called `'My Font'`. You need a set of the font files in WOFF2 format with one font file per used font weight and style. The landing page uses 5 different font weights (200 = thin, 300 = light, 400 = normal, 500 = thick, 700 = bold) all in normal (i.e. upright) style.
+
+The necessary CSS consists of two parts: firstly, the font face and its different weights are declared via the `@font-face`-directive; secondly, the declared font needs to be used by the styles for the page. A template CSS code for `user.css` looks like this.
 
 ```css
 @font-face {
-    font-family: "Roboto";
+    font-family: "My Font";
     font-style: normal;
     font-weight: 200;
-    src: local(""), url("<font URL for weigth 200>") format("woff2");
+    src: local(""), url("<font URL for weight 200>") format("woff2");
 }
 @font-face {
     font-family: "My Font";
     font-style: normal;
     font-weight: 300;
-    src: local(""), url("<font URL for weigth 300>") format("woff2");
+    src: local(""), url("<font URL for weight 300>") format("woff2");
 }
 @font-face {
-    font-family: "Roboto";
+    font-family: "My Font";
     font-style: normal;
     font-weight: 400;
-    src: local(""), url("<font URL for weigth 400>") format("woff2");
+    src: local(""), url("<font URL for weight 400>") format("woff2");
 }
 @font-face {
-    font-family: "Roboto";
+    font-family: "My Font";
     font-style: normal;
     font-weight: 500;
-    src: local(""), url("<font URL for weigth 500>") format("woff2");
+    src: local(""), url("<font URL for weight 500>") format("woff2");
 }
 @font-face {
-    font-family: "Roboto";
+    font-family: "My Font";
     font-style: normal;
     font-weight: 700;
-    src: local(""), url("<font URL for weigth 700>") format("woff2");
+    src: local(""), url("<font URL for weight 700>") format("woff2");
 }
 
 #logo h1 span,
 #logo h1,
 #intro,
 .menu .menu-item {
-    font-family: "Roboto", sans-serif !important;
+    font-family: "My Font", sans-serif !important;
 }
 
 #intro .subtitle,
