@@ -104,7 +104,7 @@ For example, if you want to change it to Roboto, add the following custom CSS to
     src: local(""), url("<font URL for weigth 200>") format("woff2");
 }
 @font-face {
-    font-family: "Roboto";
+    font-family: "My Font";
     font-style: normal;
     font-weight: 300;
     src: local(""), url("<font URL for weigth 300>") format("woff2");
