@@ -103,7 +103,7 @@ Both options require to tweak the custom `user.css` via the settings menu.
 
 #### Option 1: Self-hosted font files
 
-Let's assume that your favorite font is called `'My Font'`. You need a set of the font files in WOFF2 format with one font file per used font weight and style. The landing page uses 5 different font weights (200 = thin, 300 = light, 400 = normal, 500 = thick, 700 = bold) all in normal (i.e. upright) style.
+Let's assume that your favorite font is called `My Font`. You need a set of the font files in WOFF2 format with one font file per used font weight and style. The landing page uses 5 different font weights (200 = thin, 300 = light, 400 = normal, 500 = thick, 700 = bold) all in normal (i.e. upright) style.
 
 The necessary CSS consists of two parts: firstly, the font face and its different weights are declared via the `@font-face`-directive; secondly, the declared font needs to be used by the styles for the page. A template CSS code for `user.css` looks like this.
 
@@ -152,10 +152,23 @@ The necessary CSS consists of two parts: firstly, the font face and its differen
 }
 ```
 
-Probably, you have to customize this:
-* Replace the placeholders with your actual URLs.
-* To use a different font, just change the URLs to match your font and the word `Roboto` to your font's name.
-* If you want to use a hosted service like Google Fonts, replace the `@font-face` blocks with `@import url("https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700");` and change `Roboto` to your font's name on Google Fonts.
+#### Option 2: Using an external font-hosting service
+If you want to use an external font-hosting service, replace the `@font-face` blocks of the template above with an `@import`-directive which points to the externally hosted font. The name of the font-family must be replaced by the font name as documented by the external font-service.
+For example, let's assume you want to restore the old look-and-feel of the landing page which used Google's Roboto font. Then the CSS has to look like
+```css
+@import url("https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700");
+#logo h1 span,
+#logo h1,
+#intro,
+.menu .menu-item {
+    font-family: "Roboto", sans-serif !important;
+}
+
+#intro .subtitle,
+#logo .subtitle {
+    margin-top: 0 !important;
+}
+```
 
 ### How to add custom scripts?
 
