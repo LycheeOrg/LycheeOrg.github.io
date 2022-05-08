@@ -172,6 +172,15 @@ For example, let's assume you want to restore the old look-and-feel of the landi
 }
 ```
 
+Some fonts may require additional changes to improve the margin of the subtitles. One of these fonts is Roboto. Therefore, you can add following:
+
+```css
+#intro .subtitle,
+#logo .subtitle {
+    margin-top: 0 !important;
+}
+```
+
 ### How to add custom scripts?
 
 If you want to add custom scripts, for example to add an analytics service, you can add the script code to the `additional_footer_text` setting. For example, adding `<script>alert('Hello World!');</script>` to it will display an alert dialog with `Hello World!` in it every time you load the page.
