@@ -145,7 +145,11 @@ The necessary CSS consists of two parts: firstly, the font face and its differen
 .menu .menu-item {
     font-family: "My Font", sans-serif !important;
 }
+```
 
+Some fonts may require additional changes to improve the margin of the subtitles. One of these fonts is Roboto. Therefore, you can add following:
+
+```css
 #intro .subtitle,
 #logo .subtitle {
     margin-top: 0 !important;
@@ -166,15 +170,6 @@ For example, let's assume you want to restore the old look-and-feel of the landi
     font-family: "Roboto", sans-serif !important;
 }
 
-#intro .subtitle,
-#logo .subtitle {
-    margin-top: 0 !important;
-}
-```
-
-Some fonts may require additional changes to improve the margin of the subtitles. One of these fonts is Roboto. Therefore, you can add following:
-
-```css
 #intro .subtitle,
 #logo .subtitle {
     margin-top: 0 !important;
