@@ -18,7 +18,7 @@ Take a look at the [Release Notes](releases.html) to see what's new.
 
 ### How can I easily contact the LycheeOrg organization?
 
-There is a gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby
+There is a Gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby
 
 ### How can I set thumbnails for my albums?
 
@@ -46,7 +46,7 @@ Not at this time. Lychee currently uses its own folder structure and database. P
 ### Can I upload videos?
 
 Yes, but you may need to change this property to a bigger value:
-```
+```ini
 upload_max_filesize = 100M
 ```
 ### Is it possible to create multiple users?
@@ -63,7 +63,7 @@ Go to the advanced Settings menu and change the value of `site_title`.
 
 ### How to reset username and password?
 
-via ssh, use the command `php artisan lychee:reset_admin`
+Via SSH, use the command `php artisan lychee:reset_admin`.
 
 ### How to hide smart albums?
 
@@ -102,7 +102,7 @@ Long answer: [#295](https://github.com/LycheeOrg/Lychee/pull/295) added some pro
 
 Right now, the protection is basically through the use of difficult to guess names (it's an MD5 checksum of the system time at the time of upload). [#295](https://github.com/LycheeOrg/Lychee/pull/295) not only made those names temporary (this needs to be enabled in the Settings, BTW) but it also provided optional support for hiding the full-size version (this is only effective with symlinking as without it the URL can be derived from that of intermediate-size images).
 
-@ildyria recenlty posted the following link on how a more effective protection could be implemented: https://bedigit.com/blog/laravel-5-how-to-access-image-uploaded-in-storage-within-view/. He didn't go down that route himself due to performance concerns but I agree that if somebody contributed a clean implementation as an option, we'd probably accept it.
+[@ildyria](https://github.com/ildyria) recently posted the following link on how a more effective protection could be implemented: https://bedigit.com/blog/laravel-5-how-to-access-image-uploaded-in-storage-within-view/. He didn't go down that route himself due to performance concerns but we agree that if somebody contributed a clean implementation as an option, we'd probably accept it.
 
 ### My login is timing out after two hours, how can this be changed?
 
@@ -113,7 +113,7 @@ You can edit your `.env` and modify the `SESSION_LIFETIME=120` part (in minutes)
 To remove the `Notice` and `Warnings`, simply click on the button at the top of the Log page.
 However if the page is too heavy to load, you can either manually empty the `Logs` table or use artisan:
 
-```
+```bash
 cd Lychee
 php artisan lychee:logs clean
 ```
@@ -129,7 +129,7 @@ Lychee can import photos from the command line using `php artisan lychee:sync /p
 
 
 This command can be scheduled using `cron` or a systemd timer.
-```sh
+```bash
 man crontab
 man systemd.timer
 ```
@@ -157,9 +157,9 @@ Also because this user has upload right, he can see the _Unsorted, Public, Starr
 
 ### How can I install Lychee without SSH access?
 
-* 1 &mdash; Download the latest release.
-* 2 &mdash; Extract and upload the folder via ftp.
-* 3 &mdash; access the website.
+1. Download the latest release
+2. Extract and upload the folder via FTP
+3. access the website
 If you are at the wrong address you will be told to go to the `public` folder.
 Once open, you will be redirected to the install procedure. Completed you will be able to create an admin account and enjoy Lychee.
 
@@ -171,28 +171,24 @@ The process is described [here](upgrade.html).
 
 To back up your Lychee installation you need to perform the following steps:
 
-* 1 &mdash; Create a copy of at least the following parts of the Lychee directory tree (e.g., `/var/www/html/Lychee`):
+1. Create a copy of at least the following parts of the Lychee directory tree (e.g., `/var/www/html/Lychee`):
 ```
 .env
 public/dist/user.css
 public/uploads/
 ```
-* 2 &mdash; Dump the Lychee database to a file. E.g., if you are using MySQL, run:
-```
+2. Dump the Lychee database to a file. E.g., if you are using MySQL, run:
+```bash
 mysqldump -u user -ppassword --databases lychee_database > lychee_backup.sql
 ```
 Replace `user`, `password`, and `lychee_database` by the values of `DB_USERNAME`, `DB_PASSWORD`, and `DB_DATABASE` from the `.env` file in the Lychee folder.
 
 ### How can I migrate my installation to a new host?
 
-Back up your installation as describe above:
-
-* 3 &mdash; Download the latest release of Lychee.
-* 4 &mdash; Overwrite the files with your back up
-* 5 &mdash; Restore the database on the new host, e.g., for MySQL:
-```
-mysql -u user -ppassword < lychee_backup.sql
-```
+1. Back up your installation as described above
+2. Download the latest release of Lychee.
+3. Overwrite the files with your back up
+4. Restore the database on the new host, e.g., for MySQL: `mysql -u user -ppassword < lychee_backup.sql`
 
 ### Can I host Lychee with a subpath with Nginx? Like `https://example.dev/lychee/`
 
@@ -217,7 +213,6 @@ location ^~ /lychee {
 location @lychee {
     rewrite /lychee/(.*)$ /lychee/index.php?/$1 last;
 }
-
 ```
 
 ### Can I host Lychee with a subpath with Apache? Like `https://example.dev/lychee/`
@@ -248,7 +243,7 @@ public/dist
 
 ### Is it possible to do the update directly from the GUI? How?
 
-You go to `Diagnostics` -> `Check for Updates`  
+You go to `Diagnostics` &Rarr; `Check for Updates`  
 Once done you need to update the `Diagnostic` page (click on it again in the left menu) 
 You will see a `Apply Update` button on the top. Click on it and done.
 If it breaks (error 500) you can still go back to command line and do your `git pull`, migrate etc...
@@ -256,18 +251,18 @@ If it breaks (error 500) you can still go back to command line and do your `git 
 There are some securities that you need to disable via the advanced settings menu:
 
 - you need to allow update if your `.env` specify `production`:  
-  `force_migration_in_production` = `1`
+  `force_migration_in_production = 1`
 - you need to allow composer :  
-  `apply_composer_update` = `1` (optional)
+  `apply_composer_update = 1` (optional)
 
 The second one is really optional if updates don't need the composer (like 90% of the time) then it can just stay at `0`.
 
 ### Can I migrate from a 64-bit system to a 32-bit system?
 
 Yes, but it's not trivial or recommended. After copying the database:
-* 1 &mdash; Download [this](https://github.com/LycheeOrg/Lychee/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php) file to your `database/migrations/` folder.
-* 2 &mdash; Run  the SQL command `delete from migrations where migration='2019_04_07_193345_fix_32bit';` to make sure it will run.
-* 3 &mdash; Run `php artisan migrate`. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.
+1. Download [this](https://github.com/LycheeOrg/Lychee/raw/54d00878949906c2efd4f6ddd9e79669637c58fb/database/migrations/2019_04_07_193345_fix_32bit.php) file to your `database/migrations/` folder.
+2. Run  the SQL command `delete from migrations where migration='2019_04_07_193345_fix_32bit';` to make sure it will run.
+3. Run `php artisan migrate`. This should run a one-off migration that was originally added to allow 32-bit systems to migrate from Lychee v3.
 
 This will only work on top-level albums. Subalbums will require [manual intervention](https://github.com/LycheeOrg/Lychee/issues/406#issuecomment-571378073).
 
@@ -296,7 +291,7 @@ If Lychee is not working properly, try to open `https://lychee.example.com/Diagn
 
 Another way to see this screen is to use the command: `php artisan lychee:diagnostics`
 
-### When I do X, I get an error api not found, what can I do?
+### When I do X, I get an error API not found, what can I do?
 
 Open the dev modules of your browser (usually by pressing `F12`) and open the Network tab.
 Redo the action with Network tab open and look at the response of the last query (most likely a red line).
@@ -340,7 +335,7 @@ If you experience problems uploading photos with large **file sizes**, you might
 
 If possible, change these settings directly in your `php.ini`. We recommend to increase the values of the following properties:
 
-```
+```ini
 max_execution_time = 200
 post_max_size = 100M
 upload_max_size = 100M
@@ -359,7 +354,7 @@ For more information, see [here](https://legacy.imagemagick.org/script/security-
 ### What does _Upstream sent too big header_ error message mean?
 
 This error may be seen from your browser's console if you're trying to debug something with Lychee. If using `nginx`, try adding the following to Lychee's config and reload nginx's service:
-```
+```nginx
 fastcgi_buffers 16 16k;
 fastcgi_buffer_size 32k;
 ```
@@ -385,13 +380,13 @@ the issue.
 Edit the file
 `Lychee/vendor/lychee-org/php-exif/lib/PHPExif/Adapter/FFprobe.php`,
 replacing the line:
-```
+```php
 protected $toolPath;
 ```
 (here's a
 [sample location](https://github.com/LycheeOrg/php-exif/blob/1ea3468d4ea6a5cf0ea6c748a3a2376de38bbbfd/lib/PHPExif/Adapter/FFprobe.php#L36))
 with:
-```
+```php
 protected $toolPath = '/usr/bin/ffprobe';
 ```
 using your correct binary location. If unsure, you can try running
@@ -401,13 +396,13 @@ This will likely need to be repeated for the video frame extraction code;
 otherwise, you will see in the Lychee log an `Unable to load FFProbe` error.
 To fix that, in Lychee versions prior to 4.2.0, edit the file
 `Lychee/app/ModelFunctions/PhotoFunctions.php`, replacing the line:
-```
+```php
 $ffmpeg = FFMpeg\FFMpeg::create();
 ```
 (here's the
 [location for version 4.1.0](https://github.com/LycheeOrg/Lychee/blob/v4.1.0/app/ModelFunctions/PhotoFunctions.php#L566))
 with:
-```
+```php
 $ffmpeg = FFMpeg\FFMpeg::create(array(
         'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
         'ffprobe.binaries' => '/usr/bin/ffprobe',
@@ -416,13 +411,13 @@ $ffmpeg = FFMpeg\FFMpeg::create(array(
 again, using your correct binary locations.
 
 Starting with version 4.2.0, the file to edit is instead `Lychee/app/Actions/Photo/Extensions/VideoEditing.php`; replace the line:
-```
+```php
 $ffmpeg = FFMpeg::create();
 ```
 (here's a
 [sample location](https://github.com/LycheeOrg/Lychee/blob/23731e104737175f51a9acef199bf7d8829e5d5c/app/Actions/Photo/Extensions/VideoEditing.php#L48))
 with:
-```
+```php
 $ffmpeg = FFMpeg::create(array(
         'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
         'ffprobe.binaries' => '/usr/bin/ffprobe',
@@ -436,7 +431,7 @@ $ffmpeg = FFMpeg::create(array(
 Cannot create cache directory /home/$USER/.composer/cache/files/, or directory is not writable. Proceeding without cache
 ```
 * You can specify Composer's cache directory with the environment variable `COMPOSER_CACHE_DIR=`. For Lychee, the cache is not necessary, and you can both disable it and hide the warning by specifying the location of the cache as `/dev/null` ([information](https://github.com/composer/composer/commit/fd6455218e304e9b484bebb0efcdb67bb52d051d)):
-```
+```bash
 COMPOSER_CACHE_DIR='/dev/null' composer update --working-dir='/var/www/Lychee'
 ```
 
@@ -448,7 +443,7 @@ If you receive a server error or "api not found" error under lightspeed web serv
 
 1. Make sure your PHP user and group is the same user and group as your web server by editing PHP's `www.conf`. For example, on a Fedora 32 Server system, the default user/group for php from Fedora's standard repo defaults to `apache`, even if you do not have Apache installed. 
 2. On some operating systems with more restrictive SELinux rules (like Fedora 32 Server at the time of writing), you need to set the SELinux security context of these directories for them to be accessible by your web server user: 
-```
+```bash
 chcon -R -t httpd_sys_rw_content_t storage
 chcon -R -t httpd_sys_rw_content_t bootstrap/cache
 chcon -R -t httpd_sys_rw_content_t public/uploads
@@ -463,7 +458,7 @@ On some operating systems with more restrictive SELinux rules (like Fedora 32 Se
 
 In `/var/www/html/Lychee/.env`, change `DB_HOST=localhost` to `DB_HOST=127.0.0.1`. Additionally, if `DB_PORT=` is not set, it should be set to `DB_PORT=3306` for mysql/MariaDB's default port, or whatever custom port you selected when configuring your SQL server software after installation. 
 
-### Why are there messages about git files in my logs? (e.g. `.git/HEAD): failed to open stream: No such file or directory`)
+### Why are there messages about git files in my logs? (e.g. `.git/HEAD: failed to open stream: No such file or directory`)
 
 Lychee checks for the presence of certain files to detect whether Lychee was installed as a git repository or from a release archive (.zip). It also uses them to determine which git commit is in use where applicable. This is included in the Diagnostics page to assist us in diagnosing issues.
 

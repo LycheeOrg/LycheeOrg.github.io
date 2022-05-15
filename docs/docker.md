@@ -2,7 +2,7 @@
 
 This image features Lychee, nginx and PHP-FPM. The provided configuration (PHP, nginx...) follows Lychee's official recommendations.
 
-The following tags are available :
+The following tags are available:
 
 * `latest`: Latest Lychee release
 * `v[NUMBER]`: Stable version tag for a Lychee release
@@ -23,8 +23,8 @@ For more runtime options, look below in [Run with Docker](#run-with-docker) and 
 
 To use this image with MySQL, MariaDB or PostgreSQL you will need a suitable database running externally. This may be through a Docker image, possibly in your `docker-compose.yml`.
 
-* 1 &mdash; Create the db, username, password.
-* 2 &mdash; Edit the environment variables (db credentials, language...) by :
+1. Create the DB, username, password.
+2. Edit the environment variables (db credentials, language...) by :
     *  Supplying the environment variables via `docker run` / `docker-compose` **or**
     *  Creating a `.env` file with the appropriate info and mount it to `/conf/.env` **or**
     *  Use the Lychee installer by passing `-e DB_CONNECTION=` on the command line and connecting to the container with your browser
@@ -35,7 +35,7 @@ To use this image with MySQL, MariaDB or PostgreSQL you will need a suitable dat
 
 The example below shows `--net` and `--link` for these purposes. `--net` connects to the name of the network your database is on and  `--link` connects to the database container.
 
-```language-bash
+```bash
 docker run -d \
 --name=lychee \
 -v /host_path/lychee/conf:/conf \
@@ -58,7 +58,7 @@ lycheeorg/lychee
 
 **Warning** : if you use a MySQL database, make sure to use the `mysql_native_password` authentication plugin, either by using the `--default-authentication-plugin` option when starting mysql, or by running a query to enable the authentication plugin for the `lychee` user, e.g. :
 
-```
+```sql
 alter user 'lychee' identified with mysql_native_password by '<your password>';
 ```
 
@@ -88,8 +88,8 @@ You may still want to further customize PHP configuration. The first method is t
 
 Instead, we recommend to use the `PHP_VALUE` directive of PHP-FPM to override specific parameters. To do so, you will need to mount a custom `nginx.conf` in your container :
 
-* 1 &mdash; Take the [default.conf](https://github.com/LycheeOrg/Lychee-Docker/blob/master/default.conf) file as a base
-* 2 &mdash; Find the line starting by `fastcgi_param PHP_VALUE [...]`
-* 3 &mdash; Add a new line and set your new parameter
-* 4 &mdash; Add or change any other parameters (e.g. `client_max_body_size`)
-* 5 &mdash; Mount your new file to `/etc/nginx/nginx.conf`
+1. Take the [default.conf](https://github.com/LycheeOrg/Lychee-Docker/blob/master/default.conf) file as a base
+2. Find the line starting by `fastcgi_param PHP_VALUE [...]`
+3. Add a new line and set your new parameter
+4. Add or change any other parameters (e.g. `client_max_body_size`)
+5. Mount your new file to `/etc/nginx/nginx.conf`

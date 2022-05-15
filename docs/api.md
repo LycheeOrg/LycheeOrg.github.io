@@ -20,8 +20,8 @@ See:
 
 - **POST** request
 - Returns `true` if login was successful, `false` otherwise.
-- Returns a laravel session cookie (`lychee_session`) which must be passed to subsequent requests that require an authenticated user.
-```
+- Returns a Laravel session cookie (`lychee_session`) which must be passed to subsequent requests that require an authenticated user.
+```php
 $request->validate([
     'username' => 'required',
     'password' => 'required',
@@ -48,7 +48,7 @@ $request->validate([
 
 - **POST** request
 - *read* protection
-```
+```php
 $request->validate(['albumID' => 'string|required']);
 ```
 
@@ -60,7 +60,7 @@ $request->validate(['albumID' => 'string|required']);
 ### `/api/Album::getPublic`
 
 - **POST** request
-```
+```php
 $request->validate([
     'albumID' => 'string|required',
     'password' => 'string|nullable',
@@ -71,7 +71,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'title' => 'string|required|max:100',
     'parent_id' => 'int|nullable',
@@ -82,7 +82,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'albumIDs' => 'string|required',
     'title' => 'string|required|max:100',
@@ -93,7 +93,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'albumID' => 'integer|required',
     'description' => 'string|nullable|max:1000',
@@ -104,7 +104,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'albumID' => 'integer|required',
     'public' => 'integer|required',
@@ -119,7 +119,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'albumIDs' => 'string|required',
 ]);
@@ -130,7 +130,7 @@ $request->validate([
 - **POST** request
 - *upload* protection
 - the first id is the destination, the following contains the merged albums.
-```
+```php
 $request->validate([
     'albumIDs' => 'string|required',
 ]);
@@ -141,7 +141,7 @@ $request->validate([
 - **POST** request
 - *upload* protection
 - the first id is the destination, the following contains the moved albums.
-```
+```php
 $request->validate(['albumIDs' => 'string|required']);
 ```
 
@@ -150,7 +150,7 @@ $request->validate(['albumIDs' => 'string|required']);
 - **POST** request
 - *upload* protection
 - License is one of the following: `none`, `reserved`, `CC0`, `CC-BY`, `CC-BY-ND`, `CC-BY-SA`, `CC-BY-ND`, `CC-BY-NC-ND`, `CC-BY-NC-SA`
-```
+```php
 $request->validate([
     'albumID' => 'required|string',
     'license' => 'required|string',
@@ -161,7 +161,7 @@ $request->validate([
 
 - **GET** request
 - *read* protection
-```
+```php
 $request->validate([
     'albumIDs' => 'required|string',
 ]);
@@ -175,7 +175,7 @@ $request->validate([
 
 - **POST** request
 - *read* protection
-```
+```php
 $request->validate([
     'photoID' => 'string|required',
 ]);
@@ -189,7 +189,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'photoIDs' => 'required|string',
     'title' => 'required|string|max:100',
@@ -200,7 +200,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'photoID' => 'required|string',
     'description' => 'string|nullable',
@@ -211,7 +211,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'photoIDs' => 'required|string',
 ]);
@@ -221,7 +221,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'photoID' => 'required|string',
 ]);
@@ -231,7 +231,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'photoIDs' => 'required|string',
     'albumID' => 'required|string',
@@ -242,7 +242,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'photoIDs' => 'required|string',
     'tags' => 'string|nullable',
@@ -254,7 +254,7 @@ $request->validate([
 - **POST** request
 - *upload* protection
 - the `0` argument contains the file to upload.
-```
+```php
 $request->validate([
     'albumID' => 'string|required',
     '0' => 'required',
@@ -265,7 +265,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'photoIDs' => 'required|string',
 ]);
@@ -275,7 +275,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'photoIDs' => 'required|string',
     'albumID' => 'string',
@@ -287,7 +287,7 @@ $request->validate([
 - **POST** request
 - *upload* protection
 - License is one of the following: `none`, `reserved`, `CC0`, `CC-BY`, `CC-BY-ND`, `CC-BY-SA`, `CC-BY-ND`, `CC-BY-NC-ND`, `CC-BY-NC-SA`
-```
+```php
 $request->validate([
     'photoID' => 'required|string',
     'license' => 'required|string',
@@ -300,7 +300,7 @@ $request->validate([
 - **GET** request
 - *read* protection
 - Kind is one of the following: `FULL`, `LIVEPHOTOVIDEO`, `MEDIUM2X`, `MEDIUM`, `SMALL2X`, `SMALL`, `THUMB2X`, `THUMB`
-```
+```php
 $request->validate([
     'photoIDs' => 'required|string',
     'kind' => 'nullable|string',
@@ -321,7 +321,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'albumIDs' => 'string|required',
 ]);
@@ -331,7 +331,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'UserIDs' => 'string|required',
     'albumIDs' => 'string|required',
@@ -342,7 +342,7 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'ShareIDs' => 'string|required',
 ]);
@@ -351,7 +351,7 @@ $request->validate([
 ### `/api/Settings::setLogin`
 
 - **POST** request
-```
+```php
 $request->validate([
     'username' => 'required|string',
     'password' => 'required|string',
@@ -364,7 +364,7 @@ $oldUsername = $request->has('oldUsername') ? $request['oldUsername']: '';
 
 - **POST** request
 - *upload* protection
-```
+```php
 $request->validate([
     'url' => 'string|required',
     'albumID' => 'string|required',
@@ -376,7 +376,7 @@ $request->validate([
 - **POST** request
 - *admin* protection
 - delete_imported takes value `0` or `1`
-```
+```php
 $request->validate([
     'path' => 'string|required',
     'albumID' => 'int|required',
@@ -393,7 +393,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'id' => 'required',
     'username' => 'required|string|max:100',
@@ -406,7 +406,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'id' => 'required',
 ]);
@@ -416,7 +416,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'username' => 'required|string|max:100',
     'password' => 'required|string|max:50',
@@ -475,7 +475,7 @@ $request->validate([
 ### `/api/search`
 
 - **POST** request
-```
+```php
 $request->validate([
     'term' => 'required|string',
 ]);
@@ -485,7 +485,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'typeAlbums' => 'required|string',
     'orderAlbums' => 'required|string',
@@ -498,7 +498,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'lang' => 'required|string',
 ]);
@@ -508,7 +508,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'layout' => 'required|string',
 ]);
@@ -518,7 +518,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'public_search' => 'required|string',
 ]);
@@ -528,7 +528,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'image_overlay' => 'required|string',
 ]);
@@ -538,7 +538,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'license' => 'required|string',
 ]);
@@ -549,7 +549,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'map_display' => 'required|string',
 ]);
@@ -559,7 +559,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'map_display_public' => 'required|string',
 ]);
@@ -569,7 +569,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'map_provider' => 'required|string',
 ]);
@@ -579,7 +579,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'map_include_subalbums' => 'required|string',
 ]);
@@ -589,7 +589,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'location_decoding' => 'required|string',
 ]);
@@ -599,7 +599,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'location_show' => 'required|string',
 ]);
@@ -609,7 +609,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'location_show_public' => 'required|string',
 ]);
@@ -619,7 +619,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate(['css' => 'nullable|string']);
 ```
 
@@ -632,7 +632,7 @@ $request->validate(['css' => 'nullable|string']);
 
 - **POST** request
 - *admin* protection
-```
+```php
 foreach (
     $request->except([
         '_token', 'function', '/api/Settings::saveAll',
@@ -647,7 +647,7 @@ foreach (
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'image_overlay_type' => 'required|string',
 ]);
@@ -657,7 +657,7 @@ $request->validate([
 
 - **POST** request
 - *admin* protection
-```
+```php
 $request->validate([
     'key' => 'string|nullable',
 ]);

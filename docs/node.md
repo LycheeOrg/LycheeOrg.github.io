@@ -8,7 +8,7 @@ It also kept the consistency of the GUI between the two major versions.
 
 As a result you will find the front-end files in the `public/Lychee-front` directory after you initialized it as follows:
 
-```
+```bash
 git submodule init
 git submodule update
 ```
@@ -22,7 +22,7 @@ In order to compile the front-end, you have to install the following dependencie
 
 After installing [Node.js](http://nodejs.org) you can use the included `npm` package manager to download all dependencies:
 
-```
+```bash
 npm install
 ```
 

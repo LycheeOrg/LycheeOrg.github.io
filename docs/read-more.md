@@ -2,11 +2,11 @@
 
 Laravel is a MVC (Model-View-Controller) framework for PHP. Its process is as follows.
 
-* 1 &mdash; A Request is made, it goes through the routes.
-* 2 &mdash; The route decide which controller is being applied.<br>
+1. A Request is made, it goes through the routes.
+2. The route decide which controller is being applied.<br>
 We apply a  middleware if requested (User Access verification mainly).
-* 3 &mdash; The controller makes calls to models which is hides the calls to the database through clever queries.
-* 4 &mdash; After applying logic, we return a view (template) or a JSON response.
+3. The controller makes calls to models which is hides the calls to the database through clever queries.
+4. After applying logic, we return a view (template) or a JSON response.
 
 The following figure illustrate the process.
 

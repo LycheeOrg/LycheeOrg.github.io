@@ -14,7 +14,7 @@ Don't forget to take a look at the [Changelog](releases.html) to see what's new 
 
 Fully updating Lychee with `git` is the easiest way:
 
-```sh
+```bash
 # download the lastest files
 git pull
 # update the dependencies
@@ -24,7 +24,7 @@ php artisan migrate
 ```
 
 If you have the `post-merge` hook set up the following is enough:
-```sh
+```bash
 git pull
 ```
 
@@ -32,9 +32,9 @@ git pull
 
 This update will be the one you have to use if you are following the Release channel.
 
-* 1 &mdash; Download the [newest Version](https://github.com/LycheeOrg/Lychee/releases)
-* 2 &mdash; Replace all existing files, excluding `uploads/` and `dist/user.css` (and `database/database.sqlite` if using **SQLite** as your database)
-* 3 &mdash; Go into the `Diagnostic` page and click on the `Apply migration` button.
+1. Download the [newest Version](https://github.com/LycheeOrg/Lychee/releases)
+2. Replace all existing files, excluding `uploads/` and `dist/user.css` (and `database/database.sqlite` if using **SQLite** as your database)
+3. Go into the `Diagnostic` page and click on the `Apply migration` button.
 
 
 ## Update via the GUI

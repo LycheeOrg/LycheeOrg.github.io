@@ -1,5 +1,3 @@
-require(['js/vendor/prism.js']);
-
 $(document).ready(function() {
     $('.navigation_contain').show();
 
