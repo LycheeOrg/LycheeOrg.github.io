@@ -25,6 +25,16 @@ The Lychee gallery has a few system requirements. You will need to make sure you
    		- Tokenizer
    		- XML
    		- ZIP
+   	- These PHP extensions are necessary if you are running a FreeBSD system:
+   	 	- Simplexml
+		- Dom
+   	 	- Session
+   	 	- Zlib
+   	- You will also need one of these PHP extensions:
+   	 	- SQLite3 for SQLite3 databases
+   	 	- MySQLi (or PDO_MySQL) for MySQL or MariaDB databases
+   	 	- PgSql (or PDO_PGSQL) for PostgreSQL databases
+- To install from git you will also need composer. See [below](#from-the-master-branch) for details.
 
 While Lychee works on 32bit systems, we **strongly** recommend the use of a 64bit OS.
 
@@ -124,6 +134,7 @@ server {
 
 ##### Path to the Lychee public/ directory.
     root /var/www/Lychee/public/;
+    index index.php;
 
     # If the request is not for a valid file (image, js, css, etc.), send to bootstrap
     if (!-e $request_filename)
@@ -142,6 +153,7 @@ server {
 ######### Make sure this is the correct socket for your system
         fastcgi_pass unix:/run/php/php8.1-fpm.sock;
         fastcgi_index index.php;
+######## You may need to replace $document_root with the absolute path to your public folder.
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "post_max_size=100M
             max_execution_time=200
