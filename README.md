@@ -1,6 +1,6 @@
 # LycheeOrg.github.io
 
-[![Build Status](https://travis-ci.com/LycheeOrg/LycheeOrg.github.io.svg?branch=master)](https://travis-ci.com/LycheeOrg/LycheeOrg.github.io)
+[![Build Status][build-status-shield]](https://github.com/LycheeOrg/LycheeOrg.github.io/actions)
 
 ## Dependencies
 
@@ -22,3 +22,5 @@ $ pip install -r requirements.txt
 # Generating
 
 Just do `make` and commit the changed files. :)
+
+[build-status-shield]: https://img.shields.io/github/workflow/status/LycheeOrg/LycheeOrg.github.io/Build
