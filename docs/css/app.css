@@ -6,16 +6,16 @@
 }
 
 @font-face {
-    font-family:"Larke Neue";
-    src:url("../fonts/LarkeNeueRegular.ttf") format("truetype");
+    font-family:"Source Sans Pro";
+    src:url("../fonts/source-sans-pro-v21-latin-regular.woff2") format("woff2");
     font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
 }
 
 @font-face {
-    font-family:"Larke Neue";
-    src:url("../fonts/LarkeNeueBold.ttf") format("truetype");
-    font-display:auto;font-style:normal;font-weight:500;font-stretch:normal;
-}    
+    font-family:"Source Sans Pro";
+    src:url("../fonts/source-sans-pro-v21-latin-600.woff2") format("woff2");
+    font-display:auto;font-style:normal;font-weight:600;font-stretch:normal;
+}
 
 *,
 :after,
@@ -250,11 +250,12 @@ body,
 button,
 input,
 textarea {
-    font-family: "Larke Neue", sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-weight: 400;
     color: #090910;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
+	font-size: 16px;
 }
 
 blockquote,
@@ -276,13 +277,12 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Larke Neue", sans-serif;
-    font-weight: 500
+    font-weight: 600
 }
 
 h1 {
     font-size: 2em;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -1px
 }
 
@@ -330,7 +330,7 @@ h2 {
 
 h3 {
     font-size: 1.25em;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.25em;
     letter-spacing: -.33px
 }
@@ -374,7 +374,7 @@ h5 {
 
 h6 {
     font-size: .875em;
-    font-weight: 500;
+    font-weight: 600;
     color: rgba(9, 9, 16, .5)
 }
 
@@ -392,7 +392,7 @@ p {
 }
 
 p strong {
-    font-weight: 500
+    font-weight: 600
 }
 
 p.small {
@@ -838,13 +838,13 @@ footer {
 
 .sidebar_layout .sidebar nav .navigation_contain ul li {
     display: block;
-    padding: .65em 0
+    padding: .5em 0
 }
 
 .sidebar_layout .sidebar nav .navigation_contain ul li h2 {
     display: block;
     font-size: .875em;
-    font-weight: 500;
+    font-weight: 600;
     color: #090910;
     text-decoration: none;
     margin-bottom: 0;
@@ -861,7 +861,7 @@ footer {
 .sidebar_layout .sidebar nav .navigation_contain ul li a {
     display: block;
     font-size: .875em;
-    font-weight: 500;
+    font-weight: 600;
     color: #090910;
     text-decoration: none
 }
@@ -1194,7 +1194,7 @@ footer {
 .docs_main h3,
 .docs_main h4 {
     letter-spacing: 0;
-    font-weight: 500
+    font-weight: 600
 }
 
 .docs_main h4 {
@@ -1245,14 +1245,14 @@ footer {
     display: block;
     padding-left: 1.25em;
     margin-bottom: 1rem;
-    font-size: .89em;
+    font-size: .95em;
     color: rgba(9, 9, 16, .7);
     line-height: 1.714em
 }
 
 .docs_main li {
     margin-bottom: 1rem;
-    font-size: .89em;
+    font-size: .95em;
     color: rgba(9, 9, 16, .7);
     line-height: 1.714em
 }
@@ -1386,7 +1386,7 @@ footer {
 .docs_main h1+ul li a {
     position: relative;
     font-size: .89em;
-    font-weight: 500;
+    font-weight: 600;
     color: #090910;
     text-decoration: none
 }
