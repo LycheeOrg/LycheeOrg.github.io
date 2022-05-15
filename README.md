@@ -1,6 +1,6 @@
 # LycheeOrg.github.io
 
-[![Build Status](https://img.shields.io/github/workflow/status/LycheeOrg/LycheeOrg.github.io/Build)](https://github.com/LycheeOrg/LycheeOrg.github.io/actions)
+[![Build Status][build-status-shield]](https://github.com/LycheeOrg/LycheeOrg.github.io/actions)
 
 ## Dependencies
 
@@ -16,9 +16,11 @@
 
 ```sh
 // Install dependencies
-$ pip install -U pytest markdown gitpython
+$ pip install -r requirements.txt
 ```
 
 # Generating
 
 Just do `make` and commit the changed files. :)
+
+[build-status-shield]: https://img.shields.io/github/workflow/status/LycheeOrg/LycheeOrg.github.io/Build
