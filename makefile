@@ -10,6 +10,7 @@ assets:
 	cp -r demo build/
 	mkdir -p build/docs
 	cp -r docs/css build/docs/
+	cp -r docs/fonts build/docs/
 	cp -r docs/img build/docs/
 	cp -r docs/js build/docs/
 

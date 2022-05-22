@@ -15,17 +15,17 @@ Assuming the following tree:
 ```
 
 Rename Lychee into Lychee-v3:
-```
+```bash
 mv Lychee Lychee-v3
 ```
 
 Install Lychee files by either uploading the content of the released zip or cloning the repository:
-```
+```bash
 git clone https://github.com/LycheeOrg/Lychee Lychee
 ```
 
 Move the pictures from the version 3 to the newly created installation:
-```
+```bash
 mv Lychee-v3/uploads/big/* Lychee/public/uploads/big/
 mv Lychee-v3/uploads/medium/* Lychee/public/uploads/medium/
 mv Lychee-v3/uploads/small/* Lychee/public/uploads/small/
@@ -44,7 +44,7 @@ mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
 **Make sure you have the module rewrite available and enabled: `a2enmod rewrite`**.
 
 Modify your `/etc/apache2/apache2.conf` to allow `.htaccess` to set up the rewrite rules:
-```
+```apacheconf
 <Directory /var/www/html/Lychee>
 	Options Indexes FollowSymLinks
 	AllowOverride All
@@ -53,7 +53,7 @@ Modify your `/etc/apache2/apache2.conf` to allow `.htaccess` to set up the rewri
 ```
 
 Modify or create `example.com.conf` in `/etc/apache2/sites-available/` to point out the served directory:
-```
+```apacheconf
 <VirtualHost *:80>
 	ServerName example.com
 
@@ -65,12 +65,12 @@ Modify or create `example.com.conf` in `/etc/apache2/sites-available/` to point 
 ```
 
 Enable the site:
-```
+```bash
 a2ensite `example.com.conf`
 ```
 
 Restart apache2:
-```
+```bash
 systemctl restart apache2
 ```
 

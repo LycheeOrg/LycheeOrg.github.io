@@ -1,3 +1,15 @@
+@font-face {
+    font-family:"Source Sans Pro";
+    src:url("../docs/fonts/source-sans-pro-v21-latin-regular.woff2") format("woff2");
+    font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+    font-family:"Source Sans Pro";
+    src:url("../docs/fonts/source-sans-pro-v21-latin-600.woff2") format("woff2");
+    font-display:auto;font-style:normal;font-weight:600;font-stretch:normal;
+}
+
 *,
 :after,
 :before {
@@ -13,8 +25,9 @@ body {
     display: block;
     min-height: 100%;
     background: #eee;
-    font: normal 400 18px/1.5 Source Sans Pro, Helvetica, Arial, sans-serif;
+    font: normal 400 18px/1.5 "Source Sans Pro";
     -webkit-text-size-adjust: 100%;
+	font-family: "Source Sans Pro", sans-serif;
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;

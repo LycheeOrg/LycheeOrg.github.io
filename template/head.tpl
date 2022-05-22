@@ -24,6 +24,9 @@
 		<meta name="twitter:description" content="Lychee is a free photo-management tool, which runs on your server or web-space. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely.">
 		<meta name="twitter:image" content="https://LycheeOrg.github.io/assets/images/og.jpg">
 
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="assets/images/logo.png">
+		
 		<!-- schema.org -->
 		<script type="application/ld+json">
 		{
@@ -45,6 +48,5 @@
 
 		<!-- CSS -->
 
-			<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400">
 			<link rel="stylesheet" href="assets/bower/normalize-css/normalize.css">
 			<link rel="stylesheet" href="assets/styles/main.css">

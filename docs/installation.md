@@ -25,6 +25,16 @@ The Lychee gallery has a few system requirements. You will need to make sure you
    		- Tokenizer
    		- XML
    		- ZIP
+   	- These PHP extensions are necessary if you are running a FreeBSD system:
+   	 	- Simplexml
+		- Dom
+   	 	- Session
+   	 	- Zlib
+   	- You will also need one of these PHP extensions:
+   	 	- SQLite3 for SQLite3 databases
+   	 	- MySQLi (or PDO_MySQL) for MySQL or MariaDB databases
+   	 	- PgSql (or PDO_PGSQL) for PostgreSQL databases
+- To install from git you will also need composer. See [below](#from-the-master-branch) for details.
 
 While Lychee works on 32bit systems, we **strongly** recommend the use of a 64bit OS.
 
@@ -45,15 +55,15 @@ It contains a trimmed down version of the Lychee files.
 
 Lychee utilizes [Composer][1] to manage its dependencies. Make sure you have Composer installed on your machine.
 
-```
+```bash
 git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
 ```
 Get into the directory:
-```
+```bash
 cd /var/www/html/Lychee
 ```
 Install the required dependencies.
-```
+```bash
 composer install --no-dev
 ```
 If you want to help develop Lychee, install the development dependencies by removing the `--no-dev` or replacing it with --dev.
@@ -101,7 +111,7 @@ Also check the Apache [upgrade instructions](https://lycheeorg.github.io/docs/up
 
 If the `.htaccess` file that ships with Lychee does not work with your Apache installation, try this alternative:
 
-```
+```apacheconf
 Options +FollowSymLinks -Indexes
 RewriteEngine On
 
@@ -117,13 +127,14 @@ RewriteRule ^ index.php [L]
 
 This is a sample nginx server block. It does not include TLS, but covers the Lychee-specific requirements.
 
-```
+```nginx
 server {
     listen 80;
     server_name <mydomain>.<tld>;
 
 ##### Path to the Lychee public/ directory.
     root /var/www/Lychee/public/;
+    index index.php;
 
     # If the request is not for a valid file (image, js, css, etc.), send to bootstrap
     if (!-e $request_filename)
@@ -142,6 +153,7 @@ server {
 ######### Make sure this is the correct socket for your system
         fastcgi_pass unix:/run/php/php8.1-fpm.sock;
         fastcgi_index index.php;
+######## You may need to replace $document_root with the absolute path to your public folder.
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "post_max_size=100M
             max_execution_time=200

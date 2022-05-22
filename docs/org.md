@@ -4,9 +4,9 @@ Lychee was originally developed by [electerious][1] ([Tobias Reich][2]). Lychee 
 
 Since April 1st, 2018 this project has moved to it's own Organisation (LycheeOrg) where people are able to submit their fixes to it. We, the Organisation owners, want to thank electerious (Tobias Reich) for the opportunity to make this project live on.
 
-## Schedule releases & Roadmap.
+## Schedule releases & Roadmap
 
-We do not have schedule for releases such as every 6 months. Our releases should never contain breaking changes. That being said, we do not provide backward compatibility or hotfix for older versions. The `master` branch is the bleeding edge of Lychee. It contains the latest bugfix and newest features. Once a sufficient number of hotfixes or new features has been merged into `master` we create a new release.
+We do not have schedule for releases such as every 6 months. Our releases should never contain breaking changes. That being said, we do not provide backward compatibility or hotfix for older versions. The `master` branch is the bleeding edge of Lychee. It contains the latest bugfixes and newest features. Once a sufficient number of hotfixes or new features has been merged into `master` we create a new release.
 
 ## Security
 
@@ -19,7 +19,7 @@ However as precaution, we provide a server-side command to easily erase those tw
 LycheeOrg is a GitHub organization of enthusiast developers determined to keep this project alive.
 There is no commitment in time to the project. We understand that each member has their personal life and dedicate time as they see fit to the project.
 
-If you start to contribute by opening multiple Pull Requests and adding more code to the database. It is likely you will be asked to join us.
+If you start to contribute by opening multiple Pull Requests and adding more code to the database, it is likely you will be asked to join us.
 
 There is no governance model. We currently have three admins: [d4715][3], [ildyria][4], [LudovicRousseau][5]. Decisions are made after discussions.
 
