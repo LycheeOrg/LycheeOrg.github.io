@@ -96,8 +96,8 @@ Add the following custom CSS to your `user.css` or via the settings menu:
 
 In order to use a specific font on the landing page which does not rely on some font provided by the client-side browser, you have two options:
 
- 1. self-host the necessary set of font files as part of your Lychee installation
- 2. use an external font-hosting service such as Google Fonts
+1. self-host the necessary set of font files as part of your Lychee installation
+2. use an external font-hosting service such as Google Fonts
 
 Both options require to tweak the custom `user.css` via the settings menu.
 
@@ -147,15 +147,6 @@ The necessary CSS consists of two parts: firstly, the font face and its differen
 }
 ```
 
-Some fonts may require additional changes to improve the margin of the subtitles. One of these fonts is Roboto. Therefore, you can add following:
-
-```css
-#intro .subtitle,
-#logo .subtitle {
-    margin-top: 0 !important;
-}
-```
-
 #### Option 2: Using an external font-hosting service
 
 If you want to use an external font-hosting service, replace the `@font-face` blocks of the template above with an `@import`-directive which points to the externally hosted font. The name of the font-family must be replaced by the font name as documented by the external font-service.
@@ -168,11 +159,6 @@ For example, let's assume you want to restore the old look-and-feel of the landi
 #intro,
 .menu .menu-item {
     font-family: "Roboto", sans-serif !important;
-}
-
-#intro .subtitle,
-#logo .subtitle {
-    margin-top: 0 !important;
 }
 ```
 
