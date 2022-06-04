@@ -75,9 +75,6 @@ If you want to help develop Lychee, install the development dependencies by remo
 #### Public Directory
 After installing Lychee, configure your web server's root to be the `public` directory. The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API. Note that the `.env` file should **not** be exposed online as it contains the encryption key used for cookies as well as database credentials.
 
-#### Configuration Files
-All of the configuration files for Lychee are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
-
 #### Directory Permissions
 After installing Lychee, you need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Lychee will not run. Additionaly `public/uploads`, `public/dist` and `public/sym` need to be writable to upload files, customise the CSS and utilise [symbolic links](https://lycheeorg.github.io/docs/settings.html#symbolic-link) respectively.
 
@@ -92,13 +89,16 @@ If you don't want to use this command and set the key yourself, this string shou
 **If the application key is not set, your user sessions and other encrypted data will not be secure!**
 
 #### Additional Configuration
-Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains some options that aren't included from `.env` that you may wish to change according to your installation.
 
 You may also want to configure a few additional components of Lychee in `.env`, such as:
 
 - Cache
 - Database
 - Session
+
+They are documented in the file if you copied the `.env.example` file.
+
+Some advanced options are not defined there by default, but you can take a look at `config/app.php` to find such options. Usually, you don't have to change them and can go with the defaults. **If you don't know what they're doing, do not change them.**
 
 ## Web Server Configuration
 
