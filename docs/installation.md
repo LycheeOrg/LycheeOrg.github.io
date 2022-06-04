@@ -5,36 +5,37 @@
 The Lychee gallery has a few system requirements. You will need to make sure your server has the following:
 
 - A web server such as Apache or nginx
-- A database &mdash; using one of the following: 
-    - MySQL _(version > 5.7.8)_ / MariaDB _(version > 10.2)_
+- A database &mdash; using one of the following:
+	- MySQL _(version > 5.7.8)_ / MariaDB _(version > 10.2)_
 	- PostgreSQL _(version > 9.2)_
 	- Lychee's inbuilt SQLite3 support
-- Lychee 4.4.0 and later:
-	- PHP >= 8.0 with these PHP extensions:
-		- BCMath
-		- Ctype
-		- Exif
-		- Ffmpeg (optional &mdash; to generate video thumbnails)
-		- Fileinfo
-		- GD
-		- Imagick (optional &mdash; to generate better thumbnails)
-		- JSON
-   		- Mbstring
-   		- OpenSSL
-   		- PDO
-   		- Tokenizer
-   		- XML
-   		- ZIP
-   	- These PHP extensions are necessary if you are running a FreeBSD system:
-   	 	- Simplexml
-		- Dom
-   	 	- Session
-   	 	- Zlib
-   	- You will also need one of these PHP extensions:
-   	 	- SQLite3 for SQLite3 databases
-   	 	- MySQLi (or PDO_MySQL) for MySQL or MariaDB databases
-   	 	- PgSql (or PDO_PGSQL) for PostgreSQL databases
-- To install from git you will also need composer. See [below](#from-the-master-branch) for details.
+- PHP >= 8.0 with these PHP extensions:
+	- BCMath
+	- Ctype
+	- Exif
+	- Fileinfo
+	- GD
+	- Imagick (optional &mdash; to generate better thumbnails)
+	- JSON
+   	- Mbstring
+   	- OpenSSL
+   	- PDO
+   	- Tokenizer
+   	- XML
+   	- ZIP
+- These PHP extensions are necessary if you are running a FreeBSD system:
+	- Simplexml
+	- Dom
+	- Session
+	- Zlib
+- You will also need one of these PHP extensions:
+	- SQLite3 for SQLite3 databases
+	- MySQLi (or PDO_MySQL) for MySQL or MariaDB databases
+	- PgSql (or PDO_PGSQL) for PostgreSQL databases
+- Optionally, you can also install the following command line tools:
+	- Exiftool (for better handling of EXIF metadata)
+	- FFmpeg (to generate video thumbnails)
+- To install from git you will also need Composer. See [below](#from-the-master-branch) for details.
 
 While Lychee works on 32bit systems, we **strongly** recommend the use of a 64bit OS.
 
@@ -66,7 +67,7 @@ Install the required dependencies.
 ```bash
 composer install --no-dev
 ```
-If you want to help develop Lychee, install the development dependencies by removing the `--no-dev` or replacing it with --dev.
+If you want to help develop Lychee, install the development dependencies by removing the `--no-dev` or replacing it with `--dev`.
 
 
 ### Configuration
@@ -80,10 +81,13 @@ All of the configuration files for Lychee are stored in the `config` directory. 
 #### Directory Permissions
 After installing Lychee, you need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Lychee will not run. Additionaly `public/uploads`, `public/dist` and `public/sym` need to be writable to upload files, customise the CSS and utilise [symbolic links](https://lycheeorg.github.io/docs/settings.html#symbolic-link) respectively.
 
+#### Copy configuration file
+If you have not copied the `.env.example` file to a new file named `.env`, you should do that now.
+
 #### Application Key
 The next thing you should do after installing Lychee is set your application key to a random string. This is easily done by using the `php artisan key:generate` command.
 
-Typically, this string should be 32 characters long. The key can be set in the `.env` environment file. If you have not copied the `.env.example` file to a new file named `.env`, you should do that now.
+If you don't want to use this command and set the key yourself, this string should be 32 characters long and can be set in the `.env` environment file.
 
 **If the application key is not set, your user sessions and other encrypted data will not be secure!**
 
@@ -99,8 +103,6 @@ You may also want to configure a few additional components of Lychee in `.env`, 
 ## Web Server Configuration
 
 ### General
-It is strongly recommented that Lychee is served out of the root of your web server, not a subdirectory.
-
 It is also strongly recommended to serve Lychee over TLS. You may wish to consider [Let's Encrypt](https://letsencrypt.org/) for certificates and [Mozilla's SSL Configuration Generator](https://ssl-config.mozilla.org/) for server configuration examples.
 
 ### Apache
@@ -123,16 +125,17 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [L]
 ```
 
-### Nginx
+### nginx
 
 This is a sample nginx server block. It does not include TLS, but covers the Lychee-specific requirements.
+If you would like to serve from a subdirectory, take a look at [the FAQ](https://lycheeorg.github.io/docs/faq.html#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee)
 
 ```nginx
 server {
     listen 80;
     server_name <mydomain>.<tld>;
 
-##### Path to the Lychee public/ directory.
+    ##### Path to the Lychee public/ directory.
     root /var/www/Lychee/public/;
     index index.php;
 
@@ -150,10 +153,10 @@ server {
         # Mitigate https://httpoxy.org/ vulnerabilities
         fastcgi_param HTTP_PROXY "";
 
-######### Make sure this is the correct socket for your system
+        ######### Make sure this is the correct socket for your system
         fastcgi_pass unix:/run/php/php8.1-fpm.sock;
         fastcgi_index index.php;
-######## You may need to replace $document_root with the absolute path to your public folder.
+        ######## You may need to replace $document_root with the absolute path to your public folder.
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "post_max_size=100M
             max_execution_time=200
