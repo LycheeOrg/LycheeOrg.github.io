@@ -85,8 +85,8 @@ Directories within the `storage` and the `bootstrap/cache` directories must be w
 #### Application Settings
 
 The main directory should contain a `.env` file.
-Normally, Composer has generated this file for you based on `.env.example` while Composer has been installing the dependencies (see above).
-If the file `.env` does not exist, then you should copy `.env.example` to a new file named `.env` now.
+Normally, Composer will have copied this file for you while installing the dependencies.
+If the `.env` file does not exist, then you should copy `.env.example` to a new file named `.env` now.
 Note that the `.env` file should **not** be exposed online as it contains the encryption key used for cookies as well as database credentials.
 
 ##### Application Key
