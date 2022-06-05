@@ -212,8 +212,8 @@ php artisan up
 |`MAIL_FROM_ADDRESS`|"From" name|`Example`|
 |`QUEUE_CONNECTION`|Connection for queues, `sync`, `database`, `beanstalkd`, `sqs` or `redis`|`sync`|
 |`SESSION_DRIVER`|Driver for sessions, `file`, `cookie`, `database`, `apc`, `memcached`, `redis`, `dynamodb` or `array`|`file`|
-|`SESSION_LIFETIME`|session lifetime in minutes|`120`|
-|`TRUSTED_PROXIES`|Trusted proxy ID addresses|`null`|
+|`SESSION_LIFETIME`|Session lifetime in minutes|`120`|
+|`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
 |`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
 
 ### Advanced configuration options
