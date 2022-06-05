@@ -72,7 +72,7 @@ If you want to help develop Lychee, install the development dependencies by remo
 
 ### Configuration
 
-After installing Lychee, some additional configuration is necessary as detailed out below.
+After installing Lychee, some additional configuration is necessary as detailed below.
 
 #### Public Directory
 
