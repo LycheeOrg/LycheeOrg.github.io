@@ -99,7 +99,7 @@ If you don't want to use this command and choose to set the key yourself, it sho
 
 ##### Additional Configuration
 
-The settings of the default `.env` file provide usable and operational settings out-of-the-box. 
+The default `.env` file provides usable settings out of the box.
 
 You may want to configure a few additional components of Lychee, such as:
 
