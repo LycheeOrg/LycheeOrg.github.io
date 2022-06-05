@@ -80,7 +80,7 @@ Configure your web server's root to be the `public` directory. The `index.php` i
 
 #### Directory Permissions
 
-You need to configure some file and directory permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Lychee will not run. Additionally, `public/uploads`, `public/dist` and `public/sym` need to be writable to upload files, customise the CSS and utilise [symbolic links](https://lycheeorg.github.io/docs/settings.html#symbolic-link) respectively.
+Directories within the `storage` and the `bootstrap/cache` directories must be writable by your web server or Lychee will not run. Additionally, `public/uploads`, `public/dist` and `public/sym` need to be writable to upload files, customise the CSS and utilise [symbolic links](https://lycheeorg.github.io/docs/settings.html#symbolic-link) respectively.
 
 #### Application Settings
 
@@ -107,7 +107,12 @@ You may want to configure a few additional components of Lychee, such as:
 - Database
 - Session
 
-Some advanced options cannot be configured through the `.env` file, but you can take a look into the directory `config/` to find such options. Usually, you don't have to change them and can go with the defaults. **If you don't know what they're doing, do not change them.**
+##### Advanced Configuration (Dangerous)
+
+Some advanced options cannot be configured through the `.env` file, but you may take a look into the directory `config/` to find such options.
+Usually, you don't have to change them and can go with the defaults.
+
+**If you don't know what they're doing, do not change them.**
 
 ## Web Server Configuration
 
