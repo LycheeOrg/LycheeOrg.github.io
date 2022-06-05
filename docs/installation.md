@@ -100,6 +100,8 @@ You may want to configure a few additional components of Lychee, such as:
 - Database
 - Session
 
+They are documented in the `.env.example` file, which may have been copied into your `.env`. They are also listed on the [configuration](configuration.html) page.
+
 ##### Advanced Configuration (Dangerous)
 
 Some advanced options cannot be configured through the `.env` file, but you may take a look into the directory `config/` to find such options.
