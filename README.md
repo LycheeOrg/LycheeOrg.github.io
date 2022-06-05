@@ -20,6 +20,6 @@ pip install -r requirements.txt
 
 # Generating
 
-Just run `make` which generates the files in to `build/`. You don't have to commit them.
- 
+Run `make` to generate the html, which can then be found in `build/`.
+
 [build-status-shield]: https://img.shields.io/github/workflow/status/LycheeOrg/LycheeOrg.github.io/Build
