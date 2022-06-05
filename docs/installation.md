@@ -72,10 +72,6 @@ If you want to help develop Lychee, install the development dependencies by remo
 
 ### Configuration
 
-#### Public Directory
-
-Configure your web server's root to be the `public` directory. The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API.
-
 #### Directory Permissions
 
 Directories within the `storage` and the `bootstrap/cache` directories must be writable by your web server or Lychee will not run. Additionally, `public/uploads`, `public/dist` and `public/sym` need to be writable to upload files, customise the CSS and utilise [symbolic links](https://lycheeorg.github.io/docs/settings.html#symbolic-link) respectively.
@@ -115,6 +111,10 @@ Usually, you don't have to change them and can go with the defaults.
 ## Web Server Configuration
 
 ### General
+
+Configure your web server's root to be the `public` directory.
+The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API.
+
 It is also strongly recommended to serve Lychee over TLS. You may wish to consider [Let's Encrypt](https://letsencrypt.org/) for certificates and [Mozilla's SSL Configuration Generator](https://ssl-config.mozilla.org/) for server configuration examples.
 
 ### Apache
