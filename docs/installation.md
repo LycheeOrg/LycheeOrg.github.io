@@ -72,8 +72,6 @@ If you want to help develop Lychee, install the development dependencies by remo
 
 ### Configuration
 
-After installing Lychee, some additional configuration is necessary as detailed below.
-
 #### Public Directory
 
 Configure your web server's root to be the `public` directory. The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API.
