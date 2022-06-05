@@ -177,7 +177,7 @@ php artisan up
 |`APP_ENV`|Environment of your gallery, `production` or `development`|`production`|
 |`APP_DEBUG`|Enable debug mode|`false`|
 |`APP_URL`|The URL of your gallery|`http://localhost`|
-|`APP_KEY`|Your app key, a 32 char string (set during installation)|`null`|
+|`APP_KEY`|Your app key which is used for encryption (set during installation)|`null`|
 |`TIMEZONE`|The timezone of your server|system timezone of server|
 |`DEBUGBAR_ENABLED`|Enable debugbar (only for debugging)|`false`|
 |`LOG_CHANNEL`|Default log channel, `single`, `daily`, `slack`, `syslog`, `errorlog`, `monolog`, `custom` or `stack`|`stack`|
