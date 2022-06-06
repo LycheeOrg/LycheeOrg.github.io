@@ -86,9 +86,8 @@ Note that the `.env` file should **not** be exposed online as it contains the en
 ##### Application Key
 
 The `.env` file contains the setting `APP_KEY` which holds your application key.
-Use the `php artisan key:generate` command to set the application key to a random value.
-
-**If the application key is not set, your user sessions and other encrypted data will not be secure!**
+Normally, Composer sets this key for you while installing the dependencies.
+If it is missing, Lychee will not work. Then, you can use the `php artisan key:generate` command to set the application key to a random value.
 
 ##### Additional Configuration
 

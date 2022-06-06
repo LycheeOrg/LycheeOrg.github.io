@@ -215,6 +215,7 @@ php artisan up
 |`SESSION_LIFETIME`|Session lifetime in minutes|`120`|
 |`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
 |`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
+|`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`null`|
 
 ### Advanced configuration options
 
@@ -268,7 +269,6 @@ php artisan up
 |`SESSION_STORE`|Store for sessions, affects `apc`, `dynamodb`, `memcached` and `redis` drivers|`null`|
 |`SESSION_COOKIE`|The cookie's name|the value of `APP_NAME` + `_session`|
 |`SESSION_DOMAIN`|Session cookie domain|`null`|
-|`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`null`|
 |`VIEW_COMPILED_PATH`|Where to store compiled Blade templates|`framework/views`|
 
 
