@@ -104,8 +104,7 @@ They are documented in the `.env.example` file, which may have been copied into 
 
 ##### Advanced Configuration (Dangerous)
 
-Some advanced options cannot be configured through the `.env` file, but you may take a look into the directory `config/` to find such options.
-Usually, you don't have to change them and can go with the defaults.
+Some advanced options cannot be configured through the `.env` file. If you really need to change them, look in the `config/` directory.
 
 **If you don't know what they're doing, do not change them.**
 
