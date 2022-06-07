@@ -209,7 +209,7 @@ php artisan up
 |`MAIL_USERNAME`|Username of SMTP server|`null`|
 |`MAIL_PASSWORD`|Password of SMTP server|`null`|
 |`MAIL_FROM_ADDRESS`|"From" address|`hello@example.com`|
-|`MAIL_FROM_ADDRESS`|"From" name|`Example`|
+|`MAIL_FROM_NAME`|"From" name|`Example`|
 |`QUEUE_CONNECTION`|Connection for queues, `sync`, `database`, `beanstalkd`, `sqs` or `redis`|`sync`|
 |`SESSION_DRIVER`|Driver for sessions, `file`, `cookie`, `database`, `apc`, `memcached`, `redis`, `dynamodb` or `array`|`file`|
 |`SESSION_LIFETIME`|Session lifetime in minutes|`120`|
