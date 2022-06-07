@@ -193,9 +193,9 @@ php artisan up
 |`REDIS_HOST`|Redis host|`127.0.0.1`|
 |`REDIS_PASSWORD`|Redis password|`null`|
 |`REDIS_PORT`|Redis port|`6379`|
-|`LYCHEE_UPLOADS`|Path to uploads directory|`public/uploads/`|
+|`LYCHEE_UPLOADS`|Path to uploads directory inside the `public/` directory|`uploads/`|
 |`LYCHEE_UPLOADS_URL`|URL to uploads directory|`uploads/`|
-|`LYCHEE_DIST`|Path to dist directory|`public/dist/`|
+|`LYCHEE_DIST`|Path to dist directory inside the `public/` directory|`dist/`|
 |`LYCHEE_DIST_URL`|URL to dist directory|`dist/`|
 |`MAIL_DRIVER`|Mailer type, `smtp`, `ses`, `mailgun`, `postmark`, `sendmail`, `log` or `array`|`smtp`|
 |`MAIL_HOST`|Host of SMTP server|`smtp.mailgun.org`|
