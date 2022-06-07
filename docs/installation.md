@@ -111,8 +111,9 @@ Some advanced options cannot be configured through the `.env` file. If you reall
 
 ### General
 
-Configure your web server's root to be the `public` directory.
-The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API.
+Configure your web server to make the `public` directory accessible via a URL. This could be the root of your web server (short and convenient) or, if you prefer, a subfolder such as `photos`. The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API.
+
+> {note} Do not expose the top level directory with your web server! This would allow public access to internal files like the database and your `.env` which can leak your credentials!
 
 It is also strongly recommended to serve Lychee over TLS. You may wish to consider [Let's Encrypt](https://letsencrypt.org/) for certificates and [Mozilla's SSL Configuration Generator](https://ssl-config.mozilla.org/) for server configuration examples.
 
@@ -139,7 +140,7 @@ RewriteRule ^ index.php [L]
 ### nginx
 
 This is a sample nginx server block. It does not include TLS, but covers the Lychee-specific requirements.
-If you would like to serve from a subdirectory, take a look at [the FAQ](https://lycheeorg.github.io/docs/faq.html#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee)
+If you would like to serve from a subdirectory, take a look at [the FAQ](https://lycheeorg.github.io/docs/faq.html#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee).
 
 ```nginx
 server {

@@ -176,9 +176,9 @@ php artisan up
 |`APP_NAME`|The gallery name|`Lychee`|
 |`APP_ENV`|Environment of your gallery, `production` or `development`|`production`|
 |`APP_DEBUG`|Enable debug mode|`false`|
-|`APP_URL`|The URL of your gallery|`http://localhost`|
+|`APP_URL`|The URL of your gallery (under which the `public/` folder is accessible)|http://localhost`|
 |`APP_KEY`|Your app key which is used for encryption (set during installation)|`null`|
-|`TIMEZONE`|The timezone of your server|system timezone of server|
+|`TIMEZONE`|The timezone of your photos|system timezone of server|
 |`DEBUGBAR_ENABLED`|Enable debugbar (only for debugging)|`false`|
 |`LOG_CHANNEL`|Default log channel, `single`, `daily`, `slack`, `syslog`, `errorlog`, `monolog`, `custom` or `stack`|`stack`|
 |`DB_CONNECTION`|Database type, `mysql`, `pgsql`, `sqlite` or `sqlsrv` (`sqlsrv` is not supported officially and may not work)|`mysql`|
@@ -187,20 +187,15 @@ php artisan up
 |`DB_PORT`|Post of DB server|`3306` (MySQL) or `5432` (PostgreSQL)|
 |`DB_USERNAME`|Username of database|`forge`|
 |`DB_PASSWORD`|Password of database user|empty string|
-|`DB_OLD_LYCHEE_PREFIX`|Table prefix of old Lychee database|empty string|
+|`DB_OLD_LYCHEE_PREFIX`|Table prefix of old Lychee database (v3)|empty string|
 |`DB_LOG_SQL`|Log SQL statements (only use for debugging)|`false`|
-|`BROADCAST_DRIVER`|The broadcaster used if the framework needs to broadcast an event, `pusher`, `redis`, `log` or `null`|`null`|
-|`PUSHER_APP_KEY`|App key for the `pusher`|`null`|
-|`PUSHER_APP_SECRET`|App secret for the `pusher`|`null`|
-|`PUSHER_APP_ID`|App ID for the `pusher`|`null`|
-|`PUSHER_APP_CLUSTER`|App cluster for the `pusher`|`null`|
 |`CACHE_DRIVER`|The driver used for caching, `apc`, `array`, `database`, `file`, `memcached`, `redis` or `dynamodb`|`file`|
 |`REDIS_HOST`|Redis host|`127.0.0.1`|
 |`REDIS_PASSWORD`|Redis password|`null`|
 |`REDIS_PORT`|Redis port|`6379`|
-|`LYCHEE_UPLOADS`|Path to uploads directory|`uploads/`|
+|`LYCHEE_UPLOADS`|Path to uploads directory|`public/uploads/`|
 |`LYCHEE_UPLOADS_URL`|URL to uploads directory|`uploads/`|
-|`LYCHEE_DIST`|Path to dist directory|`dist/`|
+|`LYCHEE_DIST`|Path to dist directory|`public/dist/`|
 |`LYCHEE_DIST_URL`|URL to dist directory|`dist/`|
 |`MAIL_DRIVER`|Mailer type, `smtp`, `ses`, `mailgun`, `postmark`, `sendmail`, `log` or `array`|`smtp`|
 |`MAIL_HOST`|Host of SMTP server|`smtp.mailgun.org`|
@@ -210,9 +205,8 @@ php artisan up
 |`MAIL_PASSWORD`|Password of SMTP server|`null`|
 |`MAIL_FROM_ADDRESS`|"From" address|`hello@example.com`|
 |`MAIL_FROM_NAME`|"From" name|`Example`|
-|`QUEUE_CONNECTION`|Connection for queues, `sync`, `database`, `beanstalkd`, `sqs` or `redis`|`sync`|
 |`SESSION_DRIVER`|Driver for sessions, `file`, `cookie`, `database`, `apc`, `memcached`, `redis`, `dynamodb` or `array`|`file`|
-|`SESSION_LIFETIME`|Session lifetime in minutes|`120`|
+|`SESSION_LIFETIME`|Idle session timeout in minutes; the session will need to be reinitialized once it expires|`120`|
 |`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
 |`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
 |`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`false`|
@@ -257,10 +251,6 @@ php artisan up
 |`LOG_STDERR_FORMATTER`|Formatter for logging to stderr|`null`|
 |`MAIL_LOG_CHANNEL`|Log channel for mails|`null`|
 |`REDIS_QUEUE`|Redis queue|`default`|
-|`SQS_PREFIX`|SQS prefix|`https://sqs.us-east-1.amazonaws.com/your-account-id`|
-|`SQS_QUEUE`|SQS queue name|`your-queue-name`|
-|`SQS_SUFFIX`|SQS suffix|`null`|
-|`QUEUE_FAILED_DRIVER`|driver for failed queues|`database-uuids`|
 |`MAILGUN_DOMAIN`|Domain to mailgun|`null`|
 |`MAILGUN_SECRET`|Serect for mailgun|`null`|
 |`MAILGUN_ENDPOINT`|Endpoint to mailgun|`api.mailgun.net`|
