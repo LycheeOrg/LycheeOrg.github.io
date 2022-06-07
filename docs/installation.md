@@ -89,6 +89,11 @@ The `.env` file contains the setting `APP_KEY` which holds your application key.
 Normally, Composer sets this key for you while installing the dependencies.
 If the key is not set, Lychee will not work. Then, you can use the `php artisan key:generate` command to set the application key to a random value.
 
+##### URL
+
+The variable `APP_URL` inside `.env` must be set to the external URL by which the `public/` folder is accessible.
+This setting must match the configuration of your web server (see below).
+
 ##### Additional Configuration
 
 The default `.env` file provides usable settings out of the box.
@@ -112,6 +117,7 @@ Some advanced options cannot be configured through the `.env` file. If you reall
 ### General
 
 Configure your web server to make the `public` directory accessible via a URL. This could be the root of your web server (short and convenient) or, if you prefer, a subpath such as `photos`. The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API.
+The configuration option `APP_URL` of Lychee must be set accordingly (see above).
 
 > {note} Do not expose the top level directory of Lychee with your web server! This would allow public access to internal files like the application code and the `.env` file which contains sensitive information like the database credentials!
 
