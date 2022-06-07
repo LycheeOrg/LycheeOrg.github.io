@@ -20,6 +20,6 @@ pip install -r requirements.txt
 
 # Generating
 
-Run `make` to generate the html, which can then be found in `build/`.
+Run `make` to generate the HTML files, which can then be found in `build/`.
 
 [build-status-shield]: https://img.shields.io/github/workflow/status/LycheeOrg/LycheeOrg.github.io/Build
