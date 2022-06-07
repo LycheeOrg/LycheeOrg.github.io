@@ -215,7 +215,7 @@ php artisan up
 |`SESSION_LIFETIME`|Session lifetime in minutes|`120`|
 |`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
 |`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
-|`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`null`|
+|`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`false`|
 
 ### Advanced configuration options
 
