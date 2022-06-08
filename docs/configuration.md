@@ -206,7 +206,7 @@ php artisan up
 |`MAIL_FROM_ADDRESS`|"From" address|`hello@example.com`|
 |`MAIL_FROM_NAME`|"From" name|`Example`|
 |`SESSION_DRIVER`|Driver for sessions, `file`, `cookie`, `database`, `apc`, `memcached`, `redis`, `dynamodb` or `array`|`file`|
-|`SESSION_LIFETIME`|Idle session timeout in minutes; the session will need to be reinitialized once it expires|`120`|
+|`SESSION_LIFETIME`|Idle session expiration in minutes; the session will need to be reinitialized once it has expired|`120`|
 |`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
 |`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
 |`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`false`|
