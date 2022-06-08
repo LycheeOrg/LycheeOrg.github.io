@@ -150,17 +150,40 @@ The necessary CSS consists of two parts: firstly, the font face and its differen
 #### Option 2: Using an external font-hosting service
 
 If you want to use an external font-hosting service, replace the `@font-face` blocks of the template above with an `@import`-directive which points to the externally hosted font. The name of the font-family must be replaced by the font name as documented by the external font-service.
-For example, let's assume you want to restore the old look-and-feel of the landing page which used Google's Roboto font. Then the CSS has to look like
+For example, let's assume you want use Google's Nunito font. Then the CSS has to look like
 
 ```css
-@import url("https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700");
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,300,400,500,700");
 #logo h1 span,
 #logo h1,
 #intro,
 .menu .menu-item {
-    font-family: "Roboto", sans-serif !important;
+    font-family: "Nunito", sans-serif !important;
 }
 ```
+
+You also have to change the CSP (Content Security Policy) to allow loading fonts from the external server. Therefore, add the following to the `csp` array in `config/secure-headers.php` (for example, below the `sandbox` line, one of the last lines in this file):
+
+```php
+		'style-src' => [
+			'allow' => [
+				'https://fonts.googleapis.com',
+			],
+			'nonces' => [],
+			'self' => true,
+			'unsafe-inline' => true,
+			'report-sample' => true,
+			'add-generated-nonce' => false,
+		],
+		'font-src' => [
+			'allow' => [
+				'https://fonts.gstatic.com',
+			],
+			'self' => true,
+		],
+```
+
+Change the URLs `https://fonts.googleapis.com` and `https://fonts.gstatic.com` to match your provider's URLs.
 
 ### How to add custom scripts?
 
