@@ -176,7 +176,7 @@ php artisan up
 |`APP_NAME`|The gallery name|`Lychee`|
 |`APP_ENV`|Environment of your gallery, `production` or `development`|`production`|
 |`APP_DEBUG`|Enable debug mode|`false`|
-|`APP_URL`|The URL of your gallery (under which the `public/` folder is accessible)|http://localhost`|
+|`APP_URL`|The URL of your gallery (which resolves to the `public/` folder)|http://localhost`|
 |`APP_KEY`|Your app key which is used for encryption (set during installation)|`null`|
 |`TIMEZONE`|The timezone of your photos|system timezone of server|
 |`DEBUGBAR_ENABLED`|Enable debugbar (only for debugging)|`false`|
