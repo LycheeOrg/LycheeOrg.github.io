@@ -92,6 +92,103 @@ Add the following custom CSS to your `user.css` or via the settings menu:
 }
 ```
 
+### How to use a custom font on the landing page?
+
+In order to use a specific font on the landing page which does not rely on some font provided by the client-side browser, you have two options:
+
+1. self-host the necessary set of font files as part of your Lychee installation
+2. use an external font-hosting service such as Google Fonts
+
+Both options require to tweak the custom `user.css` via the settings menu.
+
+#### Option 1: Self-hosted font files
+
+Let's assume that your favorite font is called `My Font`. You need a set of the font files in WOFF2 format with one font file per used font weight and style. The landing page uses 5 different font weights (200 = thin, 300 = light, 400 = normal, 500 = thick, 700 = bold) all in normal (i.e. upright) style.
+
+The necessary CSS consists of two parts: firstly, the font face and its different weights are declared via the `@font-face`-directive; secondly, the declared font needs to be used by the styles for the page. A template CSS code for `user.css` looks like this.
+
+```css
+@font-face {
+    font-family: "My Font";
+    font-style: normal;
+    font-weight: 200;
+    src: local(""), url("<font URL for weight 200>") format("woff2");
+}
+@font-face {
+    font-family: "My Font";
+    font-style: normal;
+    font-weight: 300;
+    src: local(""), url("<font URL for weight 300>") format("woff2");
+}
+@font-face {
+    font-family: "My Font";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""), url("<font URL for weight 400>") format("woff2");
+}
+@font-face {
+    font-family: "My Font";
+    font-style: normal;
+    font-weight: 500;
+    src: local(""), url("<font URL for weight 500>") format("woff2");
+}
+@font-face {
+    font-family: "My Font";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""), url("<font URL for weight 700>") format("woff2");
+}
+
+#logo h1 span,
+#logo h1,
+#intro,
+.menu .menu-item {
+    font-family: "My Font", sans-serif !important;
+}
+```
+
+#### Option 2: Using an external font-hosting service
+
+If you want to use an external font-hosting service, replace the `@font-face` blocks of the template above with an `@import`-directive which points to the externally hosted font. The name of the font-family must be replaced by the font name as documented by the external font-service.
+For example, let's assume you want use Google's Nunito font. Then the CSS has to look like
+
+```css
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,300,400,500,700");
+#logo h1 span,
+#logo h1,
+#intro,
+.menu .menu-item {
+    font-family: "Nunito", sans-serif !important;
+}
+```
+
+You also have to change the CSP (Content Security Policy) to allow loading fonts from the external server. Therefore, add the following to the `csp` array in `config/secure-headers.php` (for example, below the `sandbox` line, one of the last lines in this file):
+
+```php
+		'style-src' => [
+			'allow' => [
+				'https://fonts.googleapis.com',
+			],
+			'nonces' => [],
+			'self' => true,
+			'unsafe-inline' => true,
+			'report-sample' => true,
+			'add-generated-nonce' => false,
+		],
+		'font-src' => [
+			'allow' => [
+				'https://fonts.gstatic.com',
+			],
+			'self' => true,
+		],
+```
+
+Change the URLs `https://fonts.googleapis.com` and `https://fonts.gstatic.com` to match your provider's URLs.
+
+### How to add custom scripts?
+
+If you want to add custom scripts, for example to add an analytics service, you can add the script code to the `additional_footer_text` setting. For example, adding `<script>alert('Hello World!');</script>` to it will display an alert dialog with `Hello World!` in it every time you load the page.
+
 ### How is the upload folder protected?
 
 From [#304](https://github.com/LycheeOrg/Lychee/issues/304)
