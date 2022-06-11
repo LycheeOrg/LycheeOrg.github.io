@@ -1,5 +1,254 @@
 ## Introduction
-All of the configuration files for Lychee are stored in the config directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
+
+Configuration is managed using a `.env` file. It probably exists already in your directory (Composer copies it from `.env.example` during installation), and you can go on with configuring there. But the file does not contain all options. Here, you can find all of them in a structured way and with instructions on how to use them. All of the options are optional, unless you would like to use some services.
+
+### Base options
+
+|Option|Description|Default|
+|---|---|---|
+|`APP_NAME`|The gallery name|`Lychee`|
+|`APP_ENV`|Environment of your gallery, `production` or `development`|`production`|
+|`APP_URL`|The URL of your gallery (which resolves to the `public/` folder)|`http://localhost`|
+|`APP_KEY`|Your app key which is used for encryption (set during installation)|`null`|
+|`TIMEZONE`|The timezone of your photos|system timezone of server|
+|`LYCHEE_UPLOADS`|Path to uploads directory|`uploads/` inside `public/`|
+|`LYCHEE_UPLOADS_URL`|URL to uploads directory|`uploads/`|
+|`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
+
+### Database options
+
+Lychee supports MySQL/MariaDB, SQLite, PostgreSQL and Microsoft SQL Server as database backends. It's configuration is managed using the `DB_` variables.
+
+#### `DATABASE_URL`
+
+Some hosting providers give you a single URL containing all the information needed to configure your database. Therefore, Lychee has a `DATABASE_URL` option which only needs the database connection type. For example:
+
+```ini
+DB_CONNECTION=mysql
+DATABASE_URL="mysql://root:password@127.0.0.1/forge?charset=UTF-8"
+```
+
+If this applies to your hosting provider, you can skip the other DB configuration steps.
+
+#### MySQL/MariaDB
+
+The configuration is exactly the same for both systems.
+
+|Option|Value it should have|
+|---|---|
+|`DB_CONNECTION`|`mysql`|
+|`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`)|
+|`DB_PORT`|Port of the database server (default 3306)|
+|`DB_DATABASE`|The name of the database|
+|`DB_USERNAME`|Username of the database user|
+|`DB_PASSWORD`|Password of the database user|
+|`MYSQL_ATTR_SSL_CA`|Optional and only used when using the `pdo_mysql` extension, file path to the SSL certificate authority|
+
+#### SQLite
+
+|Option|Value it should have|
+|---|---|
+|`DB_CONNECTION`|`sqlite`|
+|`DB_DATABASE`|Path to the database file (default `database/database.sqlite`)|
+
+#### PostgreSQL
+
+|Option|Value it should have|
+|---|---|
+|`DB_CONNECTION`|`pgsql`|
+|`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`)|
+|`DB_PORT`|Port of the database server (default 5432)|
+|`DB_DATABASE`|The name of the database|
+|`DB_USERNAME`|Username of the database user|
+|`DB_PASSWORD`|Password of the database user|
+
+#### Microsoft SQL Server
+
+|Option|Value it should have|
+|---|---|
+|`DB_CONNECTION`|`sqlsrv`|
+|`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`)|
+|`DB_PORT`|Port of the database server (default 5432)|
+|`DB_DATABASE`|The name of the database|
+|`DB_USERNAME`|Username of the database user|
+|`DB_PASSWORD`|Password of the database user|
+
+### Mailer options
+
+Supported mailers are `smtp`, `ses`, `mailgun`, `postmark` or `sendmail`, which you can set using `MAIL_DRIVER`.
+
+#### General options
+
+|Option|Description|
+|---|---|
+|`MAIL_DRIVER`|Mailer type|
+|`MAIL_FROM_ADDRESS`|"From" address|
+|`MAIL_FROM_NAME`|"From" name|
+
+#### SMTP
+
+|Option|Description|
+|---|---|
+|`MAIL_HOST`|Host of SMTP server|
+|`MAIL_PORT`|Port of SMTP server (default 587)|
+|`MAIL_ENCRYPTION`|Encryption for SMTP server (default `tls`)|
+|`MAIL_USERNAME`|Username of SMTP server|
+|`MAIL_PASSWORD`|Password of SMTP server|
+
+#### SES
+
+SES can be configured using AWS settings. See [AWS configuration](#aws).
+
+#### Mailgun
+
+|Option|Description|
+|---|---|
+|`MAILGUN_DOMAIN`|Domain of the Mailgun server|
+|`MAILGUN_SECRET`|Secret of the Mailgun server|
+|`MAILGUN_ENDPOINT`|Mailgun endpoint (default `api.mailgun.net`)|
+
+#### Postmark
+
+|Option|Description|
+|---|---|
+|`POSTMARK_TOKEN`|Token for Postmark|
+
+#### sendmail
+
+No additional options.
+
+### Cache options
+
+Lychee can use various services as cache driver to store temporary data. The driver is set using `CACHE_DRIVER` and supports: `apc`, `array`, `file`, `memcached`, `redis` or `dynamodb`.
+
+#### General options
+
+|Option|Description|
+|---|---|
+|`CACHE_PREFIX`|Prefix of cache data keys in in-memory stores|
+
+#### Memcached
+
+|Option|Description|
+|---|---|
+|`MEMCACHED_HOST`|Host for memcached|
+|`MEMCACHED_PORT`|Port for memcached|
+|`MEMCACHED_USERNAME`|Username for memcached|
+|`MEMCACHED_PASSWORD`|Password for memcached|
+|`MEMCACHED_PERSISTENT_ID`|Persistent ID for memcached|
+
+#### DynamoDB
+
+Base options are configured using [AWS options](#aws). You need to create a table, please refer to the [Laravel docs](https://laravel.com/docs/8.x/cache#dynamodb).
+
+|Option|Description|
+|---|---|
+|`DYNAMODB_CACHE_TABLE`|Cache table name|`cache`|
+|`DYNAMODB_ENDPOINT`|DynamoDB endpoint|`null`|
+
+#### Redis
+
+Also see [Redis](#redis).
+
+|Option|Description|
+|---|---|
+|`REDIS_CACHE_DB`|Redis cache database|
+
+#### Database
+
+There are no config options, however, you need to run `php artisan cache:table` to use this option.
+
+### Services
+
+Lychee can interact with various third-party services. You can find config options for them here.
+
+#### Redis
+
+To use Redis, you need the [PhpRedis](https://github.com/phpredis/phpredis) PHP extension.
+
+|Option|Description|
+|---|---|
+|`REDIS_HOST`|Redis host|
+|`REDIS_PASSWORD`|Redis password|
+|`REDIS_PORT`|Redis port|
+|`REDIS_CLUSTER`|Redis cluster|
+|`REDIS_PREFIX`|Redis prefix|
+|`REDIS_URL`|Redis URL|
+
+#### AWS
+
+|Option|Description|
+|---|---|
+|`AWS_ACCESS_KEY_ID`|Access key ID for AWS|
+|`AWS_SECRET_ACCESS_KEY`|Secret access key for AWS|
+|`AWS_DEFAULT_REGION`|Default AWS region|
+
+### Session and security options
+
+Sessions are stored in the same locations as [cache](#cache). You change the used driver using `SESSION_DRIVER`.
+
+|Name|Description|
+|---|---|
+|`SESSION_LIFETIME`|Idle session expiration in minutes; the session will need to be reinitialized once it has expired (default 120)|
+|`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`false`|
+|`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
+
+#### Advanced options
+
+> {note} These config options are advanced config options. Do not change them unless you know what you are doing.
+
+|Option|Description|
+|---|---|
+|`APP_CIPHER`|The app's cipher suite|
+|`HASHING_DRIVER`|Hashing algorithm for passwords (default `bcrypt`, other options `argon` or `argon2id`)|
+|`ARGON_MEMORY`|Memory for Argon hashing algorithm|
+|`ARGON_THREADS`|Threads for Argon hashing algorithm|
+|`ARGON_TIME`|Time for Argon hashing algorithm|
+|`BCRYPT_ROUNDS`|Rounds for bcrypt hashing algorithm|
+|`WEBAUTHN_NAME`|Name for Webauthn devices|
+|`WEBAUTHN_ID`|ID for Webauthn devices|
+|`WEBAUTHN_ICON`|Icon for Webauthn devices|
+|`WEBAUTHN_CACHE`|Cache for Webauthn devices|
+|`SESSION_COOKIE`|The cookie's name|
+|`SESSION_DOMAIN`|Session cookie domain|
+
+### Development options
+
+> {note} Don't use this in productive environments. May affect stability and performance.
+
+|Option|Description|
+|---|---|
+|`APP_ENV`|Set to `development` to enable development environment|
+|`APP_DEBUG`|Enable debug mode|
+|`DEBUGBAR_ENABLED`|Enable debugbar|
+|`DB_LOG_SQL`|Log SQL statements, find the log file under `storage/logs/laravel.log`|
+|`LIVEWIRE_ENABLED`|Enable experimental Livewire frontend|
+
+### Advanced configuration
+
+> {note} Only for advanced users familiar with PHP and Laravel. Never do this unless you know what you are doing.
+
+You can look at the files in the `config/` folder. They contain some options you can't configure using environmental variables and you are able to adapt Lychee completely to your needs.
+
+<!--
+
+### Hidden options
+
+These options are unused right now, but may be used in the future.
+
+|Option|Description|
+|---|---|
+|`REDIS_DB`|Redis database, used for broadcasting and queue|
+|`REDIS_QUEUE`|Redis queue|
+|`BROADCAST_DRIVER`|Broadcast driver|
+|`QUEUE_DRIVER`|Queue driver|
+|`PUSHER_APP_ID|Pusher app ID|
+|`PUSHER_APP_KEY|Pusher app secret|
+|`PUSHER_APP_SECRET|Pusher app secret|
+|`PUSHER_APP_CLUSTER|Pusher app cluster|
+|`FILESYSTEM_CLOUD`|Cloud Filesystem|
+
+-->
 
 ## Environment Configuration
 
@@ -14,6 +263,7 @@ If you are developing with a team, you may wish to continue including a `.env.ex
 > {tip} Any variable in your `.env` file can be overridden by external environment variables such as server-level or system-level environment variables.
 
 ### Environment Variable Types
+
 All variables in your `.env` files are parsed as strings, so some reserved values have been created to allow you to return a wider range of types from the `env()` function:
 
 <table>
@@ -83,12 +333,12 @@ $environment = App::environment();
 You may also pass arguments to the environment method to check if the environment matches a given value. The method will return true if the environment matches any of the given values:
 
 ```php
-if (App::environment('local')) {
-    // The environment is local
+if (App::environment('development')) {
+    // The environment is development
 }
 
-if (App::environment(['local', 'staging'])) {
-    // The environment is either local OR staging...
+if (App::environment(['development', 'production'])) {
+    // The environment is either development OR production...
 }
 ```
 
@@ -96,6 +346,7 @@ if (App::environment(['local', 'staging'])) {
 > {tip} The current application environment detection can be overridden by a server-level `APP_ENV` environment variable. This can be useful when you need to share the same application for different environment configurations, so you can set up a given host to match a given environment in your server's configurations.
 
 ### Hiding Environment Variables From Debug Pages
+
 When an exception is uncaught and the `APP_DEBUG` environment variable is `true`, the debug page will show all environment variables and their contents. In some cases you may want to obscure certain variables. You may do this by updating the `debug_blacklist` option in your `config/app.php` configuration file.
 
 Some variables are available in both the environment variables and the server / request data. Therefore, you may need to blacklist them for both `$_ENV` and `$_SERVER`:
@@ -124,6 +375,7 @@ return [
 ```
 
 ## Accessing Configuration Values
+
 You may easily access your configuration values using the global `config` helper function from anywhere in your application. The configuration values may be accessed using "dot" syntax, which includes the name of the file and option you wish to access. A default value may also be specified and will be returned if the configuration option does not exist:
 
 ```php
@@ -136,6 +388,7 @@ config(['app.timezone' => 'America/Chicago']);
 ```
 
 ## Configuration Caching
+
 To give your application a speed boost, you should cache all of your configuration files into a single file using the `config:cache` Artisan command. This will combine all of the configuration options for your application into a single file which will be loaded quickly by the framework.
 
 You should typically run the `php artisan config:cache` command as part of your production deployment routine. The command should not be run during local development as configuration options will frequently need to be changed during the course of your application's development.
@@ -144,6 +397,7 @@ You should typically run the `php artisan config:cache` command as part of your 
 
 
 ## Maintenance Mode
+
 When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a `MaintenanceModeException` will be thrown with a status code of 503.
 
 To enable maintenance mode, execute the `down` Artisan command:
@@ -168,99 +422,5 @@ To disable maintenance mode, use the `up` command:
 php artisan up
 ```
 > {tip} You may customize the default maintenance mode template by defining your own template at `resources/views/errors/503.blade.php`.
-
-## Configuration options
-
-|Name|Description|Default|
-|---|---|---|
-|`APP_NAME`|The gallery name|`Lychee`|
-|`APP_ENV`|Environment of your gallery, `production` or `development`|`production`|
-|`APP_DEBUG`|Enable debug mode|`false`|
-|`APP_URL`|The URL of your gallery (which resolves to the `public/` folder)|http://localhost`|
-|`APP_KEY`|Your app key which is used for encryption (set during installation)|`null`|
-|`TIMEZONE`|The timezone of your photos|system timezone of server|
-|`DEBUGBAR_ENABLED`|Enable debugbar (only for debugging)|`false`|
-|`LOG_CHANNEL`|Default log channel, `single`, `daily`, `slack`, `syslog`, `errorlog`, `monolog`, `custom` or `stack`|`stack`|
-|`DB_CONNECTION`|Database type, `mysql`, `pgsql`, `sqlite` or `sqlsrv` (`sqlsrv` is not supported officially and may not work)|`mysql`|
-|`DB_DATABASE`|Path to SQLite database or name of MySQL/PostgreSQL DB|`database/database.sqlite` or `forge`|
-|`DB_HOST`|Host of DB server|`127.0.0.1`|
-|`DB_PORT`|Post of DB server|`3306` (MySQL) or `5432` (PostgreSQL)|
-|`DB_USERNAME`|Username of database|`forge`|
-|`DB_PASSWORD`|Password of database user|empty string|
-|`DB_OLD_LYCHEE_PREFIX`|Table prefix of old Lychee database (v3)|empty string|
-|`DB_LOG_SQL`|Log SQL statements (only use for debugging)|`false`|
-|`CACHE_DRIVER`|The driver used for caching, `apc`, `array`, `database`, `file`, `memcached`, `redis` or `dynamodb`|`file`|
-|`REDIS_HOST`|Redis host|`127.0.0.1`|
-|`REDIS_PASSWORD`|Redis password|`null`|
-|`REDIS_PORT`|Redis port|`6379`|
-|`LYCHEE_UPLOADS`|Path to uploads directory inside the `public/` directory|`uploads/`|
-|`LYCHEE_UPLOADS_URL`|URL to uploads directory|`uploads/`|
-|`LYCHEE_DIST`|Path to dist directory inside the `public/` directory|`dist/`|
-|`LYCHEE_DIST_URL`|URL to dist directory|`dist/`|
-|`MAIL_DRIVER`|Mailer type, `smtp`, `ses`, `mailgun`, `postmark`, `sendmail`, `log` or `array`|`smtp`|
-|`MAIL_HOST`|Host of SMTP server|`smtp.mailgun.org`|
-|`MAIL_PORT`|Port of SMTP server|`587`|
-|`MAIL_ENCRYPTION`|Encryption for SMTP server|`tls`|
-|`MAIL_USERNAME`|Username of SMTP server|`null`|
-|`MAIL_PASSWORD`|Password of SMTP server|`null`|
-|`MAIL_FROM_ADDRESS`|"From" address|`hello@example.com`|
-|`MAIL_FROM_NAME`|"From" name|`Example`|
-|`SESSION_DRIVER`|Driver for sessions, `file`, `cookie`, `database`, `apc`, `memcached`, `redis`, `dynamodb` or `array`|`file`|
-|`SESSION_LIFETIME`|Idle session expiration in minutes; the session will need to be reinitialized once it has expired|`120`|
-|`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
-|`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
-|`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`false`|
-
-### Advanced configuration options
-
-> {note} These config options are advanced config options. Do not change them unless you know what you are doing. Some of them may be unused due to internal structures.
-
-|Name|Description|Default|
-|---|---|---|
-|`LIVEWIRE_ENABLED`|Enable experimental Livewire frontend|`false`|
-|`ASSET_URL`|URL for assets|`null`|
-|`APP_CIPHER`|The app's cipher suite|`AES-256-CBC`|
-|`MEMCACHED_PERSISTENT_ID`|Persistent ID for memcached|`null`|
-|`MEMCACHED_USERNAME`|Username for memcached|`null`|
-|`MEMCACHED_PASSWORD`|Password for memcached|`null`|
-|`MEMCACHED_HOST`|Host for memcached|`127.0.0.1`|
-|`MEMCACHED_PORT`|Port for memcached|`11211`|
-|`AWS_ACCESS_KEY_ID`|Access key ID for AWS, used for dynamodb|`null`|
-|`AWS_SECRET_ACCESS_KEY`|Secret access key for AWS, used for dynamodb|`null`|
-|`AWS_DEFAULT_REGION`|Default AWS region, used for dynamodb cache driver|`null`|
-|`DYNAMODB_CACHE_TABLE`|Cache table for dynamodb cache driver|`cache`|
-|`DYNAMODB_ENDPOINT`|Endpoint for dynamodb cache driver|`null`|
-|`DATABASE_URL`|Database URL|`null`|
-|`DB_FOREIGN_KEYS`|Enable foreign key constraints|`true`|
-|`DB_SOCKET`|UNIX socket of database|empty string|
-|`MYSQL_ATTR_SSL_CA`|File path to the SSL certificate authority|`null`|
-|`REDIS_CLIENT`|Redis client|`phpredis`|
-|`REDIS_CLUSTER`|Redis cluster|`redis`|
-|`REDIS_PREFIX`|Redis prefix|the value of `APP_NAME`|
-|`REDIS_URL`|Redis URL|`null`|
-|`REDIS_DB`|Redis database|`0`|
-|`REDIS_CACHE_DB`|Redis cache database|`1`|
-|`BCRYPT_ROUNDS`|Rounds for bcrypt hashing algorithm|`10`|
-|`WEBAUTHN_NAME`|Name for Webauthn devices|the value of `APP_NAME`|
-|`WEBAUTHN_ID`|ID for Webauthn devices|`null`|
-|`WEBAUTHN_ICON`|Icon for Webauthn devices|`null`|
-|`WEBAUTHN_CACHE`|Cache for Webauthn devices|`null`|
-|`LOG_SLACK_WEBHOOK_URL`|Webhook URL for slack logging|`null`|
-|`PAPERTRAIL_URL`|URL for papertrail logging|`null`|
-|`PAPERTRAIL_PORT`|Port for papertrail logging|`null`|
-|`LOG_STDERR_FORMATTER`|Formatter for logging to stderr|`null`|
-|`MAIL_LOG_CHANNEL`|Log channel for mails|`null`|
-|`REDIS_QUEUE`|Redis queue|`default`|
-|`MAILGUN_DOMAIN`|Domain to mailgun|`null`|
-|`MAILGUN_SECRET`|Serect for mailgun|`null`|
-|`MAILGUN_ENDPOINT`|Endpoint to mailgun|`api.mailgun.net`|
-|`POSTMARK_TOKEN`|Token for postmark|`null`|
-|`SESSION_CONNECTION`|Session connection for `database` and `redis` drivers|`null`|
-|`SESSION_STORE`|Store for sessions, affects `apc`, `dynamodb`, `memcached` and `redis` drivers|`null`|
-|`SESSION_COOKIE`|The cookie's name|the value of `APP_NAME` + `_session`|
-|`SESSION_DOMAIN`|Session cookie domain|`null`|
-|`VIEW_COMPILED_PATH`|Where to store compiled Blade templates|`framework/views`|
-
-
 
 [1]: https://github.com/vlucas/phpdotenv

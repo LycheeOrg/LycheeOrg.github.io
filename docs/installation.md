@@ -20,6 +20,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
    	- Mbstring
    	- OpenSSL
    	- PDO
+   	- [PhpRedis](https://github.com/phpredis/phpredis) (optional &mdash; to use Redis)
    	- Tokenizer
    	- XML
    	- ZIP
