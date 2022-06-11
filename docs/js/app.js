@@ -17,15 +17,6 @@ $(document).ready(function() {
 //     current.parent().addClass('active');
 // }
 
-$(".docs_sidebar h2").click(function(e) {
-    e.preventDefault();
-    let currenty_active = $(this).parent().hasClass('sub--on');
-    $(".navigation_contain ul .laravel").removeClass("sub--on");
-    if (!currenty_active) {
-        $(this).parent().addClass("sub--on");
-    }
-});
-
 // $('#version_switcher').change(function(e) {
 //     window.location = $('#version_switcher').val();
 // });

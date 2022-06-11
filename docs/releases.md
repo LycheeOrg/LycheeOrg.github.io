@@ -51,47 +51,52 @@ If you were an early adopter and migrated between 2022-01-13 (when the original 
 Unfortunately, the migration script can only add these indices while the affected table is being created, not after table creation.
 If you are affected, you have two options:
 
- - Option 1: Re-run the migration
- - Option 2: Add the missing indices manually (recommended)
+1. Re-run the migration
+2. Add the missing indices manually (recommended, but does not work with SQLite and requires SQL console access)
 
 _Option 1 (all DB engines):_ First roll back the original migration via `./artisan migrate:rollback`, update the master branch via `git pull` and re-run the migration again via `./artisan migrate`. As always make a backup of your DB first. Note, that the necessary rollback migration may not have been tested as well as the forward migration. Moreover, a repeated forward migration generates new random IDs for your photos and albums. If you are able to avoid option 1 and use option 2 instead, we recommend to use option 2.
 
 _Option 2 (MySQL/PostgreSQL only):_ If you use MySQL or PostgreSQL and you have access to your SQL console, you can add the missing indices manually.
 These are the SQL statements to create the missing indices:
 
- - For MySQL:
+- For MySQL:
 
-       CREATE INDEX photos_album_id_type_index ON photos (album_id, `type`);
-       CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
-       CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
-       CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
-       CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, `type`);
-       ANALYZE TABLE `albums`, `base_albums`, `notifications`, `page_contents`, `pages`, `photos`, `size_variants`, `sym_links`, `tag_albums`, `user_base_album`, `users`, `web_authn_credentials`;
+```sql
+CREATE INDEX photos_album_id_type_index ON photos (album_id, `type`);
+CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
+CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
+CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
+CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, `type`);
+ANALYZE TABLE `albums`, `base_albums`, `notifications`, `page_contents`, `pages`, `photos`, `size_variants`, `sym_links`, `tag_albums`, `user_base_album`, `users`, `web_authn_credentials`;
+```
    
- - For PosgreSQL:
+- For PosgreSQL:
 
-       CREATE INDEX photos_album_id_type_index ON photos (album_id, "type");
-       CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
-       CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
-       CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
-       CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, "type");
-       ANALYZE "albums";
-       ANALYZE "base_albums";
-       ANALYZE "notifications";
-       ANALYZE "page_contents";
-       ANALYZE "pages";
-       ANALYZE "photos";
-       ANALYZE "size_variants";
-       ANALYZE "sym_links";
-       ANALYZE "tag_albums";
-       ANALYZE "user_base_album";
-       ANALYZE "users";
-       ANALYZE "web_authn_credentials";
-
+```sql
+CREATE INDEX photos_album_id_type_index ON photos (album_id, "type");
+CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
+CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
+CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
+CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, "type");
+ANALYZE "albums";
+ANALYZE "base_albums";
+ANALYZE "notifications";
+ANALYZE "page_contents";
+ANALYZE "pages";
+ANALYZE "photos";
+ANALYZE "size_variants";
+ANALYZE "sym_links";
+ANALYZE "tag_albums";
+ANALYZE "user_base_album";
+ANALYZE "users";
+ANALYZE "web_authn_credentials";
+```
   
 ## Version 4
 
 ### v4.4.0
+
+Released on Dec 03, 2021
 
 - `new` #1145 : Upgrade Composer and PHP Version
   > **Attention**: Support for PHP < 8 has been removed.
@@ -99,6 +104,8 @@ These are the SQL statements to create the missing indices:
 - `fixes` #1154 : Set configuration option `user_agent` during init.
 
 ### v4.3.6
+
+Released on Nov 23, 2021
 
 - `fixes` #1059 : Add Cache busting.
 - `new` #1049 / `fixes` #1011 : New Photos Email Notification

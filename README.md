@@ -12,15 +12,14 @@
 
 - [Install Python 3.x](https://www.python.org/downloads/)
 - [Install pip](https://pip.pypa.io/en/stable/installing/)
-- Install dependencies
+- Install dependencies:
 
 ```sh
-// Install dependencies
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 # Generating
 
-Just do `make` and commit the changed files. :)
+Run `make` to generate the HTML files, which can then be found in `build/`.
 
 [build-status-shield]: https://img.shields.io/github/workflow/status/LycheeOrg/LycheeOrg.github.io/Build

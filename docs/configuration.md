@@ -169,5 +169,98 @@ php artisan up
 ```
 > {tip} You may customize the default maintenance mode template by defining your own template at `resources/views/errors/503.blade.php`.
 
+## Configuration options
+
+|Name|Description|Default|
+|---|---|---|
+|`APP_NAME`|The gallery name|`Lychee`|
+|`APP_ENV`|Environment of your gallery, `production` or `development`|`production`|
+|`APP_DEBUG`|Enable debug mode|`false`|
+|`APP_URL`|The URL of your gallery (which resolves to the `public/` folder)|http://localhost`|
+|`APP_KEY`|Your app key which is used for encryption (set during installation)|`null`|
+|`TIMEZONE`|The timezone of your photos|system timezone of server|
+|`DEBUGBAR_ENABLED`|Enable debugbar (only for debugging)|`false`|
+|`LOG_CHANNEL`|Default log channel, `single`, `daily`, `slack`, `syslog`, `errorlog`, `monolog`, `custom` or `stack`|`stack`|
+|`DB_CONNECTION`|Database type, `mysql`, `pgsql`, `sqlite` or `sqlsrv` (`sqlsrv` is not supported officially and may not work)|`mysql`|
+|`DB_DATABASE`|Path to SQLite database or name of MySQL/PostgreSQL DB|`database/database.sqlite` or `forge`|
+|`DB_HOST`|Host of DB server|`127.0.0.1`|
+|`DB_PORT`|Post of DB server|`3306` (MySQL) or `5432` (PostgreSQL)|
+|`DB_USERNAME`|Username of database|`forge`|
+|`DB_PASSWORD`|Password of database user|empty string|
+|`DB_OLD_LYCHEE_PREFIX`|Table prefix of old Lychee database (v3)|empty string|
+|`DB_LOG_SQL`|Log SQL statements (only use for debugging)|`false`|
+|`CACHE_DRIVER`|The driver used for caching, `apc`, `array`, `database`, `file`, `memcached`, `redis` or `dynamodb`|`file`|
+|`REDIS_HOST`|Redis host|`127.0.0.1`|
+|`REDIS_PASSWORD`|Redis password|`null`|
+|`REDIS_PORT`|Redis port|`6379`|
+|`LYCHEE_UPLOADS`|Path to uploads directory inside the `public/` directory|`uploads/`|
+|`LYCHEE_UPLOADS_URL`|URL to uploads directory|`uploads/`|
+|`LYCHEE_DIST`|Path to dist directory inside the `public/` directory|`dist/`|
+|`LYCHEE_DIST_URL`|URL to dist directory|`dist/`|
+|`MAIL_DRIVER`|Mailer type, `smtp`, `ses`, `mailgun`, `postmark`, `sendmail`, `log` or `array`|`smtp`|
+|`MAIL_HOST`|Host of SMTP server|`smtp.mailgun.org`|
+|`MAIL_PORT`|Port of SMTP server|`587`|
+|`MAIL_ENCRYPTION`|Encryption for SMTP server|`tls`|
+|`MAIL_USERNAME`|Username of SMTP server|`null`|
+|`MAIL_PASSWORD`|Password of SMTP server|`null`|
+|`MAIL_FROM_ADDRESS`|"From" address|`hello@example.com`|
+|`MAIL_FROM_NAME`|"From" name|`Example`|
+|`SESSION_DRIVER`|Driver for sessions, `file`, `cookie`, `database`, `apc`, `memcached`, `redis`, `dynamodb` or `array`|`file`|
+|`SESSION_LIFETIME`|Idle session expiration in minutes; the session will need to be reinitialized once it has expired|`120`|
+|`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
+|`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
+|`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`false`|
+
+### Advanced configuration options
+
+> {note} These config options are advanced config options. Do not change them unless you know what you are doing. Some of them may be unused due to internal structures.
+
+|Name|Description|Default|
+|---|---|---|
+|`LIVEWIRE_ENABLED`|Enable experimental Livewire frontend|`false`|
+|`ASSET_URL`|URL for assets|`null`|
+|`APP_CIPHER`|The app's cipher suite|`AES-256-CBC`|
+|`MEMCACHED_PERSISTENT_ID`|Persistent ID for memcached|`null`|
+|`MEMCACHED_USERNAME`|Username for memcached|`null`|
+|`MEMCACHED_PASSWORD`|Password for memcached|`null`|
+|`MEMCACHED_HOST`|Host for memcached|`127.0.0.1`|
+|`MEMCACHED_PORT`|Port for memcached|`11211`|
+|`AWS_ACCESS_KEY_ID`|Access key ID for AWS, used for dynamodb|`null`|
+|`AWS_SECRET_ACCESS_KEY`|Secret access key for AWS, used for dynamodb|`null`|
+|`AWS_DEFAULT_REGION`|Default AWS region, used for dynamodb cache driver|`null`|
+|`DYNAMODB_CACHE_TABLE`|Cache table for dynamodb cache driver|`cache`|
+|`DYNAMODB_ENDPOINT`|Endpoint for dynamodb cache driver|`null`|
+|`DATABASE_URL`|Database URL|`null`|
+|`DB_FOREIGN_KEYS`|Enable foreign key constraints|`true`|
+|`DB_SOCKET`|UNIX socket of database|empty string|
+|`MYSQL_ATTR_SSL_CA`|File path to the SSL certificate authority|`null`|
+|`REDIS_CLIENT`|Redis client|`phpredis`|
+|`REDIS_CLUSTER`|Redis cluster|`redis`|
+|`REDIS_PREFIX`|Redis prefix|the value of `APP_NAME`|
+|`REDIS_URL`|Redis URL|`null`|
+|`REDIS_DB`|Redis database|`0`|
+|`REDIS_CACHE_DB`|Redis cache database|`1`|
+|`BCRYPT_ROUNDS`|Rounds for bcrypt hashing algorithm|`10`|
+|`WEBAUTHN_NAME`|Name for Webauthn devices|the value of `APP_NAME`|
+|`WEBAUTHN_ID`|ID for Webauthn devices|`null`|
+|`WEBAUTHN_ICON`|Icon for Webauthn devices|`null`|
+|`WEBAUTHN_CACHE`|Cache for Webauthn devices|`null`|
+|`LOG_SLACK_WEBHOOK_URL`|Webhook URL for slack logging|`null`|
+|`PAPERTRAIL_URL`|URL for papertrail logging|`null`|
+|`PAPERTRAIL_PORT`|Port for papertrail logging|`null`|
+|`LOG_STDERR_FORMATTER`|Formatter for logging to stderr|`null`|
+|`MAIL_LOG_CHANNEL`|Log channel for mails|`null`|
+|`REDIS_QUEUE`|Redis queue|`default`|
+|`MAILGUN_DOMAIN`|Domain to mailgun|`null`|
+|`MAILGUN_SECRET`|Serect for mailgun|`null`|
+|`MAILGUN_ENDPOINT`|Endpoint to mailgun|`api.mailgun.net`|
+|`POSTMARK_TOKEN`|Token for postmark|`null`|
+|`SESSION_CONNECTION`|Session connection for `database` and `redis` drivers|`null`|
+|`SESSION_STORE`|Store for sessions, affects `apc`, `dynamodb`, `memcached` and `redis` drivers|`null`|
+|`SESSION_COOKIE`|The cookie's name|the value of `APP_NAME` + `_session`|
+|`SESSION_DOMAIN`|Session cookie domain|`null`|
+|`VIEW_COMPILED_PATH`|Where to store compiled Blade templates|`framework/views`|
+
+
 
 [1]: https://github.com/vlucas/phpdotenv

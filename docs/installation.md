@@ -72,37 +72,55 @@ If you want to help develop Lychee, install the development dependencies by remo
 
 ### Configuration
 
-#### Public Directory
-After installing Lychee, configure your web server's root to be the `public` directory. The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API. Note that the `.env` file should **not** be exposed online as it contains the encryption key used for cookies as well as database credentials.
-
-#### Configuration Files
-All of the configuration files for Lychee are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
-
 #### Directory Permissions
-After installing Lychee, you need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Lychee will not run. Additionaly `public/uploads`, `public/dist` and `public/sym` need to be writable to upload files, customise the CSS and utilise [symbolic links](https://lycheeorg.github.io/docs/settings.html#symbolic-link) respectively.
 
-#### Copy configuration file
-If you have not copied the `.env.example` file to a new file named `.env`, you should do that now.
+Directories within the `storage` and the `bootstrap/cache` directories must be writable by your web server or Lychee will not run. Additionally, `public/uploads`, `public/dist` and `public/sym` need to be writable to upload files, customise the CSS and utilise [symbolic links](https://lycheeorg.github.io/docs/settings.html#symbolic-link) respectively.
 
-#### Application Key
-The next thing you should do after installing Lychee is set your application key to a random string. This is easily done by using the `php artisan key:generate` command.
+#### Application Settings
 
-If you don't want to use this command and set the key yourself, this string should be 32 characters long and can be set in the `.env` environment file.
+The main directory should contain a `.env` file.
+Normally, Composer will have copied this file for you while installing the dependencies.
+If the `.env` file does not exist, then you should copy `.env.example` to a new file named `.env` now.
+Note that the `.env` file should **not** be exposed online as it contains the encryption key used for cookies as well as database credentials.
 
-**If the application key is not set, your user sessions and other encrypted data will not be secure!**
+##### Application Key
 
-#### Additional Configuration
-Lychee needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains some options that aren't included from `.env` that you may wish to change according to your installation.
+The `.env` file contains the setting `APP_KEY` which holds your application key.
+Normally, Composer sets this key for you while installing the dependencies.
+If the key is not set, Lychee will not work. Then, you can use the `php artisan key:generate` command to set the application key to a random value.
 
-You may also want to configure a few additional components of Lychee in `.env`, such as:
+##### URL
+
+The variable `APP_URL` inside `.env` must be set to the external URL by which the `public/` folder is accessible.
+This setting must match the configuration of your web server (see below).
+
+##### Additional Configuration
+
+The default `.env` file provides usable settings out of the box.
+
+You may want to configure a few additional components of Lychee, such as:
 
 - Cache
 - Database
 - Session
 
+They are documented in the `.env.example` file, which may have been copied into your `.env`. They are also listed on the [configuration](configuration.html) page.
+
+##### Advanced Configuration (Dangerous)
+
+Some advanced options cannot be configured through the `.env` file. If you really need to change them, look in the `config/` directory.
+
+**If you don't know what they're doing, do not change them.**
+
 ## Web Server Configuration
 
 ### General
+
+Configure your web server to make the `public` directory accessible via a URL. This could be the root of your web server (short and convenient) or, if you prefer, a subpath such as `photos`. The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API.
+The configuration option `APP_URL` of Lychee must be set accordingly (see above).
+
+> {note} Do not expose the top level directory of Lychee with your web server! This would allow public access to internal files like the application code and the `.env` file which contains sensitive information like the database credentials!
+
 It is also strongly recommended to serve Lychee over TLS. You may wish to consider [Let's Encrypt](https://letsencrypt.org/) for certificates and [Mozilla's SSL Configuration Generator](https://ssl-config.mozilla.org/) for server configuration examples.
 
 ### Apache
@@ -128,7 +146,7 @@ RewriteRule ^ index.php [L]
 ### nginx
 
 This is a sample nginx server block. It does not include TLS, but covers the Lychee-specific requirements.
-If you would like to serve from a subdirectory, take a look at [the FAQ](https://lycheeorg.github.io/docs/faq.html#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee)
+If you would like to serve from a subdirectory, take a look at [the FAQ](https://lycheeorg.github.io/docs/faq.html#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee).
 
 ```nginx
 server {
