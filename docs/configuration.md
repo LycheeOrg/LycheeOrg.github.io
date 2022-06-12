@@ -42,6 +42,7 @@ The configuration is exactly the same for both systems.
 |`DB_DATABASE`|The name of the database|
 |`DB_USERNAME`|Username of the database user|
 |`DB_PASSWORD`|Password of the database user|
+|`DB_SOCKET`|UNIX socket to DB server, replaces `DB_HOST` and `DP_PORT`|
 |`MYSQL_ATTR_SSL_CA`|Optional and only used when using the `pdo_mysql` extension, file path to the SSL certificate authority|
 
 #### SQLite
