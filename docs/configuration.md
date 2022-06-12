@@ -65,6 +65,8 @@ The configuration is exactly the same for both systems.
 
 #### Microsoft SQL Server
 
+> {note} Microsoft SQL Server is not officially supported. It may work, but we can't help you if you have any issues with it that do not affect other DB systems as well.
+
 |Option|Value it should have|
 |---|---|
 |`DB_CONNECTION`|`sqlsrv`|
