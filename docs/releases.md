@@ -1197,6 +1197,6 @@ Released October 25, 2012
 
 ### v1.0
 
-Releaser October 2, 2012
+Released October 2, 2012
 
 - Lychee v1.0
