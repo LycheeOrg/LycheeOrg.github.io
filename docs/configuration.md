@@ -17,7 +17,7 @@ Configuration is managed using a `.env` file. It probably exists already in your
 
 ### Database options
 
-Lychee supports MySQL/MariaDB, SQLite, PostgreSQL and Microsoft SQL Server as database backends. It's configuration is managed using the `DB_` variables.
+Lychee supports MySQL/MariaDB, SQLite, PostgreSQL and Microsoft SQL Server as database backends. Its configuration is managed using the `DB_` variables.
 
 #### `DATABASE_URL`
 
