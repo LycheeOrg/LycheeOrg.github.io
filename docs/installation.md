@@ -10,24 +10,28 @@ The Lychee gallery has a few system requirements. You will need to make sure you
 	- PostgreSQL _(version > 9.2)_
 	- Lychee's inbuilt SQLite3 support
 - PHP >= 8.0 with these PHP extensions:
-	- BCMath
-	- Ctype
-	- Exif
-	- Fileinfo
-	- GD
-	- Imagick (optional &mdash; to generate better thumbnails)
-	- JSON
-   	- Mbstring
-   	- OpenSSL
-   	- PDO
-   	- Tokenizer
-   	- XML
-   	- ZIP
-- These PHP extensions are necessary if you are running a FreeBSD system:
-	- Simplexml
-	- Dom
-	- Session
-	- Zlib
+	- bcmath
+	- ctype
+	- dom
+	- exif
+	- fileinfo
+	- filter
+	- gd
+	- imagick (optional &mdash; to generate better thumbnails)
+	- json
+	- libxml
+	- mbstring
+	- openssl
+	- pcre
+	- PDO
+	- Phar
+	- SimpleXML
+	- tokenizer
+	- xml
+	- xmlwriter
+- These PHP extensions may be necessary if you are running a FreeBSD system:
+	- session
+	- zlib
 - You will also need one of these PHP extensions:
 	- SQLite3 for SQLite3 databases
 	- MySQLi (or PDO_MySQL) for MySQL or MariaDB databases
