@@ -10,7 +10,7 @@ Configuration is managed using a `.env` file. It probably exists already in your
 |`APP_ENV`|Environment of your gallery, `production` or `development`|`production`|
 |`APP_URL`|The URL of your gallery (which resolves to the `public/` folder)|`http://localhost`|
 |`APP_KEY`|Your app key which is used for encryption (set during installation)|`null`|
-|`TIMEZONE`|The timezone of your photos|system timezone of server|
+|`TIMEZONE`|The timezone of your photos, requires a named timezone identifier like `Europe/Paris`, don't use an offset (`+01:00`) or an abbreviation (`CEST`)|system timezone of server|
 |`LYCHEE_UPLOADS`|Path to uploads directory|`uploads/` inside `public/`|
 |`LYCHEE_UPLOADS_URL`|URL to uploads directory|`uploads/`|
 |`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
