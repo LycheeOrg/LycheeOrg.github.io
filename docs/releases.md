@@ -1115,3 +1115,88 @@ Released January 22, 2014
 - Massive changes under the hood
 - IPTC support (Headline and Caption)
 - EXIF Orientation support
+
+### v1.3.2
+
+Released November 21, 2013
+
+This update includes small fixes and enhancements.
+
+### v1.3.1
+
+Released September 8, 2013
+
+- Twitter Cards and Open Graph support for shared photos
+- Option to set album-password directly after clicking "Make Public"
+- Download Album works again
+
+### v1.3
+
+Released Septermber 3, 2013
+
+New:
+- Protect public albums with passwords
+- Export to Dropbox
+- Sharing-Link is displayed directly inside the sharing-dropdown
+- Delete photos with cmd+backspace
+
+Improved:
+- Massive speed improvements
+- Changing the title, starring, description, etc. is now instant
+- Longer filenames for pictures (more security)
+
+ShortLinks are removed for more independency and privacy.
+There are a lot of changes under the hood, including a lot of bug fixes and improvements. Please report every bug you find!
+
+### v1.2
+
+Released June 17, 2013
+
+- Share whole albums
+- Public Mode
+- Import images via URL
+- New Share-Button
+- Improved Toolbar
+- Check for updates (see config.php)
+- ASC or DESC sorting (see config.php)
+- Download album fixed
+- Code optimizations (thanks @tibounise)
+- Changes and enhancements
+
+### v1.1
+
+Released May 3, 2013
+
+- FTP Sharing
+- New Upload & New Search
+- Performance and stuff under the hood
+- Desktop Notifications
+- Right-Click on photos and albums
+- Retina Thumbs
+- Improved Interface
+
+### v1.0.2
+
+Released January 15, 2013
+
+- Better mobile experience
+- New Login
+- jQuery update
+- Small fixes and enhancements
+
+### v1.0.1
+
+Released October 25, 2012
+
+- Improved ImageView
+- Login-Window now shows the version of Lychee
+- iPhone Homescreen Icon
+- Improved Readme with Pictures
+
+
+
+### v1.0
+
+Released October 2, 2012
+
+- Lychee v1.0
