@@ -71,7 +71,7 @@ The configuration is exactly the same for both systems.
 |---|---|
 |`DB_CONNECTION`|`sqlsrv`|
 |`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`)|
-|`DB_PORT`|Port of the database server (default 5432)|
+|`DB_PORT`|Port of the database server (default 1433)|
 |`DB_DATABASE`|The name of the database|
 |`DB_USERNAME`|Username of the database user|
 |`DB_PASSWORD`|Password of the database user|
