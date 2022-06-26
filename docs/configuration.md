@@ -2,6 +2,8 @@
 
 Configuration is managed using a `.env` file. It probably exists already in your directory (Composer copies it from `.env.example` during installation), and you can go on with configuring there. But the file does not contain all options. Here, you can find all of them in a structured way and with instructions on how to use them. All of the options are optional, unless you would like to use some services.
 
+For non-core options (for example UI options), take a look at [Settings](https://lycheeorg.github.io/docs/settings.html).
+
 ### Base options
 
 |Option|Description|Default|
