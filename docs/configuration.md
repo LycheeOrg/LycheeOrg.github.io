@@ -17,7 +17,7 @@ Configuration is managed using a `.env` file. It probably exists already in your
 
 ### Database options
 
-Lychee supports MySQL/MariaDB, SQLite, PostgreSQL and Microsoft SQL Server as database backends. Its configuration is managed using the `DB_` variables.
+Lychee supports MySQL/MariaDB, SQLite and PostgreSQL as database backends. Microsoft SQL Server can be used, but is unsupported. The configuration is managed using the `DB_` variables.
 
 #### `DATABASE_URL`
 
@@ -57,8 +57,8 @@ The configuration is exactly the same for both systems.
 |Option|Value it should have|
 |---|---|
 |`DB_CONNECTION`|`pgsql`|
-|`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`)|
-|`DB_PORT`|Port of the database server (default 5432)|
+|`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`) or socket path|
+|`DB_PORT`|Port of the database server or `null` if using socket (default 5432)|
 |`DB_DATABASE`|The name of the database|
 |`DB_USERNAME`|Username of the database user|
 |`DB_PASSWORD`|Password of the database user|
