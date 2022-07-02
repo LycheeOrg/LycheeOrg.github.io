@@ -1203,7 +1203,8 @@ footer {
 
 .docs_main h2 a,
 .docs_main h3 a,
-.docs_main h4 a {
+.docs_main h4 a,
+.docs_main h5 a  {
     color: #090910
 }
 
