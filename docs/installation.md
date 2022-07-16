@@ -96,7 +96,7 @@ The following permissions must be granted at least:
 
  - All directories and files of the Lychee installation must at least be readable by the Web and PHP user.
  - Directories and files within the `storage/` and the `bootstrap/cache/` directories must be writable by the Web and PHP user.
- - If you which to customise the CSS via the web frontend, directories and files within the `public/dist` directory must be writable by the Web and PHP user.
+ - If you wish to customise the CSS via the web frontend, directories and files within the `public/dist` directory must be writable by the Web and PHP user.
  - Directories and files within the `public/uploads` and `public/sym` must at least be writeable by the Web and PHP user.
    If you only intend to upload files via the web frontend, this is sufficient.
    If you also plan to use the CLI to import files, the directories and files must additionally be writeable by the CLI user.
