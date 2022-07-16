@@ -49,6 +49,7 @@ Yes, but you may need to change this property to a bigger value:
 ```ini
 upload_max_filesize = 100M
 ```
+
 ### Is it possible to create multiple users?
 
 Yes. Just go to the `Users` menu.
@@ -560,3 +561,17 @@ In `/var/www/html/Lychee/.env`, change `DB_HOST=localhost` to `DB_HOST=127.0.0.1
 Lychee checks for the presence of certain files to detect whether Lychee was installed as a git repository or from a release archive (.zip). It also uses them to determine which git commit is in use where applicable. This is included in the Diagnostics page to assist us in diagnosing issues.
 
 These messages can be safely ignored.
+
+### Import from server via symlink is failing.
+
+If you check the logs and see an output like
+```
+2021-11-09 19:09:50 -- error -- App\Actions\Import\Exec::do -- 256 -- Could not import file (<path-to-image>/image.jpg): 0 symlink(): Operation not supported
+```
+this means that the native low-level function `symlink` fails, because the file system does not support symbolic links.
+When using this import setting, symbolic links are created below the `/uploads` directory as this is the folder where the media files reside.
+
+As a result, in order to use this function the file system on which `/uploads` resides must support symbolic links (e.g. ext3, ext4, btrfs, zfs, etc.).
+_"Windows"_ file systems (e.g. NTFS, FAT, CIFS) won't work.
+The directory with the original media files may still be a Windows file system.
+This is, because symbolic links (as opposed to hard links) may cross file system boundaries.
