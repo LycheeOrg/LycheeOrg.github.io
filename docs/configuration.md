@@ -1,7 +1,6 @@
 ## Introduction
 
-Configuration is managed using a `.env` file. It probably exists already in your directory (Composer copies it from `.env.example` during installation), and you can go on with configuring there. But the file does not contain all options. Here, you can find all of them in a structured way and with instructions on how to use them. All of the options are optional, unless you would like to use some services.
-
+Lychee's core configuration is managed using a `.env` file. It probably exists already in your directory, but if not it can be created by copying `.env.example`. The options which are already included in the `.env` file should be sufficient to cover the necessary configuration for the vast majority of all use-cases and setups. Using other options than those included in the `.env` file should rarely be necessary. However, this page contains a more complete list of the available options, incl. some highly advanced ones, together with descriptions and default values.
 For non-core options (for example UI options), take a look at [Settings](https://lycheeorg.github.io/docs/settings.html).
 
 ### Base options
