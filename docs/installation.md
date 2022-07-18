@@ -100,10 +100,10 @@ The following permissions must be granted at least:
  - Directories and files within the `public/uploads` and `public/sym` must at least be writeable by the Web and PHP user.
    If you only intend to upload files via the web frontend, this is sufficient.
    If you also plan to use the CLI to import files, the directories and files must additionally be writeable by the CLI user.
-   It is not sufficient, if only already existing directories are writeable by the Web, PHP and CLI user, all directories and files yet to be created must be so, too.
-   The recommended way is to ensure that all three users are at least member of one joined group, e.g. you may add your CLI user to the group used by the Web and PHP user.
-   The directory and files then needs to owned by this group and be group writeable.
-   On top, the special `sgid` bit needs to be set for all directories.
+   It is not sufficient, if only already existing directories are writeable by the Web, PHP and CLI user; all directories and files yet to be created must be so, too.
+   The recommended way is to ensure that all three users are at least members of one joined group, e.g., you may add your CLI user to the group used by the Web and PHP user.
+   The directories and files then need to owned by this group and be group writeable.
+   Further, the special `sgid` bit needs to be set for all directories.
    This ensures that newly created directories and files become owned by the joined group and not by the primary group of the creator.
 
 #### Application Settings
