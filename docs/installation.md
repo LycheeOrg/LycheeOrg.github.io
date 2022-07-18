@@ -89,8 +89,8 @@ Note that there are up to three OS users which need to be taken into considerati
    In case PHP FPM is used, for most distributions PHP FPM or CGI ships with a sensible default configuration which ensures that the PHP user is the same as the Web user.
    In both cases the PHP user is not of concern.
    However, we are at least aware of one exception to this rule for Nginx on Fedora, see [FAQ](https://lycheeorg.github.io/docs/faq.html#i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories)
- - The user which you use for shell logins and run scripts; called the **CLI user** in the following.
-   This user may of particular concern, if you are planning to upload photos via the web interface _and_ import photos via the shell scripts.
+ - The user which you use for shell logins and to run scripts; called the **CLI user** in the following.
+   This user may be of particular concern, if you are planning to upload photos via the web interface _and_ import photos via the shell scripts.
 
 The following permissions must be granted at least:
 
