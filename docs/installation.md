@@ -25,6 +25,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
 	- pcre
 	- PDO
 	- Phar
+   	- [PhpRedis](https://github.com/phpredis/phpredis) (optional &mdash; to use Redis)
 	- SimpleXML
 	- tokenizer
 	- xml
@@ -108,7 +109,7 @@ You may want to configure a few additional components of Lychee, such as:
 - Database
 - Session
 
-They are documented in the `.env.example` file, which may have been copied into your `.env`. They are also listed on the [configuration](configuration.html) page.
+They are documented in the `.env.example` file, which may have been copied into your `.env`. They are also listed and explained on the [configuration](configuration.html) page.
 
 ##### Advanced Configuration (Dangerous)
 

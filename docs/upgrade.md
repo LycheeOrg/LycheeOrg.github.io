@@ -79,3 +79,7 @@ Process with the
 ### Using Nginx
 
 If you are using Nginx, an example configuration can be found [here](installation.html#web-server-configuration).
+
+### Run the migrations
+
+Make sure you have `DB_OLD_LYCHEE_PREFIX` set in your `.env` to correspond the table prefix of your old database, then run `php artisan migrate`. 
