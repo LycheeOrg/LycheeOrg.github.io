@@ -189,7 +189,7 @@
             <h1>Support</h1>
             <p class="donate__description">If you enjoy Lychee, please consider <a href="support.html">supporting us</a>.</p>
 
-            <p class="donate__description">Lychee is supported by Jetbrains' <a href="https://www.jetbrains.com/community/opensource/">Open Source Development - Community Support</a>  program.<br/>
+            <p class="donate__description">Lychee is supported by Jetbrains' <a href="https://www.jetbrains.com/community/opensource/">Open Source Development - Community Support</a> program.<br/>
                 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/PhpStorm_icon.png" alt="PhpStorm" width="75px"/></p>
 
         </div>
