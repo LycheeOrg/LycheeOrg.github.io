@@ -59,29 +59,38 @@ md2 = markdown.Markdown(extensions=['extra', TocExtension(
 frame = read('template/doc-frame.html')
 
 pages_title = {}
+
+pages_title['org'] = 'Lychee & LycheeOrg'
+pages_title['releases'] = 'Release Notes'
+
 pages_title['installation'] = 'Installation'
 pages_title['configuration'] = 'Configuration'
-pages_title['structure'] = 'Directory Structure'
-pages_title['contributions'] = 'Contribution Guide'
-pages_title['releases'] = 'Release Notes'
-pages_title['api'] = 'API Documentation'
-pages_title['faq'] = 'Frequently Asked Question'
+pages_title['docker'] = 'Docker'
+pages_title['update'] = 'Update'
+pages_title['upgrade'] = 'Upgrade from v3'
+
 pages_title['settings'] = 'Settings'
 pages_title['keyboard'] = 'Keyboard Shortcuts'
-pages_title['upgrade'] = 'Upgrade from v3'
-pages_title['docker'] = 'Docker'
-pages_title['read-more'] = 'Lychee logic overview'
-pages_title['update'] = 'Update'
-pages_title['node'] = 'Front-end'
-pages_title['org'] = 'Lychee & LycheeOrg'
-pages_title['distributions'] = 'Distributions Examples'
+pages_title['advanced-setups'] = 'Advanced Setups'
+
+pages_title['faq'] = 'Frequently Asked Question'
+pages_title['api'] = 'API Documentation'
+
+pages_title['contributions'] = 'Contribution Guide'
+pages_title['architecture'] = 'Lychee logic overview'
+pages_title['structure'] = 'Directory Structure'
+pages_title['frontend'] = 'Front-end'
 
 structure = [['Prologue',
-              ['org', 'releases', 'upgrade', 'contributions', 'api', 'faq']]]
+              ['org', 'releases']]]
 structure += [['Getting Started',
-               ['installation', 'configuration', 'docker', 'update']]]
-structure += [['Digging Deeper',
-               ['settings', 'keyboard', 'read-more', 'structure', 'node', 'distributions']]]
+               ['installation', 'configuration', 'docker', 'update', 'upgrade']]]
+structure += [['Advanced Topics',
+               ['settings', 'keyboard', 'advanced-setups']]]
+structure += [['Miscellaneous',
+               ['faq', 'api']]]
+structure += [['Contributing',
+               ['contributions', 'architecture', 'structure', 'frontend']]]
 
 def gen_github_link(page):
     html = '<blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;'
