@@ -30,69 +30,41 @@
 
 ## Master branch
 
-Lychee is currently undergoing a major architectural refactoring of its internals.
-The master branch already includes the first part of that refactoring which mostly concentrates on the backend.
 
-These changes and information only affect those users who directly follow the master branch:
+- `fixes` #1452 : Provide an ASCII fallback for multibyte filenames.
 
-- While we have made every effort to ensure that your existing photos and albums are as safe as with any other commit to the master branch, due to the sheer size of current changes we recommend that you take additional precautions, such as creating a backup of your SQL database before migrating.
-- While we did our best to ensure that Lychee behaves as before, the large amount of recent changes means that you may encounter more regression bugs than usual. Please make sure to test the functionality you depend on and promptly report any regressions you observe; we will do our best to address any such bugs as quickly as possible.
-- **New ID scheme:** Albums and photos are migrated to a new ID scheme. Previously, albums and photos used time-based integer IDs. The new IDs are truly 144bit of randomness encoded in Base64 as a 24-character string, e.g., if your photo had the URL `https://my-domain.tld/r/16102925744307/16102927818284` before, it may have the URL `https://my-domain.tld/r/GTqZfSso3nPeCnTNW4ovisgC/jM6KkmlK7X0LtVas5MjrHtTO` after the migration. This means, **external links to your albums or photos will stop working.** However, we implemented a redirection service. You can enable/disable the re-direction service under `Settings` > `More` > `legacy_id_redirection`. This gives you time to migrate any external reference to the new IDs. We also generate a log entry every time the redirection service is used. This log contains the legacy and new ID as well as information where the request came from. This may help you with the migration of your external links.
-- **Annoying regressions already known:** This is a list of already known regressions to be fixed by the second part of the refactoring which will concentrate on the JSON API and front-end:
-  - _Password-dialog is shown for non-existing and private albums:_ If a user requests a URL for a non-existing or private album, the password dialog will be presented to the user as if the album was password-protected. The password dialog will be presented repeatedly to the user independent of the provided password as the authentication will never succeed.
-
-_Addendum for those who migrated between 2022-01-13 and 2022-01-16:_
-
-After the initial merge to the master branch we became aware of some performance regressions due to missing indices on the DB.
-We have patched the migration script to create the indices.
-If you migrated to the head of master after 2022-01-16 you are fine.
-If you were an early adopter and migrated between 2022-01-13 (when the original merge came out) and 2022-01-15, the indices are missing.
-
-Unfortunately, the migration script can only add these indices while the affected table is being created, not after table creation.
-If you are affected, you have two options:
-
-1. Re-run the migration
-2. Add the missing indices manually (recommended, but does not work with SQLite and requires SQL console access)
-
-_Option 1 (all DB engines):_ First roll back the original migration via `./artisan migrate:rollback`, update the master branch via `git pull` and re-run the migration again via `./artisan migrate`. As always make a backup of your DB first. Note, that the necessary rollback migration may not have been tested as well as the forward migration. Moreover, a repeated forward migration generates new random IDs for your photos and albums. If you are able to avoid option 1 and use option 2 instead, we recommend to use option 2.
-
-_Option 2 (MySQL/PostgreSQL only):_ If you use MySQL or PostgreSQL and you have access to your SQL console, you can add the missing indices manually.
-These are the SQL statements to create the missing indices:
-
-- For MySQL:
-
-```sql
-CREATE INDEX photos_album_id_type_index ON photos (album_id, `type`);
-CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
-CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
-CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
-CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, `type`);
-ANALYZE TABLE `albums`, `base_albums`, `notifications`, `page_contents`, `pages`, `photos`, `size_variants`, `sym_links`, `tag_albums`, `user_base_album`, `users`, `web_authn_credentials`;
-```
-   
-- For PosgreSQL:
-
-```sql
-CREATE INDEX photos_album_id_type_index ON photos (album_id, "type");
-CREATE INDEX photos_album_id_is_starred_created_at_index ON photos (album_id, is_starred, created_at);
-CREATE INDEX photos_album_id_is_starred_taken_at_index ON photos (album_id, is_starred, taken_at);
-CREATE INDEX photos_album_id_is_starred_is_public_index ON photos (album_id, is_starred, is_public);
-CREATE INDEX photos_album_id_is_starred_type_index ON photos (album_id, is_starred, "type");
-ANALYZE "albums";
-ANALYZE "base_albums";
-ANALYZE "notifications";
-ANALYZE "page_contents";
-ANALYZE "pages";
-ANALYZE "photos";
-ANALYZE "size_variants";
-ANALYZE "sym_links";
-ANALYZE "tag_albums";
-ANALYZE "user_base_album";
-ANALYZE "users";
-ANALYZE "web_authn_credentials";
-```
-  
 ## Version 4
+
+### v4.5.3
+
+Released on Aug 07, 2022
+
+#### IMPORTANT
+
+- The internal representation of Albums changed with version 4.5.0.  
+We strongly recommend that you **BACK UP YOUR DATABASE BEFORE UPDATING**.
+- The folder structure changed for images; **please check the required directory permissions**.  
+Read more [here  &#187;](https://lycheeorg.github.io/docs/#directory-permissions).
+
+#### Changes
+
+- `new` : New folder structure for images:
+    - Deep directory structure.  Instead of all images of a certain kind residing in a single, flat directory (potentially containing thousands of files), we now have two additional two-letter directory levels under each kind (e.g., images are stored as `medium/ba/d0/9a28ec995ead4877dfa1befa2d3b.jpg`).
+    - HiDPI (`@2x`) variants now reside in their own directories.
+    - `big` has been renamed to `original`.
+
+    Note that this only affects newly added photos; those added in the past are not moved to new locations.  Also, see the note above about directory permissions.
+
+- `new` : Refactoring of the internal architecture and the representation of albums.  While this didn't add any major new features, a number of optimizations have been put in place to speed up various operations, e.g., on installations with many hundreds of albums.  Because this requires a particularly complex database migration, those with existing installations should pay attention to the note above about backing up their database.
+- `new` : Refactoring of error handling and reporting.  This should result in more meaningful error messages both in the web front end and in the server logs (instead of the old cryptic "Server error or API not found" messages).
+- `new` :Refactoring of the file handling during upload/import.  Instead of using temporary files and (re-)reading them many times, we now rely on file streams.  This not only speeds up processing during upload/import (by around 50% in our tests), but is also an important step towards future support for the use of AWS S3 as image storage.
+- `new` : Addedfeatures in the web front end :
+    - QR code added in the sharing menu.
+    - GPX tracks can be added to albums for displaying together with photos on the map.
+    - Drag/drop support added for albums and photos to facilitate more intuitive Move/Merge
+- `new` : ZIP compression level can now be changed and the compression can be disabled.
+- `new` : Support of Vietnamese language.
+
 
 ### v4.4.0
 
