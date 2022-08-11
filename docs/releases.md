@@ -48,6 +48,8 @@ Read more [here  &#187;](https://lycheeorg.github.io/docs/#directory-permissions
 
 #### Changes
 
+- `new` : New ID scheme. Albums and photos are migrated to a new ID scheme. Previously, albums and photos used time-based integer IDs. The new IDs are truly 144bit of randomness encoded in Base64 as a 24-character string; e.g., if your photo had the URL `https://my-domain.tld/r/16102925744307/16102927818284` before, it may have the URL `https://my-domain.tld/r/GTqZfSso3nPeCnTNW4ovisgC/jM6KkmlK7X0LtVas5MjrHtTO` after the migration. This means, **external links to your albums or photos will stop working.** However, we implemented a redirection service. You can enable/disable the re-direction service under `Settings` > `More` > `legacy_id_redirection`. This gives you time to migrate any external reference to the new IDs. We also generate a log entry every time the redirection service is used. This log contains the legacy and new ID as well as information where the request came from. This may help you with the migration of your external links.
+
 - `new` : New folder structure for images:
     - Deep directory structure.  Instead of all images of a certain kind residing in a single, flat directory (potentially containing thousands of files), we now have two additional two-letter directory levels under each kind (e.g., images are stored as `medium/ba/d0/9a28ec995ead4877dfa1befa2d3b.jpg`).
     - HiDPI (`@2x`) variants now reside in their own directories.
