@@ -33,7 +33,7 @@ git pull
 This update will be the one you have to use if you are following the Release channel.
 
 1. Download the [newest Version](https://github.com/LycheeOrg/Lychee/releases)
-2. Replace all existing files, excluding `uploads/` and `dist/user.css` (and `database/database.sqlite` if using **SQLite** as your database)
+2. Replace all existing files, excluding `public/uploads/`, `public/dist/user.css` and `.env` (and `database/database.sqlite` if using **SQLite** as your database)
 3. Go into the `Diagnostic` page and click on the `Apply migration` button.
 
 
