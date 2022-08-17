@@ -28,11 +28,6 @@
 }
 </style>
 
-## Master branch
-
-
-- `fixes` #1452 : Provide an ASCII fallback for multibyte filenames.
-
 ## Version 4
 
 ### v4.5.3
