@@ -30,6 +30,19 @@
 
 ## Version 4
 
+### v4.6.1
+
+Released on Sep XX, 2022
+
+#### IMPORTANT
+
+This update will drop the API key in favor to Authorization token.
+As a result, once the migration is applied the API token will be revoked.
+
+#### Changes
+
+- TBD
+
 ### v4.6.0
 
 Released on Sep 04, 2022
