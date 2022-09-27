@@ -30,6 +30,22 @@
 
 ## Version 4
 
+### v4.6.0
+
+Released on Sep 04, 2022
+
+#### IMPORTANT
+
+Once the migration is applied, should you wish to rollback, you will need to reset your admin user otherwise it will not be possible to log as admin anymore.
+
+#### Changes
+
+- `new` #1453 : Provide an ASCII fallback for multibyte filenames
+- `new` #1403 : Use Laravel Auth facade instead of home-brewed authentication layer 
+  > This change will prevent the rollback as the Admin now follows proper username - hashed password values in the database (previously was hashed username and hashed value).
+- `fixes` #1472 : Fixes major bug with relation to Tag albums 
+- `fixes` #1495 : Solve minor bugs in the installation procedure
+
 ### v4.5.3
 
 Released on Aug 07, 2022
