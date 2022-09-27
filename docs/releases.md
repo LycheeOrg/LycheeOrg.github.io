@@ -37,7 +37,7 @@ Released on Sep XX, 2022
 #### IMPORTANT
 
 This update will drop the API key in favor to Authorization token.
-As a result, once the migration is applied the API token will be revoked.
+As a result, once the migration is applied the old API token won't work anymore.
 
 #### Changes
 
