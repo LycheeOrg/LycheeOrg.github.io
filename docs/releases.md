@@ -37,6 +37,7 @@ Released on Sep 04, 2022
 #### IMPORTANT
 
 Once the migration is applied, should you wish to rollback, you will need to reset your admin user otherwise it will not be possible to log as admin anymore.
+
 #### Changes
 
 - `new` #1453 : Provide an ASCII fallback for multibyte filenames
