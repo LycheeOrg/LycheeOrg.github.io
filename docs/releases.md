@@ -36,12 +36,27 @@ Released on Sep XX, 2022
 
 #### IMPORTANT
 
-This update will drop the API key in favor to Authorization token.
+- This update contains a Security Update which fix multiple XSS vulnerability and update the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+- This update will drop the API key in favor to Authorization token.
 As a result, once the migration is applied the old API token won't work anymore.
 
 #### Changes
 
-- TBD
+* `new` #1489 : Drop page support
+  > This functionality was not known by 99.9% of the users of Lychee.
+  > We decided to drop its support in favor of more targetted development in the core.
+* `new` #1443 : Add user and better structure to session json
+* `new` #1153 : Support for multi path on server import
+* `fixes` #1508 : Ensure that Admin rights are overloading others
+* `fixes` #1366 : Improve config options
+* `fixes` #1514 : 32 bits system improved support
+  > For 32bit systems and time-based, legacy IDs we must catch failing inserts due to duplicate legacy ID
+  > when insertions is running to fast. In the path it was sufficient to check for MySQL error codes 23000
+  > and 23005 as integers and then pause for a short period of time.
+* `fixes` #1480 : Shared albums should not consider the `require_link` property.
+* `new` #1368 : Improve API client usability
+* `fixes` #1528 : Improve CSP and fix XSS vulnerability
+  > See [advisories](https://github.com/LycheeOrg/Lychee-front/security/advisories/GHSA-cr79-38hg-27gv)
 
 ### v4.6.0
 
