@@ -36,8 +36,8 @@ Released on Sep XX, 2022
 
 #### IMPORTANT
 
-- This update contains a Security Update which fix multiple XSS vulnerability and update the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
-- This update will drop the API key in favor to Authorization token.
+- This update contains a Security Update which fixes multiple XSS vulnerabilities and updates the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+- This update will drop the API key in favor of Authorization token.
 As a result, once the migration is applied the old API token won't work anymore.
 
 #### Changes
@@ -51,7 +51,7 @@ As a result, once the migration is applied the old API token won't work anymore.
 * `fixes` #1366 : Improve config options
 * `fixes` #1514 : 32 bits system improved support
   > For 32bit systems and time-based, legacy IDs we must catch failing inserts due to duplicate legacy ID
-  > when insertions is running to fast. In the path it was sufficient to check for MySQL error codes 23000
+  > when insertions is running too fast. In the past it was sufficient to check for MySQL error codes 23000
   > and 23005 as integers and then pause for a short period of time.
 * `fixes` #1480 : Shared albums should not consider the `require_link` property.
 * `new` #1368 : Improve API client usability
