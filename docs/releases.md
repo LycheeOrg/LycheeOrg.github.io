@@ -36,7 +36,7 @@ Released on Sep XX, 2022
 
 #### IMPORTANT
 
-- This update contains a Security Update which fixes multiple XSS vulnerabilities and updates the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+- This update contains a Security Update which fix multiple [XSS vulnerability](https://github.com/LycheeOrg/Lychee-front/security/advisories/GHSA-cr79-38hg-27gv) and update the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 - This update will drop the API key in favor of Authorization token.
 As a result, once the migration is applied the old API token won't work anymore.
 
