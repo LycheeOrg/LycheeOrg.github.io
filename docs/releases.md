@@ -32,7 +32,7 @@
 
 ### v4.6.1
 
-Released on Sep XX, 2022
+Released on Oct 08, 2022
 
 #### IMPORTANT
 
