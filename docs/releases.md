@@ -1129,6 +1129,10 @@ Released January 22, 2014
 - IPTC support (Headline and Caption)
 - EXIF Orientation support
 
+---
+
+## Version 1
+
 ### v1.3.2
 
 Released November 21, 2013
