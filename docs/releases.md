@@ -46,7 +46,6 @@ Released on Nov XX, 2022
 * `new` #1469: Upgrade to Laravel 9 + switch to Laragear/WebAuthn
 * `new` #1564 : Add option to append tags
 
-**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v4.6.1...v4.6.2-RC1
 ### v4.6.1
 
 Released on Oct 08, 2022
