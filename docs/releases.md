@@ -30,6 +30,23 @@
 
 ## Version 4
 
+### v4.6.2
+
+Released on Nov XX, 2022
+
+#### IMPORTANT
+
+- This update contains an upgrade of U2F packages with a very different core, as a consequence any U2F credentials stored have been destroyed and will need to be registered again.
+
+## Changes
+
+* `new` #1519 : Adopt new modern dialog
+* `fixes` #1494 : Consolidate localization
+* `new` #1558 : Add option to skip diagnostic checks
+* `new` #1469: Upgrade to Laravel 9 + switch to Laragear/WebAuthn
+* `new` #1564 : Add option to append tags
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v4.6.1...v4.6.2-RC1
 ### v4.6.1
 
 Released on Oct 08, 2022
