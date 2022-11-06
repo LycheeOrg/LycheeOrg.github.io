@@ -25,7 +25,7 @@
 		<meta name="twitter:image" content="https://LycheeOrg.github.io/assets/images/og.jpg">
 
 		<!-- Favicon -->
-		<link rel="icon" type="image/png" href="assets/images/logo.png">
+		<link rel="icon" type="image/png" href="/assets/images/logo.png">
 		
 		<!-- schema.org -->
 		<script type="application/ld+json">
@@ -44,9 +44,39 @@
 		}
 		</script>
 
-		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="/assets/images/logo.png" type="image/png">
 
 		<!-- CSS -->
+		<link rel="stylesheet" href="assets/styles/main.css">
+	</head>
 
-			<link rel="stylesheet" href="assets/bower/normalize-css/normalize.css">
-			<link rel="stylesheet" href="assets/styles/main.css">
+	<body>
+
+		<div class="wrap">
+
+			<!-- Hero -->
+			<div class="hero">
+				<!-- Header -->
+				<header class="header">
+					<div class="header__column">
+						<div class="align align--left">
+							<p class="header__headline">
+								<a href=".">Lychee <span>%s</span></a>
+							</p>
+						</div>
+					</div>
+					<div class="header__column hidden__desktop">
+						<div class="align align--right">
+							<p class="header__text">
+								<a href="docs/" class="hidden__mobile">Docs</a><a href="https://github.com/LycheeOrg/Lychee">GitHub</a>
+							</p>
+						</div>
+					</div>
+					<div class="header__column">
+						<div class="align align--right">
+							<p class="header__text">
+								<a href="docs/">Documentation</a><a href="https://github.com/LycheeOrg/Lychee">See on GitHub</a>
+							</p>
+						</div>
+					</div>
+				</header>

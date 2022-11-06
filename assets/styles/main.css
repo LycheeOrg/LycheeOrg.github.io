@@ -1,12 +1,12 @@
 @font-face {
     font-family:"Source Sans Pro";
-    src:url("../docs/fonts/source-sans-pro-v21-latin-regular.woff2") format("woff2");
+    src:url("../../docs/fonts/source-sans-pro-v21-latin-regular.woff2") format("woff2");
     font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
 }
 
 @font-face {
     font-family:"Source Sans Pro";
-    src:url("../docs/fonts/source-sans-pro-v21-latin-600.woff2") format("woff2");
+    src:url("../../docs/fonts/source-sans-pro-v21-latin-600.woff2") format("woff2");
     font-display:auto;font-style:normal;font-weight:600;font-stretch:normal;
 }
 
@@ -22,6 +22,7 @@ html {
 }
 
 body {
+    margin: 0;
     display: block;
     min-height: 100%;
     background: #eee;
@@ -741,7 +742,7 @@ hr {
     }
 }
 
-.donate {
+.support {
     text-align: center;
     padding: 3em 2% 5em
 }
@@ -821,4 +822,122 @@ hr {
 
 .footer .footer__link:last-child:after {
     display: none
+}
+
+.donations {
+    text-align: center;
+}
+
+.f_p {
+        margin-bottom: 50px;
+}
+
+.contributors {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+    min-height: 100px;
+    margin-bottom: 0px;
+}
+
+.contributors_list {
+	margin-bottom: 100px;
+}
+
+.contributors:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+.contributors:nth-child(even) {
+    background-color: #EEEEEE;
+}
+
+.contributors span {
+    display: inline-block;
+    /* margin-left: 10px; */
+}
+
+.contributors span img {
+    height: 20px;
+    margin-bottom: -4px;
+}
+
+.avatar {
+    margin-top: 5px;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    float: left;
+    border-radius: 50%;
+}
+
+.donate, .donate:hover, .donate:focus {
+    display: inline-block;
+    border-radius: 5px;
+    background: #ff922b;
+    height: 30px;
+    width: 100px;
+    padding: 0;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.donate:hover {
+    background-color: #f76707;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  .donations {
+    padding: 1em 0;
+  }
+
+  .f_p {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .donations {
+    padding: 1em 0;
+  }
+  .contributors {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 800px) {
+  .donations {
+      padding: 5em 17%;
+  }
+  .contributors {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .contributors {
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .contributors {
+      padding-left: 150px;
+      padding-right: 150px;
+    }
 }
