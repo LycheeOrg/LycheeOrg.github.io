@@ -354,6 +354,12 @@ hr {
     background: #1d1d1d
 }
 
+@media (min-width:641px) {
+    .hidden__desktop {
+        display: none
+    }
+}
+
 .header {
     display: -webkit-box;
     display: -ms-flexbox;

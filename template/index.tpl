@@ -20,6 +20,15 @@
 
                     </div>
                 </div>
+                <div class="header__column hidden__desktop">
+                    <div class="align align--right">
+
+                        <p class="header__text">
+                            <a href="docs/" class="hidden__mobile">Docs</a><a href="https://github.com/LycheeOrg/Lychee">GitHub</a>
+                        </p>
+
+                    </div>
+                </div>
                 <div class="header__column">
                     <div class="align align--right">
 
