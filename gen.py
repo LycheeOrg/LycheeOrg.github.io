@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
 # this script will directly use the version.md from Lychee to determine the current version
-import pytest
 import shutil
 import urllib.request
 import markdown
 from git import Repo
-from utils.tools import read, save, bcolors
 from markdown.extensions.toc import TocExtension
+from utils.tools import read, save, bcolors
 
 
 def numberify_version(v):
