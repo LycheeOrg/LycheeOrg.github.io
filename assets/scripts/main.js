@@ -14,16 +14,16 @@ function selectFeature(t) {
 	const c = document.querySelector(".showcase__feature[data-id='" + t + "']");
 	windowContent.src = o;
 	document.querySelectorAll(".showcase__feature").forEach(
-		function(t) {
-			t.classList.remove("showcase__feature--active")
+		function(f) {
+			f.classList.remove("showcase__feature--active")
 		}
 	);
-	
+
 	c.classList.add("showcase__feature--active");
-};
-i = setInterval(function() {
+}
+const i = setInterval(function() {
 	selectFeature(nextFeatureId())
-},
+}
 4e3);
 document.querySelectorAll(".showcase__feature").forEach(
 	function(feature) {
