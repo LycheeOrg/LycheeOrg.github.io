@@ -121,6 +121,15 @@
 			</span>
 		</p>
 
+		<p class="contributors">
+			<img class="avatar" src="https://avatars.githubusercontent.com/u/3878010?s=400&v=4">
+			<span>
+				bennetscience (Brian)<br>
+				<a href="https://github.com/bennetscience">GitHub</a>
+				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
+			</span>
+		</p>
+
 	</div>
 
 </div>
