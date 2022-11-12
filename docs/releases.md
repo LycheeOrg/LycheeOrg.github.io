@@ -32,7 +32,7 @@
 
 ### v4.6.2
 
-Released on Nov XX, 2022
+Released on Nov 12, 2022
 
 #### IMPORTANT
 
@@ -43,8 +43,10 @@ Released on Nov XX, 2022
 * `new` #1519 : Adopt new modern dialog
 * `fixes` #1494 : Consolidate localization
 * `new` #1558 : Add option to skip diagnostic checks
-* `new` #1469: Upgrade to Laravel 9 + switch to Laragear/WebAuthn
+* `new` #1469 : Upgrade to Laravel 9 + switch to Laragear/WebAuthn
 * `new` #1564 : Add option to append tags
+* `fixes` #1581 : Fixes files installation if no Git repo is available
+* `fixes` #1478 : Fixes smart albums rights
 
 ### v4.6.1
 
