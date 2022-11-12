@@ -26,7 +26,7 @@
 </div>
 
 <!-- JS -->
-<script src="assets/bower/skrollr/dist/skrollr.min.js"></script>
+<script src="assets/vendor/skrollr.js"></script>
 <script src="assets/scripts/main.js"></script>
 
 </body>

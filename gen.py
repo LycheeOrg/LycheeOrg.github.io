@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
 # this script will directly use the version.md from Lychee to determine the current version
-import pytest
 import shutil
 import urllib.request
 import markdown
 from git import Repo
-from utils.tools import read, save, bcolors
 from markdown.extensions.toc import TocExtension
+from utils.tools import read, save, bcolors
 
 
 def numberify_version(v):
@@ -32,12 +31,12 @@ def generate_base():
     footer = read('template/footer.tpl')
     update = read('template/update.tpl')
 
-    index_full = head % version
-    index_full += index % version
+    index_full = head % (version, version)
+    index_full += index
     index_full += footer
 
-    support_full = head % version
-    support_full += support % version
+    support_full = head % (version, version)
+    support_full += support
     support_full += footer
 
     update_full = update % numberify_version(version)
