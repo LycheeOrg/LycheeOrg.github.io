@@ -27,17 +27,6 @@
 			</span>
 		</p>
 
-
-		<p class="contributors">
-			<img class="avatar" src="https://avatars.githubusercontent.com/u/1869257?s=400&v=4">
-			<span>
-				tmp-hallenser<br>
-				<a href="https://github.com/tmp-hallenser">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
-			</span>
-		</p>
-
-
 		<p class="contributors">
 			<img class="avatar" src="https://avatars.githubusercontent.com/u/16415200?s=400&v=4">
 			<span>
@@ -65,49 +54,48 @@
 			</span>
 		</p>
 
+	</div>
+	<h1>Past Contributors</h1>
+	<h4>Thank you for your help!</h4>
+	<div class="contributors_list">
+
+		<p class="contributors">
+			<img class="avatar" src="https://avatars.githubusercontent.com/u/1869257?s=400&v=4">
+			<span>
+				tmp-hallenser<br>
+				<a href="https://github.com/tmp-hallenser">GitHub</a>
+			</span>
+		</p>
+
 		<p class="contributors">
 			<img class="avatar" src="https://avatars.githubusercontent.com/u/398496?s=400&v=4">
 			<span>
 				LudovicRousseau (Ludovic Rousseau)<br>
 				<a href="https://github.com/LudovicRousseau">GitHub</a>
-				- <a class="donate"
-					href="https://www.blockchain.com/btc/address/14iqwd2wEATig6JJD6zwkpvq7AYaECgtng"><i
-						class="fab fa-bitcoin"></i> Donate</a>
 			</span>
 		</p>
-
 
 		<p class="contributors">
 			<img class="avatar" src="https://avatars.githubusercontent.com/u/1853884?s=400&v=4">
 			<span>
 				roblandry<br>
 				<a href="https://github.com/roblandry">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
 			</span>
 		</p>
-		
+
 		<p class="contributors">
 			<img class="avatar" src="https://avatars.githubusercontent.com/u/3135216?s=96&v=4">
 			<span>
 				alex-phillips<br>
 				<a href="https://github.com/alex-phillips">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
 			</span>
 		</p>
 
-
-
-
-	</div>
-	<h1>Past Contributors</h1>
-	<h4>Thank you for your help!</h4>
-	<div class="contributors_list">
 		<p class="contributors">
 			<img class="avatar" src="https://avatars.githubusercontent.com/u/129883?s=400&v=4">
 			<span>
 				hermzz (Hermann Käser)<br>
 				<a href="https://github.com/hermzz">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
 			</span>
 		</p>
 
@@ -117,7 +105,6 @@
 			<span>
 				clementlamoureux (Cl&eacute;ment Lamoureux)<br>
 				<a href="https://github.com/clementlamoureux">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
 			</span>
 		</p>
 
@@ -126,7 +113,6 @@
 			<span>
 				bennetscience (Brian)<br>
 				<a href="https://github.com/bennetscience">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
 			</span>
 		</p>
 
