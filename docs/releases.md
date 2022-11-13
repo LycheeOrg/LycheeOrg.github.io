@@ -38,7 +38,7 @@ Released on Nov 12, 2022
 
 - This update contains an upgrade of U2F packages with a very different core, as a consequence any U2F credentials stored have been destroyed and will need to be registered again.
 
-## Changes
+#### Changes
 
 * `new` #1519 : Adopt new modern dialog
 * `fixes` #1494 : Consolidate localization
