@@ -23,7 +23,7 @@ function selectFeature(t) {
 }
 const i = setInterval(function() {
 	selectFeature(nextFeatureId())
-}
+},
 4e3);
 document.querySelectorAll(".showcase__feature").forEach(
 	function(feature) {
