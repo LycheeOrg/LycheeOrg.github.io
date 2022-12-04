@@ -72,10 +72,12 @@ pages_title['settings'] = 'Settings'
 pages_title['keyboard'] = 'Keyboard Shortcuts'
 pages_title['advanced-setups'] = 'Advanced Setups'
 
-pages_title['faq'] = 'Frequently Asked Question'
-pages_title['api'] = 'API Documentation'
+pages_title['faq_general'] = 'General'
+pages_title['faq_installation'] = 'Installation, migration, upgrade, update'
+pages_title['faq_troubleshooting'] = 'Troubleshooting'
 
 pages_title['contributions'] = 'Contribution Guide'
+pages_title['api'] = 'API Documentation'
 pages_title['architecture'] = 'Lychee logic overview'
 pages_title['structure'] = 'Directory Structure'
 pages_title['frontend'] = 'Front-end'
@@ -86,10 +88,10 @@ structure += [['Getting Started',
                ['installation', 'configuration', 'docker', 'update', 'upgrade']]]
 structure += [['Advanced Topics',
                ['settings', 'keyboard', 'advanced-setups']]]
-structure += [['Miscellaneous',
-               ['faq', 'api']]]
+structure += [['Frequently Asked Question',
+               ['faq_general', 'faq_installation', 'faq_troubleshooting']]]
 structure += [['Contributing',
-               ['contributions', 'architecture', 'structure', 'frontend']]]
+               ['contributions', 'api', 'architecture', 'structure', 'frontend']]]
 
 def gen_github_link(page):
     html = '<blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;'
