@@ -74,8 +74,8 @@ Add the following custom CSS to your `user.css` or via the settings menu:
 [data-id="public"] { display:none; }
 [data-id="starred"] { display:none; }
 [data-id="recent"] { display:none; }
-div.content > div.divider:first-child { display:none; }
-div.content > div.divider:nth-child(6) {
+div#lychee_view_content > div.divider:first-child { display:none; }
+div#lychee_view_content > div.divider:nth-child(6) {
     margin-top: 10px;
     border-top: 0;
     box-shadow: none;
