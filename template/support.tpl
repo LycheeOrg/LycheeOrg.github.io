@@ -116,6 +116,14 @@
 			</span>
 		</p>
 
+		<p class="contributors">
+			<img class="avatar" src="https://avatars.githubusercontent.com/u/499088?v=4">
+			<span>
+				electerious (Tobias Reich)<br>
+				<a href="https://github.com/electerious">GitHub</a>
+			</span>
+		</p>
+
 	</div>
 
 </div>
