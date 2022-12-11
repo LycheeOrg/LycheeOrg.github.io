@@ -172,6 +172,8 @@ To use Redis, you need the [PhpRedis](https://github.com/phpredis/phpredis) PHP 
 
 |Option|Description|
 |---|---|
+|`REDIS_SCHEME`|Redis connection scheme (default `tcp`, other option `unix`)|
+|`REDIS_PATH`|Redis Unix socket path|
 |`REDIS_HOST`|Redis host|
 |`REDIS_PASSWORD`|Redis password|
 |`REDIS_PORT`|Redis port|
