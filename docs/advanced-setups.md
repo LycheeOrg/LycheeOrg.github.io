@@ -176,6 +176,12 @@ Their primary goal is to provide easy-to-use and streamlined Docker images with 
 
 You can find the corresponding Lychee image [here](https://fleet.linuxserver.io/image?name=linuxserver/lychee).
 
+### With Yunohost (Free)
+
+[Yunohost](https://yunohost.org/) is a simple operating system for self-hosting your applications.
+[Lychee is available from their app store](https://yunohost.org/de/app_lychee) and can be installed by clicking [this installation link](https://install-app.yunohost.org/?app=lychee).
+You can find the source code of the app under <https://github.com/YunoHost-Apps/lychee_ynh>.
+
 ### With Cloudron (Paid)
 
 Cloudron is a complete solution for running apps on your server and keeping them up-to-date and secure.
