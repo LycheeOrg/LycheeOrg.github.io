@@ -3,7 +3,7 @@
 <div class="footer__column">
   <div class="align align--left">
 
-    <p>Made by <a class="footer__link" href="https://github.com/LycheeOrg">LycheeOrg</a></p>
+    <p>Maintained by <a class="footer__link" href="https://github.com/LycheeOrg">LycheeOrg</a></p>
 
   </div>
 </div>

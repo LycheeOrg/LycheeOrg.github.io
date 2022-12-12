@@ -60,6 +60,14 @@
 	<div class="contributors_list">
 
 		<p class="contributors">
+			<img class="avatar" src="https://avatars.githubusercontent.com/u/499088?v=4">
+			<span>
+				electerious (Tobias Reich) - Creator<br>
+				<a href="https://github.com/electerious">GitHub</a>
+			</span>
+		</p>
+
+		<p class="contributors">
 			<img class="avatar" src="https://avatars.githubusercontent.com/u/1869257?s=400&v=4">
 			<span>
 				tmp-hallenser<br>
@@ -113,14 +121,6 @@
 			<span>
 				bennetscience (Brian)<br>
 				<a href="https://github.com/bennetscience">GitHub</a>
-			</span>
-		</p>
-
-		<p class="contributors">
-			<img class="avatar" src="https://avatars.githubusercontent.com/u/499088?v=4">
-			<span>
-				electerious (Tobias Reich)<br>
-				<a href="https://github.com/electerious">GitHub</a>
 			</span>
 		</p>
 
