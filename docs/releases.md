@@ -30,6 +30,40 @@
 
 ## Version 4
 
+### v4.6.4
+
+Released on Dec 25, 2022
+
+#### IMPORTANT
+
+- This release does significant changes at the database level, do make sure you have a back-up available if necessary.
+
+#### Changes
+
+* `fixes` #1590 : Fix list of shares by @nagmat84
+* `new` #1594 : Add flags to command by @qwerty287
+* `new` #1591 : Add API to change upload date & fix API token auth by @qwerty287
+* `fixes` #1598 : Fix remove album cover throwing 403 by @ildyria
+* `new` #1522 : Merge `gallery`, `view` and `frame` into a Unified Frontend by @nagmat84
+  > This will require adapting your personal user.css
+* `new` #1562 : Refactor box model by @nagmat84
+  > This will require adapting your personal user.css
+* `new` #1611 : Checks if Webp is available for GD in diagnostics by @ildyria
+* `new` #1607 : Smart album - On This Day - new feature by @aldjordje
+  > Create a smart album which will show every day of the year the pictures that were taken on that specific day in the past.
+* `new` #1619 : Add option to enable-disable smart albums in the back-end by @ildyria
+  > Allows complete disabling of smart albums rather than using CSS trick.
+* `new` #1632 : Add Unix socket support to Redis by @r7l
+* `new` #1628 : Versioning code refactoring by @ildyria
+* `fixes` #1653 : Full URL for metadata by @qwerty287
+  > Fixes a bug where images only provided incomplete path in embeded previews.
+* `fixes` #1649 : Remove and clean up unused files by @qwerty287
+* `new` #1655 : Add number of foreign key check and listing option by @ildyria
+* `new` #1539 : Apply rights naming convention by @ildyria
+  > First step in direction of supporting multiple acces rights on albums.
+* `new` #1602 : Create admin during installation, allow multiple admins by @qwerty287
+* `fixes` #1662 : Remove (broken and unused) installer scripts by @qwerty287
+
 ### v4.6.2
 
 Released on Nov 12, 2022
