@@ -31,12 +31,11 @@
 ## Version 4
 
 ### v4.6.5
+#### LAST SUPPORT FOR PHP 8.0
 
 Released on Dec 26, 2022
 
-#### IMPORTANT
-
-- This release does significant changes at the database level, do make sure you have a back-up available if necessary.
+#### Changes
 
 * `fixes` #1665 : Fix migration for postgre users by @ildyria
 * `new` #1667 : add setting to allow username change (default to true) by @ildyria
