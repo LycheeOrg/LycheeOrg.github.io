@@ -31,7 +31,7 @@
 ## Version 4
 
 ### v4.6.5
-#### LAST SUPPORT ON PHP 8.0
+#### LAST SUPPORT FOR PHP 8.0
 
 Released on Dec 26, 2022
 
