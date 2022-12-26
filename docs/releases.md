@@ -30,6 +30,16 @@
 
 ## Version 4
 
+### v4.6.5
+
+Released on Dec 26, 2022
+
+#### IMPORTANT
+
+- This release does significant changes at the database level, do make sure you have a back-up available if necessary.
+
+* `fixes` #1665 : Fix migration for postgre users by @ildyria
+* `new` #1667 : add setting to allow username change (default to true) by @ildyria
 ### v4.6.4
 
 Released on Dec 25, 2022
