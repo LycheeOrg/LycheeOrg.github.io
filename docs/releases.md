@@ -37,7 +37,7 @@ Released on Dec 26, 2022
 
 #### Changes
 
-* `fixes` #1665 : Fix migration for postgre users by @ildyria
+* `fixes` #1665 : Fix migration for PostgreSQL users by @ildyria
 * `new` #1667 : add setting to allow username change (default to true) by @ildyria
 ### v4.6.4
 
