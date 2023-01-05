@@ -22,4 +22,4 @@ pip install -r requirements.txt
 
 Run `make` to generate the HTML files, which can then be found in `build/`.
 
-[build-status-shield]: https://img.shields.io/github/workflow/status/LycheeOrg/LycheeOrg.github.io/Build
+[build-status-shield]: https://img.shields.io/github/actions/workflow/status/LycheeOrg/LycheeOrg.github.io/CI.yml?branch=master
