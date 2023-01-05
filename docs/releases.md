@@ -30,6 +30,30 @@
 
 ## Version 4
 
+### v4.7.0
+
+#### PHP 8.1+ REQUIRED
+
+Released on Jan 4, 2023
+
+#### Changes
+
+* `new` #1631 : Customizable album decorations by @evoludolab
+  > Allows to change the layer symbol in the top right corner of albums which indicated
+  > the existence of sub-albums to a counter, also support counting pictures or not displaying any symbol at all.
+  > The layer symbol is still being used by default.
+* `new` #1618 : Use Enum to enforce stricter types (⚠ php 8.1) by @ildyria
+  > This reduces the risk of bugs.
+* `rm` #1673 : Nuke demo generator, does not reflect the latest version. by @ildyria
+  > This removes the /demo page which was used to generate AJAX response in order to mock a
+  > server response on the [demo](https://lycheeorg.github.io/demo/) page of Lychee.
+* `new` #1671 : Ensure php version is correct prior migrations by @ildyria
+  > Before running any migration, we are not verifying that the required minimum version of PHP is used.
+* `fixes` #1684 : Fix on HasAdminUser by @ildyria
+  > When updating to 4.6.5, Users of the Migrate web interface where not able to procced.
+  > This is now resolved.
+
+
 ### v4.6.5
 #### LAST SUPPORT FOR PHP 8.0
 
