@@ -189,6 +189,15 @@ To use Redis, you need the [PhpRedis](https://github.com/phpredis/phpredis) PHP 
 |`AWS_SECRET_ACCESS_KEY`|Secret access key for AWS|
 |`AWS_DEFAULT_REGION`|Default AWS region|
 
+### Authentication Guards
+
+This defines how the users are actually retrieved out of your database or other storage mechanisms used by this application to persist your user's data.
+
+|Name|Description|
+|---|---|
+|`LYCHEE_AUTH_GUARD`|Authentication Guard (default `session-or-token`, other options `session` or `token`)|
+
+
 ### Session and security options
 
 Sessions are stored in the same locations as [cache](#cache). You change the used driver using `SESSION_DRIVER`.
