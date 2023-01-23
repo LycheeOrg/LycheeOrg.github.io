@@ -191,8 +191,7 @@ To use Redis, you need the [PhpRedis](https://github.com/phpredis/phpredis) PHP 
 
 ### Authentication Guards
 
-Support for token based authentication like basic auth. Enabled by default.
-Disable when running Lychee behind 3rd party managed authentication.
+Support for token based authentication used by API requests.
 
 |Name|Description|
 |---|---|
