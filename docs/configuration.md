@@ -189,6 +189,15 @@ To use Redis, you need the [PhpRedis](https://github.com/phpredis/phpredis) PHP 
 |`AWS_SECRET_ACCESS_KEY`|Secret access key for AWS|
 |`AWS_DEFAULT_REGION`|Default AWS region|
 
+### Authentication Guards
+
+Support for token based authentication used by API requests.
+
+|Name|Description|
+|---|---|
+|`ENABLE_TOKEN_AUTH`|Authentication Guard token support|
+
+
 ### Session and security options
 
 Sessions are stored in the same locations as [cache](#cache). You change the used driver using `SESSION_DRIVER`.
