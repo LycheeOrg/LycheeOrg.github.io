@@ -81,6 +81,7 @@ pages_title['api'] = 'API Documentation'
 pages_title['architecture'] = 'Lychee logic overview'
 pages_title['structure'] = 'Directory Structure'
 pages_title['frontend'] = 'Front-end'
+pages_title['livewire'] = 'Livewire Front-end (alpha)'
 
 structure = [['Prologue',
               ['org', 'releases']]]
@@ -91,7 +92,7 @@ structure += [['Advanced Topics',
 structure += [['Frequently Asked Question',
                ['faq_general', 'faq_installation', 'faq_troubleshooting']]]
 structure += [['Contributing',
-               ['contributions', 'api', 'architecture', 'structure', 'frontend']]]
+               ['contributions', 'api', 'architecture', 'structure', 'frontend', 'livewire']]]
 
 def gen_github_link(page):
     html = '<blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;'
