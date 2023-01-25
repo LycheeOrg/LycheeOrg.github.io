@@ -130,9 +130,10 @@ With these tools at hand, we are now able to understand a bit better the structu
 
 ## Lychee Livewire Front-end
 
-A high-level view is presented in the following picture (at the time of writing).
+A high-level view is presented in the following picture (at the time of writing, open full image for better view).
 
-[![](img/Livewire Class Diagram.jpg)](img/Livewire Class Diagram.jpg)
+<!-- [![](img/Livewire Class Diagram.jpg)](img/Livewire Class Diagram.jpg) -->
+[![](img/Livewire-component-diagram.png)](img/Livewire-component-diagram.png)
 
 For now the entry point is always `app/Http/Livewire/Pages/Fullpage.php`.
 The path of the code is the following:
