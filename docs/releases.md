@@ -30,6 +30,74 @@
 
 ## Version 4
 
+
+### v4.7.3
+
+Pre-released on April 18, 2023
+
+#### Changes
+
+* `fixes` #1786 : Update dependencies (including php-exif) by @qwerty287
+* `new` #1787 : Remove requirement of Auth in photo upload, pass ownerId as argument by @ildyria
+* `new` #1785 : Add jobs processing by @ildyria
+* `new` #1788 : Add Job History by @ildyria
+* `fixes` #1789 : doc blocks + fix deprecation utf8_encoding by @ildyria
+* `new` #1793 : Use enum instead of constants for SmartAlbumTypes by @ildyria
+* `fixes` #1791 : Album creation no longer depends on Auth by @ildyria
+* `fixes` #1797 : Fix a wrong help text by @Anduin2017
+* `fixes` #1780 : Albums tagged NSFW do not appear in album list, ignoring visible parameter by @ildyria
+* `fixes` #1765 , #1794 : Share button is not visible on public albums by @ildyria
+
+### v4.7.2
+
+Pre-released on Mar 8, 2023
+
+#### Changes
+
+* `new` #1755 : Ship an empty custom.js to prevent spamming the console (#1753) by @nicokaiser
+* `fixes` #1756 : Fixes locale not working (#1754) by @ildyria
+* `fixes` #1758 : Set noindex for error responses by @nicokaiser
+* `fixes` #1759 : Fixes unknown orientation in GdHandler by @wladif
+* `new` #1766 : Add setting `auto_fix_orientation` to enable auto image rotation by @wladif
+* `fixes` #1764 : Migrate to Laravel 10 by @ildyria
+* `new` #1769 : Compile WebAuthn.js into frontend.js by @qwerty287
+
+### v4.7.1
+
+#### DO NOT USE - BROKEN LOCALE.
+
+Pre-released on Feb 5, 2023
+
+#### Changes
+
+* `fixes` #1688 : Update French.php by @davidbercot
+* `fixes` #1674 : Share button not working by @ildyria
+* `fixes` #1630 : 2FA not working by @ildyria
+* `new` #1650 : Allow to store all files in `storage` by @qwerty287
+* `fixes` #1698 : Fix 2fa tests by @ildyria
+* `fixes` #1702 : Fix cache busting on user.css by @ildyria
+* `fixes` #1701 : fix migration when photo do not have an album by @ildyria
+* `fixes` #1705 : fix exception missing driver by @ildyria
+* `fixes` #1706 : Simple composer update + fix php8.2 warning on formatting by @ildyria
+* `new` #1707 : allow forcing HTTPS scheme by @ildyria
+  > When serving behind a reverse proxy, the blade template engine think we are using HTTP.
+  > This change adds a new `.env` configuration variable enforcing HTTPS scheme.
+* `fixes` #1713 : update config doc + sync front + dusting by @ildyria
+* `fixes` #1703 : Fixes #1703 by @ildyria
+  > Updates were not properly applied because of precendence of versionning check.
+* `new` #1708 : Setting to make `On This Day` smart album public by @aldjordje
+* `fixes` #1722 : Fix sync default user by @ildyria
+* `new` #1724 : Add configuration option to set auth guard driver by @r7l
+* `fixes` #1730 : Fix wording for authentication guard option by @r7l
+* `fixes` #1728 : Avoid showing errors in tests when they are expected by @ildyria
+* `new` #1738 : Fix URLs in RSS feeds (#1732) by @nicokaiser
+* `new` #1741 : Set theme-color on frontend template (#1740) by @nicokaiser
+* `new` #1697 : execute custom js from custom by @cshyam1892
+* `fixes` #1733 : migrate locales from 'app/Locale/' to 'lang/', drop Lang Facade by @ildyria
+* `new` #1726 : use RuleSets instead of directly rule property by @ildyria
+* `new` #1668 : DTO are less supported, and moving to Laravel Resources by @ildyria
+
+
 ### v4.7.0
 
 #### PHP 8.1+ REQUIRED
@@ -44,7 +112,7 @@ Released on Jan 4, 2023
   > The layer symbol is still being used by default.
 * `new` #1618 : Use Enum to enforce stricter types (⚠ php 8.1) by @ildyria
   > This reduces the risk of bugs.
-* `rm` #1673 : Nuke demo generator, does not reflect the latest version. by @ildyria
+* `rm` #1673 : Nuke demo generator, does not reflect the latest version by @ildyria
   > This removes the /demo page which was used to generate AJAX response in order to mock a
   > server response on the [demo](https://lycheeorg.github.io/demo/) page of Lychee.
 * `new` #1671 : Ensure php version is correct prior migrations by @ildyria
