@@ -9,7 +9,9 @@ See:
 - [routes/web.php](https://github.com/LycheeOrg/Lychee/blob/master/routes/web.php)
 - [routes/admin.php](https://github.com/LycheeOrg/Lychee/blob/master/routes/admin.php)
 
-### `php/index.php`, `/api/Session::init`
+Note that for all request, **'Accept: application/json' is mandatory** and that without mention of the contrary **'Content-Type: application/json' is also mandatory**.
+
+### `/api/Session::init`
 
 - **POST** request
 - 0 arguments
@@ -253,11 +255,12 @@ $request->validate([
 
 - **POST** request
 - *upload* protection
-- the `0` argument contains the file to upload.
+- the `file` argument contains the file to upload.
+- 'Content-Type: multipart/form-data'
 ```php
 $request->validate([
     'albumID' => 'string|required',
-    '0' => 'required',
+    'file' => 'required',
 ]);
 ```
 
@@ -472,7 +475,7 @@ $request->validate([
 - **POST** request
 - *admin* protection
 
-### `/api/search`
+### `/api/Search::run`
 
 - **POST** request
 ```php
