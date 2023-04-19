@@ -33,7 +33,7 @@
 
 ### v4.7.3
 
-Pre-released on April 18, 2023
+Released on April 19, 2023
 
 #### Changes
 
