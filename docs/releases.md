@@ -30,6 +30,70 @@
 
 ## Version 4
 
+### v4.9.2
+
+Released on May 22, 2023
+
+#### Changes
+
+* `fixes` #1861 : Remove hashes from CSP when using log-viewer by @ildyria
+* `fixes` #1862 : Remove duplicate link. Tweak comment by @d7415
+
+### v4.9.1
+
+Released on May 19, 2023
+
+#### DO NOT USE - BROKEN LOGS (broken CSP).
+
+#### Changes
+
+* `fixes` #1856 : Fixes #1855 - update Makefile by @ildyria
+* `fixes` #1857 : Fix version 4.9 log-viewer paths hard coding by @ildyria
+
+### v4.9.0
+
+Released on May 18, 2023
+
+#### DO NOT USE - BROKEN LOGS (missing public files).
+
+#### Changes
+
+* `fixes` #1848 : Remove public option from album ordering: no longer supported by @ildyria
+* `fixes` #1850 : Fix SQL error on removing public status from album by @ildyria
+* `new` #1846 : Remove homemade Log solution, add support log-viewer by @ildyria
+
+### v4.8.1
+
+Released on May 15, 2023
+
+#### Changes
+
+* `new` #1826 : Improved support of migration very old versions (untestable code) by @ildyria
+* `new` #1821 : Add backend implementation to use file's last modified time by @wladif
+  > Now support last_modified_time when uploading file without exif data.
+* `fixes` #1828 : Fix left/right in photo view of tag albums by @ildyria
+* `new` #1827 : Support API documentation by @ildyria
+* `new` #1829 : Composer update + fix php stan complaints by @ildyria
+* `fixes` #1833 : fixes Mass assignment problem in Access Permissions by @ildyria
+
+
+
+### v4.8.0
+
+Released on May 5, 2023
+
+#### Changes
+
+* `new` #1792 : Use access permissions instead of base_album table to determine access rights by @ildyria
+
+
+### v4.7.4
+
+Released on May 4, 2023
+
+#### Changes
+
+* `new` #1819 : Make it possible to fetch random image without needing to be public & starred by @mingan666
 
 ### v4.7.3
 
@@ -64,9 +128,9 @@ Pre-released on Mar 8, 2023
 
 ### v4.7.1
 
-#### DO NOT USE - BROKEN LOCALE.
-
 Pre-released on Feb 5, 2023
+
+#### DO NOT USE - BROKEN LOCALE.
 
 #### Changes
 
@@ -100,9 +164,9 @@ Pre-released on Feb 5, 2023
 
 ### v4.7.0
 
-#### PHP 8.1+ REQUIRED
-
 Released on Jan 4, 2023
+
+#### PHP 8.1+ REQUIRED
 
 #### Changes
 
@@ -123,9 +187,10 @@ Released on Jan 4, 2023
 
 
 ### v4.6.5
-#### LAST SUPPORT FOR PHP 8.0
 
 Released on Dec 26, 2022
+
+#### LAST SUPPORT FOR PHP 8.0
 
 #### Changes
 
