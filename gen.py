@@ -115,7 +115,7 @@ def gen_sidebar(page):
             active = ''
             if pages_name == page:
                 active = " class='active'"
-            html += f"<li{active}><a href='{page}.html'>{pages_title[pages_name]}</a></li>\n"
+            html += f"<li{active}><a href='{pages_name}.html'>{pages_title[pages_name]}</a></li>\n"
         html += "</ul>\n"
 
     return html
