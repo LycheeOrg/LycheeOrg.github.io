@@ -75,6 +75,7 @@ pages_title['settings'] = 'Settings'
 pages_title['keyboard'] = 'Keyboard Shortcuts'
 pages_title['advanced-setups'] = 'Advanced Setups'
 pages_title['external_tracking'] = "External tracking with Matomo, Google Analytics & Co"
+pages_title['honeypot'] = "Honeypot and Teapots"
 
 pages_title['faq_general'] = 'General'
 pages_title['faq_installation'] = 'Installation, migration, upgrade, update'
@@ -92,7 +93,7 @@ structure = [['Prologue',
 structure += [['Getting Started',
                ['installation', 'configuration', 'docker', 'update', 'upgrade']]]
 structure += [['Advanced Topics',
-               ['settings', 'keyboard', 'advanced-setups', 'external_tracking']]]
+               ['settings', 'keyboard', 'advanced-setups', 'honeypot', 'external_tracking']]]
 structure += [['Frequently Asked Question',
                ['faq_general', 'faq_installation', 'faq_troubleshooting']]]
 structure += [['Contributing',
