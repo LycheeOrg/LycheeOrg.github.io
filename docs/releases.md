@@ -30,6 +30,25 @@
 
 ## Version 4
 
+### v4.9.3
+
+Released on Jun 25, 2023
+
+This releases introduces the ability to use external logging system.
+Please refer to [External tracking with Matomo, Google Analytics & Co](external_tracking.html) for examples.
+#### Changes
+
+* `new` #1870 : Allow script-src and connect-src configuration by @timo-reymann
+* `new` #1873 : Support files without extensions in importFromUrl by @wladif
+* `fixes` #1887 : Make fileTimeModified parameter optional in Photo::add by @ildyria
+* `fixes` #1853 : Fixes broken license editing by @ThanasisMpalatsoukas
+* `new` #1875 : add support for 418 response code for dubious queries by @ildyria
+* `fixes` #1868 : Can't remove album permissions by @ildyria
+* `fixes` #1883 : Optimizing sql and improved Log data by @ildyria
+* `fixes` #1882 : Improved csp rules for docs/api by @mingan666
+* `fixes` #1775 : Search with Chinese by @ThanasisMpalatsoukas
+* `new` #1898 : Improve explain on db_logging by @ildyria
+
 ### v4.9.2
 
 Released on May 22, 2023
