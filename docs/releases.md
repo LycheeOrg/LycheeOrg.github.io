@@ -30,6 +30,17 @@
 
 ## Version 4
 
+### v4.9.4
+
+Released on Jun 28, 2023
+
+#### Changes
+
+* `new` #1901 : Make exceptions in one log line by @ildyria 
+* `fixes` #1884 : Fixes wrong redirection when Lychee is used in a subfolder by @ildyria 
+* `new` #1899 : Improved speed on global table by @ildyria 
+* `new` #1908 : Update dependencies by @qwerty287 
+
 ### v4.9.3
 
 Released on Jun 25, 2023
