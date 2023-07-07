@@ -1,4 +1,5 @@
 ## Bug Reports
+
 To encourage active collaboration, Lychee strongly encourages pull requests, not just bug reports. "Bug reports" may also be sent in the form of a pull request containing a failing test.
 
 However, if you file a bug report, your issue should contain a title and a clear description of the issue. You should also include as much relevant information as possible to demonstrates the issue. We provide a template and expect it to be respected. Most bug report not following it will likely be closed. The goal of a bug report is to make it easy for yourself - and others - to replicate the bug and develop a fix.
@@ -6,10 +7,11 @@ However, if you file a bug report, your issue should contain a title and a clear
 Remember, bug reports are created in the hope that others with the same problem will be able to collaborate with you on solving it. Do not expect that the bug report will automatically see any activity or that others will jump to fix it. Creating a bug report serves to help yourself and others start on the path of fixing the problem. If you want to chip in, you can help out by fixing any bugs listed in our [issue trackers][1].
 
 ## Support Questions
-Lychee's GitHub issue trackers are not intended to provide Lychee help or support. Please instead, contact us directly [here][2] on gitter.
 
+Lychee's GitHub issue trackers are not intended to provide Lychee help or support. Please instead, create a discussion [here][3] or contact us directly on [gitter][2].
 
 ## Security Vulnerabilities
+
 Lychee uses a rolling release system, **we do not backport fixes to previously released versions**.
 Those are the versions where we accept vulnerability reports.
 
@@ -22,8 +24,17 @@ Those are the versions where we accept vulnerability reports.
 If you discover a security vulnerability within Lychee, please contact us directly on [Gitter][2]. All security vulnerabilities will be promptly addressed.
 
 ## Core Development Discussion
+
 You may propose new features or improvements of existing Lychee behavior in the [issue board][1]. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
 
+## Joining the Team
+
+You would like to support Lychee and help us to push it further? Join the team!
+Your passion towards Lychee will be measured by how active you are on the project.
+A minimum of 3 pull request merged is to be expected before recieving the invitation.
+However exceptions may apply (e.g. you want to rewrite 100% of the front-end to VueJS).
+
+Contact us on [Gitter][2] if you would like to know more! :)
 
 ## How to properly submit a pull-request to Lychee?
 
@@ -46,7 +57,7 @@ git commit -m "<mesage-of-what-is-going-on>"
 git push -u
 ```
 
-You can then open a [pull request][3].
+You can then open a [pull request][4].
 
 ### Back-end and Front-end
 As you may have noticed already we have two repositories to manage separately the front-end and the back-end.
@@ -187,5 +198,6 @@ The Lychee code of conduct is the same as Laravel's code of conduct:
 
 [1]: https://github.com/LycheeOrg/Lychee/issues
 [2]: https://gitter.im/LycheeOrg/Lobby
-[3]: https://github.com/LycheeOrg/Lychee/pulls
+[3]: https://github.com/LycheeOrg/Lychee/discussions
+[4]: https://github.com/LycheeOrg/Lychee/pulls
 

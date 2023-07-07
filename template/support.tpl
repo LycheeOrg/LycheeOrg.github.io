@@ -28,24 +28,6 @@
 		</p>
 
 		<p class="contributors">
-			<img class="avatar" src="https://avatars.githubusercontent.com/u/16415200?s=400&v=4">
-			<span>
-				kamil4 (Kamil Iskra)<br>
-				<a href="https://github.com/kamil4">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
-			</span>
-		</p>
-
-		<p class="contributors">
-			<img class="avatar" src="https://avatars.githubusercontent.com/u/7428426?s=400&v=4">
-			<span>
-				nagmat84 (Matthias Nagel)<br>
-				<a href="https://github.com/nagmat84">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
-			</span>
-		</p>
-
-		<p class="contributors">
 			<img class="avatar" src="https://avatars.githubusercontent.com/u/80460567?v=4">
 			<span>
 				qwerty287<br>
@@ -62,8 +44,27 @@
 		<p class="contributors">
 			<img class="avatar" src="https://avatars.githubusercontent.com/u/499088?v=4">
 			<span>
-				electerious (Tobias Reich) - Creator<br>
+				electerious (Tobias Reich)<br>
 				<a href="https://github.com/electerious">GitHub</a>
+			</span>
+			<span class="badge" style="background:#34d8eb;">Creator</span>
+		</p>
+
+		<p class="contributors">
+			<img class="avatar" src="https://avatars.githubusercontent.com/u/7428426?s=400&v=4">
+			<span>
+				nagmat84 (Matthias Nagel)<br>
+				<a href="https://github.com/nagmat84">GitHub</a>
+			</span>
+			<span class="badge" style="background:gold;">Rock star</span>
+		</p>
+
+		<p class="contributors">
+			<img class="avatar" src="https://avatars.githubusercontent.com/u/16415200?s=400&v=4">
+			<span>
+				kamil4 (Kamil Iskra)<br>
+				<a href="https://github.com/kamil4">GitHub</a>
+				<span class="badge" style="background:#34eb80;">Top contributor</span>
 			</span>
 		</p>
 
