@@ -8,6 +8,12 @@ Since April 1st, 2018 this project has moved to it's own Organisation (LycheeOrg
 
 We do not have schedule for releases such as every 6 months. Our releases should never contain breaking changes. That being said, we do not provide backward compatibility or hotfix for older versions. The `master` branch is the bleeding edge of Lychee. It contains the latest bugfixes and newest features. Once a sufficient number of hotfixes or new features has been merged into `master` we create a new release.
 
+Generally, we follow semantic versioning: Major.minor.patch.
+
+- Major releases provide a breaking change or significant refactoring of the full project (_e.g._, migration to a new front-end).
+- minor releases have a database structural update or provide a notable change.
+- patches for the rest.
+
 ## Security
 
 In order to ensure maximum security some actions on Lychee are restricted by an admin authentication. The username and password are stored hashed with bcrypt in the database.

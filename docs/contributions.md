@@ -2,18 +2,18 @@
 
 To encourage active collaboration, Lychee strongly encourages pull requests, not just bug reports. "Bug reports" may also be sent in the form of a pull request containing a failing test.
 
-However, if you file a bug report, your issue should contain a title and a clear description of the issue. You should also include as much relevant information as possible to demonstrates the issue. We provide a template and expect it to be respected. Most bug report not following it will likely be closed. The goal of a bug report is to make it easy for yourself - and others - to replicate the bug and develop a fix.
+However, if you file a bug report, your issue should contain a title and a clear description of the issue. You should also include as much relevant information as possible to demonstrate the issue. We provide a template and expect it to be respected. Most bug reports that do not follow it will likely be closed. The goal of a bug report is to make it easy for yourself &mdash;and others&mdash; to replicate the bug and develop a fix.
 
-Remember, bug reports are created in the hope that others with the same problem will be able to collaborate with you on solving it. Do not expect that the bug report will automatically see any activity or that others will jump to fix it. Creating a bug report serves to help yourself and others start on the path of fixing the problem. If you want to chip in, you can help out by fixing any bugs listed in our [issue trackers][1].
+Remember, bug reports are created in the hope that others with the same problem will be able to collaborate with you on solving it. Do not expect that the bug report will automatically see any activity or that others will jump in to fix it. Creating a bug report serves to help yourself and others start on the path to fixing the problem. If you want to chip in, you can help out by fixing any bugs listed in our [issue trackers][1].
 
 ## Support Questions
 
-Lychee's GitHub issue trackers are not intended to provide Lychee help or support. Please instead, create a discussion [here][3] or contact us directly on [gitter][2].
+Lychee's GitHub issue trackers are not intended to provide Lychee help or support. Please instead create a discussion [here][3] or contact us directly on [gitter][2].
 
 ## Security Vulnerabilities
 
 Lychee uses a rolling release system, **we do not backport fixes to previously released versions**.
-Those are the versions where we accept vulnerability reports.
+Those are the versions in which we accept vulnerability reports.
 
 | Version      | Supported|
 |--------------|----------|
@@ -25,20 +25,20 @@ If you discover a security vulnerability within Lychee, please contact us direct
 
 ## Core Development Discussion
 
-You may propose new features or improvements of existing Lychee behavior in the [issue board][1]. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
+You may propose new features or improvements to existing Lychee behavior in the [issue board][1]. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
 
 ## Joining the Team
 
-You would like to support Lychee and help us to push it further? Join the team!
-Your passion towards Lychee will be measured by how active you are on the project.
-A minimum of 3 pull request merged is to be expected before recieving the invitation.
-However exceptions may apply (e.g. you want to rewrite 100% of the front-end to VueJS).
+You would like to support Lychee and help us push it further? Join the team!
+Your passion for Lychee will be measured by how active you are on the project.
+A minimum of three pull requests merged is to be expected before receiving the invitation.
+However, exceptions may apply (e.g., if you want to rewrite 100% of the front-end to VueJS).
 
 Contact us on [Gitter][2] if you would like to know more! :)
 
 ## How to properly submit a pull-request to Lychee?
 
-Pull request need to respect a few simple constraints described below which make the life of everyone easier.
+Pull requests need to respect a few simple constraints described below, which make everyone's life easier.
 
 ### Which Branch to use?
 When submitting a new feature or fixing a bug, please create a new branch from master:
@@ -60,9 +60,9 @@ git push -u
 You can then open a [pull request][4].
 
 ### Back-end and Front-end
-As you may have noticed already we have two repositories to manage separately the front-end and the back-end.
+As you may have noticed already, we have two repositories to manage separately: the front-end and the back-end.
 This was necessary at times to ensure the parallel development of Lychee version 4 and Lychee version 3.
-As a result, the process of submitting a PR which modified both sides (Lychee-front and Lychee) goes as follows:
+As a result, the process of submitting a PR that modifies both sides (Lychee-front and Lychee) goes as follows:
 
 1. we take the 2 PR.
 2. we review them both.
@@ -72,14 +72,14 @@ As a result, the process of submitting a PR which modified both sides (Lychee-fr
 6. Enjoy!
 
 ### Our Coding Style
-In order to ease the review of pull requests we adopt a uniform code style. Our Continuous Integration suite will 
-fail if the later is not respected.
+In order to ease the review of pull requests, we use a uniform code style. Our Continuous Integration suite will 
+fail if the latter is not respected.
 
 #### PHP
 
-Our coding style is defined by the `.php-ps` file, it is mostly the Symfony style but we use tabs instead of spaces.
+Our coding style is defined by the `.php-ps` file; it is mostly the Symfony style, but we use tabs instead of spaces.
 
-Before submitting a PR, we highly encourage you to do:
+Before submitting a PR, we highly encourage you to do the following:
 ```bash
 ./vendor/bin/php-cs-fixer fix -v --config=.php-cs-fixer.php
 # or
@@ -87,14 +87,14 @@ make formatting
 ```
 This will ensure that the code is consistent with our style.
 
-In order to make this less constraining, you can copy the `pre-commit` file in the root into the `.git/hooks` folder. This will execute the fixer to keep the consistency.
+In order to make this less constraining, you can copy the `pre-commit` file in the root into the `.git/hooks` folder. This will execute the fixer to maintain consistency.
 
 Our current configuration can be found [here](https://github.com/LycheeOrg/Lychee/blob/master/.php_cs).
-For details about the options you can have a look at the [php-cs-fixer-configurator](https://mlocati.github.io/php-cs-fixer-configurator)
+For details about the options, you can have a look at the [php-cs-fixer-configurator](https://mlocati.github.io/php-cs-fixer-configurator)
 
 #### Javascript
 
-Similarly to described above, you can format the code automatically with:
+Similarly to what was described above, you can format the code automatically with:
 
 ```bash
 npm run format
@@ -120,12 +120,12 @@ public function bind($abstract, $concrete = null, $shared = false)
 }
 ```
 
-In addition to code documentation, we highly encourage you to use the types system of php for the function arguments.
+In addition to code documentation, we highly encourage you to use the types system of PHP for the function arguments.
 This will increase the trust and safety of the code.
 
 ### Illustrated example
 
-As follows we present a simple pull request modifying the `readme.md`.
+As follows, we present a simple pull request modifying the `readme.md`.
 
 <ol>
 <li>Fork the repository.
@@ -133,7 +133,7 @@ As follows we present a simple pull request modifying the `readme.md`.
 <p><img alt="Screenshot" src="img/contribute1.png" /></p>
 </li>
 
-<li>select your own account as destination of the fork.
+<li>Select your own account as the destination of the fork.
 
 <p><img alt="Screenshot" src="img/contribute2.png" /></p>
 </li>
@@ -171,7 +171,7 @@ If possible, provide a summary of the changes done by the commit in the descript
 <p><img alt="Screenshot" src="img/contribute7.png" /></p>
 </li>
 
-<li>Fill-in and submit the pull request.
+<li>Fill in and submit the pull request.
 
 <ol style="margin-left:1em">
 <li>Make sure that the base repository is the one from <code>LycheeOrg</code> on the branch <code>master</code>.</li>
