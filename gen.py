@@ -74,7 +74,7 @@ pages_title['upgrade'] = 'Upgrade from v3'
 pages_title['settings'] = 'Settings'
 pages_title['keyboard'] = 'Keyboard Shortcuts'
 pages_title['advanced-setups'] = 'Advanced Setups'
-pages_title['external_tracking'] = "External tracking with Matomo, Google Analytics & Co"
+pages_title['external_tracking'] = "External tracking with Matomo,<br>Google Analytics & Co"
 pages_title['honeypot'] = "Honeypot and Teapots"
 
 pages_title['faq_general'] = 'General'

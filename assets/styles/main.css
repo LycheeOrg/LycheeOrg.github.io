@@ -840,6 +840,7 @@ hr {
     text-align: left;
     min-height: 100px;
     margin-bottom: 0px;
+    position:relative;
 }
 
 .contributors_list {
@@ -856,6 +857,16 @@ hr {
 .contributors span {
     display: inline-block;
     /* margin-left: 10px; */
+}
+
+.contributors .badge {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    border-radius:2rem;
+    font-weight:700;
+    padding-left: 1rem;
+    padding-right:1rem;
 }
 
 .contributors span img {
@@ -913,6 +924,10 @@ hr {
       padding-left: 80px;
       padding-right: 80px;
     }
+
+    .contributors .badge {
+        right: 80px;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -924,6 +939,10 @@ hr {
       padding-left: 80px;
       padding-right: 80px;
     }
+
+    .contributors .badge {
+        right: 80px;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -932,6 +951,11 @@ hr {
       padding-left: 100px;
       padding-right: 100px;
     }
+
+    .contributors .badge {
+        right: 100px;
+    }
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -940,4 +964,9 @@ hr {
       padding-left: 150px;
       padding-right: 150px;
     }
+
+    .contributors .badge {
+        right: 150px;
+    }
+    
 }
