@@ -30,6 +30,21 @@
 
 ## Version 4
 
+### v4.10.0
+
+Released on Aug 1, 2023
+
+#### Changes
+
+* `fixes` #1928 : Fix NSFW not toggling via Protection Panel by @ildyria
+* `new` #1933 : Improve translations to German by @CodingWithCard
+* `new` #1916 : Use Actions instead of direct call in controller by @ildyria
+* `fixes` #1919 : jobs can now also take string as input (upload in smart albums) by @ildyria
+* `fixes` #1922 : Add integrity DB check by @ildyria
+* `fixes` #1925 : Support ratio by @ildyria
+* `fixes` #1935 #1936 : Remove/Update OSM domain by @qwerty287
+* `fixes` #1942 : "Content-Security-Policy blocks blob requests required for Google Motion Pictures images"  by @Merlyn42
+
 ### v4.9.4
 
 Released on Jun 28, 2023
