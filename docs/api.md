@@ -11,4 +11,4 @@ See:
 
 Note that for all request, **'Accept: application/json' is mandatory** and that without mention of the contrary **'Content-Type: application/json' is also mandatory**.
 
-As of version 4.8.1, the api documentation is moved directly inside your own Lychee instance. It is accessible at the url [yourLycheeInstance.com/docs/api](https://example.com/docs/api).
+As of version 4.8.1, the api documentation is moved directly inside your own Lychee instance. It is accessible at the url `https://yourLycheeInstance.org/docs/api`.
