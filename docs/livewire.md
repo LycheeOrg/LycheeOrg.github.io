@@ -149,3 +149,11 @@ For this reason Livewire proposes the interface `Wireable` which requires two me
 The former will return the serialized version of the object and the latter will rebuild the object from the serialized version.
 
 Another option is to use Synthesizers. Examples which take care of AbstractAlbums and Photos are in `App/Livewire/Synth`;
+
+## Front-end reactivity
+
+While Livewire provides decent interaction, sometimes we do not need round trips to the server to change the displayed data.
+For this reason we use [Alpine.js](https://alpinejs.dev/start-here) which is bundled with Livewire.
+
+Alpine provies convenient tools to improve reactivity such as `x-on`, `x-bind`, `x-data`, `x-show`, `x-init`, `x-cloak`.
+We advise the reader to familiarize themselves with those as they are also used in the frontend.
