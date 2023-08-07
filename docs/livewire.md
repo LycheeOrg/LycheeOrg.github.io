@@ -155,5 +155,5 @@ Another option is to use Synthesizers. Examples which take care of AbstractAlbum
 While Livewire provides decent interaction, sometimes we do not need round trips to the server to change the displayed data.
 For this reason we use [Alpine.js](https://alpinejs.dev/start-here) which is bundled with Livewire.
 
-Alpine provies convenient tools to improve reactivity such as `x-on`, `x-bind`, `x-data`, `x-show`, `x-init`, `x-cloak`.
+Alpine provides convenient tools to improve reactivity such as `x-on`, `x-bind`, `x-data`, `x-show`, `x-init`, `x-cloak`.
 We advise the reader to familiarize themselves with those as they are also used in the frontend.
