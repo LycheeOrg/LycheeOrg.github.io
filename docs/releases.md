@@ -30,6 +30,17 @@
 
 ## Version 4
 
+### v4.11.0
+
+Released on Aug 13, 2023
+
+#### Changes
+
+* `fixes` #1963 : Change two German translations by @caminsha
+* `fixes` #1975 : Fix bad placeholder in PT locale by @d7415 
+* `new` #1971 : Enable video thumbnail executable configuration by @Lingxi-Li 
+* `new` #1977 : Hungarian language added by @KnauszFerenc
+
 ### v4.10.0
 
 Released on Aug 1, 2023
