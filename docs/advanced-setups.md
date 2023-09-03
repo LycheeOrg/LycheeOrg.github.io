@@ -200,4 +200,94 @@ You can use their Marketplace to [install Lychee](https://www.alwaysdata.com/en/
 
 See their pricing [here](https://www.alwaysdata.com/en/).
 
+## Implementing Object Storage 
+
+An S3-compatible object storage solution is designed to store, manage, and access unstructured data in the cloud. 
+
+Under Object Storage, files (also called objects) are stored in flat data structures (referred to as buckets) alongside their own rich metadata.
+
+Due to the nature of Object Storage, it does not require the use of a Compute Instance. Instead, Object Storage gives each object a unique URL with which you can access the data.
+
+### Limitations
+- Upload file size limit: 5 GB
+- All recursive tasks including (search, find, ls, etc.) have poor performance due to network latency
+
+### S3 Object Storage Setup
+
+The instructions in this guide are based on CentOS/Fedora/RHEL family, but it is easy to replicate the commands into any other distro.
+
+
+**Install s3fs FUSE-base file system**
+
+s3fs allows Linux and other OS's to mount an S3 bucket via FUSE (Filesystem in Userspace).
+
+s3fs makes you operate files and directories in S3 bucket like a local file system.
+
+[s3fs-fuse - Instructions from developer](https://github.com/s3fs-fuse/s3fs-fuse)
+
+```
+sudo dnf install s3fs-fuse
+sudo echo ACCESS_KEY_ID:SECRET_ACCESS_KEY > /etc/passwd-s3fs
+sudo chmod 600 /etc/passwd-s3fs
+```
+
+**Configure SELinux to allow access to the new filesystem**
+
+```
+setsebool -P httpd_use_fusefs 1
+```
+
+**Setup a permanent mounting point**
+
+Create S3 Object mount point:
+
+```
+sudo mkdir /mnt/bucket
+```
+
+Edit fstab to create a new mount on boot:
+
+```
+Add the following line to: /etc/fstab
+
+<bucket> /mnt/bucket fuse.s3fs _netdev, allow_other, enable_noobj_cache, url=<s3_endpoint>, use_cache="", passwd_file=/etc/passwd-s3fs, mp_umask=0002 0 0
+```
+
+    Example:
+        <bucket>                        mybucket (name used in your cloud provider)
+        <s3_endpoint>                   https://eu-central-1.linodeobjects.com
+
+    Parameters are explained below:
+        allow_other                     Allow other users to access the bucket
+        mp_umask                        Mask permissions for mount point
+        enable_noobj_cache              Performance improvement - Enable when bucket is exclusively used by s3fs
+        use_cache=""                    Disabled
+        use_cache=/var/cache/s3fs       Enabled (to be used with care, because the cache can grow out of control. Also, I haven't noticed much difference using it)
+	
+
+Reboot your server to confirm S3 Object Storage is mounted correctly.
+
+Create Lychee's mount point:
+
+```
+sudo mkdir /mnt/bucket/uploads
+```
+
+### Create and run Lychee container
+From now on, Lychee will see the Object Storage mount transparently like any other mount. The container's volume `/uploads` needs to point to the new created mount:
+
+```
+sudo podman run --rm -d --name myphotos --label "io.containers.autoupdate=registry" -p 8080:80 -v /mnt/bucket/uploads:/uploads -v lychee-sym:/sym -v lychee-conf:/conf -v lychee-logs:/logs -e PUID=33 -e PGID=1000 -e PHP_TZ=.. docker.io/lycheeorg/lychee:latest
+```
+
+### Configure .ENV
+To avoid latency when clicking Diagnostics, my suggestion is to disable BasicPermissionCheck. Otherwise, depending on the number of photos in your gallery, this task can take hours.
+
+```/var/lib/containers/storage/volumes/lychee-conf/_data/.env
+	SKIP_DIAGNOSTICS_CHECKS=BasicPermissionCheck
+```
+
+### Limitations to be considered
+As explained before, recursive tasks are penalised in Object Storage, so if you have an existing bucket and the container runs for the first time, it will take long time to review and set the permissions in your mount. Depending on the number of photos, it can take several hours.
+
 </div>
