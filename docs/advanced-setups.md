@@ -277,7 +277,7 @@ sudo mkdir /mnt/bucket/uploads
 From now on, Lychee will see the Object Storage mount transparently like any other mount. The container's volume `/uploads` needs to point to the new created mount:
 
 ```
-sudo podman run --rm -d --name myphotos ... -v /mnt/bucket/uploads:/uploads ... -e PUID=33 -e PGID=1000 -e docker.io/lycheeorg/lychee
+sudo podman run --rm -d --name myphotos -v /mnt/bucket/uploads:/uploads -e PUID=33 -e PGID=1000 ... docker.io/lycheeorg/lychee
 ```
 
 ### Configure .ENV
