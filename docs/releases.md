@@ -30,6 +30,34 @@
 
 ## Version 4
 
+### v4.12.0
+
+Released on Sep 16, 2023
+
+#### Changes
+
+* `fixes` #2003 : Fix missing album decorations by @evoludolab.
+* `fixes` #2004 : Fix max/min_taken_at by @evoludolab.
+* `fixes` #2007 : Fix missing left-right button on smart albums by @ildyria.
+* `new` #2010 : Better diagnostics by @ildyria.
+* `new` #2012 : Better support for future policies. by @ildyria.
+* `new` #2015 : Replace layout and overlay to proper Enum types by @ildyria.
+
+### v4.11.1
+
+Released on Sep 3, 2023
+
+#### Changes
+
+* `fixes` #1982 : How about we don't execute tests twice? by @ildyria.
+* `fixes` #1981 : Minor fixes on List sharing permissions. by @ildyria.
+* `fixes` #1990 : Fix complaints in Diagnostics when no migrations has been run by @ildyria.
+* `fixes` #1751 : Add error thrown if APP_URL does not match current url by @ildyria.
+* `fixes` #1991 : Fixes no log write access infinite loop by @ildyria.
+* `fixes` #1950 : Do not enforce strict model when downloading by @ildyria.
+* `fixes` #1686 : Providing absolute path if not set by @ildyria.
+* `new` #1999 : Webauthn supports also username by @ildyria.
+
 ### v4.11.0
 
 Released on Aug 13, 2023
