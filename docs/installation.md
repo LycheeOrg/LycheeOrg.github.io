@@ -9,7 +9,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
 	- MySQL _(version > 5.7.8)_ / MariaDB _(version > 10.2)_
 	- PostgreSQL _(version > 9.2)_
 	- Lychee's inbuilt SQLite3 support
-- PHP >= 8.0 with these PHP extensions:
+- PHP >= 8.1 with these PHP extensions:
 	- bcmath
 	- ctype
 	- dom
