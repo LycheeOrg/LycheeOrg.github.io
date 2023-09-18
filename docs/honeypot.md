@@ -35,7 +35,7 @@ From this regex, we retrieve the host if the response matches code 418 which is 
 ### Setup the Jail
 
 Then we need to create the jail in:
-`/etc/fail2/ban/jail.d/honeypot.conf`
+`/etc/fail2ban/jail.d/honeypot.conf`
 
 If you are using apache then the following will work:
 ```ini
