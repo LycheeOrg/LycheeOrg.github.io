@@ -301,25 +301,29 @@ Before getting started, make sure your system qualifies the [Server Requirements
 ### Setup Lychee
 
 Clone the repository to outside the web root, e.g. `/var/www/`:
-``` bash
+
+```bash
 sudo git clone https://www.github.com/LycheeOrg/Lychee /var/www/
 ```
 
 Set the file ownership and permissions:
-``` bash
+
+```bash
 sudo chown -R www-data:www-data /var/www/Lychee
 sudo chmod -R 2775 /var/www/Lychee
 ```
 
 Install composer in `/var/www/Lychee` as instructed in [here](https://getcomposer.org/download/). Then, from `/var/www/Lychee`, install the project dependencies:
-``` bash
+
+```bash
 sudo -u www-data php composer.phar install --no-dev
 ```
 
 ### Setup Apache
 
 Link `https://my.url/photos/` to `/var/www/Lychee/public` by adding the following to your Apache configuration for Aliases. In Apache 2.4 running on Debian, the correct configuration file is `/etc/apache2/mods-available/alias.conf`.
-``` php
+
+```apacheconf
 Alias /photos /var/www/Lychee/public
 
 <Directory /var/www/Lychee/public>
@@ -330,14 +334,16 @@ Alias /photos /var/www/Lychee/public
 ```
 
 Finally, restart Apache:
-```
+
+```bash
 sudo service apache2 restart
 ```
 
 ### Configure Lychee
 
 At this point, you should be able to go to `https://my.url/photos/` and run the web installer. During the installation procedure, on top of adding the database credentials to match your setup, set your `APP_URL` to the served subdirectory:
-```
+
+```bash
 APP_URL=https://my.url/photos/
 ```
 
