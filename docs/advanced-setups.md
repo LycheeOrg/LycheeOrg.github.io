@@ -290,4 +290,57 @@ To avoid latency when clicking Diagnostics, my suggestion is to disable BasicPer
 ### Limitations to be considered
 As explained before, recursive tasks are penalised in Object Storage, so if you have an existing bucket and the container runs for the first time, it will take long time to review and set the permissions in your mount. Depending on the number of photos, it can take several hours.
 
+## Hosting Lychee in a subpath with Apache
+
+To serve Lychee in a subpath, e.g. `https://my.url/photos/`, we can use Apaches's [Alias](https://httpd.apache.org/docs/2.4/mod/mod_alias.html#alias)-directive.
+
+In this example we assume the web root to be located at `/var/www/html`, the web user and group to be `www-data`, and install [from the master branch](installation.html#from-the-master-branch).
+
+Before getting started, make sure your system qualifies the [Server Requirements](installation.html#server-requirements). 
+
+### Setup Lychee
+
+Clone the repository to outside the web root, e.g. `/var/www/`:
+``` bash
+sudo git clone https://www.github.com/LycheeOrg/Lychee /var/www/
+```
+
+Set the file ownership and permissions:
+``` bash
+sudo chown -R www-data:www-data /var/www/Lychee
+sudo chmod -R 2775 /var/www/Lychee
+```
+
+Install composer in `/var/www/Lychee` as instructed in [here](https://getcomposer.org/download/). Then, from `/var/www/Lychee`, install the project dependencies:
+``` bash
+sudo -u www-data php composer.phar install --no-dev
+```
+
+### Setup Apache
+
+Link `https://my.url/photos/` to `/var/www/Lychee/public` by adding the following to your Apache configuration for Aliases. In Apache 2.4 running on Debian, the correct configuration file is `/etc/apache2/mods-available/alias.conf`.
+``` php
+Alias /photos /var/www/Lychee/public
+
+<Directory /var/www/Lychee/public>
+   Options FollowSymLinks
+   AllowOverride All
+   Require all granted
+</Directory>
+```
+
+Finally, restart Apache:
+```
+sudo service apache2 restart
+```
+
+### Configure Lychee
+
+At this point, you should be able to go to `https://my.url/photos/` and run the web installer. During the installation procedure, on top of adding the database credentials to match your setup, set your `APP_URL` to the served subdirectory:
+```
+APP_URL=https://my.url/photos/
+```
+
+Done!
+
 </div>
