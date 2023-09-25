@@ -61,8 +61,7 @@ location @lychee {
 
 ### Can I host Lychee with a subpath with Apache? Like `https://example.dev/lychee/`
 
-Yes, just create a Symbolic Link and allow your apache configuration to follow them.
-At website.com root `ln -s Lychee/public pics` and you will get exactly what you want: `website.com/pics`
+Yes, the process is described [here](advanced-setups.html#hosting-lychee-in-a-subpath-with-apache).
 
 ### Do we really need writable `app/`?
 
