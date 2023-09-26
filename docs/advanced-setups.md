@@ -200,6 +200,14 @@ You can use their Marketplace to [install Lychee](https://www.alwaysdata.com/en/
 
 See their pricing [here](https://www.alwaysdata.com/en/).
 
+### With Kubernetes (Free)
+
+You can use a Community maintained Helmchart to deploy Lychee into your Kubernetes Cluster.
+
+Have a look at the [Repository](https://github.com/breuerfelix/lychee-helmchart) for installation instructions.
+
+Feel free to open an [Issue](https://github.com/breuerfelix/lychee-helmchart/issues) if you need help.
+
 ## Implementing Object Storage 
 
 An S3-compatible object storage solution is designed to store, manage, and access unstructured data in the cloud. 
