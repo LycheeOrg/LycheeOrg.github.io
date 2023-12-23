@@ -233,7 +233,7 @@ s3fs makes you operate files and directories in S3 bucket like a local file syst
 
 [s3fs-fuse - Instructions from developer](https://github.com/s3fs-fuse/s3fs-fuse)
 
-```
+```bash
 sudo dnf install s3fs-fuse
 sudo echo ACCESS_KEY_ID:SECRET_ACCESS_KEY > /etc/passwd-s3fs
 sudo chmod 600 /etc/passwd-s3fs
@@ -241,7 +241,7 @@ sudo chmod 600 /etc/passwd-s3fs
 
 **Configure SELinux to allow access to the new filesystem**
 
-```
+```bash
 setsebool -P httpd_use_fusefs 1
 ```
 
@@ -249,50 +249,50 @@ setsebool -P httpd_use_fusefs 1
 
 Create S3 Object mount point:
 
-```
+```bash
 sudo mkdir /mnt/bucket
 ```
 
-Edit fstab to create a new mount on boot:
-
-```
-Add the following line to: /etc/fstab
-
+Edit fstab to create a new mount on boot:  
+Add the following line to: `/etc/fstab`
+```bash
 <bucket> /mnt/bucket fuse.s3fs _netdev, allow_other, enable_noobj_cache, url=<s3_endpoint>, use_cache="", passwd_file=/etc/passwd-s3fs, mp_umask=0002 0 0
 ```
 
-    Example:
-        <bucket>                        mybucket (name used in your cloud provider)
-        <s3_endpoint>                   https://eu-central-1.linodeobjects.com
+Example:
 
-    Parameters are explained below:
-        allow_other                     Allow other users to access the bucket
-        mp_umask                        Mask permissions for mount point
-        enable_noobj_cache              Performance improvement - Enable when bucket is exclusively used by s3fs
-        use_cache=""                    Disabled
-        use_cache=/var/cache/s3fs       Enabled (to be used with care, because the cache can grow out of control. Also, I haven't noticed much difference using it)
+- <bucket>                        mybucket (name used in your cloud provider)
+- <s3_endpoint>                   https://eu-central-1.linodeobjects.com
+
+Parameters are explained below:
+
+- `allow_other`                     Allow other users to access the bucket
+- `mp_umask`                        Mask permissions for mount point
+- `enable_noobj_cache`              Performance improvement - Enable when bucket is exclusively used by s3fs
+- `use_cache=""`                    Disabled
+- `use_cache=/var/cache/s3fs`       Enabled (to be used with care, because the cache can grow out of control. Also, I haven't noticed much difference using it)
 	
 
-Reboot your server to confirm S3 Object Storage is mounted correctly.
-
+Reboot your server to confirm S3 Object Storage is mounted correctly.  
 Create Lychee's mount point:
-
-```
+```bash
 sudo mkdir /mnt/bucket/uploads
 ```
 
 ### Create and run Lychee container
-From now on, Lychee will see the Object Storage mount transparently like any other mount. The container's volume `/uploads` needs to point to the new created mount:
+From now on, Lychee will see the Object Storage mount transparently like any other mount.  
+The container's volume `/uploads` needs to point to the new created mount:
 
-```
+```bash
 sudo podman run --rm -d --name myphotos -v /mnt/bucket/uploads:/uploads -e PUID=33 -e PGID=1000 ... docker.io/lycheeorg/lychee
 ```
 
 ### Configure .ENV
 To avoid latency when clicking Diagnostics, my suggestion is to disable BasicPermissionCheck. Otherwise, depending on the number of photos in your gallery, this task can take hours.
 
-```/var/lib/containers/storage/volumes/lychee-conf/_data/.env
-	SKIP_DIAGNOSTICS_CHECKS=BasicPermissionCheck
+```bash
+# /var/lib/containers/storage/volumes/lychee-conf/_data/.env
+SKIP_DIAGNOSTICS_CHECKS=BasicPermissionCheck
 ```
 
 ### Limitations to be considered
@@ -321,7 +321,8 @@ sudo chown -R www-data:www-data /var/www/Lychee
 sudo chmod -R 2775 /var/www/Lychee
 ```
 
-Install composer in `/var/www/Lychee` as instructed in [here](https://getcomposer.org/download/). Then, from `/var/www/Lychee`, install the project dependencies:
+Install composer in `/var/www/Lychee` as instructed in [here](https://getcomposer.org/download/).
+Then, from `/var/www/Lychee`, install the project dependencies:
 
 ```bash
 sudo -u www-data php composer.phar install --no-dev
@@ -329,7 +330,8 @@ sudo -u www-data php composer.phar install --no-dev
 
 ### Setup Apache
 
-Link `https://my.url/photos/` to `/var/www/Lychee/public` by adding the following to your Apache configuration for Aliases. In Apache 2.4 running on Debian, the correct configuration file is `/etc/apache2/mods-available/alias.conf`.
+Link `https://my.url/photos/` to `/var/www/Lychee/public` by adding the following to your Apache configuration for Aliases.
+In Apache 2.4 running on Debian, the correct configuration file is `/etc/apache2/mods-available/alias.conf`.
 
 ```apacheconf
 Alias /photos /var/www/Lychee/public
@@ -349,7 +351,8 @@ sudo service apache2 restart
 
 ### Configure Lychee
 
-At this point, you should be able to go to `https://my.url/photos/` and run the web installer. During the installation procedure, on top of adding the database credentials to match your setup, set your `APP_URL` to the served subdirectory:
+At this point, you should be able to go to `https://my.url/photos/` and run the web installer.
+During the installation procedure, on top of adding the database credentials to match your setup, set your `APP_URL` to the served subdirectory:
 
 ```bash
 APP_URL=https://my.url/photos/
