@@ -30,6 +30,18 @@
 
 ## Version 4
 
+### v4.13.0
+
+Released on Sep 24, 2023
+
+#### Changes
+
+* `fixes` #2018 : Unique constraint for config keys by @qwerty287.
+* `fixes` #2019 : Update composer (include breaking) by @qwerty287.
+* `fixes` #1948 #1993 : Fix complaint due to type casting by @ildyria.
+* `fixes` #2025 : License as enum type by @ildyria.
+* `fixes` #2026 : Minor refactoring in prevision for Livewire. by @ildyria.
+
 ### v4.12.0
 
 Released on Sep 16, 2023
