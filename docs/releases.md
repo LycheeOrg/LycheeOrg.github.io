@@ -28,6 +28,83 @@
 }
 </style>
 
+## Version 5
+
+### v5.0.0
+
+Released on Dec 25, 2023
+
+#### Changes from v4.13.0
+
+* `new` #2031 : improved honeypot logic & add more honey by @ildyria.
+* `new` #2033 : map providers are now specified in an Enum by @ildyria.
+* `fixes` #2041 : Delete existing user permissions associated by @ildyria.
+* `new` #2066 : Add optimize database call by @ildyria.
+* `fixes` #2069 : Adds missing space separator in Ghostbuster command advice by @HorlogeSkynet.
+* `new` #2071 : Drops support for singular public photos in search. by @ildyria.
+* `new` #2060 : Bye bye PHP 8.1, long live PHP 8.2 by @ildyria.
+* `new` #2072 : Add configuration check between int and positive (>0) by @ildyria.
+
+#### Changes included in the new Front-end
+
+* `fixes` [&#x266F;199](https://github.com/LycheeOrg/Lychee-front/issues/199) : Depreciated dependencies cries for a new frontend. #199
+  > Complete rewrite of the front-end using latest technologies. Moving to a TALL stack: Tailwind, Alpinejs, Livewire, Laravel.
+* `new` #12 : Shared albums: policy
+  > Complete new implementation of sharing and access rights.
+* `new` #383 : Allow other users to upload to shared albums
+  > See #12
+* `new` #725 : Login on direct album url if not logged in and album needs it
+  > Proper implementation with the new frontend
+* `new` #748 : UI/UX: give more information about the capabilities given to new users in the users page
+* `fixes` #828 : Album name not correct displayed in confirmation popup when moving a newly created album
+* `new` #857 : Support for very large uploads by chunking
+* `fixes` #1053 : Public album is not and can not be configured to be public #1053
+  > **BREAKING CHANGE**: The _public_ smart album has been removed. Pictures are no longer made public singular.
+* `new` #1211 : Date/Time display options
+  > Date/Time format are now configurable in the settings per location (sidebar, panel etc.)
+* `new` #1249 : header text for the gallery
+  > Description of each album is directly readable at the top and support markdown.
+* `new` #1189 : Multiline descriptions with markdown support for images and albums
+  > Similar functionalities have been added for pictures too.
+* `new` #1253 : Change album's Top Right menu behavior when selecting some pictures
+  > Top right action menu behaviour has enhanced to increase visibility and intent in the album view.
+  > It now depends of the selected elements.
+* `new` #1462 : Access Rights management: Users and Albums
+  > Major refactoring the access rights, user can now give read, upload, edit, delete access to others.
+* `fixes` #1676 : Unable to open sidebar, can't navigate away from log/diagnostic/setting page
+* `new` #1704 : Add real links to albums
+  > No longer use fragments, as a results links are properly clickable.
+* `fixes` #1720 : Download button is visible and does not support download rights yet.
+* `fixes` #1732 : Consistent URLs when Landing Page is disabled.
+  > url have been made consisten accross the board.
+* `fixes` #1744 : UX broken on version 4.7.0 for Safari iPhone
+  > New front-end will need more testing.
+* `new` #1825 : Change accent color
+  > With the use of tailwindcss this is now easier to produce.
+* `new` #1891 : Login popup appears if no albums created
+* `fixes` #1948 : Internal server error on photo upload (permissions?)
+  > No longer applicable due to new front-end
+* `fixes` #1973 : The CSS tweaks to disable auto zoom in/out no longer work #1973
+  > No longer applicable due to new front-end
+* `new` #1989 : Add search / filter for 'Move' destination album list
+* `new` #2011 : Album Delete Confirmation
+  > deletion is now hidden in a danger zone.
+* `fixes` #2050 : When trying to open a password protected shared album, no password prompt is shown
+* `fixes` #2051 : Photo Download not work - UnauthorizedException 
+* `fixes` #2058 : Insufficient privilieges when opening the "Share album" dialog as a regular user
+* `fixes` #2068 : Album allow public upload but disallow deletion
+  > Part of this is now available, user can give upload access to other users while preventing deletion.
+    The public part is not taken in consideration as this is too much of a security risk.
+* `new` [&#x266F;104](https://github.com/LycheeOrg/Lychee-front/issues/104) : Rework Sharing Dialog in Settings
+  > Sharing page only provide an overview, sharing is now done at the album level.
+* `new` [&#x266F;166](https://github.com/LycheeOrg/Lychee-front/issues/166) : Add album description between the header and the pictures
+* `new` [&#x266F;268](https://github.com/LycheeOrg/Lychee-front/issues/268) : Css is too complex to permit anyone to create new theme
+  > We now use tailwindcss, which makes it easier to create a unified theme.
+* `new` [&#x266F;312](https://github.com/LycheeOrg/Lychee-front/issues/312) : Make login dialog more prominent, auto-show login dialog if necessary, hide empty smart folders for anonymous users
+* Fixes [&#x266F;343](https://github.com/LycheeOrg/Lychee-front/issues/343) : Use proper URL instead of # fragments.
+* Fixes [&#x266F;344](https://github.com/LycheeOrg/Lychee-front/issues/344) : a are now correct links/interactive
+* Fixes [&#x266F;373](https://github.com/LycheeOrg/Lychee-front/issues/373) : Left menu is now working correctly
+
 ## Version 4
 
 ### v4.12.0
