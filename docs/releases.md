@@ -112,9 +112,11 @@ Those files are however provided in the release zip file.
 * `new` [&#x266F;268](https://github.com/LycheeOrg/Lychee-front/issues/268) : Css is too complex to permit anyone to create new theme
   > We now use tailwindcss, which makes it easier to create a unified theme.
 * `new` [&#x266F;312](https://github.com/LycheeOrg/Lychee-front/issues/312) : Make login dialog more prominent, auto-show login dialog if necessary, hide empty smart folders for anonymous users
-* Fixes [&#x266F;343](https://github.com/LycheeOrg/Lychee-front/issues/343) : Use proper URL instead of # fragments.
-* Fixes [&#x266F;344](https://github.com/LycheeOrg/Lychee-front/issues/344) : a are now correct links/interactive
-* Fixes [&#x266F;373](https://github.com/LycheeOrg/Lychee-front/issues/373) : Left menu is now working correctly
+* `fixes` [&#x266F;343](https://github.com/LycheeOrg/Lychee-front/issues/343) : Use proper URL instead of # fragments.
+* `fixes` [&#x266F;344](https://github.com/LycheeOrg/Lychee-front/issues/344) : a are now correct links/interactive
+* `fixes` [&#x266F;373](https://github.com/LycheeOrg/Lychee-front/issues/373) : Left menu is now working correctly
+* `new` #2078 : Diagnostics: Info are displayed in blue by @ildyria
+* `new` #2079 : Add option for thumbs overlay: none|hidden|always by @ildyria
 
 ## Version 4
 
