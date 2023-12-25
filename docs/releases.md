@@ -34,6 +34,17 @@
 
 Released on Dec 25, 2023
 
+#### BREAKING CHANGE IN BUILD STEPS
+
+If you are using `git clone`, you will need to use `npm` to build the front-end:
+
+1. `composer install --no-dev`
+2. `php artisan migrate`
+3. `npm install`
+4. `npm run build`
+
+Those files are however provided in the release zip file.
+
 #### Changes from v4.13.0
 
 * `new` #2031 : improved honeypot logic & add more honey by @ildyria.
