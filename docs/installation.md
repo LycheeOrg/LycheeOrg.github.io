@@ -40,7 +40,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
 - Optionally, you can also install the following command line tools:
 	- Exiftool (for better handling of EXIF metadata)
 	- FFmpeg (to generate video thumbnails)
-- To install from git you will also need Composer. See [below](#from-the-master-branch) for details.
+- To install from git you will also need Composer and npm. See [below](#from-the-master-branch) for details.
 
 While Lychee works on 32bit systems, we **strongly** recommend the use of a 64bit OS.
 
@@ -59,7 +59,7 @@ It contains a trimmed down version of the Lychee files.
 
 #### From the Master branch
 
-Lychee utilizes [Composer][1] to manage its dependencies. Make sure you have Composer installed on your machine.
+Lychee utilizes [Composer][1] to manage its php dependencies and [npm][2] for its front-end. Make sure you have both installed on your machine.
 
 ```bash
 git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
@@ -71,8 +71,10 @@ cd /var/www/html/Lychee
 Install the required dependencies.
 ```bash
 composer install --no-dev
+npm install
+npm run build
 ```
-If you want to help develop Lychee, install the development dependencies by removing the `--no-dev` or replacing it with `--dev`.
+If you want to help develop Lychee, install the development dependencies by removing the `--no-dev` and use `npm run dev` to have change monitoring on the front-end.
 
 
 ### Configuration
@@ -230,3 +232,4 @@ server {
 
 
 [1]: https://getcomposer.org/
+[2]: https://nodejs.org/
