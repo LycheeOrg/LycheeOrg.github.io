@@ -30,7 +30,7 @@
         stored securely.</p>
 
     <div class="introduction__buttons">
-        <a href="demo/" target="_blank" rel="noopener" class="btn btn--grey">Live Demo</a>
+        <a href="https://lychee-demo.fly.dev/" target="_blank" rel="noopener" class="btn btn--grey">Live Demo</a>
         <a href="https://github.com/LycheeOrg/Lychee" class="btn btn--blue">See on GitHub</a>
     </div>
 
