@@ -30,6 +30,23 @@
 
 ## Version 5
 
+### v5.0.1
+
+Released on Dec 27, 2023
+
+#### Changes
+
+* `fixes` #2090 : Add back blurred album thumbs by @ildyria.
+* `fixes` #2091 : Forgotten attribute of the canEdit function by @ildyria.
+* `fixes` #2095 : Redirection not functioning on album creation. by @ildyria.
+* `new` #2105 : Better diagnostics for APP_URL and LYCHEE_UPLOAD_URL by @ildyria.
+* `fixes` #2108 : Fix unlock album component wrongly selected. by @ildyria.
+* `fixes` #2096 : Remove U2F from left menu when user is not allowed to modify their account. by @ildyria.
+* `new` #2110 : Force https at the boot level instead of in the route files by @ildyria.
+* `fixes` #2112 : Remove path from query string via middleware by @mashb1t.
+* `new` #2111 : More checks for potential upload bugs by @ildyria.
+* `fixes` #2109 : Modify post-merge script to reflect 5.0.0 build changes by @TwizzyDizzy.
+
 ### v5.0.0
 
 Released on Dec 25, 2023
@@ -44,6 +61,8 @@ If you are using `git clone`, you will need to use `npm` to build the front-end:
 4. `npm run build`
 
 Those files are however provided in the release zip file.
+
+**`APP_URL` now needs to be defined in `.env` for the images to be properly displayed.**
 
 #### Changes from v4.13.0
 
