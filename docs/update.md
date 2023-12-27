@@ -17,10 +17,14 @@ Fully updating Lychee with `git` is the easiest way:
 ```bash
 # download the lastest files
 git pull
-# update the dependencies
+# update composer dependencies
 composer install --no-dev
 # apply the database migration
 php artisan migrate
+# update Node.js dependencies
+npm install
+# generate frontend assets
+npm run build
 ```
 
 If you have the `post-merge` hook set up the following is enough:

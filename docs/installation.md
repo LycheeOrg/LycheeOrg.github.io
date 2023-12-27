@@ -68,7 +68,7 @@ Get into the directory:
 ```bash
 cd /var/www/html/Lychee
 ```
-Install the required dependencies.
+Install the required dependencies and generate frontend assets.
 ```bash
 composer install --no-dev
 npm install
