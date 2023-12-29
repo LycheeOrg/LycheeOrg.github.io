@@ -244,7 +244,7 @@ No this is normal. This user does not have the ownership of that Album, so the r
 > {note} This is a behavior of Lychee that only occurs if the admin user did not log in after the update. Please contact the admin to log in once. After this, the admin's username is shown instead of `Admin`.
 -->
 
-Actually no, this is because the user does not have any albums (yet). The `h1` divider is to show who is the owner of those albums. See bellow.
+Actually no, this is because the user does not have any albums (yet). The `h1` divider is to show who is the owner of those albums. See below.
 ![2020-02-19_3840x1080_12:29:19](https://user-images.githubusercontent.com/627094/74830496-92c3a200-5313-11ea-9065-60cb8090c7ac.png)
 And yes the right-click menu is available on the _PhD Defenses_ part but not in the _Admin_ parts.
 Also because this user has upload right, he can see the _Unsorted, Public, Starred, Recent_ smart albums.
