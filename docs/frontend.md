@@ -32,7 +32,7 @@ This will create a `public/build` folder with the associated files.
 
 To ease your development, some pain points are to be considered:
 
-- variables names (attributes) in blade templates must use camelCase.
+- names of variables (attributes) in blade templates must use camelCase.
 - try to keep the alpine components code in the `.ts` files.
 - TailwindCSS is doing tree-shaking, this means that any unused css class will not be provided in the production build.
   When using classes programatically (e.g. in php), make sure to add them to `tailwind.config.js`
