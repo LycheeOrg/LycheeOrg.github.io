@@ -22,7 +22,7 @@ npm run dev
 ```
 This will create the files required to run Lychee.
 
-When running in production, you should be used instead:
+When running in production, you should use instead:
 ```bash
 npm run build
 ```
