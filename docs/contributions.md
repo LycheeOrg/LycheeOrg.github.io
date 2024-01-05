@@ -59,18 +59,6 @@ git push -u
 
 You can then open a [pull request][4].
 
-### Back-end and Front-end
-As you may have noticed already, we have two repositories to manage separately: the front-end and the back-end.
-This was necessary at times to ensure the parallel development of Lychee version 4 and Lychee version 3.
-As a result, the process of submitting a PR that modifies both sides (Lychee-front and Lychee) goes as follows:
-
-1. we take the 2 PR.
-2. we review them both.
-3. we merge on Lychee-front.
-4. switch Lychee-front to master, rebuild & commit on the Lychee PR.
-5. merge to Lychee master
-6. Enjoy!
-
 ### Our Coding Style
 In order to ease the review of pull requests, we use a uniform code style. Our Continuous Integration suite will 
 fail if the latter is not respected.
@@ -92,7 +80,7 @@ In order to make this less constraining, you can copy the `pre-commit` file in t
 Our current configuration can be found [here](https://github.com/LycheeOrg/Lychee/blob/master/.php_cs).
 For details about the options, you can have a look at the [php-cs-fixer-configurator](https://mlocati.github.io/php-cs-fixer-configurator)
 
-#### Javascript
+#### Javascript/TypeScript
 
 Similarly to what was described above, you can format the code automatically with:
 

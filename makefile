@@ -7,7 +7,6 @@ all: assets
 assets:
 	mkdir -p build
 	cp -r assets build/
-	cp -r demo build/
 	mkdir -p build/docs
 	cp -r docs/css build/docs/
 	cp -r docs/fonts build/docs/

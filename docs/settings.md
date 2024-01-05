@@ -68,7 +68,7 @@ Determines if an overlay with metadata is displayed at the bottom of the screen 
 * _Photo description_
 * _Photo date taken_
 
-Note that these settings determine the defaults but the person viewing the gallery is free to override them. The overlay can be toggled on/off by clicking on the image in the photo view, and the data displayed can be changed using the `o` [keyboard shortcut](Keyboard-Shortcuts).
+Note that these settings determine the defaults but the person viewing the gallery is free to override them. The overlay can be toggled on/off by clicking on the image in the photo view, and the data displayed can be changed using the `o` [keyboard shortcut](keyboard.html).
 
 ### Maps
 
@@ -78,7 +78,7 @@ Note that enabling the maps adds a viewing-time dependency of your gallery on an
 
 ## CSS Personalization
 
-Much of the appearance of the Lychee web interface is determined by the CSS.  The bottom of the basic settings screen features a text input field where custom CSS can be entered to tweak the Lychee user interface.  Effective use of this feature requires the knowledge of CSS and the internals of the Lychee front end (see the [source code](https://github.com/LycheeOrg/Lychee-front)), which go beyond the scope of this document, but check the [FAQ](faq.html) for a few examples.
+Much of the appearance of the Lychee web interface is determined by the CSS.  The bottom of the basic settings screen features a text input field where custom CSS can be entered to tweak the Lychee user interface.  Effective use of this feature requires the knowledge of CSS and the internals of the [Lychee front end](frontend.html) which go beyond the scope of this document, but check the [FAQ](faq.html) for a few examples.
 
 Unlike the rest of the config, this field is stored in the text file `public/dist/user.css` and can be modified directly there using your favorite editor.
 
@@ -125,12 +125,6 @@ Makes it possible to bypass the default Lychee CSRF token validation by providin
 (boolean; default values: `1` and `0`, respectively)
 
 **FIXME** refer to installation or update wiki.
-
-#### `gen_demo_js`
-
-(boolean; default value: `0`)
-
-This feature is of importance for Lychee developers only.  It is used when creating the [live demo](https://lycheeorg.github.io/demo/).
 
 ### Config
 
