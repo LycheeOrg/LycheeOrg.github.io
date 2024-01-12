@@ -5,16 +5,19 @@ For non-core options (for example UI options), take a look at [Settings](https:/
 
 ### Base options
 
-|Option|Description|Default|
-|---|---|---|
-|`APP_NAME`|The gallery name|`Lychee`|
-|`APP_ENV`|Environment of your gallery, `production` or `development`|`production`|
-|`APP_URL`|The URL of your gallery (which resolves to the `public/` folder)|`http://localhost`|
-|`APP_KEY`|Your app key which is used for encryption (set during installation)|`null`|
-|`TIMEZONE`|The timezone of your photos, requires a named timezone identifier like `Europe/Paris`, don't use an offset (`+01:00`) or an abbreviation (`CEST`)|system timezone of server|
-|`LYCHEE_UPLOADS`|Path to uploads directory|`uploads/` inside `public/`|
-|`LYCHEE_UPLOADS_URL`|URL to uploads directory|`uploads/`|
-|`TRUSTED_PROXIES`|Trusted proxy IP addresses|`null`|
+| Option     | Description                                                                                                     | Default            |
+|------------|-----------------------------------------------------------------------------------------------------------------|--------------------|
+| `APP_NAME` | The gallery name                                                                                                | `Lychee`           |
+| `APP_ENV`  | Environment of your gallery, `production` or `development`                                                      | `production`       |
+| `APP_URL`  | The URL of your gallery (which resolves to the `public/` folder)                                                | `http://localhost` |
+| `APP_DIR`  | The URL path after the domain name of your gallery (which resolves to the `public/` folder), better left empty. | _empty_            |
+| `APP_KEY`  | Your app key which is used for encryption (set during installation)                                             | `null`             |
+|`TIMEZONE`  | The timezone of your photos, requires a named timezone identifier like `Europe/Paris`, don't use an offset (`+01:00`) or an abbreviation (`CEST`)|system timezone of server|
+|`LYCHEE_UPLOADS`    | Path to uploads directory                                                                  | `uploads/` inside `public/` |
+|`LYCHEE_UPLOADS_URL`| URL to uploads directory, better left empty                                                | `/uploads`                  |
+|`TRUSTED_PROXIES`   | Trusted proxy IP addresses                                                                 | `null`                      |
+|`LIVEWIRE_ENABLED`  | Enable v5 Livewire frontend, set to false if you prefer old v4 (but no front-end updates). | `true`                      |
+|`LOG_VIEWER_ENABLED`| Enable log viewer inside Lychee instead of through CLI.                                    | `true`                      |
 
 ### Database options
 
@@ -35,47 +38,47 @@ If this applies to your hosting provider, you can skip the other DB configuratio
 
 The configuration is exactly the same for both systems.
 
-|Option|Value it should have|
-|---|---|
-|`DB_CONNECTION`|`mysql`|
-|`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`)|
-|`DB_PORT`|Port of the database server (default 3306)|
-|`DB_DATABASE`|The name of the database|
-|`DB_USERNAME`|Username of the database user|
-|`DB_PASSWORD`|Password of the database user|
-|`DB_SOCKET`|UNIX socket to DB server, replaces `DB_HOST` and `DP_PORT`|
-|`MYSQL_ATTR_SSL_CA`|Optional and only used when using the `pdo_mysql` extension, file path to the SSL certificate authority|
+| Option              | Value it should have                                                                                    |
+|---------------------|---------------------------------------------------------------------------------------------------------|
+| `DB_CONNECTION`     | `mysql`                                                                                                 |
+| `DB_HOST`           | Host of the database server (if it's running on the same server use `127.0.0.1`)                        |
+| `DB_PORT`           | Port of the database server (default 3306)                                                              |
+| `DB_DATABASE`       | The name of the database                                                                                |
+| `DB_USERNAME`       | Username of the database user                                                                           |
+| `DB_PASSWORD`       | Password of the database user                                                                           |
+| `DB_SOCKET`         | UNIX socket to DB server, replaces `DB_HOST` and `DP_PORT`                                              |
+| `MYSQL_ATTR_SSL_CA` | Optional and only used when using the `pdo_mysql` extension, file path to the SSL certificate authority |
 
 #### SQLite
 
-|Option|Value it should have|
-|---|---|
-|`DB_CONNECTION`|`sqlite`|
-|`DB_DATABASE`|Path to the database file (default `database/database.sqlite`)|
+| Option          | Value it should have                                           |
+|-----------------|----------------------------------------------------------------|
+| `DB_CONNECTION` | `sqlite`                                                       |
+| `DB_DATABASE`   | Path to the database file (default `database/database.sqlite`) |
 
 #### PostgreSQL
 
-|Option|Value it should have|
-|---|---|
-|`DB_CONNECTION`|`pgsql`|
-|`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`) or socket path|
-|`DB_PORT`|Port of the database server or `null` if using socket (default 5432)|
-|`DB_DATABASE`|The name of the database|
-|`DB_USERNAME`|Username of the database user|
-|`DB_PASSWORD`|Password of the database user|
+| Option          | Value it should have                                                                            |
+|-----------------|-------------------------------------------------------------------------------------------------|
+| `DB_CONNECTION` | `pgsql`                                                                                         |
+| `DB_HOST`       | Host of the database server (if it's running on the same server use `127.0.0.1`) or socket path |
+| `DB_PORT`       | Port of the database server or `null` if using socket (default 5432)                            |
+| `DB_DATABASE`   | The name of the database                                                                        |
+| `DB_USERNAME`   | Username of the database user                                                                   |
+| `DB_PASSWORD`   | Password of the database user                                                                   |
 
 #### Microsoft SQL Server
 
 > {note} Microsoft SQL Server is not officially supported. It may work, but we can't help you if you have any issues with it that do not affect other DB systems as well.
 
-|Option|Value it should have|
-|---|---|
-|`DB_CONNECTION`|`sqlsrv`|
-|`DB_HOST`|Host of the database server (if it's running on the same server use `127.0.0.1`)|
-|`DB_PORT`|Port of the database server (default 1433)|
-|`DB_DATABASE`|The name of the database|
-|`DB_USERNAME`|Username of the database user|
-|`DB_PASSWORD`|Password of the database user|
+| Option          | Value it should have                                                             |
+|-----------------|----------------------------------------------------------------------------------|
+| `DB_CONNECTION` | `sqlsrv`                                                                         |
+| `DB_HOST`       | Host of the database server (if it's running on the same server use `127.0.0.1`) |
+| `DB_PORT`       | Port of the database server (default 1433)                                       |
+| `DB_DATABASE`   | The name of the database                                                         |
+| `DB_USERNAME`   | Username of the database user                                                    |
+| `DB_PASSWORD`   | Password of the database user                                                    |
 
 ### Mailer options
 
@@ -83,21 +86,21 @@ Supported mailers are `smtp`, `ses`, `mailgun`, `postmark` or `sendmail`, which 
 
 #### General options
 
-|Option|Description|
-|---|---|
-|`MAIL_DRIVER`|Mailer type|
-|`MAIL_FROM_ADDRESS`|"From" address|
-|`MAIL_FROM_NAME`|"From" name|
+| Option              | Description    |
+|---------------------|----------------|
+| `MAIL_DRIVER`       | Mailer type    |
+| `MAIL_FROM_ADDRESS` | "From" address |
+| `MAIL_FROM_NAME`    | "From" name    |
 
 #### SMTP
 
-|Option|Description|
-|---|---|
-|`MAIL_HOST`|Host of SMTP server|
-|`MAIL_PORT`|Port of SMTP server (default 587)|
-|`MAIL_ENCRYPTION`|Encryption for SMTP server (default `tls`)|
-|`MAIL_USERNAME`|Username of SMTP server|
-|`MAIL_PASSWORD`|Password of SMTP server|
+| Option            | Description                                |
+|-------------------|--------------------------------------------|
+| `MAIL_HOST`       | Host of SMTP server                        |
+| `MAIL_PORT`       | Port of SMTP server (default 587)          |
+| `MAIL_ENCRYPTION` | Encryption for SMTP server (default `tls`) |
+| `MAIL_USERNAME`   | Username of SMTP server                    |
+| `MAIL_PASSWORD`   | Password of SMTP server                    |
 
 #### SES
 
@@ -105,17 +108,17 @@ SES can be configured using AWS settings. See [AWS configuration](#aws).
 
 #### Mailgun
 
-|Option|Description|
-|---|---|
-|`MAILGUN_DOMAIN`|Domain of the Mailgun server|
-|`MAILGUN_SECRET`|Secret of the Mailgun server|
-|`MAILGUN_ENDPOINT`|Mailgun endpoint (default `api.mailgun.net`)|
+| Option             | Description                                  |
+|--------------------|----------------------------------------------|
+| `MAILGUN_DOMAIN`   | Domain of the Mailgun server                 |
+| `MAILGUN_SECRET`   | Secret of the Mailgun server                 |
+| `MAILGUN_ENDPOINT` | Mailgun endpoint (default `api.mailgun.net`) |
 
 #### Postmark
 
-|Option|Description|
-|---|---|
-|`POSTMARK_TOKEN`|Token for Postmark|
+| Option           | Description        |
+|------------------|--------------------|
+| `POSTMARK_TOKEN` | Token for Postmark |
 
 #### sendmail
 
@@ -127,36 +130,36 @@ Lychee can use various services as cache driver to store temporary data. The dri
 
 #### General options
 
-|Option|Description|
-|---|---|
-|`CACHE_PREFIX`|Prefix of cache data keys in in-memory stores|
+| Option         | Description                                   |
+|----------------|-----------------------------------------------|
+| `CACHE_PREFIX` | Prefix of cache data keys in in-memory stores |
 
 #### Memcached
 
-|Option|Description|
-|---|---|
-|`MEMCACHED_HOST`|Host for memcached|
-|`MEMCACHED_PORT`|Port for memcached|
-|`MEMCACHED_USERNAME`|Username for memcached|
-|`MEMCACHED_PASSWORD`|Password for memcached|
-|`MEMCACHED_PERSISTENT_ID`|Persistent ID for memcached|
+| Option                    | Description                 |
+|---------------------------|-----------------------------|
+| `MEMCACHED_HOST`          | Host for memcached          |
+| `MEMCACHED_PORT`          | Port for memcached          |
+| `MEMCACHED_USERNAME`      | Username for memcached      |
+| `MEMCACHED_PASSWORD`      | Password for memcached      |
+| `MEMCACHED_PERSISTENT_ID` | Persistent ID for memcached |
 
 #### DynamoDB
 
 Base options are configured using [AWS options](#aws). You need to create a table, please refer to the [Laravel docs](https://laravel.com/docs/8.x/cache#dynamodb).
 
-|Option|Description|
-|---|---|
-|`DYNAMODB_CACHE_TABLE`|Cache table name|`cache`|
-|`DYNAMODB_ENDPOINT`|DynamoDB endpoint|`null`|
+| Option                 | Description       | Default |
+|------------------------|-------------------|---------|
+| `DYNAMODB_CACHE_TABLE` | Cache table name  | `cache` |
+| `DYNAMODB_ENDPOINT`    | DynamoDB endpoint | `null`  |
 
 #### Redis
 
 Also see [Redis](#redis).
 
-|Option|Description|
-|---|---|
-|`REDIS_CACHE_DB`|Redis cache database|
+| Option           | Description          |
+|------------------|----------------------|
+| `REDIS_CACHE_DB` | Redis cache database |
 
 #### Database
 
@@ -170,74 +173,74 @@ Lychee can interact with various third-party services. You can find config optio
 
 To use Redis, you need the [PhpRedis](https://github.com/phpredis/phpredis) PHP extension.
 
-|Option|Description|
-|---|---|
-|`REDIS_SCHEME`|Redis connection scheme (default `tcp`, other option `unix`)|
-|`REDIS_PATH`|Redis Unix socket path|
-|`REDIS_HOST`|Redis host|
-|`REDIS_PASSWORD`|Redis password|
-|`REDIS_PORT`|Redis port|
-|`REDIS_CLUSTER`|Redis cluster|
-|`REDIS_PREFIX`|Redis prefix|
-|`REDIS_URL`|Redis URL|
+| Option           | Description                                                  |
+|------------------|--------------------------------------------------------------|
+| `REDIS_SCHEME`   | Redis connection scheme (default `tcp`, other option `unix`) |
+| `REDIS_PATH`     | Redis Unix socket path                                       |
+| `REDIS_HOST`     | Redis host                                                   |
+| `REDIS_PASSWORD` | Redis password                                               |
+| `REDIS_PORT`     | Redis port                                                   |
+| `REDIS_CLUSTER`  | Redis cluster                                                |
+| `REDIS_PREFIX`   | Redis prefix                                                 |
+| `REDIS_URL`      | Redis URL                                                    |
 
 #### AWS
 
-|Option|Description|
-|---|---|
-|`AWS_ACCESS_KEY_ID`|Access key ID for AWS|
-|`AWS_SECRET_ACCESS_KEY`|Secret access key for AWS|
-|`AWS_DEFAULT_REGION`|Default AWS region|
+| Option                  | Description               |
+|-------------------------|---------------------------|
+| `AWS_ACCESS_KEY_ID`     | Access key ID for AWS     |
+| `AWS_SECRET_ACCESS_KEY` | Secret access key for AWS |
+| `AWS_DEFAULT_REGION`    | Default AWS region        |
 
 ### Authentication Guards
 
 Support for token based authentication used by API requests.
 
-|Name|Description|
-|---|---|
-|`ENABLE_TOKEN_AUTH`|Authentication Guard token support|
+| Name                | Description                        |
+|---------------------|------------------------------------|
+| `ENABLE_TOKEN_AUTH` | Authentication Guard token support |
 
 
 ### Session and security options
 
 Sessions are stored in the same locations as [cache](#cache). You change the used driver using `SESSION_DRIVER`.
 
-|Name|Description|
-|---|---|
-|`SESSION_LIFETIME`|Idle session expiration in minutes; the session will need to be reinitialized once it has expired (default 120)|
-|`SESSION_SECURE_COOKIE`|Cookies only via HTTPS|`false`|
-|`SECURITY_HEADER_HSTS_ENABLE`|Enable HTTP strict transport security|`false`|
+| Name                          | Description                                                                                        | Default |
+|-------------------------------|----------------------------------------------------------------------------------------------------|---------|
+| `SESSION_LIFETIME`            | Idle session expiration in minutes; the session will need to be reinitialized once it has expired. | 120     |
+| `SESSION_SECURE_COOKIE`       | Cookies only via HTTPS                                                                             | `false` |
+| `SECURITY_HEADER_HSTS_ENABLE` | Enable HTTP strict transport security                                                              | `false` |
 
 #### Advanced options
 
 > {note} These config options are advanced config options. Do not change them unless you know what you are doing.
 
-|Option|Description|
-|---|---|
-|`APP_CIPHER`|The app's cipher suite|
-|`HASHING_DRIVER`|Hashing algorithm for passwords (default `bcrypt`, other options `argon` or `argon2id`)|
-|`ARGON_MEMORY`|Memory for Argon hashing algorithm|
-|`ARGON_THREADS`|Threads for Argon hashing algorithm|
-|`ARGON_TIME`|Time for Argon hashing algorithm|
-|`BCRYPT_ROUNDS`|Rounds for bcrypt hashing algorithm|
-|`WEBAUTHN_NAME`|Name for Webauthn devices|
-|`WEBAUTHN_ID`|ID for Webauthn devices|
-|`WEBAUTHN_ICON`|Icon for Webauthn devices|
-|`WEBAUTHN_CACHE`|Cache for Webauthn devices|
-|`SESSION_COOKIE`|The cookie's name|
-|`SESSION_DOMAIN`|Session cookie domain|
+| Option           | Description                                                                             |
+|------------------|-----------------------------------------------------------------------------------------|
+| `APP_CIPHER`     | The app's cipher suite                                                                  |
+| `HASHING_DRIVER` | Hashing algorithm for passwords (default `bcrypt`, other options `argon` or `argon2id`) |
+| `ARGON_MEMORY`   | Memory for Argon hashing algorithm                                                      |
+| `ARGON_THREADS`  | Threads for Argon hashing algorithm                                                     |
+| `ARGON_TIME`     | Time for Argon hashing algorithm                                                        |
+| `BCRYPT_ROUNDS`  | Rounds for bcrypt hashing algorithm                                                     |
+| `WEBAUTHN_NAME`  | Name for Webauthn devices                                                               |
+| `WEBAUTHN_ID`    | ID for Webauthn devices                                                                 |
+| `WEBAUTHN_ICON`  | Icon for Webauthn devices                                                               |
+| `WEBAUTHN_CACHE` | Cache for Webauthn devices                                                              |
+| `SESSION_COOKIE` | The cookie's name                                                                       |
+| `SESSION_DOMAIN` | Session cookie domain                                                                   |
 
 ### Development options
 
 > {note} Don't use this in productive environments. May affect stability and performance.
 
-|Option|Description|
-|---|---|
-|`APP_ENV`|Set to `development` to enable development environment|
-|`APP_DEBUG`|Enable debug mode|
-|`DEBUGBAR_ENABLED`|Enable debugbar|
-|`DB_LOG_SQL`|Log SQL statements, find the log file under `storage/logs/laravel.log`|
-|`LIVEWIRE_ENABLED`|Enable experimental Livewire frontend|
+| Option               | Description                                            | Default |
+|----------------------|--------------------------------------------------------|---------|
+| `APP_ENV`            | Set to `development` to enable development environment | `prod`  |
+| `APP_DEBUG`          | Enable debug mode                                      | `false` |
+| `DEBUGBAR_ENABLED`   | Enable debugbar                                        | `false` |
+| `DB_LOG_SQL`         | Log SQL statements, see your Logs within Lychee.       | `false` |
+| `DB_LOG_SQL_EXPLAIN` | Explain the SQL statements for MySQL.                  | `false` |
 
 ### Advanced configuration
 
@@ -251,17 +254,17 @@ You can look at the files in the `config/` folder. They contain some options you
 
 These options are unused right now, but may be used in the future.
 
-|Option|Description|
-|---|---|
-|`REDIS_DB`|Redis database, used for broadcasting and queue|
-|`REDIS_QUEUE`|Redis queue|
-|`BROADCAST_DRIVER`|Broadcast driver|
-|`QUEUE_DRIVER`|Queue driver|
-|`PUSHER_APP_ID|Pusher app ID|
-|`PUSHER_APP_KEY|Pusher app secret|
-|`PUSHER_APP_SECRET|Pusher app secret|
-|`PUSHER_APP_CLUSTER|Pusher app cluster|
-|`FILESYSTEM_CLOUD`|Cloud Filesystem|
+| Option               | Description                                     |
+|----------------------|-------------------------------------------------|
+| `REDIS_DB`           | Redis database, used for broadcasting and queue |
+| `REDIS_QUEUE`        | Redis queue                                     |
+| `BROADCAST_DRIVER`   | Broadcast driver                                |
+| `QUEUE_DRIVER`       | Queue driver                                    |
+| `PUSHER_APP_ID`      | Pusher app ID                                   |
+| `PUSHER_APP_KEY`     | Pusher app secret                               |
+| `PUSHER_APP_SECRET`  | Pusher app secret                               |
+| `PUSHER_APP_CLUSTER` | Pusher app cluster                              |
+| `FILESYSTEM_CLOUD`   | Cloud Filesystem                                |
 
 -->
 
@@ -281,48 +284,16 @@ If you are developing with a team, you may wish to continue including a `.env.ex
 
 All variables in your `.env` files are parsed as strings, so some reserved values have been created to allow you to return a wider range of types from the `env()` function:
 
-<table>
-<thead>
-<tr>
-<th><code>.env</code> Value</th>
-<th><code>env()</code> Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>true</td>
-<td>(bool) true</td>
-</tr>
-<tr>
-<td>(true)</td>
-<td>(bool) true</td>
-</tr>
-<tr>
-<td>false</td>
-<td>(bool) false</td>
-</tr>
-<tr>
-<td>(false)</td>
-<td>(bool) false</td>
-</tr>
-<tr>
-<td>empty</td>
-<td>(string) ''</td>
-</tr>
-<tr>
-<td>(empty)</td>
-<td>(string) ''</td>
-</tr>
-<tr>
-<td>null</td>
-<td>(null) null</td>
-</tr>
-<tr>
-<td>(null)</td>
-<td>(null) null</td>
-</tr>
-</tbody>
-</table>
+| `.env` Value | `env()` Value |
+|--------------|---------------|
+| true         | (bool) true   |
+| (true)       | (bool) true   |
+| false        | (bool) false  |
+| (false)      | (bool) false  |
+| empty        | (string) ''   |
+| (empty)      | (string) ''   |
+| null         | (null) null   |
+| (null)       | (null) null   |
 
 If you need to define an environment variable with a value that contains spaces, you may do so by enclosing the value in double quotes.
 

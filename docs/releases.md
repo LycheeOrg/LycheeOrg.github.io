@@ -30,6 +30,65 @@
 
 ## Version 5
 
+### v5.0.3
+
+Released on Jan 12, 2024
+
+#### New settings on `APP_URL`
+
+From this version Lychee v5 supports hosting with sub-folders. Please update your `.env` as follows:
+
+- `APP_URL` **must** only contain the hostname up to the Top Level Domain (tld) e.g. .com, .org etc.
+
+If you are using Lychee in a sub folder, specify the path after the tld here in the `APP_DIR` constant.
+For example for `https://lychee.test/path/to/lychee`:
+
+- Set `APP_URL=https://lychee.test`
+- and `APP_DIR=/path/to/lychee`
+
+#### Do note that We (LycheeOrg) do not recommend the use of APP_DIR.
+
+#### Changes
+
+* `fixes` #2126 : Cover for upper level album cannot be set - error 500 by @ildyria 
+* `new` #2124 : Add clear error message when CSS is not loading by @ildyria 
+* `fixes` #2135 : Description should be desc for overlay by @ildyria 
+* `new` #2128 : Provide the ability to change the sorting of sub-album per album (Livewire only). by @ildyria 
+* `fixes` #2142 : Improved diagnostics with censored URLs by @ildyria 
+* `fixes` #2143 and #2157 : fix Russian about. by @ildyria 
+* `fixes` #2158 : Error displaying enlarged images when accessing a public album without being logged in by @ildyria 
+* `fixes` #2161 : Update Readme, add theme repository, optimize ImageMagick by @tinohager 
+* `fixes` #2147 : Fix custom.js not being loaded by @ildyria 
+* `fixes` #2166 : Fix uploading large number of images fails with 429 by @ildyria 
+* `fixes` #2171 : Remove text-neutral for easier configuration of themes by @ildyria 
+* `new` #2153 : Add compact view for albums by @ildyria 
+* `fixes` #2154 : Fix WebAuthn not working by @ildyria 
+* `fixes` #2172 : Fix QR code displaying wrong URL by @ildyria 
+* `fixes` #2137 : Fix livewire not working on directory folders by @ildyria 
+* `new` #2138 : Allow different aspect ratios for album thumbs (+ per album setting) by @ildyria 
+* `fixes` #2181 : Improved diagnostics by @ildyria 
+* `fixes` #2186 : Fix double f aperture in sidebar by @ildyria 
+* `new` #2179 : Add notify toast when updating user by @ildyria 
+* `fixes` #2164 : Fix errors on access rights by @ildyria 
+* `fixes` #2178 : Fix back button on unlock page. by @ildyria 
+* `new` #2185 : Add left-right for login button + add custom go Home button by @ildyria 
+* `new` #2182 : make APP_URL optional again by @ildyria 
+
+### v5.0.2
+
+Released on Dec 28, 2023 
+
+#### Fix SQL injection.
+
+See here for more details: [GHSA-rjwv-5j3m-p5x4](https://github.com/LycheeOrg/Lychee/security/advisories/GHSA-rjwv-5j3m-p5x4)
+
+#### Changes
+
+* `fixes` #2116 : Fixes hover (left-right) preventing clicks on volume etc buttons + fix frame button by @ildyria
+* `fixes` #2118 : Fix drag upload bug by @maoxian-1
+* `fixes` #2123 : Fix SQL Injection by @ildyria
+
+
 ### v5.0.1
 
 Released on Dec 27, 2023

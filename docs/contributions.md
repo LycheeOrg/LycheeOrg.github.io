@@ -15,11 +15,11 @@ Lychee's GitHub issue trackers are not intended to provide Lychee help or suppor
 Lychee uses a rolling release system, **we do not backport fixes to previously released versions**.
 Those are the versions in which we accept vulnerability reports.
 
-| Version      | Supported|
-|--------------|----------|
-|master        |&#10004;  |
-|latest release|&#10004;  |
-|< 4.0         |&#10005;  |
+| Version        | Supported |
+|----------------|-----------|
+| master         | &#10004;  |
+| latest release | &#10004;  |
+| < 5.0          | &#10005;  |
 
 If you discover a security vulnerability within Lychee, please contact us directly on [Gitter][2]. All security vulnerabilities will be promptly addressed.
 
