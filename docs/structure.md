@@ -53,7 +53,7 @@ The `vendor` directory contains your [Composer][2] dependencies.
 ## The App Directory
 The majority of Lychee is housed in the `app` directory. By default, this directory is namespaced under `App` and is autoloaded by Composer using the [PSR-4 autoloading standard][3].
 
-The `app` directory contains a variety of additional directories such as `Console`, `Http`, `Livewire` and `Providers`. Think of the `Console`, `Livewire`, and `Http` directories as providing an API into the core of your application. The HTTP protocol and CLI are both mechanisms to interact with Lychee, but do not actually contain application logic. In other words, they are two ways of issuing commands to Lychee. The `Console` directory contains all of the Artisan commands, while the `Http` directory contains your controllers, middleware, and requests. Furthermore the `Livewire` directory contains the serverside code necessary for new front-end.
+The `app` directory contains a variety of additional directories such as `Console`, `Http`, `Livewire` and `Providers`. Think of the `Console`, `Livewire`, and `Http` directories as providing an API into the core of your application. The HTTP protocol and CLI are both mechanisms to interact with Lychee, but do not actually contain application logic. In other words, they are two ways of issuing commands to Lychee. The `Console` directory contains all of the Artisan commands, while the `Http` directory contains your controllers, middleware, and requests. Furthermore the `Livewire` directory contains the serverside code necessary for the new front-end.
 
 ### The Console Directory
 The `Console` directory contains all of the custom Artisan commands for Lychee. These commands may be generated using the `make:command` command.
