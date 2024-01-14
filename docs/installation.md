@@ -150,7 +150,7 @@ Some advanced options cannot be configured through the `.env` file. If you reall
 ### General
 
 Configure your web server to make the `public` directory accessible via a URL. This could be the root of your web server (short and convenient) or, if you prefer, a subpath such as `photos`. The `index.php` in this directory serves as the interface for all HTTP requests to Lychee's API.
-The configuration option `APP_URL` of Lychee must be set accordingly (see above).
+The configuration option `APP_URL` of Lychee must be set accordingly (see [configuration](configuration.html#base-options)).
 
 > {note} Do not expose the top level directory of Lychee with your web server! This would allow public access to internal files like the application code and the `.env` file which contains sensitive information like the database credentials!
 
