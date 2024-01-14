@@ -9,8 +9,8 @@ For non-core options (for example UI options), take a look at [Settings](https:/
 |------------|-----------------------------------------------------------------------------------------------------------------|--------------------|
 | `APP_NAME` | The gallery name                                                                                                | `Lychee`           |
 | `APP_ENV`  | Environment of your gallery, `production` or `development`                                                      | `production`       |
-| `APP_URL`  | The URL of your gallery (which resolves to the `public/` folder)                                                | `http://localhost` |
-| `APP_DIR`  | The URL path after the domain name of your gallery (which resolves to the `public/` folder), better left empty. | _empty_            |
+| `APP_URL`  | The URL of your gallery (which resolves to the `public/` folder). For installations hosted in a subfolder this should contain the part of the URL up to and including the host name only. | `http://localhost` |
+| `APP_DIR`  | For installations hosted in a subfolder this should contain the rest of the URL (after the host name). | _empty_            |
 | `APP_KEY`  | Your app key which is used for encryption (set during installation)                                             | `null`             |
 |`TIMEZONE`  | The timezone of your photos, requires a named timezone identifier like `Europe/Paris`, don't use an offset (`+01:00`) or an abbreviation (`CEST`)|system timezone of server|
 |`LYCHEE_UPLOADS`    | Path to uploads directory                                                                  | `uploads/` inside `public/` |
