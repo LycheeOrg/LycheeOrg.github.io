@@ -16,7 +16,7 @@ For non-core options (for example UI options), take a look at [Settings](https:/
 |`LYCHEE_UPLOADS`    | Path to uploads directory                                                                  | `uploads/` inside `public/` |
 |`LYCHEE_UPLOADS_URL`| URL to uploads directory, better left empty                                                | `/uploads`                  |
 |`TRUSTED_PROXIES`   | Trusted proxy IP addresses                                                                 | `null`                      |
-|`LIVEWIRE_ENABLED`  | Enable v5 Livewire frontend, set to false if you prefer old v4 (but no front-end updates). | `true`                      |
+|`LIVEWIRE_ENABLED`  | Enable v5 Livewire frontend; set to false if the new frontend doesn't work for you (this is a temporary workaround). | `true`                      |
 |`LOG_VIEWER_ENABLED`| Enable log viewer inside Lychee instead of through CLI.                                    | `true`                      |
 
 ### Database options
