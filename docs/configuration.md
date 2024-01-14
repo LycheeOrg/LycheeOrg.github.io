@@ -5,19 +5,30 @@ For non-core options (for example UI options), take a look at [Settings](https:/
 
 ### Base options
 
-| Option     | Description                                                                                                     | Default            |
-|------------|-----------------------------------------------------------------------------------------------------------------|--------------------|
-| `APP_NAME` | The gallery name                                                                                                | `Lychee`           |
-| `APP_ENV`  | Environment of your gallery, `production` or `development`                                                      | `production`       |
-| `APP_URL`  | The URL of your gallery (which resolves to the `public/` folder). For installations hosted in a subfolder this should contain the part of the URL up to and including the host name only. | `http://localhost` |
-| `APP_DIR`  | For installations hosted in a subfolder this should contain the rest of the URL (after the host name). | _empty_            |
-| `APP_KEY`  | Your app key which is used for encryption (set during installation)                                             | `null`             |
-|`TIMEZONE`  | The timezone of your photos, requires a named timezone identifier like `Europe/Paris`, don't use an offset (`+01:00`) or an abbreviation (`CEST`)|system timezone of server|
-|`LYCHEE_UPLOADS`    | Path to uploads directory                                                                  | `uploads/` inside `public/` |
-|`LYCHEE_UPLOADS_URL`| URL to uploads directory, better left empty                                                | `/uploads`                  |
-|`TRUSTED_PROXIES`   | Trusted proxy IP addresses                                                                 | `null`                      |
-|`LIVEWIRE_ENABLED`  | Enable v5 Livewire frontend; set to false if the new frontend doesn't work for you (this is a temporary workaround). | `true`                      |
-|`LOG_VIEWER_ENABLED`| Enable log viewer inside Lychee instead of through CLI.                                    | `true`                      |
+| Option               | Description                                                                            | Default                     |
+|----------------------|----------------------------------------------------------------------------------------|-----------------------------|
+| `APP_NAME`           | The gallery name                                                                       | `Lychee`                    |
+| `APP_ENV`            | Environment of your gallery, `production` or `development`                             | `production`                |
+| `APP_URL`            | The hostname of your gallery (which should resolves to the `public/` folder).          | `http://localhost`          |
+| `APP_DIR`            | The subfolder path part of the URL.                                                    | _empty_                     |
+| `APP_KEY`            | Your app key which is used for encryption (set during installation)                    | `null`                      |
+| `TIMEZONE`           | The timezone of your photos., requires a named timezone identifier like `Europe/Paris` | system timezone of server   |
+| `LYCHEE_UPLOADS`     | Path to uploads directory                                                              | `uploads/` inside `public/` |
+| `LYCHEE_UPLOADS_URL` | URL to uploads directory, better left empty                                            | `/uploads`                  |
+| `TRUSTED_PROXIES`    | Trusted proxy IP addresses                                                             | `null`                      |
+| `LOG_VIEWER_ENABLED` | Enable log viewer inside Lychee instead of through CLI.                                | `true`                      |
+| `LIVEWIRE_ENABLED`   | Enable v5 Livewire frontend; set to `false` if the new frontend doesn't work on our installation (this is a **temporary** workaround). | `true`         |
+ 
+
+> {note} `APP_URL` must only contain the hostname up to the Top Level Domain (tld) _e.g._ .com, .org etc.
+> If you are using Lychee in a sub folder, specify the path after the tld here in the `APP_DIR` constant.  
+> For example for `https://lychee.test/path/to/lychee`:  
+> - set `APP_URL` to `https://lychee.test`  
+> - and set `APP_DIR` to `/path/to/lychee`  
+> We (LycheeOrg) do not recommend the use of APP_DIR.
+
+> {tip} For `TIMEZONE`, do not use an offset (`+01:00`) or an abbreviation (`CEST`)
+
 
 ### Database options
 
