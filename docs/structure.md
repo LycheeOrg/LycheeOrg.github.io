@@ -15,7 +15,7 @@ The `bootstrap` directory contains the `app.php` file which bootstraps Lychee. T
 The `config` directory, as the name implies, contains all of Lychee's configuration files. It's a great idea to read through all of these files and familiarize yourself with all of the options available to you.
 
 ### The Lang Directory
-The `lang` directory contains your language localization. If you wish, can update our translations and submit a pull request.
+The `lang` directory contains your language localization. If you wish, you can update our translations and submit a pull request.
 
 ### The Database Directory
 The `database` directory contains your database migrations, model factories, and seeds. If you wish, you may also use this directory to hold an SQLite database.
