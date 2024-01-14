@@ -113,7 +113,7 @@ The `Policies` directory contains the authorization policy classes for your appl
 The `Providers` directory contains all of the [service providers][4] for Lychee. Service providers bootstrap Lychee by binding services in the service container, registering events, or performing any other tasks to prepare your application for incoming requests.
 
 ### The Relation Directory
-The `Relation` directory contains the handcrafted relationships used by Lychee to between models. Those house some of the most complex part of Lychee.
+The `Relation` directory contains the handcrafted relationships used by Lychee between models. Those house some of the most complex part of Lychee.
 
 ### The Redirection Directory
 The `Redirection` directory houses main redirection to handle the installation (database not set) and safety cases (security key not set).
