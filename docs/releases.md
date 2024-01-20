@@ -51,7 +51,7 @@ Version 5.1.0 adds support for Oauth with the following providers:
 You will need to register your app to those providers and get your client id and secret.
 Those should then be placed in your `.env` file. See `.env.example` for templates.
 
-Note that Oauth is only usable once the user exists in Lychee database,
+Note that Oauth is only usable once the user exists in Lychee database;
 it is not possible to register directly via Oauth.
 
 #### Changes
