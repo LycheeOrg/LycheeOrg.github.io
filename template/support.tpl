@@ -63,6 +63,7 @@
 			<span>
 				qwerty287<br>
 				<a href="https://github.com/qwerty287">GitHub</a>
+				<span class="badge" style="background:#009955; color: #FFF;">Top contributor</span>
 			</span>
 		</p>
 
