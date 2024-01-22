@@ -28,11 +28,10 @@
 		</p>
 
 		<p class="contributors">
-			<img class="avatar" src="https://avatars.githubusercontent.com/u/80460567?v=4">
+			<img class="avatar" src="https://avatars.githubusercontent.com/u/16415200?s=400&v=4">
 			<span>
-				qwerty287<br>
-				<a href="https://github.com/qwerty287">GitHub</a>
-				<!-- - <a class="donate" href="https://www.paypal.me/"><i class="fab fa-paypal"></i> Donate</a> -->
+				kamil4 (Kamil Iskra)<br>
+				<a href="https://github.com/kamil4">GitHub</a>
 			</span>
 		</p>
 
@@ -60,11 +59,11 @@
 		</p>
 
 		<p class="contributors">
-			<img class="avatar" src="https://avatars.githubusercontent.com/u/16415200?s=400&v=4">
+			<img class="avatar" src="https://avatars.githubusercontent.com/u/80460567?v=4">
 			<span>
-				kamil4 (Kamil Iskra)<br>
-				<a href="https://github.com/kamil4">GitHub</a>
-				<span class="badge" style="background:#34eb80;">Top contributor</span>
+				qwerty287<br>
+				<a href="https://github.com/qwerty287">GitHub</a>
+				<span class="badge" style="background:#009955; color: #FFF;">Top contributor</span>
 			</span>
 		</p>
 
