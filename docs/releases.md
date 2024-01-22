@@ -36,7 +36,7 @@ Released on Jan 22, 2024
 
 #### Thank you @qwerty287
 
-This is with great regret that we see one of our contributor leave for personal reasons.
+It is with great regret that we see one of our core contributors leave for personal reasons.
 Their critical mind was really appreciated and they will be sorely missed.
 We wish them success in all their future endeavors.
 
