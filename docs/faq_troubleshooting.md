@@ -26,6 +26,13 @@ This will ensure that the paths and routes are correctly followed.
 
 > {note} Note that the `serve` command should only be used for testing and debuging. It should not be used on a production server.
 
+### I have an error 500, it says 'Class "Mockery" not found', what can I do?
+
+This is because your `APP_ENV` is set to `testing` and you are using production dependencies.
+Lychee is trying to mock the requests for test purposes.
+
+To resolve the issue, edit the `.env` file and set `APP_ENV` to something other than `testing`, for example `APP_ENV=production`.
+
 ### I have an error 500, what can I do?
 
 Edit the `.env` file and set `APP_DEBUG` to `true`, this will allow the errors to be displayed with the trace.

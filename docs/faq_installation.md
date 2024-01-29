@@ -74,8 +74,6 @@ However, if you want to be able to update your Lychee installation with a click 
 As far as I know, the minimum set of directories that need to be http-writable is as follows:
 ```
 storage/
-storage/
-storage/
 public/uploads/small
 public/uploads/big
 public/uploads/thumb
