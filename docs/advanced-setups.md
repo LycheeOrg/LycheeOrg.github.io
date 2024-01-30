@@ -208,6 +208,10 @@ Have a look at the [Repository](https://github.com/breuerfelix/lychee-helmchart)
 
 Feel free to open an [Issue](https://github.com/breuerfelix/lychee-helmchart/issues) if you need help.
 
+### With Portainer on Synology (Free~ish)
+
+[Marius Bogdan Lixandru](https://mariushosting.com/author/marius/) made a great post of how to set up your Lychee installation on your Synology NAS with Portainer. Read at it [here](https://mariushosting.com/how-to-install-lychee-on-your-synology-nas/).
+
 ## Implementing Object Storage 
 
 An S3-compatible object storage solution is designed to store, manage, and access unstructured data in the cloud. 
