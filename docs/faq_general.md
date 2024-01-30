@@ -174,7 +174,7 @@ Change the URLs `https://fonts.googleapis.com` and `https://fonts.gstatic.com` t
 
 ### How to add custom scripts?
 
-Edit the `custom.js` file in `/path/to/lychee/public/dist/`.
+Edit the `custom.js` file in `/path/to/lychee/public/dist/` or use the _"Personalize JS"_ area in _Settings_.
 
 ### How is the upload folder protected?
 
