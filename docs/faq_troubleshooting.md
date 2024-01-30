@@ -200,7 +200,7 @@ This is, because symbolic links (as opposed to hard links) may cross file system
 
 ### Uploads are not working with Cloudfare / behind a reverse proxy.
 
-Check your `.env` file that the value of `TRUSTED_PROXIES` is correctly set.
+Check that the value of `TRUSTED_PROXIES` is correctly set in your `.env` file.
 
 ### I get an error SQLSTATE: Numeric value out of range: 1264 Out of range value for column 'legacy_id', what should I do?
 
