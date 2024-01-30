@@ -66,19 +66,7 @@ Via SSH, use the command `php artisan lychee:reset_admin`.
 
 ### How to hide smart albums?
 
-Add the following custom CSS to your `user.css` or via the settings menu:
-```css
-[data-id="unsorted"] { display:none; }
-[data-id="public"] { display:none; }
-[data-id="starred"] { display:none; }
-[data-id="recent"] { display:none; }
-div#lychee_view_content > div.divider:first-child { display:none; }
-div#lychee_view_content > div.divider:nth-child(6) {
-    margin-top: 10px;
-    border-top: 0;
-    box-shadow: none;
-}
-```
+Go into your _Settings_ then _More_, find `SA_enabled` in the _"Smart Albums"_ section and set it to `0`.
 
 ### How to disable the 'zoom' animation while browsing pictures?
 
@@ -186,7 +174,7 @@ Change the URLs `https://fonts.googleapis.com` and `https://fonts.gstatic.com` t
 
 ### How to add custom scripts?
 
-If you want to add custom scripts, for example to add an analytics service, you can add the script code to the `additional_footer_text` setting. For example, adding `<script>alert('Hello World!');</script>` to it will display an alert dialog with `Hello World!` in it every time you load the page.
+Edit the `custom.js` file in `/path/to/lychee/public/dist/` or use the _"Personalize JS"_ area in _Settings_.
 
 ### How is the upload folder protected?
 
@@ -203,16 +191,6 @@ Right now, the protection is basically through the use of difficult to guess nam
 ### My login is timing out after two hours, how can this be changed?
 
 You can edit your `.env` and modify the `SESSION_LIFETIME=120` part (in minutes).
-
-### How can I clear the Logs? 
-
-To remove the `Notice` and `Warnings`, simply click on the button at the top of the Log page.
-However if the page is too heavy to load, you can either manually empty the `Logs` table or use artisan:
-
-```bash
-cd Lychee
-php artisan lychee:logs clean
-```
 
 ### How can I see the correct client IP address when running Lychee behind Cloudflare?
 
@@ -239,10 +217,6 @@ For example:
 No this is normal. This user does not have the ownership of that Album, so the right click is not available. You can see _sharing_ as a _read_ permission.
 
 ### The divider h1 shows the text "Admin" when logged in with an ordinary user. Shouln't this be "Albums"?
-
-<!-- TODO add deprecation notice once https://github.com/LycheeOrg/Lychee/pull/1539 is merged
-> {note} This is a behavior of Lychee that only occurs if the admin user did not log in after the update. Please contact the admin to log in once. After this, the admin's username is shown instead of `Admin`.
--->
 
 Actually no, this is because the user does not have any albums (yet). The `h1` divider is to show who is the owner of those albums. See below.
 ![2020-02-19_3840x1080_12:29:19](https://user-images.githubusercontent.com/627094/74830496-92c3a200-5313-11ea-9065-60cb8090c7ac.png)

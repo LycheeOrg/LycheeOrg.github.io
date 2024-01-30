@@ -197,3 +197,11 @@ As a result, in order to use this function the file system on which `/uploads` r
 _"Windows"_ file systems (e.g. NTFS, FAT, CIFS) won't work.
 The directory with the original media files may still be a Windows file system.
 This is, because symbolic links (as opposed to hard links) may cross file system boundaries.
+
+### Uploads are not working with Cloudfare / behind a reverse proxy.
+
+Check that the value of `TRUSTED_PROXIES` is correctly set in your `.env` file.
+
+### I get an error SQLSTATE: Numeric value out of range: 1264 Out of range value for column 'legacy_id', what should I do?
+
+Go into your _Settings_ then _More_, find `force_32bit_ids` in the _"config"_ section and set it to `1`.
