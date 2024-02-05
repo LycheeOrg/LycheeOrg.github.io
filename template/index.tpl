@@ -154,8 +154,11 @@
 <!-- Donate -->
 <div class="support">
     <h1>Support</h1>
-    <p class="donate__description">If you enjoy Lychee, please consider <a href="support.html">supporting us</a>.</p>
-
+    <p class="donate__description">
+        Through contributions, donations, and sponsorship, you allow Lychee to thrive.<br>
+        Your donations directly support demo server costs, continuous enhancements, and most importantly bug fixes!
+    </p>
+    <p class="donate__description">If you enjoy Lychee, please consider supporting <a href="support.html">the team</a> on <a href="https://opencollective.com/LycheeOrg">opencollective</a>.</p>
     <p class="donate__description">Lychee is supported by Jetbrains' <a href="https://www.jetbrains.com/community/opensource/">Open Source Development - Community Support</a> program.<br/>
         <img src="/assets/images/PhpStorm_icon.png" alt="PhpStorm" width="75px"/></p>
 

@@ -2,10 +2,12 @@
 <link rel="stylesheet" href="assets/styles/fontawesome/fontawesome.css">
 <!-- Introduction -->
 <div class="donations">
-	<h1>Supporting Lychee</h1>
-	<h4>There is no way to donate to "Lychee" as a project.</h4>
-	<p class="f_p">However if you want to say "thank you" and support further development<br>you can donate to
-		the individual developers members of <a href="https://github.com/LycheeOrg">LycheeOrg</a> below.</p>
+	<h1>Helping Lychee</h1>
+	<h3>You can support further development of Lychee on <a href="https://opencollective.com/LycheeOrg">opencollective</a>.</h3>
+
+	<p class="f_p">Or, if you want to say a small "thank you"<br>
+		you can donate to the individual developers members of
+		<a href="https://github.com/LycheeOrg">LycheeOrg</a> below.</p>
 
 	<div class="contributors_list">
 		<p class="contributors">
