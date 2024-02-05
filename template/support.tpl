@@ -3,11 +3,12 @@
 <!-- Introduction -->
 <div class="donations">
 	<h1>Helping Lychee</h1>
-	<h3>You can support further development of Lychee on <a href="https://opencollective.com/LycheeOrg">opencollective</a>.</h3>
-
-	<p class="f_p">Or, if you want to say a small "thank you"<br>
-		you can donate to the individual developers members of
-		<a href="https://github.com/LycheeOrg">LycheeOrg</a> below.</p>
+	<p class="f_p">We are LycheeOrg, a small group of developers with aim to maintain<br>
+		a free open-source photography library with high quality of code.<br>
+		Being in control of our own data, our own pictures is something that we value above all.</p>
+	<p class="f_p">If you are using Lychee, a small token of gratitude will go a long way.<br>
+		You can support further development of Lychee on <a href="https://opencollective.com/LycheeOrg">opencollective</a>,
+		on <a href="https://github.com/sponsors/LycheeOrg">GitHub</a>.</p>
 
 	<div class="contributors_list">
 		<p class="contributors">
