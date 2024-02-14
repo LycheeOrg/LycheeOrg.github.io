@@ -6,7 +6,9 @@ The following tags are available:
 
 * `latest`: Latest Lychee release
 * `v[NUMBER]`: Stable version tag for a Lychee release
-* `dev`: Current master branch tag (Lychee operates on a stable master, so this should usually be safe)
+* `dev` or `nightly` : Current master branch tag (Lychee operates on a stable master, so this should usually be safe)
+* `devtools` : Same as `dev` but with the developper extensions enabled (e.g. api docs, debug bar...).
+* `alpha`: Same as `dev` but uses the alpha branch instead (contains merged pull request without peer review).
 * `testing`: Tag for testing new branches and pull requests. Designed for internal use by LycheeOrg.
 
 Note that only the `:dev` tag is available for armv6 and armv7 systems. This is due to an issue with the build environment and is hopefully temporary.
