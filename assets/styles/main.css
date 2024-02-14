@@ -897,6 +897,12 @@ hr {
     padding-bottom: 1px;
 }
 
+.donate__description {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .donate:hover {
     background-color: #f76707;
 }

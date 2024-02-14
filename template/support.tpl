@@ -3,9 +3,11 @@
 <!-- Introduction -->
 <div class="donations">
 	<h1>Supporting Lychee</h1>
-	<h4>There is no way to donate to "Lychee" as a project.</h4>
-	<p class="f_p">However if you want to say "thank you" and support further development<br>you can donate to
-		the individual developers members of <a href="https://github.com/LycheeOrg">LycheeOrg</a> below.</p>
+	<p class="f_p">We aim to maintain a free open-source photography library with high quality of code.<br>
+		Being in control of our own data, our own pictures is something that we value above all.</p>
+	<p class="f_p">If you are using Lychee, a small token of gratitude will go a long way.<br>
+		You can support further development of Lychee on <a href="https://opencollective.com/LycheeOrg">opencollective</a> or
+		on <a href="https://github.com/sponsors/LycheeOrg">GitHub</a>.</p>
 
 	<div class="contributors_list">
 		<p class="contributors">
