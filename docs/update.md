@@ -60,7 +60,7 @@ The database migrations will be applied automatically.
 First edit your `docker-compose.yml` to point to the version you would like to migrate to.
 
 ```diff
--    image: lycheeorg/lychee:v4.13.0
+-    image: lycheeorg/lychee:v5.1.0
 +    image: lycheeorg/lychee:v5.1.2
 ```
 
