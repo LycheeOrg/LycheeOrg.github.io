@@ -42,9 +42,9 @@ There are two cases. Either you are pinned to a release tag, _e.g._ v5.1.2 or yo
 
 This procedure is for those following one of those tags:
 
-- `latest` &mdash; the last official release,
-- `nightly` or `dev` &mdash; the last build from the `master` branch (peer reviewed),
-- `alpha` &mdash; the last build from the `alpha` branch (no peer review),
+- `latest` &mdash; the last official release
+- `nightly` or `dev` &mdash; the last build from the `master` branch (peer reviewed)
+- `alpha` &mdash; the last build from the `alpha` branch (no peer review)
 
 Simply run the following.
 ```bash
