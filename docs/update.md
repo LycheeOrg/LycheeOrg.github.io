@@ -32,6 +32,47 @@ If you have the `post-merge` hook set up the following is enough:
 git pull
 ```
 
+## Using Docker compose
+
+There are two cases. Either you are pinned to a release tag, _e.g._ v5.1.2 or you are using a rolling update tag.
+
+> {tip} When using docker, a version rollback is difficult to apply: it requires to bash into the container to run the required migrate commands on the new version before dropping the tag to the previous value.
+
+#### With Rolling update tag
+
+This procedure is for those following one of those tags:
+
+- `latest` &mdash; the last official release
+- `nightly` or `dev` &mdash; the last build from the `master` branch (peer reviewed)
+- `alpha` &mdash; the last build from the `alpha` branch (no peer review)
+
+Simply run the following.
+```bash
+docker compose down
+docker compose pull
+docker compose up -d
+```
+
+The database migrations will be applied automatically.
+
+#### With version tag.
+
+First edit your `docker-compose.yml` to point to the version you would like to migrate to.
+
+```diff
+-    image: lycheeorg/lychee:v5.1.0
++    image: lycheeorg/lychee:v5.1.2
+```
+
+Save and run the following.
+```bash
+docker compose down
+docker compose pull
+docker compose up -d
+```
+
+The migration will be applied automatically and you should be running the requested tagged version.
+
 ## Update manually
 
 This update will be the one you have to use if you are following the Release channel.
