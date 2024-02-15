@@ -34,7 +34,7 @@ git pull
 
 ## Using Docker compose
 
-There are two cases. Either you are pinned to a release tag, _e.g._ v4.9.3 or you are using a rolling update tag.
+There are two cases. Either you are pinned to a release tag, _e.g._ v5.1.2 or you are using a rolling update tag.
 
 > {tip} When using docker, a version rollback is difficult to apply: it requires to bash into the container to run the required migrate commands on the new version before dropping the tag to the previous value.
 
