@@ -12,7 +12,6 @@ The following tags are available:
 * `alpha-devtools`: Same as `alpha`, but includes development dependencies  (e.g. api docs, debug bar)
 * `testing`: Tag for testing new branches and pull requests. Designed for internal use by LycheeOrg.
 
-Note that only the `:dev` tag is available for armv6 and armv7 systems. This is due to an issue with the build environment and is hopefully temporary.
 
 ## Setup
 
