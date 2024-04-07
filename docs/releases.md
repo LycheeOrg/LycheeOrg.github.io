@@ -42,7 +42,7 @@ There are major bug fixes contained in this update, most notably when uploading 
 #### The current LycheeOrg situation.
 
 We are currently 2 active members (d7415 and myself). As a result development has been significantly slowed down.
-If you like Lychee and wish to contribute, fixes bug, add new features, you will be more than welcome to join the team
+If you like Lychee and wish to contribute, fix bugs and add new features you are more than welcome to join the team
 or open pull requests.
 
 #### Changes
