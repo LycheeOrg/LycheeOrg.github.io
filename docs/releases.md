@@ -30,6 +30,70 @@
 
 ## Version 5
 
+### v5.2.0
+
+Released on Apr 06, 2024
+
+#### Anyone running version 5 should update without delays.
+
+We strongly recommend anyone using Lychee version 5 to migrate as soon as possible to 5.2.
+There are major bug fixes contained in this update, most notably when uploading multiple images at the same time.
+
+#### The current LycheeOrg situation.
+
+We are currently 2 active members (d7415 and myself). As a result development has been significantly slowed down.
+If you like Lychee and wish to contribute, fix bugs and add new features you are more than welcome to join the team
+or open pull requests.
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.
+
+* `new` #2242 : No more album ID within the history by @ildyria.
+* `new` #2221 : Remove is_public & deprecated Public smart album by @ildyria.
+* `fixes` #2245 : fix CVE-2020-8203 by @ildyria.
+* `new` #2239 : Add pulse when jobs are waiting/processing by @ildyria.
+* `fixes` #2246 : Avoid white flash on v4 redirection by @ildyria.
+* `fixes` #2249 : Fix upload photo by @ildyria.
+* `fixes` #2250 : Prebuild folders in storage by @ildyria.
+* `new` #2251 : Improve diagnostics by adding check of temporary file systems by @ildyria.
+* `klo` #2257 : Re-arrange commands by @ildyria.
+* `fixes` #2256 : Null coalescence on css/js to catch when file does not exists by @ildyria.
+* `fixes` #2252 : Add check for number of sizevariants without sizes by @ildyria.
+* `klo` #2261 : Composer update by @ildyria.
+* `klo` #2270 : Improve coverage by @ildyria.
+* `fixes` #2264 : Avoid exception, add error when unlocking album by @ildyria.
+* `fixes` #2291 : If LegacyIdException is thrown provide proper solution by @ildyria.
+* `new` #2282 : Add support for Feature flags by @ildyria.
+* `klo` #2269 : Mark some classes are readonly by @ildyria.
+* `fixes` #2286 : Support migration on docker builds without off time by @ildyria.
+* `fixes` #2298 : Add permission when user is not owner but creating an album by @ildyria.
+* `klo` #2310 : Dependencies update by @ildyria.
+* `fixes` #2140 : Fix Front-end bugs (swiping, uploading, margins) by @ildyria.
+* `fixes` #2317 : Add preg_quote before doing glob() to escape regex characters by @ildyria.
+* `new` #2309 : Add subalbum search by @Tombula.
+* `klo` #2324 : Bump livewire/livewire from 3.4.6 to 3.4.9 by @dependabot.
+* `klo` #2325 : Pinning dependencies + fix permissions by @ildyria.
+* `fixes` #2304 : Support Paths on V5 with Livewire by @ildyria.
+* `fixes` #2326 : Fix livewire breaking on non debug with sub folder by @ildyria.
+* `fixes` #2333 : only owner users with upload rights are allowed to edit albums by @ildyria.
+* `new` #2335 : Proper markdown support on descriptions by @ildyria.
+* `klo` #2340 : Bump vite from 5.1.6 to 5.1.7 by @dependabot.
+* `fixes` #2347 : Fix description markdown on the overlay by @ildyria.
+* `fixes` #2346 : Fix share button always visible by @ildyria.
+* `klo` #2338 : Composer update + formatting by @ildyria.
+* `new` #2331 : Improve logic for nested values in arrays for language by @ildyria.
+* `new` #2332 : Create maintenance page by @ildyria.
+* `klo` #2330 : Channel version type is an Enum by @ildyria.
+* `new` #2348 : add Optimize module to maintenance page by @ildyria.
+* `new` #2349 : add Cleaning module by @ildyria.
+* `new` #2350 : add Update module by @ildyria.
+* `new` #2351 : Add fix tree module by @ildyria.
+* `new` #2352 : add Fix Jobs module by @ildyria.
+* `new` #2353 : Add button to generate missing size variants by @ildyria.
+* `new` #2354 : Add module to fix the missing file sizes from size variants by @ildyria.
+
+
 ### v5.1.1
 
 Released on Jan 22, 2024
