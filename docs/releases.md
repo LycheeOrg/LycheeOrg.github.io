@@ -30,6 +30,29 @@
 
 ## Version 5
 
+### v5.2.1
+
+Released on Apr 19, 2024
+
+#### Canary
+
+We provide the `PHOTO_PIPES` flag in `.env` to enable the future code flow to process images. 
+By default its value is `false`.
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.
+
+* `klo` #2364 : Avoid crashing when livewire flag is set in tests by @ildyria.
+* `klo` #2362 : More relevant diagnostic data, less privacy invasive by @ildyria.
+* `new` via #2363 #2365 #2366 #2367 #2368 #2369 #2371 #2372 #2373 #2374 #2375 #2376:  
+  Add optional (and future) pipeline flow to process images. This can be enabled by setting 
+  `PHOTO_PIPES` to `true` in your `.env`
+* `new` #2386 : New OAuth provider supported: keycloak by @jsaathof.
+* `new` #2377 : New per-album setting to set the header image by @aSouchereau.
+* `klo` #2387 : Remove non existing columns by @ildyria.
+* `fixes` #2393 : Fix database license type by @ildyria.
+
 ### v5.2.0
 
 Released on Apr 06, 2024
@@ -46,8 +69,6 @@ If you like Lychee and wish to contribute, fix bugs and add new features you are
 or open pull requests.
 
 #### Changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.
 
 * `new` #2242 : No more album ID within the history by @ildyria.
 * `new` #2221 : Remove is_public & deprecated Public smart album by @ildyria.
@@ -122,7 +143,7 @@ If you did not share any links that way, leave as is. Default value is `false`.
 * `fixes` #2215 : Fix import from Dropbox from Livewire side by @ildyria.
 * `fixes` #2211 : Fix upload on smart albums by @ildyria.
 * `fixes` #2219 : Fix search broken when hitting albums by @ildyria.
-* `fixes` #2117 : Add back Download and full size in photo view. by @ildyria.
+* `fixes` #2117 : Add back Download and full size in photo view by @ildyria.
 * `new` #2226 : Anonymize the paths in the diagnostics by @ildyria.
 * `fixes` #2173 : Fix title not being updated by @ildyria.
 * `fixes` #2176 : Add redirection for legacy links by @ildyria.
