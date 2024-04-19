@@ -34,7 +34,7 @@
 
 Released on Apr 19, 2024
 
-#### Canari
+#### Canary
 
 We provide the `PHOTO_PIPES` flag in `.env` to enable the future code flow to process images. 
 By default its value is `false`.
@@ -46,10 +46,10 @@ By default its value is `false`.
 * `klo` #2364 : Avoid crashing when livewire flag is set in tests by @ildyria.
 * `klo` #2362 : More relevant diagnostic data, less privacy invasive by @ildyria.
 * `new` via #2363 #2365 #2366 #2367 #2368 #2369 #2371 #2372 #2373 #2374 #2375 #2376:  
-  Add optionnal (and future) pipeline flow to process images. This can be enabled by setting 
+  Add optional (and future) pipeline flow to process images. This can be enabled by setting 
   `PHOTO_PIPES` to `true` in your `.env`
-* `new` #2386 : New Oauth provider supported: keycloak by @jsaathof.
-* `new` #2377 : New setting per album to set the header image #2202 by @aSouchereau.
+* `new` #2386 : New OAuth provider supported: keycloak by @jsaathof.
+* `new` #2377 : New per-album setting to set the header image by @aSouchereau.
 * `klo` #2387 : Remove non existing columns by @ildyria.
 * `fixes` #2393 : Fix database license type by @ildyria.
 
