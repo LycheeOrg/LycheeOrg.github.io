@@ -30,9 +30,20 @@
 
 ## Version 5
 
+### v5.2.2
+
+Released on Apr 20, 2024
+
+#### Changes
+
+* `fix` #2396 : Fixes HTTP 500 "Attempt to read property "photo_id" on null" on album page when no photo is found for header by @nanawel.
+* `fix` #2397 : Use portrait when landscape is not available for header image by @ildyria.
+
 ### v5.2.1
 
 Released on Apr 19, 2024
+
+**BROKEN - Use v5.2.2 instead.**
 
 #### Canary
 
