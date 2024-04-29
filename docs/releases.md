@@ -30,6 +30,25 @@
 
 ## Version 5
 
+### v5.3.0
+
+Released on Apr 29, 2024
+
+#### Note on S3 buckets support.
+
+As this is a change by @Kovah and we are unfortunately not able to provide support on how to make it work.
+Refer to https://laravel-news.com/using-aws-s3-for-laravel-storage for details of the settings.
+**Any issues on that subject will be closed.** Sorry.
+
+#### Changes
+
+* `fixes` #2400 : Fix description empty string creating bug in layout by @ildyria.
+* `new` #2379 : Add S3 bucket support by @Kovah.
+* `fixes` #2411 : Fix teapot not flagging on phpinfo.php by @ildyria.
+* `fixes` #2416 : Add migration on forgotten license CC-BY-SA by @ildyria.
+* `fixes` #2413 : Fixes scrolling of details when description is too wide/long by @ildyria.
+* `new` #1880 : Adding copyright to albums #1838 by @ThanasisMpalatsoukas.
+
 ### v5.2.2
 
 Released on Apr 20, 2024
