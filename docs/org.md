@@ -2,7 +2,7 @@
 
 Lychee was originally developed by [electerious][1] ([Tobias Reich][2]). Lychee aims to be a great looking and easy-to-use photo-management-system that nearly anyone can use on their web server.
 
-Since April 1st, 2018 this project has moved to it's own Organisation (LycheeOrg) where people are able to submit their fixes to it. We, the Organisation owners, want to thank electerious (Tobias Reich) for the opportunity to make this project live on.
+Since April 1st, 2018 this project has moved to its own Organisation (LycheeOrg) where people are able to submit their fixes to it. We, the Organisation owners, want to thank electerious (Tobias Reich) for the opportunity to make this project live on.
 
 ## Schedule releases & Roadmap
 
