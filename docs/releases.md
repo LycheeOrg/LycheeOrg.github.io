@@ -36,7 +36,7 @@ Released on Jun 9, 2024
 
 #### Changes
 
-* `fixes` #2421 : Fixes `gen-sizevariants` button french translation by @HorlogeSkynet.
+* `fixes` #2421 : Fix `gen-sizevariants` button french translation by @HorlogeSkynet.
 * `fixes` #2423 : Fix map not updating in sidebar view by @ildyria.
 * `fixes` #2430 : Fix error cover option when selecting photo in smart album by @ildyria.
 * `fixes` #2431 : Fix broken thumbnail by @ildyria.
