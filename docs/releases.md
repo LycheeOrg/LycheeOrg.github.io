@@ -30,6 +30,22 @@
 
 ## Version 5
 
+### v5.3.1
+
+Released on Jun 9, 2024
+
+#### Changes
+
+* `fixes` #2421 : Fixes `gen-sizevariants` button french translation by @HorlogeSkynet.
+* `fixes` #2423 : Fix map not updating in sidebar view by @ildyria.
+* `fixes` #2430 : Fix error cover option when selecting photo in smart album by @ildyria.
+* `fixes` #2431 : Fix broken thumbnail by @ildyria.
+* `fixes` #2435 : Fix order max-min in header to match order in thumbnail by @ildyria.
+* `new` #2429 : Use random instead of sorted for thumbs of Smart Albumbs by @ildyria.
+* `fixes` #2442 : Small improvements to French translation by @anantone.
+* `fixes` #2444 : Fix additional_footer_text setting (#2445) by @leso-kn.
+* `fixes` #2448 : Composer update + phpstan annotations + Improved speed by @ildyria.
+
 ### v5.3.0
 
 Released on Apr 29, 2024
