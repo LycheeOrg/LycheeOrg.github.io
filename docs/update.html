@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lychee Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <link rel="canonical" href="https://lycheeorg.github.io/docs/">
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
+    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
+    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#ff2d20">
+    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Load styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/prism.css">
+
+    <!-- Load JS -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/prism.js"></script>
+
+</head>
+
+<body>
+
+    <div class="sidebar_layout" id="docsScreen">
+
+        <div class="page_contain">
+            <div class="contain">
+                <aside class="sidebar">
+                    <a href="../" class="logo">
+                        <img class="mark" src="/assets/images/logo.png" alt="Laravel">
+                        <img class="type" src="img/Lychee.png" alt="Laravel">
+                    </a>
+                    <nav>
+                        <div class="navigation_contain">
+                            <div class="docs_sidebar">
+                                <ul>
+                                    <li class='sub--on'>
+<h2>Prologue</h2>
+<ul>
+<li><a href='org.html'>Lychee & LycheeOrg</a></li>
+<li><a href='releases.html'>Release Notes</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Getting Started</h2>
+<ul>
+<li><a href='installation.html'>Installation</a></li>
+<li><a href='configuration.html'>Configuration</a></li>
+<li><a href='docker.html'>Docker</a></li>
+<li class='active'><a href='update.html'>Update</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Advanced Topics</h2>
+<ul>
+<li><a href='settings.html'>Settings</a></li>
+<li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+<li><a href='advanced-setups.html'>Advanced Setups</a></li>
+<li><a href='honeypot.html'>Honeypot and Teapots</a></li>
+<li><a href='external_tracking.html'>External tracking with Matomo,<br>Google Analytics & Co</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Frequently Asked Question</h2>
+<ul>
+<li><a href='faq_general.html'>General</a></li>
+<li><a href='faq_installation.html'>Installation, migration, upgrade, update</a></li>
+<li><a href='faq_troubleshooting.html'>Troubleshooting</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Contributing</h2>
+<ul>
+<li><a href='contributions.html'>Contribution Guide</a></li>
+<li><a href='api.html'>API Documentation</a></li>
+<li><a href='architecture.html'>Lychee logic overview</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
+<li><a href='frontend.html'>Front-end</a></li>
+<li><a href='livewire.html'>Livewire Front-end (alpha)</a></li>
+</ul>
+
+                                    <li class="laravel">
+                                        <a href="https://laravel.com/docs/8.x"><h2>Laravel<img style="margin-left:4px;" src="img/external-link.svg" /></h2></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="trigger_contain">
+                        <a href="#" class="nav_trigger" aria-label="Menu">
+                            <div class="bar"></div>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="body_content">
+                    <section class="docs_body">
+                        <section class="docs_main">
+                            <h1>Update</h1>
+                            
+<ul>
+<li><a href="#update-requirements">Update requirements</a></li>
+<li><a href="#update-using-git">Update using Git</a></li>
+<li><a href="#using-docker-compose">Using Docker compose</a></li>
+<li><a href="#update-manually">Update manually</a></li>
+<li><a href="#update-via-the-gui">Update via the GUI</a></li>
+</ul>
+
+                            <hr> <p>The way you can update Lychee depends of how you did your installation:</p>
+<ul>
+<li>If you used the release channel (downloading a zip file), go to <a href="#update-manually">Update manually</a></li>
+<li>If you installed via <code>git clone</code> then you can either use a <a href="#update-using-git">similar process</a> or do it directly online via the <a href="#update-via-the-gui">Graphical User Interface</a> of Lychee.</li>
+</ul>
+<h2 id="update-requirements"><a class="toclink" href="#update-requirements">Update requirements</a></h2>
+<ul>
+<li>Your system must comply with the latest <a href="installation.html">system requirements</a> of the latest version of Lychee.</li>
+<li>Ensure that you are using the version 4 of Lychee. Updates from older version of Lychee are more complex.</li>
+</ul>
+<p>Don't forget to take a look at the <a href="releases.html">Changelog</a> to see what's new and to check for any actions that may be required.</p>
+<h2 id="update-using-git"><a class="toclink" href="#update-using-git">Update using Git</a></h2>
+<p>Fully updating Lychee with <code>git</code> is the easiest way:</p>
+<pre><code class="language-bash"># download the lastest files
+git pull
+# update composer dependencies
+composer install --no-dev
+# apply the database migration
+php artisan migrate
+# update Node.js dependencies
+npm install
+# generate frontend assets
+npm run build
+</code></pre>
+<p>If you have the <code>post-merge</code> hook set up the following is enough:</p>
+<pre><code class="language-bash">git pull
+</code></pre>
+<h2 id="using-docker-compose"><a class="toclink" href="#using-docker-compose">Using Docker compose</a></h2>
+<p>There are two cases. Either you are pinned to a release tag, <em>e.g.</em> v5.1.2 or you are using a rolling update tag.</p>
+<blockquote>
+<p>{tip} When using docker, a version rollback is difficult to apply: it requires to bash into the container to run the required migrate commands on the new version before dropping the tag to the previous value.</p>
+</blockquote>
+<h4 id="with-rolling-update-tag"><a class="toclink" href="#with-rolling-update-tag">With Rolling update tag</a></h4>
+<p>This procedure is for those following one of those tags:</p>
+<ul>
+<li><code>latest</code> &mdash; the last official release</li>
+<li><code>nightly</code> or <code>dev</code> &mdash; the last build from the <code>master</code> branch (peer reviewed)</li>
+<li><code>alpha</code> &mdash; the last build from the <code>alpha</code> branch (no peer review)</li>
+</ul>
+<p>Simply run the following.</p>
+<pre><code class="language-bash">docker compose down
+docker compose pull
+docker compose up -d
+</code></pre>
+<p>The database migrations will be applied automatically.</p>
+<h4 id="with-version-tag"><a class="toclink" href="#with-version-tag">With version tag.</a></h4>
+<p>First edit your <code>docker-compose.yml</code> to point to the version you would like to migrate to.</p>
+<pre><code class="language-diff">-    image: lycheeorg/lychee:v5.1.0
++    image: lycheeorg/lychee:v5.1.2
+</code></pre>
+<p>Save and run the following.</p>
+<pre><code class="language-bash">docker compose down
+docker compose pull
+docker compose up -d
+</code></pre>
+<p>The migration will be applied automatically and you should be running the requested tagged version.</p>
+<h2 id="update-manually"><a class="toclink" href="#update-manually">Update manually</a></h2>
+<p>This update will be the one you have to use if you are following the Release channel.</p>
+<ol>
+<li>Download the <a href="https://github.com/LycheeOrg/Lychee/releases">newest Version</a></li>
+<li>Replace all existing files, excluding <code>public/uploads/</code>, <code>public/dist/user.css</code> and <code>.env</code> (and <code>database/database.sqlite</code> if using <strong>SQLite</strong> as your database)</li>
+<li>Go into the <code>Diagnostic</code> page and click on the <code>Apply migration</code> button.</li>
+</ol>
+<h2 id="update-via-the-gui"><a class="toclink" href="#update-via-the-gui">Update via the GUI</a></h2>
+<p>This requires:</p>
+<ul>
+<li><code>git</code> to be installed</li>
+<li>write access for your web user (<code>www-data</code> for apache2) to all the folders, files <strong>and <code>.git/</code></strong>.</li>
+<li><code>exec</code> to be available as a php function.</li>
+<li><code>allow_online_git_pull</code> has to be set to <code>1</code></li>
+</ul>
+<h4 id="1-go-to-your-diagnostic-page-and-check-for-updates"><a class="toclink" href="#1-go-to-your-diagnostic-page-and-check-for-updates">1. Go to your Diagnostic page and check for updates</a></h4>
+<p>Notice that <em>Lychee version (git)</em> tells you:</p>
+<ul>
+<li>the commit number &mdash; <em>"dfad796"</em>,</li>
+<li>which branch you are on &mdash; <em>"master"</em>,</li>
+<li>you do not have information if you are up to date or not &mdash; <em>"Data not in Cache"</em>.</li>
+</ul>
+<p>However you should see a "check for Updates" button:</p>
+<p><img alt="" src="img/update/update_1.png" /></p>
+<p>If you click on it, it will ask your server to check how far behind you are from the bleeding edge version of Lychee:</p>
+<p><img alt="" src="img/update/update_2.png" /></p>
+<h4 id="2-refresh-your-diagnostic-page"><a class="toclink" href="#2-refresh-your-diagnostic-page">2. Refresh your Diagnostic page</a></h4>
+<p>Notice that <em>Lychee version (git)</em> now tells you:</p>
+<ul>
+<li>that you are behind &mdash; "<em>1 commits behind master (dc5f03a)</em>"</li>
+<li>that the last check for update was done some times ago &mdash; "<em>(9 seconds ago)</em>"</li>
+</ul>
+<p><img alt="" src="img/update/update_3.png" /></p>
+<h4 id="3-apply-the-update"><a class="toclink" href="#3-apply-the-update">3. Apply the update</a></h4>
+<p>By clicking on <em>"Update available"</em> this will trigger server side a <code>git pull</code> and <code>artisan migrate</code>.</p>
+<p><img alt="" src="img/update/update_4.png" /></p>
+<p>You can see the log result of the command line printed above the diagnostic information.
+By default composer calls are disabled.</p>
+<p><img alt="" src="img/update/update_5.png" /></p>
+<h4 id="4-check-for-updates"><a class="toclink" href="#4-check-for-updates">4. Check for updates</a></h4>
+<p>We can once again check for updates:</p>
+<p><img alt="" src="img/update/update_6.png" /></p>
+<p><img alt="" src="img/update/update_7.png" /></p>
+<p>And we are done.</p><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/update.md">Edit this page on Github!</a></p></blockquote>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lychee Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <link rel="canonical" href="https://lycheeorg.github.io/docs/">
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
+    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
+    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#ff2d20">
+    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Load styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/prism.css">
+
+    <!-- Load JS -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/prism.js"></script>
+
+</head>
+
+<body>
+
+    <div class="sidebar_layout" id="docsScreen">
+
+        <div class="page_contain">
+            <div class="contain">
+                <aside class="sidebar">
+                    <a href="../" class="logo">
+                        <img class="mark" src="/assets/images/logo.png" alt="Laravel">
+                        <img class="type" src="img/Lychee.png" alt="Laravel">
+                    </a>
+                    <nav>
+                        <div class="navigation_contain">
+                            <div class="docs_sidebar">
+                                <ul>
+                                    <li class='sub--on'>
+<h2>Prologue</h2>
+<ul>
+<li><a href='org.html'>Lychee & LycheeOrg</a></li>
+<li><a href='releases.html'>Release Notes</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Getting Started</h2>
+<ul>
+<li><a href='installation.html'>Installation</a></li>
+<li class='active'><a href='configuration.html'>Configuration</a></li>
+<li><a href='docker.html'>Docker</a></li>
+<li><a href='update.html'>Update</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Advanced Topics</h2>
+<ul>
+<li><a href='settings.html'>Settings</a></li>
+<li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+<li><a href='advanced-setups.html'>Advanced Setups</a></li>
+<li><a href='honeypot.html'>Honeypot and Teapots</a></li>
+<li><a href='external_tracking.html'>External tracking with Matomo,<br>Google Analytics & Co</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Frequently Asked Question</h2>
+<ul>
+<li><a href='faq_general.html'>General</a></li>
+<li><a href='faq_installation.html'>Installation, migration, upgrade, update</a></li>
+<li><a href='faq_troubleshooting.html'>Troubleshooting</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Contributing</h2>
+<ul>
+<li><a href='contributions.html'>Contribution Guide</a></li>
+<li><a href='api.html'>API Documentation</a></li>
+<li><a href='architecture.html'>Lychee logic overview</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
+<li><a href='frontend.html'>Front-end</a></li>
+<li><a href='livewire.html'>Livewire Front-end (alpha)</a></li>
+</ul>
+
+                                    <li class="laravel">
+                                        <a href="https://laravel.com/docs/8.x"><h2>Laravel<img style="margin-left:4px;" src="img/external-link.svg" /></h2></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="trigger_contain">
+                        <a href="#" class="nav_trigger" aria-label="Menu">
+                            <div class="bar"></div>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="body_content">
+                    <section class="docs_body">
+                        <section class="docs_main">
+                            <h1>Configuration</h1>
+                            
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#base-options">Base options</a></li>
+<li><a href="#database-options">Database options</a></li>
+<li><a href="#mailer-options">Mailer options</a></li>
+<li><a href="#cache-options">Cache options</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#authentication-guards">Authentication Guards</a></li>
+<li><a href="#session-and-security-options">Session and security options</a></li>
+<li><a href="#development-options">Development options</a></li>
+<li><a href="#advanced-configuration">Advanced configuration</a></li>
+</ul>
+</li>
+<li><a href="#environment-configuration">Environment Configuration</a><ul>
+<li><a href="#environment-variable-types">Environment Variable Types</a></li>
+<li><a href="#retrieving-environment-configuration">Retrieving Environment Configuration</a></li>
+<li><a href="#determining-the-current-environment">Determining The Current Environment</a></li>
+<li><a href="#hiding-environment-variables-from-debug-pages">Hiding Environment Variables From Debug Pages</a></li>
+</ul>
+</li>
+<li><a href="#accessing-configuration-values">Accessing Configuration Values</a></li>
+<li><a href="#configuration-caching">Configuration Caching</a></li>
+<li><a href="#maintenance-mode">Maintenance Mode</a></li>
+</ul>
+
+                            <hr> <h2 id="introduction"><a class="toclink" href="#introduction">Introduction</a></h2>
+<p>Lychee's core configuration is managed using a <code>.env</code> file. It probably exists already in your directory, but if not it can be created by copying <code>.env.example</code>. The options which are already included in the <code>.env</code> file should be sufficient to cover the necessary configuration for the vast majority of all use-cases and setups. Using other options than those included in the <code>.env</code> file should rarely be necessary. However, this page contains a more complete list of the available options, incl. some highly advanced ones, together with descriptions and default values.
+For non-core options (for example UI options), take a look at <a href="https://lycheeorg.github.io/docs/settings.html">Settings</a>.</p>
+<h3 id="base-options"><a class="toclink" href="#base-options">Base options</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>APP_NAME</code></td>
+<td>The gallery name</td>
+<td><code>Lychee</code></td>
+</tr>
+<tr>
+<td><code>APP_ENV</code></td>
+<td>Environment of your gallery, <code>production</code> or <code>development</code></td>
+<td><code>production</code></td>
+</tr>
+<tr>
+<td><code>APP_URL</code></td>
+<td>The hostname of your gallery (which should resolves to the <code>public/</code> folder).</td>
+<td><code>http://localhost</code></td>
+</tr>
+<tr>
+<td><code>APP_DIR</code></td>
+<td>The subfolder path part of the URL.</td>
+<td><em>empty</em></td>
+</tr>
+<tr>
+<td><code>APP_KEY</code></td>
+<td>Your app key which is used for encryption (set during installation)</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>TIMEZONE</code></td>
+<td>The timezone of your photos., requires a named timezone identifier like <code>Europe/Paris</code></td>
+<td>system timezone of server</td>
+</tr>
+<tr>
+<td><code>LYCHEE_UPLOADS</code></td>
+<td>Path to uploads directory</td>
+<td><code>uploads/</code> inside <code>public/</code></td>
+</tr>
+<tr>
+<td><code>LYCHEE_UPLOADS_URL</code></td>
+<td>URL to uploads directory, better left empty</td>
+<td><code>/uploads</code></td>
+</tr>
+<tr>
+<td><code>TRUSTED_PROXIES</code></td>
+<td>Trusted proxy IP addresses</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>LOG_VIEWER_ENABLED</code></td>
+<td>Enable log viewer inside Lychee instead of through CLI.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>LIVEWIRE_ENABLED</code></td>
+<td>Enable v5 Livewire frontend; set to <code>false</code> if the new frontend doesn't work on our installation (this is a <strong>temporary</strong> workaround).</td>
+<td><code>true</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>{note} <code>APP_URL</code> must only contain the hostname up to the Top Level Domain (tld) <em>e.g.</em> .com, .org etc.
+If you are using Lychee in a sub folder, specify the path after the tld here in the <code>APP_DIR</code> constant.<br />
+For example for <code>https://lychee.test/path/to/lychee</code>:<br />
+- set <code>APP_URL</code> to <code>https://lychee.test</code><br />
+- and set <code>APP_DIR</code> to <code>/path/to/lychee</code><br />
+We (LycheeOrg) do not recommend the use of APP_DIR.</p>
+<p>{tip} For <code>TIMEZONE</code>, do not use an offset (<code>+01:00</code>) or an abbreviation (<code>CEST</code>)</p>
+</blockquote>
+<h3 id="database-options"><a class="toclink" href="#database-options">Database options</a></h3>
+<p>Lychee supports MySQL/MariaDB, SQLite and PostgreSQL as database backends. Microsoft SQL Server can be used, but is unsupported. The configuration is managed using the <code>DB_</code> variables.</p>
+<h4 id="database_url"><a class="toclink" href="#database_url"><code>DATABASE_URL</code></a></h4>
+<p>Some hosting providers give you a single URL containing all the information needed to configure your database. Therefore, Lychee has a <code>DATABASE_URL</code> option which only needs the database connection type. For example:</p>
+<pre><code class="language-ini">DB_CONNECTION=mysql
+DATABASE_URL=&quot;mysql://root:password@127.0.0.1/forge?charset=UTF-8&quot;
+</code></pre>
+<p>If this applies to your hosting provider, you can skip the other DB configuration steps.</p>
+<h4 id="mysqlmariadb"><a class="toclink" href="#mysqlmariadb">MySQL/MariaDB</a></h4>
+<p>The configuration is exactly the same for both systems.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Value it should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DB_CONNECTION</code></td>
+<td><code>mysql</code></td>
+</tr>
+<tr>
+<td><code>DB_HOST</code></td>
+<td>Host of the database server (if it's running on the same server use <code>127.0.0.1</code>)</td>
+</tr>
+<tr>
+<td><code>DB_PORT</code></td>
+<td>Port of the database server (default 3306)</td>
+</tr>
+<tr>
+<td><code>DB_DATABASE</code></td>
+<td>The name of the database</td>
+</tr>
+<tr>
+<td><code>DB_USERNAME</code></td>
+<td>Username of the database user</td>
+</tr>
+<tr>
+<td><code>DB_PASSWORD</code></td>
+<td>Password of the database user</td>
+</tr>
+<tr>
+<td><code>DB_SOCKET</code></td>
+<td>UNIX socket to DB server, replaces <code>DB_HOST</code> and <code>DP_PORT</code></td>
+</tr>
+<tr>
+<td><code>MYSQL_ATTR_SSL_CA</code></td>
+<td>Optional and only used when using the <code>pdo_mysql</code> extension, file path to the SSL certificate authority</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sqlite"><a class="toclink" href="#sqlite">SQLite</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Value it should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DB_CONNECTION</code></td>
+<td><code>sqlite</code></td>
+</tr>
+<tr>
+<td><code>DB_DATABASE</code></td>
+<td>Path to the database file (default <code>database/database.sqlite</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="postgresql"><a class="toclink" href="#postgresql">PostgreSQL</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Value it should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DB_CONNECTION</code></td>
+<td><code>pgsql</code></td>
+</tr>
+<tr>
+<td><code>DB_HOST</code></td>
+<td>Host of the database server (if it's running on the same server use <code>127.0.0.1</code>) or socket path</td>
+</tr>
+<tr>
+<td><code>DB_PORT</code></td>
+<td>Port of the database server or <code>null</code> if using socket (default 5432)</td>
+</tr>
+<tr>
+<td><code>DB_DATABASE</code></td>
+<td>The name of the database</td>
+</tr>
+<tr>
+<td><code>DB_USERNAME</code></td>
+<td>Username of the database user</td>
+</tr>
+<tr>
+<td><code>DB_PASSWORD</code></td>
+<td>Password of the database user</td>
+</tr>
+</tbody>
+</table>
+<h4 id="microsoft-sql-server"><a class="toclink" href="#microsoft-sql-server">Microsoft SQL Server</a></h4>
+<blockquote>
+<p>{note} Microsoft SQL Server is not officially supported. It may work, but we can't help you if you have any issues with it that do not affect other DB systems as well.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Value it should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DB_CONNECTION</code></td>
+<td><code>sqlsrv</code></td>
+</tr>
+<tr>
+<td><code>DB_HOST</code></td>
+<td>Host of the database server (if it's running on the same server use <code>127.0.0.1</code>)</td>
+</tr>
+<tr>
+<td><code>DB_PORT</code></td>
+<td>Port of the database server (default 1433)</td>
+</tr>
+<tr>
+<td><code>DB_DATABASE</code></td>
+<td>The name of the database</td>
+</tr>
+<tr>
+<td><code>DB_USERNAME</code></td>
+<td>Username of the database user</td>
+</tr>
+<tr>
+<td><code>DB_PASSWORD</code></td>
+<td>Password of the database user</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mailer-options"><a class="toclink" href="#mailer-options">Mailer options</a></h3>
+<p>Supported mailers are <code>smtp</code>, <code>ses</code>, <code>mailgun</code>, <code>postmark</code> or <code>sendmail</code>, which you can set using <code>MAIL_DRIVER</code>.</p>
+<h4 id="general-options"><a class="toclink" href="#general-options">General options</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAIL_DRIVER</code></td>
+<td>Mailer type</td>
+</tr>
+<tr>
+<td><code>MAIL_FROM_ADDRESS</code></td>
+<td>"From" address</td>
+</tr>
+<tr>
+<td><code>MAIL_FROM_NAME</code></td>
+<td>"From" name</td>
+</tr>
+</tbody>
+</table>
+<h4 id="smtp"><a class="toclink" href="#smtp">SMTP</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAIL_HOST</code></td>
+<td>Host of SMTP server</td>
+</tr>
+<tr>
+<td><code>MAIL_PORT</code></td>
+<td>Port of SMTP server (default 587)</td>
+</tr>
+<tr>
+<td><code>MAIL_ENCRYPTION</code></td>
+<td>Encryption for SMTP server (default <code>tls</code>)</td>
+</tr>
+<tr>
+<td><code>MAIL_USERNAME</code></td>
+<td>Username of SMTP server</td>
+</tr>
+<tr>
+<td><code>MAIL_PASSWORD</code></td>
+<td>Password of SMTP server</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ses"><a class="toclink" href="#ses">SES</a></h4>
+<p>SES can be configured using AWS settings. See <a href="#aws">AWS configuration</a>.</p>
+<h4 id="mailgun"><a class="toclink" href="#mailgun">Mailgun</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAILGUN_DOMAIN</code></td>
+<td>Domain of the Mailgun server</td>
+</tr>
+<tr>
+<td><code>MAILGUN_SECRET</code></td>
+<td>Secret of the Mailgun server</td>
+</tr>
+<tr>
+<td><code>MAILGUN_ENDPOINT</code></td>
+<td>Mailgun endpoint (default <code>api.mailgun.net</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="postmark"><a class="toclink" href="#postmark">Postmark</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POSTMARK_TOKEN</code></td>
+<td>Token for Postmark</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sendmail"><a class="toclink" href="#sendmail">sendmail</a></h4>
+<p>No additional options.</p>
+<h3 id="cache-options"><a class="toclink" href="#cache-options">Cache options</a></h3>
+<p>Lychee can use various services as cache driver to store temporary data. The driver is set using <code>CACHE_DRIVER</code> and supports: <code>apc</code>, <code>array</code>, <code>file</code>, <code>memcached</code>, <code>redis</code> or <code>dynamodb</code>.</p>
+<h4 id="general-options_1"><a class="toclink" href="#general-options_1">General options</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CACHE_PREFIX</code></td>
+<td>Prefix of cache data keys in in-memory stores</td>
+</tr>
+</tbody>
+</table>
+<h4 id="memcached"><a class="toclink" href="#memcached">Memcached</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MEMCACHED_HOST</code></td>
+<td>Host for memcached</td>
+</tr>
+<tr>
+<td><code>MEMCACHED_PORT</code></td>
+<td>Port for memcached</td>
+</tr>
+<tr>
+<td><code>MEMCACHED_USERNAME</code></td>
+<td>Username for memcached</td>
+</tr>
+<tr>
+<td><code>MEMCACHED_PASSWORD</code></td>
+<td>Password for memcached</td>
+</tr>
+<tr>
+<td><code>MEMCACHED_PERSISTENT_ID</code></td>
+<td>Persistent ID for memcached</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dynamodb"><a class="toclink" href="#dynamodb">DynamoDB</a></h4>
+<p>Base options are configured using <a href="#aws">AWS options</a>. You need to create a table, please refer to the <a href="https://laravel.com/docs/8.x/cache#dynamodb">Laravel docs</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DYNAMODB_CACHE_TABLE</code></td>
+<td>Cache table name</td>
+<td><code>cache</code></td>
+</tr>
+<tr>
+<td><code>DYNAMODB_ENDPOINT</code></td>
+<td>DynamoDB endpoint</td>
+<td><code>null</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="redis"><a class="toclink" href="#redis">Redis</a></h4>
+<p>Also see <a href="#redis">Redis</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REDIS_CACHE_DB</code></td>
+<td>Redis cache database</td>
+</tr>
+</tbody>
+</table>
+<h4 id="database"><a class="toclink" href="#database">Database</a></h4>
+<p>There are no config options, however, you need to run <code>php artisan cache:table</code> to use this option.</p>
+<h3 id="services"><a class="toclink" href="#services">Services</a></h3>
+<p>Lychee can interact with various third-party services. You can find config options for them here.</p>
+<h4 id="redis_1"><a class="toclink" href="#redis_1">Redis</a></h4>
+<p>To use Redis, you need the <a href="https://github.com/phpredis/phpredis">PhpRedis</a> PHP extension.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REDIS_SCHEME</code></td>
+<td>Redis connection scheme (default <code>tcp</code>, other option <code>unix</code>)</td>
+</tr>
+<tr>
+<td><code>REDIS_PATH</code></td>
+<td>Redis Unix socket path</td>
+</tr>
+<tr>
+<td><code>REDIS_HOST</code></td>
+<td>Redis host</td>
+</tr>
+<tr>
+<td><code>REDIS_PASSWORD</code></td>
+<td>Redis password</td>
+</tr>
+<tr>
+<td><code>REDIS_PORT</code></td>
+<td>Redis port</td>
+</tr>
+<tr>
+<td><code>REDIS_CLUSTER</code></td>
+<td>Redis cluster</td>
+</tr>
+<tr>
+<td><code>REDIS_PREFIX</code></td>
+<td>Redis prefix</td>
+</tr>
+<tr>
+<td><code>REDIS_URL</code></td>
+<td>Redis URL</td>
+</tr>
+</tbody>
+</table>
+<h4 id="aws"><a class="toclink" href="#aws">AWS</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AWS_ACCESS_KEY_ID</code></td>
+<td>Access key ID for AWS</td>
+</tr>
+<tr>
+<td><code>AWS_SECRET_ACCESS_KEY</code></td>
+<td>Secret access key for AWS</td>
+</tr>
+<tr>
+<td><code>AWS_DEFAULT_REGION</code></td>
+<td>Default AWS region</td>
+</tr>
+</tbody>
+</table>
+<h3 id="authentication-guards"><a class="toclink" href="#authentication-guards">Authentication Guards</a></h3>
+<p>Support for token based authentication used by API requests.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_TOKEN_AUTH</code></td>
+<td>Authentication Guard token support</td>
+</tr>
+</tbody>
+</table>
+<h3 id="session-and-security-options"><a class="toclink" href="#session-and-security-options">Session and security options</a></h3>
+<p>Sessions are stored in the same locations as <a href="#cache">cache</a>. You change the used driver using <code>SESSION_DRIVER</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SESSION_LIFETIME</code></td>
+<td>Idle session expiration in minutes; the session will need to be reinitialized once it has expired.</td>
+<td>120</td>
+</tr>
+<tr>
+<td><code>SESSION_SECURE_COOKIE</code></td>
+<td>Cookies only via HTTPS</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>SECURITY_HEADER_HSTS_ENABLE</code></td>
+<td>Enable HTTP strict transport security</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="advanced-options"><a class="toclink" href="#advanced-options">Advanced options</a></h4>
+<blockquote>
+<p>{note} These config options are advanced config options. Do not change them unless you know what you are doing.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>APP_CIPHER</code></td>
+<td>The app's cipher suite</td>
+</tr>
+<tr>
+<td><code>HASHING_DRIVER</code></td>
+<td>Hashing algorithm for passwords (default <code>bcrypt</code>, other options <code>argon</code> or <code>argon2id</code>)</td>
+</tr>
+<tr>
+<td><code>ARGON_MEMORY</code></td>
+<td>Memory for Argon hashing algorithm</td>
+</tr>
+<tr>
+<td><code>ARGON_THREADS</code></td>
+<td>Threads for Argon hashing algorithm</td>
+</tr>
+<tr>
+<td><code>ARGON_TIME</code></td>
+<td>Time for Argon hashing algorithm</td>
+</tr>
+<tr>
+<td><code>BCRYPT_ROUNDS</code></td>
+<td>Rounds for bcrypt hashing algorithm</td>
+</tr>
+<tr>
+<td><code>WEBAUTHN_NAME</code></td>
+<td>Name for Webauthn devices</td>
+</tr>
+<tr>
+<td><code>WEBAUTHN_ID</code></td>
+<td>ID for Webauthn devices</td>
+</tr>
+<tr>
+<td><code>WEBAUTHN_ICON</code></td>
+<td>Icon for Webauthn devices</td>
+</tr>
+<tr>
+<td><code>WEBAUTHN_CACHE</code></td>
+<td>Cache for Webauthn devices</td>
+</tr>
+<tr>
+<td><code>SESSION_COOKIE</code></td>
+<td>The cookie's name</td>
+</tr>
+<tr>
+<td><code>SESSION_DOMAIN</code></td>
+<td>Session cookie domain</td>
+</tr>
+</tbody>
+</table>
+<h3 id="development-options"><a class="toclink" href="#development-options">Development options</a></h3>
+<blockquote>
+<p>{note} Don't use this in productive environments. May affect stability and performance.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>APP_ENV</code></td>
+<td>Set to <code>development</code> to enable development environment</td>
+<td><code>prod</code></td>
+</tr>
+<tr>
+<td><code>APP_DEBUG</code></td>
+<td>Enable debug mode</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>DEBUGBAR_ENABLED</code></td>
+<td>Enable debugbar</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>DB_LOG_SQL</code></td>
+<td>Log SQL statements, see your Logs within Lychee.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>DB_LOG_SQL_EXPLAIN</code></td>
+<td>Explain the SQL statements for MySQL.</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="advanced-configuration"><a class="toclink" href="#advanced-configuration">Advanced configuration</a></h3>
+<blockquote>
+<p>{note} Only for advanced users familiar with PHP and Laravel. Never do this unless you know what you are doing.</p>
+</blockquote>
+<p>You can look at the files in the <code>config/</code> folder. They contain some options you can't configure using environmental variables and you are able to adapt Lychee completely to your needs.</p>
+<!--
+
+### Hidden options
+
+These options are unused right now, but may be used in the future.
+
+| Option               | Description                                     |
+|----------------------|-------------------------------------------------|
+| `REDIS_DB`           | Redis database, used for broadcasting and queue |
+| `REDIS_QUEUE`        | Redis queue                                     |
+| `BROADCAST_DRIVER`   | Broadcast driver                                |
+| `QUEUE_DRIVER`       | Queue driver                                    |
+| `PUSHER_APP_ID`      | Pusher app ID                                   |
+| `PUSHER_APP_KEY`     | Pusher app secret                               |
+| `PUSHER_APP_SECRET`  | Pusher app secret                               |
+| `PUSHER_APP_CLUSTER` | Pusher app cluster                              |
+| `FILESYSTEM_CLOUD`   | Cloud Filesystem                                |
+
+-->
+
+<h2 id="environment-configuration"><a class="toclink" href="#environment-configuration">Environment Configuration</a></h2>
+<p>It is often helpful to have different configuration values based on the environment where the application is running. For example, you may wish to use a different cache driver locally than you do on your production server.</p>
+<p>To make this a cinch, Lychee utilizes the <a href="https://github.com/vlucas/phpdotenv">DotEnv</a> PHP library by Vance Lucas. In a fresh Lychee installation, the root directory of your application will contain a <code>.env.example</code> file. You should make a copy of this file as <code>.env</code>.</p>
+<p>Your <code>.env</code> file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration. Furthermore, this would be a security risk in the event an intruder gains access to your source control repository, since any sensitive credentials would get exposed.</p>
+<p>If you are developing with a team, you may wish to continue including a <code>.env.example</code> file with your application. By putting placeholder values in the example configuration file, other developers on your team can clearly see which environment variables are needed to run your application. You may also create a <code>.env.testing</code> file. This file will override the <code>.env</code> file when running PHPUnit tests or executing Artisan commands with the <code>--env=testing</code> option.</p>
+<blockquote>
+<p>{tip} Any variable in your <code>.env</code> file can be overridden by external environment variables such as server-level or system-level environment variables.</p>
+</blockquote>
+<h3 id="environment-variable-types"><a class="toclink" href="#environment-variable-types">Environment Variable Types</a></h3>
+<p>All variables in your <code>.env</code> files are parsed as strings, so some reserved values have been created to allow you to return a wider range of types from the <code>env()</code> function:</p>
+<table>
+<thead>
+<tr>
+<th><code>.env</code> Value</th>
+<th><code>env()</code> Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>(bool) true</td>
+</tr>
+<tr>
+<td>(true)</td>
+<td>(bool) true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>(bool) false</td>
+</tr>
+<tr>
+<td>(false)</td>
+<td>(bool) false</td>
+</tr>
+<tr>
+<td>empty</td>
+<td>(string) ''</td>
+</tr>
+<tr>
+<td>(empty)</td>
+<td>(string) ''</td>
+</tr>
+<tr>
+<td>null</td>
+<td>(null) null</td>
+</tr>
+<tr>
+<td>(null)</td>
+<td>(null) null</td>
+</tr>
+</tbody>
+</table>
+<p>If you need to define an environment variable with a value that contains spaces, you may do so by enclosing the value in double quotes.</p>
+<pre><code class="language-ini">APP_NAME=&quot;My Application&quot;
+</code></pre>
+<h3 id="retrieving-environment-configuration"><a class="toclink" href="#retrieving-environment-configuration">Retrieving Environment Configuration</a></h3>
+<p>All of the variables listed in this file will be loaded into the $_ENV PHP super-global when your application receives a request. However, you may use the env helper to retrieve values from these variables in your configuration files. In fact, if you review the Lychee configuration files, you will notice several of the options already using this helper:</p>
+<pre><code class="language-php">'debug' =&gt; env('APP_DEBUG', false),
+</code></pre>
+<p>The second value passed to the env function is the "default value". This value will be used if no environment variable exists for the given key.</p>
+<h3 id="determining-the-current-environment"><a class="toclink" href="#determining-the-current-environment">Determining The Current Environment</a></h3>
+<p>The current application environment is determined via the APP_ENV variable from your .env file. You may access this value via the environment method on the App facade:</p>
+<pre><code class="language-php">$environment = App::environment();
+</code></pre>
+<p>You may also pass arguments to the environment method to check if the environment matches a given value. The method will return true if the environment matches any of the given values:</p>
+<pre><code class="language-php">if (App::environment('development')) {
+    // The environment is development
+}
+
+if (App::environment(['development', 'production'])) {
+    // The environment is either development OR production...
+}
+</code></pre>
+<blockquote>
+<p>{tip} The current application environment detection can be overridden by a server-level <code>APP_ENV</code> environment variable. This can be useful when you need to share the same application for different environment configurations, so you can set up a given host to match a given environment in your server's configurations.</p>
+</blockquote>
+<h3 id="hiding-environment-variables-from-debug-pages"><a class="toclink" href="#hiding-environment-variables-from-debug-pages">Hiding Environment Variables From Debug Pages</a></h3>
+<p>When an exception is uncaught and the <code>APP_DEBUG</code> environment variable is <code>true</code>, the debug page will show all environment variables and their contents. In some cases you may want to obscure certain variables. You may do this by updating the <code>debug_blacklist</code> option in your <code>config/app.php</code> configuration file.</p>
+<p>Some variables are available in both the environment variables and the server / request data. Therefore, you may need to blacklist them for both <code>$_ENV</code> and <code>$_SERVER</code>:</p>
+<pre><code class="language-php">return [
+
+    // ...
+
+    'debug_blacklist' =&gt; [
+        '_ENV' =&gt; [
+            'APP_KEY',
+            'DB_PASSWORD',
+        ],
+
+        '_SERVER' =&gt; [
+            'APP_KEY',
+            'DB_PASSWORD',
+        ],
+
+        '_POST' =&gt; [
+            'password',
+        ],
+    ],
+];
+</code></pre>
+<h2 id="accessing-configuration-values"><a class="toclink" href="#accessing-configuration-values">Accessing Configuration Values</a></h2>
+<p>You may easily access your configuration values using the global <code>config</code> helper function from anywhere in your application. The configuration values may be accessed using "dot" syntax, which includes the name of the file and option you wish to access. A default value may also be specified and will be returned if the configuration option does not exist:</p>
+<pre><code class="language-php">$value = config('app.timezone');
+</code></pre>
+<p>To set configuration values at runtime, pass an array to the config helper:</p>
+<pre><code class="language-php">config(['app.timezone' =&gt; 'America/Chicago']);
+</code></pre>
+<h2 id="configuration-caching"><a class="toclink" href="#configuration-caching">Configuration Caching</a></h2>
+<p>To give your application a speed boost, you should cache all of your configuration files into a single file using the <code>config:cache</code> Artisan command. This will combine all of the configuration options for your application into a single file which will be loaded quickly by the framework.</p>
+<p>You should typically run the <code>php artisan config:cache</code> command as part of your production deployment routine. The command should not be run during local development as configuration options will frequently need to be changed during the course of your application's development.</p>
+<blockquote>
+<p>{note} If you execute the <code>config:cache</code> command during your deployment process, you should be sure that you are only calling the <code>env</code> function from within your configuration files. Once the configuration has been cached, the <code>.env</code> file will not be loaded and all calls to the <code>env</code> function will return <code>null</code>.</p>
+</blockquote>
+<h2 id="maintenance-mode"><a class="toclink" href="#maintenance-mode">Maintenance Mode</a></h2>
+<p>When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a <code>MaintenanceModeException</code> will be thrown with a status code of 503.</p>
+<p>To enable maintenance mode, execute the <code>down</code> Artisan command:</p>
+<pre><code class="language-bash">php artisan down
+</code></pre>
+<p>You may also provide <code>message</code> and <code>retry</code> options to the <code>down</code> command. The <code>message</code> value may be used to display or log a custom message, while the <code>retry</code> value will be set as the <code>Retry-After</code> HTTP header's value:</p>
+<pre><code class="language-bash">php artisan down --message=&quot;Upgrading Database&quot; --retry=60
+</code></pre>
+<p>Even while in maintenance mode, specific IP addresses or networks may be allowed to access the application using the command's <code>allow</code> option:</p>
+<pre><code class="language-bash">php artisan down --allow=127.0.0.1 --allow=192.168.0.0/16
+</code></pre>
+<p>To disable maintenance mode, use the <code>up</code> command:</p>
+<pre><code class="language-bash">php artisan up
+</code></pre>
+<blockquote>
+<p>{tip} You may customize the default maintenance mode template by defining your own template at <code>resources/views/errors/503.blade.php</code>.</p>
+</blockquote><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/configuration.md">Edit this page on Github!</a></p></blockquote>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>

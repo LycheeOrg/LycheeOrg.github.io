@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lychee Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <link rel="canonical" href="https://lycheeorg.github.io/docs/">
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
+    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
+    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#ff2d20">
+    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Load styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/prism.css">
+
+    <!-- Load JS -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/prism.js"></script>
+
+</head>
+
+<body>
+
+    <div class="sidebar_layout" id="docsScreen">
+
+        <div class="page_contain">
+            <div class="contain">
+                <aside class="sidebar">
+                    <a href="../" class="logo">
+                        <img class="mark" src="/assets/images/logo.png" alt="Laravel">
+                        <img class="type" src="img/Lychee.png" alt="Laravel">
+                    </a>
+                    <nav>
+                        <div class="navigation_contain">
+                            <div class="docs_sidebar">
+                                <ul>
+                                    <li class='sub--on'>
+<h2>Prologue</h2>
+<ul>
+<li><a href='org.html'>Lychee & LycheeOrg</a></li>
+<li><a href='releases.html'>Release Notes</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Getting Started</h2>
+<ul>
+<li><a href='installation.html'>Installation</a></li>
+<li><a href='configuration.html'>Configuration</a></li>
+<li><a href='docker.html'>Docker</a></li>
+<li><a href='update.html'>Update</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Advanced Topics</h2>
+<ul>
+<li><a href='settings.html'>Settings</a></li>
+<li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+<li><a href='advanced-setups.html'>Advanced Setups</a></li>
+<li class='active'><a href='honeypot.html'>Honeypot and Teapots</a></li>
+<li><a href='external_tracking.html'>External tracking with Matomo,<br>Google Analytics & Co</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Frequently Asked Question</h2>
+<ul>
+<li><a href='faq_general.html'>General</a></li>
+<li><a href='faq_installation.html'>Installation, migration, upgrade, update</a></li>
+<li><a href='faq_troubleshooting.html'>Troubleshooting</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Contributing</h2>
+<ul>
+<li><a href='contributions.html'>Contribution Guide</a></li>
+<li><a href='api.html'>API Documentation</a></li>
+<li><a href='architecture.html'>Lychee logic overview</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
+<li><a href='frontend.html'>Front-end</a></li>
+<li><a href='livewire.html'>Livewire Front-end (alpha)</a></li>
+</ul>
+
+                                    <li class="laravel">
+                                        <a href="https://laravel.com/docs/8.x"><h2>Laravel<img style="margin-left:4px;" src="img/external-link.svg" /></h2></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="trigger_contain">
+                        <a href="#" class="nav_trigger" aria-label="Menu">
+                            <div class="bar"></div>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="body_content">
+                    <section class="docs_body">
+                        <section class="docs_main">
+                            <h1>Honeypot and Teapots</h1>
+                            
+<ul>
+<li><a href="#rationale">Rationale</a></li>
+<li><a href="#what-is-fail2ban">What is Fail2ban?</a></li>
+<li><a href="#setting-up-fail2ban">Setting up Fail2Ban.</a><ul>
+<li><a href="#setup-the-filter">Setup the Filter</a></li>
+<li><a href="#setup-the-jail">Setup the Jail</a></li>
+</ul>
+</li>
+</ul>
+
+                            <hr> <h2 id="rationale"><a class="toclink" href="#rationale">Rationale</a></h2>
+<p>If you have had a look at your logs, you will notice that you get quite a few requests to pages that do not exists such as 
+<code>wp-admin.php</code> <em>etc.</em> Those are automatic queries done by vulnerability crawlers.
+This kind of trafic does not provide any value to the user and does not concern us.
+For this reason, Lychee provides an honeypot.</p>
+<p>If a user/robot/script queries one of the selected urls (honey) used by those vulnerability scanners, it will get a 418 response code.
+This response is logged in Nginx/Apache, and we use <a href="https://www.fail2ban.org/">fail2ban</a> to get rid of subsequent requests. </p>
+<h2 id="what-is-fail2ban"><a class="toclink" href="#what-is-fail2ban">What is Fail2ban?</a></h2>
+<p>Fail2ban is a small service that can be run on your server to dynamically block clients before a request is executed.
+It uses firewall rules to do so. After a certain amount of time (e.g. 1 day), the blocking rule is removed.</p>
+<blockquote>
+<p>{note} It will also ban you from your own website if you do a bad request.</p>
+</blockquote>
+<h2 id="setting-up-fail2ban"><a class="toclink" href="#setting-up-fail2ban">Setting up Fail2Ban.</a></h2>
+<blockquote>
+<p>{tip} <strong>Fail2ban is not provided with Lychee</strong>. It is an additional software that you will need to <a href="https://www.fail2ban.org/wiki/index.php/Downloads">install it yourself</a>.</p>
+</blockquote>
+<h3 id="setup-the-filter"><a class="toclink" href="#setup-the-filter">Setup the Filter</a></h3>
+<p>Create <code>/etc/fail2ban/filter.d/filter-honeypot.conf</code> with:</p>
+<pre><code class="language-ini">[Definition]
+failregex = ^&lt;HOST&gt;.*&quot;(GET|POST).*&quot; (418) .*$
+ignoreregex =
+</code></pre>
+<p>This defines which regex to use to filter the log files.
+From this regex, we retrieve the host if the response matches code 418 which is returned by Lychee when the honey is touched.</p>
+<h3 id="setup-the-jail"><a class="toclink" href="#setup-the-jail">Setup the Jail</a></h3>
+<p>Then we need to create the jail in:
+<code>/etc/fail2ban/jail.d/honeypot.conf</code></p>
+<p>If you are using apache then the following will work:</p>
+<pre><code class="language-ini">[apache-honeypot]
+enabled = true
+filter = filter-honeypot
+port = http,https
+logpath = /var/log/apache2/access.log
+maxretry = 1
+</code></pre>
+<p>In the case of Nginx:</p>
+<pre><code class="language-ini">[apache-honeypot]
+enabled = true
+filter = filter-honeypot
+port = http,https
+logpath = /var/log/nginx/access.log
+maxretry = 1
+</code></pre>
+<p><code>maxretry</code> is set to 1 because we do not need to second guess those errors.
+Fail2ban is also used to ban ssh attempts after multiple failures, in such case a higher number of retry is need.
+As we interact with a honeypot, any behaviour touching it is therefore malicious, there are no false positive in our case
+and we do not give the benefit of the doubt.</p><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/honeypot.md">Edit this page on Github!</a></p></blockquote>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>

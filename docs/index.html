@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lychee Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <link rel="canonical" href="https://lycheeorg.github.io/docs/">
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
+    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
+    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#ff2d20">
+    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Load styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/prism.css">
+
+    <!-- Load JS -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/prism.js"></script>
+
+</head>
+
+<body>
+
+    <div class="sidebar_layout" id="docsScreen">
+
+        <div class="page_contain">
+            <div class="contain">
+                <aside class="sidebar">
+                    <a href="../" class="logo">
+                        <img class="mark" src="/assets/images/logo.png" alt="Laravel">
+                        <img class="type" src="img/Lychee.png" alt="Laravel">
+                    </a>
+                    <nav>
+                        <div class="navigation_contain">
+                            <div class="docs_sidebar">
+                                <ul>
+                                    <li class='sub--on'>
+<h2>Prologue</h2>
+<ul>
+<li><a href='org.html'>Lychee & LycheeOrg</a></li>
+<li><a href='releases.html'>Release Notes</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Getting Started</h2>
+<ul>
+<li class='active'><a href='installation.html'>Installation</a></li>
+<li><a href='configuration.html'>Configuration</a></li>
+<li><a href='docker.html'>Docker</a></li>
+<li><a href='update.html'>Update</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Advanced Topics</h2>
+<ul>
+<li><a href='settings.html'>Settings</a></li>
+<li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+<li><a href='advanced-setups.html'>Advanced Setups</a></li>
+<li><a href='honeypot.html'>Honeypot and Teapots</a></li>
+<li><a href='external_tracking.html'>External tracking with Matomo,<br>Google Analytics & Co</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Frequently Asked Question</h2>
+<ul>
+<li><a href='faq_general.html'>General</a></li>
+<li><a href='faq_installation.html'>Installation, migration, upgrade, update</a></li>
+<li><a href='faq_troubleshooting.html'>Troubleshooting</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Contributing</h2>
+<ul>
+<li><a href='contributions.html'>Contribution Guide</a></li>
+<li><a href='api.html'>API Documentation</a></li>
+<li><a href='architecture.html'>Lychee logic overview</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
+<li><a href='frontend.html'>Front-end</a></li>
+<li><a href='livewire.html'>Livewire Front-end (alpha)</a></li>
+</ul>
+
+                                    <li class="laravel">
+                                        <a href="https://laravel.com/docs/8.x"><h2>Laravel<img style="margin-left:4px;" src="img/external-link.svg" /></h2></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="trigger_contain">
+                        <a href="#" class="nav_trigger" aria-label="Menu">
+                            <div class="bar"></div>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="body_content">
+                    <section class="docs_body">
+                        <section class="docs_main">
+                            <h1>Installation</h1>
+                            
+<ul>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#server-requirements">Server Requirements</a></li>
+<li><a href="#installing-lychee">Installing Lychee</a></li>
+<li><a href="#configuration">Configuration</a></li>
+</ul>
+</li>
+<li><a href="#web-server-configuration">Web Server Configuration</a><ul>
+<li><a href="#general">General</a></li>
+<li><a href="#apache">Apache</a></li>
+<li><a href="#nginx">nginx</a></li>
+</ul>
+</li>
+</ul>
+
+                            <hr> <h2 id="installation"><a class="toclink" href="#installation">Installation</a></h2>
+<h3 id="server-requirements"><a class="toclink" href="#server-requirements">Server Requirements</a></h3>
+<p>The Lychee gallery has a few system requirements. You will need to make sure your server has the following:</p>
+<ul>
+<li>A web server such as Apache or nginx</li>
+<li>A database &mdash; using one of the following:<ul>
+<li>MySQL <em>(version &gt; 5.7.8)</em> / MariaDB <em>(version &gt; 10.2)</em></li>
+<li>PostgreSQL <em>(version &gt; 9.2)</em></li>
+<li>Lychee's inbuilt SQLite3 support</li>
+</ul>
+</li>
+<li>PHP &gt;= 8.2 with these PHP extensions:<ul>
+<li>bcmath</li>
+<li>ctype</li>
+<li>dom</li>
+<li>exif</li>
+<li>fileinfo</li>
+<li>filter</li>
+<li>gd</li>
+<li>imagick (optional &mdash; to generate better thumbnails)</li>
+<li>json</li>
+<li>libxml</li>
+<li>mbstring</li>
+<li>openssl</li>
+<li>pcre</li>
+<li>PDO</li>
+<li>Phar</li>
+<li><a href="https://github.com/phpredis/phpredis">PhpRedis</a> (optional &mdash; to use Redis)</li>
+<li>SimpleXML</li>
+<li>tokenizer</li>
+<li>xml</li>
+<li>xmlwriter</li>
+</ul>
+</li>
+<li>These PHP extensions may be necessary if you are running a FreeBSD system:<ul>
+<li>session</li>
+<li>zlib</li>
+</ul>
+</li>
+<li>You will also need one of these PHP extensions:<ul>
+<li>SQLite3 for SQLite3 databases</li>
+<li>MySQLi (or PDO_MySQL) for MySQL or MariaDB databases</li>
+<li>PgSql (or PDO_PGSQL) for PostgreSQL databases</li>
+</ul>
+</li>
+<li>Optionally, you can also install the following command line tools:<ul>
+<li>Exiftool (for better handling of EXIF metadata)</li>
+<li>FFmpeg (to generate video thumbnails)</li>
+</ul>
+</li>
+<li>To install from git you will also need Composer and npm. See <a href="#from-the-master-branch">below</a> for details.</li>
+</ul>
+<p>While Lychee works on 32bit systems, we <strong>strongly</strong> recommend the use of a 64bit OS.</p>
+<h3 id="installing-lychee"><a class="toclink" href="#installing-lychee">Installing Lychee</a></h3>
+<p>We provide three methods to install Lychee: using a Docker image, the latest release .zip or from source, using Composer.</p>
+<h4 id="with-docker"><a class="toclink" href="#with-docker">With Docker</a></h4>
+<p>Read <a href="docker.html">here</a>.</p>
+<h4 id="from-release"><a class="toclink" href="#from-release">From Release</a></h4>
+<p>Download the release zip-file from the <a href="https://github.com/LycheeOrg/Lychee/releases">Releases</a> page and extract it (usually in <code>/var/www/html</code>).
+It contains a trimmed down version of the Lychee files.</p>
+<h4 id="from-the-master-branch"><a class="toclink" href="#from-the-master-branch">From the Master branch</a></h4>
+<p>Lychee utilizes <a href="https://getcomposer.org/">Composer</a> to manage its php dependencies and <a href="https://nodejs.org/">npm</a> for its front-end. Make sure you have both installed on your machine.</p>
+<pre><code class="language-bash">git clone https://www.github.com/LycheeOrg/Lychee /var/www/html/Lychee
+</code></pre>
+<p>Get into the directory:</p>
+<pre><code class="language-bash">cd /var/www/html/Lychee
+</code></pre>
+<p>Install the required dependencies and generate frontend assets.</p>
+<pre><code class="language-bash">composer install --no-dev
+npm install
+npm run build
+</code></pre>
+<p>If you want to help develop Lychee, install the development dependencies by removing the <code>--no-dev</code> and use <code>npm run dev</code> to have change monitoring on the front-end.</p>
+<h3 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h3>
+<h4 id="directory-permissions"><a class="toclink" href="#directory-permissions">Directory Permissions</a></h4>
+<p>Permissions of certain directories must be set correctly for Lychee to run.
+Note that there are up to three OS users which need to be taken into consideration:</p>
+<ul>
+<li>The user who is running the Web server daemon; called the <strong>Web user</strong> in the following.
+   Depending on your distribution and web server typically this user is called <code>apache</code>, <code>nginx</code>, <code>www</code> or <code>www-data</code>.</li>
+<li>(Optional) The user who is running the PHP FPM (or PHP CGI) pool; called the <strong>PHP user</strong> in the following.
+   Not every setup uses PHP FPM or PHP CGI.
+   For example, Apache executes the PHP interpreter as part of its own process if the extension <code>mod_php</code> is used.
+   In case PHP FPM is used, for most distributions PHP FPM or CGI ships with a sensible default configuration which ensures that the PHP user is the same as the Web user.
+   In both cases the PHP user is not of concern.
+   However, we are at least aware of one exception to this rule for Nginx on Fedora, see <a href="https://lycheeorg.github.io/docs/faq_troubleshooting.html#i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories">FAQ</a></li>
+<li>The user which you use for shell logins and to run scripts; called the <strong>CLI user</strong> in the following.
+   This user may be of particular concern, if you are planning to upload photos via the web interface <em>and</em> import photos via the shell scripts.</li>
+</ul>
+<p>The following permissions must be granted at least:</p>
+<ul>
+<li>All directories and files of the Lychee installation must at least be readable by the Web and PHP user.</li>
+<li>Directories and files within the <code>storage/</code> and the <code>bootstrap/cache/</code> directories must be writable by the Web and PHP user.</li>
+<li>If you wish to customise the CSS via the web frontend, directories and files within the <code>public/dist</code> directory must be writable by the Web and PHP user.</li>
+<li>Directories and files within the <code>public/uploads</code> and <code>public/sym</code> must at least be writeable by the Web and PHP user.
+   If you only intend to upload files via the web frontend, this is sufficient.
+   If you also plan to use the CLI to import files, the directories and files must additionally be writeable by the CLI user.
+   It is not sufficient, if only already existing directories are writeable by the Web, PHP and CLI user; all directories and files yet to be created must be so, too.
+   The recommended way is to ensure that all three users are at least members of one joined group, e.g., you may add your CLI user to the group used by the Web and PHP user.
+   The directories and files then need to owned by this group and be group writeable.
+   Further, the special <code>sgid</code> bit needs to be set for all directories.
+   This ensures that newly created directories and files become owned by the joined group and not by the primary group of the creator.</li>
+</ul>
+<h4 id="application-settings"><a class="toclink" href="#application-settings">Application Settings</a></h4>
+<p>The main directory should contain a <code>.env</code> file.
+Normally, Composer will have copied this file for you while installing the dependencies.
+If the <code>.env</code> file does not exist, then you should copy <code>.env.example</code> to a new file named <code>.env</code> now.
+Note that the <code>.env</code> file should <strong>not</strong> be exposed online as it contains the encryption key used for cookies as well as database credentials.</p>
+<h5 id="application-key"><a class="toclink" href="#application-key">Application Key</a></h5>
+<p>The <code>.env</code> file contains the setting <code>APP_KEY</code> which holds your application key.
+Normally, Composer sets this key for you while installing the dependencies.
+If the key is not set, Lychee will not work. Then, you can use the <code>php artisan key:generate</code> command to set the application key to a random value.</p>
+<h5 id="url"><a class="toclink" href="#url">URL</a></h5>
+<p>The variable <code>APP_URL</code> inside <code>.env</code> must be set to the external URL by which the <code>public/</code> folder is accessible.
+This setting must match the configuration of your web server (see below).</p>
+<h5 id="additional-configuration"><a class="toclink" href="#additional-configuration">Additional Configuration</a></h5>
+<p>The default <code>.env</code> file provides usable settings out of the box.</p>
+<p>You may want to configure a few additional components of Lychee, such as:</p>
+<ul>
+<li>Cache</li>
+<li>Database</li>
+<li>Session</li>
+</ul>
+<p>They are documented in the <code>.env.example</code> file, which may have been copied into your <code>.env</code>. They are also listed and explained on the <a href="configuration.html">configuration</a> page.</p>
+<h5 id="advanced-configuration-dangerous"><a class="toclink" href="#advanced-configuration-dangerous">Advanced Configuration (Dangerous)</a></h5>
+<p>Some advanced options cannot be configured through the <code>.env</code> file. If you really need to change them, look in the <code>config/</code> directory.</p>
+<p><strong>If you don't know what they're doing, do not change them.</strong></p>
+<h2 id="web-server-configuration"><a class="toclink" href="#web-server-configuration">Web Server Configuration</a></h2>
+<h3 id="general"><a class="toclink" href="#general">General</a></h3>
+<p>Configure your web server to make the <code>public</code> directory accessible via a URL. This could be the root of your web server (short and convenient) or, if you prefer, a subpath such as <code>photos</code>. The <code>index.php</code> in this directory serves as the interface for all HTTP requests to Lychee's API.
+The configuration option <code>APP_URL</code> of Lychee must be set accordingly (see <a href="configuration.html#base-options">configuration</a>).</p>
+<blockquote>
+<p>{note} Do not expose the top level directory of Lychee with your web server! This would allow public access to internal files like the application code and the <code>.env</code> file which contains sensitive information like the database credentials!</p>
+</blockquote>
+<p>It is also strongly recommended to serve Lychee over TLS. You may wish to consider <a href="https://letsencrypt.org/">Let's Encrypt</a> for certificates and <a href="https://ssl-config.mozilla.org/">Mozilla's SSL Configuration Generator</a> for server configuration examples.</p>
+<h3 id="apache"><a class="toclink" href="#apache">Apache</a></h3>
+<p>Lychee includes a <code>public/.htaccess</code> file that is used to provide URLs without the <code>index.php</code> front controller in the path. Before serving Lychee with Apache, be sure to enable the <code>mod_rewrite</code> module so the <code>.htaccess</code> file will be honored by the server.</p>
+<p>Also check the Apache <a href="https://lycheeorg.github.io/docs/upgrade.html#using-apache">upgrade instructions</a> for required permissions in your /etc/apache2/sites-available/example.com.conf file.</p>
+<p>If the <code>.htaccess</code> file that ships with Lychee does not work with your Apache installation, try this alternative:</p>
+<pre><code class="language-apacheconf">Options +FollowSymLinks -Indexes
+RewriteEngine On
+
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+</code></pre>
+<h3 id="nginx"><a class="toclink" href="#nginx">nginx</a></h3>
+<p>This is a sample nginx server block. It does not include TLS, but covers the Lychee-specific requirements.
+If you would like to serve from a subdirectory, take a look at <a href="https://lycheeorg.github.io/docs/faq_installation.html#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee">the FAQ</a>.</p>
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name &lt;mydomain&gt;.&lt;tld&gt;;
+
+    ##### Path to the Lychee public/ directory.
+    root /var/www/Lychee/public/;
+    index index.php;
+
+    # If the request is not for a valid file (image, js, css, etc.), send to bootstrap
+    if (!-e $request_filename)
+    {
+        rewrite ^/(.*)$ /index.php?/$1 last;
+        break;
+    }
+
+    # Serve /index.php through PHP
+    location = /index.php {
+        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+
+        # Mitigate https://httpoxy.org/ vulnerabilities
+        fastcgi_param HTTP_PROXY &quot;&quot;;
+
+        ######### Make sure this is the correct socket for your system
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+        fastcgi_index index.php;
+        ######## You may need to replace $document_root with the absolute path to your public folder.
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PHP_VALUE &quot;post_max_size=100M
+            max_execution_time=200
+            upload_max_filesize=30M
+            memory_limit=300M&quot;;
+        fastcgi_param PATH /usr/local/bin:/usr/bin:/bin;
+        include fastcgi_params;
+    }
+    # Deny access to other .php files, rather than exposing their contents
+    location ~ [^/]\.php(/|$) {
+        return 403;
+    }
+
+    # [Optional] Lychee-specific logs
+    error_log  /var/log/nginx/lychee.error.log;
+    access_log /var/log/nginx/lychee.access.log;
+
+    # [Optional] Remove trailing slashes from requests (prevents SEO duplicate content issues)
+    rewrite ^/(.+)/$ /$1 permanent;
+}
+</code></pre><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/installation.md">Edit this page on Github!</a></p></blockquote>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>

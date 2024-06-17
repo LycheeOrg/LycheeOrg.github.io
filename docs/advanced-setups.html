@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lychee Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <link rel="canonical" href="https://lycheeorg.github.io/docs/">
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
+    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
+    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#ff2d20">
+    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Load styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/prism.css">
+
+    <!-- Load JS -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/prism.js"></script>
+
+</head>
+
+<body>
+
+    <div class="sidebar_layout" id="docsScreen">
+
+        <div class="page_contain">
+            <div class="contain">
+                <aside class="sidebar">
+                    <a href="../" class="logo">
+                        <img class="mark" src="/assets/images/logo.png" alt="Laravel">
+                        <img class="type" src="img/Lychee.png" alt="Laravel">
+                    </a>
+                    <nav>
+                        <div class="navigation_contain">
+                            <div class="docs_sidebar">
+                                <ul>
+                                    <li class='sub--on'>
+<h2>Prologue</h2>
+<ul>
+<li><a href='org.html'>Lychee & LycheeOrg</a></li>
+<li><a href='releases.html'>Release Notes</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Getting Started</h2>
+<ul>
+<li><a href='installation.html'>Installation</a></li>
+<li><a href='configuration.html'>Configuration</a></li>
+<li><a href='docker.html'>Docker</a></li>
+<li><a href='update.html'>Update</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Advanced Topics</h2>
+<ul>
+<li><a href='settings.html'>Settings</a></li>
+<li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+<li class='active'><a href='advanced-setups.html'>Advanced Setups</a></li>
+<li><a href='honeypot.html'>Honeypot and Teapots</a></li>
+<li><a href='external_tracking.html'>External tracking with Matomo,<br>Google Analytics & Co</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Frequently Asked Question</h2>
+<ul>
+<li><a href='faq_general.html'>General</a></li>
+<li><a href='faq_installation.html'>Installation, migration, upgrade, update</a></li>
+<li><a href='faq_troubleshooting.html'>Troubleshooting</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Contributing</h2>
+<ul>
+<li><a href='contributions.html'>Contribution Guide</a></li>
+<li><a href='api.html'>API Documentation</a></li>
+<li><a href='architecture.html'>Lychee logic overview</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
+<li><a href='frontend.html'>Front-end</a></li>
+<li><a href='livewire.html'>Livewire Front-end (alpha)</a></li>
+</ul>
+
+                                    <li class="laravel">
+                                        <a href="https://laravel.com/docs/8.x"><h2>Laravel<img style="margin-left:4px;" src="img/external-link.svg" /></h2></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="trigger_contain">
+                        <a href="#" class="nav_trigger" aria-label="Menu">
+                            <div class="bar"></div>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="body_content">
+                    <section class="docs_body">
+                        <section class="docs_main">
+                            <h1>Advanced Setups</h1>
+                            
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#separating-data-from-the-code">Separating Data from the Code</a></li>
+<li><a href="#virtualbox-with-visual-studio-code">VirtualBox with Visual Studio Code</a><ul>
+<li><a href="#set-up-port-forwarding">Set Up &amp; Port Forwarding</a></li>
+<li><a href="#apache-and-proxy-in-the-host">Apache and Proxy in the Host</a></li>
+<li><a href="#apache-in-the-guest">Apache in the Guest</a></li>
+<li><a href="#visual-studio-code">Visual Studio Code</a></li>
+</ul>
+</li>
+<li><a href="#other-means-of-distributions">Other means of distributions</a><ul>
+<li><a href="#with-linuxserverio-free">With Linuxserver.io (Free)</a></li>
+<li><a href="#with-yunohost-free">With Yunohost (Free)</a></li>
+<li><a href="#with-cloudron-paid">With Cloudron (Paid)</a></li>
+<li><a href="#with-alwaysdata-paid">With alwaysdata (Paid)</a></li>
+<li><a href="#with-kubernetes-free">With Kubernetes (Free)</a></li>
+<li><a href="#with-portainer-on-synology-freeish">With Portainer on Synology (Free~ish)</a></li>
+</ul>
+</li>
+<li><a href="#implementing-object-storage">Implementing Object Storage</a><ul>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#s3-object-storage-setup">S3 Object Storage Setup</a></li>
+<li><a href="#create-and-run-lychee-container">Create and run Lychee container</a></li>
+<li><a href="#configure-env">Configure .ENV</a></li>
+<li><a href="#limitations-to-be-considered">Limitations to be considered</a></li>
+</ul>
+</li>
+<li><a href="#hosting-lychee-in-a-subpath-with-apache">Hosting Lychee in a subpath with Apache</a><ul>
+<li><a href="#setup-lychee">Setup Lychee</a></li>
+<li><a href="#setup-apache">Setup Apache</a></li>
+<li><a href="#configure-lychee">Configure Lychee</a></li>
+</ul>
+</li>
+</ul>
+
+                            <hr> <div class="issuelinks">
+<h2 id="introduction"><a class="toclink" href="#introduction">Introduction</a></h2>
+<p>In this page we describe additional ways to install and potentially to develop on Lychee.</p>
+<h2 id="separating-data-from-the-code"><a class="toclink" href="#separating-data-from-the-code">Separating Data from the Code</a></h2>
+<p>As described in issue #486, LudovicRousseau proposes a solution to separate your photos from the Lychee code.</p>
+<p>He splits Lychee itself and the pictures into 2 directories:
+- <code>Lychee</code> with the code of Lychee
+- <code>Lychee-data</code> containing:</p>
+<pre><code>Lychee-data/
+└── public
+    ├── dist
+    │   ├── fonts
+    │   └── resources
+    └── uploads
+        ├── big
+        ├── import
+        ├── medium
+        ├── raw
+        ├── small
+        └── thumb
+</code></pre>
+<ul>
+<li>his <code>Lychee/.env</code> contains:</li>
+</ul>
+<pre><code class="language-ini">LYCHEE_DIST=&quot;/var/www/Lychee-data/public/dist/&quot;
+LYCHEE_UPLOADS=&quot;/var/www/Lychee-data/public/uploads/&quot;
+</code></pre>
+<blockquote>
+<p>{note} Note that the <strong>path needs to be absolute</strong>.</p>
+</blockquote>
+<p>The upgrade script when a new version of Lychee is available is simple:</p>
+<pre><code class="language-bash">mv Lychee Lychee.old
+unzip Lychee.zip
+cp Lychee.old/.env Lychee
+chmod g+w -R Lychee/storage
+sudo chgrp www-data -R Lychee/storage
+cd Lychee
+php artisan key:generate
+php artisan migrate
+</code></pre>
+<p>It worked fine with the migration from 4.0.4 to 4.0.5 of Lychee.</p>
+<p>The hierarchy <code>Lychee-data/public/</code> is writeable by the group <code>www-data</code> so that apache process can modify the files.
+The files in <code>Lychee</code> are read only for apache. No write access needed.</p>
+<h2 id="virtualbox-with-visual-studio-code"><a class="toclink" href="#virtualbox-with-visual-studio-code">VirtualBox with Visual Studio Code</a></h2>
+<ul>
+<li>Requires an Apache server with <code>proxy</code> and <code>proxy_http</code> enabled.</li>
+<li>Requires a Virtual Machine (using e.g. VirtualBox)</li>
+</ul>
+<h3 id="set-up-port-forwarding"><a class="toclink" href="#set-up-port-forwarding">Set Up &amp; Port Forwarding</a></h3>
+<p>Set up your VM as if you would install any server.</p>
+<p>Set up the following port forwarding:</p>
+<ul>
+<li><code>host:10180</code> &Rarr; <code>guest:80</code></li>
+<li><code>host:10122</code> &Rarr; <code>guest:22</code></li>
+</ul>
+<p>The first one will allow us to access the server from Local host, the second will allow us to connect to it via SSH.</p>
+<h3 id="apache-and-proxy-in-the-host"><a class="toclink" href="#apache-and-proxy-in-the-host">Apache and Proxy in the Host</a></h3>
+<p>Edit your <code>/etc/hosts</code> to contain:</p>
+<pre><code>127.0.0.1   lychee.test
+127.0.0.1   lycheeorg.test
+</code></pre>
+<p>Create configuration files in <code>/etc/apache2/sites-available</code>: <code>001-lychee-test.conf</code> and <code>002-lycheeorg-test.conf</code></p>
+<pre><code class="language-apacheconf">&lt;VirtualHost *:80&gt;
+    ServerName lychee.test
+
+    ProxyPass / http://localhost:10180/
+    ProxyPassReverse / http://lychee.test/
+    ProxyPreserveHost On
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>and</p>
+<pre><code class="language-apacheconf">&lt;VirtualHost *:80&gt;
+    ServerName lycheeorg.test
+
+    ProxyPass / http://localhost:10180/
+    ProxyPassReverse / http://lycheeorg.test/
+    ProxyPreserveHost On
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>Enable the sites and reload apache:</p>
+<pre><code class="language-bash">sudo a2ensite 001-lychee-test.conf
+sudo a2ensite 002-lycheeorg-test.conf
+sudo systemctl restart apache2
+</code></pre>
+<h3 id="apache-in-the-guest"><a class="toclink" href="#apache-in-the-guest">Apache in the Guest</a></h3>
+<p>In your guest OS, clone the Lychee repository (requires ssh key to be set up):</p>
+<pre><code class="language-bash">git clone git@github.com:LycheeOrg/Lychee.git /var/www/html/Lychee
+git clone git@github.con:LycheeOrg/LycheeOrg.github.io /var/www/html/LycheeOrg.github.io
+</code></pre>
+<p>Similarily in <code>/etc/apache2/sites-available</code> create 2 configuration files: <code>001-lychee.conf</code> and <code>002-lycheeorg.conf</code></p>
+<pre><code class="language-apacheconf">&lt;VirtualHost *:80&gt;
+    ServerName lychee.test
+
+    DocumentRoot /var/www/html/Lychee/public
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>and</p>
+<pre><code class="language-apacheconf">&lt;VirtualHost *:80&gt;
+    ServerName lycheeorg.test
+
+    DocumentRoot /var/www/html/LycheeOrg.github.io
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>Enable the sites and reload apache:</p>
+<pre><code class="language-bash">sudo a2ensite 001-lychee-test.conf
+sudo a2ensite 002-lycheeorg-test.conf
+sudo systemctl restart apache2
+</code></pre>
+<p>Open a browser on your host and navigate to <a href="http://lychee.test">http://lychee.test</a> and <a href="http://lycheeorg.test">http://lycheeorg.test</a> enjoy.</p>
+<h3 id="visual-studio-code"><a class="toclink" href="#visual-studio-code">Visual Studio Code</a></h3>
+<p>If you use <a href="https://code.visualstudio.com/">Visual Studio Code</a>, you can use the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">remote ssh extension</a>. It will allow you to directly edit your files in your VM without having to upload and download the files.</p>
+<h2 id="other-means-of-distributions"><a class="toclink" href="#other-means-of-distributions">Other means of distributions</a></h2>
+<p>In this section we present few out-of-the-box solutions providing Lychee.</p>
+<blockquote>
+<p>{note} Please note that we, at LycheeOrg, do not endorse any of the following solutions.
+We give the reader a link to their websites as they provide our software.
+<strong>You are free to use their installation, however we will not be providing you support with their solution</strong>.</p>
+</blockquote>
+<h3 id="with-linuxserverio-free"><a class="toclink" href="#with-linuxserverio-free">With Linuxserver.io (Free)</a></h3>
+<p>Linuxserver.io is a group of like minded enthusiasts from across the world who build and maintain the largest collection of Docker images on the web,
+and at our core are the principles behind Free and Open Source Software.
+Their primary goal is to provide easy-to-use and streamlined Docker images with clear and concise documentation.</p>
+<p>You can find the corresponding Lychee image <a href="https://fleet.linuxserver.io/image?name=linuxserver/lychee">here</a>.</p>
+<h3 id="with-yunohost-free"><a class="toclink" href="#with-yunohost-free">With Yunohost (Free)</a></h3>
+<p><a href="https://yunohost.org/">Yunohost</a> is a simple operating system for self-hosting your applications.
+<a href="https://yunohost.org/de/app_lychee">Lychee is available from their app store</a> and can be installed by clicking <a href="https://install-app.yunohost.org/?app=lychee">this installation link</a>.
+You can find the source code of the app under <a href="https://github.com/YunoHost-Apps/lychee_ynh">https://github.com/YunoHost-Apps/lychee_ynh</a>.</p>
+<h3 id="with-cloudron-paid"><a class="toclink" href="#with-cloudron-paid">With Cloudron (Paid)</a></h3>
+<p>Cloudron is a complete solution for running apps on your server and keeping them up-to-date and secure.</p>
+<p><a href="https://cloudron.io/store/com.electerious.lychee.cloudronapp.html"><img alt="Install" src="https://cloudron.io/img/button.svg" /></a></p>
+<p>The source code for the package can be found <a href="https://git.cloudron.io/cloudron/lychee-app">here</a>.</p>
+<p>See their pricing <a href="https://cloudron.io/pricing.html">here</a>.</p>
+<h3 id="with-alwaysdata-paid"><a class="toclink" href="#with-alwaysdata-paid">With alwaysdata (Paid)</a></h3>
+<p>alwaysdata.com is a modern hosting platform allowing you to host all your services in one place: files, emails, sites, media, databases, workers, etc.</p>
+<p>You can use their Marketplace to <a href="https://www.alwaysdata.com/en/marketplace/lychee/">install Lychee</a> and have your own instance available (with HTTPS) within a minute!</p>
+<p>See their pricing <a href="https://www.alwaysdata.com/en/">here</a>.</p>
+<h3 id="with-kubernetes-free"><a class="toclink" href="#with-kubernetes-free">With Kubernetes (Free)</a></h3>
+<p>You can use a Community maintained Helmchart to deploy Lychee into your Kubernetes Cluster.</p>
+<p>Have a look at the <a href="https://github.com/breuerfelix/lychee-helmchart">Repository</a> for installation instructions.</p>
+<p>Feel free to open an <a href="https://github.com/breuerfelix/lychee-helmchart/issues">Issue</a> if you need help.</p>
+<h3 id="with-portainer-on-synology-freeish"><a class="toclink" href="#with-portainer-on-synology-freeish">With Portainer on Synology (Free~ish)</a></h3>
+<p><a href="https://mariushosting.com/author/marius/">Marius Bogdan Lixandru</a> made a great post of how to set up your Lychee installation on your Synology NAS with Portainer. Read at it <a href="https://mariushosting.com/how-to-install-lychee-on-your-synology-nas/">here</a>.</p>
+<h2 id="implementing-object-storage"><a class="toclink" href="#implementing-object-storage">Implementing Object Storage</a></h2>
+<p>An S3-compatible object storage solution is designed to store, manage, and access unstructured data in the cloud. </p>
+<p>Under Object Storage, files (also called objects) are stored in flat data structures (referred to as buckets) alongside their own rich metadata.</p>
+<p>Due to the nature of Object Storage, it does not require the use of a Compute Instance. Instead, Object Storage gives each object a unique URL with which you can access the data.</p>
+<h3 id="limitations"><a class="toclink" href="#limitations">Limitations</a></h3>
+<ul>
+<li>Upload file size limit: 5 GB</li>
+<li>All recursive tasks including (search, find, ls, etc.) have poor performance due to network latency</li>
+</ul>
+<h3 id="s3-object-storage-setup"><a class="toclink" href="#s3-object-storage-setup">S3 Object Storage Setup</a></h3>
+<p>The instructions in this guide are based on CentOS/Fedora/RHEL family, but it is easy to replicate the commands into any other distro.</p>
+<p><strong>Install s3fs FUSE-base file system</strong></p>
+<p>s3fs allows Linux and other OS's to mount an S3 bucket via FUSE (Filesystem in Userspace).</p>
+<p>s3fs makes you operate files and directories in S3 bucket like a local file system.</p>
+<p><a href="https://github.com/s3fs-fuse/s3fs-fuse">s3fs-fuse - Instructions from developer</a></p>
+<pre><code class="language-bash">sudo dnf install s3fs-fuse
+sudo echo ACCESS_KEY_ID:SECRET_ACCESS_KEY &gt; /etc/passwd-s3fs
+sudo chmod 600 /etc/passwd-s3fs
+</code></pre>
+<p><strong>Configure SELinux to allow access to the new filesystem</strong></p>
+<pre><code class="language-bash">setsebool -P httpd_use_fusefs 1
+</code></pre>
+<p><strong>Setup a permanent mounting point</strong></p>
+<p>Create S3 Object mount point:</p>
+<pre><code class="language-bash">sudo mkdir /mnt/bucket
+</code></pre>
+<p>Edit fstab to create a new mount on boot:<br />
+Add the following line to: <code>/etc/fstab</code></p>
+<pre><code class="language-bash">&lt;bucket&gt; /mnt/bucket fuse.s3fs _netdev, allow_other, enable_noobj_cache, url=&lt;s3_endpoint&gt;, use_cache=&quot;&quot;, passwd_file=/etc/passwd-s3fs, mp_umask=0002 0 0
+</code></pre>
+<p>Example:</p>
+<ul>
+<li><bucket>                        mybucket (name used in your cloud provider)</li>
+<li><s3_endpoint>                   https://eu-central-1.linodeobjects.com</li>
+</ul>
+<p>Parameters are explained below:</p>
+<ul>
+<li><code>allow_other</code>                     Allow other users to access the bucket</li>
+<li><code>mp_umask</code>                        Mask permissions for mount point</li>
+<li><code>enable_noobj_cache</code>              Performance improvement - Enable when bucket is exclusively used by s3fs</li>
+<li><code>use_cache=""</code>                    Disabled</li>
+<li><code>use_cache=/var/cache/s3fs</code>       Enabled (to be used with care, because the cache can grow out of control. Also, I haven't noticed much difference using it)</li>
+</ul>
+<p>Reboot your server to confirm S3 Object Storage is mounted correctly.<br />
+Create Lychee's mount point:</p>
+<pre><code class="language-bash">sudo mkdir /mnt/bucket/uploads
+</code></pre>
+<h3 id="create-and-run-lychee-container"><a class="toclink" href="#create-and-run-lychee-container">Create and run Lychee container</a></h3>
+<p>From now on, Lychee will see the Object Storage mount transparently like any other mount.<br />
+The container's volume <code>/uploads</code> needs to point to the new created mount:</p>
+<pre><code class="language-bash">sudo podman run --rm -d --name myphotos -v /mnt/bucket/uploads:/uploads -e PUID=33 -e PGID=1000 ... docker.io/lycheeorg/lychee
+</code></pre>
+<h3 id="configure-env"><a class="toclink" href="#configure-env">Configure .ENV</a></h3>
+<p>To avoid latency when clicking Diagnostics, my suggestion is to disable BasicPermissionCheck. Otherwise, depending on the number of photos in your gallery, this task can take hours.</p>
+<pre><code class="language-bash"># /var/lib/containers/storage/volumes/lychee-conf/_data/.env
+SKIP_DIAGNOSTICS_CHECKS=BasicPermissionCheck
+</code></pre>
+<h3 id="limitations-to-be-considered"><a class="toclink" href="#limitations-to-be-considered">Limitations to be considered</a></h3>
+<p>As explained before, recursive tasks are penalised in Object Storage, so if you have an existing bucket and the container runs for the first time, it will take long time to review and set the permissions in your mount. Depending on the number of photos, it can take several hours.</p>
+<h2 id="hosting-lychee-in-a-subpath-with-apache"><a class="toclink" href="#hosting-lychee-in-a-subpath-with-apache">Hosting Lychee in a subpath with Apache</a></h2>
+<p>To serve Lychee in a subpath, e.g. <code>https://my.url/photos/</code>, we can use Apaches's <a href="https://httpd.apache.org/docs/2.4/mod/mod_alias.html#alias">Alias</a>-directive.</p>
+<p>In this example we assume the web root to be located at <code>/var/www/html</code>, the web user and group to be <code>www-data</code>, and install <a href="installation.html#from-the-master-branch">from the master branch</a>.</p>
+<p>Before getting started, make sure your system qualifies the <a href="installation.html#server-requirements">Server Requirements</a>. </p>
+<h3 id="setup-lychee"><a class="toclink" href="#setup-lychee">Setup Lychee</a></h3>
+<p>Clone the repository to outside the web root, e.g. <code>/var/www/</code>:</p>
+<pre><code class="language-bash">sudo git clone https://www.github.com/LycheeOrg/Lychee /var/www/
+</code></pre>
+<p>Set the file ownership and permissions:</p>
+<pre><code class="language-bash">sudo chown -R www-data:www-data /var/www/Lychee
+sudo chmod -R 2775 /var/www/Lychee
+</code></pre>
+<p>Install composer in <code>/var/www/Lychee</code> as instructed in <a href="https://getcomposer.org/download/">here</a>.
+Then, from <code>/var/www/Lychee</code>, install the project dependencies:</p>
+<pre><code class="language-bash">sudo -u www-data php composer.phar install --no-dev
+</code></pre>
+<h3 id="setup-apache"><a class="toclink" href="#setup-apache">Setup Apache</a></h3>
+<p>Link <code>https://my.url/photos/</code> to <code>/var/www/Lychee/public</code> by adding the following to your Apache configuration for Aliases.
+In Apache 2.4 running on Debian, the correct configuration file is <code>/etc/apache2/mods-available/alias.conf</code>.</p>
+<pre><code class="language-apacheconf">Alias /photos /var/www/Lychee/public
+
+&lt;Directory /var/www/Lychee/public&gt;
+   Options FollowSymLinks
+   AllowOverride All
+   Require all granted
+&lt;/Directory&gt;
+</code></pre>
+<p>Finally, restart Apache:</p>
+<pre><code class="language-bash">sudo service apache2 restart
+</code></pre>
+<h3 id="configure-lychee"><a class="toclink" href="#configure-lychee">Configure Lychee</a></h3>
+<p>At this point, you should be able to go to <code>https://my.url/photos/</code> and run the web installer.
+During the installation procedure, on top of adding the database credentials to match your setup, set your <code>APP_URL</code> to the served subdirectory:</p>
+<pre><code class="language-bash">APP_URL=https://my.url/photos/
+</code></pre>
+<p>Done!</p>
+</div><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/advanced-setups.md">Edit this page on Github!</a></p></blockquote>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>

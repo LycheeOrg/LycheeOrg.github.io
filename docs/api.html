@@ -45,7 +45,48 @@
                         <div class="navigation_contain">
                             <div class="docs_sidebar">
                                 <ul>
-                                    {aside}
+                                    <li class='sub--on'>
+<h2>Prologue</h2>
+<ul>
+<li><a href='org.html'>Lychee & LycheeOrg</a></li>
+<li><a href='releases.html'>Release Notes</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Getting Started</h2>
+<ul>
+<li><a href='installation.html'>Installation</a></li>
+<li><a href='configuration.html'>Configuration</a></li>
+<li><a href='docker.html'>Docker</a></li>
+<li><a href='update.html'>Update</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Advanced Topics</h2>
+<ul>
+<li><a href='settings.html'>Settings</a></li>
+<li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+<li><a href='advanced-setups.html'>Advanced Setups</a></li>
+<li><a href='honeypot.html'>Honeypot and Teapots</a></li>
+<li><a href='external_tracking.html'>External tracking with Matomo,<br>Google Analytics & Co</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Frequently Asked Question</h2>
+<ul>
+<li><a href='faq_general.html'>General</a></li>
+<li><a href='faq_installation.html'>Installation, migration, upgrade, update</a></li>
+<li><a href='faq_troubleshooting.html'>Troubleshooting</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Contributing</h2>
+<ul>
+<li><a href='contributions.html'>Contribution Guide</a></li>
+<li class='active'><a href='api.html'>API Documentation</a></li>
+<li><a href='architecture.html'>Lychee logic overview</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
+<li><a href='frontend.html'>Front-end</a></li>
+<li><a href='livewire.html'>Livewire Front-end (alpha)</a></li>
+</ul>
+
                                     <li class="laravel">
                                         <a href="https://laravel.com/docs/8.x"><h2>Laravel<img style="margin-left:4px;" src="img/external-link.svg" /></h2></a>
                                     </li>
@@ -63,9 +104,23 @@
                 <section class="body_content">
                     <section class="docs_body">
                         <section class="docs_main">
-                            <h1>{title}</h1>
-                            {toc}
-                            <hr> {content}
+                            <h1>API Documentation</h1>
+                            
+<ul></ul>
+
+                            <hr> <style>
+.docs_main ul:not(:first-of-type) {
+    margin: 0 0 0;
+}
+</style>
+<p>The current API provide the following entry points:
+See:</p>
+<ul>
+<li><a href="https://github.com/LycheeOrg/Lychee/blob/master/routes/web.php">routes/web.php</a></li>
+<li><a href="https://github.com/LycheeOrg/Lychee/blob/master/routes/admin.php">routes/admin.php</a></li>
+</ul>
+<p>Note that for all request, <strong>'Accept: application/json' is mandatory</strong> and that without mention of the contrary <strong>'Content-Type: application/json' is also mandatory</strong>.</p>
+<p>As of version 4.8.1, the api documentation is moved directly inside your own Lychee instance. It is accessible at the url <code>https://yourLycheeInstance.org/docs/api</code>.</p><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/api.md">Edit this page on Github!</a></p></blockquote>
                         </section>
                     </section>
                 </section>

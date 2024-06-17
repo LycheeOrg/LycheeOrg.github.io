@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lychee Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <link rel="canonical" href="https://lycheeorg.github.io/docs/">
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
+    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
+    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#ff2d20">
+    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Load styles -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/prism.css">
+
+    <!-- Load JS -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/prism.js"></script>
+
+</head>
+
+<body>
+
+    <div class="sidebar_layout" id="docsScreen">
+
+        <div class="page_contain">
+            <div class="contain">
+                <aside class="sidebar">
+                    <a href="../" class="logo">
+                        <img class="mark" src="/assets/images/logo.png" alt="Laravel">
+                        <img class="type" src="img/Lychee.png" alt="Laravel">
+                    </a>
+                    <nav>
+                        <div class="navigation_contain">
+                            <div class="docs_sidebar">
+                                <ul>
+                                    <li class='sub--on'>
+<h2>Prologue</h2>
+<ul>
+<li><a href='org.html'>Lychee & LycheeOrg</a></li>
+<li><a href='releases.html'>Release Notes</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Getting Started</h2>
+<ul>
+<li><a href='installation.html'>Installation</a></li>
+<li><a href='configuration.html'>Configuration</a></li>
+<li><a href='docker.html'>Docker</a></li>
+<li><a href='update.html'>Update</a></li>
+<li><a href='upgrade.html'>Upgrade from v3</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Advanced Topics</h2>
+<ul>
+<li><a href='settings.html'>Settings</a></li>
+<li><a href='keyboard.html'>Keyboard Shortcuts</a></li>
+<li><a href='advanced-setups.html'>Advanced Setups</a></li>
+<li><a href='honeypot.html'>Honeypot and Teapots</a></li>
+<li class='active'><a href='external_tracking.html'>External tracking with Matomo,<br>Google Analytics & Co</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Frequently Asked Question</h2>
+<ul>
+<li><a href='faq_general.html'>General</a></li>
+<li><a href='faq_installation.html'>Installation, migration, upgrade, update</a></li>
+<li><a href='faq_troubleshooting.html'>Troubleshooting</a></li>
+</ul>
+<li class='sub--on'>
+<h2>Contributing</h2>
+<ul>
+<li><a href='contributions.html'>Contribution Guide</a></li>
+<li><a href='api.html'>API Documentation</a></li>
+<li><a href='architecture.html'>Lychee logic overview</a></li>
+<li><a href='structure.html'>Directory Structure</a></li>
+<li><a href='frontend.html'>Front-end</a></li>
+<li><a href='livewire.html'>Livewire Front-end (alpha)</a></li>
+</ul>
+
+                                    <li class="laravel">
+                                        <a href="https://laravel.com/docs/8.x"><h2>Laravel<img style="margin-left:4px;" src="img/external-link.svg" /></h2></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="trigger_contain">
+                        <a href="#" class="nav_trigger" aria-label="Menu">
+                            <div class="bar"></div>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="body_content">
+                    <section class="docs_body">
+                        <section class="docs_main">
+                            <h1>External tracking with Matomo,<br>Google Analytics & Co</h1>
+                            
+<ul>
+<li><a href="#set-up-for-matomo">Set up for Matomo</a><ul>
+<li><a href="#allow-loading-tracking-script">Allow loading tracking script</a></li>
+<li><a href="#add-custom-javascript">Add custom JavaScript</a></li>
+</ul>
+</li>
+<li><a href="#set-up-for-google-analytics">Set up for Google Analytics</a><ul>
+<li><a href="#allow-loading-tracking-script_1">Allow loading tracking script</a></li>
+<li><a href="#add-custom-javascript_1">Add custom JavaScript</a></li>
+</ul>
+</li>
+<li><a href="#other-tools-custom-tracking">Other tools / custom tracking</a><ul>
+<li><a href="#configuration-adjustments">Configuration adjustments</a></li>
+<li><a href="#track-view-changes">Track view changes</a></li>
+</ul>
+</li>
+</ul>
+
+                            <hr> <p>This guide will help you to set up Matomo, Google Analytics or other analytics tools with Lychee.</p>
+<h2 id="set-up-for-matomo"><a class="toclink" href="#set-up-for-matomo">Set up for Matomo</a></h2>
+<blockquote>
+<p>⚠️ Make sure to use your actual values for domain and siteId</p>
+</blockquote>
+<h3 id="allow-loading-tracking-script"><a class="toclink" href="#allow-loading-tracking-script">Allow loading tracking script</a></h3>
+<p>Set the following env vars:</p>
+<pre><code class="language-ini">SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://analytics.example.com/matomo.js
+SECURITY_HEADER_CSP_CONNECT_SRC=https://analytics.example.com/matomo.js
+</code></pre>
+<h3 id="add-custom-javascript"><a class="toclink" href="#add-custom-javascript">Add custom JavaScript</a></h3>
+<p>Add the following to Settings &gt; Custom JS</p>
+<pre><code class="language-javascript">var _paq = window._paq = window._paq || [];
+_paq.push(['trackPageView']);
+_paq.push(['enableLinkTracking']);
+(function () {
+    var u = &quot;https://analytics.example.com/&quot;;
+    _paq.push(['setTrackerUrl', u + 'matomo.php']);
+    _paq.push(['setSiteId', '&lt;site-id&gt;']);
+    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+    g.async = true;
+    g.src = u + 'matomo.js';
+    s.parentNode.insertBefore(g, s);
+})();
+
+navigation.addEventListener(&quot;navigate&quot;, function (e) {
+    _paq.push(['setDocumentTitle', document.title]);
+    _paq.push(['trackPageView']);
+});
+</code></pre>
+<h2 id="set-up-for-google-analytics"><a class="toclink" href="#set-up-for-google-analytics">Set up for Google Analytics</a></h2>
+<blockquote>
+<p>⚠️ Make sure to replace &lt;your-tracking-id&gt; with the actual value</p>
+</blockquote>
+<h3 id="allow-loading-tracking-script_1"><a class="toclink" href="#allow-loading-tracking-script_1">Allow loading tracking script</a></h3>
+<p>Set the following env vars:</p>
+<pre><code class="language-ini">SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://www.googletagmanager.com/gtag/js?id=&lt;your-tracking-id&gt;
+SECURITY_HEADER_CSP_CONNECT_SRC=https://www.googletagmanager.com/gtag/js?id=&lt;your-tracking-id&gt;
+</code></pre>
+<h3 id="add-custom-javascript_1"><a class="toclink" href="#add-custom-javascript_1">Add custom JavaScript</a></h3>
+<p>Add the following to Settings &gt; Custom JS</p>
+<pre><code class="language-javascript">(function () {
+  var u = &quot;https://www.googletagmanager.com/gtag/js&quot;;
+  var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+  g.async = true;
+  g.src = u + '?id=&lt;your-tracking-id&gt;';
+  s.parentNode.insertBefore(g, s);
+})();
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){
+    dataLayer.push(arguments);
+}
+
+function trackPageView() {
+  gtag('event', 'page_view', {
+    page_title: document.title,
+    page_location: window.location
+  });
+}
+
+gtag('js', new Date());
+gtag('config', '&lt;your-tracking-id&gt;', {
+  send_page_view: false
+});
+trackPageView();
+
+navigation.addEventListener(&quot;navigate&quot;, function (e) {
+  trackPageView()
+});
+</code></pre>
+<h2 id="other-tools-custom-tracking"><a class="toclink" href="#other-tools-custom-tracking">Other tools / custom tracking</a></h2>
+<h3 id="configuration-adjustments"><a class="toclink" href="#configuration-adjustments">Configuration adjustments</a></h3>
+<p>To make the frontend load the tracking script you need to change two environment variables:</p>
+<ul>
+<li>SECURITY_HEADER_SCRIPT_SRC_ALLOW to modify the
+  header <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src"><code>CSP: srcript-src</code></a></li>
+<li>SECURITY_HEADER_CSP_CONNECT_SRC to modify the
+  header <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/connect-src"><code>CSP: connect-src</code></a></li>
+</ul>
+<h3 id="track-view-changes"><a class="toclink" href="#track-view-changes">Track view changes</a></h3>
+<p>Add your custom tracking code to Settings &gt; Custom JS</p>
+<p>As Lychee uses history based routing you need to track page changes on the <code>navigate event</code> like this:</p>
+<pre><code class="language-javascript">navigation.addEventListener(&quot;navigate&quot;, function (e) {
+    // track page logic goes here
+});
+</code></pre><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/external_tracking.md">Edit this page on Github!</a></p></blockquote>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>
