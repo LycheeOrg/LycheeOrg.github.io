@@ -30,6 +30,19 @@
 
 ## Version 5
 
+### v5.4.0
+
+Released on Jun 17, 2024
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.
+
+* `klo` #2460 : Composer update by @ildyria.
+* `fixes` #2462 : Fix #2446: Apostrophes are allowed in names. by @ildyria.
+* `new` #2461 : Add login_required option so access is only after login in. by @ildyria.
+
+
 ### v5.3.1
 
 Released on Jun 9, 2024
@@ -86,8 +99,6 @@ We provide the `PHOTO_PIPES` flag in `.env` to enable the future code flow to pr
 By default its value is `false`.
 
 #### Changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.
 
 * `klo` #2364 : Avoid crashing when livewire flag is set in tests by @ildyria.
 * `klo` #2362 : More relevant diagnostic data, less privacy invasive by @ildyria.
