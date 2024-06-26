@@ -50,7 +50,7 @@ Released on Jun 26, 2024
   > - `oauth_create_user_on_first_attempt`:  
   >   Allow user creation when oauth id does not exist.
   > - `oauth_grant_new_user_upload_rights`:  
-  >   Newly created user are allowed to upload content.
+  >   Newly created users are allowed to upload content.
   > - `oauth_grant_new_user_modification_rights`:  
   >   Newly created user are allowed to edit their profile.
 * `fixes` #2477 : Fix timezone warning by @ildyria. 
