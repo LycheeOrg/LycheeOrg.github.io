@@ -52,7 +52,7 @@ Released on Jun 26, 2024
   > - `oauth_grant_new_user_upload_rights`:  
   >   Newly created users are allowed to upload content.
   > - `oauth_grant_new_user_modification_rights`:  
-  >   Newly created user are allowed to edit their profile.
+  >   Newly created users are allowed to edit their profile.
 * `fixes` #2477 : Fix timezone warning by @ildyria. 
 * `klo` #2478 : Minor speed improvements by @ildyria. 
 * `klo` #2479 : disable livewire array hack by @ildyria. 
