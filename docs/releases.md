@@ -30,13 +30,40 @@
 
 ## Version 5
 
+### v5.5.0
+
+Released on Jun 26, 2024
+
+**Note:** Migrated to Laravel 11. Might have some instability.
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.
+
+* `fixes` #2470 : Fix smart album not having visibilty option by @ildyria.
+* `new` #2465 : Add some details for clockwork profiler to work by @ildyria.
+* `new` #2468 : Allow to disable smart albums individually. by @ildyria.
+* `fixes` #2474 : Fix filename: no more double extension on download. by @ildyria.
+* `new` #2475 : Add ability to create user on the fly on Oauth auth step by @ildyria.
+  > This adds 3 settings:
+  > 
+  > - `oauth_create_user_on_first_attempt`:  
+  >   Allow user creation when oauth id does not exist.
+  > - `oauth_grant_new_user_upload_rights`:  
+  >   Newly created user are allowed to upload content.
+  > - `oauth_grant_new_user_modification_rights`:  
+  >   Newly created user are allowed to edit their profile.
+* `fixes` #2477 : Fix timezone warning by @ildyria. 
+* `klo` #2478 : Minor speed improvements by @ildyria. 
+* `klo` #2479 : disable livewire array hack by @ildyria. 
+* `new` #2480 : add option to disable login requirements on albums by @ildyria. 
+* `klo` #2464 : Migrate to Laravel 11 by @ildyria.
+
 ### v5.4.0
 
 Released on Jun 17, 2024
 
 #### Changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.
 
 * `klo` #2460 : Composer update by @ildyria.
 * `fixes` #2462 : Fix #2446: Apostrophes are allowed in names. by @ildyria.
