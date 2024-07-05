@@ -30,6 +30,19 @@
 
 ## Version 5
 
+### v5.5.1
+
+Released on Jul 5, 2024
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.
+
+* `fixes` #2487 : Fixes videos not loading from S3 due to unlisted CSP host by @RickyRomero.
+* `new` #2490 : Add support for paths in php-exif by @ildyria.
+* `fixes` #2492 : Fix error when opening tag album by @ildyria.
+* `klo` #2493 : Simplify by @ildyria.
+
 ### v5.5.0
 
 Released on Jun 26, 2024
@@ -37,8 +50,6 @@ Released on Jun 26, 2024
 **Note:** Migrated to Laravel 11. Might have some instability.
 
 #### Changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.
 
 * `fixes` #2470 : Fix smart album not having visibilty option by @ildyria.
 * `new` #2465 : Add some details for clockwork profiler to work by @ildyria.
