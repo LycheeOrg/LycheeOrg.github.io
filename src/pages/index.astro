@@ -1,0 +1,527 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+// import Note from '~/components/widgets/Note.astro';
+// import Features from '~/components/widgets/Features.astro';
+// import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import Content2 from '~/components/widgets/Content2.astro';
+// import Image from '~/components/common/Image.astro';
+// import { Image } from "astro:assets"
+import { Image } from 'astro:assets';
+// import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+// import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import showcase from '../assets/images/showcase.jpg';
+import Features4 from '~/components/widgets/Features4.astro';
+import show0 from '../assets/images/showcase/0.jpg';
+
+const metadata = {
+  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Content>
+    <Fragment slot="content" class:list={'h-80 select-none'}>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </Fragment>
+    <Fragment slot="bg">
+      <div style="background: linear-gradient(150deg, #061827, #2293ec)" class="h-full overflow-hidden">
+        <div class="hero__inner">
+          <div
+            class="window skrollable skrollable-before"
+            data-top="transform: translate3D(0px, 0px, 0px)"
+            data-top-bottom="transform: translate3D(0px, 100px, 0px)"
+            style="transform: translate3d(0px, 0px, 0px);"
+          >
+            <div class="window__bar">
+              <div class="window__dots">
+                <div class="window__dot window__dot--red"></div>
+                <div class="window__dot window__dot--orange"></div>
+                <div class="window__dot window__dot--green"></div>
+              </div>
+              <div class="window__menuitem window__button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512"
+                  ><path d="M352 128.4L319.7 96 160 256l159.7 160 32.3-32.4L224.7 256z"></path></svg
+                >
+              </div>
+              <div class="window__menuitem window__button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512"
+                  ><path d="M160 128.4L192.3 96 352 256 192.3 416 160 383.6 287.3 256z"></path></svg
+                >
+              </div>
+              <div class="window__menuitem window__adress">
+                LycheeOrg.github.io
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"
+                  ><path
+                    d="M256 384.1c-70.7 0-128-57.3-128-128.1s57.3-128.1 128-128.1V84l96 64-96 55.7v-55.8c-59.6 0-108.1 48.5-108.1 108.1 0 59.6 48.5 108.1 108.1 108.1S364.1 316 364.1 256H384c0 71-57.3 128.1-128 128.1z"
+                  ></path></svg
+                >
+              </div>
+            </div>
+            <Image
+              src={showcase}
+              alt={'For photographers by Photographers'}
+              class={'window__content'}
+              width="1194"
+              height="525"
+              alt="Screenshot of Lychee"
+            />
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  </Content>
+
+  <Hero
+    actions={[
+      {
+        variant: 'secondary',
+        text: 'Live Demo',
+        href: 'https://lychee-demo.fly.dev/',
+        target: '_blank',
+        // icon: 'tabler:download',
+      },
+      {
+        variant: 'primary',
+        text: 'See on GitHub',
+        href: 'https://github.com/LycheeOrg/Lychee',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Self-hosted photo-management <span class="text-primary">done right</span>.
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="font-semibold">Lychee</span> is a free photo-management tool, which runs on your server or web-space.
+      Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with
+      everything you need and all your photos are stored securely.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <!-- <Note /> -->
+
+  <!-- Features Widget *************** -->
+
+  <Features4
+    isBeforeContent
+    isAfterContent
+    columns={3}
+    items={[
+      {
+        title: 'Manage',
+        description:
+          'Managing your photos has never been easier. Upload, move, rename, describe, delete or search your photos in seconds. All in one place, right from your browser.',
+        icon: 'tabler:folders',
+      },
+      {
+        title: 'Share',
+        description:
+          "Sharing like it should be. One click and every photo and album is ready for the public. You can also protect albums with passwords if you want. It's under your control.",
+        icon: 'tabler:share-2',
+      },
+      {
+        title: 'View',
+        description:
+          'Look at all your images in full-screen mode, navigate forward and backward by using your keyboard or let others enjoy your photos by making them public.',
+        icon: 'tabler:eye',
+      },
+    ]}
+  />
+
+  <Content2
+    isReversed
+    items={[
+      {
+        icon: 'tabler:number-1',
+        title: 'Upload your photos or create new albums.',
+      },
+      {
+        icon: 'tabler:number-2',
+        title: 'See all the information from your photo',
+      },
+      {
+        icon: 'tabler:number-3',
+        title: 'Batch selection with Desktop-like multi-select',
+      },
+      {
+        icon: 'tabler:number-4',
+        title: 'Share your albums or photos with your favourite service.',
+      },
+    ]}
+    image={{ src: '~/assets/images/showcase/0.jpg', alt: 'Colorful Image' }}
+  />
+  <!-- Content Widget **************** -->
+
+  <Features4
+    isBeforeContent
+    isAfterContent
+    columns={3}
+    items={[
+      {
+        title: 'Open',
+        description:
+          'Lychee is completely <a href="https://github.com/LycheeOrg/Lychee">open-source</a>. Everyone can take advantage of the work we have already done and improve it. We are open for every suggestion or help.',
+        icon: 'tabler:brand-github',
+      },
+      {
+        title: 'Secure',
+        description:
+          'Your server, your data, your rules. Never depend on someone else. Lychee is a self-hosted solution, so you are in the full control of your photos.',
+        icon: 'tabler:lock',
+      },
+      {
+        title: 'Beautiful',
+        description:
+          'Our goal was to create a web app everyone can use. Lychee works intuitive and comes with a stunning, beautiful interface.',
+        icon: 'tabler:heart',
+      },
+    ]}
+  />
+
+  <!-- 
+  <Content
+    isReversed
+    tagline="Inside template"
+    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    items={[
+      {
+        title: 'Built on top of Astro 4.0',
+        description:
+          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+      },
+      {
+        title: 'Styled using Tailwind CSS',
+        description:
+          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+      },
+      {
+        title: 'Cross-browser compatibility',
+        description:
+          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Colorful Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
+      Gain a competitive advantage by incorporating industry leading practices
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content> -->
+
+  <Content classes={{ container: 'max-w-6xl' }}>
+    <Fragment slot="bg">
+      <div class="madefor__bg"></div>
+      <!-- class={'absolute inset-0 object-cover'} -->
+      <!-- <Image src={photographers} alt={'For photographers by Photographers'} class={'w-full object-cover'} /> -->
+    </Fragment>
+    <Fragment slot="content">
+      <div class="text-white flex flex-col align-middle text-base h-full">
+        <h2 class="text-3xl font-bold mb-5">Made for Photographers,<br />by Photographers.</h2>
+        <p>
+          <span class="font-semibold">Lychee</span> is the perfect place to store all your photos. No storage limit, no compression,
+          no loss in data. We even support and display your EXIF and IPTC Metadata. And if you want, you can make your photos
+          public for your audience. With just one click.
+        </p>
+      </div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Features4
+    isAfterContent
+    columns={3}
+    items={[
+      {
+        title: 'EXIF',
+        description:
+          'Get the most out of our photos. Lychee supports EXIF and IPTC Metadata. Always available one click away. Clearly listed next to all other information.',
+        icon: 'tabler:camera',
+      },
+      {
+        title: 'Import',
+        description:
+          'Import your photos from various sources. From you local computer, server, via URL or even from your Dropbox.',
+        icon: 'tabler:cloud-upload',
+      },
+      {
+        title: 'Tag',
+        description:
+          'Never lose one of your photos in the depth of your albums. Tag them or mark them as important. Every single photo or all selected photos at once.',
+        icon: 'tabler:tag',
+      },
+    ]}
+  />
+  <!-- <Content
+    isAfterContent
+    items={[
+      {
+        title: 'High level of customization',
+        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
+      },
+      {
+        title: 'Multiple layout possibilities',
+        description:
+          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
+      },
+      {
+        title: 'Fully responsive design',
+        description:
+          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
+      },
+      {
+        title: 'Integration of media',
+        description:
+          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      alt: 'Blueprint Image',
+    }}
+  >
+    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content> -->
+
+  <!-- Content Widget **************** -->
+
+  <!-- <Content
+    isReversed
+    isAfterContent
+    items={[
+      {
+        title: 'Enhanced user engagement',
+        description:
+          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+      },
+      {
+        title: 'Continuous improvement',
+        description:
+          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+      },
+      {
+        title: 'Time and resource efficiency',
+        description:
+          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
+      },
+      {
+        title: 'Community support',
+        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Astronauts Image',
+    }}
+  >
+    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content> -->
+
+  <!-- Steps Widget ****************** -->
+
+  <!-- <Steps
+    title="Get your dream website up and running in no time with AstroWind."
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Download</span>',
+        description:
+          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
+        icon: 'tabler:package',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Add content</span>',
+        description:
+          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
+        icon: 'tabler:letter-case',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Customize styles</span>',
+        description:
+          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
+        icon: 'tabler:paint',
+      },
+      {
+        title: 'Ready!',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: 'Steps image',
+    }}
+  /> -->
+
+  <!-- Features2 Widget ************** -->
+
+  <!-- <Features2
+    title="Most used widgets"
+    subtitle="Provides frequently used components for building websites using Tailwind CSS"
+    tagline="Components"
+    items={[
+      {
+        title: 'Headers',
+        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
+        icon: 'flat-color-icons:template',
+      },
+      {
+        title: 'Heros',
+        description:
+          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
+        icon: 'flat-color-icons:gallery',
+      },
+      {
+        title: 'Features',
+        description:
+          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
+        icon: 'flat-color-icons:approval',
+      },
+      {
+        title: 'Content',
+        description:
+          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
+        icon: 'flat-color-icons:document',
+      },
+      {
+        title: 'Call-to-Action',
+        description:
+          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
+        icon: 'flat-color-icons:advertising',
+      },
+      {
+        title: 'Pricing',
+        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
+        icon: 'flat-color-icons:currency-exchange',
+      },
+      {
+        title: 'Testimonial',
+        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
+        icon: 'flat-color-icons:voice-presentation',
+      },
+      {
+        title: 'Contact',
+        description:
+          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
+        icon: 'flat-color-icons:business-contact',
+      },
+      {
+        title: 'Footers',
+        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
+        icon: 'flat-color-icons:database',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2> -->
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  <!-- <BlogLatestPosts
+    title="Find out more content in our Blog"
+    information={`The blog is used to display AstroWind documentation.
+                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
+                        Astro is a very interesting technology. Thanks.
+                `}
+  /> -->
+
+  <!-- FAQs Widget ******************* -->
+
+  <!-- <FAQs
+    title="Frequently Asked Questions"
+    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'Why Lychee?',
+        description:
+          "Simple to use and elegant.",
+      },
+      {
+        title: 'What do I need to start?',
+        description:
+          'A server or VPS, for the rest it depends. We recommend using docker to deploy Lychee, but you can also build it from source with PHP and nodeJs',
+      },
+      {
+        title: 'How to install the Astro + Tailwind CSS template?',
+        description:
+          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+      },
+      {
+        title: "What's something that you don't understand?",
+        description:
+          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+      },
+      {
+        title: 'What is something that you would like to try again?',
+        description:
+          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+      },
+      {
+        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        description:
+          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+      },
+    ]}
+  /> -->
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: 'Downloads', amount: '24K' },
+      { title: 'Stars', amount: '3.2K' },
+      { title: 'Forks', amount: '291' },
+      { title: 'Docker pulls', amount: '3.3M' },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Deploy now!',
+        href: 'https://github.com/LycheeOrg/Lychee-Docker/blob/master/docker-compose.yml',
+        target: '_blank',
+        icon: 'tabler:download',
+      },
+    ]}
+  >
+    <Fragment slot="title"> Lychee on Docker </Fragment>
+
+    <Fragment slot="subtitle"> Deploy in a matter of seconds with our docker-compose file. </Fragment>
+  </CallToAction>
+</Layout>
