@@ -100,18 +100,14 @@ export const headerData = {
           text: 'About Version 6',
           href: getPermalink('v6', 'tag'),
         },
-        // {
-        //   text: 'Article (with MDX)',
-        //   href: getPermalink('markdown-elements-demo-post', 'post'),
-        // },
-        // {
-        //   text: 'Tag Page',
-        //   href: getPermalink('astro', 'tag'),
-        // },
       ],
     },
     {
-      text: 'Documentation',
+      text: 'About us',
+      href: '/support',
+    },
+    {
+      text: 'Docs',
       href: '/docs',
     },
   ],

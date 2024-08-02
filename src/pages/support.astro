@@ -1,9 +1,13 @@
 ---
-import Features2 from '~/components/widgets/Features2.astro';
+// import Features2 from '~/components/widgets/Features2.astro';
+// import Features3 from '~/components/widgets/Features3.astro';
+// import Features from '~/components/widgets/Features.astro';
+import CallToAction2 from '~/components/widgets/CallToAction.astro';
 import Features3 from '~/components/widgets/Features3.astro';
+import Features5 from '~/components/widgets/Features5.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import Steps2 from '~/components/widgets/Steps2.astro';
+// import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
@@ -16,34 +20,201 @@ const metadata = {
 
   <Hero
     image={{
-      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=3494&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       alt: 'Caos Image',
     }}
   >
-    <Fragment slot="title"> Supporting Lychee. </Fragment>
+    <Fragment slot="title"> About Us. </Fragment>
 
     <Fragment slot="subtitle">
-      We aim to maintain a free open-source photography library with high quality of code. Being in control of our own
-      data, our own pictures is something that we value above all.
+      We aim to maintain a free open-source photography library with high quality of code.<br />
+      Being in control of our own data, our own pictures is something that we value above all.
     </Fragment>
   </Hero>
 
   <!-- Stats Widget ****************** -->
 
   <Stats
-    title="Statistics about us"
+    title="Statistics."
     stats={[
       { title: 'Started', amount: '2018' },
       { title: 'Devs', amount: '2' },
-      // { title: 'Devs', amount: '2' },
-      // { title: 'Templates', amount: '12' },
-      // { title: 'Awards', amount: '24' },
+      { title: 'Lines of Code', amount: '40K' },
     ]}
   />
 
   <!-- Features3 Widget ************** -->
 
+  <Features5
+    title="Meet the team"
+    columns={2}
+    items={[
+      {
+        title: 'ildyria (Benoît Viguier)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/627094?s=400&v=4',
+          alt: 'ildyria',
+        },
+        description: 'Main dev.',
+      },
+      {
+        title: 'd7415 (Martin Stone)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/1611702?v=4',
+          alt: 'd7415',
+        },
+        description: 'Main reviewer.',
+      },
+    ]}
+  />
+
   <Features3
+    title="Our values"
+    subtitle="LycheeOrg is not just producing a photo gallery,<br>it is also about adopting a culture of excelence."
+    columns={3}
+    items={[
+      {
+        title: 'High quality software',
+        icon: 'tabler:code',
+        description:
+          'We pride ourselves into applying best practices in software development. This includes testing, static analysis, proper design pattern & architecture.',
+      },
+      {
+        title: 'Open',
+        icon: 'tabler:git-pull-request',
+        description:
+          'To encourage active collaboration, Lychee strongly encourages pull requests, not just bug reports. We are also open to suggestions and new ideas for future improvements.',
+      },
+      {
+        title: 'Ethical Practices',
+        icon: 'tabler:shield-check',
+        description:
+          'Lychee is all about statying in control of your data. The gallery comes out of the box without any analytics or other tracking mechanism. Your privacy is one of our priority.',
+      },
+    ]}
+  />
+
+  <CallToAction2
+    classes={{container: 'bg-sky-400/20', headline: 'bg-white'}}
+    title="Support us!"
+    subtitle="If you are using Lychee, a small token of gratitude will go a long way. You can support further development of Lychee on opencollective or on GitHub."
+    actions={[
+      {
+        variant: 'secondary',
+        text: '<img src="https://next-images.opencollective.com/_next/image?url=%2Fstatic%2Fimages%2Foc-logo-watercolor-256.png&w=64&q=75" class="h-5 w-5 mr-2.5"/>Open Collective',
+        href: 'https://opencollective.com/LycheeOrg',
+      },
+      {
+        variant: 'secondary',
+        text: 'GitHub sponsor',
+        href: 'https://github.com/sponsors/LycheeOrg',
+        icon: 'tabler:heart',
+      },
+    ]}
+  />
+  <!-- { text: 'GitHub sponsor', href: 'https://github.com/sponsors/LycheeOrg' },
+  { text: 'Open Collective', href: 'https://opencollective.com/LycheeOrg' }, -->
+
+  <div class=" scale-75">
+  <Features5
+    isAfterContent
+    isBeforeContent
+    title="Past Contributors"
+    subtitle="We would like to thank all the contributors that helped us in the past."
+    columns={3}
+    items={[
+      {
+        title: 'kamil4 (Kamil Iskra)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/16415200?v=4',
+          alt: 'kamil4',
+        },
+        description:
+          '<span class="bg-green-700 text-white rounded-full px-4 py-1 font-bold text-sm">Top contributor</span>',
+      },
+      {
+        title: 'nagmat84 (Matthias Nagel)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/7428426?v=4',
+          alt: 'nagmat84',
+        },
+        description:
+          '<span class="bg-yellow-400 text-neutral-500 rounded-full px-4 py-1 font-bold text-sm">Rock star</span>',
+      },
+      {
+        title: 'electerious (Tobias Reich)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/499088?v=4',
+          alt: 'electerious',
+        },
+        description: '<span class="bg-sky-400 rounded-full px-4 py-1 font-bold text-sm">Creator</span>',
+      },
+      {
+        title: 'qwerty287',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/80460567?v=4',
+          alt: 'qwerty287',
+        },
+        description:
+          '<span class="bg-green-700 text-white rounded-full px-4 py-1 font-bold text-sm">Top contributor</span>',
+      },
+      {
+        title: 'tmp-hallenser',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/1869257?v=4',
+          alt: 'tmp-hallenser',
+        },
+      },
+      {
+        title: 'LudovicRousseau',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/398496?v=4',
+          alt: 'LudovicRousseau',
+        },
+      },
+
+      {
+        title: 'roblandry',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/1853884?v=4',
+          alt: 'roblandry',
+        },
+      },
+
+      {
+        title: 'alex-phillips',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/3135216?v=4',
+          alt: 'alex-phillips',
+        },
+      },
+
+      {
+        title: 'hermzz (Hermann Käser)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/129883?v=4',
+          alt: 'hermzz (Hermann Käser)',
+        },
+      },
+
+      {
+        title: 'clementlamoureux',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/2447419?v=4',
+          alt: 'clementlamoureux (Clément Lamoureux)',
+        },
+      },
+      {
+        title: 'bennetscience (Brian)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/3878010?s=400&v=4',
+          alt: 'bennetscience (Brian)',
+        },
+      },
+    ]}
+  />
+</div>
+  <!-- <Features3
     title="Our templates"
     subtitle="Etiam scelerisque, enim eget vestibulum luctus, nibh mauris blandit nulla, nec vestibulum risus justo ut enim. Praesent lacinia diam et ante imperdiet euismod."
     columns={3}
@@ -68,11 +239,11 @@ const metadata = {
         icon: 'tabler:template',
       },
     ]}
-  />
+  /> -->
 
   <!-- Features3 Widget ************** -->
 
-  <Features3
+  <!-- <Features3
     columns={3}
     isAfterContent={true}
     items={[
@@ -117,35 +288,35 @@ const metadata = {
       src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
       alt: 'Colorful Image',
     }}
-  />
+  /> -->
 
   <!-- Steps2 Widget ****************** -->
 
-  <Steps2
+  <!-- <Steps2
     title="Our values"
-    subtitle="Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus. Nulla facilisi. Vestibulum malesuada lacus."
+    subtitle="LycheeOrg is not just producing a photo gallery, it is also about adopting a culture of excelence."
     items={[
       {
-        title: 'Customer-centric approach',
+        title: 'High quality software',
         description:
-          'Donec id nibh neque. Quisque et fermentum tortor. Fusce vitae dolor a mauris dignissim commodo. Ut eleifend luctus condimentum.',
+          'We pride ourselves into applying best practices in software development. This includes testing, static analysis, proper design pattern & architecture.',
       },
       {
-        title: 'Constant Improvement',
+        title: 'Open',
         description:
-          'Phasellus laoreet fermentum venenatis. Vivamus dapibus pulvinar arcu eget mattis. Fusce eget mauris leo.',
+          'To encourage active collaboration, Lychee strongly encourages pull requests, not just bug reports. We are also open to suggestions and new ideas for future improvements.',
       },
       {
         title: 'Ethical Practices',
         description:
-          'Vestibulum imperdiet libero et lectus molestie, et maximus augue porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+          'Lychee is all about statying in control of your data. The gallery comes out of the box without any analytics or any other tracking mechanism. Your privacy is one of our priority.',
       },
     ]}
-  />
+  /> -->
 
   <!-- Steps2 Widget ****************** -->
 
-  <Steps2
+  <!-- <Steps2
     title="Achievements"
     subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla."
     isReversed={true}
@@ -172,11 +343,11 @@ const metadata = {
         icon: 'tabler:award',
       },
     ]}
-  />
+  /> -->
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
+  <!-- <Features2
     title="Our locations"
     tagline="Find us"
     columns={4}
@@ -198,11 +369,11 @@ const metadata = {
         description: '3456 Lorem Ipsum St, 34567, São Paulo',
       },
     ]}
-  />
+  /> -->
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
+  <!-- <Features2
     title="Technical Support"
     tagline="Contact us"
     columns={2}
@@ -221,4 +392,5 @@ const metadata = {
       },
     ]}
   />
+</Layout> -->
 </Layout>
