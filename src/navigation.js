@@ -20,7 +20,7 @@ export const headerData = {
       ],
     },
     {
-      text: 'About us3',
+      text: 'About us',
       href: '/support',
     },
     {
