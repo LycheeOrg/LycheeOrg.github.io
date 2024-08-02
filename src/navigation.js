@@ -89,20 +89,20 @@ export const headerData = {
       text: 'Blog',
       links: [
         {
-          text: 'Blog List',
+          text: 'Read the blog',
           href: getBlogPermalink(),
         },
         {
-          text: 'Future of lychee',
-          href: getPermalink('future-of-lychee', 'post'),
+          text: 'The future of lychee',
+          href: getPermalink('2024-06-29-future-of-lychee', 'post'),
         },
         {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          text: 'About Version 6',
+          href: getPermalink('v6', 'tag'),
         },
         // {
-        //   text: 'Category Page',
-        //   href: getPermalink('tutorials', 'category'),
+        //   text: 'Article (with MDX)',
+        //   href: getPermalink('markdown-elements-demo-post', 'post'),
         // },
         // {
         //   text: 'Tag Page',

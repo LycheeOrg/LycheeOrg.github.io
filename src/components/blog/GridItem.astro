@@ -25,7 +25,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
           <a href={link}>
             <Image
               src={image}
-              class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
+              class="w-full md:h-full rounded shadow-lg object-cover bg-gray-400 dark:bg-slate-700"
               widths={[400, 900]}
               width={400}
               sizes="(max-width: 900px) 400px, 900px"
@@ -39,7 +39,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
         ) : (
           <Image
             src={image}
-            class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
+            class="w-full md:h-full rounded shadow-lg object-cover bg-gray-400 dark:bg-slate-700"
             widths={[400, 900]}
             width={400}
             sizes="(max-width: 900px) 400px, 900px"
