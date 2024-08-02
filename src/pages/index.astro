@@ -5,9 +5,9 @@ import Hero from '~/components/widgets/Hero.astro';
 // import Note from '~/components/widgets/Note.astro';
 // import Features from '~/components/widgets/Features.astro';
 // import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
+// import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import Content2 from '~/components/widgets/Content2.astro';
+import Content3 from '~/components/widgets/Content3.astro';
 // import Image from '~/components/common/Image.astro';
 // import { Image } from "astro:assets"
 import { Image } from 'astro:assets';
@@ -18,6 +18,9 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import showcase from '../assets/images/showcase.jpg';
 import Features4 from '~/components/widgets/Features4.astro';
 import show0 from '../assets/images/showcase/0.jpg';
+import show1 from '../assets/images/showcase/1.jpg';
+import show2 from '../assets/images/showcase/2.jpg';
+import show3 from '../assets/images/showcase/3.jpg';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -143,7 +146,7 @@ const metadata = {
     ]}
   />
 
-  <Content2
+  <Content3
     isReversed
     items={[
       {
@@ -163,7 +166,10 @@ const metadata = {
         title: 'Share your albums or photos with your favourite service.',
       },
     ]}
-    image={{ src: '~/assets/images/showcase/0.jpg', alt: 'Colorful Image' }}
+    img1={{ src: '~/assets/images/showcase/0.jpg', alt: 'Colorful Image' }}
+    img2={{ src: '~/assets/images/showcase/1.jpg', alt: 'Colorful Image' }}
+    img3={{ src: '~/assets/images/showcase/2.jpg', alt: 'Colorful Image' }}
+    img4={{ src: '~/assets/images/showcase/3.jpg', alt: 'Colorful Image' }}
   />
   <!-- Content Widget **************** -->
 

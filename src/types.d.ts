@@ -283,4 +283,17 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   callToAction?: CallToAction;
 }
 
+export interface Content3 extends Omit<Headline, 'classes'>, Widget {
+  content?: string;
+  img1?: string | unknown;
+  img2?: string | unknown;
+  img3?: string | unknown;
+  img4?: string | unknown;
+  items?: Array<Item>;
+  columns?: number;
+  isReversed?: boolean;
+  isAfterContent?: boolean;
+  callToAction?: CallToAction;
+}
+
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
