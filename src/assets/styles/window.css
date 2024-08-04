@@ -128,3 +128,20 @@
   background-size: cover;
   transform: translate3d(0px, 1.84571px, 0px);
 }
+
+.shape-divider-bottom {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.shape-divider-bottom svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 200px;
+}
+
+.bg-mix {
+  background-color: #d7f0fe;
+}

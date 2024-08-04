@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Hero from '~/components/widgets/Hero.astro';
+import Hero from '~/components/widgets/HeroIndex.astro';
 import Content from '~/components/widgets/Content.astro';
 import Content3 from '~/components/widgets/Content3.astro';
 import { Image } from 'astro:assets';
@@ -22,17 +22,34 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
-
-  <Content>
-    <Fragment slot="content" class:list={'h-80 select-none'}>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+  <Hero
+    actions={[
+      {
+        variant: 'secondary',
+        text: 'Live Demo',
+        href: 'https://lychee-demo.fly.dev/',
+        target: '_blank',
+        // icon: 'tabler:download',
+      },
+      {
+        variant: 'primary',
+        text: 'See on GitHub',
+        href: 'https://github.com/LycheeOrg/Lychee',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Self-hosted photo-management <span class="text-primary">done right</span>.
     </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="font-semibold">Lychee</span> is a free photo-management tool, which runs on your server or web-space.
+      Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with
+      everything you need and all your photos are stored securely.
+    </Fragment>
+
     <Fragment slot="bg">
-      <div style="background: linear-gradient(150deg, #061827, #2293ec)" class="h-full overflow-hidden">
+      <div style="background: linear-gradient(150deg, #061827, #2293ec)" class="md:mt-[76px] h-96 overflow-hidden">
         <div class="hero__inner">
           <div
             class="window skrollable skrollable-before"
@@ -76,33 +93,6 @@ const metadata = {
           </div>
         </div>
       </div>
-    </Fragment>
-  </Content>
-
-  <Hero
-    actions={[
-      {
-        variant: 'secondary',
-        text: 'Live Demo',
-        href: 'https://lychee-demo.fly.dev/',
-        target: '_blank',
-        // icon: 'tabler:download',
-      },
-      {
-        variant: 'primary',
-        text: 'See on GitHub',
-        href: 'https://github.com/LycheeOrg/Lychee',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Self-hosted photo-management <span class="text-primary">done right</span>.
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      <span class="font-semibold">Lychee</span> is a free photo-management tool, which runs on your server or web-space.
-      Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with
-      everything you need and all your photos are stored securely.
     </Fragment>
   </Hero>
 

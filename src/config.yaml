@@ -1,6 +1,7 @@
 site:
   name: Lychee
   site: 'https://lycheeorg.github.io'
+  # base: '/'
   base: '/'
   trailingSlash: false
 
