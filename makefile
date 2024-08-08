@@ -4,14 +4,18 @@ all: assets
 
 .PHONY: assets
 
-assets:
-	mkdir -p build
-	cp -r assets build/
-	mkdir -p build/docs
-	cp -r docs/css build/docs/
-	cp -r docs/fonts build/docs/
-	cp -r docs/img build/docs/
-	cp -r docs/js build/docs/
+node_modules:
+	npm install
+
+astro: node_modules
+	npm run build
+
+assets: astro
+	mkdir -p dist/docs
+	cp -r docs/css dist/docs/
+	cp -r docs/fonts dist/docs/
+	cp -r docs/img dist/docs/
+	cp -r docs/js dist/docs/
 
 test: assets
 	@echo ""
@@ -21,4 +25,4 @@ update-python:
 	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U 
 
 clean: 
-	@rm -fr build
+	@rm -fr dist

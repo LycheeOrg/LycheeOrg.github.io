@@ -1,0 +1,147 @@
+.hero__inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  padding: 5% 0 0 6%;
+  overflow: hidden;
+}
+
+.window {
+  max-width: 1168px;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 0 18px 25px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.window__bar {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 8px 12px;
+  background: linear-gradient(180deg, #efefef, #dadada);
+  border-radius: 6px 6px 0 0;
+  border-bottom: 1px solid #b4b4b4;
+  box-shadow: inset 0 1px 1px hsla(0, 0%, 100%, 0.8);
+}
+
+.window__bar,
+.window__dots {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.window__dots {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  padding: 0 4px 0 2px;
+}
+
+.window__dot {
+  margin: 0 8px 0 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.window__dot--red {
+  background: #ff6057;
+}
+
+.window__dot--orange {
+  background: #ffbd2e;
+}
+
+.window__dot--green {
+  background: #27c93f;
+}
+
+.window__menuitem {
+  padding: 0 4px;
+  height: 23px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.window__button {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin: 0 1px 0 0;
+  line-height: 26px;
+}
+
+.window__button svg {
+  margin: 2px 0 0;
+}
+
+.window__button svg path {
+  fill: rgba(0, 0, 0, 0.35);
+}
+
+.window__adress {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  margin: 0 auto;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 500px;
+  color: rgba(0, 0, 0, 0.9);
+  font-family:
+    Helvetica Neue,
+    Helvetica;
+  font-size: 12px;
+  text-align: center;
+}
+
+.window__adress svg {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+}
+
+.window__adress svg path {
+  fill: rgba(0, 0, 0, 0.6);
+}
+
+.window__content {
+  display: block;
+  background: #1d1d1d;
+}
+
+.madefor__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background-image: url(../images/photographers.jpg);
+  background-size: cover;
+  transform: translate3d(0px, 1.84571px, 0px);
+}
+
+.shape-divider-bottom {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.shape-divider-bottom svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 200px;
+}
+
+.bg-mix {
+  background-color: #d7f0fe;
+}
