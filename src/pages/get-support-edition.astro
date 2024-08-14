@@ -1,0 +1,102 @@
+---
+import Layout from '~/layouts/LandingLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+// import CallToAction from '~/components/widgets/CallToAction.astro';
+import Prices from '~/components/widgets/Pricing.astro';
+
+const metadata = {
+  title: 'Pre-Launch Landing Page',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero2 Widget ******************* -->
+
+  <Hero
+    tagline="<span class='text-sky-600'>Coming Soon...</span>"
+    title='<span class="text-5xl"> Lychee <span class="text-sky-600">SE</span></span>'
+    subtitle="Unlock the full capabilities of <span class='font-bold text-black'>Lychee</span> with the <span class='text-sky-600 font-bold'>Supporter Edition</span>.<br>Get exclusive features and support the development of Lychee."
+  >
+  <Fragment slot="bg">
+
+  <div class="relative w-screen flex justify-center pt-0 md:pt-[76px]">
+    <div class="shape-divider-bottom  hidden lg:block">
+        <div class="h-4 sm:h-16 md:h-52 w-full bg-mix"/>
+        <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" preserveAspectRatio="none" class="bg-bgDark2">
+          <path d="M 0 50 C 150 150 300 0 500 80 L 500 0 L 0 0" class="shape-fill bg-white fill-sky-400" 
+            fill="rgb(57, 27, 112)"></path>
+          <path d="M 0 50 C 150 150 330 -30 500 50 L 500 0 L 0 0" class="fill-sky-100" opacity="0.8"></path>
+         <path d="M 0 50 C 215 150 250 0 500 100 L 500 0 L 0 0" class="fill-sky-50" opacity="0.5"></path>
+        </svg>
+    </div>
+  </div>
+  </Fragment>
+  </Hero>
+  <!-- Pricing Widget ******************* -->
+
+  <Prices
+    classes={{container: 'pt-0 md:pt-0 lg:pt-0'}}
+    prices={[
+      {
+        title: 'Free',
+        subtitle: 'Optimal choice for personal use.',
+        price: 'Free',
+        period: 'per month',
+        items: [
+          {
+            description: 'Unlimited albums.',
+          },
+          {
+            description: 'Unlimited users.',
+          },
+          {
+            description: 'Unlimited photos upload.',
+          },
+          {
+            description: '',
+          },
+        ],
+        callToAction: {
+          target: '_blank',
+          text: 'Get started',
+          href: 'https://github.com/LycheeOrg/Lychee',
+        },
+      },
+      {
+        title: '<span class="text-sky-600 font-bold">Supporter Edition</span>',
+        subtitle: 'Optimal choice if you would like to support the development of Lychee.',
+        price: 5,
+        period: 'Per Month',
+        items: [
+        {
+            description: 'Unlimited albums.',
+          },
+          {
+            description: 'Unlimited users.',
+          },
+          {
+            description: 'Unlimited photos upload.',
+          },
+          {
+            description: 'more to come...',
+            icon: 'tabler:question-mark',
+            classes: {
+              icon_bg: 'bg-neutral-400',
+              icon: 'text-white',
+              description: 'text-neutral-400',
+            },
+          },
+        ],
+        callToAction: {
+          target: '_blank',
+          text: 'Get started',
+          href: '#',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'popular',
+      }
+    ]}
+  />
+
+</Layout>

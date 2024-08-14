@@ -1,0 +1,177 @@
+---
+import type { Content3 as Props } from '~/types';
+import Headline from '../ui/Headline.astro';
+import WidgetWrapper from '../ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+import ItemGrid5 from '../ui/ItemGrid5.astro';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+  content = await Astro.slots.render('content'),
+  callToAction,
+  items = [],
+  columns,
+  isReversed = false,
+  isAfterContent = false,
+
+  img1 = await Astro.slots.render('img1'),
+  img2 = await Astro.slots.render('img2'),
+  img3 = await Astro.slots.render('img3'),
+  img4 = await Astro.slots.render('img4'),
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-7xl mx-auto ${isAfterContent ? 'pt-0 md:pt-0 lg:pt-0' : ''} ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
+      title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
+      subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400',
+    }}
+  />
+  <div class="mx-auto max-w-7xl p-4 md:px-8">
+    <div class={`md:flex ${isReversed ? 'md:flex-row-reverse' : ''} md:gap-16`}>
+      <div class="md:basis-1/2 self-center">
+        {content && <div class="mb-12 text-lg dark:text-slate-400" set:html={content} />}
+
+        {
+          callToAction && (
+            <div class="mt-[-40px] mb-8 text-primary">
+              <Button variant="link" {...callToAction} />
+            </div>
+          )
+        }
+        <ItemGrid5
+          items={items}
+          columns={columns}
+          defaultIcon="tabler:check"
+          classes={{
+            container: `gap-y-4 md:gap-y-12`,
+            panel: 'max-w-none',
+            title: 'text-lg font-medium leading-6 font-normal dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+            description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
+            icon: 'flex h-7 w-7 items-center justify-center rounded-full text-primary border-solid border-primary border-2 p-1',
+            action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+          }}
+        />
+      </div>
+      <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
+        <div class="relative m-auto max-w-4xl">
+            <div
+              class="window rounded-md rounded-br-lg rounded-tr-lg"
+              data-bottom-top="transform: translate3D(-100px, 0px, 0px)"
+              data-center="transform: translate3D(0px, 0px, 0px)"
+            >
+              <div class="window__bar rounded-tr-lg md:pr-64">
+                <div class="window__menuitem window__adress">
+                  LycheeOrg.github.io
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"
+                    ><path
+                      d="M256 384.1c-70.7 0-128-57.3-128-128.1s57.3-128.1 128-128.1V84l96 64-96 55.7v-55.8c-59.6 0-108.1 48.5-108.1 108.1 0 59.6 48.5 108.1 108.1 108.1S364.1 316 364.1 256H384c0 71-57.3 128.1-128 128.1z"
+                    ></path></svg
+                  >
+                </div>
+              </div>
+              <div class="relative bg-black">
+                  <Image
+                    class="showcase__feature__image transition-opacity duration-300 block mx-auto w-full rounded-br-lg bg-gray-500 shadow-lg"
+                    width={500}
+                    height={500}
+                    widths={[400, 768]}
+                    sizes="(max-width: 768px) 100vw, 432px"
+                    layout="responsive"
+                    data-id="0"
+                    {...img1}
+                  />
+                  <Image
+                    class="showcase__feature__image transition-opacity duration-300 block absolute top-0 mx-auto w-full rounded-br-lg bg-gray-500 shadow-lg opacity-0"
+                    width={500}
+                    height={500}
+                    widths={[400, 768]}
+                    sizes="(max-width: 768px) 100vw, 432px"
+                    layout="responsive"
+                    data-id="1"
+                    {...img2}
+                  />
+                  <Image
+                    class="showcase__feature__image transition-opacity duration-300 block absolute top-0 mx-auto w-full rounded-br-lg bg-gray-500 shadow-lg opacity-0"
+                    width={500}
+                    height={500}
+                    widths={[400, 768]}
+                    sizes="(max-width: 768px) 100vw, 432px"
+                    layout="responsive"
+                    data-id="2"
+                    {...img3}
+                  />
+                  <Image
+                    class="showcase__feature__image transition-opacity duration-300 block absolute top-0 mx-auto w-full rounded-br-lg bg-gray-500 shadow-lg opacity-0"
+                    width={500}
+                    height={500}
+                    widths={[400, 768]}
+                    sizes="(max-width: 768px) 100vw, 432px"
+                    layout="responsive"
+                    data-id="3"
+                    {...img4}
+                  />
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+let currentFeatureId = 0;
+function nextFeatureId() {
+  if (currentFeatureId >= 3) {
+    currentFeatureId = 0;
+  } else {
+    currentFeatureId += 1;
+  }
+  return currentFeatureId;
+}
+
+function selectFeature(t) {
+  document.querySelectorAll('.showcase__feature__image').forEach(function (f) {
+    f.classList.add('opacity-0');
+  });
+  const c = document.querySelector('.showcase__feature__image[data-id="' + t + '"]');
+  c.classList.remove('opacity-0');
+}
+const i = setInterval(function () {
+  selectFeature(nextFeatureId());
+}, 4e3);
+
+document.querySelectorAll('.showcase__feature').forEach(function (feature) {
+  feature.onclick = function (e) {
+    e.preventDefault();
+    clearInterval(i);
+    selectFeature(this.getAttribute('data-id'));
+    return false;
+  };
+  feature.onmouseover = function (e) {
+    e.preventDefault();
+    clearInterval(i);
+    selectFeature(this.getAttribute('data-id'));
+    return false;
+  };
+});
+
+console.log('main.js loaded');
+</script>
+</WidgetWrapper>

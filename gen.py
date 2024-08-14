@@ -25,29 +25,9 @@ def generate_base():
 
     print(f'{bcolors.YELLOW}version number: {bcolors.NORMAL} {version}\n')
 
-    head = read('template/head.tpl')
-    index = read('template/index.tpl')
-    support = read('template/support.tpl')
-    footer = read('template/footer.tpl')
     update = read('template/update.tpl')
-
-    index_full = head % (version, version)
-    index_full += index
-    index_full += footer
-
-    support_full = head % (version, version)
-    support_full += support
-    support_full += footer
-
     update_full = update % numberify_version(version)
-
-    save("build/index.html", index_full)
-    print(f'{bcolors.GREEN}index{bcolors.NORMAL} generated.')
-
-    save("build/support.html", support_full)
-    print(f'{bcolors.GREEN}support{bcolors.NORMAL} generated.')
-
-    save("build/update.json", update_full)
+    save("dist/update.json", update_full)
     print(f'{bcolors.GREEN}update{bcolors.NORMAL} generated.')
 
     print("")
@@ -133,14 +113,13 @@ def generate_doc():
             html = md.convert(text)
             toc = md.toc[17:-7]
         aside = gen_sidebar(page_name)
-        # print(aside)
         html += gen_github_link(page_name)
 
         html = frame.format(content=html, title=page_title, toc=toc, aside=aside)
-        save(f'build/docs/{page_name}.html', html)
+        save(f'dist/docs/{page_name}.html', html)
         print(f'{bcolors.GREEN} {page_name}{bcolors.NORMAL} generated.')
 
-    shutil.copy('build/docs/installation.html', 'build/docs/index.html')
+    shutil.copy('dist/docs/installation.html', 'dist/docs/index.html')
 
 
 def check():
