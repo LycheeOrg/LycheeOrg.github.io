@@ -1,51 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Lychee Documentation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <link rel="canonical" href="https://lycheeorg.github.io/docs/">
+    <link rel="canonical" href="https://lycheeorg.github.io/docs/" />
 
     <!-- Favicon -->
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png"> -->
-    <link rel="icon" type="image/png" href="/assets/images/logo.png">
-    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"> -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> -->
-    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
-    <!-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> -->
-    <!-- <link rel="shortcut icon" href="/img/favicon/favicon.ico"> -->
-    <meta name="msapplication-TileColor" content="#ff2d20">
-    <!-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> -->
-    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="img/logo.png" />
+    <meta name="msapplication-TileColor" content="#ff2d20" />
+    <meta name="theme-color" content="#ffffff" />
 
     <!-- Load styles -->
-    <link rel="stylesheet" type="text/css" href="css/app.css">
-    <link rel="stylesheet" type="text/css" href="css/prism.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <link rel="stylesheet" type="text/css" href="css/prism.css" />
 
     <!-- Load JS -->
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/prism.js"></script>
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <div class="sidebar_layout" id="docsScreen">
-
-        <div class="page_contain">
-            <div class="contain">
-                <aside class="sidebar">
-                    <a href="../" class="logo">
-                        <img class="mark" src="/assets/images/logo.png" alt="Laravel">
-                        <img class="type" src="img/Lychee.png" alt="Laravel">
-                    </a>
-                    <nav>
-                        <div class="navigation_contain">
-                            <div class="docs_sidebar">
-                                <ul>
-                                    <li class='sub--on'>
+      <div class="page_contain">
+        <div class="contain">
+          <aside class="sidebar">
+            <a href="../" class="logo">
+              <img class="mark" src="img/logo.png" alt="Laravel" />
+              <img class="type" src="img/Lychee.png" alt="Laravel" />
+            </a>
+            <nav>
+              <div class="navigation_contain">
+                <div class="docs_sidebar">
+                  <ul>
+                    <li class='sub--on'>
 <h2>Prologue</h2>
 <ul>
 <li><a href='org.html'>Lychee & LycheeOrg</a></li>
@@ -87,25 +76,27 @@
 <li><a href='livewire.html'>Livewire Front-end (alpha)</a></li>
 </ul>
 
-                                    <li class="laravel">
-                                        <a href="https://laravel.com/docs/8.x"><h2>Laravel<img style="margin-left:4px;" src="img/external-link.svg" /></h2></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                    <div class="trigger_contain">
-                        <a href="#" class="nav_trigger" aria-label="Menu">
-                            <div class="bar"></div>
-                        </a>
-                    </div>
-                </aside>
+                    <li class="laravel">
+                      <a href="https://laravel.com/docs/8.x"
+                        ><h2>Laravel<img style="margin-left: 4px" src="img/external-link.svg" /></h2
+                      ></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <div class="trigger_contain">
+              <a href="#" class="nav_trigger" aria-label="Menu">
+                <div class="bar"></div>
+              </a>
+            </div>
+          </aside>
 
-                <section class="body_content">
-                    <section class="docs_body">
-                        <section class="docs_main">
-                            <h1>Contribution Guide</h1>
-                            
+          <section class="body_content">
+            <section class="docs_body">
+              <section class="docs_main">
+                <h1>Contribution Guide</h1>
+                
 <ul>
 <li><a href="#bug-reports">Bug Reports</a></li>
 <li><a href="#support-questions">Support Questions</a></li>
@@ -122,7 +113,8 @@
 <li><a href="#code-of-conduct">Code of Conduct</a></li>
 </ul>
 
-                            <hr> <h2 id="bug-reports"><a class="toclink" href="#bug-reports">Bug Reports</a></h2>
+                <hr />
+                <h2 id="bug-reports"><a class="toclink" href="#bug-reports">Bug Reports</a></h2>
 <p>To encourage active collaboration, Lychee strongly encourages pull requests, not just bug reports. "Bug reports" may also be sent in the form of a pull request containing a failing test.</p>
 <p>However, if you file a bug report, your issue should contain a title and a clear description of the issue. You should also include as much relevant information as possible to demonstrate the issue. We provide a template and expect it to be respected. Most bug reports that do not follow it will likely be closed. The goal of a bug report is to make it easy for yourself &mdash;and others&mdash; to replicate the bug and develop a fix.</p>
 <p>Remember, bug reports are created in the hope that others with the same problem will be able to collaborate with you on solving it. Do not expect that the bug report will automatically see any activity or that others will jump in to fix it. Creating a bug report serves to help yourself and others start on the path to fixing the problem. If you want to chip in, you can help out by fixing any bugs listed in our <a href="https://github.com/LycheeOrg/Lychee/issues">issue trackers</a>.</p>
@@ -283,14 +275,12 @@ If possible, provide a summary of the changes done by the commit in the descript
 <li>When interpreting the words and actions of others, participants should always assume good intentions.</li>
 <li>Behavior that can be reasonably considered harassment will not be tolerated.</li>
 </ul><blockquote><p>{tip} Caught a mistake or want to contribute to the documentation?&nbsp;<a href="https://github.com/LycheeOrg/LycheeOrg.github.io/tree/master/docs/contributions.md">Edit this page on Github!</a></p></blockquote>
-                        </section>
-                    </section>
-                </section>
-            </div>
+              </section>
+            </section>
+          </section>
         </div>
-
+      </div>
     </div>
-</body>
-<script src="js/app.js"></script>
-
+  </body>
+  <script src="js/app.js"></script>
 </html>
