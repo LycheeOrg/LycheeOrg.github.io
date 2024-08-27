@@ -1,0 +1,31 @@
+---
+publishDate: 2024-08-27T16:48:00Z
+author: ildyria
+title: 'Bite-size v6: Edit photos'
+excerpt: Bite-size v6 is a series of small post showing the progress made on the development of the future version of Lychee.
+image: /blog/v6/20240827-1.png
+category: VueJS
+tags:
+  - lychee
+  - vuejs
+  - v6
+---
+After taking some time off for personal reasons and some fixing minor bugs,
+I finally added the endpoint to edit pictures.
+As opposed to the version 4, this one will have a single API endpoint to edit all parameters.
+I still need to add the ability to edit some of the exif data.
+
+On the not-so-great news, I decided to drop the support of [dedoc/scramble](https://scramble.dedoc.co/).
+![No more dedoc/scramble](/blog/v6/20240827-2.png)
+It was used in the version 4 to provide easy API documentation.
+Unfortunately, scramble fails at the following:
+
+- proper software design respecting SOLID architecture ([refusal](https://github.com/dedoc/scramble/pull/91) to have proper design with interface and uses reflections instead to check if some methods are available).
+- lack of static analysis such as Phpstan.
+
+Furthermore, with version 6 we are now using [Spatie Data](https://spatie.be/docs/laravel-data/v4/introduction).
+This allows us to generate [typescripts definitions](https://spatie.be/docs/typescript-transformer/v2/introduction) from those objects,
+and thus ensuring stronger type compatibility between front-end and back-end.
+Unfortunately Spatie Data is only supported in the pro version of Scramble, we respect the decision of romalytvynenko and remove it as we are no longer able to use it anymore.
+
+Thoughts on how to document the API in an automated way are welcome.
