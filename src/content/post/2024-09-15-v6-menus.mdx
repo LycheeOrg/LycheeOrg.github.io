@@ -1,0 +1,28 @@
+---
+publishDate: 2024-09-15T19:43:00Z
+author: ildyria
+title: 'Bite-size v6: Photo selection and context menus'
+excerpt: Bite-size v6 is a series of small post showing the progress made on the development of the future version of Lychee.
+image: /blog/v6/20240915-1.png
+category: VueJS
+tags:
+  - lychee
+  - vuejs
+  - v6
+---
+More things start to take shape. The selection with Ctrl and Shift are now working.
+The Drag-and-select is not implemented yet, but that one will probably be for after the official release.
+So far the interface is still not mobile friendly for selection, some improvements need to be made here.
+I also need to check how the interaction with ctrl + click is working on Mac to see if that is still spawning a browser context menu.
+
+That being said, the first few operations are now *working*. The photo listing is not updated yet, nor dropping the local cache of the
+current album. Ah, I forgot to mention that.
+
+As opposed to version 4 and version 5, Lychee v6 will support local caching of the requests, which means that once an album has been 
+open, it will not be queried again. This will significantly speed up the responses when going through multiple pages etc.
+On the less fun side for me, it also means that I will be fighting against the cache invalidation problem. Wish me luck. ;)
+
+That being said, now that photo selection is working, we also have the context menus being displayed. At the moment most of the actions
+are empty placeholders, but actual execution code should be coming soon.
+
+![Menu](/blog/v6/20240915-2.png)
