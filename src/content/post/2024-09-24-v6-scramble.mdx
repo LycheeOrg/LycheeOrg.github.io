@@ -1,0 +1,146 @@
+---
+publishDate: 2024-09-24T08:00:00Z
+author: ildyria
+title: 'About Lychee API documentation'
+excerpt: With v6 at the horizon, we had to drop the support of Scramble, a library responsible for automated API documentation. We explain here the reasons which motivated such choice. 
+image: /blog/v6/20240924-1.png
+category: VueJS
+tags:
+  - lychee
+  - api
+  - scramble
+  - documentation
+  - v6
+---
+
+[x1ntt](https://github.com/x1ntt) asked the following [question](https://github.com/LycheeOrg/Lychee/discussions/2543#discussioncomment-10733692) and I thought it deserved a visible answer.
+
+> Even without API documentation, **is the v6 version compatible with this API?** I think APIs are very important because I have a need for automated development. Maintaining a good API will lead to the emergence of excellent third-party clients and tools.
+
+In short: **Yes** and **No**.
+
+**Yes** because v6 will provide a legacy api option which can be enabled by setting `LEGACY_API_ENABLED` in your `.env`.
+Furthermore, the URL of the legacy API do not change, they stay the same. So no need to change your code, you will just need to set the `.env` variable.
+
+**No**, because v6 will provide a completely upgrade of the API which makes use of a bit more than just POST requests.
+It will also support GET, PATCH, DELETE (to get closer to proper REST spec).
+
+
+
+### About v4 and v5 documentation
+
+Documentation on v4 and v5 was making use of [dedoc/scramble](https://scramble.dedoc.co/). This extension of Laravel was doing a static analysis of the routes, checking the controllers, the requests objects and the resources files. Using those data it generated a nice interface with readable documentation.
+
+It has been brought to our attention that Scramble is not even working anymore on version 5.5.1 and most likely suffers from an infinite recursion during the serialization of one of the response (out of memory error).
+
+In the spirit of open source, I could try to fix it. However, scramble fails at the following:
+
+- proper software design respecting SOLID architecture ([refusal](https://github.com/dedoc/scramble/pull/91) to have proper design with interface, uses reflections instead to check if some methods are available, and violation of the Liskov substitution principle).
+- lack of static analysis such as Phpstan.
+
+As I do not feel comfortable to contribute to such code base, it is an easier decision to drop the scramble component completely.
+
+![No more dedoc/scramble](/blog/v6/20240827-2.png)
+
+Furthermore, with version 6 we are now using [Spatie Data](https://spatie.be/docs/laravel-data/v4/introduction).
+This allows us to generate [typescripts definitions](https://spatie.be/docs/typescript-transformer/v2/introduction) from those objects,
+and thus ensuring stronger type compatibility between front-end and back-end.
+
+Scramble only support Spatie Data in the pro version, we respect the decision of romalytvynenko, and remove it as we are no longer able to use it anymore.
+
+### About v6
+
+It is likely that I will releave version 6 without API documentation at first.
+My time is limited and I prefer to focus on adding back the functionalities rather than writing documentations,
+especially given that the v1 api will remain available.
+
+And to clarify, this does not mean that there won't be documentation of the API at some point.
+As x1ntt says "*Maintaining a good API will lead to the emergence of excellent third-party clients and tools.*"
+For this reason I am also exploring other documentation options such as [scribe](https://scribe.knuckles.wtf/).
+
+At the time of writing the list of the **api v2** routes is as follows (and subject to change):
+```
+GET       api/v2/Album ............................................. Gallery\AlbumController@get
+POST      api/v2/Album ..................................... Gallery\AlbumController@createAlbum
+PATCH     api/v2/Album ..................................... Gallery\AlbumController@updateAlbum
+POST      api/v2/Album::cover .................................... Gallery\AlbumController@cover
+POST      api/v2/Album::delete .................................. Gallery\AlbumController@delete
+GET       api/v2/Album::getTargetListAlbums ........ Gallery\AlbumController@getTargetListAlbums
+POST      api/v2/Album::header .................................. Gallery\AlbumController@header
+POST      api/v2/Album::move ...................................... Gallery\AlbumController@move
+PATCH     api/v2/Album::rename .................................. Gallery\AlbumController@rename
+POST      api/v2/Album::transfer .............................. Gallery\AlbumController@transfer
+POST      api/v2/Album::updateProtectionPolicy .. Gallery\AlbumController@updateProtectionPolicy
+GET       api/v2/Albums ........................................... Gallery\AlbumsController@get
+GET       api/v2/Auth::config ......................................... AuthController@getConfig
+POST      api/v2/Auth::login .............................................. AuthController@login
+POST      api/v2/Auth::logout ............................................ AuthController@logout
+GET       api/v2/Auth::rights ................................... AuthController@getGlobalRights
+GET       api/v2/Auth::user ...................................... AuthController@getCurrentUser
+GET       api/v2/Diagnostics ................................ Admin\DiagnosticsController@errors
+GET       api/v2/Diagnostics::config ........................ Admin\DiagnosticsController@config
+GET       api/v2/Diagnostics::info ............................ Admin\DiagnosticsController@info
+GET       api/v2/Diagnostics::permissions . Admin\DiagnosticsController@getFullAccessPermissions
+GET       api/v2/Diagnostics::space .......................... Admin\DiagnosticsController@space
+GET       api/v2/Gallery::Init ................................ Gallery\ConfigController@getInit
+GET       api/v2/Gallery::getLayout .................. Gallery\ConfigController@getGalleryLayout
+GET       api/v2/Gallery::getMapProvider ............... Gallery\ConfigController@getMapProvider
+GET       api/v2/Gallery::getUploadLimits ............. Gallery\ConfigController@getUploadCOnfig
+GET       api/v2/Jobs ................................................ Admin\JobsController@list
+GET       api/v2/LandingPage .................................... LandingPageController@__invoke
+GET       api/v2/Maintenance::cleaning ........................ Admin\Maintenance\Cleaning@check
+POST      api/v2/Maintenance::cleaning ........................... Admin\Maintenance\Cleaning@do
+GET       api/v2/Maintenance::genSizeVariants .......... Admin\Maintenance\GenSizeVariants@check
+POST      api/v2/Maintenance::genSizeVariants ............. Admin\Maintenance\GenSizeVariants@do
+GET       api/v2/Maintenance::jobs ............................. Admin\Maintenance\FixJobs@check
+POST      api/v2/Maintenance::jobs ................................ Admin\Maintenance\FixJobs@do
+GET       api/v2/Maintenance::missingFileSize ......... Admin\Maintenance\MissingFileSizes@check
+POST      api/v2/Maintenance::missingFileSize ............ Admin\Maintenance\MissingFileSizes@do
+POST      api/v2/Maintenance::optimize ........................... Admin\Maintenance\Optimize@do
+GET       api/v2/Maintenance::tree ............................. Admin\Maintenance\FixTree@check
+POST      api/v2/Maintenance::tree ................................ Admin\Maintenance\FixTree@do
+GET       api/v2/Maintenance::update ................................ Admin\UpdateController@get
+POST      api/v2/Maintenance::update .............................. Admin\UpdateController@check
+GET       api/v2/Oauth .................................................... OauthController@list
+GET       api/v2/Photo ............................................. Gallery\PhotoController@get
+POST      api/v2/Photo .......................................... Gallery\PhotoController@upload
+PATCH     api/v2/Photo .......................................... Gallery\PhotoController@update
+DELETE    api/v2/Photo .......................................... Gallery\PhotoController@delete
+POST      api/v2/Photo::copy ...................................... Gallery\PhotoController@copy
+POST      api/v2/Photo::fromUrl ................................ Gallery\PhotoController@fromUrl
+POST      api/v2/Photo::move ...................................... Gallery\PhotoController@move
+PATCH     api/v2/Photo::rename .................................. Gallery\PhotoController@rename
+POST      api/v2/Photo::rotate .................................. Gallery\PhotoController@rotate
+POST      api/v2/Photo::star ...................................... Gallery\PhotoController@star
+PATCH     api/v2/Photo::tags ...................................... Gallery\PhotoController@tags
+POST      api/v2/Profile::resetToken .............................. ProfileController@resetToken
+POST      api/v2/Profile::unsetToken .............................. ProfileController@unsetToken
+POST      api/v2/Profile::update ...................................... ProfileController@update
+GET       api/v2/Settings ...................................... Admin\SettingsController@getAll
+GET       api/v2/Settings::getLanguages .................. Admin\SettingsController@getLanguages
+POST      api/v2/Settings::setConfigs ...................... Admin\SettingsController@setConfigs
+GET       api/v2/Sharing ........................................ Gallery\SharingController@list
+POST      api/v2/Sharing ...................................... Gallery\SharingController@create
+POST      api/v2/Sharing::delete .............................. Gallery\SharingController@delete
+POST      api/v2/Sharing::edit .................................. Gallery\SharingController@edit
+POST      api/v2/TagAlbum ............................... Gallery\AlbumController@createTagAlbum
+PATCH     api/v2/TagAlbum ............................... Gallery\AlbumController@updateTagAlbum
+GET       api/v2/UserManagement ............................ Admin\UserManagementController@list
+POST      api/v2/UserManagement::create .................. Admin\UserManagementController@create
+POST      api/v2/UserManagement::delete .................. Admin\UserManagementController@delete
+POST      api/v2/UserManagement::save ...................... Admin\UserManagementController@save
+GET       api/v2/Users .................................................... UsersController@list
+GET       api/v2/Users::count ............................................ UsersController@count
+GET       api/v2/Version ................................................. VersionController@get
+GET       api/v2/WebAuthn ............................... WebAuthn\WebAuthnManageController@list
+PATCH     api/v2/WebAuthn ............................... WebAuthn\WebAuthnManageController@edit
+POST      api/v2/WebAuthn::delete ..................... WebAuthn\WebAuthnManageController@delete
+POST      api/v2/WebAuthn::login ....... webauthn.login › WebAuthn\WebAuthnLoginController@login
+POST      api/v2/WebAuthn::login/options webauthn.login.options › WebAuthn\WebAuthnLoginControl…
+POST      api/v2/WebAuthn::register webauthn.register › WebAuthn\WebAuthnRegisterController@reg…
+POST      api/v2/WebAuthn::register/options webauthn.register.options › WebAuthn\WebAuthnRegist…
+GET       auth/{provider}/authenticate ....... oauth-authenticate › OauthController@authenticate
+GET       auth/{provider}/redirect .................................. OauthController@redirected
+GET       auth/{provider}/register ................... oauth-register › OauthController@register
+```
+
