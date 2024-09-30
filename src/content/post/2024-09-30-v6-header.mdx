@@ -1,0 +1,44 @@
+---
+publishDate: 2024-09-30T22:44:00Z
+author: ildyria
+title: 'Bite-size v6: Header fixes'
+excerpt: Bite-size v6 is a series of small post showing the progress made on the development of the future version of Lychee.
+image: /blog/v6/20240930-1.png
+category: Active Development
+tags:
+  - lychee
+  - vuejs
+  - v6
+---
+
+In my previous post, I mentionned I was not happy with the header, especially on mobile devices. I am happy to say that I found a nice compromise.
+
+<div class="flex gap-2 -my-5">
+<div>
+![in mobile view](/blog/v6/20240930-2.png)
+</div>
+<div>
+![in mobile view menu open](/blog/v6/20240930-3.png)
+</div>
+</div>
+
+When switching to mobile, the long title is replaced by "Albums" and all the buttons are placed in a speed dial menu.
+
+Similarly when logged out.
+<div class="flex gap-2 -my-10">
+<div class="w-4/6">
+![in mobile view](/blog/v6/20240930-4.png)
+</div>
+<div class="w-2/6">
+![in mobile view](/blog/v6/20240930-5.png)
+</div>
+</div>
+The *"Return to home"* Link is replaced with a house button and the long title replaced by the translated Albums.
+
+After checking most of the functions, I noticed that we are still missing the following:
+
+- [ ] The support of gps tracks
+- [ ] The selection of header image in albums (plus misc I may have forgotten).
+- [ ] Easy set/unset of visible smart albums (and probably fix some v5 bugs in the *unsorted* one).
+- [ ] The support of Dropbox
+- [ ] More easy to the eye in the Settings page.
