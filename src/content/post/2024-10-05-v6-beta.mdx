@@ -1,0 +1,37 @@
+---
+publishDate: 2024-10-05T20:00:00Z
+author: ildyria
+title: 'Bite-size v6: Beta is Live!'
+excerpt: Bite-size v6 is a series of small post showing the progress made on the development of the future version of Lychee.
+image: /blog/v6/20241005-1.png
+category: Active Development
+tags:
+  - lychee
+  - vuejs
+  - v6
+---
+
+In the past few days I have been working on the final touches, trying to check all the corners.
+The dropdown to select the hero picture is back, and the selection of tags on tag albums is also working.
+
+![Configuration of JS and CSS](/blog/v6/20241005-2.png)
+I added back the boxes to edit Css and JS so that users are able to customize the look and feel of Lychee as they wish.
+
+![Configuration of the Dropbox import](/blog/v6/20241005-3.png)
+I also added back import from dropbox. I removed it in the version 5, but we got some complaints that it was missing and had to add it back.
+This time, I took the proactive approach to directly integrate it from the start. Note that the code is not much tested in that corner as I do not use Dropbox.
+
+That being said, today I added a new functionality. It was often requested to have a *"real"* slideshow mode.
+This is now the case 😃. You can trigger it by tapping your Space bar or clicking the play button in the header.
+Your *Left* and *Right* arrow keys allow you to switch to the next picture. Otherwise, just let the timer run
+out and the next picture will be loaded automatically.
+
+The behaviour is very similar to the frame mode. The later is aimed to be used in a screen display and rotate randomly.
+In the case of the slideshow, the pictures will be displayed in order of the current album.
+
+With this in the box, it is time to announce that the Beta is now ready. You can access it either via the `alpha` tag on docker,
+or via the [release page](https://github.com/LycheeOrg/Lychee/releases/tag/v6.0.0-beta.1).
+
+As opposed to the alpha, the beta will bump your version number to 6.0.0.
+
+Feedback on the version 6 with the new front-end are welcomed on [GitHub](https://github.com/LycheeOrg/Lychee/discussions/2556) or our [dicord](https://discord.gg/JMPvuRQcTf).
