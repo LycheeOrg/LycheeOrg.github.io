@@ -1,0 +1,52 @@
+---
+import Headline from '~/components/ui/Headline.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import type { FeaturesList as Props } from '~/types';
+import Tick from '../ui/Tick.astro';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  products = [],
+  specs = [],
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-3xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
+  <div>
+    <table class="w-full border-collapse border border-neutral-200 dark:border-neutral-800">
+      <thead>
+        <tr class="bg-neutral-100 dark:bg-neutral-700">
+          <th class="p-2 text-xl font-bold text-left">Features</th>
+          {
+            products.map((name) => (
+              <th class="p-2 text-xl font-bold">
+                <Fragment set:html={name} />
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          specs.map(({ feature, isHeader, values, available }) => (
+            <tr class={(isHeader && 'border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800') || ''}>
+              {isHeader && <td class="p-2 font-semibold"><Fragment set:html={feature} /></td>}
+              {isHeader && products.map(() => <td class="p-2 text-center" />)}
+              {!isHeader && <td class="px-2 text-muted"><Fragment set:html={feature} /></td> }
+              {!isHeader && values && (values.map((val) => <td class="px-2 text-muted text-center">{val}</td>))}
+              {!isHeader && available && available.map((yes) => <td class="px-2 text-muted text-center">{yes && <Tick />}</td>)}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</WidgetWrapper>

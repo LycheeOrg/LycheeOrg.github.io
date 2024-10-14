@@ -254,6 +254,20 @@ export interface Features extends Omit<Headline, 'classes'>, Widget {
   isAfterContent?: boolean;
 }
 
+export interface Spec {
+  feature: string;
+  isHeader?: boolean;
+  values?: string[];
+  available?: boolean[];
+}
+
+
+export interface FeaturesList extends Omit<Headline, 'classes'>, Widget {
+  products: string[];
+  specs: Spec[];
+
+}
+
 export interface Faqs extends Omit<Headline, 'classes'>, Widget {
   iconUp?: string;
   iconDown?: string;
@@ -297,14 +311,4 @@ export interface Content3 extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
-
-export interface Spec {
-  type: string;
-  values?: string[];
-  available?: boolean[];
-}
-
-export interface Products { 
-  products: string[];
-}
 

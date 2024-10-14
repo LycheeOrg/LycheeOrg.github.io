@@ -1,13 +1,10 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Tick from '~/components/ui/Tick.astro';
 import Hero from '~/components/widgets/Hero.astro';
-// import CallToAction from '~/components/widgets/CallToAction.astro';
 import Prices from '~/components/widgets/Pricing.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
-import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Headline from '~/components/ui/Headline.astro';
+import FeaturesList from '~/components/widgets/FeaturesList.astro';
 
 const metadata = {
   title: 'Pre-Launch Landing Page',
@@ -105,208 +102,167 @@ const metadata = {
       }
     ]}
   />
-<!-- TODO : add table with all the functionalities of Lychee detailed. -->
-  <WidgetWrapper id={"fullDetails"} isDark={false} containerClass={`max-w-3xl mx-auto`}>
-    <Headline title={"Full comparison"} 
-    tagline={"the essentials and a few more"}
-     />
-     <!-- subtitle={subtitle}  -->
-     <div>
-      <table class="w-full border-collapse border border-neutral-200 dark:border-neutral-800">
-        <thead>
-          <tr class="bg-neutral-100 dark:bg-neutral-700">
-            <th class="p-2 text-xl font-bold text-left">Features</th>
-            <th class="p-2 text-xl font-bold">Free</th>
-            <th class="p-2 text-xl font-bold">Lychee <span class="text-sky-600">SE</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="bg-neutral-50 dark:bg-neutral-800">
-            <td class="p-2 font-semibold">Global</td>
-            <td class="p-2 text-center"></td>
-            <td class="p-2 text-center"></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted"><span class="text-black dark:text-neutral-400/50 font-bold">Dark</span> and <span class="text-neutral-500 dark:text-neutral-100  font-bold">Light</span> themes</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Unlimited photos upload</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Unlimited number of albums</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Unlimited number of users</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Multiple language supported</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
 
-          <tr class="bg-neutral-50 dark:bg-neutral-800">
-            <td class="p-2 font-semibold">Photo management</td>
-            <td class="p-2 text-center"></td>
-            <td class="p-2 text-center"></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Full sizes and other variants</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Auto rotation on import</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Exif Data decoding</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Localization data reverse search</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Upload by chunks</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Zip & download</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
+  <FeaturesList
+    title="Full comparison"
+    tagline="the essentials and a few more"
+    products={['Free', 'Lychee <span class="text-sky-600">SE</span>']}
+    specs={[
+      {
+        feature: 'Global',
+        isHeader: true,
+      },
+      {
+        feature: '<span class="text-black dark:text-neutral-400/50 font-bold">Dark</span> and <span class="text-neutral-500 dark:text-neutral-100  font-bold">Light</span> themes',
+        available: [true, true],
+      },
+      {
+        feature: 'Unlimited photos upload',
+        available: [true, true],
+      },
+      {
+        feature: 'Unlimited number of albums',
+        available: [true, true],
+      },
+      {
+        feature: 'Unlimited number of users',
+        available: [true, true],
+      },
+      {
+        feature: 'Mutliple language supported',
+        available: [true, true],
+      },
 
+      {
+        feature: 'Photo management',
+        isHeader: true,
+      },
+      {
+        feature: 'Full sizes and other variants',
+        available: [true, true],
+      },
+      {
+        feature: 'Auto rotation on import',
+        available: [true, true],
+      },
+      {
+        feature: 'Exif Data decoding',
+        available: [true, true],
+      },
+      {
+        feature: 'GPS data localization',
+        available: [true, true],
+      },
+      {
+        feature: 'Upload by chunks <span class="rounded-full text-xs text-white bg-sky-300 px-2 shadow-sm shadow-black/20">v6</span>',
+        available: [true, true],
+      },
+      {
+        feature: 'Zip & download',
+        available: [true, true],
+      },
 
-          <tr class="bg-neutral-50 dark:bg-neutral-800">
-            <td class="p-2 font-bold">Album management</td>
-            <td class="px-2 text-center"></td>
-            <td class="px-2 text-center"></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Smart albums</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Unlimited photos per album</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Possibility to create an album within another album</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Zip & download</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Custom sorting per album</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Justified/Masonry/Square photo layout</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Photo layout customizable per album</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Selectable hero header photo per album</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Slideshow with previous & next</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
+      {
+        feature: 'Album management',
+        isHeader: true,
+      },
+      {
+        feature: 'Smart albums',
+        available: [true, true],
+      },
+      {
+        feature: 'Unlimited photos per album',
+        available: [true, true],
+      },
+      {
+        feature: 'Albums within albums',
+        available: [true, true],
+      },
+      {
+        feature: 'Zip & download',
+        available: [true, true],
+      },
+      {
+        feature: 'Custom sorting per album',
+        available: [true, true],
+      },
+      {
+        feature: 'Justified/Masonry/Square photo layouts',
+        available: [true, true],
+      },
+      {
+        feature: 'Photo layout custom per album',
+        available: [true, true],
+      },
+      {
+        feature: 'Thumbs album aspect-ratio custom per album',
+        available: [true, true],
+      },
+      {
+        feature: 'Customizable Album covers',
+        available: [true, true],
+      },
+      {
+        feature: 'Customizable Album header photo',
+        available: [true, true],
+      },
+      {
+        feature: 'Slideshow with previous & next <span class="rounded-full text-xs text-white bg-sky-300 px-2 shadow-sm shadow-black/20">v6</span>',
+        available: [true, true],
+      },
 
+      {
+        feature: 'User management',
+        isHeader: true,
+      },
+      {
+        feature: 'Login with WebAuthn and Oauth',
+        available: [true, true],
+      },
+      {
+        feature: 'Access rights management per album',
+        available: [true, true],
+      },
+      {
+        feature: 'Cross-user sharing',
+        available: [true, true],
+      },
+      {
+        feature: 'Space usage per user <span class="rounded-full text-xs text-white bg-sky-300 px-2 shadow-sm shadow-black/20">v6</span>',
+        available: [false, true],
+      },
+      {
+        feature: 'Upload quota per user <span class="rounded-full text-xs text-white bg-sky-300 px-2 shadow-sm shadow-black/20">v6</span>',
+        available: [false, true],
+      },
 
-          <tr class="bg-neutral-50 dark:bg-neutral-800">
-            <td class="p-2 font-bold">User management</td>
-            <td class="px-2 text-center"></td>
-            <td class="px-2 text-center"></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Login with WebAuthn and Oauth</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Access rights management</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Cross-user Album sharing</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Space usage per user</td>
-            <td class="px-2 text-center"></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr class="">
-            <td class="px-2 text-muted">Upload Quota per user</td>
-            <td class="px-2 text-center"></td>
-            <td class="px-2 text-center"><Tick classes={{icon_bg:'bg-neutral-100 dark:bg-neutral-800', icon: 'text-neutral-800 dark:text-neutral-400'}}/></td>
-          </tr>
+      {
+        feature: 'Administration',
+        isHeader: true,
+      },
+      {
+        feature: 'Logs',
+        available: [true, true],
+      },
+      {
+        feature: 'Maintenance page',
+        available: [true, true],
+      },
+      {
+        feature: 'Diagnostics tools',
+        available: [true, true],
+      },
+      {
+        feature: 'Full manual settings control',
+        available: [true, true],
+      },
+      {
+        feature: 'Statistics on your installation <span class="rounded-full text-xs text-white bg-sky-300 px-2 shadow-sm shadow-black/20">v6</span>',
+        available: [false, true],
+      }
 
-
-          <tr class="bg-neutral-50 dark:bg-neutral-800">
-            <td class="p-2 font-bold">Administration</td>
-            <td class="px-2 text-center"></td>
-            <td class="px-2 text-center"></td>
-          </tr>
-          <tr>
-            <td class="px-2 text-muted">Logs</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr>
-            <td class="px-2 text-muted">Maintenance page</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr>
-            <td class="px-2 text-muted">Diagnostics tools</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr>
-            <td class="px-2 text-muted">Full Manual settings control</td>
-            <td class="px-2 text-center"><Tick/></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          <tr>
-            <td class="px-2 text-muted">Statistics on your installation</td>
-            <td class="px-2 text-center"></td>
-            <td class="px-2 text-center"><Tick/></td>
-          </tr>
-          </tbody>
-      </table>
-    </div>
-  </WidgetWrapper>
+    ]}
+  />
 
   <FAQs
   title="FAQs"
