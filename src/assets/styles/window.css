@@ -145,3 +145,7 @@
 .bg-mix {
   background-color: #d7f0fe;
 }
+
+.dark\:bg-dark-mix:is(.dark *) {
+  background-color: #0b7ab0;
+}
