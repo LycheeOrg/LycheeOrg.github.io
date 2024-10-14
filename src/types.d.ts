@@ -297,3 +297,14 @@ export interface Content3 extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+
+export interface Spec {
+  type: string;
+  values?: string[];
+  available?: boolean[];
+}
+
+export interface Products { 
+  products: string[];
+}
+
