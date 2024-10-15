@@ -120,7 +120,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                   ]}
                   href={href}
                 >
-                  {text}
+                  <Fragment set:html={text} />
                 </a>
               )}
             </li>

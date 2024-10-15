@@ -1,0 +1,7 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+const { tag = 'v6', classes = {} } = Astro.props;
+---
+
+<span class={twMerge("rounded-full text-xs text-white bg-sky-300 dark:text-neutral-300 dark:bg-sky-600 px-2 shadow-sm shadow-black/20 ml-2", classes)}>{ tag }</span>

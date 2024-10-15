@@ -8,6 +8,7 @@ import Pagination from '~/components/blog/Pagination.astro';
 // import PostTags from "~/components/blog/Tags.astro";
 
 import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
+import CallToAction2 from '~/components/widgets/CallToAction2.astro';
 
 export const prerender = true;
 
@@ -48,5 +49,23 @@ const metadata = {
       <PostTags tags={allCategories} class="mb-2" title="Search by Categories:" isCategory />
       <PostTags tags={allTags}  title="Search by Tags:" />
     -->
-  </section>
+    <CallToAction2
+    classes={{headline: 'bg-white'}}
+    title="Support us!"
+    subtitle="If you are using Lychee, a small token of gratitude will go a long way. You can support further development of Lychee on GitHub."
+    actions={[
+      // {
+      //   variant: 'secondary',
+      //   text: '<img src="https://next-images.opencollective.com/_next/image?url=%2Fstatic%2Fimages%2Foc-logo-watercolor-256.png&w=64&q=75" class="h-5 w-5 mr-2.5"/>Open Collective',
+      //   href: 'https://opencollective.com/LycheeOrg',
+      // },
+      {
+        variant: 'secondary',
+        text: 'GitHub sponsor',
+        href: 'https://github.com/sponsors/LycheeOrg',
+        icon: 'tabler:heart',
+      },
+    ]}
+  /> 
+</section>
 </Layout>
