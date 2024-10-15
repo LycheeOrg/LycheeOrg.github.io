@@ -257,6 +257,7 @@ export interface Features extends Omit<Headline, 'classes'>, Widget {
 export interface Spec {
   feature: string;
   isHeader?: boolean;
+  isV6?: boolean;
   values?: string[];
   available?: boolean[];
 }
