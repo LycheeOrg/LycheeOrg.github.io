@@ -1,0 +1,43 @@
+---
+publishDate: 2024-10-15T18:00:00Z
+author: ildyria
+title: 'Bite-size v6: Beta.2 is Live!'
+excerpt: Bite-size v6 is a series of small post showing the progress made on the development of the future version of Lychee.
+image: https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=3544&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+category: Active Development
+tags:
+  - lychee
+  - vuejs
+  - v6
+---
+
+I got some nice and extensive feedback from Beta 1.
+See below the fixes and improvements that have been made in the Beta 2.
+
+- [x] : Fix pictures not being deleted when clicked on the button.
+- [x] : Fix links and bold which were invisible in light mode in Album and Photo descriptions
+- [x] : Add link shape check on Upload via Url
+- [x] : Dropbox upload is now set to `disabled` if it was empty, no more useless warning in Diagnostics.
+- [x] : Import from server is gone from the menu (it was already gone in v5).
+- [x] : Some labels have been updated for readability.
+- [x] : Added a button in the middle of the screen when the album is empty to prompt the upload of pictures.
+- [x] : Drag & Drop fixed on Upload + Full drag & drop support on album pages + Paste image support as upload on album pages.
+- [x] : Ongoing progress of uploads is now displayed on top of the modal.
+- [x] : Added tooltips on the action bar for photos (star, rotate, delete)
+- [x] : In slideshow the actions buttons for photos were still visible (though unusable).
+- [x] : Fixed the Edit photo dialog for consistent design.
+- [x] : Improved visibility form in Albums.
+- [x] : Add set as album header button in photo view
+- [x] : Rotating a photo is refreshes the photo.
+- [x] : Added setting to preserve photo on upload when auto rotation is set.
+- [x] : Added swipe left / right to switch picture.
+- [x] : Added scroll up / down to switch picture.
+- [x] : Fixed some Warnings as Info in Diagnostics.
+- [x] : Fixed broken images on thumbs
+- [x] : After upload is completed, refresh album in the background
+- [x] : Switching from dark mode to light mode and vice-versa no longer requires reloading.
+- [x] : Fixed Photo details colors in light mode.
+- [x] : Do not show the Map when Map settings is disabled.
+- [x] : Fixes error messages showing up full screen when `dist/user.css` and `dist/custom.js` do not exists.
+- [x] : Add `GET api/v2/Photo::random` end point to request random pictures, this provides the full data of the photo instead of the src links for the frame.
+- [x] : Revamped completely the User Management panel.
