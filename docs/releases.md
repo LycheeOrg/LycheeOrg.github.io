@@ -62,6 +62,14 @@ If you enjoy using Lychee, please consider [supporting us](https://github.com/sp
 
 Thank you for helping us keep Lychee alive and growing!
 
+#### Important Docker Changes
+
+If you are consuming Lychee via Docker, you will probably need to update your `docker-compose.yml` file.
+In order solve the issue of temporary folder in container, we added an extra volume `/lychee-tmp` which
+by default with the updated `docker-compose.yml` will be mapped to `./lychee/tmp`, see [here](https://github.com/LycheeOrg/Lychee-Docker/blob/master/docker-compose.yml).
+
+This volume allows you to control the temporary folder and avoid the issue of running out of space in the container.
+
 #### Changes
 
 `SE` refers to functionalities that are aimed at the Supporter Edition.
