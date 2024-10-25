@@ -258,6 +258,7 @@ export interface Spec {
   feature: string;
   isHeader?: boolean;
   isV6?: boolean;
+  isSoon?: boolean;
   values?: string[];
   available?: boolean[];
 }
@@ -266,7 +267,7 @@ export interface Spec {
 export interface FeaturesList extends Omit<Headline, 'classes'>, Widget {
   products: string[];
   specs: Spec[];
-
+  extra?: string;
 }
 
 export interface Faqs extends Omit<Headline, 'classes'>, Widget {

@@ -4,4 +4,4 @@ import { twMerge } from 'tailwind-merge';
 const { tag = '<span class="hidden sm:inline">New in </span>V6', classes = {} } = Astro.props;
 ---
 
-<span class={twMerge("rounded-full text-xs text-white bg-sky-300 dark:text-neutral-300 dark:bg-sky-600 px-2 shadow-sm shadow-black/20 ml-2", classes)}><Fragment set:html={tag} /></span>
+<span class={twMerge("rounded-full text-xs text-white bg-sky-300 dark:text-neutral-200 dark:bg-sky-600 px-2 shadow-sm shadow-black/20 ml-2", classes)}><Fragment set:html={tag} /></span>
