@@ -36,15 +36,15 @@ Released on XXX xx, 2024
 
 #### Dropping Livewire for Vue3
 
-When we released version 5, we did not realize how much a mistake switching to Livewire was.
-Lychee front-end became slow and sluggish, plagued with issues.
-And most of the time as a work around, we had to advertise to disable the version 5 of the front-end
+When we released version 5, we did not realize how much of a mistake switching to Livewire was.
+Lychee's front-end became slow and sluggish, plagued with issues.
+Most of the time as a work around, we had to advise users to disable version 5 of the front-end
 by setting the environment variable `LIVEWIRE_ENABLED=false`.
 
-With this in mind, at then end of June we came to the conclusion that we needed to rebuild a new front-end from scratch.
+With this in mind, at the end of June we came to the conclusion that we needed to build a new front-end from scratch.
 We decided to go with Vue3, as it is a more mature framework and has a lot of support. This marks the begining of the Lychee version 6.
 
-For more contexts on those changes, see our blog posts:
+For more context on those changes, see our blog posts:
 
 - Jun 29, 2024 - [The future of Lychee: what is coming next. 🚀](https://lycheeorg.test/2024-06-25-performance-problems/)
 - Jun 25, 2024 - [Livewire performances problems 📉](https://lycheeorg.test/2024-06-29-future-of-lychee/)
@@ -65,7 +65,7 @@ Thank you for helping us keep Lychee alive and growing!
 #### Important Docker Changes
 
 If you are consuming Lychee via Docker, you will probably need to update your `docker-compose.yml` file.
-In order solve the issue of temporary folder in container, we added an extra volume `/lychee-tmp` which
+In order solve the issue of temporary folders in the container, we added an extra volume `/lychee-tmp` which
 by default with the updated `docker-compose.yml` will be mapped to `./lychee/tmp`, see [here](https://github.com/LycheeOrg/Lychee-Docker/blob/master/docker-compose.yml).
 
 This volume allows you to control the temporary folder and avoid the issue of running out of space in the container.
@@ -77,25 +77,25 @@ This volume allows you to control the temporary folder and avoid the issue of ru
 * `new` #106 : have "Search" on all views by @ildyria.
 * `fixes` #126 : Add (optional) lossless rotation by @ildyria.
   > Add the ability to over-write the original image with a temporary backup if the image was rotated.
-  > All the smaller size are normalized but the original is reverted back.
-  > Effectively, this is no lossless rotation, this is pure no rotation for the original.
+  > All the smaller sizes are normalized but the original is reverted back.
+  > Effectively, this is not lossless rotation, this is just no rotation for the original.
 * `fixes` #226 `SE` : Add counters for total pictures and subalbums by @ildyria.
   > We added a statistic page, allowing the users to check how much space they are using
   > and the total number of pictures and album that are in the library.
 * `new` #520 `SE` : Show and limit the space used by @ildyria.
-  > We introduce a quota system, allowing the admin to set a limit on the space used by each user.
+  > We introduced a quota system, allowing the admin to set a limit on the space used by each user.
 * `fixes` #987 : Open image in new tab by @ildyria.
   > With the switch to Vue3, this feature is now fully functional.
 * `new` #1420 : Album name in link preview by @ildyria.
-* `new` #1641 `SE` : User note only available to admin by @ildyria.
+* `new` #1641 `SE` : User note (only available to admin) by @ildyria.
   > Admin can now add notes to users. Those are only visible to the admin users.
 * `fixes` #1987 : No space left on device by @ildyria.
-  > This error was mostly due to having temporary folders in the containers but without ability to empty them.
-  > We now provide UI to clean those folders, furthermore, those can now be mapped to a host directory.
+  > This error was mostly due to having temporary folders in the containers but without any ability to empty them.
+  > We now provide a UI to clean those folders, furthermore, those can now be mapped to a host directory.
 * `new` #2082 : SEO optimization 1/3 - Setting `<title>` and `<meta>` tags by @ildyria.
   > The title and meta tag are directly fetched from the album targetted by the link.
 * `new` #2086 : Feature request: light theme for Lychee by @ildyria.
-  > Lychee now comes also with a Light theme, the user no longer need to tweak their custom.css
+  > Lychee now comes also with a Light theme, the user no longer needs to tweak their custom.css
   > as there is now a native support for both dark and light sides.
 * `fixes` #2168 : Universal Drag & Drop and Paste to upload no longer work when using Livewire by @ildyria.
   > When moving to version 5, this functionality was lost. We now re-introduce it.
