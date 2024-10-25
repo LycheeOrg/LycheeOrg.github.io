@@ -74,32 +74,32 @@ Thank you for helping us keep Lychee alive and growing!
 * `fixes` #226 `SE` : Add counters for total pictures and subalbums by @ildyria.
   > We added a statistic page, allowing the users to check how much space they are using
   > and the total number of pictures and album that are in the library.
-* `new` #520 `SE` : Show and limit the space used
+* `new` #520 `SE` : Show and limit the space used by @ildyria.
   > We introduce a quota system, allowing the admin to set a limit on the space used by each user.
-* `fixes` #987 : Open image in new tab
+* `fixes` #987 : Open image in new tab by @ildyria.
   > With the switch to Vue3, this feature is now fully functional.
-* `new` #1420 : Album name in link preview
-* `new` #1641 `SE` : User note only available to admin
+* `new` #1420 : Album name in link preview by @ildyria.
+* `new` #1641 `SE` : User note only available to admin by @ildyria.
   > Admin can now add notes to users. Those are only visible to the admin users.
-* `fixes` #1987 : No space left on device
+* `fixes` #1987 : No space left on device by @ildyria.
   > This error was mostly due to having temporary folders in the containers but without ability to empty them.
   > We now provide UI to clean those folders, furthermore, those can now be mapped to a host directory.
-* `new` #2082 : SEO optimization 1/3 - Setting `<title>` and `<meta>` tags
+* `new` #2082 : SEO optimization 1/3 - Setting `<title>` and `<meta>` tags by @ildyria.
   > The title and meta tag are directly fetched from the album targetted by the link.
-* `new` #2086 : Feature request: light theme for Lychee
+* `new` #2086 : Feature request: light theme for Lychee by @ildyria.
   > Lychee now comes also with a Light theme, the user no longer need to tweak their custom.css
   > as there is now a native support for both dark and light sides.
-* `fixes` #2168 : Universal Drag & Drop and Paste to upload no longer work when using Livewire
+* `fixes` #2168 : Universal Drag & Drop and Paste to upload no longer work when using Livewire by @ildyria.
   > When moving to version 5, this functionality was lost. We now re-introduce it.
-* `fixes` #2194 : Change album cover picture creates a slide show of all the picture after the selected one
+* `fixes` #2194 : Change album cover picture creates a slide show of all the picture after the selected one by @ildyria.
   > Version 5 had this annoying re-rendering of the album when changing the cover picture which was completely messed up.
   > By switching to Vue3, this is now fixed.
-* `fixes` #2361 : Image selecting does not work on chrome + MacOS #2361
+* `fixes` #2361 : Image selecting does not work on chrome + MacOS by @ildyria.
   > One of the main complaints of MacOs user was that CTRL was also opening the context menu.
   > We now support the CMD key for MacOs users, this should fix this issue.
-* `fixes` #2495 : Inverted date on album tiles with multiple months
+* `fixes` #2495 : Inverted date on album tiles with multiple months by @ildyria.
   > We provide the ability to change the order of the dates displayed both in the thumbs and hero on albums, cathering to either user preferences.
-* `dropped` : API Documentation
+* `dropped` : API Documentation.
   > We have decided to drop the API documentation end-point as it was not working anymore.
   > Read [more](https://lycheeorg.test/2024-09-24-v6-scramble/).
 
