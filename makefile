@@ -2,7 +2,7 @@ all: assets
 	@echo ""
 	@python3 gen.py
 
-.PHONY: assets
+.PHONY: assets docs
 
 node_modules:
 	npm install
@@ -26,3 +26,7 @@ update-python:
 
 clean: 
 	@rm -fr dist
+
+docs:
+	@echo ""
+	@python3 gen.py

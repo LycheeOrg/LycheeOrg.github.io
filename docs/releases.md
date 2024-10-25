@@ -28,6 +28,81 @@
 }
 </style>
 
+## Version 6
+
+### v6.0.0
+
+Released on XXX xx, 2024
+
+#### Dropping Livewire for Vue3
+
+When we released version 5, we did not realize how much a mistake switching to Livewire was.
+Lychee front-end became slow and sluggish, plagued with issues.
+And most of the time as a work around, we had to advertise to disable the version 5 of the front-end
+by setting the environment variable `LIVEWIRE_ENABLED=false`.
+
+With this in mind, at then end of June we came to the conclusion that we needed to rebuild a new front-end from scratch.
+We decided to go with Vue3, as it is a more mature framework and has a lot of support. This marks the begining of the Lychee version 6.
+
+For more contexts on those changes, see our blog posts:
+
+- Jun 29, 2024 - [The future of Lychee: what is coming next. 🚀](https://lycheeorg.test/2024-06-25-performance-problems/)
+- Jun 25, 2024 - [Livewire performances problems 📉](https://lycheeorg.test/2024-06-29-future-of-lychee/)
+- Sep 24, 2024 - [About Lychee API documentation](https://lycheeorg.test/2024-09-24-v6-scramble/)
+
+
+#### Introducing Lychee SE
+
+For the past few years, Lychee has been developed by a [small group of people](https://lycheeorg.github.io/support/) who have been working on it in their free time. We are proud to offer this software for free and we will continue to do so. However with time our team has decreased to the point where maintaining Lychee has become a challenge. We have been thinking about ways to keep Lychee alive, to be able to keep providing support, and to add more features.
+
+We have come to the conclusion that we need to add a sponsor tier system. We have extended Lychee with a new version called SE (Supporter Edition) which will be available for our GitHub supporters. This SE version comes with enhanced features and configurations, helping us fund ongoing improvements while offering a bit extra to our supporters. The free version of Lychee will continue to be available but with a more streamlined feature set.
+
+We strongly encourage you to check the full comparison between the [free and supporter edition](https://lycheeorg.github.io/get-supporter-edition).  
+If you enjoy using Lychee, please consider [supporting us](https://github.com/sponsors/LycheeOrg).
+
+Thank you for helping us keep Lychee alive and growing!
+
+#### Changes
+
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `new` #106 : have "Search" on all views by @ildyria.
+* `fixes` #126 : Add (optional) lossless rotation by @ildyria.
+  > Add the ability to over-write the original image with a temporary backup if the image was rotated.
+  > All the smaller size are normalized but the original is reverted back.
+  > Effectively, this is no lossless rotation, this is pure no rotation for the original.
+* `fixes` #226 `SE` : Add counters for total pictures and subalbums by @ildyria.
+  > We added a statistic page, allowing the users to check how much space they are using
+  > and the total number of pictures and album that are in the library.
+* `new` #520 `SE` : Show and limit the space used
+  > We introduce a quota system, allowing the admin to set a limit on the space used by each user.
+* `fixes` #987 : Open image in new tab
+  > With the switch to Vue3, this feature is now fully functional.
+* `new` #1420 : Album name in link preview
+* `new` #1641 `SE` : User note only available to admin
+  > Admin can now add notes to users. Those are only visible to the admin users.
+* `fixes` #1987 : No space left on device
+  > This error was mostly due to having temporary folders in the containers but without ability to empty them.
+  > We now provide UI to clean those folders, furthermore, those can now be mapped to a host directory.
+* `new` #2082 : SEO optimization 1/3 - Setting `<title>` and `<meta>` tags
+  > The title and meta tag are directly fetched from the album targetted by the link.
+* `new` #2086 : Feature request: light theme for Lychee
+  > Lychee now comes also with a Light theme, the user no longer need to tweak their custom.css
+  > as there is now a native support for both dark and light sides.
+* `fixes` #2168 : Universal Drag & Drop and Paste to upload no longer work when using Livewire
+  > When moving to version 5, this functionality was lost. We now re-introduce it.
+* `fixes` #2194 : Change album cover picture creates a slide show of all the picture after the selected one
+  > Version 5 had this annoying re-rendering of the album when changing the cover picture which was completely messed up.
+  > By switching to Vue3, this is now fixed.
+* `fixes` #2361 : Image selecting does not work on chrome + MacOS #2361
+  > One of the main complaints of MacOs user was that CTRL was also opening the context menu.
+  > We now support the CMD key for MacOs users, this should fix this issue.
+* `fixes` #2495 : Inverted date on album tiles with multiple months
+  > We provide the ability to change the order of the dates displayed both in the thumbs and hero on albums, cathering to either user preferences.
+* `dropped` : API Documentation
+  > We have decided to drop the API documentation end-point as it was not working anymore.
+  > Read [more](https://lycheeorg.test/2024-09-24-v6-scramble/).
+
 ## Version 5
 
 ### v5.5.1
