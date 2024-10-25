@@ -46,9 +46,9 @@ We decided to go with Vue3, as it is a more mature framework and has a lot of su
 
 For more context on those changes, see our blog posts:
 
-- Jun 29, 2024 - [The future of Lychee: what is coming next. 🚀](https://lycheeorg.test/2024-06-25-performance-problems/)
-- Jun 25, 2024 - [Livewire performances problems 📉](https://lycheeorg.test/2024-06-29-future-of-lychee/)
-- Sep 24, 2024 - [About Lychee API documentation](https://lycheeorg.test/2024-09-24-v6-scramble/)
+- Jun 25, 2024 - [Livewire performances problems 📉](/2024-06-25-performance-problems/)
+- Jun 29, 2024 - [The future of Lychee: what is coming next. 🚀](/2024-06-29-future-of-lychee/)
+- Sep 24, 2024 - [About Lychee API documentation](/2024-09-24-v6-scramble/)
 
 
 #### Introducing Lychee SE
