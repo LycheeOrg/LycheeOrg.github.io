@@ -10,11 +10,11 @@ export const headerData = {
           href: getBlogPermalink(),
         },
         {
-          text: 'The future of lychee',
-          href: getPermalink('2024-06-29-future-of-lychee', 'post'),
+          text: 'Lychee Version 6 is Live!',
+          href: getPermalink('2024-10-31-v6', 'post'),
         },
         {
-          text: 'About Version 6',
+          text: 'Current developments',
           href: getPermalink('v6', 'tag'),
         },
       ],
