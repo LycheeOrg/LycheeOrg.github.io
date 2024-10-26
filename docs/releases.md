@@ -32,7 +32,7 @@
 
 ### v6.0.0
 
-Released on XXX xx, 2024
+Released on Oct 26, 2024
 
 #### Dropping Livewire for Vue3
 

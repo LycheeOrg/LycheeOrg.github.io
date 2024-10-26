@@ -11,7 +11,7 @@ export const headerData = {
         },
         {
           text: 'Lychee Version 6 is Live!',
-          href: getPermalink('2024-10-31-v6', 'post'),
+          href: getPermalink('2024-10-26-v6', 'post'),
         },
         {
           text: 'Current developments',
