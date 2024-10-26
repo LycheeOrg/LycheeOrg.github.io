@@ -21,6 +21,15 @@ npm install
 pip install -r requirements.txt
 ```
 
+## Local dev
+
+In order to get the visual feedback of the website (without docs), you can run a local version:
+
+```sh
+npm run dev
+# Open http://localhost:4321/
+```
+
 # Generating
 
 Run `make` to generate the HTML files, which can then be found in `dist/`.
