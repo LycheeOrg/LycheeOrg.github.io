@@ -98,6 +98,10 @@
                 <h1>Release Notes</h1>
                 
 <ul>
+<li><a href="#version-6">Version 6</a><ul>
+<li><a href="#v600">v6.0.0</a></li>
+</ul>
+</li>
 <li><a href="#version-5">Version 5</a><ul>
 <li><a href="#v551">v5.5.1</a></li>
 <li><a href="#v550">v5.5.0</a></li>
@@ -257,10 +261,103 @@
 }
 </style>
 
+<h2 id="version-6"><a class="toclink" href="#version-6">Version 6</a></h2>
+<h3 id="v600"><a class="toclink" href="#v600">v6.0.0</a></h3>
+<p>Released on Oct 26, 2024</p>
+<h4 id="dropping-livewire-for-vue3"><a class="toclink" href="#dropping-livewire-for-vue3">Dropping Livewire for Vue3</a></h4>
+<p>When we released version 5, we did not realize how much of a mistake switching to Livewire was.
+Lychee's front-end became slow and sluggish, plagued with issues.
+Most of the time as a work around, we had to advise users to disable version 5 of the front-end
+by setting the environment variable <code>LIVEWIRE_ENABLED=false</code>.</p>
+<p>With this in mind, at the end of June we came to the conclusion that we needed to build a new front-end from scratch.
+We decided to go with Vue3, as it is a more mature framework and has a lot of support. This marks the begining of the Lychee version 6.</p>
+<p>For more context on those changes, see our blog posts:</p>
+<ul>
+<li>Jun 25, 2024 - <a href="/2024-06-25-performance-problems/">Livewire performances problems 📉</a></li>
+<li>Jun 29, 2024 - <a href="/2024-06-29-future-of-lychee/">The future of Lychee: what is coming next. 🚀</a></li>
+<li>Sep 24, 2024 - <a href="/2024-09-24-v6-scramble/">About Lychee API documentation</a></li>
+</ul>
+<h4 id="introducing-lychee-se"><a class="toclink" href="#introducing-lychee-se">Introducing Lychee SE</a></h4>
+<p>For the past few years, Lychee has been developed by a <a href="https://lycheeorg.github.io/support/">small group of people</a> who have been working on it in their free time. We are proud to offer this software for free and we will continue to do so. However with time our team has decreased to the point where maintaining Lychee has become a challenge. We have been thinking about ways to keep Lychee alive, to be able to keep providing support, and to add more features.</p>
+<p>We have come to the conclusion that we need to add a sponsor tier system. We have extended Lychee with a new version called SE (Supporter Edition) which will be available for our GitHub supporters. This SE version comes with enhanced features and configurations, helping us fund ongoing improvements while offering a bit extra to our supporters. The free version of Lychee will continue to be available but with a more streamlined feature set.</p>
+<p>We strongly encourage you to check the full comparison between the <a href="https://lycheeorg.github.io/get-supporter-edition">free and supporter edition</a>.<br />
+If you enjoy using Lychee, please consider <a href="https://github.com/sponsors/LycheeOrg">supporting us</a>.</p>
+<p>Thank you for helping us keep Lychee alive and growing!</p>
+<h4 id="important-docker-changes"><a class="toclink" href="#important-docker-changes">Important Docker Changes</a></h4>
+<p>If you are consuming Lychee via Docker, you will probably need to update your <code>docker-compose.yml</code> file.
+In order solve the issue of temporary folders in the container, we added an extra volume <code>/lychee-tmp</code> which
+by default with the updated <code>docker-compose.yml</code> will be mapped to <code>./lychee/tmp</code>, see <a href="https://github.com/LycheeOrg/Lychee-Docker/blob/master/docker-compose.yml">here</a>.</p>
+<p>This volume allows you to control the temporary folder and avoid the issue of running out of space in the container.</p>
+<h4 id="changes"><a class="toclink" href="#changes">Changes</a></h4>
+<p><code>SE</code> refers to functionalities that are aimed at the Supporter Edition.</p>
+<ul>
+<li><code>new</code> #106 : have "Search" on all views by @ildyria.</li>
+<li><code>fixes</code> #126 : Add (optional) lossless rotation by @ildyria.<blockquote>
+<p>Add the ability to over-write the original image with a temporary backup if the image was rotated.
+All the smaller sizes are normalized but the original is reverted back.
+Effectively, this is not lossless rotation, this is just no rotation for the original.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #226 <code>SE</code> : Add counters for total pictures and subalbums by @ildyria.<blockquote>
+<p>We added a statistic page, allowing the users to check how much space they are using
+and the total number of pictures and album that are in the library.</p>
+</blockquote>
+</li>
+<li><code>new</code> #520 <code>SE</code> : Show and limit the space used by @ildyria.<blockquote>
+<p>We introduced a quota system, allowing the admin to set a limit on the space used by each user.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #987 : Open image in new tab by @ildyria.<blockquote>
+<p>With the switch to Vue3, this feature is now fully functional.</p>
+</blockquote>
+</li>
+<li><code>new</code> #1420 : Album name in link preview by @ildyria.</li>
+<li><code>new</code> #1641 <code>SE</code> : User note (only available to admin) by @ildyria.<blockquote>
+<p>Admin can now add notes to users. Those are only visible to the admin users.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #1987 : No space left on device by @ildyria.<blockquote>
+<p>This error was mostly due to having temporary folders in the containers but without any ability to empty them.
+We now provide a UI to clean those folders, furthermore, those can now be mapped to a host directory.</p>
+</blockquote>
+</li>
+<li><code>new</code> #2082 : SEO optimization 1/3 - Setting <code>&lt;title&gt;</code> and <code>&lt;meta&gt;</code> tags by @ildyria.<blockquote>
+<p>The title and meta tag are directly fetched from the album targetted by the link.</p>
+</blockquote>
+</li>
+<li><code>new</code> #2086 : Feature request: light theme for Lychee by @ildyria.<blockquote>
+<p>Lychee now comes also with a Light theme, the user no longer needs to tweak their custom.css
+as there is now a native support for both dark and light sides.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #2168 : Universal Drag &amp; Drop and Paste to upload no longer work when using Livewire by @ildyria.<blockquote>
+<p>When moving to version 5, this functionality was lost. We now re-introduce it.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #2194 : Change album cover picture creates a slide show of all the picture after the selected one by @ildyria.<blockquote>
+<p>Version 5 had this annoying re-rendering of the album when changing the cover picture which was completely messed up.
+By switching to Vue3, this is now fixed.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #2361 : Image selecting does not work on chrome + MacOS by @ildyria.<blockquote>
+<p>One of the main complaints of MacOs user was that CTRL was also opening the context menu.
+We now support the CMD key for MacOs users, this should fix this issue.</p>
+</blockquote>
+</li>
+<li><code>fixes</code> #2495 : Inverted date on album tiles with multiple months by @ildyria.<blockquote>
+<p>We provide the ability to change the order of the dates displayed both in the thumbs and hero on albums, cathering to either user preferences.</p>
+</blockquote>
+</li>
+<li><code>dropped</code> : API Documentation.<blockquote>
+<p>We have decided to drop the API documentation end-point as it was not working anymore.
+Read <a href="https://lycheeorg.test/2024-09-24-v6-scramble/">more</a>.</p>
+</blockquote>
+</li>
+</ul>
 <h2 id="version-5"><a class="toclink" href="#version-5">Version 5</a></h2>
 <h3 id="v551"><a class="toclink" href="#v551">v5.5.1</a></h3>
 <p>Released on Jul 5, 2024</p>
-<h4 id="changes"><a class="toclink" href="#changes">Changes</a></h4>
+<h4 id="changes_1"><a class="toclink" href="#changes_1">Changes</a></h4>
 <p><code>klo</code> refers to <em>Keep the Light On</em>. In other words, basic software updates.</p>
 <ul>
 <li><code>fixes</code> #2487 : Fixes videos not loading from S3 due to unlisted CSP host by @RickyRomero.</li>
@@ -271,7 +368,7 @@
 <h3 id="v550"><a class="toclink" href="#v550">v5.5.0</a></h3>
 <p>Released on Jun 26, 2024</p>
 <p><strong>Note:</strong> Migrated to Laravel 11. Might have some instability.</p>
-<h4 id="changes_1"><a class="toclink" href="#changes_1">Changes</a></h4>
+<h4 id="changes_2"><a class="toclink" href="#changes_2">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2470 : Fix smart album not having visibilty option by @ildyria.</li>
 <li><code>new</code> #2465 : Add some details for clockwork profiler to work by @ildyria.</li>
@@ -297,7 +394,7 @@
 </ul>
 <h3 id="v540"><a class="toclink" href="#v540">v5.4.0</a></h3>
 <p>Released on Jun 17, 2024</p>
-<h4 id="changes_2"><a class="toclink" href="#changes_2">Changes</a></h4>
+<h4 id="changes_3"><a class="toclink" href="#changes_3">Changes</a></h4>
 <ul>
 <li><code>klo</code> #2460 : Composer update by @ildyria.</li>
 <li><code>fixes</code> #2462 : Fix #2446: Apostrophes are allowed in names. by @ildyria.</li>
@@ -305,7 +402,7 @@
 </ul>
 <h3 id="v531"><a class="toclink" href="#v531">v5.3.1</a></h3>
 <p>Released on Jun 9, 2024</p>
-<h4 id="changes_3"><a class="toclink" href="#changes_3">Changes</a></h4>
+<h4 id="changes_4"><a class="toclink" href="#changes_4">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2421 : Fix <code>gen-sizevariants</code> button french translation by @HorlogeSkynet.</li>
 <li><code>fixes</code> #2423 : Fix map not updating in sidebar view by @ildyria.</li>
@@ -323,7 +420,7 @@
 <p>As this is a change by @Kovah and we are unfortunately not able to provide support on how to make it work.
 Refer to https://laravel-news.com/using-aws-s3-for-laravel-storage for details of the settings.
 <strong>Any issues on that subject will be closed.</strong> Sorry.</p>
-<h4 id="changes_4"><a class="toclink" href="#changes_4">Changes</a></h4>
+<h4 id="changes_5"><a class="toclink" href="#changes_5">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2400 : Fix description empty string creating bug in layout by @ildyria.</li>
 <li><code>new</code> #2379 : Add S3 bucket support by @Kovah.</li>
@@ -334,7 +431,7 @@ Refer to https://laravel-news.com/using-aws-s3-for-laravel-storage for details o
 </ul>
 <h3 id="v522"><a class="toclink" href="#v522">v5.2.2</a></h3>
 <p>Released on Apr 20, 2024</p>
-<h4 id="changes_5"><a class="toclink" href="#changes_5">Changes</a></h4>
+<h4 id="changes_6"><a class="toclink" href="#changes_6">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2396 : Fixes HTTP 500 "Attempt to read property "photo_id" on null" on album page when no photo is found for header by @nanawel.</li>
 <li><code>fixes</code> #2397 : Use portrait when landscape is not available for header image by @ildyria.</li>
@@ -345,7 +442,7 @@ Refer to https://laravel-news.com/using-aws-s3-for-laravel-storage for details o
 <h4 id="canary"><a class="toclink" href="#canary">Canary</a></h4>
 <p>We provide the <code>PHOTO_PIPES</code> flag in <code>.env</code> to enable the future code flow to process images. 
 By default its value is <code>false</code>.</p>
-<h4 id="changes_6"><a class="toclink" href="#changes_6">Changes</a></h4>
+<h4 id="changes_7"><a class="toclink" href="#changes_7">Changes</a></h4>
 <ul>
 <li><code>klo</code> #2364 : Avoid crashing when livewire flag is set in tests by @ildyria.</li>
 <li><code>klo</code> #2362 : More relevant diagnostic data, less privacy invasive by @ildyria.</li>
@@ -366,7 +463,7 @@ There are major bug fixes contained in this update, most notably when uploading 
 <p>We are currently 2 active members (d7415 and myself). As a result development has been significantly slowed down.
 If you like Lychee and wish to contribute, fix bugs and add new features you are more than welcome to join the team
 or open pull requests.</p>
-<h4 id="changes_7"><a class="toclink" href="#changes_7">Changes</a></h4>
+<h4 id="changes_8"><a class="toclink" href="#changes_8">Changes</a></h4>
 <ul>
 <li><code>new</code> #2242 : No more album ID within the history by @ildyria.</li>
 <li><code>new</code> #2221 : Remove is_public &amp; deprecated Public smart album by @ildyria.</li>
@@ -426,7 +523,7 @@ See more here: https://www.dropbox.com/developers/saver</p>
 To enable this add <code>LEGACY_V4_REDIRECT=true</code> in your <code>.env</code>.
 Do note that this relies on a javascript hook and therefore page reload.
 If you did not share any links that way, leave as is. Default value is <code>false</code>. </p>
-<h4 id="changes_8"><a class="toclink" href="#changes_8">Changes</a></h4>
+<h4 id="changes_9"><a class="toclink" href="#changes_9">Changes</a></h4>
 <ul>
 <li><code>new</code> #2210 : Diagnostics are now available when migrations are pending by @ildyria.</li>
 <li><code>fixes</code> #2215 : Fix import from Dropbox from Livewire side by @ildyria.</li>
@@ -455,7 +552,7 @@ If you did not share any links that way, leave as is. Default value is <code>fal
 Those should then be placed in your <code>.env</code> file. See <code>.env.example</code> for templates.</p>
 <p>Note that Oauth is only usable once the user exists in Lychee database;
 it is not possible to register directly via Oauth.</p>
-<h4 id="changes_9"><a class="toclink" href="#changes_9">Changes</a></h4>
+<h4 id="changes_10"><a class="toclink" href="#changes_10">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2192 &amp; #2195 : Load Thumb/Thumb2x as fail-over when Small does not exist by @ildyria.</li>
 <li><code>new</code> #2201 : Display owner names instead of Shared Albumns by @ildyria.</li>
@@ -479,7 +576,7 @@ For example for <code>https://lychee.test/path/to/lychee</code>:</p>
 <li>and <code>APP_DIR=/path/to/lychee</code></li>
 </ul>
 <h4 id="do-note-that-we-lycheeorg-do-not-recommend-the-use-of-app_dir"><a class="toclink" href="#do-note-that-we-lycheeorg-do-not-recommend-the-use-of-app_dir">Do note that We (LycheeOrg) do not recommend the use of APP_DIR.</a></h4>
-<h4 id="changes_10"><a class="toclink" href="#changes_10">Changes</a></h4>
+<h4 id="changes_11"><a class="toclink" href="#changes_11">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2126 : Cover for upper level album cannot be set - error 500 by @ildyria.</li>
 <li><code>new</code> #2124 : Add clear error message when CSS is not loading by @ildyria.</li>
@@ -509,7 +606,7 @@ For example for <code>https://lychee.test/path/to/lychee</code>:</p>
 <p>Released on Dec 28, 2023 </p>
 <h4 id="fix-sql-injection"><a class="toclink" href="#fix-sql-injection">Fix SQL injection.</a></h4>
 <p>See here for more details: <a href="https://github.com/LycheeOrg/Lychee/security/advisories/GHSA-rjwv-5j3m-p5x4">GHSA-rjwv-5j3m-p5x4</a></p>
-<h4 id="changes_11"><a class="toclink" href="#changes_11">Changes</a></h4>
+<h4 id="changes_12"><a class="toclink" href="#changes_12">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2116 : Fixes hover (left-right) preventing clicks on volume etc buttons + fix frame button by @ildyria</li>
 <li><code>fixes</code> #2118 : Fix drag upload bug by @maoxian-1</li>
@@ -517,7 +614,7 @@ For example for <code>https://lychee.test/path/to/lychee</code>:</p>
 </ul>
 <h3 id="v501"><a class="toclink" href="#v501">v5.0.1</a></h3>
 <p>Released on Dec 27, 2023</p>
-<h4 id="changes_12"><a class="toclink" href="#changes_12">Changes</a></h4>
+<h4 id="changes_13"><a class="toclink" href="#changes_13">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2090 : Add back blurred album thumbs by @ildyria.</li>
 <li><code>fixes</code> #2091 : Forgotten attribute of the canEdit function by @ildyria.</li>
@@ -658,7 +755,7 @@ It now depends of the selected elements.</p>
 <h2 id="version-4"><a class="toclink" href="#version-4">Version 4</a></h2>
 <h3 id="v4130"><a class="toclink" href="#v4130">v4.13.0</a></h3>
 <p>Released on Sep 24, 2023</p>
-<h4 id="changes_13"><a class="toclink" href="#changes_13">Changes</a></h4>
+<h4 id="changes_14"><a class="toclink" href="#changes_14">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2018 : Unique constraint for config keys by @qwerty287.</li>
 <li><code>fixes</code> #2019 : Update composer (include breaking) by @qwerty287.</li>
@@ -668,7 +765,7 @@ It now depends of the selected elements.</p>
 </ul>
 <h3 id="v4120"><a class="toclink" href="#v4120">v4.12.0</a></h3>
 <p>Released on Sep 16, 2023</p>
-<h4 id="changes_14"><a class="toclink" href="#changes_14">Changes</a></h4>
+<h4 id="changes_15"><a class="toclink" href="#changes_15">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #2003 : Fix missing album decorations by @evoludolab.</li>
 <li><code>fixes</code> #2004 : Fix max/min_taken_at by @evoludolab.</li>
@@ -679,7 +776,7 @@ It now depends of the selected elements.</p>
 </ul>
 <h3 id="v4111"><a class="toclink" href="#v4111">v4.11.1</a></h3>
 <p>Released on Sep 3, 2023</p>
-<h4 id="changes_15"><a class="toclink" href="#changes_15">Changes</a></h4>
+<h4 id="changes_16"><a class="toclink" href="#changes_16">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1982 : How about we don't execute tests twice? by @ildyria.</li>
 <li><code>fixes</code> #1981 : Minor fixes on List sharing permissions. by @ildyria.</li>
@@ -692,7 +789,7 @@ It now depends of the selected elements.</p>
 </ul>
 <h3 id="v4110"><a class="toclink" href="#v4110">v4.11.0</a></h3>
 <p>Released on Aug 13, 2023</p>
-<h4 id="changes_16"><a class="toclink" href="#changes_16">Changes</a></h4>
+<h4 id="changes_17"><a class="toclink" href="#changes_17">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1963 : Change two German translations by @caminsha</li>
 <li><code>fixes</code> #1975 : Fix bad placeholder in PT locale by @d7415 </li>
@@ -701,7 +798,7 @@ It now depends of the selected elements.</p>
 </ul>
 <h3 id="v4100"><a class="toclink" href="#v4100">v4.10.0</a></h3>
 <p>Released on Aug 1, 2023</p>
-<h4 id="changes_17"><a class="toclink" href="#changes_17">Changes</a></h4>
+<h4 id="changes_18"><a class="toclink" href="#changes_18">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1928 : Fix NSFW not toggling via Protection Panel by @ildyria</li>
 <li><code>new</code> #1933 : Improve translations to German by @CodingWithCard</li>
@@ -714,7 +811,7 @@ It now depends of the selected elements.</p>
 </ul>
 <h3 id="v494"><a class="toclink" href="#v494">v4.9.4</a></h3>
 <p>Released on Jun 28, 2023</p>
-<h4 id="changes_18"><a class="toclink" href="#changes_18">Changes</a></h4>
+<h4 id="changes_19"><a class="toclink" href="#changes_19">Changes</a></h4>
 <ul>
 <li><code>new</code> #1901 : Make exceptions in one log line by @ildyria </li>
 <li><code>fixes</code> #1884 : Fixes wrong redirection when Lychee is used in a subfolder by @ildyria </li>
@@ -725,7 +822,7 @@ It now depends of the selected elements.</p>
 <p>Released on Jun 25, 2023</p>
 <p>This releases introduces the ability to use external logging system.
 Please refer to <a href="external_tracking.html">External tracking with Matomo, Google Analytics &amp; Co</a> for examples.</p>
-<h4 id="changes_19"><a class="toclink" href="#changes_19">Changes</a></h4>
+<h4 id="changes_20"><a class="toclink" href="#changes_20">Changes</a></h4>
 <ul>
 <li><code>new</code> #1870 : Allow script-src and connect-src configuration by @timo-reymann</li>
 <li><code>new</code> #1873 : Support files without extensions in importFromUrl by @wladif</li>
@@ -740,7 +837,7 @@ Please refer to <a href="external_tracking.html">External tracking with Matomo, 
 </ul>
 <h3 id="v492"><a class="toclink" href="#v492">v4.9.2</a></h3>
 <p>Released on May 22, 2023</p>
-<h4 id="changes_20"><a class="toclink" href="#changes_20">Changes</a></h4>
+<h4 id="changes_21"><a class="toclink" href="#changes_21">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1861 : Remove hashes from CSP when using log-viewer by @ildyria</li>
 <li><code>fixes</code> #1862 : Remove duplicate link. Tweak comment by @d7415</li>
@@ -748,7 +845,7 @@ Please refer to <a href="external_tracking.html">External tracking with Matomo, 
 <h3 id="v491"><a class="toclink" href="#v491">v4.9.1</a></h3>
 <p>Released on May 19, 2023</p>
 <h4 id="do-not-use-broken-logs-broken-csp"><a class="toclink" href="#do-not-use-broken-logs-broken-csp">DO NOT USE - BROKEN LOGS (broken CSP).</a></h4>
-<h4 id="changes_21"><a class="toclink" href="#changes_21">Changes</a></h4>
+<h4 id="changes_22"><a class="toclink" href="#changes_22">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1856 : Fixes #1855 - update Makefile by @ildyria</li>
 <li><code>fixes</code> #1857 : Fix version 4.9 log-viewer paths hard coding by @ildyria</li>
@@ -756,7 +853,7 @@ Please refer to <a href="external_tracking.html">External tracking with Matomo, 
 <h3 id="v490"><a class="toclink" href="#v490">v4.9.0</a></h3>
 <p>Released on May 18, 2023</p>
 <h4 id="do-not-use-broken-logs-missing-public-files"><a class="toclink" href="#do-not-use-broken-logs-missing-public-files">DO NOT USE - BROKEN LOGS (missing public files).</a></h4>
-<h4 id="changes_22"><a class="toclink" href="#changes_22">Changes</a></h4>
+<h4 id="changes_23"><a class="toclink" href="#changes_23">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1848 : Remove public option from album ordering: no longer supported by @ildyria</li>
 <li><code>fixes</code> #1850 : Fix SQL error on removing public status from album by @ildyria</li>
@@ -764,7 +861,7 @@ Please refer to <a href="external_tracking.html">External tracking with Matomo, 
 </ul>
 <h3 id="v481"><a class="toclink" href="#v481">v4.8.1</a></h3>
 <p>Released on May 15, 2023</p>
-<h4 id="changes_23"><a class="toclink" href="#changes_23">Changes</a></h4>
+<h4 id="changes_24"><a class="toclink" href="#changes_24">Changes</a></h4>
 <ul>
 <li><code>new</code> #1826 : Improved support of migration very old versions (untestable code) by @ildyria</li>
 <li><code>new</code> #1821 : Add backend implementation to use file's last modified time by @wladif<blockquote>
@@ -778,19 +875,19 @@ Please refer to <a href="external_tracking.html">External tracking with Matomo, 
 </ul>
 <h3 id="v480"><a class="toclink" href="#v480">v4.8.0</a></h3>
 <p>Released on May 5, 2023</p>
-<h4 id="changes_24"><a class="toclink" href="#changes_24">Changes</a></h4>
+<h4 id="changes_25"><a class="toclink" href="#changes_25">Changes</a></h4>
 <ul>
 <li><code>new</code> #1792 : Use access permissions instead of base_album table to determine access rights by @ildyria</li>
 </ul>
 <h3 id="v474"><a class="toclink" href="#v474">v4.7.4</a></h3>
 <p>Released on May 4, 2023</p>
-<h4 id="changes_25"><a class="toclink" href="#changes_25">Changes</a></h4>
+<h4 id="changes_26"><a class="toclink" href="#changes_26">Changes</a></h4>
 <ul>
 <li><code>new</code> #1819 : Make it possible to fetch random image without needing to be public &amp; starred by @mingan666</li>
 </ul>
 <h3 id="v473"><a class="toclink" href="#v473">v4.7.3</a></h3>
 <p>Released on April 19, 2023</p>
-<h4 id="changes_26"><a class="toclink" href="#changes_26">Changes</a></h4>
+<h4 id="changes_27"><a class="toclink" href="#changes_27">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1786 : Update dependencies (including php-exif) by @qwerty287</li>
 <li><code>new</code> #1787 : Remove requirement of Auth in photo upload, pass ownerId as argument by @ildyria</li>
@@ -805,7 +902,7 @@ Please refer to <a href="external_tracking.html">External tracking with Matomo, 
 </ul>
 <h3 id="v472"><a class="toclink" href="#v472">v4.7.2</a></h3>
 <p>Pre-released on Mar 8, 2023</p>
-<h4 id="changes_27"><a class="toclink" href="#changes_27">Changes</a></h4>
+<h4 id="changes_28"><a class="toclink" href="#changes_28">Changes</a></h4>
 <ul>
 <li><code>new</code> #1755 : Ship an empty custom.js to prevent spamming the console (#1753) by @nicokaiser</li>
 <li><code>fixes</code> #1756 : Fixes locale not working (#1754) by @ildyria</li>
@@ -818,7 +915,7 @@ Please refer to <a href="external_tracking.html">External tracking with Matomo, 
 <h3 id="v471"><a class="toclink" href="#v471">v4.7.1</a></h3>
 <p>Pre-released on Feb 5, 2023</p>
 <h4 id="do-not-use-broken-locale"><a class="toclink" href="#do-not-use-broken-locale">DO NOT USE - BROKEN LOCALE.</a></h4>
-<h4 id="changes_28"><a class="toclink" href="#changes_28">Changes</a></h4>
+<h4 id="changes_29"><a class="toclink" href="#changes_29">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1688 : Update French.php by @davidbercot</li>
 <li><code>fixes</code> #1674 : Share button not working by @ildyria</li>
@@ -854,7 +951,7 @@ This change adds a new <code>.env</code> configuration variable enforcing HTTPS 
 <h3 id="v470"><a class="toclink" href="#v470">v4.7.0</a></h3>
 <p>Released on Jan 4, 2023</p>
 <h4 id="php-81-required"><a class="toclink" href="#php-81-required">PHP 8.1+ REQUIRED</a></h4>
-<h4 id="changes_29"><a class="toclink" href="#changes_29">Changes</a></h4>
+<h4 id="changes_30"><a class="toclink" href="#changes_30">Changes</a></h4>
 <ul>
 <li><code>new</code> #1631 : Customizable album decorations by @evoludolab<blockquote>
 <p>Allows to change the layer symbol in the top right corner of albums which indicated
@@ -884,7 +981,7 @@ This is now resolved.</p>
 <h3 id="v465"><a class="toclink" href="#v465">v4.6.5</a></h3>
 <p>Released on Dec 26, 2022</p>
 <h4 id="last-support-for-php-80"><a class="toclink" href="#last-support-for-php-80">LAST SUPPORT FOR PHP 8.0</a></h4>
-<h4 id="changes_30"><a class="toclink" href="#changes_30">Changes</a></h4>
+<h4 id="changes_31"><a class="toclink" href="#changes_31">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1665 : Fix migration for PostgreSQL users by @ildyria</li>
 <li><code>new</code> #1667 : add setting to allow username change (default to true) by @ildyria</li>
@@ -895,7 +992,7 @@ This is now resolved.</p>
 <ul>
 <li>This release does significant changes at the database level, do make sure you have a back-up available if necessary.</li>
 </ul>
-<h4 id="changes_31"><a class="toclink" href="#changes_31">Changes</a></h4>
+<h4 id="changes_32"><a class="toclink" href="#changes_32">Changes</a></h4>
 <ul>
 <li><code>fixes</code> #1590 : Fix list of shares by @nagmat84</li>
 <li><code>new</code> #1594 : Add flags to command by @qwerty287</li>
@@ -939,7 +1036,7 @@ This is now resolved.</p>
 <ul>
 <li>This update contains an upgrade of U2F packages with a very different core, as a consequence any U2F credentials stored have been destroyed and will need to be registered again.</li>
 </ul>
-<h4 id="changes_32"><a class="toclink" href="#changes_32">Changes</a></h4>
+<h4 id="changes_33"><a class="toclink" href="#changes_33">Changes</a></h4>
 <ul>
 <li><code>new</code> #1519 : Adopt new modern dialog</li>
 <li><code>fixes</code> #1494 : Consolidate localization</li>
@@ -957,7 +1054,7 @@ This is now resolved.</p>
 <li>This update will drop the API key in favor of Authorization token.
 As a result, once the migration is applied the old API token won't work anymore.</li>
 </ul>
-<h4 id="changes_33"><a class="toclink" href="#changes_33">Changes</a></h4>
+<h4 id="changes_34"><a class="toclink" href="#changes_34">Changes</a></h4>
 <ul>
 <li><code>new</code> #1489 : Drop page support<blockquote>
 <p>This functionality was not known by 99.9% of the users of Lychee.
@@ -985,7 +1082,7 @@ and 23005 as integers and then pause for a short period of time.</p>
 <p>Released on Sep 04, 2022</p>
 <h4 id="important_3"><a class="toclink" href="#important_3">IMPORTANT</a></h4>
 <p>Once the migration is applied, should you wish to rollback, you will need to reset your admin user otherwise it will not be possible to log as admin anymore.</p>
-<h4 id="changes_34"><a class="toclink" href="#changes_34">Changes</a></h4>
+<h4 id="changes_35"><a class="toclink" href="#changes_35">Changes</a></h4>
 <ul>
 <li><code>new</code> #1453 : Provide an ASCII fallback for multibyte filenames</li>
 <li><code>new</code> #1403 : Use Laravel Auth facade instead of home-brewed authentication layer <blockquote>
@@ -1004,7 +1101,7 @@ We strongly recommend that you <strong>BACK UP YOUR DATABASE BEFORE UPDATING</st
 <li>The folder structure changed for images; <strong>please check the required directory permissions</strong>.<br />
 Read more <a href="https://lycheeorg.github.io/docs/#directory-permissions">here  &#187;</a>.</li>
 </ul>
-<h4 id="changes_35"><a class="toclink" href="#changes_35">Changes</a></h4>
+<h4 id="changes_36"><a class="toclink" href="#changes_36">Changes</a></h4>
 <ul>
 <li>
 <p><code>new</code> : New ID scheme. Albums and photos are migrated to a new ID scheme. Previously, albums and photos used time-based integer IDs. The new IDs are truly 144bit of randomness encoded in Base64 as a 24-character string; e.g., if your photo had the URL <code>https://my-domain.tld/r/16102925744307/16102927818284</code> before, it may have the URL <code>https://my-domain.tld/r/GTqZfSso3nPeCnTNW4ovisgC/jM6KkmlK7X0LtVas5MjrHtTO</code> after the migration. This means, <strong>external links to your albums or photos will stop working.</strong> However, we implemented a redirection service. You can enable/disable the re-direction service under <code>Settings</code> &gt; <code>More</code> &gt; <code>legacy_id_redirection</code>. This gives you time to migrate any external reference to the new IDs. We also generate a log entry every time the redirection service is used. This log contains the legacy and new ID as well as information where the request came from. This may help you with the migration of your external links.</p>
