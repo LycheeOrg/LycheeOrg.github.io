@@ -30,6 +30,22 @@
 
 ## Version 6
 
+### v6.0.1
+
+Released on Oct 31, 2024
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.
+
+* `fixes` #2607 :  Fix icons when using sub-folder install by @ildyria.
+* `fixes` #2605 :  Fix login menu not visible when set to the right by @ildyria.
+* `klo` #2609 :  [StepSecurity] Apply security best practices by @step-security-bot.
+* `klo` #2621 :  Disable snq if secret is not set by @ildyria.
+* `fixes` #2624 :  Fix link to Logs in case of sub folder hosting by @ildyria.
+* `new` #2625 :  Add link to album from sharing page by @ildyria.
+
+
 ### v6.0.0
 
 Released on Oct 26, 2024
@@ -118,8 +134,6 @@ This volume allows you to control the temporary folder and avoid the issue of ru
 Released on Jul 5, 2024
 
 #### Changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.
 
 * `fixes` #2487 : Fixes videos not loading from S3 due to unlisted CSP host by @RickyRomero.
 * `new` #2490 : Add support for paths in php-exif by @ildyria.
