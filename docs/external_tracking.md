@@ -85,6 +85,38 @@ navigation.addEventListener("navigate", function (e) {
   trackPageView()
 });
 ```
+## Set up for Umami Analytics
+
+> ⚠️ Make sure to use your actual values for DOMAIN SCRIPT URL and <WEBSITE_ID>
+
+### Allow loading tracking script
+
+Set the following env vars:
+
+```ini
+SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://umami.example.com/script.js
+SECURITY_HEADER_CSP_CONNECT_SRC=https://umami.example.com/script.js
+```
+
+### Add custom JavaScript
+
+Add the following to Settings > Custom JS
+
+```javascript
+(function() {
+    var d = document, s = d.createElement('script'), g = d.getElementsByTagName('script')[0];
+    s.defer = true;
+    s.src = 'https://umami.example.com/script.js';
+    s.setAttribute('data-website-id', '<WEBSITE_ID>');
+    g.parentNode.insertBefore(s, g);
+})();
+
+navigation.addEventListener("navigate", function (e) {
+    if (window.umami && typeof umami.trackView === 'function') {
+        umami.trackView(document.title, window.location.pathname);
+    }
+});
+```
 
 ## Other tools / custom tracking
 
