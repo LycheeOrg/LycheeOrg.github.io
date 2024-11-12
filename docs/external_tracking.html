@@ -108,6 +108,11 @@
 <li><a href="#add-custom-javascript_1">Add custom JavaScript</a></li>
 </ul>
 </li>
+<li><a href="#set-up-for-umami-analytics">Set up for Umami Analytics</a><ul>
+<li><a href="#allow-loading-tracking-script_2">Allow loading tracking script</a></li>
+<li><a href="#add-custom-javascript_2">Add custom JavaScript</a></li>
+</ul>
+</li>
 <li><a href="#other-tools-custom-tracking">Other tools / custom tracking</a><ul>
 <li><a href="#configuration-adjustments">Configuration adjustments</a></li>
 <li><a href="#track-view-changes">Track view changes</a></li>
@@ -185,6 +190,31 @@ trackPageView();
 
 navigation.addEventListener(&quot;navigate&quot;, function (e) {
   trackPageView()
+});
+</code></pre>
+<h2 id="set-up-for-umami-analytics"><a class="toclink" href="#set-up-for-umami-analytics">Set up for Umami Analytics</a></h2>
+<blockquote>
+<p>⚠️ Make sure to use your actual values for DOMAIN SCRIPT URL and <WEBSITE_ID></p>
+</blockquote>
+<h3 id="allow-loading-tracking-script_2"><a class="toclink" href="#allow-loading-tracking-script_2">Allow loading tracking script</a></h3>
+<p>Set the following env vars:</p>
+<pre><code class="language-ini">SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://umami.example.com/script.js
+SECURITY_HEADER_CSP_CONNECT_SRC=https://umami.example.com/script.js
+</code></pre>
+<h3 id="add-custom-javascript_2"><a class="toclink" href="#add-custom-javascript_2">Add custom JavaScript</a></h3>
+<p>Add the following to Settings &gt; Custom JS</p>
+<pre><code class="language-javascript">(function() {
+    var d = document, s = d.createElement('script'), g = d.getElementsByTagName('script')[0];
+    s.defer = true;
+    s.src = 'https://umami.example.com/script.js';
+    s.setAttribute('data-website-id', '&lt;WEBSITE_ID&gt;');
+    g.parentNode.insertBefore(s, g);
+})();
+
+navigation.addEventListener(&quot;navigate&quot;, function (e) {
+    if (window.umami &amp;&amp; typeof umami.trackView === 'function') {
+        umami.trackView(document.title, window.location.pathname);
+    }
 });
 </code></pre>
 <h2 id="other-tools-custom-tracking"><a class="toclink" href="#other-tools-custom-tracking">Other tools / custom tracking</a></h2>
