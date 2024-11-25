@@ -30,13 +30,61 @@
 
 ## Version 6
 
+### v6.1.0
+
+Released on Nov 25, 2024
+
+#### Fixes and new layout: Timelines
+
+We are introducing a new layout for albums: Timelines. This layout is a new way to display your pictures in a chronological order.
+You can enable it per album in the album settings or globally.
+
+Additionally, we thank @aSouchereau for the new LQ Image Placeholder: a heavily blurred version will be displayed while a higher quality thumb is loading.
+We also thank @nanawel for adding the Authentik support to the Oauth provider.
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `new` #2629 : Get automated signed releases by @ildyria.
+* `fixes` #2630 : Fix sub-albums sorting not being respected per album by @ildyria.
+* `new` #2633 : Enable lazy loading for pictures past number 10 in an album by @ildyria.
+* `fixes` #2634 : Fix building artifact in Integrate workflow by @d7415. 
+* `new` #2636 : Vite local dev by @ildyria.
+  > Allows local front-end development with Vite without having to install the full php stack.
+  > See .env.example for instructions
+* `fixes` #2638 : Fix icons missing on map by @ildyria.
+* `klo` #2653 : Composer update + phpstan by @ildyria.
+* `fixes` #2652 : Improve support for free-bsd by @ildyria.
+* `fixes` #2654 : Improved support for Heic - suggested by @Borisvl by @ildyria.
+* `new` #2661 : Low Quality Image Placeholder cont by @aSouchereau. 
+* `new` #2674 : Add ability to toggle H on touch devices by @ildyria.
+* `new` #2664 : Avoid revealing Lychee keys when making videos by @ildyria.
+* `fixes` #2676 : Do not show placeholder data in statistics by @ildyria.
+* `new` #2677 : Add scroll to top element by @ildyria.
+* `fixes` #2682 : Fix error 500 when accessing Tag album as anonymous user by @ildyria.
+* `fixes` #2685 : Fix date not being properly displayed due to Carbon3 change by @ildyria.
+* `fixes` #2684 : Fix delete not closing parent info dialog by @ildyria.
+* `fixes` #2683 : Fix 422 when opening frame in smart-album by @ildyria.
+* `fixes` #2687 : Fix src-set not properly defined by @ildyria.
+* `fixes` #2690 : Avoid crash and die when generating smaller size variants by @ildyria.
+* `fixes` #2688 : Fix error 403 on access directly password protected albums by @ildyria.
+* `new` #2673 : Timeline settings + fix discovery of sensitive photos by @ildyria.
+* `klo` #2710 : Bumps dependencies by @ildyria.
+* `fixes` #2693 : Fix duplicate upload + add scroll remembering by @ildyria.
+* `new` #2714 : Added Authentik support by @nanawel.
+* `klo` #2735 : Bump dependencies by @ildyria.
+* `new` #2679 : Support more layouts + Timeline in albums/album by @ildyria.
+* `SE`  #2679 : Add Timeline granularity customization by @ildyria.
+* `new` #2717 : Add copy to clipboard button in Diagnostics page. by @ildyria.
+
+
 ### v6.0.1
 
 Released on Oct 31, 2024
 
 #### Changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.
 
 * `fixes` #2607 :  Fix icons when using sub-folder install by @ildyria.
 * `fixes` #2605 :  Fix login menu not visible when set to the right by @ildyria.
