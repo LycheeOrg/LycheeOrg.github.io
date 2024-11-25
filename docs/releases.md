@@ -37,9 +37,9 @@ Released on Nov 25, 2024
 #### Fixes and new layout: Timelines
 
 We are introducing a new layout for albums: Timelines. This layout is a new way to display your pictures in a chronological order.
-you can enable it per album in the albun settings or globally.
+You can enable it per album in the album settings or globally.
 
-Additionally, we thank @aSouchereau for the new LQ Image Placeholder: heavily blurred version will be displayed while a higher quality thumb is loading.
+Additionally, we thank @aSouchereau for the new LQ Image Placeholder: a heavily blurred version will be displayed while a higher quality thumb is loading.
 We also thank @nanawel for adding the Authentik support to the Oauth provider.
 
 #### Changes
