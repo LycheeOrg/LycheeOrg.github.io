@@ -30,6 +30,18 @@
 
 ## Version 6
 
+### v6.1.1
+
+Released on Nov 26, 2024
+
+Small patch that aims to fix issues introduced in the latest release.
+
+#### Changes
+
+* `fixes` #2738 : Fix Authentik icon by @sushain97.
+* `fixes` #2741 : Fix wrong config in smart albums by @ildyria.
+* `fixes` #2743 : Fix create Tag album callback not triggering by @ildyria.
+
 ### v6.1.0
 
 Released on Nov 25, 2024
