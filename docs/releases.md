@@ -30,6 +30,14 @@
 
 ## Version 6
 
+### v6.1.2
+
+Released on Nov 27, 2024
+
+#### Changes
+
+
+
 ### v6.1.1
 
 Released on Nov 26, 2024
