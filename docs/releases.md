@@ -36,7 +36,16 @@ Released on Nov 27, 2024
 
 #### Changes
 
-
+* `fixes` #2745 : Avoid preventing rendering when albums is returning 401 by @ildyria.
+  > This bug was triggered by requiring login on root to access the gallery.
+* `fixes` #2746 : Fix photo timeline when there are no borders by @ildyria.
+  > Bug introduced by the new timeline layout that was only affecting the photo layout when the absence of border was set in Lychee SE
+* `new` #2749 : Create automated Signed releases by @ildyria.
+  > We use [cosign](https://github.com/sigstore/cosign) to generate signed releases.
+  > The public key is available here: [lychee-cosign.pub](https://lycheeorg.github.io/lychee-cosign.pub).
+* `fixes` #2753 : ListAlbum fix by @ildyria.
+  > When using extremely long albums names, the limiting of strings were getting negative length.
+  > This resulted in error 500 when fetching the list of target albums.
 
 ### v6.1.1
 
