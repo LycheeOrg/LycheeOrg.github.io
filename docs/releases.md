@@ -40,7 +40,7 @@ Released on Nov 27, 2024
   > This bug was triggered by requiring login on root to access the gallery.
 * `fixes` #2746 : Fix photo timeline when there are no borders by @ildyria.
   > Bug introduced by the new timeline layout that was only affecting the photo layout when the absence of border was set in Lychee SE
-* `new` #2749 : Create automated Signed releases by @ildyria.
+* `new` #2749 : Create automated signed releases by @ildyria.
   > We use [cosign](https://github.com/sigstore/cosign) to generate signed releases.
   > The public key is available here: [lychee-cosign.pub](https://lycheeorg.github.io/lychee-cosign.pub).
 * `fixes` #2753 : ListAlbum fix by @ildyria.
