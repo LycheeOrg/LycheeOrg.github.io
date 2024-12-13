@@ -15,10 +15,11 @@ For non-core options (for example UI options), take a look at [Settings](https:/
 | `TIMEZONE`           | The timezone of your photos., requires a named timezone identifier like `Europe/Paris` | system timezone of server   |
 | `LYCHEE_UPLOADS`     | Path to uploads directory                                                              | `uploads/` inside `public/` |
 | `LYCHEE_UPLOADS_URL` | URL to uploads directory, better left empty                                            | `/uploads`                  |
+| `APP_FORCE_HTTPS`    | Force HTTPS on all URLs                                                                | `false`                     |
 | `TRUSTED_PROXIES`    | Trusted proxy IP addresses                                                             | `null`                      |
 | `LOG_VIEWER_ENABLED` | Enable log viewer inside Lychee instead of through CLI.                                | `true`                      |
-| `LIVEWIRE_ENABLED`   | Enable v5 Livewire frontend; set to `false` if the new frontend doesn't work on our installation (this is a **temporary** workaround). | `true`         |
- 
+| `VUEJS_ENABLED`      | Enable v6 Livewire frontend; set to `false` if the new frontend doesn't work on our installation (this is a **temporary** workaround). | `true`         |
+| `LEGACY_API_ENABLED` | Enable the Legacy API, it will be enabled if `VUEJS_ENABLED` is set to `false`.        | `false`                     | 
 
 > {note} `APP_URL` must only contain the hostname up to the Top Level Domain (tld) _e.g._ .com, .org etc.
 > If you are using Lychee in a sub folder, specify the path after the tld here in the `APP_DIR` constant.  
