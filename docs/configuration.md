@@ -18,7 +18,7 @@ For non-core options (for example UI options), take a look at [Settings](https:/
 | `APP_FORCE_HTTPS`    | Force HTTPS on all URLs                                                                | `false`                     |
 | `TRUSTED_PROXIES`    | Trusted proxy IP addresses                                                             | `null`                      |
 | `LOG_VIEWER_ENABLED` | Enable log viewer inside Lychee instead of through CLI.                                | `true`                      |
-| `VUEJS_ENABLED`      | Enable v6 Livewire frontend; set to `false` if the new frontend doesn't work on our installation (this is a **temporary** workaround). | `true`         |
+| `VUEJS_ENABLED`      | Enable v6 VueJs frontend; set to `false` if the new frontend doesn't work on our installation (this is a **temporary** workaround). | `true`         |
 | `LEGACY_API_ENABLED` | Enable the Legacy API, it will be enabled if `VUEJS_ENABLED` is set to `false`.        | `false`                     | 
 
 > {note} `APP_URL` must only contain the hostname up to the Top Level Domain (tld) _e.g._ .com, .org etc.
