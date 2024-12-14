@@ -42,7 +42,6 @@ frame = read('template/doc-frame.html')
 
 pages_title = {}
 
-pages_title['org'] = 'Lychee & LycheeOrg'
 pages_title['releases'] = 'Release Notes'
 
 pages_title['installation'] = 'Installation'
@@ -66,10 +65,9 @@ pages_title['api'] = 'API Documentation'
 pages_title['architecture'] = 'Lychee logic overview'
 pages_title['structure'] = 'Directory Structure'
 pages_title['frontend'] = 'Front-end'
-pages_title['livewire'] = 'Livewire Front-end (alpha)'
 
 structure = [['Prologue',
-              ['org', 'releases']]]
+              ['releases']]]
 structure += [['Getting Started',
                ['installation', 'configuration', 'docker', 'update', 'upgrade']]]
 structure += [['Advanced Topics',
@@ -77,7 +75,7 @@ structure += [['Advanced Topics',
 structure += [['Frequently Asked Question',
                ['faq_general', 'faq_installation', 'faq_troubleshooting']]]
 structure += [['Contributing',
-               ['contributions', 'api', 'architecture', 'structure', 'frontend', 'livewire']]]
+               ['contributions', 'api', 'architecture', 'structure', 'frontend']]]
 
 
 def gen_github_link(page):
