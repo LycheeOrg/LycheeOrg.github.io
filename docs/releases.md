@@ -60,7 +60,7 @@ We implemented a type inference system that allows scramble to also support the 
   > Some users might prefer to have a single album per row.
 * `fixes` #2788 : Fix hidden gallery footer social icons by @pmrowla.
 * `fixes` #2766 : Fixes Justify layout by @ildyria.
-  > Hopefully this remove the re-rendering when selecting pictures due to computational width changes.
+  > Hopefully this removes the re-rendering when selecting pictures due to computational width changes.
 * `new` #2768 : Add page that allows to fix broken trees by @ildyria.
   > This is a now page which allows the admin to completely break their Lychee install.
   > We do not recommend you to use it. It is only for the most desperate cases.
