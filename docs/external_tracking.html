@@ -101,14 +101,19 @@
 <li><a href="#add-custom-javascript">Add custom JavaScript</a></li>
 </ul>
 </li>
-<li><a href="#set-up-for-google-analytics">Set up for Google Analytics</a><ul>
+<li><a href="#set-up-for-medama">Set up for Medama</a><ul>
 <li><a href="#allow-loading-tracking-script_1">Allow loading tracking script</a></li>
 <li><a href="#add-custom-javascript_1">Add custom JavaScript</a></li>
 </ul>
 </li>
-<li><a href="#set-up-for-umami-analytics">Set up for Umami Analytics</a><ul>
+<li><a href="#set-up-for-google-analytics">Set up for Google Analytics</a><ul>
 <li><a href="#allow-loading-tracking-script_2">Allow loading tracking script</a></li>
 <li><a href="#add-custom-javascript_2">Add custom JavaScript</a></li>
+</ul>
+</li>
+<li><a href="#set-up-for-umami-analytics">Set up for Umami Analytics</a><ul>
+<li><a href="#allow-loading-tracking-script_3">Allow loading tracking script</a></li>
+<li><a href="#add-custom-javascript_3">Add custom JavaScript</a></li>
 </ul>
 </li>
 <li><a href="#other-tools-custom-tracking">Other tools / custom tracking</a><ul>
@@ -130,7 +135,7 @@
 SECURITY_HEADER_CSP_CONNECT_SRC=https://analytics.example.com/matomo.js
 </code></pre>
 <h3 id="add-custom-javascript"><a class="toclink" href="#add-custom-javascript">Add custom JavaScript</a></h3>
-<p>Add the following to Settings &gt; Custom JS</p>
+<p>Add the following to Settings &gt; Advanced Customization</p>
 <pre><code class="language-javascript">var _paq = window._paq = window._paq || [];
 _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
@@ -149,17 +154,33 @@ navigation.addEventListener(&quot;navigate&quot;, function (e) {
     _paq.push(['trackPageView']);
 });
 </code></pre>
+<h2 id="set-up-for-medama"><a class="toclink" href="#set-up-for-medama">Set up for Medama</a></h2>
+<blockquote>
+<p>⚠️ Make sure to use your actual domain</p>
+</blockquote>
+<h3 id="allow-loading-tracking-script_1"><a class="toclink" href="#allow-loading-tracking-script_1">Allow loading tracking script</a></h3>
+<p>Set the following env vars:</p>
+<pre><code class="language-ini">SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://analytics.example.com
+SECURITY_HEADER_CSP_CONNECT_SRC=https://analytics.example.com/script.js
+</code></pre>
+<h3 id="add-custom-javascript_1"><a class="toclink" href="#add-custom-javascript_1">Add custom JavaScript</a></h3>
+<p>Add the following to Settings &gt; Advanced Customization</p>
+<pre><code class="language-javascript">const script = document.createElement('script');
+script.setAttribute('defer', true);
+script.setAttribute('src', 'https://analytics.example.com/script.js');
+document.body.appendChild(script);
+</code></pre>
 <h2 id="set-up-for-google-analytics"><a class="toclink" href="#set-up-for-google-analytics">Set up for Google Analytics</a></h2>
 <blockquote>
 <p>⚠️ Make sure to replace &lt;your-tracking-id&gt; with the actual value</p>
 </blockquote>
-<h3 id="allow-loading-tracking-script_1"><a class="toclink" href="#allow-loading-tracking-script_1">Allow loading tracking script</a></h3>
+<h3 id="allow-loading-tracking-script_2"><a class="toclink" href="#allow-loading-tracking-script_2">Allow loading tracking script</a></h3>
 <p>Set the following env vars:</p>
 <pre><code class="language-ini">SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://www.googletagmanager.com/gtag/js?id=&lt;your-tracking-id&gt;
 SECURITY_HEADER_CSP_CONNECT_SRC=https://www.googletagmanager.com/gtag/js?id=&lt;your-tracking-id&gt;
 </code></pre>
-<h3 id="add-custom-javascript_1"><a class="toclink" href="#add-custom-javascript_1">Add custom JavaScript</a></h3>
-<p>Add the following to Settings &gt; Custom JS</p>
+<h3 id="add-custom-javascript_2"><a class="toclink" href="#add-custom-javascript_2">Add custom JavaScript</a></h3>
+<p>Add the following to Settings &gt; Advanced Customization</p>
 <pre><code class="language-javascript">(function () {
   var u = &quot;https://www.googletagmanager.com/gtag/js&quot;;
   var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
@@ -194,13 +215,13 @@ navigation.addEventListener(&quot;navigate&quot;, function (e) {
 <blockquote>
 <p>⚠️ Make sure to use your actual values for DOMAIN SCRIPT URL and <WEBSITE_ID></p>
 </blockquote>
-<h3 id="allow-loading-tracking-script_2"><a class="toclink" href="#allow-loading-tracking-script_2">Allow loading tracking script</a></h3>
+<h3 id="allow-loading-tracking-script_3"><a class="toclink" href="#allow-loading-tracking-script_3">Allow loading tracking script</a></h3>
 <p>Set the following env vars:</p>
 <pre><code class="language-ini">SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://umami.example.com/script.js
 SECURITY_HEADER_CSP_CONNECT_SRC=https://umami.example.com/script.js
 </code></pre>
-<h3 id="add-custom-javascript_2"><a class="toclink" href="#add-custom-javascript_2">Add custom JavaScript</a></h3>
-<p>Add the following to Settings &gt; Custom JS</p>
+<h3 id="add-custom-javascript_3"><a class="toclink" href="#add-custom-javascript_3">Add custom JavaScript</a></h3>
+<p>Add the following to Settings &gt; Advanced Customization</p>
 <pre><code class="language-javascript">(function() {
     var d = document, s = d.createElement('script'), g = d.getElementsByTagName('script')[0];
     s.defer = true;
