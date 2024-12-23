@@ -15,7 +15,7 @@ SECURITY_HEADER_CSP_CONNECT_SRC=https://analytics.example.com/matomo.js
 
 ### Add custom JavaScript
 
-Add the following to Settings > Custom JS
+Add the following to Settings > Advanced Customization
 
 ```javascript
 var _paq = window._paq = window._paq || [];
@@ -37,6 +37,30 @@ navigation.addEventListener("navigate", function (e) {
 });
 ```
 
+## Set up for Medama
+
+> ⚠️ Make sure to use your actual domain
+
+### Allow loading tracking script
+
+Set the following env vars:
+
+```ini
+SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://analytics.example.com
+SECURITY_HEADER_CSP_CONNECT_SRC=https://analytics.example.com/script.js
+```
+
+### Add custom JavaScript
+
+Add the following to Settings > Advanced Customization
+
+```javascript
+const script = document.createElement('script');
+script.setAttribute('defer', true);
+script.setAttribute('src', 'https://analytics.example.com/script.js');
+document.body.appendChild(script);
+```
+
 ## Set up for Google Analytics
 
 > ⚠️ Make sure to replace &lt;your-tracking-id&gt; with the actual value
@@ -52,7 +76,7 @@ SECURITY_HEADER_CSP_CONNECT_SRC=https://www.googletagmanager.com/gtag/js?id=<you
 
 ### Add custom JavaScript
 
-Add the following to Settings > Custom JS
+Add the following to Settings > Advanced Customization
 
 ```javascript
 (function () {
@@ -100,7 +124,7 @@ SECURITY_HEADER_CSP_CONNECT_SRC=https://umami.example.com/script.js
 
 ### Add custom JavaScript
 
-Add the following to Settings > Custom JS
+Add the following to Settings > Advanced Customization
 
 ```javascript
 (function() {
