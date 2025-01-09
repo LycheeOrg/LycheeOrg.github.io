@@ -1,4 +1,4 @@
-# LycheeOrg.github.io
+# lycheeorg.dev
 
 [![Build Status][build-status-shield]](https://github.com/LycheeOrg/LycheeOrg.github.io/actions)
 

@@ -49,7 +49,7 @@ export const footerData = {
       {
         title: 'Support  Lychee',
         links: [
-          { text: 'Get Lychee <span class="text-sky-500">SE</span>', href: 'https://lycheeorg.github.io/get-supporter-edition' },
+          { text: 'Get Lychee <span class="text-sky-500">SE</span>', href: 'https://lycheeorg.dev/get-supporter-edition' },
           { text: 'GitHub sponsor', href: 'https://github.com/sponsors/LycheeOrg' },
           { text: 'Open Collective', href: 'https://opencollective.com/LycheeOrg' },
         ],
