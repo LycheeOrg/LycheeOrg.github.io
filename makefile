@@ -30,3 +30,9 @@ clean:
 docs:
 	@echo ""
 	@python3 gen.py
+
+docker-build:
+	docker build . -t test-lychee-docker --progress plain  
+
+docker-run: docker-build
+	docker run -p 9999:80 -t test-lychee-docker
