@@ -1,0 +1,31 @@
+name: Docker build
+
+# Run this workflow every time a new commit pushed to your repository
+on:
+  push:
+
+
+env:
+    PUID: '1000'
+    PGID: '1000'
+  
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    name: Build
+    steps:
+      # Checks out a copy of your repository on the ubuntu machine
+      - name: Checkout code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
+        with:
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        run: |
+            docker build . --tag ghcr.io/LycheeOrg/LycheeOrg:latest
+            docker push ghcr.io/LycheeOrg/LycheeOrg:latest
