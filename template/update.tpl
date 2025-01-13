@@ -1,5 +1,0 @@
-{
-  "lychee": {
-    "version": %s
-  }
-}

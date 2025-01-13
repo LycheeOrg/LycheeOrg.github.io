@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://lycheeorg.dev/sitemap-index.xml

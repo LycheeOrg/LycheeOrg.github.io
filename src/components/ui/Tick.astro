@@ -1,8 +1,0 @@
----
-import { Icon } from 'astro-icon/components';
-
-const { icon = '', classes = {} } = Astro.props;
----
-<div class={`inline-block rounded-full mt-1 w-5 h-5 ${classes?.icon_bg ?? 'bg-sky-100 dark:bg-sky-800'}`}>
-    <Icon name={icon ? icon : 'tabler:check'} class={`w-5 h-5 font-bold p-1 ${classes?.icon ?? 'text-primary dark:text-neutral-300'}`} />
-</div>
