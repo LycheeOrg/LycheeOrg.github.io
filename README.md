@@ -1,6 +1,7 @@
 # lycheeorg.dev
 
-[![Build Status][build-status-shield]](https://github.com/LycheeOrg/LycheeOrg.github.io/actions)
+[![Build Status][build-status-shield]](https://github.com/LycheeOrg/LycheeOrg.github.io/actions/workflows/CI.yml)
+[![Image Status][image-status-shield]](https://github.com/LycheeOrg/LycheeOrg.github.io/actions/workflows/Docker.yml)
 
 ## Dependencies
 
@@ -35,3 +36,4 @@ npm run dev
 Run `make` to generate the HTML files, which can then be found in `dist/`.
 
 [build-status-shield]: https://img.shields.io/github/actions/workflow/status/LycheeOrg/LycheeOrg.github.io/CI.yml?branch=master
+[image-status-shield]: https://img.shields.io/github/actions/workflow/status/LycheeOrg/LycheeOrg.github.io/Docker.yml?branch=master
