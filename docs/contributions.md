@@ -31,8 +31,12 @@ You may propose new features or improvements to existing Lychee behavior in the 
 
 You would like to support Lychee and help us push it further? Join the team!
 Your passion for Lychee will be measured by how active you are on the project.
-A minimum of three pull requests merged is to be expected before receiving the invitation.
-However, exceptions may apply (e.g., if you want to rewrite 100% of the front-end to VueJS).
+We are looking for people who are willing to help us maintain the project,
+review pull requests, and fix bugs.
+
+If you would like to just do code review, that's fine too!
+We are always looking for more eyes on the code to ensure its quality.
+We will need your github handle to add you to the reviewer team.
 
 Contact us on [Discord][2]  if you would like to know more! :)
 
