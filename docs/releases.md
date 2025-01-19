@@ -88,7 +88,7 @@ Released on Nov 27, 2024
   > Bug introduced by the new timeline layout that was only affecting the photo layout when the absence of border was set in Lychee SE
 * `new` #2749 : Create automated signed releases by @ildyria.
   > We use [cosign](https://github.com/sigstore/cosign) to generate signed releases.
-  > The public key is available here: [lychee-cosign.pub](https://lycheeorg.github.io/lychee-cosign.pub).
+  > The public key is available here: [lychee-cosign.pub](https://lycheeorg.dev/lychee-cosign.pub).
 * `fixes` #2753 : ListAlbum fix by @ildyria.
   > When using extremely long albums names, the limiting of strings were getting negative length.
   > This resulted in error 500 when fetching the list of target albums.
@@ -189,11 +189,11 @@ For more context on those changes, see our blog posts:
 
 #### Introducing Lychee SE
 
-For the past few years, Lychee has been developed by a [small group of people](https://lycheeorg.github.io/support/) who have been working on it in their free time. We are proud to offer this software for free and we will continue to do so. However with time our team has decreased to the point where maintaining Lychee has become a challenge. We have been thinking about ways to keep Lychee alive, to be able to keep providing support, and to add more features.
+For the past few years, Lychee has been developed by a [small group of people](https://lycheeorg.dev/support/) who have been working on it in their free time. We are proud to offer this software for free and we will continue to do so. However with time our team has decreased to the point where maintaining Lychee has become a challenge. We have been thinking about ways to keep Lychee alive, to be able to keep providing support, and to add more features.
 
 We have come to the conclusion that we need to add a sponsor tier system. We have extended Lychee with a new version called SE (Supporter Edition) which will be available for our GitHub supporters. This SE version comes with enhanced features and configurations, helping us fund ongoing improvements while offering a bit extra to our supporters. The free version of Lychee will continue to be available but with a more streamlined feature set.
 
-We strongly encourage you to check the full comparison between the [free and supporter edition](https://lycheeorg.github.io/get-supporter-edition).  
+We strongly encourage you to check the full comparison between the [free and supporter edition](https://lycheeorg.dev/get-supporter-edition).  
 If you enjoy using Lychee, please consider [supporting us](https://github.com/sponsors/LycheeOrg).
 
 Thank you for helping us keep Lychee alive and growing!
@@ -905,7 +905,7 @@ Released on Jan 4, 2023
   > This reduces the risk of bugs.
 * `rm` #1673 : Nuke demo generator, does not reflect the latest version by @ildyria
   > This removes the /demo page which was used to generate AJAX response in order to mock a
-  > server response on the [demo](https://lycheeorg.github.io/demo/) page of Lychee.
+  > server response on the [demo](https://lychee-demo.fly.dev/) page of Lychee.
 * `new` #1671 : Ensure php version is correct prior migrations by @ildyria
   > Before running any migration, we are not verifying that the required minimum version of PHP is used.
 * `fixes` #1684 : Fix on HasAdminUser by @ildyria
@@ -1028,7 +1028,7 @@ Released on Aug 07, 2022
 - The internal representation of Albums changed with version 4.5.0.  
 We strongly recommend that you **BACK UP YOUR DATABASE BEFORE UPDATING**.
 - The folder structure changed for images; **please check the required directory permissions**.  
-Read more [here  &#187;](https://lycheeorg.github.io/docs/#directory-permissions).
+Read more [here  &#187;](https://lycheeorg.dev/docs/#directory-permissions).
 
 #### Changes
 
@@ -1555,7 +1555,7 @@ Nothing major here. Just a bunch of small bug fixes
 
 **WARNING**: Lychee now requires PHP 7.1 ( http://php.net/supported-versions.php )
 
-- `Fixes`  Cross-Origin Request Blocked: https://lycheeorg.github.io/update.json ( 3#121 )
+- `Fixes`  Cross-Origin Request Blocked: https://lycheeorg.dev/update.json ( 3#121 )
  The server is now doing the check for update (on `Session::init`) if this one fail, the user will do an ajax request to check if an update is available.
 - `Fixes` Syntax Error in Session.php ( 3#153 )
 - `Fixes` Small bugs ( 3#136 ,  3#157 , 3#159 ,  3#163 , 3#166 )

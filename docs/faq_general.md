@@ -16,7 +16,7 @@ Take a look at the [Release Notes](releases.html) to see what's new.
 
 ### How can I easily contact the LycheeOrg organization?
 
-There is a Gitter associated with the project, feel free to join us there: https://gitter.im/LycheeOrg/Lobby
+There is a discord associated with the project, feel free to join us there: https://discord.gg/JMPvuRQcTf
 
 ### How can I set thumbnails for my albums?
 
@@ -33,7 +33,7 @@ Either press `n` (as **N**ew) or use the add menu.
 In order to bypass the CSRF protection, you can set up the `api_key` setting to a secret value and send that value over in the `Authorization` header.  
 Note that `api_key` only disables the CSRF protection, you still need to authenticate to the server.
 
-In order to authenticate, use [Session::login](https://lycheeorg.github.io/docs/api.html#apisessionlogin) and pass the returned `lychee_session` cookie to all subsequent requests.
+In order to authenticate, use [Session::login](https://lycheeorg.dev/docs/api.html#apisessionlogin) and pass the returned `lychee_session` cookie to all subsequent requests.
 
 The related code is available [here](https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/VerifyCsrfToken.php#L55)
 

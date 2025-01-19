@@ -8,7 +8,7 @@ Remember, bug reports are created in the hope that others with the same problem 
 
 ## Support Questions
 
-Lychee's GitHub issue trackers are not intended to provide Lychee help or support. Please instead create a discussion [here][3] or contact us directly on [gitter][2].
+Lychee's GitHub issue trackers are not intended to provide Lychee help or support. Please instead create a discussion [here][3] or contact us directly on [discord][2].
 
 ## Security Vulnerabilities
 
@@ -21,7 +21,7 @@ Those are the versions in which we accept vulnerability reports.
 | latest release | &#10004;  |
 | < 5.0          | &#10005;  |
 
-If you discover a security vulnerability within Lychee, please contact us directly on [Gitter][2]. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Lychee, please contact us directly on [Discord][2]. All security vulnerabilities will be promptly addressed.
 
 ## Core Development Discussion
 
@@ -34,7 +34,7 @@ Your passion for Lychee will be measured by how active you are on the project.
 A minimum of three pull requests merged is to be expected before receiving the invitation.
 However, exceptions may apply (e.g., if you want to rewrite 100% of the front-end to VueJS).
 
-Contact us on [Gitter][2] if you would like to know more! :)
+Contact us on [Discord][2]  if you would like to know more! :)
 
 ## How to properly submit a pull-request to Lychee?
 
@@ -185,7 +185,7 @@ The Lychee code of conduct is the same as Laravel's code of conduct:
 
 
 [1]: https://github.com/LycheeOrg/Lychee/issues
-[2]: https://gitter.im/LycheeOrg/Lobby
+[2]: https://discord.gg/JMPvuRQcTf
 [3]: https://github.com/LycheeOrg/Lychee/discussions
 [4]: https://github.com/LycheeOrg/Lychee/pulls
 

@@ -91,7 +91,7 @@ Note that there are up to three OS users which need to be taken into considerati
    For example, Apache executes the PHP interpreter as part of its own process if the extension `mod_php` is used.
    In case PHP FPM is used, for most distributions PHP FPM or CGI ships with a sensible default configuration which ensures that the PHP user is the same as the Web user.
    In both cases the PHP user is not of concern.
-   However, we are at least aware of one exception to this rule for Nginx on Fedora, see [FAQ](https://lycheeorg.github.io/docs/faq_troubleshooting.html#i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories)
+   However, we are at least aware of one exception to this rule for Nginx on Fedora, see [FAQ](https://lycheeorg.dev/docs/faq_troubleshooting.html#i-know-my-file-permissions-for-storage-bootstrapcache-publicuploads-and-publicdist-are-correct-and-accessible-by-my-web-server-user-but-im-still-getting-a-php-error-when-writing-to-any-of-these-directories)
  - The user which you use for shell logins and to run scripts; called the **CLI user** in the following.
    This user may be of particular concern, if you are planning to upload photos via the web interface _and_ import photos via the shell scripts.
 
@@ -160,7 +160,7 @@ It is also strongly recommended to serve Lychee over TLS. You may wish to consid
 
 Lychee includes a `public/.htaccess` file that is used to provide URLs without the `index.php` front controller in the path. Before serving Lychee with Apache, be sure to enable the `mod_rewrite` module so the `.htaccess` file will be honored by the server.
 
-Also check the Apache [upgrade instructions](https://lycheeorg.github.io/docs/upgrade.html#using-apache) for required permissions in your /etc/apache2/sites-available/example.com.conf file.
+Also check the Apache [upgrade instructions](https://lycheeorg.dev/docs/upgrade.html#using-apache) for required permissions in your /etc/apache2/sites-available/example.com.conf file.
 
 If the `.htaccess` file that ships with Lychee does not work with your Apache installation, try this alternative:
 
@@ -179,7 +179,7 @@ RewriteRule ^ index.php [L]
 ### nginx
 
 This is a sample nginx server block. It does not include TLS, but covers the Lychee-specific requirements.
-If you would like to serve from a subdirectory, take a look at [the FAQ](https://lycheeorg.github.io/docs/faq_installation.html#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee).
+If you would like to serve from a subdirectory, take a look at [the FAQ](https://lycheeorg.dev/docs/faq_installation.html#can-i-host-lychee-with-a-subpath-with-nginx-like-httpsexampledevlychee).
 
 ```nginx
 server {
