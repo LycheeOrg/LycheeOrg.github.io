@@ -1,7 +1,7 @@
 ## Introduction
 
 Lychee's core configuration is managed using a `.env` file. It probably exists already in your directory, but if not it can be created by copying `.env.example`. The options which are already included in the `.env` file should be sufficient to cover the necessary configuration for the vast majority of all use-cases and setups. Using other options than those included in the `.env` file should rarely be necessary. However, this page contains a more complete list of the available options, incl. some highly advanced ones, together with descriptions and default values.
-For non-core options (for example UI options), take a look at [Settings](https://lycheeorg.github.io/docs/settings.html).
+For non-core options (for example UI options), take a look at [Settings](https://lycheeorg.dev/docs/settings.html).
 
 ### Base options
 
