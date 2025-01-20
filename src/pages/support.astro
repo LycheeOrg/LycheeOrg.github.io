@@ -3,6 +3,7 @@
 // import Features3 from '~/components/widgets/Features3.astro';
 // import Features from '~/components/widgets/Features.astro';
 import CallToAction2 from '~/components/widgets/CallToAction.astro';
+import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Features5 from '~/components/widgets/Features5.astro';
 import Hero from '~/components/widgets/Hero.astro';
@@ -94,6 +95,25 @@ const metadata = {
     ]}
   />
 
+  <!-- <CallToAction2
+    title="Support us!"
+    subtitle="If you are using Lychee, a small token of gratitude will go a long way. You can support further development of Lychee on GitHub."
+    actions={[
+      // {
+      //   variant: 'secondary',
+      //   text: '<img src="https://next-images.opencollective.com/_next/image?url=%2Fstatic%2Fimages%2Foc-logo-watercolor-256.png&w=64&q=75" class="h-5 w-5 mr-2.5"/>Open Collective',
+      //   href: 'https://opencollective.com/LycheeOrg',
+      // },
+      {
+        variant: 'secondary',
+        text: 'GitHub sponsor',
+        href: 'https://github.com/sponsors/LycheeOrg',
+        icon: 'tabler:heart',
+      },
+    ]}
+  /> -->
+
+
   <CallToAction2
     classes={{container: 'bg-sky-400/10 !max-w-full', headline: 'bg-white'}}
     title="Support us!"
@@ -115,8 +135,23 @@ const metadata = {
   <!-- { text: 'GitHub sponsor', href: 'https://github.com/sponsors/LycheeOrg' },
   { text: 'Open Collective', href: 'https://opencollective.com/LycheeOrg' }, -->
 
-  <div class=" scale-75">
+<Features2
+  isBeforeContent
+  title="Join the team!"
+  subtitle="Whether you want to contribute or just help with reviewing pull requests, we would be happy to have you on board.<br><br>LycheeOrg works as a Do What You Want Structure."
+  items={[
+    { icon: 'tabler:devices-check',  title: 'If you feel like just doing reviews,', description: 'then just do that.', classes: {panel:'items-center'} },
+    { icon: 'tabler:devices-plus', title: 'If you feel like adding new functionalities,', description: 'then do that.',  classes: {panel:'items-center', title: 'text-center', description: 'text-center'} },
+    { icon: 'tabler:bug-off', title: 'If you feel like fixing bugs,', description: 'then do that.',  classes: {panel:'items-center', title: 'text-center', description: 'text-center'} },
+    { icon: 'tabler:hammer', title: 'if you feel like fixing things that annoys you,', description: 'then do that.', classes: {panel:'items-center', title: 'text-center', description: 'text-center'} },
+  ]}
+  columns={2}
+>
+</Features2>
+
+  <!-- <div class=" scale-75"> -->
   <Features5
+    classes={{container: 'scale-75'}}
     isAfterContent
     isBeforeContent
     title="Past Contributors"
@@ -213,5 +248,5 @@ const metadata = {
       },
     ]}
   />
-</div>
+<!-- </div> -->
 </Layout>

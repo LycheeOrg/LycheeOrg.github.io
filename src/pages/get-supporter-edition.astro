@@ -110,7 +110,7 @@ const metadata = {
     title="Full comparison"
     tagline="the essentials and a few more"
     products={['Free', 'Lychee <span class="text-sky-600 dark:text-sky-300">SE</span>']}
-    extra="<sup>*</sup>A lot of default values are still in English. Any pull requests with translation to your own language would help."
+    extra="<sup>*</sup>A lot of default values are still in English. Any pull requests with translation to your own language would help.<br><sup>*</sup><sup>*</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden."
     specs={[
       {
         feature: 'Global',
@@ -138,7 +138,7 @@ const metadata = {
         available: [true, true],
       },
       {
-        feature: 'Hide Lychee <span class="text-sky-600 dark:text-sky-300">SE</span> call for actions.',
+        feature: 'Hide Lychee <span class="text-sky-600 dark:text-sky-300">SE</span> call for actions <sup>*</sup><sup>*</sup>',
         available: [true, false],
         isV6: true,
       },
@@ -170,6 +170,11 @@ const metadata = {
       },
       {
         feature: 'Upload by chunks',
+        available: [true, true],
+        isV6: true,
+      },
+      {
+        feature: 'Slideshow',
         available: [true, true],
         isV6: true,
       },
@@ -314,12 +319,22 @@ const metadata = {
         available: [true, true],
       },
       {
-        feature: 'Maintenance page',
+        feature: 'API documentation',
         available: [true, true],
       },
       {
         feature: 'Diagnostics tools',
         available: [true, true],
+      },
+      {
+        feature: 'Maintenance page',
+        available: [true, true],
+      },
+      {
+        feature: 'Duplicates Finding',
+        available: [true, true],
+        isV6: true,
+        isSoon: true,
       },
       {
         feature: 'Full manual settings control',
@@ -329,7 +344,7 @@ const metadata = {
         feature: 'Statistics on your installation',
         available: [false, true],
         isV6: true,
-      }
+      },
     ]}
   />
 
