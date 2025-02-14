@@ -108,7 +108,7 @@ We also recommend that you set in order to retain access to your logs if the red
 * `new` #2919 : Update README.md by @Espionage724.
 * `new` #2927 : Implements enhancement ideas in #2924 and #2925 and fixes #2925 by @sancsin.
   > #2924 : Video finishing before moving to next photo/video in slideshow mode
-  > #2925: Next and Previous buttons hidden when in slideshow mode
+  > #2925 : Next and Previous buttons hidden when in slideshow mode
 * `fixes` #2929 : Fix links from LycheeOrg.github.io to LycheeOrg.dev by @ildyria.
 * `klo` #2928 : Mark all legacy classes as final by @ildyria.
 * `klo` #2930 : Set up codeowners in simple way by @ildyria.
@@ -137,6 +137,20 @@ We also recommend that you set in order to retain access to your logs if the red
 * `klo` #2981 : Make sure that all v2 API routes are covered by the caching by @ildyria.
 * `fixes` #2982 : Fix landing page animations by @ildyria.
 * `fixes` #2990 : Fix broken build on ARM by @ildyria.
+* `fixes` #2994 : Fixes #2993 and #2992 by @sancsin.
+  > #2992 : Photos in-between two selected photos are not selecting when using shift-select to select multiple photos.
+  > #2993 : Albums in-between two selected albums are not selecting when using shift-select to select multiple albums in gallery view.
+* `new` #2890 : Frontend part of Duplicate Finder by @ildyria.
+* `new` #2889 : Backend part of Duplicate Finder by @ildyria.
+* `fixes` #2934 : Php 32bit - Zip-stream with version 2.1 instead of 3.1 by @ildyria.
+  > This allows users of php with 32 bits to use the zip download feature.
+  > Zip-Strean 3.1 only supports 64 bits systems, as a result we allow to use Zip-stream 2.4 or 3.1 depending of the architecture.
+  > In such case, we advise 32 bits users to remove their `composer.lock` and do a `composer install` as the `composer.lock` is targetted at 64 bits builds.
+* `fixes` #2996 : Fix api doc not showing by @ildyria.
+  > Api docs were broken for an obscure reason.
+* `new` #3001 : Feature: Authelia login support by @usmanatron.
+* `klo` #3003 : Update dependencies + fix CVE complaint from OSSF by @ildyria.
+* `klo` #3004 : Improve .env.example by @ildyria.
 
 #### New Contributors
 
@@ -144,6 +158,7 @@ We also recommend that you set in order to retain access to your logs if the red
 * @sancsin made their first contribution in #2879.
 * @Espionage724 made their first contribution in #2919.
 * @RustyPotato made their first contribution in #2977.
+* @usmanatron made their first contribution in #3001.
 
 #### New Developer
 
