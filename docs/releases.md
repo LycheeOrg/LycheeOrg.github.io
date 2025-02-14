@@ -32,7 +32,7 @@
 
 ### v6.3.0
 
-Released on Feb 6, 2025
+Released on Feb 14, 2025
 
 #### Localization Reset !
 
