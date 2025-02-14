@@ -45,7 +45,7 @@ Please ignore the lychee.php file as it is the Legacy file and will be removed i
 
 #### Caching for performance improvements
 
-Lychee version 6.3 provides significant performance improvements by adding support caching for the API GET request.
+Lychee version 6.3 provides significant performance improvements by adding support for caching the API GET request.
 **This feature is disabled by default** and **can be enabled in the settings**.
 
 If you would like to use redis as a cache driver, you can set the following values in your `.env` (or similar):
