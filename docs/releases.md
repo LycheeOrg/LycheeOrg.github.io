@@ -107,8 +107,8 @@ We also recommend that you set in order to retain access to your logs if the red
 * `klo` #2891 : Add license + copyright to all files by @ildyria.
 * `new` #2919 : Update README.md by @Espionage724.
 * `new` #2927 : Implements enhancement ideas in #2924 and #2925 and fixes #2925 by @sancsin.
-  > #2924 : Video finishing before moving to next photo/video in slideshow mode
-  > #2925 : Next and Previous buttons hidden when in slideshow mode
+  > \#2924 : Video finishing before moving to next photo/video in slideshow mode  
+  > \#2925 : Next and Previous buttons hidden when in slideshow mode
 * `fixes` #2929 : Fix links from LycheeOrg.github.io to LycheeOrg.dev by @ildyria.
 * `klo` #2928 : Mark all legacy classes as final by @ildyria.
 * `klo` #2930 : Set up codeowners in simple way by @ildyria.
@@ -138,8 +138,8 @@ We also recommend that you set in order to retain access to your logs if the red
 * `fixes` #2982 : Fix landing page animations by @ildyria.
 * `fixes` #2990 : Fix broken build on ARM by @ildyria.
 * `fixes` #2994 : Fixes #2993 and #2992 by @sancsin.
-  > #2992 : Photos in-between two selected photos are not selecting when using shift-select to select multiple photos.
-  > #2993 : Albums in-between two selected albums are not selecting when using shift-select to select multiple albums in gallery view.
+  > \#2992 : Photos in-between two selected photos are not selecting when using shift-select to select multiple photos.  
+  > \#2993 : Albums in-between two selected albums are not selecting when using shift-select to select multiple albums in gallery view.
 * `new` #2890 : Frontend part of Duplicate Finder by @ildyria.
 * `new` #2889 : Backend part of Duplicate Finder by @ildyria.
 * `fixes` #2934 : Php 32bit - Zip-stream with version 2.1 instead of 3.1 by @ildyria.
