@@ -46,14 +46,20 @@ export const footerData = {
         { text: 'Join our discord', href: 'https://discord.gg/JMPvuRQcTf' },
       ],
     },
-      {
-        title: 'Support  Lychee',
-        links: [
-          { text: 'Get Lychee <span class="text-sky-500">SE</span>', href: 'https://lycheeorg.dev/get-supporter-edition' },
-          { text: 'GitHub sponsor', href: 'https://github.com/sponsors/LycheeOrg' },
-          { text: 'Open Collective', href: 'https://opencollective.com/LycheeOrg' },
-        ],
-      },
+    {
+      title: 'Support  Lychee',
+      links: [
+        { text: 'Get Lychee <span class="text-sky-500">SE</span>', href: 'https://lycheeorg.dev/get-supporter-edition' },
+        { text: 'GitHub sponsor', href: 'https://github.com/sponsors/LycheeOrg' },
+        { text: 'Open Collective', href: 'https://opencollective.com/LycheeOrg' },
+      ],
+    },
+    {
+      title: 'Security',
+      links: [
+        { text: 'Cosign key', href: getPermalink('lychee-cosign.pub') },
+      ]
+    }
   ],
   secondaryLinks: [
     { text: 'License', href: getPermalink('/license') },

@@ -30,6 +30,148 @@
 
 ## Version 6
 
+### v6.3.0
+
+Released on Feb 14, 2025
+
+#### Localization Reset !
+
+With the version 6, a lot of the strings were still hard coded in the front-end.
+We have now moved all the strings to the back-end and we have had to reset the localization.
+This means that all the strings are now in English and you will have to re-translate them.
+
+If you would like to help us have a look at your language files in the `resources/lang` folder and submit a PR.
+Please ignore the lychee.php file as it is the Legacy file and will be removed in a future version.
+
+#### Caching for performance improvements
+
+Lychee version 6.3 provides significant performance improvements by adding support for caching the API GET request.
+**This feature is disabled by default** and **can be enabled in the settings**.
+
+If you would like to use redis as a cache driver, you can set the following values in your `.env` (or similar):
+
+> `CACHE_DRIVER=redis`
+> `REDIS_URL=redis://default:@127.0.0.1:6379`
+> `REDIS_HOST=127.0.0.1`
+> `REDIS_PORT=6379`
+> `REDIS_PASSWORD=`
+
+We also recommend that you set in order to retain access to your logs if the redis connection is broken:
+
+> `LOG_VIEWER_CACHE_DRIVER=file`
+
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `klo` #2824 : Composer + npm update by @ildyria.
+* `fixes` #2823 : Fix user count not updated on front-end when creating new users by @ildyria.
+* `new` #2825 : Update README.md by @tinohager.
+* `fixes` #2827 : Optimize User Management by @tinohager.
+* `fixes` #2830 : Remove Keyboard Navigation help view on mobile by @tinohager.
+* `fixes` #2829 : Fix dialog width for mobile  by @tinohager.
+* `fixes` #2849 : Fixes upload fails for non-existent partner video upload to S3 by @kiancross.
+* `fixes` #2852 : Fix functionality to hide back button when configuration is set by @kiancross.
+* `fixes` #2851 : Fix aesthetics of footer social icons by @kiancross.
+* `new` #2850 : Add scroll to top when pressing the 'i' or clicking on details by @ildyria.
+* `fixes` #2856 : Exit with error for unsupported S3 backend by @kiancross.
+* `new` #2846 : Force redirection if accessing urls where being logged is required by @ildyria.
+* `fixes` #2858 : Fix webauthn not showing up by @ildyria.
+* `new` #2860 : Minor UI improvements by @ildyria.
+* `klo` #2845 : dependencies updates by @ildyria.
+* `new` #2847 : Improve spinner on Mobile UI by @ildyria.
+* `fixes` #2870 : Fix missing include in `hook-redirection.blade.php` by @kiancross.
+* `new` #2869 : Resolve route name clashes to enable cache generation by @kiancross.
+* `new` #2871 : Add additional CSP header configuration options by @kiancross.
+* `fixes` #2857 : The eye does nothing if there are no hidden albums by @ildyria.
+* `new` #2867 : Update french translation by @jphuguet.
+* `fixes` #2874 : Fix download image on context menu by @ildyria.
+* `fixes` #2875 : End of Line fixed during clone to avoid prettier to mess up formatting by @ildyria.
+* `klo` #2876 : Drop laminas-text, add related source files to Lychee by @ildyria.
+* `fixes` #2879 : Fixes "Videos not loading when going consecutively" by @sancsin.
+* `klo` #2880 : Fix sonar warning by @ildyria.
+* `klo` #2881 : Npm/composer update by @ildyria.
+* `klo` #2884 : Dropping support of php8.2 by @ildyria.
+* `klo` #2885 : Update artifact actions by @ildyria.
+* `fixes` #2887 : Improve version wording by @ildyria.
+* `fixes` #2877 : **Reset localization** (sorry) + improved clarity of language setup by @ildyria.
+* `fixes` #2888 : UI fix maintenance button alignment by @ildyria.
+* `fixes` #2893 : Use h-40 instead of h-56 for maintenance block by @ildyria.
+* `fixes` #2892 : Fix diagnostics not being complete on version 6 by @ildyria.
+* `new` #2894 : Add Docker info, do not display Update Maintenance on docker by @ildyria.
+* `fixes` #2899 : Fix docker status always returning custom by @ildyria.
+* `fixes` #2898 : Fixes Session timeout error #2896 and #2897 by @sancsin.
+* `klo` #2914 : Group dependencies update from dependabots by @ildyria.
+* `klo` #2891 : Add license + copyright to all files by @ildyria.
+* `new` #2919 : Update README.md by @Espionage724.
+* `new` #2927 : Implements enhancement ideas in #2924 and #2925 and fixes #2925 by @sancsin.
+  > #2924 : Video finishing before moving to next photo/video in slideshow mode
+  > #2925 : Next and Previous buttons hidden when in slideshow mode
+* `fixes` #2929 : Fix links from LycheeOrg.github.io to LycheeOrg.dev by @ildyria.
+* `klo` #2928 : Mark all legacy classes as final by @ildyria.
+* `klo` #2930 : Set up codeowners in simple way by @ildyria.
+* `klo` #2931 : Remove some exceptions from phpstan.neon by @ildyria.
+* `klo` #2923 : Improve code coverage by @ildyria.
+* `fixes` #2936 : Zip are directly GET requests we do not have the XSRF token by @ildyria.
+* `new` #2945 : Scroll to thumbnail of viewed photo in Album View by @sancsin.
+* `fixes` #2922 : Add configuration integrity check by @ildyria.
+* `klo` #2921 : Check that the copyright notice is present in all files by @ildyria.
+* `new` #2947 : Add latency middleware to see loading times in development by @ildyria.
+* `fixes` #2948 : Fix forgotten to cast to boolean by @ildyria.
+* `klo` #2952 : Update csp config with base by @ildyria.
+* `new` #2955 : Add a feature flag to disable the content-type verification by @ildyria.
+* `new` #2958 : Add a small heartbeat endpoint (`/up`) by @ildyria.
+* `fixes` #2959 : Minor UX UI improvements by @ildyria.
+* `klo` #2960 : Add license checker by @ildyria.
+* `fixes` #2962 : Fix cors setting on Vite 6.0.9 by @ildyria.
+* `new` #2954 : Allow to edit taken_at date by @ildyria.
+* `klo` #2973 : Add class-leak checker by @ildyria.
+* `new` #2938 : Add modal for creating sharing by @ildyria.
+* `new` #2950 / #2951 : Sharing propagation by @ildyria.
+* `fixes` #2977 : Fixes the delete button text by @RustyPotato.
+* `fixes` #2978 : Fixes Displayed Times in Jobs page by @RustyPotato.
+* `fixes` #2979 : Fixes more missing dialog strings by @RustyPotato.
+* `new` #2859 : Add Caching for faster response time by @ildyria.
+* `klo` #2981 : Make sure that all v2 API routes are covered by the caching by @ildyria.
+* `fixes` #2982 : Fix landing page animations by @ildyria.
+* `fixes` #2990 : Fix broken build on ARM by @ildyria.
+* `fixes` #2994 : Fixes #2993 and #2992 by @sancsin.
+  > #2992 : Photos in-between two selected photos are not selecting when using shift-select to select multiple photos.
+  > #2993 : Albums in-between two selected albums are not selecting when using shift-select to select multiple albums in gallery view.
+* `new` #2890 : Frontend part of Duplicate Finder by @ildyria.
+* `new` #2889 : Backend part of Duplicate Finder by @ildyria.
+* `fixes` #2934 : Php 32bit - Zip-stream with version 2.1 instead of 3.1 by @ildyria.
+  > This allows users of php with 32 bits to use the zip download feature.
+  > Zip-Strean 3.1 only supports 64 bits systems, as a result we allow to use Zip-stream 2.4 or 3.1 depending of the architecture.
+  > In such case, we advise 32 bits users to remove their `composer.lock` and do a `composer install` as the `composer.lock` is targetted at 64 bits builds.
+* `fixes` #2996 : Fix api doc not showing by @ildyria.
+  > Api docs were broken for an obscure reason.
+* `new` #3001 : Feature: Authelia login support by @usmanatron.
+* `klo` #3003 : Update dependencies + fix CVE complaint from OSSF by @ildyria.
+* `klo` #3004 : Improve .env.example by @ildyria.
+
+#### New Contributors
+
+* @jphuguet made their first contribution in #2867.
+* @sancsin made their first contribution in #2879.
+* @Espionage724 made their first contribution in #2919.
+* @RustyPotato made their first contribution in #2977.
+* @usmanatron made their first contribution in #3001.
+
+#### New Developer
+
+We welcome @sancsin in the team. He already made valuable contributions to the project.
+
+#### New Reviewers
+
+We welcome @RonnieTaz and @jasonmillward in the reviewing team.
+They are going to help us with changes, relieving some of the pressure from @d7415 .
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.2.0...v6.3.0
+
+
 ### v6.2.0
 
 Released on Dec 17, 2024
@@ -40,9 +182,6 @@ While this release is mainly focused on fixing bugs, we add back the live API do
 We implemented a type inference system that allows scramble to also support the Spatie Data objects.
 
 #### Changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-`SE` refers to functionalities that are aimed at the Supporter Edition.
 
 * `fixes` #2757 : Change the plaintext-field to a password-field in AlbumUnlock by @Gendra13.
   > Minor oversight, the password was displayed in clear text at input.
