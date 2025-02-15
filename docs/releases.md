@@ -30,6 +30,17 @@
 
 ## Version 6
 
+### v6.3.1
+
+Released on Feb 15, 2025
+
+#### Changes
+
+* `fixes` #3006 : catch Error when Redis is crashing and not die in 500... by @ildyria.
+  > Mis-configuration of redis cache could crash the server catastrophically. The user had to change their
+  > `.env` file into insecure settings in order to be able to debug the issue. Instead we just log the crash
+  > in error log and execute the request as expected.
+
 ### v6.3.0
 
 Released on Feb 14, 2025
