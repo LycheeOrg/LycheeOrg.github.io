@@ -30,6 +30,44 @@
 
 ## Version 6
 
+### v6.3.3
+
+Released on Feb 21, 2025
+
+#### Changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `new` #3015 : Do not display useless message in diagnostics by @ildyria.
+* `fixes` #3011 : Handle failing encoding gracefully by @ildyria.
+* `new` #3012 : Add config option for the number of operations done by @ildyria.
+* `new` #3013 : Full permission check is now disabled by default by @ildyria.
+* `se` #3014 : Add more privacy options by @ildyria.
+* `se` #2983 : Add more statistics: punch card a la GitHub (SE) by @ildyria.
+* `fixes` #3032 : Fix aspect ratio being dropped due to Tree shaking by @ildyria.
+* `new` #3026 : Add more markdown processing options by @ildyria.
+* `klo` #3028 : Offboarding Sonar - done with it breaking randomly... by @ildyria.
+
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.3.2...v6.3.3
+
+### v6.3.2
+
+Released on Feb 17, 2025
+
+#### Changes
+
+* `fixes` #3007 : Fix wrong translation keys by @ildyria.
+* `new` #3009 : RSS Feed Enhancements (enclosure + category) by @cdzombak.
+* `fixes` #3010 : Fix missing dependency in production build by @ildyria.
+
+#### New Contributors
+* @cdzombak made their first contribution in #3009
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.3.1...v6.3.2
+
+
 ### v6.3.1
 
 Released on Feb 15, 2025
@@ -73,9 +111,6 @@ We also recommend that you set in order to retain access to your logs if the red
 
 
 #### Changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-`SE` refers to functionalities that are aimed at the Supporter Edition.
 
 * `klo` #2824 : Composer + npm update by @ildyria.
 * `fixes` #2823 : Fix user count not updated on front-end when creating new users by @ildyria.
