@@ -30,14 +30,141 @@
 
 ## Version 6
 
-### v6.3.3
+### v6.4.0
 
-Released on Feb 21, 2025
+Released on Mar 23, 2025
+
+#### Mostly a klo release, but a spicy one!
+
+One of the weakness of our codebase was a constant mix between camelCase and snake_case.
+This was due to the combination of:
+- the database attributes being in snake_case
+- the old style php being in snake_case
+- some recent contributions being in camelCase
+- Matthias and Ildyria are also a enterprise grade developers (understand Java, C++, C#) and we are used to camelCase.
+
+As a result, ppshobi decided to write a rector rule to convert all the code base to a single standard.
+After further thoughts, we decided to go with snake_case. This is a bit more verbose, but it is easier to read when you are not use to camelCase.
 
 #### Changes
 
 `klo` refers to *Keep the Light On*. In other words, basic software updates.  
 `SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `new` #3100 : feat: custom variable casing rector rule to convert camelCase vars to snake_case by @ppshobi.
+* `fixes` #3107 : Do not upload placeholders to S3 by @ildyria.
+  > The placeholder are base64 encoded directly in the database, as a result, when the jobs uploading 
+  > the images to S3, they couldn't find the non-existing images and were crashing.
+  > We fixes this.
+* `klo` #3104 : Improve baseline by @ildyria.
+  > Due to migration to Phpstan v2, we had to reset our baseline.
+* `klo` #3109 : Snakecasify variables in app/Actions/Photo by @ildyria.
+* `new` #3091 : feat: basic docker-compose setup by @ppshobi.
+* `klo` #3112 : snakecasify app/Actions/User by @ildyria.
+* `klo` #3113 : snakecasify app/Assets by @ildyria.
+* `klo` #3110 : snakecasify app/Actions/RSS by @ildyria.
+* `klo` #3116 : snakecasify app/Casts by @ildyria.
+* `klo` #3111 : snakecasify app/Actions/Diagnostics by @ildyria.
+* `klo` #3122 : snakecasify app/Jobs by @ildyria.
+* `klo` #3119 : snakecasify app/Factories by @ildyria.
+* `klo` #3115 : Snake caseify  `app/Actions/Import` by @ppshobi.
+* `klo` #3120 : snakecasify app/Http/Middleware by @ildyria.
+* `klo` #3117 : Snakecasify app/Console by @ildyria.
+* `klo` #3121 : snakecasify app/Images by @ildyria.
+* `klo` #3118 : snakecasify app/Exceptions by @ildyria.
+* `klo` #3124 : snakecasify app/Metadata by @ildyria.
+* `klo` #3125 : snakecasify app/ModelFunctions by @ildyria.
+* `klo` #3126 : snakecasify app/Policies by @ildyria.
+* `klo` #3127 : snakecasify app/Relations by @ildyria.
+* `klo` #3128 : snakecasify app/Models by @ildyria.
+* `klo` #3132 : snakecasify app/SmartAlbums by @ildyria.
+* `klo` #3133 : snakecasify app/View by @ildyria.
+* `klo` #3137 : snakecasify app/Http/Controllers by @ildyria.
+* `klo` #3130 : snakecasify app/DTO by @ildyria.
+* `klo` #3139 : snakecasify app/Legacy by @ildyria.
+* `klo` #3138 : snakecasify app/Http/Resources by @ildyria.
+* `new` #3045 : Refactor Album page into 2 components: display - actions by @ildyria.
+  > This is may seem a small change, but this means that effectively the album page is loaded behind the photo view.
+  > As a result, if you go back from a photo to the album view, you no longer have a scroll down and triggering the
+  > loading of all the images (even though they were set to be lazy loaded).
+* `SE` #3045: Add favourite support by @ildyria.
+  > This is a feature that is only available for our Sponsors. It allows any anonymous users to mark a photo as favourite.
+  > This is implemented in a privacy friendly way: the favourite is stored in the local storage of the browser.
+  > As a result, the favourite is only available on the browser that marked the photo as favourite (no cross-device communication, no data on the server).
+* `klo` #3142 : snakecasify all left in app/Actions (#3123) by @ildyria.
+* `fixes` #3136 : Ignore some specific files from being rectorified. by @ildyria.
+  > Due to licensing constraint, we prefer to not touch some files which were directly imported as is (under MIT license).
+* `klo` #3135 : snakecasify app/Http/Requests by @ildyria.
+* `klo` #3131 : snakecasify app/Rules by @ildyria.
+* `klo` #3144 : snakecasify the missing directories by @ildyria.
+* `klo` #3143 : version 6.4.0 by @ildyria.
+
+### v6.3.5
+
+Released on Mar 19, 2025
+
+#### PHPSTAN 2.0 and a new contributor: ppshobi!
+
+We have the pleasure to announce that @ppshobi has joined the team as a developer.
+He has been working on the codebase for a while now and has been a great help in the transition to PHPSTAN 2.0.
+We are looking forward to his future contributions.
+
+#### Changes
+
+* `klo` #3044 : Refactor a bit of UI. by @ildyria.
+* `new` #3034 : Add opcache enabled check by @ildyria.
+  > Mostly useful for debugging purposes.
+* `new` #3059 : Improved left menu by @ildyria.
+  > This makes the menu more in line with current UI standards.
+* `fixes` #3064 : Exclude /feed from content type check by @ildyria.
+  > When loading feeds with Content-Type: application/xml, Lychee was crashing wrongly.
+* `klo` #3062 : Special characters cannot be used for the database password by @ildyria.
+  > Though not recommnended as it complexifies the way you have to install Lychee.
+* `SE` #3069 : Allow anonymous users to upload by @ildyria.
+  > This is only available for our Sponsors, this is also very niche option.
+  > The owner of the album can now decide whether anonymous users can upload to the album.
+  > There is no image validation, as a result, you are responsible for the content that is uploaded.
+  > Use at your own risk.
+* `klo` #3070 : Move legacy translations to Legacy folder by @ildyria.
+  > This is in preparation of the removal of the v4 front-end and to avoid confusion on translation work needed.
+* `fixes` #3078 : isDocker should return false if fails by @ildyria.
+  > The function was crashing when the file was innaccessible, rendering the diagnostic page... effectively useless.
+* `new` #3080 : Add vue-component-analyzer by @ildyria.
+  > This is for our reviewers so they can get a better understanding of the front-end architecture.
+* `new` #3082 : Do not open a new tab when downloading pictures by @ildyria.
+* `new` #3085 : feat: `npm run build-dev` to build js/css etc... assets without minif… by @ppshobi.
+* `klo` #3079 : Fix handle button in toggle being too big. by @ildyria.
+* `new` #3088 : install rector & update phpstan -> set level to 1 and fix errors by @ppshobi.
+  > Preparatory work for the rector runs and version 6.4.0
+* `fixes` #3087 : Drop middleware not existing to avoid a 500 by @ildyria.
+* `new` #3090 : fix: rector default run by @ppshobi.
+* `fixes` #3086 : Fix Mod frame button not visible by @ildyria.
+* `new` #3097 : Polish translations thanks to @jarex691 by @ildyria.
+* `new` #3101 : Fix untranslated strings + more PL translations thanks to @jarex691 by @ildyria.
+* `klo` #3102 : Add logging line to know which size variant crashed. by @ildyria.
+* `klo` #3105 : Version 6.3.5 by @ildyria.
+
+#### New Contributors
+
+* @ppshobi made their first contribution in https://github.com/LycheeOrg/Lychee/pull/3085
+
+### v6.3.4
+
+Released on Feb 28, 2025
+
+#### Changes
+
+* `klo` Add Diagnostics cache checks by @ildyria in https://github.com/LycheeOrg/Lychee/pull/3027
+* `klo` Scroll top button for album and albums views by @sancsin in https://github.com/LycheeOrg/Lychee/pull/3035
+* `klo` Split-oauth endpoint to reduce the number of requests. by @ildyria in https://github.com/LycheeOrg/Lychee/pull/3023
+* `klo` Simplified Chinese localization by @x1ntt in https://github.com/LycheeOrg/Lychee/pull/3046
+* `klo` Version 6.3.4 by @ildyria in https://github.com/LycheeOrg/Lychee/pull/3047
+
+### v6.3.3
+
+Released on Feb 21, 2025
+
+#### Changes
 
 * `new` #3015 : Do not display useless message in diagnostics by @ildyria.
 * `fixes` #3011 : Handle failing encoding gracefully by @ildyria.
