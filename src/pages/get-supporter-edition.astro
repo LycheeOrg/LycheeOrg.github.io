@@ -70,20 +70,33 @@ const metadata = {
         price: 5,
         period: 'Per Month',
         items: [
+          // {
+          //   description: 'Unlimited users.',
+          // },
+          // {
+          //   description: 'Unlimited albums.',
+          // },
+          // {
+          //   description: 'Unlimited photos upload.',
+          // },
           {
-            description: 'Unlimited users.',
-          },
-          {
-            description: 'Unlimited albums.',
-          },
-          {
-            description: 'Unlimited photos upload.',
+            description: 'Same features as the Free Edition.',
           },
           {
             description: 'Statistics on your library.',
+            icon: 'tabler:plus',
           },
           {
             description: 'Upload quota per user.',
+            icon: 'tabler:plus',
+          },
+          {
+            description: 'Anonymous uploads.',
+            icon: 'tabler:plus',
+          },
+          {
+            description: 'Extended customizations.',
+            icon: 'tabler:plus',
           },
           {
             description: 'more to come...',
@@ -280,6 +293,40 @@ const metadata = {
         available: [false, true],
         isV6: true,
       },
+      {
+        feature: 'User groups',
+        available: [false, true],
+        isV6: true,
+        isSoon: true,
+      },
+
+      {
+        feature: 'Timeline',
+        isHeader: true,
+        isV6: true,
+        isSoon: true,
+      },
+      {
+        feature: 'Standalone page',
+        available: [true, true],
+      },
+      {
+        feature: 'Direct date access',
+        available: [true, true],
+      },
+      {
+        feature: 'With access control',
+        available: [true, true],
+      },
+      {
+        feature: 'Custom granularity',
+        available: [false, true],
+      },
+      {
+        feature: 'Custom format',
+        available: [false, true],
+      },
+
 
       {
         feature: 'Modules',
@@ -309,6 +356,10 @@ const metadata = {
         feature: 'Frame display',
         available: [true, true],
       },
+      {
+        feature: 'Personal favourites',
+        available: [false, true],
+      },
 
       {
         feature: 'Administration',
@@ -334,7 +385,6 @@ const metadata = {
         feature: 'Duplicates Finding',
         available: [true, true],
         isV6: true,
-        isSoon: true,
       },
       {
         feature: 'Full manual settings control',

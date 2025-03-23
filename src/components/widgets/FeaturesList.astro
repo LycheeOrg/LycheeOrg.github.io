@@ -41,7 +41,7 @@ const {
         {
           specs.map(({ feature, isHeader, isV6, isSoon, values, available }) => (
             <tr class={(isHeader && ' bg-neutral-50 dark:bg-neutral-800') || ''}>
-              {isHeader && <td class="p-2 font-semibold"><Fragment set:html={feature} /></td>}
+              {isHeader && <td class="p-2 font-semibold"><Fragment set:html={feature} />{ (!isSoon && isV6) && <Tag/> }{ isSoon && <Soon/> }</td>}
               {isHeader && products.map(() => <td class="p-2 text-center" />)}
               {!isHeader && <td class="px-2 text-muted"><Fragment set:html={feature} />{ (!isSoon && isV6) && <Tag/> }{ isSoon && <Soon/> }</td> }
               {!isHeader && values && (values.map((val) => <td class="px-2 text-muted text-center">{val}</td>))}
