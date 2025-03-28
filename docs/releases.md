@@ -30,6 +30,26 @@
 
 ## Version 6
 
+### v6.4.1
+
+Released on Mar 28, 2025
+
+#### Fixes...
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+* `klo` #3058 : Refactoring & simplify by @ildyria.
+* `fixes` #3147 : Fix S3/symlink mitigation conflation by @RickyRomero.
+* `klo` #3145 : phpstan: level 2 by @ppshobi.
+* `klo` #3161 : Composer update by @ildyria.
+* `fixes` #3164 : Fix 500 error when downloading pictures by @ildyria.
+* `klo` #3140 : Dropping Legacy path for Photo create by @ildyria.
+  > We were already rolling with the PIPE version for a while as the value was defaulted to true:
+  > `'create-photo-via-pipes' => (bool) env('PHOTO_PIPES', true),`  
+  > Nobody complained so far, so bye bye old path.
+* `fixes` #3152 : Pin tailwind 4.0.6, add cursor feedback on images & others by @ildyria.
+
+
 ### v6.4.0
 
 Released on Mar 23, 2025
@@ -48,7 +68,6 @@ After further thoughts, we decided to go with snake_case. This is a bit more ver
 
 #### Changes
 
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 `SE` refers to functionalities that are aimed at the Supporter Edition.
 
 * `new` #3100 : feat: custom variable casing rector rule to convert camelCase vars to snake_case by @ppshobi.
