@@ -173,11 +173,11 @@ Released on Feb 28, 2025
 
 #### Changes
 
-* `klo` Add Diagnostics cache checks by @ildyria in https://github.com/LycheeOrg/Lychee/pull/3027
-* `klo` Scroll top button for album and albums views by @sancsin in https://github.com/LycheeOrg/Lychee/pull/3035
-* `klo` Split-oauth endpoint to reduce the number of requests. by @ildyria in https://github.com/LycheeOrg/Lychee/pull/3023
-* `klo` Simplified Chinese localization by @x1ntt in https://github.com/LycheeOrg/Lychee/pull/3046
-* `klo` Version 6.3.4 by @ildyria in https://github.com/LycheeOrg/Lychee/pull/3047
+* `klo` #3027 : Add Diagnostics cache checks by @ildyria.
+* `klo` #3035 : Scroll top button for album and albums views by @sancsin.
+* `klo` #3023 : Split-oauth endpoint to reduce the number of requests. by @ildyria.
+* `klo` #3046 : Simplified Chinese localization by @x1ntt.
+* `klo` #3047 : Version 6.3.4 by @ildyria.
 
 ### v6.3.3
 
