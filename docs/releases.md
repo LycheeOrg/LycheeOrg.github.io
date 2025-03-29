@@ -111,7 +111,7 @@ After further thoughts, we decided to go with snake_case. This is a bit more ver
   > This is implemented in a privacy friendly way: the favourite is stored in the local storage of the browser.
   > As a result, the favourite is only available on the browser that marked the photo as favourite (no cross-device communication, no data on the server).
 * `klo` #3142 : snakecasify all left in app/Actions (#3123) by @ildyria.
-* `fixes` #3136 : Ignore some specific files from being rectorified. by @ildyria.
+* `fixes` #3136 : Ignore some specific files from being rectorified by @ildyria.
   > Due to licensing constraint, we prefer to not touch some files which were directly imported as is (under MIT license).
 * `klo` #3135 : snakecasify app/Http/Requests by @ildyria.
 * `klo` #3131 : snakecasify app/Rules by @ildyria.
@@ -130,7 +130,7 @@ We are looking forward to his future contributions.
 
 #### Changes
 
-* `klo` #3044 : Refactor a bit of UI. by @ildyria.
+* `klo` #3044 : Refactor a bit of UI by @ildyria.
 * `new` #3034 : Add opcache enabled check by @ildyria.
   > Mostly useful for debugging purposes.
 * `new` #3059 : Improved left menu by @ildyria.
@@ -152,7 +152,7 @@ We are looking forward to his future contributions.
   > This is for our reviewers so they can get a better understanding of the front-end architecture.
 * `new` #3082 : Do not open a new tab when downloading pictures by @ildyria.
 * `new` #3085 : feat: `npm run build-dev` to build js/css etc... assets without minif… by @ppshobi.
-* `klo` #3079 : Fix handle button in toggle being too big. by @ildyria.
+* `klo` #3079 : Fix handle button in toggle being too big by @ildyria.
 * `new` #3088 : install rector & update phpstan -> set level to 1 and fix errors by @ppshobi.
   > Preparatory work for the rector runs and version 6.4.0
 * `fixes` #3087 : Drop middleware not existing to avoid a 500 by @ildyria.
@@ -160,7 +160,7 @@ We are looking forward to his future contributions.
 * `fixes` #3086 : Fix Mod frame button not visible by @ildyria.
 * `new` #3097 : Polish translations thanks to @jarex691 by @ildyria.
 * `new` #3101 : Fix untranslated strings + more PL translations thanks to @jarex691 by @ildyria.
-* `klo` #3102 : Add logging line to know which size variant crashed. by @ildyria.
+* `klo` #3102 : Add logging line to know which size variant crashed by @ildyria.
 * `klo` #3105 : Version 6.3.5 by @ildyria.
 
 #### New Contributors
@@ -175,7 +175,7 @@ Released on Feb 28, 2025
 
 * `klo` #3027 : Add Diagnostics cache checks by @ildyria.
 * `klo` #3035 : Scroll top button for album and albums views by @sancsin.
-* `klo` #3023 : Split-oauth endpoint to reduce the number of requests. by @ildyria.
+* `klo` #3023 : Split-oauth endpoint to reduce the number of requests by @ildyria.
 * `klo` #3046 : Simplified Chinese localization by @x1ntt.
 * `klo` #3047 : Version 6.3.4 by @ildyria.
 
