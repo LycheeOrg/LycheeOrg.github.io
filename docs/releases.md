@@ -45,9 +45,9 @@ Released on Apr 4, 2025
 * `new` #3177 : Improvement of French translations by @cedricAbonnel.
 * `new` #3178 : localization: add Russian translation by @Isrofilov.
 * `new` #3179 : Display order index in old setting style in dev mode by @ildyria.
-  > Nothing of matter for normal users, but for developpers, it simplifies the ordering of the settings.
+  > Nothing of matter for normal users, but for developers, it simplifies the ordering of the settings.
 * `se` #3180 : Add option to limit which download is available by @ildyria.
-  > Having the possibility to download all the size variants is overwehelming for some users.
+  > Having the possibility to download all the size variants is overwhelming for some users.
   > As a result, we added the possibility to disable downloading some of those.
   > By default, the square thumbs are now disabled.
 * `klo` #3191 : Npm update by @ildyria.
