@@ -30,13 +30,48 @@
 
 ## Version 6
 
+### v6.4.2
+
+Released on Apr 4, 2025
+
+#### New Settings page & translations (French, Russian)
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `new` #3081 : Refactoring Settings page by @ildyria.
+  > Simplified layout and modernized the settings page.
+  > We also group the settings per category to improve the navigation.
+* `new` #3177 : Improvement of French translations by @cedricAbonnel.
+* `new` #3178 : localization: add Russian translation by @Isrofilov.
+* `new` #3179 : Display order index in old setting style in dev mode by @ildyria.
+  > Nothing of matter for normal users, but for developpers, it simplifies the ordering of the settings.
+* `se` #3180 : Add option to limit which download is available by @ildyria.
+  > Having the possibility to download all the size variants is overwehelming for some users.
+  > As a result, we added the possibility to disable downloading some of those.
+  > By default, the square thumbs are now disabled.
+* `klo` #3191 : Npm update by @ildyria.
+* `fixes` #3190 : Fix 500 when opening directly a smart album by @ildyria.
+* `fixes` #3188 : Fix 500 on direct photo access without small variants by @ildyria.
+* `new` #3173 : Add easy option to hide the button of help modal in the header by @ildyria.
+  > Adds a tick box in the Keybinding help modal to hide the help button.
+* `klo` #3186 : Clarify the photo view modes by @ildyria.
+  > Code refactoring.
+* `fixes` #3167 : Fix parent_album in create album by @ildyria.
+* `fixes` #3169 : Fix 500 error when opcache_get_config is not available by @ildyria.
+* `new` #3170 : Add change log link to left menu by @ildyria.
+  > Change logs of previous and newer versions are now directly available in Lychee.
+* `fixes` #3198 : Version 6.4.2 by @ildyria.
+
+#### New Contributors
+* @cedricAbonnel made their first contribution in https://github.com/LycheeOrg/Lychee/pull/3177
+* @Isrofilov made their first contribution in https://github.com/LycheeOrg/Lychee/pull/3178
+
 ### v6.4.1
 
 Released on Mar 28, 2025
 
 #### Fixes...
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 * `klo` #3058 : Refactoring & simplify by @ildyria.
 * `fixes` #3147 : Fix S3/symlink mitigation conflation by @RickyRomero.
@@ -67,8 +102,6 @@ As a result, ppshobi decided to write a rector rule to convert all the code base
 After further thoughts, we decided to go with snake_case. This is a bit more verbose, but it is easier to read when you are not use to camelCase.
 
 #### Changes
-
-`SE` refers to functionalities that are aimed at the Supporter Edition.
 
 * `new` #3100 : feat: custom variable casing rector rule to convert camelCase vars to snake_case by @ppshobi.
 * `fixes` #3107 : Do not upload placeholders to S3 by @ildyria.
