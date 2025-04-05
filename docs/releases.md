@@ -43,7 +43,7 @@ Released on Apr 4, 2025
   > Simplified layout and modernized the settings page.
   > We also group the settings per category to improve the navigation.
 * `new` #3177 : Improvement of French translations by @cedricAbonnel.
-* `new` #3178 : localization: add Russian translation by @Isrofilov.
+* `new` #3178 : Localization: add Russian translation by @Isrofilov.
 * `new` #3179 : Display order index in old setting style in dev mode by @ildyria.
   > Nothing of matter for normal users, but for developers, it simplifies the ordering of the settings.
 * `se` #3180 : Add option to limit which download is available by @ildyria.
