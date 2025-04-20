@@ -19,7 +19,7 @@ jobs:
           node-version: '20'
 
       - name: Setup Python
-        uses: actions/setup-python@39c08a0eaaa1ab70dfc3ae407aa7529c334f20c8 # v5.5.0
+        uses: actions/setup-python@v5.5.0 # v5.5.0
         with:
           python-version: '3.13' 
 
