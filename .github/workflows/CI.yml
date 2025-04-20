@@ -21,7 +21,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@39c08a0eaaa1ab70dfc3ae407aa7529c334f20c8 # v5.5.0
         with:
-          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          python-version: '3.13' 
 
       - name: Install dependencies
         run: |
