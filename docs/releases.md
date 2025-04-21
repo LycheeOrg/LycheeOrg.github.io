@@ -34,7 +34,7 @@
 
 Released on Apr 21, 2025
 
-### Sync speed improvements, Bulk sharing, and Statistics 
+#### Sync speed improvements, Bulk sharing, and Statistics 
 
 First and foremost, we celebrate the contribution of @JasonMillward, who has joined the team as a developer.
 He has been working on the codebase for a while now doing reviews. His first contribution is not only a big one,
