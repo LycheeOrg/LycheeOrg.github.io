@@ -57,7 +57,7 @@ but also a very useful one. By re-ordering the steps of photo syncing, he produc
   > Those data are visible in the photo detail side bar and under the buttons in the album view.
 * `new` #3219 : Add bulk sharing from v4 by @ildyria.
   > One of the complaints we had was when sharing multiple albums to multiple users in one go,
-  > this was easilly feasible in version 4 in the sharing page but not in version 6.
+  > this was easily feasible in version 4 in the sharing page but not in version 6.
   > This functionality is now back.
 * `fixes` #3233 : Fix Settings crash on docker + pgsql setup by @ildyria.
   > The SQL query was wrong on postgresql, as a result, the settings page was crashing.
@@ -69,7 +69,7 @@ but also a very useful one. By re-ordering the steps of photo syncing, he produc
 #### Other Fixes and KLO changes
 
 * `fixes` #3201 : Fix Webapp debugging by @ildyria.
-  > The CRSF token verification was breaking when running webapp debugging on read operations (GET).
+  > The CSRF token verification was breaking when running webapp debugging on read operations (GET).
   > As a result, we add a environment variable `VITE_HTTP_PROXY_ENABLED` that allows to disable the CSRF token verification.
   > Note that while having this as `true` will not impact the security of Lychee, it will impact the user experience as Lychee
   > will not be able to verify whether a session is still active. The hook on client side will thus be skipped.
@@ -85,7 +85,7 @@ but also a very useful one. By re-ordering the steps of photo syncing, he produc
   > Improve code coverage.
 * `fixes` #3234 : Fix broken Documentation link on README by @tinohager.
 * `new` #3207 : Improve left menu by @ildyria.
-  > In preparation for the timeline page and other functionalities comming to Lychee in the future,
+  > In preparation for the timeline page and other functionalities coming to Lychee in the future,
   > We moved some of the items from the header to the left menu.
   > Consequently, some of those links in album view are now under the hero image instead of in the header 
   > to keep the header style.
