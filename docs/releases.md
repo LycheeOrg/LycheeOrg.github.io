@@ -30,6 +30,19 @@
 
 ## Version 6
 
+### v6.5.1
+
+Released on Apr 21, 2025
+
+#### Hot-fix : force cache clear on version update.
+
+We noticed that for use of caching, when doing an update there is a de synchornization between
+the expected response from the front-end and the cached response from the backend.
+This leaves Lychee in a temporary broken state depending of the ttl parameter of the cache (by default 1 day).
+In order to avoid complaints, we force the cache to be cleared on patch/minor/major version changes.
+
+* `fixes` #3258 : version 6.5.1 + force cache clear by @ildyria.
+
 ### v6.5.0
 
 Released on Apr 21, 2025
