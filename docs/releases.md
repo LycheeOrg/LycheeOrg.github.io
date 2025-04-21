@@ -48,12 +48,12 @@ but also a very useful one. By re-ordering the steps of photo syncing, he produc
 * `new` #3209 : Reorganise pipes when syncing to find and reject duplicates quicker by @JasonMillward.
   > Instead of fetching the exif-data for every pictures, we now first compute the hash and check in the database for duplicates.
   > This significantly improve the rejection speed, and thus the sync speed.
-* `new` #3215 : Support 2 different images between protrait and landscape by @ildyria.
+* `new` #3215 : Support 2 different images between portrait and landscape by @ildyria.
   > When loading the gallery on mobile, the landing image was a vertical narrow crop. We now allow to pick two different images:
   one for landscape and one for portrait displays; adding more versatility to the mobile view. 
 * `SE` #3244 : Add statistics data by @ildyria.
-  > This feature is only available to our supporter and disabled by default. 
-  > We added a few hooks to allow counting the number of views/download/share of albums and photos.
+  > This feature is only available in our Supporter Edition and is disabled by default. 
+  > We added a few hooks to allow counting the number of views/downloads/shares of albums and photos.
   > Those data are visible in the photo detail side bar and under the buttons in the album view.
 * `new` #3219 : Add bulk sharing from v4 by @ildyria.
   > One of the complaints we had was when sharing multiple albums to multiple users in one go,
@@ -63,7 +63,7 @@ but also a very useful one. By re-ordering the steps of photo syncing, he produc
   > The SQL query was wrong on postgresql, as a result, the settings page was crashing.
   > This is now fixed.
 * `new` #3249 : Add quick feedback on top of the job page by @ildyria.
-  > On request of one of our Supporter, we added a quick meter bar on top of the Job page.
+  > On request of one of our supporters, we added a quick meter bar on top of the Job page.
   > This allows the users to get an idea of how many jobs failed over the last 1000 executed.
 
 #### Other Fixes and KLO changes
