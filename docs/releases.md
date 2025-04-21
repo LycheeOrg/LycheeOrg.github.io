@@ -30,14 +30,81 @@
 
 ## Version 6
 
+### v6.5.0
+
+Released on Apr 21, 2025
+
+### Sync speed improvements, Bulk sharing, and Statistics 
+
+First and foremost, we celebrate the contribution of @JasonMillward, who has joined the team as a developer.
+He has been working on the codebase for a while now doing reviews. His first contribution is not only a big one,
+but also a very useful one. By re-ordering the steps of photo syncing, he produced 10x speed up.
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+#### Most notable changes
+
+* `new` #3209 : Reorganise pipes when syncing to find and reject duplicates quicker by @JasonMillward.
+  > Instead of fetching the exif-data for every pictures, we now first compute the hash and check in the database for duplicates.
+  > This significantly improve the rejection speed, and thus the sync speed.
+* `new` #3215 : Support 2 different images between protrait and landscape by @ildyria.
+  > When loading the gallery on mobile, the landing image was a vertical narrow crop. We now allow to pick two different images:
+  one for landscape and one for portrait displays; adding more versatility to the mobile view. 
+* `SE` #3244 : Add statistics data by @ildyria.
+  > This feature is only available to our supporter and disabled by default. 
+  > We added a few hooks to allow counting the number of views/download/share of albums and photos.
+  > Those data are visible in the photo detail side bar and under the buttons in the album view.
+* `new` #3219 : Add bulk sharing from v4 by @ildyria.
+  > One of the complaints we had was when sharing multiple albums to multiple users in one go,
+  > this was easilly feasible in version 4 in the sharing page but not in version 6.
+  > This functionality is now back.
+* `fixes` #3233 : Fix Settings crash on docker + pgsql setup by @ildyria.
+  > The SQL query was wrong on postgresql, as a result, the settings page was crashing.
+  > This is now fixed.
+* `new` #3249 : Add quick feedback on top of the job page by @ildyria.
+  > On request of one of our Supporter, we added a quick meter bar on top of the Job page.
+  > This allows the users to get an idea of how many jobs failed over the last 1000 executed.
+
+#### Other Fixes and KLO changes
+
+* `fixes` #3201 : Fix Webapp debugging by @ildyria.
+  > The CRSF token verification was breaking when running webapp debugging on read operations (GET).
+  > As a result, we add a environment variable `VITE_HTTP_PROXY_ENABLED` that allows to disable the CSRF token verification.
+  > Note that while having this as `true` will not impact the security of Lychee, it will impact the user experience as Lychee
+  > will not be able to verify whether a session is still active. The hook on client side will thus be skipped.
+* `fixes` #3208 : Fix missing UX: Add key enter to create albums by @ildyria.
+* `fixes` #3217 : Fix smart albums not having thumbs by @ildyria.
+* `klo` #3210 : Phpstan lvl 3 by @ildyria.
+  > Increase the code quality requirement.
+* `klo` #3166 : test: AddAlbumRequestTest by @ppshobi.
+  > Improve code coverage.
+* `klo` #3218 : Do not fetch data from internet when running tests by @ildyria.
+  > This is to avoid the tests to fail when the internet is down / we hit the limit rate of GitHub api.
+* `fixes` #3229 : more http tests by @ppshobi.
+  > Improve code coverage.
+* `fixes` #3234 : Fix broken Documentation link on README by @tinohager.
+* `new` #3207 : Improve left menu by @ildyria.
+  > In preparation for the timeline page and other functionalities comming to Lychee in the future,
+  > We moved some of the items from the header to the left menu.
+  > Consequently, some of those links in album view are now under the hero image instead of in the header 
+  > to keep the header style.
+* `fixes` #3242 : Fix create tag album modal: close after create, border rounding by @ildyria.
+  > Minor visual update.
+* `klo` #3241 : Improve coverage of version controller by @ildyria.
+  > Improve code coverage.
+* `klo` #3253 : Refactoring routes files by @ildyria.
+  > Make use of default values and optional parameters in the routes to reduce the total number of routes in Laravel.
+* `klo` #3255 : Refactoring for uniformity by @ildyria.
+  > Just some variable renaming in the front-end.
+* `klo` #3257 : Version 6.5.0 by @ildyria.
+
+
 ### v6.4.2
 
 Released on Apr 4, 2025
 
 #### New Settings page & translations (French, Russian)
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-`SE` refers to functionalities that are aimed at the Supporter Edition.
 
 * `new` #3081 : Refactoring Settings page by @ildyria.
   > Simplified layout and modernized the settings page.
