@@ -30,6 +30,43 @@
 
 ## Version 6
 
+### v6.5.2
+
+Released on Apr 24, 2025
+
+#### Minor fixes, nothing exciting
+
+With this we get rid of 3 minor bugs that were reported by our users.
+
+* `fixes` #3270 : Fix Copy and Tag photo right click operation not working by @ildyria.
+  > The right click options of copy and tags was not working on the album view page when selecting multiple photos.
+* `fixes` #3259 : Fix 500 on smart albums by @ildyria.
+  > Opening a smart album was crashing the server with a 500 error.
+  > This is because we forgot to add some eager loading on our photo model.
+* `fixes` #3273 : Fix taken_at as NaN/NaN/NaN when not existing by @ildyria.
+  > In the rare occurence of a picture without exif data being uploaded, the taken_at date is set to empty.
+  > This created a NaN/NaN/NaN date in the UI dedicated to edition. We now properly handle this case.
+
+#### Other boring changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+* `klo` #3250 : Localization for timeline by @ildyria.
+  > This is preparationary work for the timeline page. Unfortunately due to the current architecture of Lychee,
+  > we will have to park the rest of this feature for a while. Some more heavy refactoring are needed.
+  > While we could implement the timeline page in the current state, users with duplicates photos would be seeing 
+  > those in that page. We do not consider this a good user experience and we prefer to wait until we have a better solution.
+* `klo` #3269 : Add extensions suggestions and lint on JS side by @ildyria.
+  > In order to make it easier for new contributors to work on the codebase,
+  > we added a few extensions to the recommended extensions in the `.vscode` folder.
+* `klo` #3262 : Fix warnings in route.ts by @ildyria.
+  > When editing route.ts in vscode, type script was complaining about missing the type of the components.
+  > This is now fixed.
+* `klo` #3274 : Version 6.5.2 by @ildyria.
+
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.5.1...v6.5.2
+
 ### v6.5.1
 
 Released on Apr 21, 2025
@@ -53,7 +90,6 @@ First and foremost, we celebrate the contribution of @JasonMillward, who has joi
 He has been working on the codebase for a while now doing reviews. His first contribution is not only a big one,
 but also a very useful one. By re-ordering the steps of photo syncing, he produced 10x speed up.
 
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 `SE` refers to functionalities that are aimed at the Supporter Edition.
 
 #### Most notable changes
