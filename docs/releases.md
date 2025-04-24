@@ -44,7 +44,7 @@ With this we get rid of 3 minor bugs that were reported by our users.
   > Opening a smart album was crashing the server with a 500 error.
   > This is because we forgot to add some eager loading on our photo model.
 * `fixes` #3273 : Fix taken_at as NaN/NaN/NaN when not existing by @ildyria.
-  > In the rare occurence of a picture without exif data being uploaded, the taken_at date is set to empty.
+  > In the rare occurrence of a picture without exif data being uploaded, the taken_at date is set to empty.
   > This created a NaN/NaN/NaN date in the UI dedicated to edition. We now properly handle this case.
 
 #### Other boring changes
@@ -52,16 +52,15 @@ With this we get rid of 3 minor bugs that were reported by our users.
 `klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 * `klo` #3250 : Localization for timeline by @ildyria.
-  > This is preparationary work for the timeline page. Unfortunately due to the current architecture of Lychee,
+  > This is preparatory work for the timeline page. Unfortunately due to the current architecture of Lychee,
   > we will have to park the rest of this feature for a while. Some more heavy refactoring are needed.
-  > While we could implement the timeline page in the current state, users with duplicates photos would be seeing 
+  > While we could implement the timeline page in the current state, users with duplicate photos would be seeing 
   > those in that page. We do not consider this a good user experience and we prefer to wait until we have a better solution.
 * `klo` #3269 : Add extensions suggestions and lint on JS side by @ildyria.
   > In order to make it easier for new contributors to work on the codebase,
   > we added a few extensions to the recommended extensions in the `.vscode` folder.
 * `klo` #3262 : Fix warnings in route.ts by @ildyria.
-  > When editing route.ts in vscode, type script was complaining about missing the type of the components.
-  > This is now fixed.
+  > When editing route.ts in vscode, TypeScript was complaining about missing the type of the components.
 * `klo` #3274 : Version 6.5.2 by @ildyria.
 
 
