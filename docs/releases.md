@@ -50,13 +50,13 @@ module is enabled and trying to open album with recently uploaded photos.
   > Grouping of multiple fixes and minor changes:
   > 
   > - Fixes the links when clicking on a photo in the favourite page.
-  > - Fixes the go Back link on the Map and on the Frame pages.
+  > - Fixes the Go Back link on the Map and on the Frame pages.
   > - Fixes the login button not working on the change log page (we now have a link back to the gallery page instead).
   > - Make the side border of the timeline disappear on mobile. We are already limited in pixel real estate, no need to have a border.
-* `fixes` #3293 : Fix Stats not being saved when uploaded. by @ildyria 
+* `fixes` #3293 : Fix stats not being saved when uploaded. by @ildyria 
   > SE users with version 6.5.0 and above will have noticed that after enabling the metrics and uploading new pictures,
-  > this would later results in a 500 error when visiting the containing album. This updates solves this issue. 
-* `klo` #3290 : Improve Errors display by @ildyria 
+  > this would later result in a 500 error when visiting the containing album. This updates solves this issue. 
+* `klo` #3290 : Improve errors display by @ildyria 
   > This update is mostly for devs and error handling in the front-end.
   > This panel is only visible in debug mode and not intended for general users.
 
