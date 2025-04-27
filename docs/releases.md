@@ -30,6 +30,36 @@
 
 ## Version 6
 
+### v6.5.3
+
+Released on Apr 27, 2025
+
+#### Description in thumbs and fixes
+
+This small release is mostly targeted at fixing a few bugs. Though if you are a SE user,
+you will want to upgrade to this version as soon as possible as it solves the error 500 when the metrics 
+module is enabled and trying to open album with recently uploaded photos.
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+* `new` #3263 : Allow description to be used in photo thumb (expert setting) by @ildyria 
+  > A small request from one of our user. This allows to display the description of the photo instead of
+  > its title and date of capture in the thumbnail album view. This text is formatted with markdown and the display
+  > in album view is clamped to a maximum of 3 lines.
+* `fixes` #3288 : Fixes and minor QoL by @ildyria 
+  > Grouping of multiple fixes and minor changes:
+  > 
+  > - Fixes the links when clicking on a photo in the favourite page.
+  > - Fixes the Go Back link on the Map and on the Frame pages.
+  > - Fixes the login button not working on the change log page (we now have a link back to the gallery page instead).
+  > - Make the side border of the timeline disappear on mobile. We are already limited in pixel real estate, no need to have a border.
+* `fixes` #3293 : Fix stats not being saved when uploaded. by @ildyria 
+  > SE users with version 6.5.0 and above will have noticed that after enabling the metrics and uploading new pictures,
+  > this would later result in a 500 error when visiting the containing album. This updates solves this issue. 
+* `klo` #3290 : Improve errors display by @ildyria 
+  > This update is mostly for devs and error handling in the front-end.
+  > This panel is only visible in debug mode and not intended for general users.
+
 ### v6.5.2
 
 Released on Apr 24, 2025
@@ -48,8 +78,6 @@ With this we get rid of 3 minor bugs that were reported by our users.
   > This created a NaN/NaN/NaN date in the UI dedicated to edition. We now properly handle this case.
 
 #### Other boring changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 * `klo` #3250 : Localization for timeline by @ildyria.
   > This is preparatory work for the timeline page. Unfortunately due to the current architecture of Lychee,
