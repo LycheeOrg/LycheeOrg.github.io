@@ -36,7 +36,7 @@ Released on Apr 27, 2025
 
 #### Description in thumbs and fixes
 
-This small release is mostly targetted at fixing a few bugs. Though if you are a SE user,
+This small release is mostly targeted at fixing a few bugs. Though if you are a SE user,
 you will want to upgrade to this version as soon as possible as it solves the error 500 when the metrics 
 module is enabled and trying to open album with recently uploaded photos.
 
@@ -58,7 +58,7 @@ module is enabled and trying to open album with recently uploaded photos.
   > this would later results in a 500 error when visiting the containing album. This updates solves this issue. 
 * `klo` #3290 : Improve Errors display by @ildyria 
   > This update is mostly for devs and error handling in the front-end.
-  > This panel is only visible in debug mode and not inded for general users.
+  > This panel is only visible in debug mode and not intended for general users.
 
 ### v6.5.2
 
