@@ -46,19 +46,19 @@ This fallback process has been extremely useful to us when we deployed the versi
 One may wonder why we decided to do this change, and to that there are two big reasons:
 
 - We no longer will need to maintain a legacy compatibility. Cleaning old code bases is part of the life cycle of a project, and we are now at the point where we can do this. The second reason is that we are planning to refactor the way images are attached to albums.
-- We decided to go in the direction of a many-to-many relationship. In layman terms, this means that a photo can be in multiple albums at the same time. This behaviour is not compatible with the API v1 definitions. This relationship change is going to have significant impact on the way photos access rights are handled, but we are confident this will also enable to provide more interesting features in the future.
+- We decided to go in the direction of a many-to-many relationship. In layman terms, this means that a photo can be in multiple albums at the same time. This behaviour is not compatible with the API v1 definitions. This relationship change is going to have significant impact on the way photos access rights are handled, but we are confident this will also enable us to provide more interesting features in the future.
 
 Now moving on from this 45 000 lines of code removal, we also simplified the way photos are shared. In the past in order to avoid hot-links we had to create symbolic links that expired. This was a bit of a hack. We now provide the option to use signed urls. This ensures that the photo is only available for a limited amount of time. Our SE users will also be happy to know that the url of the photo can also be encrypted, making sure that nobody can access the photo by guessworks.
 
 `klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 * `new` #3296 : Propose revising the footer text as it could be misunderstood by @Novapixel1010.
-  > Small change aimed to clarify that Lychee org is not hosting the pictures but that Lychee is a software that allows user 
+  > Small change aimed to clarify that Lychee org is not hosting the pictures but that Lychee is a software that allows users 
   > to have their own self-hosted gallery.
 * `klo` #3291 : Remove legacy v4 by @ildyria.
   > There is no coming back...
 * `new` #3211 : Drop random symlinks functionality for a more streamlined system by @ildyria.
-  > Remove the symbolic link functionality, this features provide a more modern and secure way to share photos links.
+  > Remove the symbolic link functionality, this feature provides a more modern and secure way to share photos links.
 * `fixes` #3289 : Fixes sharing access rights. by @ildyria.
   > When trying to share multiple albums with multiple users, all the accessible albums could be selected even though the user 
   > was not allowed to edit them. We now only list the albums that are owned by the user.
