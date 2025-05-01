@@ -81,6 +81,7 @@ const metadata = {
           // },
           {
             description: 'Same features as the Free Edition.',
+            classes: { icon: 'bg-green-700 rounded-full text-white' }
           },
           {
             description: 'Statistics on your library.',
@@ -92,6 +93,10 @@ const metadata = {
           },
           {
             description: 'Anonymous uploads.',
+            icon: 'tabler:plus',
+          },
+          {
+            description: 'Secured image links.',
             icon: 'tabler:plus',
           },
           {
@@ -120,10 +125,12 @@ const metadata = {
   />
 
   <FeaturesList
-    title="Full comparison"
+    title="Full comparison<sup class='text-xl'>*</sup>"
     tagline="the essentials and a few more"
     products={['Free', 'Lychee <span class="text-sky-600 dark:text-sky-300">SE</span>']}
-    extra="<sup>*</sup>A lot of default values are still in English. Any pull requests with translation to your own language would help.<br><sup>*</sup><sup>*</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden."
+    extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the large amount of configurations available.<br>\
+    <sup>**</sup> A lot of default values are still in English. Any pull requests with translation to your own language would help.<br>\
+    <sup>***</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden."
     specs={[
       {
         feature: 'Global',
@@ -147,11 +154,11 @@ const metadata = {
         available: [true, true],
       },
       {
-        feature: 'Multiple languages supported<sup>*</sup>',
+        feature: 'Multiple languages supported<sup>*</sup><sup>*</sup>',
         available: [true, true],
       },
       {
-        feature: 'Hide Lychee <span class="text-sky-600 dark:text-sky-300">SE</span> call for actions <sup>*</sup><sup>*</sup>',
+        feature: 'Hide Lychee <span class="text-sky-600 dark:text-sky-300">SE</span> call for actions <sup>*</sup><sup>*</sup><sup>*</sup>',
         available: [true, false],
         isV6: true,
       },
@@ -189,6 +196,16 @@ const metadata = {
       {
         feature: 'Slideshow',
         available: [true, true],
+        isV6: true,
+      },
+      {
+        feature: 'Hotlink protection',
+        available: [true, true],
+        isV6: true,
+      },
+      {
+        feature: 'AES-Secured links',
+        available: [false, true],
         isV6: true,
       },
       {
@@ -410,7 +427,7 @@ const metadata = {
 
   <FAQs
   title="FAQs"
-  subtitle="With the new <span class='font-bold dark:text-neutral-200'>Lychee <span class='text-sky-600 dark:text-sky-300'>SE</span></span> coming soon, we understand that you must have some questions. We try to answer some of them here."
+  subtitle="With the new <span class='font-bold dark:text-neutral-200'>Lychee <span class='text-sky-600 dark:text-sky-300'>SE</span></span> readily available, we understand that you must have some questions. We try to answer some of them here."
   columns={1}
   items={[
     {
