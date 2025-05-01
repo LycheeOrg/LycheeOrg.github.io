@@ -61,7 +61,7 @@ Now moving on from this 45 000 lines of code removal, we also simplified the way
   > Remove the symbolic link functionality, this features provide a more modern and secure way to share photos links.
 * `fixes` #3289 : Fixes sharing access rights. by @ildyria.
   > When trying to share multiple albums with multiple users, all the accessible albums could be selected even though the user 
-  > we not allowed to edit them. We now only list the albums that are owned by the user.
+  > was not allowed to edit them. We now only list the albums that are owned by the user.
 
 #### New Contributors
 
