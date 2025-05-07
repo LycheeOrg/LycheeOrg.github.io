@@ -52,6 +52,7 @@ export const footerData = {
         { text: 'Get Lychee <span class="text-sky-500">SE</span>', href: 'https://lycheeorg.dev/get-supporter-edition' },
         { text: 'GitHub sponsor', href: 'https://github.com/sponsors/LycheeOrg' },
         { text: 'Open Collective', href: 'https://opencollective.com/LycheeOrg' },
+        { text: 'Translations', href: 'https://weblate.lycheeorg.dev' },
       ],
     },
     {
