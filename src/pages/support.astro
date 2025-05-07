@@ -2,7 +2,11 @@
 // import Features2 from '~/components/widgets/Features2.astro';
 // import Features3 from '~/components/widgets/Features3.astro';
 // import Features from '~/components/widgets/Features.astro';
+import Headline from '~/components/blog/Headline.astro';
+import Button from '~/components/ui/Button.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import CallToAction2 from '~/components/widgets/CallToAction.astro';
+import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Features5 from '~/components/widgets/Features5.astro';
@@ -272,5 +276,21 @@ const metadata = {
       },
     ]}
   />
-<!-- </div> -->
+
+    <div class=`max-w-3xl mx-auto text-center p-6 rounded-md dark:shadow-none dark:border dark:border-slate-600`>
+      <div class="mb-4 md:mb-8 text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading" set:html={'Translation efforts'} />
+        <div class="mt-2 md:mt-3 mx-auto text-xl text-gray-500 dark:text-slate-400 font-medium" set:html={'It only takes a little bit of your time, but it greatly helps us.'} />
+      </div>
+      <a href="http://weblate.lycheeorg.dev/engage/lycheeorg/" class="flex justify-center">
+        <img src="http://weblate.lycheeorg.dev/widget/lycheeorg/multi-auto.svg" class="w-full" alt="Translation status" />
+      </a>
+      <div class="flex w-full sm:w-auto my-4 justify-center">
+        <Button
+          variant='secondary'
+          text='Translate now'
+          href='https://weblate.lycheeorg.dev'
+          icon='tabler:language' class="w-full max-w-sm sm:mb-0" />
+      </div>
+    </div>
 </Layout>
