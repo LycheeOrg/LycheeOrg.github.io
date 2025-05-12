@@ -75,7 +75,7 @@ the live metrics. This feature allows you to see the number of visits/downloads/
   > This aims to fix that behaviour.
 * `SE` #3324 : Fix registration control flow always returning false by @ildyria.
   > The registration process was not working properly and always returning false,
-  > as a result work arounds to set the registration key had to be used. This is now fixed.
+  > as a result workarounds to set the registration key had to be used. This is now fixed.
 * `new` #3329 : Add thumbs creation for pdf if enabled in Imagick by @mitpjones.
   > @mitpjones suggested to allow imagick to create thumbs for pdf files (if available).
 
