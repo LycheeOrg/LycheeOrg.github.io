@@ -37,7 +37,7 @@ Released on May 12, 2025
 #### Weblate integration, improved pdf support & live metrics
 
 As you most likely noticed, most of the translations in Lychee are gone since version 6.
-This is due to the the hard reset of the localization files. However in order to get back to our 
+This is due to the hard reset of the localization files. However in order to get back to our 
 former localized state, we have integrated Weblate in our workflow.
 
 Weblate is a web-based translation management system that allows you to translate Lychee in your own language.
@@ -51,7 +51,7 @@ He proposed easy changes which allow to display the first page of the pdf file i
 This is a nice addition to the pdf support we already had in Lychee.
 
 Finally, version 6.6.1 also brings a few bug fixes and a new feature for our Supporter Edition users:
-the live metrics. This features allows you to see the number of visits/downloads/shares of your photos/albums in real time.
+the live metrics. This feature allows you to see the number of visits/downloads/shares of your photos/albums in real time.
 
 #### Most notable changes
 
