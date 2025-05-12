@@ -30,6 +30,55 @@
 
 ## Version 6
 
+### v6.6.1
+
+Released on May 12, 2025
+
+#### Weblate integration, improved pdf support & live metrics
+
+As you most likely noticed, most of the translations in Lychee are gone since version 6.
+This is due to the the hard reset of the localization files. However in order to get back to our 
+former localized state, we have integrated Weblate in our workflow.
+
+Weblate is a web-based translation management system that allows you to translate Lychee in your own language.
+The changes are then proposed to our repository and we can easily integrate them in our codebase.
+If you have a bit of time, we would be very grateful if you could help us translate Lychee in your own language.
+You can do this by going to [https://weblate.lycheeorg.dev/languages/](https://weblate.lycheeorg.dev/languages/)
+and create an account or add suggestions directly.
+
+Aside from this new translation effort, we ought to thank @mitpjones for his work on the pdf support.
+He proposed easy changes which allow to display the first page of the pdf file in the thumbnail view.
+This is a nice addition to the pdf support we already had in Lychee.
+
+Finally, version 6.6.1 also brings a few bug fixes and a new feature for our Supporter Edition users:
+the live metrics. This features allows you to see the number of visits/downloads/shares of your photos/albums in real time.
+
+#### Most notable changes
+
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `SE` #3260 : Add end points for LiveMetrics by @ildyria.
+  > This feature is disabled by default. We add the ability to have a live update 
+  > of the visits/downloads/sharing actions on your Lychee instance.
+* `fixes` #3309 : Trying to follow symbolic links by @ildyria.
+  > We noticed that in the case of docker containers, the space computation in the diagnostics page was not
+  > returning the correct value.
+* `fixes` #3310 : Fix 422 error on Photo Metrics by @ildyria.
+  > Randomly, the metrics sent to the server were not giving the correct photo id value.
+  > This would trigger an error 422, we now avoid to send the data if the photo id is empty.
+* `fixes` #3311 : Forgot to add 'self' to csp object policies by @ildyria.
+  > With the improved support of pdf files, we forgot to add the self policy to the CSP object policies.
+  > As a result, the pdf files were not loading in the browser. This is now fixed.
+* `fixes` #3320 : Use Medium image size for OpenGraph metadata by @cdzombak.
+  > When loading the OpenGraph metadata, we were using the small image size.
+  > Some integrations consider this size too small and refuse to load the image.
+  > This aims to fix that behaviour.
+* `SE` #3324 : Fix registration control flow always returning false by @ildyria.
+  > The registration process was not working properly and always returning false,
+  > as a result work arounds to set the registration key had to be used. This is now fixed.
+* `new` #3329 : Add thumbs creation for pdf if enabled in Imagick by @mitpjones.
+  > @mitpjones suggested to allow imagick to create thumbs for pdf files (if available).
+
 ### v6.6.0
 
 Released on May 1, 2025
@@ -152,8 +201,6 @@ Released on Apr 21, 2025
 First and foremost, we celebrate the contribution of @JasonMillward, who has joined the team as a developer.
 He has been working on the codebase for a while now doing reviews. His first contribution is not only a big one,
 but also a very useful one. By re-ordering the steps of photo syncing, he produced 10x speed up.
-
-`SE` refers to functionalities that are aimed at the Supporter Edition.
 
 #### Most notable changes
 
