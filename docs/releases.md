@@ -51,7 +51,7 @@ He proposed easy changes which allow to display the first page of the pdf file i
 This is a nice addition to the pdf support we already had in Lychee.
 
 Finally, version 6.6.1 also brings a few bug fixes and a new feature for our Supporter Edition users:
-the live metrics. This feature allows you to see the number of visits/downloads/shares of your photos/albums in real time.
+Live Metrics. This feature allows you to see the number of visits/downloads/shares of your photos/albums in real time.
 
 #### Most notable changes
 
