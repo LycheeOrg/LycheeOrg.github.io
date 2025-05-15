@@ -36,10 +36,10 @@ Released on May 15, 2025
 
 #### iFrame integration support and auto open upload popup
 
-One of our user noticed that version 6 was not working within iFrames. This is because we have secure headers
+One of our users noticed that version 6 was not working within iFrames. This is because we have secure headers
 to avoid clickjacking. We added one `.env` variable `SECURITY_HEADER_CSP_FRAME_ANCESTORS` (empty by default)
 which allows to add the domains that are allowed to load Lychee in an iFrame. Note that this kind of integration
-of Lychee is is not recommended as the cookies will also be set with the policy `SameSite=None`.
+of Lychee is not recommended as the cookies will also be set with the policy `SameSite=None`.
 If you wish to use iFrames, to make sure that the configuration remains secure,
 you will also have to set the `SESSION_SECURE_COOKIE` to `true` in your `.env` file.
 
@@ -47,10 +47,10 @@ The second change is a small one, but it is a nice addition: by adding `#upload`
 the upload popup will be automatically opened. This is aimed as users who which to give an upload link to their friends.
 Note that this will require you to have guest upload enabled in the album settings.
 
-* `new` #3343 : Add insecure options (with secure defaults) to use Lyche in iFrames by @ildyria.
+* `new` #3343 : Add insecure options (with secure defaults) to use Lychee in iFrames by @ildyria.
   > This setting needs to be enabled via `.env` configuration and is disabled by default.
 * `new` #3340 : Add `#upload` to trigger upload modal from url in an album by @ildyria.
-  > For this to works, guest upload must be enabled in the album settings.
+  > For this to work, guest upload must be enabled in the album settings.
 
 
 ### v6.6.1
