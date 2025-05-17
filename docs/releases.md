@@ -30,6 +30,18 @@
 
 ## Version 6
 
+### v6.6.3
+
+Released on May 17, 2025
+
+#### Fix broken hotlinking prevention
+
+This version fixes the hotlinking prevention that was broken since version 6.6.0.
+We also added a few tests to make sure that this bug does not happen again.
+
+* `fix` #3348 : Fix secure link missing route by @ildyria.
+
+
 ### v6.6.2
 
 Released on May 15, 2025
