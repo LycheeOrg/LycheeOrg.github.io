@@ -56,7 +56,7 @@ If you wish to use iFrames, to make sure that the configuration remains secure,
 you will also have to set the `SESSION_SECURE_COOKIE` to `true` in your `.env` file.
 
 The second change is a small one, but it is a nice addition: by adding `#upload` to a Lychee album url,
-the upload popup will be automatically opened. This is aimed as users who which to give an upload link to their friends.
+the upload popup will be automatically opened. This is aimed as users who wish to give an upload link to their friends.
 Note that this will require you to have guest upload enabled in the album settings.
 
 * `new` #3343 : Add insecure options (with secure defaults) to use Lychee in iFrames by @ildyria.
