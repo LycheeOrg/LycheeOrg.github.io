@@ -30,6 +30,38 @@
 
 ## Version 6
 
+### v6.6.4
+
+Releaed on May 25, 2025
+
+#### Fixes and improved visuals.
+
+This small release fixes an indexing bug in the timeline view mode and adds a few visual improvements, namely:
+- The ability to change the size of the previous/next buttons in the photo view.
+- An annimation when switching images in the photo view.
+- A proper login page instead of a modal.
+
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+* `new` #3351 : Add go home link on error page by @ildyria
+  > When directly accessing a photo or album without permission or which does not exists, we customized the error page 
+  > to display a link to go back to the gallery home page.
+* `fixes` #3364 : Fix timeline mode wrong indexing. by @ildyria
+* `fixes` #3365 : Add fail safe for non-existing statistics & maintenance option by @ildyria
+* `klo` #3353 : Add slider description in Settings by @ildyria
+  > In the settings page, the slider options did not have a description, only a title.
+  > This makes it easier to understand what the slider option  is for.
+* `new` #3352 : Option for bigger sized previous/next buttons by @ildyria
+  > The previous and next buttons in the photo view can now be customized in size: small or big.
+* `new` #3354 : Improve animation when switching images by @ildyria
+  > When switching to the next image in the photo view, there a small movement of the image from the left to the right.
+  > Similarly, when switching to the previous image, the image moves from the right to the left.
+  > This small changes makes it easier to see that the image has changed.
+  > At the same time, we also get rid of the curtain mode when going to next/previous image on slideshow mode.
+* `new` #3366 : Add login page instead of modal by @ildyria
+  > This preparation work for adding a registration page in the future.
+
 ### v6.6.3
 
 Released on May 17, 2025
@@ -133,8 +165,6 @@ One may wonder why we decided to do this change, and to that there are two big r
 - We are planning to refactor the way images are attached to albums. We decided to go in the direction of a many-to-many relationship. In layman terms, this means that a photo can be in multiple albums at the same time. This behaviour is not compatible with the API v1 definitions. This relationship change is going to have significant impact on the way photos access rights are handled, but we are confident this will also enable us to provide more interesting features in the future.
 
 Now moving on from this 45 000 lines of code removal, we also simplified the way photos are shared. In the past in order to avoid hot-links we had to create symbolic links that expired. This was a bit of a hack. We now provide the option to use signed urls. This ensures that the photo is only available for a limited amount of time. Our SE users will also be happy to know that the url of the photo can also be encrypted, making sure that nobody can access the photo by guessworks.
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 * `new` #3296 : Propose revising the footer text as it could be misunderstood by @Novapixel1010.
   > Small change aimed to clarify that Lychee org is not hosting the pictures but that Lychee is a software that allows users 
