@@ -55,12 +55,12 @@ This small release fixes an indexing bug in the timeline view mode and adds a fe
 * `new` #3352 : Option for bigger sized previous/next buttons by @ildyria
   > The previous and next buttons in the photo view can now be customized in size: small or big.
 * `new` #3354 : Improve animation when switching images by @ildyria
-  > When switching to the next image in the photo view, there a small movement of the image from the left to the right.
+  > When switching to the next image in the photo view, there is a small movement of the image from the left to the right.
   > Similarly, when switching to the previous image, the image moves from the right to the left.
   > This small changes makes it easier to see that the image has changed.
   > At the same time, we also get rid of the curtain mode when going to next/previous image on slideshow mode.
 * `new` #3366 : Add login page instead of modal by @ildyria
-  > This preparation work for adding a registration page in the future.
+  > This is preparation work for adding a registration page in the future.
 
 ### v6.6.3
 
