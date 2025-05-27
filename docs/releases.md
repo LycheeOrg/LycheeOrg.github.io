@@ -30,6 +30,20 @@
 
 ## Version 6
 
+### v6.6.5
+
+Released on May 27, 2025
+
+#### Temporary and Secure link fixes
+
+This is a small release that fixes the temporary links and AES-secured links which were broken on docker.
+We also split the functionality: you can either use the secure link or the temporary link, or both at the same time.
+
+PS: AES-secured links are only available in the Supporter Edition.
+
+* `fixes` #3373 : Fix temporary URL on docker setup by @ildyria.
+  > This fixes the temporary links which were broken on docker.
+
 ### v6.6.4
 
 Releaed on May 25, 2025
@@ -37,6 +51,7 @@ Releaed on May 25, 2025
 #### Fixes and improved visuals.
 
 This small release fixes an indexing bug in the timeline view mode and adds a few visual improvements, namely:
+
 - The ability to change the size of the previous/next buttons in the photo view.
 - An annimation when switching images in the photo view.
 - A proper login page instead of a modal.
