@@ -198,14 +198,14 @@ To use Redis, you need the [PhpRedis](https://github.com/phpredis/phpredis) PHP 
 
 #### AWS
 
-| Option                  | Description                                          |
-|-------------------------|------------------------------------------------------|
-| `AWS_ACCESS_KEY_ID`     | Access key ID for AWS                                |
-| `AWS_SECRET_ACCESS_KEY` | Secret access key for AWS                            |
-| `AWS_DEFAULT_REGION`    | Default AWS region                                   |
-| `AWS_URL`               | Overrides viewing URL, for use with CDNs and similar |
-| `AWS_BUCKET`            | The bucket to use                                    |
-| `AWS_ENDPOINT`          | The endpoint for uploads. `AWS_URL` defaults to this |
+| Option                  | Description                                               |
+|-------------------------|-----------------------------------------------------------|
+| `AWS_ACCESS_KEY_ID`     | Access key ID for AWS                                     |
+| `AWS_SECRET_ACCESS_KEY` | Secret access key for AWS                                 |
+| `AWS_DEFAULT_REGION`    | Default AWS region                                        |
+| `AWS_URL`               | [S3] Overrides viewing URL, for use with CDNs and similar |
+| `AWS_BUCKET`            | [S3] The bucket to use                                    |
+| `AWS_ENDPOINT`          | [S3] The endpoint for uploads. `AWS_URL` defaults to this |
 
 ### Authentication Guards
 
