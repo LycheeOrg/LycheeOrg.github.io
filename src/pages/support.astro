@@ -43,12 +43,37 @@ const metadata = {
     title="Statistics."
     stats={[
       { title: 'Started', amount: '2018' },
-      { title: 'Devs', amount: '2' },
-      { title: 'Lines of Code', amount: '40K' },
+      { title: 'Devs', amount: '6' },
+      { title: 'Lines of Code', amount: '84K' },
     ]}
   />
 
-  <!-- Features3 Widget ************** -->
+<!-- June 7th 2025
+Using https://github.com/boyter/scc
+$/> scc app resources lang database 
+───────────────────────────────────────────────────────────────────────────────
+Language                 Files     Lines   Blanks  Comments     Code Complexity
+───────────────────────────────────────────────────────────────────────────────
+PHP                       1510     95552     9999     26593    58960       1789
+Vue                        153     15782     1279       357    14146        608
+TypeScript                  66      9936      683       452     8801        875
+Blade template              24      1263      103        20     1140         68
+JSON                        21        21        0         0       21          0
+TypeScript Typings           4       778        2         0      776        295
+CSS                          3       618       90        38      490          0
+SVG                          1        15        0         0       15          0
+───────────────────────────────────────────────────────────────────────────────
+Total                     1782    123965    12156     27460    84349       3635
+───────────────────────────────────────────────────────────────────────────────
+Estimated Cost to Develop (organic) $2,844,325
+Estimated Schedule Effort (organic) 20.46 months
+Estimated People Required (organic) 12.35
+───────────────────────────────────────────────────────────────────────────────
+Processed 4742265 bytes, 4.742 megabytes (SI)
+───────────────────────────────────────────────────────────────────────────────
+-->
+
+<!-- Features3 Widget ************** -->
 
   <Features5
     title="Meet the team"
@@ -92,7 +117,15 @@ const metadata = {
           src: 'https://avatars.githubusercontent.com/u/1149781?v=4',
           alt: 'JasonMillward',
         },
-        description: 'contributor.',
+        description: 'reviewer.',
+      },
+      {
+        title: 'RonnieTaz (Vicent Simon)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/67832502?v=4',
+          alt: 'RonnieTaz',
+        },
+        description: 'reviewer.',
       },
     ]}
   />
