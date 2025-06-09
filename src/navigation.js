@@ -65,6 +65,7 @@ export const footerData = {
   secondaryLinks: [
     { text: 'License', href: getPermalink('/license') },
     { text: 'Release Notes', href: getPermalink('/docs/releases.html') },
+    { text: 'Privacy Policy', href: getPermalink('/privacy-policy') },
   ],
   socialLinks: [
       { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
