@@ -30,6 +30,84 @@
 
 ## Version 6
 
+### v6.6.6 😈
+
+Released on Jun 11, 2025
+
+#### Spicy change: Photo and Album relationships, Colour palette extraction and more!
+
+Evil number, spicy changes. This release brings a big turn in the way photos and albums are related to each other.
+Before version 6.6.6, a photo could only be in one album at a time. This was a willing decision aimed at simplifying the way
+photos were accessed and rights were handled. As a result, duplicates would effectively be duplicated rows in the database, which in itself, does not pose a problem of storage.
+However, as I was implementing one of the coming feature: a *Timelines* page, it became clear that this was not going to be usable.
+Duplicates would be displayed successively in such page and it would be impossible to distinguish them. This became the main reason for this change.
+
+While doing this change, it also became clear that legacy ids for albums could no longer be presered.
+As a result, we dropped the legacy ids for albums and photos. This means that the remnants of API v1 are now completely gone.
+
+This release also brings the support of two new languages: Arabic and Dutch. The later is still in early steps as we are still using the Left-to-Right (LTR) layout,
+but we are planning to also add Persian (fa) and with it a full Right-to-Left (RTL) display.
+
+We also added a registration page, which you can enabled/disable in your settings.
+
+Finally for the great supporters of Lychee we added two new feature:
+
+- The ability to create user-groups. This functionality is currently hidden behind a feature flag, but we are planning to make it available soon.
+  This will allow you to create groups of users and share albums with those groups, simplifying the sharing process.
+- The extraction of the dominant colour palette from photos (you will need to enable it in your settings).
+
+
+#### Most notable changes
+
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `new` #3387 : Dutch translations by @ildyria.
+* `new` #3396 : Arabic support by @ildyria.
+* `new` #3388 : Support space in search terms by @ildyria.
+  > You can now search for terms with spaces, to do so, you will need to use quotes around the search term.
+* `new` #3383 : Add option to disable slideshow by @ildyria.
+  > One of our user requested the ability to disable the slideshow mode in the photo view.
+  > Well here it is! Available as an option in the settings page.
+* `new` #3384 : Add registration page by @ildyria.
+  > Registration is disabled by default, but you can enable it in the User Management section of the settings page.
+* `new` #3379 : Add option to override the album visibility for smart and tag albums by @ildyria.
+  > By default, smart albums and tag albums are respecting the access rights of the user to select the pictures.
+  > One of our user requested the ability to override this visibility constraint. This option is now available in the settings page. 
+* `SE` #3406 : Add User-groups by @ildyria.
+  > User Groups are coming, as they do not provide value for the moment, they are hidden behind a feature flag.
+* `SE` #3409 : Add color extraction from pictures. by @ildyria.
+  > This option is available in the image processing section of the settings page.
+  > It allows you to extract the 5 dominant colours from photos. We provide two different engines for this:
+  >  
+  > - Slower: `league` does a full sampling and use ciede2000DeltaE for colour distance calculation.
+  > - Faster: `farzai` uses spot sampling and k-mean distance.
+* `new` #3359 : Refactoring photo-album relation by @ildyria.
+  > As explained in the introduction, this is a big change which allows a photo to be in multiple albums at the same time instead of being duplicated.
+  > We are looking forward to the possibilities this opens up for the future.
+* `new` #3375 : Drop legacy id by @ildyria.
+   > Not a big change, but this may impact some of the users who relied on old sharing links.
+
+#### Other boring changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+* `klo` #3374 : Remove "unjustified" photo layout option from code by @ildyria.
+  > Long overdue change, unjustified layout had been removed already in version 5. This is cleaning legacy code.
+* `klo` #3355 : Remove dependency on parent-id and directly extract from the url by @ildyria.
+  > Necessary for the change of the photo-album relationship.
+* `fixes` #3386 : Fix 500 when the imagick config file does not exists by @ildyria.
+  > Version 6.6.5 introduced a check to see whether imagick was properly configured to support pdf.
+  > This check was not working on windows servers as the imagick config file was not present and resulted in a 500 crash.
+  > We fixed it. 
+* `klo` #3390 : Add copilot instructions by @ildyria.
+  > While we are not active AI users, we provide some guidelines for contributors who feel like vibe coding on Lychee.
+* `new` #3389 : Compact left menu by @ildyria.
+  > As we add more and more functionalities, the left menu was getting a bit crowded. This reduces the spacing to avoid having scroll bar. 
+* `klo` #3356 : Refactoring LiveMetrics to avoid photo.album_id requirement. by @ildyria.
+  > Necessary for the change of the photo-album relationship.
+* `klo` #3426 : Minor documentation improvements by @ildyria.
+
+
 ### v6.6.5
 
 Released on May 27, 2025
@@ -56,8 +134,7 @@ This small release fixes an indexing bug in the timeline view mode and adds a fe
 - An annimation when switching images in the photo view.
 - A proper login page instead of a modal.
 
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+#### Most notable changes
 
 * `new` #3351 : Add go home link on error page by @ildyria
   > When directly accessing a photo or album without permission or which does not exists, we customized the error page 

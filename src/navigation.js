@@ -66,6 +66,7 @@ export const footerData = {
     { text: 'License', href: getPermalink('/license') },
     { text: 'Release Notes', href: getPermalink('/docs/releases.html') },
     { text: 'Privacy Policy', href: getPermalink('/privacy-policy') },
+    { text: 'Pull Request Dashboard', href: 'https://pr.lycheeorg.dev/' },
   ],
   socialLinks: [
       { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },

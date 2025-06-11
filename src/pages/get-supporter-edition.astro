@@ -129,7 +129,7 @@ const metadata = {
     tagline="the essentials and a few more"
     products={['Free', 'Lychee <span class="text-sky-600 dark:text-sky-300">SE</span>']}
     extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the large amount of configurations available.<br>\
-    <sup>**</sup> A lot of default values are still in English. Any pull requests with translation to your own language would help.<br>\
+    <sup>**</sup> Some languages are still untranslated. Any translations provided via <a class='text-sky-600 dark:text-sky-300 underline hover:text-sky-400 dark:hover:text-sky-500' href='https://weblate.lycheeorg.dev'>weblate</a> will be appreciated.<br>\
     <sup>***</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden."
     specs={[
       {
@@ -213,6 +213,11 @@ const metadata = {
         available: [false, true],
         isV6: true,
       },
+      {
+        feature: 'Color palette extraction',
+        available: [false, true],
+        isV6: true,
+      },
 
       {
         feature: 'Album management',
@@ -289,43 +294,6 @@ const metadata = {
         available: [false, true],
         isV6: true,
       },
-      {
-        feature: 'User management',
-        isHeader: true,
-      },
-      {
-        feature: 'Login with WebAuthn and Oauth',
-        available: [true, true],
-      },
-      {
-        feature: 'Access rights management per album',
-        available: [true, true],
-      },
-      {
-        feature: 'Cross-user sharing',
-        available: [true, true],
-      },
-      {
-        feature: 'Space usage per user',
-        available: [false, true],
-        isV6: true,
-      },
-      {
-        feature: 'Upload quota per user',
-        available: [false, true],
-        isV6: true,
-      },
-      {
-        feature: 'Admin note per user',
-        available: [false, true],
-        isV6: true,
-      },
-      {
-        feature: 'User groups',
-        available: [false, true],
-        isV6: true,
-        isSoon: true,
-      },
 
       {
         feature: 'Timeline',
@@ -352,6 +320,58 @@ const metadata = {
       {
         feature: 'Custom format',
         available: [false, true],
+      },
+
+      {
+        feature: 'User management',
+        isHeader: true,
+      },
+      {
+        feature: 'Login with WebAuthn and Oauth',
+        available: [true, true],
+      },
+      {
+        feature: 'Registration page',
+        available: [true, true],
+        isV6: true,
+      },
+      {
+        feature: 'Access rights management per album',
+        available: [true, true],
+      },
+      {
+        feature: 'Cross-user sharing',
+        available: [true, true],
+      },
+      {
+        feature: 'Space usage per user',
+        available: [false, true],
+        isV6: true,
+      },
+      {
+        feature: 'Upload quota per user',
+        available: [false, true],
+        isV6: true,
+      },
+      {
+        feature: 'Admin note per user',
+        available: [false, true],
+        isV6: true,
+      },
+
+      {
+        feature: 'User groups',
+        isHeader: true,
+        isV6: true,
+      },
+      {
+        feature: 'Support group admin',
+        available: [false, true],
+      },
+      {
+        feature: 'Support group sharing',
+        available: [false, true],
+        isSoon: true,
       },
 
 
@@ -386,6 +406,7 @@ const metadata = {
       {
         feature: 'Personal favourites',
         available: [false, true],
+        isV6: true,
       },
 
       {
