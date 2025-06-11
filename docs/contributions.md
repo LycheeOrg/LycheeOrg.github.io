@@ -19,7 +19,7 @@ Those are the versions in which we accept vulnerability reports.
 |----------------|-----------|
 | master         | &#10004;  |
 | latest release | &#10004;  |
-| < 5.0          | &#10005;  |
+| < 6.0          | &#10005;  |
 
 If you discover a security vulnerability within Lychee, please contact us directly on [Discord][2]. All security vulnerabilities will be promptly addressed.
 
