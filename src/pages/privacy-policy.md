@@ -17,5 +17,5 @@ LycheeOrg is committed to protecting the privacy of its users. This Privacy Poli
 #### On weblate.lycheeorg.dev
 
 Weblate is used to translate Lychee. It is a third-party service that is self-hosted by us.
-To the best of our knowledge, Weblate does not collect any personal data from its users aside from their mail address
+To the best of our knowledge, the Weblate software does not collect any personal data from its users aside from their email address
 which is required to create an account. Cookies are used to authenticate users and to store their preferences.
