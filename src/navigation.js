@@ -10,8 +10,8 @@ export const headerData = {
           href: getBlogPermalink(),
         },
         {
-          text: 'Lychee Version 6 is Live!',
-          href: getPermalink('2024-10-26-v6', 'post'),
+          text: 'Version 6.6.6 and what is next?',
+          href: getPermalink('2025-06-11-version-6-6-6', 'post'),
         },
         {
           text: 'Current developments',
@@ -66,6 +66,7 @@ export const footerData = {
     { text: 'License', href: getPermalink('/license') },
     { text: 'Release Notes', href: getPermalink('/docs/releases.html') },
     { text: 'Privacy Policy', href: getPermalink('/privacy-policy') },
+    { text: 'Pull Request Dashboard', href: 'https://pr.lycheeorg.dev/' },
   ],
   socialLinks: [
       { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },

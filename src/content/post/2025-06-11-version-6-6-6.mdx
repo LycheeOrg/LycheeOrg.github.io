@@ -1,0 +1,61 @@
+---
+publishDate: 2025-06-11T17:00:00Z
+author: ildyria
+title: 'Version 6.6.6 and what is next?'
+excerpt: Why is version 6.6.6 special? What is next on the roadmap for Lychee?
+image: https://images.unsplash.com/photo-1660262848906-319f55766d2b?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+category: Release Notes
+tags:
+  - lychee
+  - blabla
+  - Supporter Edition
+  - v6
+---
+
+Five days ago, we looked back on what we have accomplished over the past six months.
+
+#### What is special about version 6.6.6?
+
+Today, we are happy to announce the release of Lychee [version 6.6.6](https://github.com/LycheeOrg/Lychee/releases/tag/v6.6.6). An ill-fated version number which marks a brutal change in the way Lychee binds photos to albums.
+We are moving from "*a photo can only be in a single album*" to "*a photo can be in multiple albums*".
+
+To "*render unto Caesar*", [Matthias Nagel](https://github.com/nagmat84) was the first to suggest it, and I was not convinced that it was a good idea.
+It has always been a feature that I thought was not needed, and I was afraid that it would complicate the codebase.
+Now having worked on creating a timeline view, I can see how useful it is to have a photo in multiple albums: it avoids duplication.
+
+While invisible to the user, this architecture change has a big impact. By having the relation a photo has a unique album,
+it makes it possible to do a file mapping between the photos/albums in Lychee and the files/folders on the backend.
+While this is not currently implemented, it could be in the future as this has been a long-standing complaint from some of our users.
+By moving to a many-to-many relation between photos and albums, this mapping is no longer an "easy" task, but we believe the benefits outweigh the drawbacks.
+
+#### Improved way of working with stacked pull requests
+
+Having so many changes in the codebase in parallel makes it hard to keep track of what is going on, what needs to be reviewed, etc.
+To make it easier on our reviewers, we use [stacked pull requests](https://www.stacking.dev/). The idea being that each pull request builds on top of a previous one.
+This way the changes are smaller and thus easier to review.
+
+The first drawback of this approach is that if you use the strategy squash-and-merge, you are facing some issues.
+
+- While the CI guarantees that if you merge from bottom to top into the main branch, you will not have any issues.
+  It quickly goes sideway as conflicts between commits are bound to happen and need to be resolved.
+  The easy way to avoid this is to collapse the stack into a single commit once all the PR are approved before merging into main. 
+- The second issue is that because of squash-and-merge, you will need to rebase to ensure a nice linear stack and propagate changes up.
+  A review on the bottom with change requests will impact the PR above it. There are no easy solution to this but some git wizardry.
+  I will admit that `git reset --soft xxx` has become one of my best friends.
+
+And finally, the last drawback of this approach is the growing number of PRs waiting to be merged. In itself it is not too annoying but GitHub
+does not provide a good visual overview of the state of the stack. For this reason, to increase the visibility of the changes, we have created
+a new [new page](https://pr.lycheeorg.dev/) to list all the open pull requests in a stack and their status.
+Of course as per open-source tradition, the source code is available on [GitHub](https://github.com/LycheeOrg/Lychee-Pull-Requests).
+
+A stack is automatically recognized by following the branch naming-convention `feature-name/pr-name`: all the pull requests that start with the same `feature-name/` are part of the same stack.
+With this, we hope to make it easier for our reviewers to keep track of the changes and for our users to see what is coming next.
+
+#### A bit of help, please?
+
+If you speak Spanish, we would love to take a bit of your time to help us double check the Spanish translation of Lychee.
+The pull request is available on [GitHub: #3398](https://github.com/LycheeOrg/Lychee/pull/3398), just add comments to the lines that need to be changed and we will take care of the rest.
+
+As always, this release would not have been possible without the help of our supporters and hard work of our reviewers.
+If you would like to help or join us, we are always looking for more contributors.
+Please reach out to us on our [Discord](https://discord.gg/JMPvuRQcTf).
