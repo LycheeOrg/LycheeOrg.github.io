@@ -34,7 +34,7 @@ Having so many changes in the codebase in parallel makes it hard to keep track o
 To make it easier on our reviewers, we use [stacked pull requests](https://www.stacking.dev/). The idea being that each pull request builds on top of a previous one.
 This way the changes are smaller and thus easier to review.
 
-The first drawback of this approach is that if you use the stragegy squash-and-merge, you are facing some issues.
+The first drawback of this approach is that if you use the strategy squash-and-merge, you are facing some issues.
 
 - While the CI guarantees that if you merge from bottom to top into the main branch, you will not have any issues.
   It quickly goes sideway as conflicts between commits are bound to happen and need to be resolved.
