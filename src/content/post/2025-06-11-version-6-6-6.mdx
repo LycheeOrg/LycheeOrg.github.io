@@ -25,7 +25,7 @@ Now having worked on creating a timeline view, I can see how useful it is to hav
 
 While invisible to the user, this architecture change has a big impact. By having the relation a photo has a unique album,
 it makes it possible to do a file mapping between the photos/albums in Lychee and the files/folders on the backend.
-While this is not implemented, it could be seen in the future to be made possible as this has been a long-standing complaint from some of our users.
+While this is not currently implemented, it could be in the future as this has been a long-standing complaint from some of our users.
 By moving to a many-to-many relation between photos and albums, this mapping is no longer an "easy" task, but we believe the benefits outweigh the drawbacks.
 
 #### Improved way of working with stacked pull requests
@@ -40,10 +40,10 @@ The first drawback of this approach is that if you use the strategy squash-and-m
   It quickly goes sideway as conflicts between commits are bound to happen and need to be resolved.
   The easy way to avoid this is to collapse the stack into a single commit once all the PR are approved before merging into main. 
 - The second issue is that because of squash-and-merge, you will need to rebase to ensure a nice linear stack and propagate changes up.
-  A review on the bottom with change requests will impact the PR above it. There are no easy solution to this but some git wizardy.
-  I will admit that `git reset --soft xxx` has become one of my best friend.
+  A review on the bottom with change requests will impact the PR above it. There are no easy solution to this but some git wizardry.
+  I will admit that `git reset --soft xxx` has become one of my best friends.
 
-And finally, the last drawback of this approach is the growing number of PR waiting to be merged. In itself it is not to annoying but GitHub
+And finally, the last drawback of this approach is the growing number of PRs waiting to be merged. In itself it is not too annoying but GitHub
 does not provide a good visual overview of the state of the stack. For this reason, to increase the visibility of the changes, we have created
 a new [new page](https://pr.lycheeorg.dev/) to list all the open pull requests in a stack and their status.
 Of course as per open-source tradition, the source code is available on [GitHub](https://github.com/LycheeOrg/Lychee-Pull-Requests).

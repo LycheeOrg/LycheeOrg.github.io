@@ -45,12 +45,12 @@ Duplicates would be displayed successively in such page and it would be impossib
 While doing this change, it also became clear that legacy ids for albums could no longer be preserved.
 As a result, we dropped the legacy ids for albums and photos. This means that the remnants of API v1 are now completely gone.
 
-This release also brings the support of two new languages: Arabic and Dutch. The later is still in early steps as we are still using the Left-to-Right (LTR) layout,
+This release also brings the support of two new languages: Arabic and Dutch. The former is still in early steps as we are still using the Left-to-Right (LTR) layout,
 but we are planning to also add Persian (fa) and with it a full Right-to-Left (RTL) display.
 
-We also added a registration page, which you can enabled/disable in your settings.
+We also added a registration page, which you can enable/disable in your settings.
 
-Finally for the great supporters of Lychee we added two new feature:
+Finally for the great supporters of Lychee we added two new features:
 
 - The ability to create user-groups. This functionality is currently hidden behind a feature flag, but we are planning to make it available soon.
   This will allow you to create groups of users and share albums with those groups, simplifying the sharing process.
@@ -66,20 +66,20 @@ Finally for the great supporters of Lychee we added two new feature:
 * `new` #3388 : Support space in search terms by @ildyria.
   > You can now search for terms with spaces, to do so, you will need to use quotes around the search term.
 * `new` #3383 : Add option to disable slideshow by @ildyria.
-  > One of our user requested the ability to disable the slideshow mode in the photo view.
+  > One of our users requested the ability to disable the slideshow mode in the photo view.
   > Well here it is! Available as an option in the settings page.
 * `new` #3384 : Add registration page by @ildyria.
   > Registration is disabled by default, but you can enable it in the User Management section of the settings page.
 * `new` #3379 : Add option to override the album visibility for smart and tag albums by @ildyria.
   > By default, smart albums and tag albums are respecting the access rights of the user to select the pictures.
-  > One of our user requested the ability to override this visibility constraint. This option is now available in the settings page. 
+  > One of our users requested the ability to override this visibility constraint. This option is now available in the settings page. 
 * `SE` #3406 : Add User-groups by @ildyria.
-  > User Groups are coming, as they do not provide value for the moment, they are hidden behind a feature flag.
+  > User Groups are coming. As they do not provide value for the moment, they are hidden behind a feature flag.
 * `SE` #3409 : Add color extraction from pictures. by @ildyria.
   > This option is available in the image processing section of the settings page.
   > It allows you to extract the 5 dominant colours from photos. We provide two different engines for this:
   >  
-  > - Slower: `league` does a full sampling and use ciede2000DeltaE for colour distance calculation.
+  > - Slower: `league` does a full sampling and uses ciede2000DeltaE for colour distance calculation.
   > - Faster: `farzai` uses spot sampling and k-mean distance.
 * `new` #3359 : Refactoring photo-album relation by @ildyria.
   > As explained in the introduction, this is a big change which allows a photo to be in multiple albums at the same time instead of being duplicated.
