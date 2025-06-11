@@ -42,7 +42,7 @@ photos were accessed and rights were handled. As a result, duplicates would effe
 However, as I was implementing one of the coming feature: a *Timelines* page, it became clear that this was not going to be usable.
 Duplicates would be displayed successively in such page and it would be impossible to distinguish them. This became the main reason for this change.
 
-While doing this change, it also became clear that legacy ids for albums could no longer be presered.
+While doing this change, it also became clear that legacy ids for albums could no longer be preserved.
 As a result, we dropped the legacy ids for albums and photos. This means that the remnants of API v1 are now completely gone.
 
 This release also brings the support of two new languages: Arabic and Dutch. The later is still in early steps as we are still using the Left-to-Right (LTR) layout,
