@@ -180,13 +180,15 @@ If possible, provide a summary of the changes done by the commit in the descript
 </ol>
 
 ## Code of Conduct
-The Lychee code of conduct is the same as Laravel's code of conduct:
 
-- Participants will be tolerant of opposing views.
-- Participants must ensure that their language and actions are free of personal attacks and disparaging personal remarks.
-- When interpreting the words and actions of others, participants should always assume good intentions.
-- Behavior that can be reasonably considered harassment will not be tolerated.
+The Lychee code of conduct can be found [here](https://lycheeorg.dev/code-of-conduct/).
 
+In summary:
+
+- Treat everyone with respect and kindness.
+- Be thoughtful in how you communicate.
+- Don’t be destructive or inflammatory.
+- If you encounter an issue, please contact us directly on [Discord](https://discord.gg/JMPvuRQcTf).
 
 [1]: https://github.com/LycheeOrg/Lychee/issues
 [2]: https://discord.gg/JMPvuRQcTf

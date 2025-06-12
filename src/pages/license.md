@@ -3,6 +3,12 @@ title: 'License'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
+<style>
+    .prose-lg {
+        font-size: 1rem;
+    }
+</style>
+
 ### The MIT License (MIT)
 
 ###### Copyright (c) 2017-2018 Tobias Reich
