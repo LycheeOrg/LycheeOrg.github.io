@@ -39,6 +39,15 @@ export const headerData = {
 export const footerData = {
   links: [
     {
+      title: 'About',
+      links: [
+        { text: 'Code of Conduct', href: getPermalink('/code-of-conduct') },
+        { text: 'Release Notes', href: getPermalink('/docs/releases.html') },
+        { text: 'PR Dashboard', href: 'https://pr.lycheeorg.dev/' },
+        { text: 'Issue trakcer', href: 'https://github.com/LycheeOrg/Lychee/issues' },
+      ]
+    },
+    {
       title: 'Need help?',
       links: [
         { text: 'Read the Docs', href: '/docs' },
@@ -64,9 +73,7 @@ export const footerData = {
   ],
   secondaryLinks: [
     { text: 'License', href: getPermalink('/license') },
-    { text: 'Release Notes', href: getPermalink('/docs/releases.html') },
     { text: 'Privacy Policy', href: getPermalink('/privacy-policy') },
-    { text: 'Pull Request Dashboard', href: 'https://pr.lycheeorg.dev/' },
   ],
   socialLinks: [
       { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },

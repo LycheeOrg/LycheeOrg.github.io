@@ -3,6 +3,12 @@ title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
+<style>
+    .prose-lg {
+        font-size: 1rem;
+    }
+</style>
+
 ### Privacy Policy
 
 LycheeOrg is committed to protecting the privacy of its users. This Privacy Policy outlines how we handle personal data and what measures we take to ensure your privacy.
