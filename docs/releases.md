@@ -36,7 +36,7 @@ Released on Jun 13, 2025
 
 #### Hotfixes, nothing new.
 
-We got a few bug report, so here are the fixes.
+We received a few bug reports, so here are the fixes.
 
 `klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
