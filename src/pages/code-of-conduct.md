@@ -17,7 +17,7 @@ The first goal of the Code of Conduct is to specify a baseline standard of behav
 
 This code of conduct applies to all spaces managed by the LycheeOrg team. This includes the issue tracker, our discord and any other communication channels created by the project team.
 
-If you believe someone is violating the code of conduct, we ask that you report it by contacting one of our team admin on our [Discord](https://discord.gg/JMPvuRQcTf).
+If you believe someone is violating the code of conduct, we ask that you report it by contacting one of our admin team on our [Discord](https://discord.gg/JMPvuRQcTf).
 
 ### Lychee values
 These are the values to which people in the Lychee community (“Lychee users”) should aspire.
@@ -26,8 +26,8 @@ These are the values to which people in the Lychee community (“Lychee users”
 - **Be patient.**
     - Remember that people have varying communication styles and that not everyone is using their native language. (Meaning and tone can be lost in translation.)
 - **Be thoughtful.**
-Productive communication requires effort. Think about how your words will be interpreted.
-Remember that sometimes it is best to refrain entirely from commenting.
+    - Productive communication requires effort. Think about how your words will be interpreted.
+    - Remember that sometimes it is best to refrain entirely from commenting.
 - **Be respectful.**
     - In particular, respect differences of opinion.
 - **Be charitable.**
@@ -36,7 +36,7 @@ Remember that sometimes it is best to refrain entirely from commenting.
 - **Be constructive.**
     - Avoid derailing: stay on topic; if you want to talk about something else, start a new conversation.
     - Avoid unconstructive criticism: don't merely decry the current state of affairs; offer—or at least solicit—suggestions as to how things may be improved.
-    - Avoid snarking (pithy, unproductive, sniping comments)
+    - Avoid snarking (pithy, unproductive, sniping comments).
     - Avoid discussing potentially offensive or sensitive issues; this all too often leads to unnecessary conflict.
     - Avoid microaggressions (brief and commonplace verbal, behavioral and environmental indignities that communicate hostile, derogatory or negative slights and insults to a person or group).
 - **Be responsible.**
