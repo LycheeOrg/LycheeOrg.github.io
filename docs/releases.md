@@ -30,6 +30,34 @@
 
 ## Version 6
 
+### v6.6.8
+
+Released on Jun 14, 2025
+
+#### More fixes...
+
+This is a small release that fixes a bugs that were reported by our users.
+
+* `fixes` #3450 : Fix 500 on caching refresh when updating photos by @ildyria.
+
+### v6.6.7
+
+Released on Jun 13, 2025
+
+#### Hotfixes, nothing new.
+
+We received a few bug reports, so here are the fixes.
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+* `fixes` #3443 : Fix missing album (from) argument on download by @ildyria.
+  > When trying to download a photo from the photo view, this was just triggering a 302 redirection.
+* `fixes` #3445 : Fix preloading of relation missing on Tag albums by @ildyria.
+  > When using tag albums with some of the SE options, the lazy loading was breaking. This is now fixed.
+* `fixes` #3441 : Fix 500 on search by @ildyria.
+  > Search was broken in the marshalling of the JSON data.
+* `klo` #3439 : Remove unused config options, fix buttons in gallery header by @ildyria.
+
 ### v6.6.6 😈
 
 Released on Jun 11, 2025
@@ -88,8 +116,6 @@ Finally for the great supporters of Lychee we added two new features:
    > Not a big change, but this may impact some of the users who relied on old sharing links.
 
 #### Other boring changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 * `klo` #3374 : Remove "unjustified" photo layout option from code by @ildyria.
   > Long overdue change, unjustified layout had been removed already in version 5. This is cleaning legacy code.
