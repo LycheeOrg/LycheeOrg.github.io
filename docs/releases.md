@@ -32,17 +32,17 @@
 
 ### v6.6.9
 
-Released on Jun 14, 2025
+Released on Jun 17, 2025
 
 #### Small fixes
 
-This is a small release that fixes a bugs that were reported by our users.
+This is a small release that fixes a few bugs that were reported by our users.
 
 `klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 * `fixes` #3456 : Do not use metrics on smart albums by @ildyria.
-  > Metrics require a valid album id, on smart albums, those ids do not match the usual pattern
-  > as was returning a 422 error. We disabled the metrics on smart albums.
+  > Metrics require a valid album id. On smart albums, those ids do not match the usual pattern
+  > and were returning a 422 error. We disabled the metrics on smart albums.
 * `klo` #3455 : Check Imagick version 7 in diagnostics by @ildyria. 
   > Our diagnostics page was checking for Imagick version 6 only. We also now support version 7.
 * `fixes` #3461 : Set header from album edit by @ildyria. 
