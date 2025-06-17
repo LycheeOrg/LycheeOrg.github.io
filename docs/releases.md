@@ -53,7 +53,7 @@ Or modify the value of `APP_KEY` in your `.env` file. This will also invalidate 
 This vulnerability miss-uses the `$path` variable sent to the server, which is used to access the photos via the `SecurePathController`.  
 We wrongly assumed that `Storage::disk(StorageDiskType::LOCAL->value)->path($path);` was protected against path traversal attacks which lead to this vulnerability.
 
-When both the encrypted links and the temporary links are disabled, it is possible to call the endpoint with fictuous path values. Ironically, by enabling either of the functionality, the endpoint becomes secure again.
+When both the encrypted links and the temporary links are disabled, it is possible to call the endpoint with fictitious path values. Ironically, by enabling either of the functionality, the endpoint becomes secure again.
 
 #### The fix
 
