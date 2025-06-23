@@ -30,11 +30,22 @@
 
 ## Version 6
 
+### v6.6.11
+
+Released on Jun 23, 2025
+
+#### Minor fix on photo edit.
+
+Editing photos was no longer possible since version 6.6.6, this was due to the change of the photo-album relationship.
+This is now fixed and you can edit your photos again. Sorry for the inconvenience.
+
+* `fixes` #3471 : Photo edit by @ildyria.
+
 ### v6.6.10
 
 Released on Jun 18, 2025
 
-#### Security release: MAJOR Vulnerability fix (9.8)
+#### Security release: MAJOR Vulnerability fix (7.5)
 
 Lychee version between 6.6.6 and 6.6.9 (included) are vulnerable to a path traversal attack.
 This leads the attacker being able to read any files on the server, including `/etc/passwd` and `.env` files...
