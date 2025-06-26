@@ -61,7 +61,7 @@ links that you can share with your friends.
 
 #### Credits
 
-We would like thank my colleague [@foadalavi](https://github.com/foadalavi) for taking the time to review the Persian translations.
+We would like to thank my colleague [@foadalavi](https://github.com/foadalavi) for taking the time to review the Persian translations.
 
 ### v6.6.11
 
