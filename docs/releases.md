@@ -56,7 +56,7 @@ links that you can share with your friends.
 * `fixes` #3494 : fix disappearing header bar on mobile by @ildyria.
 * `new` #3433 : Add backend and frontend for simple invitation links by @ildyria.
 * `new` #3458 : Add quick setup to run pgsql locally with tests by @ildyria.
-  > We added a small pgsql docker compose file a postgresql database setup. This is not meant to be used in production,
+  > We added a small pgsql docker compose file with a postgresql database setup. This is not meant to be used in production,
   > but it will allow us to easily run our test suite locally with a postgresql database.
 
 #### Credits
