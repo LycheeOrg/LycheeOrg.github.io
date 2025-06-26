@@ -30,6 +30,39 @@
 
 ## Version 6
 
+### v6.6.12
+
+Released on Jun 26, 2025
+
+#### Persian, Right to Left (RTL) support, and invite links!
+
+This is a small release that brings a few new features. A few weeks ago we added support for Arabic,
+but that was without the proper reading direction support. By adding support for Persian, we also took the
+time to add a full Right to Left (RTL) integration. There might still be some light display issues,
+but we are confident our middle eastern users will appreciate this.
+
+A bug that has been plaguing lychee for a while was that on mobile, the album header bar was disappearing when switching
+to the photo view. We completely rewrote the way the header bar is displayed and this is now fixed.
+
+In version 6.6.6 we added a new registration page. This was either on or off, but there was no way to filter who could register.
+This release adds the ability to create invite links. As a result, you can keep the registration page disabled and create invite
+links that you can share with your friends.
+
+* `new` #3419 : Add Persian language and fix LTR and RTL display by @ildyria.
+* `new` #3435 : Do not log queries which are faster than 100ms by default by @ildyria.
+  > We added the .env variable `DB_LOG_SQL_MIN_TIME` which allows to you set the minimum time in ms
+  > for a query to be logged. Any SQL queries faster than this will be ignored.
+  > This is not something that is visible to the user, and more of a debugging/profiling feature.
+* `fixes` #3494 : fix disappearing header bar on mobile by @ildyria.
+* `new` #3433 : Add backend and frontend for simple invitation links by @ildyria.
+* `new` #3458 : Add quick setup to run pgsql locally with tests by @ildyria.
+  > We added a small pgsql docker compose file with a postgresql database setup. This is not meant to be used in production,
+  > but it will allow us to easily run our test suite locally with a postgresql database.
+
+#### Credits
+
+We would like to thank my colleague [@foadalavi](https://github.com/foadalavi) for taking the time to review the Persian translations.
+
 ### v6.6.11
 
 Released on Jun 23, 2025
