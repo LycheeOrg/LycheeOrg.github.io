@@ -41,7 +41,7 @@ but that was without the proper reading direction support. By adding support for
 time to add a full Right to Left (RTL) integration. There might still be some light display issues,
 but we are confident our middle eastern users will appreciate this.
 
-A bug that has been pleaguing lychee for a while was that on mobile, the album header bar was disappearing when switching
+A bug that has been plaguing lychee for a while was that on mobile, the album header bar was disappearing when switching
 to the photo view. We completely rewrote the way the header bar is displayed and this is now fixed.
 
 In version 6.6.6 we added a new registration page. This was either on or off, but there was no way to filter who could register.
