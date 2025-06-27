@@ -51,7 +51,7 @@ This leads the attacker to be able to execute any GET request on your local netw
 
 #### The vulnerability
 
-The attack makes use of an unsanized input on an `fopen` call during a photo import.
+The attack makes use of an unsanitized input on an `fopen` call during a photo import.
 This vulnerability would allow an attacker to effectively read any file on your internal network, including localhost.
 
 In itself Lychee is not impacted. As in the attack will not compromise your photos, albums, etc.
