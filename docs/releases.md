@@ -30,6 +30,62 @@
 
 ## Version 6
 
+### v6.6.14
+
+Released on Jun 27, 2025
+
+#### Minor cosmetic hotfix
+
+This is a small patch which fixes a cosmetic issue on the gallery page.
+
+* `fix` #3499 : fix header always showing up by @ildyria.
+
+### v6.6.13
+
+Released on Jun 27, 2025
+
+#### Security release: Server-Side Request Forgery (SSRF) vulnerability fix (3.5)
+
+All versions of Lychee below 6.6.12 are vulnerable to a Server-Side Request Forgery (SSRF) vulnerability.
+This leads the attacker to be able to execute any GET request on your local network.
+
+#### The vulnerability
+
+The attack makes use of an unsanized input on an `fopen` call during a photo import.
+This vulnerability would allow an attacker to effectively read any file on your internal network, including localhost.
+
+In itself Lychee is not impacted. As in the attack will not compromise your photos, albums, etc.
+Furthermore, the attacker needs to have access to an account with upload rights.
+
+However, this still allows the attacker to use Lychee as a *proxy* and interact within your internal network/localhost.
+For example, if you have a notification forwarding service with a GET webhook, that could be exploited to send a notification and start a phishing attack.
+
+#### The Fix
+
+We added multiple optional checks on the urls provided:
+
+- validate that the url formatting
+- validate that the scheme is http/https
+- validate that the port if given is 80 or 443
+- validate that if an ip is used it is not a local ip
+- validate that localhost is not used.
+
+All of them are enabled by default and can be disabled in the expert admin settings.
+
+#### Other changes
+
+* `fix` #3498 : Fix SSRF + bump version by @ildyria.
+  
+* `new` #3491 : Add optional gallery header image by @ildyria.
+  > We added the option to have a header image on top of the gallery page. You will find the configuration in the *Landing page* settings.
+* `fix` #3497 : add some missing RTL support on timeline photo display by @ildyria.
+  > Improvement of the RTL support on timeline photo display.
+
+#### Credits
+
+We would really like to thank [@BaranTeyin1](https://github.com/BaranTeyin1) for reporting this vulnerability.
+
+
 ### v6.6.12
 
 Released on Jun 26, 2025
