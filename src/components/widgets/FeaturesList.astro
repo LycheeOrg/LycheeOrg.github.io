@@ -3,7 +3,6 @@ import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { FeaturesList as Props } from '~/types';
 import Tick from '../ui/Tick.astro';
-import Tag from '../ui/Tag.astro';
 import Soon from '../ui/Soon.astro';
 
 const {
@@ -39,11 +38,11 @@ const {
       </thead>
       <tbody>
         {
-          specs.map(({ feature, isHeader, isV6, isSoon, values, available }) => (
+          specs.map(({ feature, isHeader, isSoon, values, available }) => (
             <tr class={(isHeader && ' bg-neutral-50 dark:bg-neutral-800') || ''}>
-              {isHeader && <td class="p-2 font-semibold"><Fragment set:html={feature} />{ (!isSoon && isV6) && <Tag/> }{ isSoon && <Soon/> }</td>}
+              {isHeader && <td class="p-2 font-semibold"><Fragment set:html={feature} />{ isSoon && <Soon/> }</td>}
               {isHeader && products.map(() => <td class="p-2 text-center" />)}
-              {!isHeader && <td class="px-2 text-muted"><Fragment set:html={feature} />{ (!isSoon && isV6) && <Tag/> }{ isSoon && <Soon/> }</td> }
+              {!isHeader && <td class="px-2 text-muted"><Fragment set:html={feature} />{ isSoon && <Soon/> }</td> }
               {!isHeader && values && (values.map((val) => <td class="px-2 text-muted text-center">{val}</td>))}
               {!isHeader && available && available.map((yes) => <td class="px-2 text-muted text-center">{yes && <Tick />}</td>)}
             </tr>
