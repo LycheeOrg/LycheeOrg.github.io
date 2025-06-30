@@ -128,7 +128,7 @@ const metadata = {
     title="Full comparison<sup class='text-xl'>*</sup>"
     tagline="the essentials and a few more"
     products={['Free', 'Lychee <span class="text-sky-600 dark:text-sky-300">SE</span>']}
-    extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the large amount of configurations available.<br>\
+    extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the large amount of configurations available (200+).<br>\
     <sup>**</sup> Some languages are still untranslated. Any translations provided via <a class='text-sky-600 dark:text-sky-300 underline hover:text-sky-400 dark:hover:text-sky-500' href='https://weblate.lycheeorg.dev'>weblate</a> will be appreciated.<br>\
     <sup>***</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden."
     specs={[
@@ -160,7 +160,6 @@ const metadata = {
       {
         feature: 'Hide Lychee <span class="text-sky-600 dark:text-sky-300">SE</span> call for actions <sup>*</sup><sup>*</sup><sup>*</sup>',
         available: [true, false],
-        isV6: true,
       },
 
 
@@ -191,32 +190,26 @@ const metadata = {
       {
         feature: 'Upload by chunks',
         available: [true, true],
-        isV6: true,
       },
       {
         feature: 'Slideshow',
         available: [true, true],
-        isV6: true,
       },
       {
         feature: 'Hotlink protection',
         available: [true, true],
-        isV6: true,
       },
       {
         feature: 'AES-Secured links',
         available: [false, true],
-        isV6: true,
       },
       {
         feature: 'Statistics (download,share, etc.)',
         available: [false, true],
-        isV6: true,
       },
       {
         feature: 'Color palette extraction',
         available: [false, true],
-        isV6: true,
       },
 
       {
@@ -246,22 +239,18 @@ const metadata = {
       {
         feature: 'Slideshow with previous & next',
         available: [true, true],
-        isV6: true,
       },
       {
         feature: 'Timeline view',
         available: [true, true],
-        isV6: true,
       },
       {
         feature: 'Photo statistics per album',
         available: [false, true],
-        isV6: true,
       },
       {
         feature: 'Statistics (download,share, etc.)',
         available: [false, true],
-        isV6: true,
       },
 
       {
@@ -287,18 +276,45 @@ const metadata = {
       {
         feature: 'Customizable photo layout',
         available: [true, true],
-        isV6: true,
       },
       {
         feature: 'Customizable timeline',
         available: [false, true],
-        isV6: true,
+      },
+
+      {
+        feature: 'Flow (display albums in a feed like manner)',
+        isHeader: true,
+        isSoon: true,
+      },
+      {
+        feature: 'Standalone page',
+        available: [true, true],
+      },
+      {
+        feature: 'With access control',
+        available: [true, true],
+      },
+      {
+        feature: 'Configurable base album',
+        available: [true, true],
+      },
+      {
+        feature: 'Custom strategy: opt-in vs auto',
+        available: [false, true],
+      },
+      {
+        feature: 'Compact mode for flow cards',
+        available: [false, true],
+      },
+      {
+        feature: 'Extensive flow card customizations',
+        available: [false, true],
       },
 
       {
         feature: 'Timeline',
         isHeader: true,
-        isV6: true,
         isSoon: true,
       },
       {
@@ -333,7 +349,10 @@ const metadata = {
       {
         feature: 'Registration page',
         available: [true, true],
-        isV6: true,
+      },
+      {
+        feature: 'Invite links',
+        available: [true, true],
       },
       {
         feature: 'Access rights management per album',
@@ -346,23 +365,24 @@ const metadata = {
       {
         feature: 'Space usage per user',
         available: [false, true],
-        isV6: true,
       },
       {
         feature: 'Upload quota per user',
         available: [false, true],
-        isV6: true,
       },
       {
         feature: 'Admin note per user',
         available: [false, true],
-        isV6: true,
+      },
+      {
+        feature: 'Multi-admin support',
+        available: [false, true],
       },
 
       {
         feature: 'User groups',
         isHeader: true,
-        isV6: true,
+        isSoon: true,
       },
       {
         feature: 'Support group admin',
@@ -371,7 +391,6 @@ const metadata = {
       {
         feature: 'Support group sharing',
         available: [false, true],
-        isSoon: true,
       },
 
 
@@ -406,7 +425,6 @@ const metadata = {
       {
         feature: 'Personal favourites',
         available: [false, true],
-        isV6: true,
       },
 
       {
@@ -432,7 +450,6 @@ const metadata = {
       {
         feature: 'Duplicates Finding',
         available: [true, true],
-        isV6: true,
       },
       {
         feature: 'Full manual settings control',
