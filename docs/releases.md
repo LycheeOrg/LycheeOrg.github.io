@@ -30,6 +30,16 @@
 
 ## Version 6
 
+### v6.7.0
+
+Released on Jul 1, 2025
+
+#### Flow, Sync and more!
+
+This is a major release that brings a lot of new features and improvements.
+
+
+
 ### v6.6.14
 
 Released on Jun 27, 2025

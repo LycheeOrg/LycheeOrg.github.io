@@ -1,0 +1,81 @@
+---
+publishDate: 2025-06-11T17:00:00Z
+author: ildyria
+title: 'Version 6.7: Flow, Sync and a look back at recent releases'
+excerpt: 'We introduce a new way to display your albums, a major update on the sync feature, and more!'
+image: https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=2352&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+category: Release Notes
+tags:
+  - lychee
+  - blabla
+  - Supporter Edition
+  - v6
+---
+
+## A note on recent releases
+
+On **June 11th**, we released **version 6.6.6**, a major update to the core of Lychee. 
+Unfortunately, this version introduced several unforeseen issues, primarily affecting the front-end. 
+In parallel, we also received two vulnerability reports shortly after release, which we promptly addressed.
+This led to a rapid series of patch releases (**6.6.7 to 6.6.14**).
+
+While necessary, we recognize that this unusually high number of rapid releases caused frustration and gave the impression of declining quality.
+We want to be transparent about the challenges we faced and reaffirm our commitment to maintaining Lychee as a secure, reliable, and well-tested photo gallery platform.
+
+- For over five years, we have upheld a strict **4-eyes review principle** on every code change.
+- Our code coverage has consistently remained above **90%**.
+- We have been following the [OpenSSF Best Practices Badge Program](https://www.bestpractices.dev/en) since 2019.
+- Most of the recent issues occurred in the front-end, an area that is inherently more challenging to test
+  comprehensively through automation and often relies on real-world usage to surface edge cases.
+
+Given our relatively small user base (as suggested by the modest number of discussions on GitHub),
+we currently cannot operate a structured beta program or canary release process.
+While we maintain an actively updated `alpha` Docker image for early adopters, its usage remains limited.
+
+In the past, we received feedback that Lychee's release cadence was too slow — more recently, it has been too fast. We are actively working to strike a better balance between timely improvements and overall release stability going forward.
+
+---
+
+## Lychee 6.7.0: Flow, Sync and more!
+
+
+Despite recent turbulence, version **6.7.0** brings exciting new features and important improvements:
+
+- **Full Persian language support and Right-to-Left (RTL) layout.**  
+  Lychee now offers complete localization for Persian-speaking users, including proper display orientation.
+
+- **Invitation links for user management.**  
+  Administrators can now generate invitation links to onboard new users.
+  Similar to platforms like Discord, these links are **time-limited** but **not revocable** once issued.
+  Care should be taken when selecting expiration durations to maintain security and manageability.
+
+- **Admin management.**  
+  The gallery owner can now directly manage admin users, enabling better delegation of administrative tasks.
+
+- **Optional gallery header image.**  
+  You can now personalize your gallery's main page with a configurable image header.
+
+- **Fix for the disappearing album header bar on mobile.**  
+  A long-standing issue affecting mobile navigation has been resolved, improving usability on mobile and touch devices.
+
+- **New "Flow" album view.**  
+  A social-friendly, feed-like display mode showing recent albums in chronological order, ideal for galleries aimed at sharing content with followers.
+
+- **Complete refactoring of the Sync system.**  
+  The synchronization mechanism has been rebuilt for better reliability and performance. Improvements include:
+  - Faster and more reliable.
+  - Fixes for duplicate mis-detection.
+  - Quick duplicate rejection by title, without the need for file hash calculations.
+  - Support for **reverse sync**, enabling automatic removal of photos and albums from Lychee when they no longer exist in the designated source directory.
+
+---
+
+## Thank You
+
+To everyone who reported issues, tested patches, and continued to support us — thank you. Lychee is better because of you.
+
+We remain committed to maintaining high code standards and delivering a photo gallery you can trust and enjoy.
+This release would not have been possible without the help of our community, supporters, and the hard work of our reviewers.
+
+If you would like to contribute, get involved, or simply connect with other Lychee users, we are always looking for more collaborators.  
+Join us on our [Discord server](https://discord.gg/JMPvuRQcTf) — we would love to have you.
