@@ -10,8 +10,8 @@ export const headerData = {
           href: getBlogPermalink(),
         },
         {
-          text: 'Version 6.6.6 and what is next?',
-          href: getPermalink('2025-06-11-version-6-6-6', 'post'),
+          text: 'Version 6.7: Flow, Sync and more...',
+          href: getPermalink('2025-07-01-version-6-7-0', 'post'),
         },
         {
           text: 'Current developments',

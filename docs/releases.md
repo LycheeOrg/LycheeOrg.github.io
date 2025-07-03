@@ -30,6 +30,33 @@
 
 ## Version 6
 
+### v6.7.0
+
+Released on Jul 1, 2025
+
+#### Flow, Sync and more!
+
+This is a significant release that brings 3 new features: Flow, a social-friendly, feed-like display of albums; Lychee:sync has been revamped and is now faster while also works in reverse; and finally our Supporter Edition users can now add multiple admins to their instance.
+
+`SE` refers to functionalities that are aimed at the Supporter Edition.
+
+* `fix` #3508 : Fix photo copy modal not working after a copy by @ildyria.
+  > Small fix of a bug that has been reported to us. When copying a photo the
+  > second time, the target album was visibly selected in the modal but the id
+  > was not set. This is now fixed.
+* `SE` #3506 : Add ability to manage admins + define Lychee owner by @ildyria.
+  > Our Supporters can now add multiple admins to their instance.
+  > In order to avoid your server being taken over, the first admin created is set as owner and protected against modifications.
+* `new` #3478 : Sync revamped, faster and improved by @ildyria.
+  > The sync feature has been completely rewritten.  Improvements include:
+  >
+  > - Faster and more reliable.
+  > - Fixes for duplicate mis-detection.
+  > - Quick duplicate rejection by title, without the need for file hash calculations.
+  > - Support for **reverse sync**, enabling automatic removal of photos and albums from Lychee when they no longer exist in the designated source directory.
+* `new` #3446 : Flow by @ildyria.
+  >   A social-friendly, feed-like display mode showing recent albums in chronological order, ideal for galleries aimed at sharing content with followers.
+
 ### v6.6.14
 
 Released on Jun 27, 2025
@@ -242,8 +269,6 @@ Finally for the great supporters of Lychee we added two new features:
 
 
 #### Most notable changes
-
-`SE` refers to functionalities that are aimed at the Supporter Edition.
 
 * `new` #3387 : Dutch translations by @ildyria.
 * `new` #3396 : Arabic support by @ildyria.
