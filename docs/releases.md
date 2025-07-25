@@ -30,6 +30,47 @@
 
 ## Version 6
 
+### v6.7.1
+
+Released on Jul 25, 2025
+
+#### User groups for our Supporters, UX/UI improvements and a new contributor: cdzombak!
+
+We have the pleasure to announce that [@cdzombak](https://github.com/cdzombak) has joined the team.
+We are looking forward to his many future contributions.
+
+`SE` refers to functionalities that are aimed at the Supporter Edition.  
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+
+
+* `new` #3517 : Remove annoying check preventing migration on prod database by @ildyria.
+  > If you are running lychee but without having the setting `force_migration_in_production` to `false` you were stuck and
+  > needed to set your `APP_ENV` to `local` in order to run the migration.
+  > This safety check was being more annoying that bring actual value, so we removed it. 
+* `fixes` #3523 : Fix album not refreshed when importing via url by @ildyria.
+  > We got report that when importing a photo via url, the album was not refreshed and the photo was not displayed.
+  > We forgot to add the event listener to refresh the album once upload was finished.
+* `SE` #3425 : Add user-group permissions by @ildyria.
+  > This is the big change for our Supporter Edition users. User groups are now available and allows you to share albums
+  > with group of users in one go instead of having to select each user individually.
+* `fixes` #3546 : Sort RSS feed query reverse-chronologically by @cdzombak.
+  > The RSS feed query was not sorting the items in reverse-chronological order.
+  > As a result, only the oldest items were displayed in the feed...
+* `new` #3550 : Improve scrolling UX when exiting photo lightbox by @cdzombak.
+  > When exiting the photo view, we would always scroll even if the photo was already in view.
+  > This makes the behaviour more smooth and less jittery for our users.
+* `fixes` #3551 : Fix broken Back button when viewing photo in lightbox by @cdzombak.
+  > When viewing a photo in lightbox, the back button of the browser was not handled properly.
+* `klo` #3561 : Explicitly set phpstan memory limit to 512MB by @cdzombak.
+  > Some of our devs are working on a slightly memory constrained version of php.
+  > This change makes sure that phpstan does not run out of memory when running the static analysis.
+* `new` #3549 : Allow disabling "swipe up/down to go back" and "scroll to move between photos" gestures by @cdzombak.
+  > Another welcomed change from @cdzombak. The admin can now disable the swipe up/down to go back and scroll to move between photos gestures.
+* `new` #3547 : Include `<img>` tag in RSS item descriptions by @cdzombak.
+  > This change allows the RSS feed to include the actual photo in the rss feed so it can be displayed.
+
+
 ### v6.7.0
 
 Released on Jul 1, 2025
@@ -37,8 +78,6 @@ Released on Jul 1, 2025
 #### Flow, Sync and more!
 
 This is a significant release that brings 3 new features: Flow, a social-friendly, feed-like display of albums; Lychee:sync has been revamped and is now faster while also works in reverse; and finally our Supporter Edition users can now add multiple admins to their instance.
-
-`SE` refers to functionalities that are aimed at the Supporter Edition.
 
 * `fix` #3508 : Fix photo copy modal not working after a copy by @ildyria.
   > Small fix of a bug that has been reported to us. When copying a photo the
@@ -102,7 +141,6 @@ All of them are enabled by default and can be disabled in the expert admin setti
 #### Other changes
 
 * `fix` #3498 : Fix SSRF + bump version by @ildyria.
-  
 * `new` #3491 : Add optional gallery header image by @ildyria.
   > We added the option to have a header image on top of the gallery page. You will find the configuration in the *Landing page* settings.
 * `fix` #3497 : add some missing RTL support on timeline photo display by @ildyria.
@@ -203,8 +241,6 @@ Released on Jun 17, 2025
 #### Small fixes
 
 This is a small release that fixes a few bugs that were reported by our users.
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 * `fixes` #3456 : Do not use metrics on smart albums by @ildyria.
   > Metrics require a valid album id. On smart albums, those ids do not match the usual pattern
