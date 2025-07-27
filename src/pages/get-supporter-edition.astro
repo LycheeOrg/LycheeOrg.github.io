@@ -92,6 +92,10 @@ const metadata = {
             icon: 'tabler:plus',
           },
           {
+            description: 'User groups.',
+            icon: 'tabler:plus',
+          },
+          {
             description: 'Anonymous uploads.',
             icon: 'tabler:plus',
           },
@@ -285,7 +289,6 @@ const metadata = {
       {
         feature: 'Flow (display albums in a feed like manner)',
         isHeader: true,
-        isSoon: true,
       },
       {
         feature: 'Standalone page',
@@ -382,17 +385,19 @@ const metadata = {
       {
         feature: 'User groups',
         isHeader: true,
-        isSoon: true,
       },
       {
-        feature: 'Support group admin',
+        feature: 'With group admin (allow delegation)',
         available: [false, true],
       },
       {
-        feature: 'Support group sharing',
+        feature: 'With group sharing',
         available: [false, true],
       },
-
+      {
+        feature: 'Access rights management per album',
+        available: [false, true],
+      },
 
       {
         feature: 'Modules',
@@ -426,6 +431,36 @@ const metadata = {
         feature: 'Personal favourites',
         available: [false, true],
       },
+
+      {
+        feature: 'Sync with local directories',
+        isHeader: true,
+      },
+      {
+        feature: 'Import via CLI',
+        available: [true, true],
+      },
+      {
+        feature: 'Fast duplicate detection by filename/title',
+        available: [true, true],
+      },
+      {
+        feature: 'Duplicate detection by hash',
+        available: [true, true],
+      },
+      {
+        feature: 'Import from directories as full tree',
+        available: [true, true],
+      },
+      {
+        feature: 'Optional removal of albums when not found in sub-directories',
+        available: [true, true],
+      },
+      {
+        feature: 'Optional removal of photos when not found in directories',
+        available: [true, true],
+      },
+
 
       {
         feature: 'Administration',
