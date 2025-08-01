@@ -41,7 +41,7 @@ In this case the hash of the file is `d48a6235db35f89b0ab27c9f460824d3ad7140be`.
 
 #### Step 2: Locate the database container.
 
-We need to figure out the container ID of the database. This is down by running a `docker ps` command to reveal the active containers.
+We need to figure out the container ID of the database. This is done by running a `docker ps` command to reveal the active containers.
 
 ```sh
 $ docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}"
@@ -64,7 +64,7 @@ For this we use the `docker exec -it <container_id> <command>` command.
 
 This gives us:
 ```sh
-$   docker exec -it 520ac mariadb -u <db_username> -p"<db_password>" <db_name>
+$   docker exec -it 22e2 mariadb -u <db_username> -p"<db_password>" <db_name>
 MariaDB [lychee]>
 ```
 Obviously, replace `<db_username>` by the username used in your `.env`, and similarly `<db_password>` by the password, and `<db_name>` for the database name.  
@@ -73,8 +73,8 @@ Obviously, replace `<db_username>` by the username used in your `.env`, and simi
 
 #### Step 4: Locate the duplicate
 
-Now that we are in, let's do our first query. We could either do and equality test or as we are lazy and do not feel like 
-pasting 40 characters, do a `LIKE`. Do note that I am endinging the _Like-string_ with `%` to specify that this a prefix.
+Now that we are in, let's do our first query. We could either do an equality test or as we are lazy and do not feel like 
+pasting 40 characters, do a `LIKE`. Do note that I am ending the _Like-string_ with `%` to specify that this is a prefix.
 
 ```sql
 SELECT id, title, checksum, original_checksum FROM photos WHERE checksum LIKE 'd48%' OR original_checksum LIKE 'd48%';
@@ -102,7 +102,7 @@ SELECT id, title, checksum, original_checksum FROM photos WHERE checksum LIKE 'd
 ```
 
 We now have all the pictures where the `checksum` or `original_checksum` starts with `d48`, 16 matches.
-Of those only one is intersting for us, the one that matches exactly the sha1sum we computed before:
+Of those only one is interesting for us, the one that matches exactly the sha1sum we computed before:
 `d48a6235db35f89b0ab27c9f460824d3ad7140be`. That one is `_r5_1287` with id `9aujfSLHxurI3mYQhizwvH3A`.
 
 Having the id of the image is not enough to locate it in the UI. We need to do a second query to figure out to which album
