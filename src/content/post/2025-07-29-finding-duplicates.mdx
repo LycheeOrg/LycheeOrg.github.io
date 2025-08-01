@@ -1,0 +1,132 @@
+---
+publishDate: 2025-08-01T17:00:00Z
+author: ildyria
+title: 'Finding duplicates in Lychee database'
+excerpt: 'I get an error when uploading, but I cannot find the duplicate. Where is it?'
+image: https://images.unsplash.com/photo-1516382799247-87df95d790b7?q=80&w=2348&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+category: Tips
+tags:
+  - lychee
+  - tips
+  - sql
+  - cli
+---
+
+## Finding duplicates via the database
+
+When trying to upload a picture, you may be faced with this.
+![Upload failed. The server returned an error!"](/blog/duplicate-error.png)
+
+If you check your logs you will see the following line:
+
+> App\Actions\Photo\Pipe\Duplicate\ThrowSkipDuplicate::handle:27 The photo has been skipped.
+
+One thing to know is that before being imported we do a duplicate check on the file by computing its hash.
+In layman terms, a small fingerprint.
+
+In order to illustrate the recovery process, we are going to try to locate an image called `search_me.jpg`.
+We are also going to assume that Lychee is running via docker compose with a mariadb database.
+
+#### Step 1: Compute the hash.
+
+Fairly simple, open a terminal and use the `sha1sum` command:
+
+```sh
+$ sha1sum search_me.jpg 
+d48a6235db35f89b0ab27c9f460824d3ad7140be  search_me.jpg
+```
+
+In this case the hash of the file is `d48a6235db35f89b0ab27c9f460824d3ad7140be`. Keep it in mind, it will be useful later.
+
+
+#### Step 2: Locate the database container.
+
+We need to figure out the container ID of the database. This is down by running a `docker ps` command to reveal the active containers.
+
+```sh
+$ docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}"
+CONTAINER ID   IMAGE                                                NAMES
+...
+971eec521e53   lycheeorg/lychee:alpha                               Lychee-Core
+...
+22e26dc37e5b   mariadb:11                                           Lychee-DB
+...
+```
+
+In my case there are two important containers: Lychee-Core which uses the docker image of Lychee
+and Lychee-DB which is my database with id `22e26dc37e5b`.
+
+#### Step 3: Login to the database.
+
+Now that we have the id of the database, we can login into it.
+For this we use the `docker exec -it <container_id> <command>` command.
+`-it` means that we want interactivity, the `<container_id>` is the value we have found above: which we can shorten to the first few characters: `22e2`
+
+This gives us:
+```sh
+$   docker exec -it 520ac mariadb -u <db_username> -p"<db_password>" <db_name>
+MariaDB [lychee]>
+```
+Obviously, replace `<db_username>` by the username used in your `.env`, and similarly `<db_password>` by the password, and `<db_name>` for the database name.  
+
+**Pay attention to using the `-p""` to specify the password and not `-p <password>`, otherwise the value won't be recognized.**
+
+#### Step 4: Locate the duplicate
+
+Now that we are in, let's do our first query. We could either do and equality test or as we are lazy and do not feel like 
+pasting 40 characters, do a `LIKE`. Do note that I am endinging the _Like-string_ with `%` to specify that this a prefix.
+
+```sql
+SELECT id, title, checksum, original_checksum FROM photos WHERE checksum LIKE 'd48%' OR original_checksum LIKE 'd48%';
++--------------------------+-------------------------------------------------------+------------------------------------------+------------------------------------------+
+| id                       | title                                                 | checksum                                 | original_checksum                        |
++--------------------------+-------------------------------------------------------+------------------------------------------+------------------------------------------+
+| __-xRRP8V3oRg0OV6BBtkNRe | EOSR3004                                              | d48a6879749d45a8a064d9b88d610353d05128a4 | d48a6879749d45a8a064d9b88d610353d05128a4 |
+| 9aujfSLHxurI3mYQhizwvH3A | _r5_1287                                              | d48a6235db35f89b0ab27c9f460824d3ad7140be | d48a6235db35f89b0ab27c9f460824d3ad7140be |
+| ALURyQ-BAegmSPj-gjPMjpIv | _OSR0580                                              | d4880a6fec9b8a3c366df42b03e20914d61e469b | d4880a6fec9b8a3c366df42b03e20914d61e469b |
+| b6vcdZqay8xJOTXwxKQImy8L | _R5_1229                                              | d48466a6cba0c870d2a7f4bc5ee1427c0748e506 | d48466a6cba0c870d2a7f4bc5ee1427c0748e506 |
+| blzLkn5JckRCzRsJa32h_Voc | EOSR3844                                              | d48f7055407b18fa9748e841037c53fd1b8a0ee8 | d48f7055407b18fa9748e841037c53fd1b8a0ee8 |
+| EODTt26Z8Sq8YFJbh0ggJFcO | 2020-08-17_1120x1600_273ac60a70eb3a07da9c6d3db21709d1 | d48fa40f7861bb54924b1db0f259e9139c223df2 | d48fa40f7861bb54924b1db0f259e9139c223df2 |
+| EYYI3qLMQmG4qFtZvhWPjHVd | _r5_1892                                              | d487864278bf819bc9373e09dc3f6203e714ff82 | d487864278bf819bc9373e09dc3f6203e714ff82 |
+| JJlUxlVEwqTk8cIeNRYSTX_C | IMG_8082                                              | d48d9a4200f5c3435007a2cb86ac6d1db3658b62 | d48d9a4200f5c3435007a2cb86ac6d1db3658b62 |
+| juQ9Ve6wgOAk_Pnzmg-urzkk | EOSR2838                                              | d480a1345bd73d0c0e7e5c77a1e5ede29957996e | d480a1345bd73d0c0e7e5c77a1e5ede29957996e |
+| kw3Nqba5VexTMFjJwhKhuQAB | _R5_2647                                              | d482c009f15443283f4511eb74e88007d438277f | d482c009f15443283f4511eb74e88007d438277f |
+| MatEv_11w7hLcQRCBBGnvQZC | _R5_9965.jpg                                          | d4816ad416a14de431a5bcea6ea5c79231a4d94a | d4816ad416a14de431a5bcea6ea5c79231a4d94a |
+| SQBZAaAcyTXJOqRcrkrat0WV | _R5_6735                                              | d4858be893bf6049b6da785d64db9df9950f593e | d4858be893bf6049b6da785d64db9df9950f593e |
+| tqxyLA1aElH0nmiJnVe8rc0U | _R5_6024                                              | d48f65965a3083de9de961ea62ddfb635fa5b602 | d48f65965a3083de9de961ea62ddfb635fa5b602 |
+| vkDMj6_fgoTl3YEyalPtJLPD | DSC00289                                              | d482963a156577bf6612a08ed8a03f03c306e82c | d482963a156577bf6612a08ed8a03f03c306e82c |
+| VkIXrWJqPDK8B0bq36i95crq | _R5_7324.jpg                                          | d484a3e3510e6a86c5d8de84a23297d2eb136e19 | d484a3e3510e6a86c5d8de84a23297d2eb136e19 |
+| ZxEk1jsN5WWwUBE11BKy2rHY | _R5_2586                                              | d487d9e823856cdc48830de43241fc383ffe93cb | d487d9e823856cdc48830de43241fc383ffe93cb |
++--------------------------+-------------------------------------------------------+------------------------------------------+------------------------------------------+
+16 rows in set (0.001 sec)
+```
+
+We now have all the pictures where the `checksum` or `original_checksum` starts with `d48`, 16 matches.
+Of those only one is intersting for us, the one that matches exactly the sha1sum we computed before:
+`d48a6235db35f89b0ab27c9f460824d3ad7140be`. That one is `_r5_1287` with id `9aujfSLHxurI3mYQhizwvH3A`.
+
+Having the id of the image is not enough to locate it in the UI. We need to do a second query to figure out to which album
+it belongs to. Notice once again the `LIKE` and `%`.
+
+```sql
+SELECT * FROM photo_album WHERE photo_id LIKE '9aujfSLH%';
++--------------------------+--------------------------+
+| album_id                 | photo_id                 |
++--------------------------+--------------------------+
+| pmyOm8GBAUEI0auNGANJd-Uv | 9aujfSLHxurI3mYQhizwvH3A |
++--------------------------+--------------------------+
+1 row in set (0.035 sec)
+```
+
+We now know that our duplicate is located in album with id `pmyOm8GBAUEI0auNGANJd-Uv`.
+
+#### Step 5: Accessing the image.
+
+This is the final step and the easiest. Simply go to your website (`https://your-lychee-photo-gallery.test/gallery`) and login as admin to get all access rights.
+Then open `https://your-lychee-photo-gallery.test/gallery/<album_id>/<photo_id>`, this will directly put you in from of the duplicate in its album.
+In my case, that would have been `lychee.test/gallery/pmyOm8GBAUEI0auNGANJd-Uv/9aujfSLHxurI3mYQhizwvH3A`.
+
+![Duplicate found](/blog/duplicate-found.png)
+
+I hope this small write up helped you in some way.
+
