@@ -30,6 +30,35 @@
 
 ## Version 6
 
+### v6.7.2
+
+Released on Aug 7, 2025
+
+#### Login options and fixes
+
+A simple release, we added the ability to disable some login options in order to allow enforcing e.g. Single Sign On (SSO).
+We also fixed a few bugs that were reported by our users.
+
+* `new` #3539 : Add throttling to login api: 10 tentative per hour by @ildyria.
+  > This is a security measure to avoid brute-force attacks.
+* `new` #3382 : Add .env variable to disable basic login and WebAuthn login by @ildyria.
+* `new` #3521 : feat: Add a small module for links by @ildyria.
+* `fix` #3567 : fix "command" or "a" independently selecting all items by @cdzombak.
+  > This fixes an issue where pressing "command" on mac would select all items in the album view.
+* `fix` #3575 : Mark placeholder as NOT downloadable by @ildyria.
+  > Placeholder photos are base64 encoded images in the database. They are not meant to be downloaded.
+* `fix` #3573 : On small screen, remove padding on left & right padding by @ildyria.
+  > Small QoL change to remove the padding on the left and right on the photo view.
+* `fix` #3574 : Fix icon showing up in details even when taken-at is null by @ildyria.
+* `fix` #3581 : fix header on album view when search is active by @ildyria.
+  > Weird padding appearing when search made available in album view.
+* `fix` #3533 : While processing in CLI, do not crash on large photos by @ildyria.
+  > Large photos could crash the processing because going over the memory limits of Imagick.
+  > We gracefully handle this case now and do not crash the CLI.
+* `fix` #3597 : Fix: access rights failing due to relationship missing by @ildyria.
+  > When moving a photo not as the owner of the photo, the access right check would crash 
+  > because the albums relationship was not loaded.
+
 ### v6.7.1
 
 Released on Jul 25, 2025
