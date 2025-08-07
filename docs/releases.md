@@ -53,7 +53,7 @@ We also fixed a few bugs that were reported by our users.
 * `fix` #3581 : fix header on album view when search is active by @ildyria.
   > Weird padding appearing when search made available in album view.
 * `fix` #3533 : While processing in CLI, do not crash on large photos by @ildyria.
-  > Large photos could crash the processing because going over the memory limits of Imagick.
+  > Large photos could crash the processing by exceeding the memory limits of Imagick.
   > We gracefully handle this case now and do not crash the CLI.
 * `fix` #3597 : Fix: access rights failing due to relationship missing by @ildyria.
   > When moving a photo not as the owner of the photo, the access right check would crash 
