@@ -56,7 +56,7 @@ We also fixed a few bugs that were reported by our users.
   > Large photos could crash the processing by exceeding the memory limits of Imagick.
   > We gracefully handle this case now and do not crash the CLI.
 * `fix` #3597 : Fix: access rights failing due to relationship missing by @ildyria.
-  > When moving a photo not as the owner of the photo, the access right check would crash 
+  > When moving a photo not as the owner of the photo, the access rights check would crash 
   > because the albums relationship was not loaded.
 
 ### v6.7.1
