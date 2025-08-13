@@ -63,7 +63,7 @@ A year ago, we already moved to a debian-like release system:
 Pull requests waiting to be merged into `master` were often already available in `alpha`, allowing few users eager to get access to the latest change.
 
 To be able to increase the velocity of development, we are going to lower the requirements for merging into the *active* branch.
-Namely we will no longer require a human 4-eyes review. This is not a decision we are taking lightly, but we believe it is necessary to keep the project moving forward. To increase the confidence in the code, we will still rely on our strong test coverage and additional automated reviews with the help of tools like Copilot and CodeRabbit. We have tested this approach over the past few PR and it has proven effective to catch descrepancies and issues before merging.
+Namely we will no longer require a human 4-eyes review. This is not a decision we are taking lightly, but we believe it is necessary to keep the project moving forward. To increase the confidence in the code, we will still rely on our strong test coverage and additional automated reviews with the help of tools like Copilot and CodeRabbit. We have tested this approach over the past few PR and it has proven effective to catch discrepancies and issues before merging.
 
 As a consequence, the `alpha` branch will become the active branch, where we will merge changes once they pass the CI and AI reviews.
 Once changes on `alpha` are considered stable enough, we will merge `alpha` into `master`. Finally, releases will continue to be built from `master`, as they are now.
