@@ -10,6 +10,10 @@ export const headerData = {
           href: getBlogPermalink(),
         },
         {
+          text: 'Open Source, processes problems, and moving forward',
+          href: getPermalink('2025-08-13-opensource-processes-documentation', 'post'),
+        },
+        {
           text: 'Version 6.7: Flow, Sync and more...',
           href: getPermalink('2025-07-01-version-6-7-0', 'post'),
         },
