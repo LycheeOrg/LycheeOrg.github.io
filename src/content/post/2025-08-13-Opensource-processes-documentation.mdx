@@ -1,0 +1,80 @@
+---
+publishDate: 2025-08-14T21:00:00Z
+author: ildyria
+title: 'Open Source, processes problems, and moving forward'
+excerpt: 'On the struggles of Opensource in small teams, and how we are addressing them'
+image: /blog/dragon-lychee.png
+category: Governance
+tags:
+  - lychee
+  - opensource
+  - processes
+---
+
+Recently, I shared our struggles in a [Reddit post](https://www.reddit.com/r/opensource/comments/1mn8ew8/lychee_and_opensource_struggles/) on `r/opensource`. 
+Below is a summary of the key points and our plans to address them.
+
+## The Core Problem
+
+Despite maintaining [high standards](https://www.bestpractices.dev/en/projects/2855) with 90% test coverage, [security scorecards](https://securityscorecards.dev/viewer/?uri=github.com/LycheeOrg/Lychee) rating of 9.2, and strict review processes, we've hit a significant bottleneck: I am currently the only active developer on the project. While other team members help with reviews when possible, life understandably gets in the way. Our strict 4-eyes policy (requiring code review before merging) means that progress often stalls, even though we switched to stacked pull requests to make changes more manageable.
+
+Furthermore finding new contributors has proven difficult for several reasons:
+- **Large codebase**: With ~2200 files, the project can be intimidating for newcomers
+- **User engagement**: Developers who don't actively use Lychee are less motivated to spend time reviewing changes that won't directly impact them
+- **Learning curve**: Getting up to speed with the project architecture and standards takes significant time investment
+
+## Response from the Community
+
+One particularly insightful response came from [latkde](https://www.reddit.com/r/opensource/comments/1mn8ew8/comment/n83naux/), who identified a fundamental mismatch in our approach. We have processes designed for a team ("group," "we," "strict 4-eyes policy") while operating with a single active developer. This creates an inherent contradiction that leads to frustration and stagnation.
+
+His key recommendations were:
+
+1. **Prioritize maintainer well-being**: The top priority must be avoiding burnout and maintaining the joy of development. This is a precondition for project success and everything else is secondary.
+
+2. **Adapt processes to reality**: Instead of forcing team-oriented processes (4-eyes policy) onto a solo developer situation, we should adapt our workflows to match our current capacity.
+
+3. **Focus on contributor onboarding**: Rather than adding features, development effort should focus on building "on-ramps" for new contributors:
+   - Create an `ARCHITECTURE.md` file to help newcomers navigate the large codebase
+   - Add component-specific README files explaining what each part does and how it interacts with the system
+   - Improve development environment setup documentation
+   - Provide better context in pull requests with goals, design decisions, and tradeoffs
+
+This feedback was instrumental in shaping our approach to improving developer documentation and onboarding processes.
+
+## Our first Response: Improving Developer Onboarding
+
+With that feedback in mind, we realized the Lychee codebase was akin to a fearsome dragon for both newcomers and seasoned developers.
+Our potential contributors needed better guidance to tackle the formidable beast. As such, we have focused the past few days on updating the onboarding experience. You can read more about it on our developer documentation in our repository [here](https://github.com/LycheeOrg/Lychee/tree/master/docs). 
+
+With this, we hope to reduce the intimidation factor of our large codebase and make it easier to get involved.
+
+### Moving Forward
+
+At my work, we define *Engineering Culture* with 3 words: "*People*, *Processes*, and *Tools*." Now looking at LycheeOrg, the *tools* are here.
+We have a strong CICD integration, well defined code standards, high confidence in our code coverage...
+However our *processes* are oriented to work within a teams (of *people*) while there is only one active developer. As remarked by latkde, this creates an inherent contradiction, leading eventually to failure.
+
+The obvious solution is always to find more contributors. Unfortunately, Lychee does not have the luxury of time to wait.
+A year ago, we already moved to a debian-like release system:
+- The releases on docker and github provide a stable base for users.
+- The `master` branch aims to be bleeding edge but still relatively stable.
+- The `alpha` branch is for experimental features.
+
+Pull requests waiting to be merged into `master` were often already available in `alpha`, allowing few users eager to get access to the latest change.
+
+To be able to increase the velocity of development, we are going to lower the requirements for merging into the *active* branch.
+Namely we will no longer require a human 4-eyes review. This is not a decision we are taking lightly, but we believe it is necessary to keep the project moving forward. To increase the confidence in the code, we will still rely on our strong test coverage and additional automated reviews with the help of tools like Copilot and CodeRabbit. We have tested this approach over the past few PR and it has proven effective to catch discrepancies and issues before merging.
+
+As a consequence, the `alpha` branch will become the active branch, where we will merge changes once they pass the CI and AI reviews.
+Once changes on `alpha` are considered stable enough, we will merge `alpha` into `master`. Finally, releases will continue to be built from `master`, as they are now.
+
+With regard to docker, we will continue to build the `master` branch into the `nightly` tag, ensuring that users always have access to the latest stable version. We will also continue to build the `alpha` tag, mirroring the changes in the `alpha` branch. This will allow users to test the latest features without waiting for a full release. 
+
+We hope that these changes will allow us to strike a balance between stability and velocity, enabling us to continue delivering value to our users while also making it easier for new contributors to get involved.
+
+
+### Our Commitment to Quality
+
+If you are a user of Lychee, you can rest assured that we will continue to prioritize the quality and stability of the project. Our commitment to high standards remains unchanged, and we will continue to invest in improving our processes and documentation to make it easier for new contributors to get involved.
+
+Furthermore, should you be interested in joining the team, we will be reverting to a proper 4-eyes review process once we have more active developers. We hope this measure is only temporary, and that we will be able to return to our previous standards in the near future.
