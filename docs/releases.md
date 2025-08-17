@@ -38,11 +38,10 @@ Released on Aug 17, 2025
 
 This release marks a significant change in the way tags are handled in Lychee. Before, tags were stored as a single string, comma-separated in the database.
 Now the tags are stored in their own table and linked to the photos via a many-to-many relationship. This change allows us to provide autocomplete for the tags,
-and also provide a more efficient way to manage your tag albums. We also added a page which list all the tags in your instance related to your user.
+and also provide a more efficient way to manage your tag albums. We also added a page which lists all the tags in your instance related to your user.
 From this page, you can rename, merge and delete tags. It also provides you with an overview of the number of photos related to each tag.
 
-Additionally, @cdzombak has been working on a few new features. It is now possible to pin albums, highlighting them to your users. This functionality is not limited 
-to the albums in the root directory, but also works for albums in subdirectories, giving you a shortcut to your most important albums.
+Additionally, @cdzombak has been working on a few new features. It is now possible to pin albums, highlighting them to your users. This functionality is not limited to the albums in the root directory, but also works for albums in subdirectories, giving you a shortcut to your most important albums.
 
 * `new` #3545 : Implement pinned albums by @cdzombak.
   > A simple yet effective way to highlight your albums.
