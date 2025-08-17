@@ -34,7 +34,7 @@
 
 Released on Aug 17, 2025
 
-### Tags refactoring, pinned albums, and more!
+#### Tags refactoring, pinned albums, and more!
 
 This release marks a significant change in the way tags are handled in Lychee. Previously, tags were stored as a single comma-separated string in the database.
 Tags are now stored in their own table and linked to photos via a many-to-many relationship. This change enables tag autocomplete,
@@ -42,6 +42,10 @@ and provides a more efficient way to manage your tags. We also added a page that
 From this page, you can rename, merge, and delete tags. It also provides an overview of the number of photos related to each tag.
 
 Additionally, @cdzombak has been working on a few new features. It is now possible to pin albums, highlighting them for your users. This functionality is not limited to the albums in the root directory, but also works for albums in subdirectories, giving you shortcuts to your most important albums.
+
+`SE` refers to functionalities that are aimed at the Supporter Edition.  
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
 
 * `new` #3545 : Implement pinned albums by @cdzombak.
   > A simple yet effective way to highlight your albums.
@@ -51,7 +55,9 @@ Additionally, @cdzombak has been working on a few new features. It is now possib
 * `new` #3605 : Add more documentation by @ildyria.
   > As explained in our recent [blog post](https://lycheeorg.dev/2025-08-13-opensource-processes-documentation), we are working on improving the onboarding of new contributors. 
 * `fixes` #3616 : Tags refactoring by @ildyria.
-  > This change will allow us to add more functionality related to tags in the future.
+  > This change will allow us to add more functionality related to tags in the future. With this we bring autocomplete, and a battery of utilities to manage your tags.
+* `SE` #3616 : Tags display on album view by @ildyria.
+  > An option for our supporters to display the tags of a picture on the overlay in the album view.
 * `klo` #3617 : Stricter application of ESLint by @ildyria.
   > We strive for a clean codebase. ESLint is a great tool to help us achieve this. Linting is now enforced on all new commits.
 * `fixes` #3618 : Refactoring Tag albums by @ildyria.
@@ -98,11 +104,6 @@ Released on Jul 25, 2025
 
 We have the pleasure to announce that [@cdzombak](https://github.com/cdzombak) has joined the team.
 We are looking forward to his many future contributions.
-
-`SE` refers to functionalities that are aimed at the Supporter Edition.  
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-
-
 
 * `new` #3517 : Remove annoying check preventing migration on prod database by @ildyria.
   > If you are running lychee but without having the setting `force_migration_in_production` to `false` you were stuck and
