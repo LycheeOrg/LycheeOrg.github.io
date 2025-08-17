@@ -36,16 +36,16 @@ Released on Aug 17, 2025
 
 ### Tags refactoring, pinned albums and more!
 
-This release marks a significant change in the way tags are handled in Lychee. Before, tags were stores as a single string, comma-separated in the database.
+This release marks a significant change in the way tags are handled in Lychee. Before, tags were stored as a single string, comma-separated in the database.
 Now the tags are stored in their own table and linked to the photos via a many-to-many relationship. This change allows us to provide autocomplete for the tags,
-and also provide a more efficient way to manage your tag albus. We also added a page which list all the tags in your instance related to your user.
+and also provide a more efficient way to manage your tag albums. We also added a page which list all the tags in your instance related to your user.
 From this page, you can rename, merge and delete tags. It also provides you with an overview of the number of photos related to each tag.
 
-Additionally, @cdzombak have been working on a few new features. It is now possible to pin albums, highlighting them to your users. This functionality is not limited 
-to the albums in the root directory, but also works for albums in subdirectories, giving you a shortcuts to your most important albums.
+Additionally, @cdzombak has been working on a few new features. It is now possible to pin albums, highlighting them to your users. This functionality is not limited 
+to the albums in the root directory, but also works for albums in subdirectories, giving you a shortcut to your most important albums.
 
 * `new` #3545 : Implement pinned albums by @cdzombak.
-  > A simple yet effictive way to highlight your albums.
+  > A simple yet effective way to highlight your albums.
 * `new` #3610 : Allow customizing copyright text in footer by @cdzombak.
   > This allows you to customize the copyright text in the footer of your Lychee instance.
   > If the text is left empty, the default text will be used.
@@ -54,10 +54,10 @@ to the albums in the root directory, but also works for albums in subdirectories
 * `fixes` #3616 : Tags refactoring by @ildyria.
   > This is change will allow us to add more functionalities related to tags in the future.
 * `klo` #3617 : Stricter application of Eslint by @ildyria.
-  > We strive for a clean codebase, eslint is a great tool to help us achieve this. Linting in now enforeced on all new commits.
+  > We strive for a clean codebase, eslint is a great tool to help us achieve this. Linting is now enforced on all new commits.
 * `fixes` #3618 : Refactoring Tag albums by @ildyria.
   > Parallel to the changes on the way tags are managed, we also refactored the tag albums.
-  > Making them more efficient, no more guesswork on the tag names, no more photos random photo appearing because of a tag name overlap.
+  > Making them more efficient, no more guesswork on the tag names, no more random photos appearing because of a tag name overlap.
 * `fixes` #3620 : Fix multiple album display when users are in multiple groups by @ildyria.
   > It has been reported that when a user is in multiple groups, the albums were displayed multiple times. This is now fixed.
   > We also added regression tests to make sure that this does not happen again.
