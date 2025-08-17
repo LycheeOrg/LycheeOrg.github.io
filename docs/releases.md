@@ -57,7 +57,7 @@ Additionally, @cdzombak has been working on a few new features. It is now possib
 * `fixes` #3618 : Refactoring Tag albums by @ildyria.
   > In parallel with the changes to how tags are managed, we also refactored the tag albums.
   > Making them more efficient: no more guesswork on tag names, and no more random photos appearing because of tag-name overlaps.
-* `fixes` #3620 : Fix multiple album display when users are in multiple groups by @ildyria.
+* `fixes` #3620 : Fix duplicate album display when users are in multiple groups by @ildyria.
   > It has been reported that when a user is in multiple groups, the albums were displayed multiple times. This is now fixed.
   > We also added regression tests to make sure that this does not happen again.
 
