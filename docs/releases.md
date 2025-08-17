@@ -30,6 +30,37 @@
 
 ## Version 6
 
+### v6.8.0
+
+Released on Aug 17, 2025
+
+### Tags refactoring, pinned albums, and more!
+
+This release marks a significant change in the way tags are handled in Lychee. Previously, tags were stored as a single comma-separated string in the database.
+Tags are now stored in their own table and linked to photos via a many-to-many relationship. This change enables tag autocomplete,
+and provides a more efficient way to manage your tags. We also added a page that lists all tags in your instance related to your user.
+From this page, you can rename, merge, and delete tags. It also provides an overview of the number of photos related to each tag.
+
+Additionally, @cdzombak has been working on a few new features. It is now possible to pin albums, highlighting them for your users. This functionality is not limited to the albums in the root directory, but also works for albums in subdirectories, giving you shortcuts to your most important albums.
+
+* `new` #3545 : Implement pinned albums by @cdzombak.
+  > A simple yet effective way to highlight your albums.
+* `new` #3610 : Allow customizing copyright text in footer by @cdzombak.
+  > This allows you to customize the copyright text in the footer of your Lychee instance.
+  > If the text is left empty, the default text will be used.
+* `new` #3605 : Add more documentation by @ildyria.
+  > As explained in our recent [blog post](https://lycheeorg.dev/2025-08-13-opensource-processes-documentation), we are working on improving the onboarding of new contributors. 
+* `fixes` #3616 : Tags refactoring by @ildyria.
+  > This change will allow us to add more functionality related to tags in the future.
+* `klo` #3617 : Stricter application of ESLint by @ildyria.
+  > We strive for a clean codebase. ESLint is a great tool to help us achieve this. Linting is now enforced on all new commits.
+* `fixes` #3618 : Refactoring Tag albums by @ildyria.
+  > In parallel with the changes to how tags are managed, we also refactored the tag albums.
+  > Making them more efficient: no more guesswork on tag names, and no more random photos appearing because of tag-name overlaps.
+* `fixes` #3620 : Fix duplicate album display when users are in multiple groups by @ildyria.
+  > It has been reported that when a user is in multiple groups, the albums were displayed multiple times. This is now fixed.
+  > We also added regression tests to make sure that this does not happen again.
+
 ### v6.7.2
 
 Released on Aug 7, 2025
