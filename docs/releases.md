@@ -30,6 +30,28 @@
 
 ## Version 6
 
+### v6.8.1
+
+Release on Aug 18, 2025
+
+#### Migration fix and Goodies
+
+Update 6.8.0 came with a nasty small issue in one of the database migration. In the event your database is using a large amount of tags, the migration would fail due to duplicates conditions. We updated the migration file to handle this case and such that if you ended up in an incomplete database migration state, you could still get back up and running.
+
+With this short notice, we also added a few small features that were nearly ready for version 6.8.0 but didn't make the cut.
+
+* `new` #3500 : feat: Sync uses jobs instead of direct import. by @ildyria
+  > This change allows the sync process to be run with parallel processing using jobs and queues.
+* `new` #3624 : Add support for and/or in tag albums by @ildyria
+  > This change allows you to specify if you want the photos showed in a Tag album to match all the tags, or any of the tag.
+* `new` #3504 : feat: Drag & select is back! by @ildyria
+  > One of the missing feature since version 4 was the ability to drag and select photos in the album view. This is now back.
+  > We tried to also make it more obvious what can and cannot be selected in such way on the album view.
+* `fixes` #3626 : Fix migration when large amounts of tags are used by @ildyria
+  > The migration that was introduced in version 6.8.0 was failing when a large amount of tags were used. We fixed this by
+  > formatting the tags, and chunking at insert time to avoid large insert queries.
+
+
 ### v6.8.0
 
 Released on Aug 17, 2025
@@ -80,19 +102,19 @@ We also fixed a few bugs that were reported by our users.
   > This is a security measure to avoid brute-force attacks.
 * `new` #3382 : Add .env variable to disable basic login and WebAuthn login by @ildyria.
 * `new` #3521 : feat: Add a small module for links by @ildyria.
-* `fix` #3567 : fix "command" or "a" independently selecting all items by @cdzombak.
+* `fixes` #3567 : fix "command" or "a" independently selecting all items by @cdzombak.
   > This fixes an issue where pressing "command" on mac would select all items in the album view.
-* `fix` #3575 : Mark placeholder as NOT downloadable by @ildyria.
+* `fixes` #3575 : Mark placeholder as NOT downloadable by @ildyria.
   > Placeholder photos are base64 encoded images in the database. They are not meant to be downloaded.
-* `fix` #3573 : On small screen, remove padding on left & right padding by @ildyria.
+* `fixes` #3573 : On small screen, remove padding on left & right padding by @ildyria.
   > Small QoL change to remove the padding on the left and right on the photo view.
-* `fix` #3574 : Fix icon showing up in details even when taken-at is null by @ildyria.
-* `fix` #3581 : fix header on album view when search is active by @ildyria.
+* `fixes` #3574 : Fix icon showing up in details even when taken-at is null by @ildyria.
+* `fixes` #3581 : fix header on album view when search is active by @ildyria.
   > Weird padding appearing when search made available in album view.
-* `fix` #3533 : While processing in CLI, do not crash on large photos by @ildyria.
+* `fixes` #3533 : While processing in CLI, do not crash on large photos by @ildyria.
   > Large photos could crash the processing by exceeding the memory limits of Imagick.
   > We gracefully handle this case now and do not crash the CLI.
-* `fix` #3597 : Fix: access rights failing due to relationship missing by @ildyria.
+* `fixes` #3597 : Fix: access rights failing due to relationship missing by @ildyria.
   > When moving a photo not as the owner of the photo, the access rights check would crash 
   > because the albums relationship was not loaded.
 
@@ -140,7 +162,7 @@ Released on Jul 1, 2025
 
 This is a significant release that brings 3 new features: Flow, a social-friendly, feed-like display of albums; Lychee:sync has been revamped and is now faster while also works in reverse; and finally our Supporter Edition users can now add multiple admins to their instance.
 
-* `fix` #3508 : Fix photo copy modal not working after a copy by @ildyria.
+* `fixes` #3508 : Fix photo copy modal not working after a copy by @ildyria.
   > Small fix of a bug that has been reported to us. When copying a photo the
   > second time, the target album was visibly selected in the modal but the id
   > was not set. This is now fixed.
@@ -165,7 +187,7 @@ Released on Jun 27, 2025
 
 This is a small patch which fixes a cosmetic issue on the gallery page.
 
-* `fix` #3499 : fix header always showing up by @ildyria.
+* `fixes` #3499 : fix header always showing up by @ildyria.
 
 ### v6.6.13
 
@@ -201,10 +223,10 @@ All of them are enabled by default and can be disabled in the expert admin setti
 
 #### Other changes
 
-* `fix` #3498 : Fix SSRF + bump version by @ildyria.
+* `fixes` #3498 : Fix SSRF + bump version by @ildyria.
 * `new` #3491 : Add optional gallery header image by @ildyria.
   > We added the option to have a header image on top of the gallery page. You will find the configuration in the *Landing page* settings.
-* `fix` #3497 : add some missing RTL support on timeline photo display by @ildyria.
+* `fixes` #3497 : add some missing RTL support on timeline photo display by @ildyria.
   > Improvement of the RTL support on timeline photo display.
 
 #### Credits
@@ -467,7 +489,7 @@ Released on May 17, 2025
 This version fixes the hotlinking prevention that was broken since version 6.6.0.
 We also added a few tests to make sure that this bug does not happen again.
 
-* `fix` #3348 : Fix secure link missing route by @ildyria.
+* `fixes` #3348 : Fix secure link missing route by @ildyria.
 
 
 ### v6.6.2
