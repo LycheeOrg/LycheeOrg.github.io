@@ -30,6 +30,42 @@
 
 ## Version 6
 
+### v6.9.0
+
+Released on Sep 27, 2025
+
+#### Goodies for our Supporters: Watermarking, Zip upload, Renamer!
+
+Version 6.9.0 is a major update in the sense that brings three brand new features for our Supporters:
+- Watermarking - Lychee provides now the the ability to add watermarks to your photos. This is a highly configurable functionality. Once you have chosen the photo, you can select the transparency, and change the size and position of the watermark to your own taste. It will then be applied to all new photos uploaded to your instance. You can also choose to apply it to existing photos at the click of a button.
+- Upload zip files - You can now upload a zip file containing photos and Lychee will automatically extract the photos and add them to your selected album. This is another great way to upload a large number of photos at once. We recommend that you use queues to allow the processing of the photos to be done in the background.
+- Renamer - This is a small utility which allows you to define some automated renaming rules. All subsequent uploads will have those applied. Those are also applied when doing a server-side sync. This is a great way to enforce a naming convention on your photos.
+
+Just because you are not a Supporter, does not mean that you are left out. In addition to fixing a few bugs we also added a brand new page: Timeline. This page displays your photos in a chronological order, grouped by month and year. On the right side, you will find a small panel to access quickly a specific month and year.
+
+#### Most notable changes
+
+* `SE` #3622 : Add watermarker module by @ildyria.
+* `SE` #3642 : Watermarker job for processing existing albums. by @ildyria.
+* `SE` #3637 : Create a renamer module by @ildyria.
+* `SE` #2562 : Upload zip extract import by @ildyria.
+* `new` #3635 : Change Rename, Move, and Merge icons by @cdzombak.
+  > Small visual improvement by @cdzombak to change the icons for rename, move, and merge actions to be more intuitive.
+* `new` #3447, #3448,#3644 : Add timeline page by @ildyria.
+  > A new page to display your photos in a chronological order, grouped by month and year.
+* `fix` #3638 : Fix ipad display issues by @ildyria.
+  > When using a touch screen with large display, the buttons had their opacity set too low, making them hard to see.
+* `fix` #3640 : Fix rotation by @ildyria.
+  > Fix missing arguments in the rotation request. Photos can now be rotated again.
+* `fix` #3643 : Fix duplicates when group and public hidden while admin was used by @ildyria.
+  > In some cases, albums were shown as duplicated when the user was admin and the album where shared with a group.
+  > We added regression tests to make sure this does not happen again.
+* `fix` #3634 : Fix: Add subfolder support back by @ildyria.
+  > This is a very niche feature. Some of our users are using lychee in a subfolder way `example.com/lychee/`, we do not recommend this setup.
+  > However for those who do, we fixed the issue that was preventing lychee to work properly. You will need to set the `.env` variables `APP_DIR` and `ASSET_URL` accordingly.
+* `fix` #3632 : Fix tag import by @ildyria.
+  > Fix some naming collisions when uploading pictures with tags.  
+
 ### v6.8.1
 
 Release on Aug 18, 2025
