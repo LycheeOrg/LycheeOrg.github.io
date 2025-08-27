@@ -52,6 +52,9 @@ const metadata = {
             description: 'Unlimited albums.',
           },
           {
+            description: 'Unlimited tags.',
+          },
+          {
             description: 'Unlimited photo upload.',
           },
           {
@@ -95,6 +98,10 @@ const metadata = {
             icon: 'tabler:plus',
           },
           {
+            description: 'Watermarking.',
+            icon: 'tabler:plus',
+          },
+          {
             description: 'Extended customizations.',
             icon: 'tabler:plus',
           },
@@ -123,7 +130,7 @@ const metadata = {
     title="Full comparison<sup class='text-xl'>*</sup>"
     tagline="the essentials and a few more"
     products={['Free', 'Lychee <span class="text-sky-600 dark:text-sky-300">SE</span>']}
-    extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the large amount of configurations available (200+).<br>\
+    extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the large amount of configurations available (250+).<br>\
     <sup>**</sup> Some languages are still untranslated. Any translations provided via <a class='text-sky-600 dark:text-sky-300 underline hover:text-sky-400 dark:hover:text-sky-500' href='https://weblate.lycheeorg.dev'>weblate</a> will be appreciated.<br>\
     <sup>***</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden."
     specs={[
@@ -296,6 +303,7 @@ const metadata = {
       {
         feature: 'Custom strategy: opt-in vs auto',
         available: [false, true],
+        isSoon: true,
       },
       {
         feature: 'Compact mode for flow cards',
@@ -334,7 +342,6 @@ const metadata = {
       {
         feature: 'Watermarking',
         isHeader: true,
-        isSoon: true,
       },
       {
         feature: 'Custom image as watermark',
@@ -348,7 +355,6 @@ const metadata = {
       {
         feature: 'Timeline',
         isHeader: true,
-        isSoon: true,
       },
       {
         feature: 'Standalone page',
@@ -461,6 +467,10 @@ const metadata = {
         feature: 'Personal favourites',
         available: [false, true],
       },
+      {
+        feature: 'Renaming rules on import/upload',
+        available: [false, true],
+      },
 
       {
         feature: 'Sync with local directories',
@@ -469,6 +479,11 @@ const metadata = {
       {
         feature: 'Import via CLI',
         available: [true, true],
+      },
+      {
+        feature: 'Import via Web UI',
+        available: [true, true],
+        isSoon: true,
       },
       {
         feature: 'Fast duplicate detection by filename/title',
