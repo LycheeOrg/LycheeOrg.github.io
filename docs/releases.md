@@ -32,7 +32,7 @@
 
 ### v6.9.0
 
-Released on Sep 27, 2025
+Released on Aug 27, 2025
 
 #### Goodies for our Supporters: Watermarking, Zip upload, Renamer!
 
