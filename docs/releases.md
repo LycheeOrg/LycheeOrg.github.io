@@ -37,9 +37,10 @@ Released on Aug 27, 2025
 #### Goodies for our Supporters: Watermarking, Zip upload, Renamer!
 
 Version 6.9.0 is a major update in the sense that brings three brand new features for our Supporters:
-- Watermarking - Lychee provides now the ability to add watermarks to your photos. This is a highly configurable functionality. Once you have chosen the photo, you can select the transparency, and change the size and position of the watermark to your own taste. It will then be applied to all new photos uploaded to your instance. You can also choose to apply it to existing photos at the click of a button.
-- Upload zip files - You can now upload a zip file containing photos and Lychee will automatically extract the photos and add them to your selected album. This is another great way to upload a large number of photos at once. We recommend that you use queues to allow the processing of the photos to be done in the background.
-- Renamer - This is a small utility which allows you to define some automated renaming rules. All subsequent uploads will have those applied. Those are also applied when doing a server-side sync. This is a great way to enforce a naming convention on your photos.
+
+- **Watermarking** - Lychee provides now the ability to add watermarks to your photos. This is a highly configurable functionality. Once you have chosen the photo, you can select the transparency, and change the size and position of the watermark to your own taste. It will then be applied to all new photos uploaded to your instance. You can also choose to apply it to existing photos at the click of a button.
+- **Upload zip files** - You can now upload a zip file containing photos and Lychee will automatically extract the photos and add them to your selected album. This is another great way to upload a large number of photos at once. We recommend that you use queues to allow the processing of the photos to be done in the background.
+- **Renamer** - This is a small utility which allows you to define some automated renaming rules. All subsequent uploads will have those applied. Those are also applied when doing a server-side sync. This is a great way to enforce a naming convention on your photos.
 
 Just because you are not a Supporter, does not mean that you are left out. In addition to fixing a few bugs we also added a brand new page: Timeline. This page displays your photos in a chronological order, grouped by month and year. On the right side, you will find a small panel to access quickly a specific month and year.
 
