@@ -30,6 +30,38 @@
 
 ## Version 6
 
+### v6.9.1
+
+Released on Aug 31, 2025
+
+#### Import from server is back!
+
+A small release which punch above its weight. The import from server feature is back in the Web UI.
+This feature was available in Lychee v4, and removed in v5 as it was not working as intended.
+
+Note that we strongly recommend you use job queues if you wish to import large number of photos.
+The parsing of the folders _etc_ will be fast, but the actual processing will always take some time.
+The execution of the command is no different than running `php artisan lychee:sync` from the command line.
+
+* `new` #3647 : Add import from server via Web UI by @ildyria.
+  > It's back!
+* `new` #3662 : Add more display option for subtitle on albums by @ildyria.
+  > A minor change, we added the ability to display the number of photos/subalbum under the title on album thumbnails.
+  > The option is available in the gallery settings page.
+* `klo` #3656 : Laravel 12 by @ildyria.
+  > We updated the laravel framework to version 12. Nothing visible to the user, but just to keep things up to date.
+* `SE` #3663 : [SE] Renamer now supports empty replacement string by @ildyria.
+* `SE` #3665 : [SE] Improve feedback from zip upload by @ildyria.
+  > When uploading zip files, the processing is very long without job queues, this results in 504 timeouts. We updated the
+  > upload ui to display those long processing times. 
+* `fix` #3659 : Fix tags migration (again) by @ildyria.
+  > In German, "ß" was creating a conflict when migrating the tags. If you had for example a tag with "Straße", it would conflict with "Strasse".
+  > We normalized the ß into ss. 
+* `fix` #3664 : Fix cleanup action not working on directories by @ildyria.
+  > When running the clean up action in the maintenance page, it was not working on non-empty directories.
+  > We now clean recursively, making sure that this works as intended.
+
+
 ### v6.9.0
 
 Released on Aug 27, 2025
