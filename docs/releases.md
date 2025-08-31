@@ -43,6 +43,11 @@ Note that we strongly recommend you use job queues if you wish to import large n
 The parsing of the folders _etc_ will be fast, but the actual processing will always take some time.
 The execution of the command is no different than running `php artisan lychee:sync` from the command line.
 
+
+`SE` refers to functionalities that are aimed at the Supporter Edition.  
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+
 * `new` #3647 : Add import from server via Web UI by @ildyria.
   > It's back!
 * `new` #3662 : Add more display option for subtitle on albums by @ildyria.
@@ -50,8 +55,8 @@ The execution of the command is no different than running `php artisan lychee:sy
   > The option is available in the gallery settings page.
 * `klo` #3656 : Laravel 12 by @ildyria.
   > We updated the laravel framework to version 12. Nothing visible to the user, but just to keep things up to date.
-* `SE` #3663 : [SE] Renamer now supports empty replacement string by @ildyria.
-* `SE` #3665 : [SE] Improve feedback from zip upload by @ildyria.
+* `SE` #3663 : Renamer now supports empty replacement string by @ildyria.
+* `SE` #3665 : Improve feedback from zip upload by @ildyria.
   > When uploading zip files, the processing is very long without job queues, this results in 504 timeouts. We updated the
   > upload ui to display those long processing times. 
 * `fix` #3659 : Fix tags migration (again) by @ildyria.
@@ -133,10 +138,6 @@ and provides a more efficient way to manage your tags. We also added a page that
 From this page, you can rename, merge, and delete tags. It also provides an overview of the number of photos related to each tag.
 
 Additionally, @cdzombak has been working on a few new features. It is now possible to pin albums, highlighting them for your users. This functionality is not limited to the albums in the root directory, but also works for albums in subdirectories, giving you shortcuts to your most important albums.
-
-`SE` refers to functionalities that are aimed at the Supporter Edition.  
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-
 
 * `new` #3545 : Implement pinned albums by @cdzombak.
   > A simple yet effective way to highlight your albums.
