@@ -1,0 +1,143 @@
+---
+publishDate: 2025-09-14T21:00:00Z
+author: ildyria
+title: 'AI-assisted reviews, one month later...'
+excerpt: "We have been trying CodeRabbit, let's discuss our impressions."
+image: /blog/rabbit-lychee.png
+category: Governance
+tags:
+  - opensource
+  - AI
+  - code reviews
+---
+
+<p class="text-gray-500 dark:text-slate-400 text-sm">First and foremost, this post is not an ad, I have no affiliation with CodeRabbit, nor have I been paid to write this.
+The opinions expressed here are my own.</p>
+
+As described in my [previous post](/2025-08-13-opensource-processes-documentation), we have been exploring using CodeRabbit to assist with code reviews in our opensource projects.
+They have an opensource plan which allows for free usage on public repositories with some limitations. Nevertheless, it is perfect for our needs.
+
+## Initial setup
+
+That was very easy and straightforward. We just had to log in to their website with our Github account and it asks you to add the repositories you wish to scan.
+
+<center>
+<img src="/blog/coderabbit/cr-login.png" alt="The CodeRabbit homepage" class="w-1/2" />
+</center>
+
+When you click on the button, you are immediately redirected to Github to authorize the bot. Once that is done, any new pull requests to the repo will be automatically scanned.
+
+<center>
+![](/blog/coderabbit/cr-repos.png)
+</center>
+
+So far the only part that was a bit disappointing was the loading time "Loading your workspace..." which you can see for a few seconds and then another second of waiting before being able to see your repositories.
+The website UI does not feel snappy, but it is not a big deal since you don't need to use it often.
+
+<center>
+<img src="/blog/coderabbit/cr-loading.png" alt="The CodeRabbit homepage" class="w-1/2" />
+_This screen is shown for a few seconds... (more than it should IMHO)_
+</center>
+
+## First impressions on PR reviews
+
+I am used to not receiving many comments on my PRs from my colleagues and I try to produce high-quality code by default.
+I also have tried Copilot on the GitHub web interface, and I was really not impressed. As a result I did not have high expectations for the tool.
+My expectations were that if it found something, it would be a nice-to-have, but not a big deal if it didn't.
+
+To put it simply: **I was wrong.**
+
+CodeRabbit is impressively thorough. It finds issues that I would have easilly overlooked.
+However before diving into the details, I want to show you how it works.
+
+When a new PR is opened, the bot automatically edits your description to adds what this PR is doing.
+Compared to the copilot sumary, it is more relevant and accurate. See for example this PR with a staggering 8500 lines of code changed!
+<center><img src="/blog/coderabbit/cr-pr.png" alt="A PR with a CodeRabbit comment" class="w-3/4" /></center>
+
+Then after analyzing the code for a few minutes (don't be hasty there), it adds a second comment with a summary of its findings with Request changes.
+In order to resolve those you can either:
+- Fix the issues, and push a new commit. CodeRabbit will incrementally analyze the PR and update its comment.
+- Reply to the comment to explain why you think the issue is not relevant or not a problem. CodeRabbit will analyze your reply and update its comment accordingly.
+- Dismiss the comment if you think it is not relevant, by marking it as "resolved".
+
+Once all the comments are marked as "resolved", CodeRabbit will automatically approve the PR.
+<center><img src="/blog/coderabbit/cr-request-changes-comment.png" alt="A CodeRabbit comment on a PR" class="w-1/2" /></center>
+
+The comment themsleves are very well structured, and also comes with a nice dose of humor. The small bunny at the bottom is a nice touch.
+
+## About the findings
+
+As previously mentioned, I was really surprised by the number of issues it found. Nevertheless, it is also important to know if those bring value or not.
+Automated issues that are not relevant are just noise and wastes time. I already have limited time for myself, I prefer not to waste it on irrelevant issues.
+
+I went through all the comments that CodeRabbit made on our PRs over the last month to get some statistics. From the get go, here are some numbers.
+In one month, CodeRabbit has reviewed a total of:
+- **28** pull requests,
+- **32,784** Lines of code added,
+- **4,768** lines removed,
+- **693** files changed.
+
+Over those, it found **290 issues**. So an average of 10 issues per PR, which in itself is not bad.
+I went through those one by one and categorized them into 5 categories:
+
+1. **Useless/Trash**: Issues that are absolutely not relevant, things we do not care about or just plain wrong. In other words: noise. Note that 
+those are specific to our codebase and practices. What is useless for us may be relevant for others.
+2. **Wrong assumption**: Issues that are based on a wrong assumption. It could be how the code works, the intent, or oversight.
+3. **Nitpicking**: Issues that are not a big deal, things that could be improved but would not impact the actual software behaviour if they were not fixed.
+4. **Thoughtful**: That category is a bit special. Part of those are issues that are wrong assumptions, but the comment from CodeRabbit makes you double check the code,
+and think "Is this really what I want?" "Did I miss something?". They are not in the blattantly wrong assumption category because they are not necessarily wrong.
+They may be valid and require you to rethink the code because you overlooked something.
+5. **Quality Improvements**: Those issues are things that needs to be fixed. Merging a pull request without having those would lead to unwanted behaviours or bugs.
+In other words, those are the good stuff.
+6. **Security/Critical findings**: This is a special sub-category of _Quality Improvements_. They are not counted towards the previous because those findings could lead
+to security vulnerabilities or critical bugs.
+
+Here are the results of my analysis:
+![](/blog/coderabbit/analysis.png)
+
+In summary, the distribution of the findings is as follows:
+- 15% were useless
+- 20% were wrong assumptions
+- 18% were nitpicking,
+- 22% were thoughtful,
+- 25% were quality improvements
+- and 7% of those were security/critical findings.
+
+Which means that 35% of the findings were not much interesting, but also that 65% of the findings were relevant, of which 3 over 4 brought actual value.
+This is a very good ratio, and I am very happy with that. It means that the tool is not just spamming useless comments, but actually helps improve the code quality.
+
+## Examples of findings
+
+Here are some examples of the critical findings that CodeRabbit found in our PRs.
+
+<table>
+<tr><td><img src="/blog/coderabbit/pr-zip-slip.png" alt="A CodeRabbit finding about zip slip vulnerability" /></td><td><img src="/blog/coderabbit/pr-cross-user.png" alt="A CodeRabbit finding about cross user data access" /></td></tr>
+<tr><td> **Zip Slip vulnerability**: Extracting a zip could lead to malicious file injection.</td><td>**Cross-user data access**: A user could delete the basket from another user.</td></tr>
+<tr><td><img src="/blog/coderabbit/pr-faulty-logic.png" alt="A CodeRabbit finding about faulty logic" /></td><td><img src="/blog/coderabbit/pr-idor.png" alt="A CodeRabbit finding about IDOR vulnerability" /></td></tr>
+<tr><td> **Faulty logic**: An oversight in the control flow validation...</td><td>**IDOR vulnerability**: User could access basket from another user.</td></tr>
+<tr><td><img src="/blog/coderabbit/pr-spoofing.png" alt="A CodeRabbit finding about SQL injection vulnerability" /></td><td></td></tr>
+<tr><td> **Validation missing**: A user could exploit a cheaper album to obtain an unintended discount on a photo.</td><td></td></tr>
+</table>
+
+## Limitations
+
+That being said, there are some limitations that are worth listing. If you are an active developer, you may hit those quite often.
+Effectively, there are rate limits to how many reviews you can do per hour. Here are the details for the opensource plan:
+- Number of files reviewed per hour: 200
+- Number of reviews : 3 back to back reviews followed by 2 reviews per hour
+- Number of conversations: 25 back to back messages followed by 50 messages per hour
+
+And if you are a bit too eager, you will be seeing the following message quite often.
+My advice is: Commit frequently, but avoid pushing immediately. Push once you have a few commits ready to be pushed and reviewed.
+<center><img src="/blog/coderabbit/cr-rates.png" alt="CodeRabbit rate limits" class="w-1/2" /></center>
+
+## Conclusion
+
+Overall, I am very happy with CodeRabbit. It is a great tool that helps improve the code quality of our opensource projects.
+It is not perfect and does not replace a human review, but it is a great complement to it. The findings are often relevant
+and either helps fix actual issues, or rethink the code to ensure it is doing what we want.
+
+If you are an opensource maintainer, I highly recommend you give it a try. The free plan is more than enough for most projects.
+
+PS: I have not discussed about the fact that CodeRabbit does propose code changes directly in the PR, nor the fact that it also gives you prompt to use in your "AI-driven" IDE.
+Those are features I have not used, nor am I interested in using them. Therefore I cannot comment on that.
