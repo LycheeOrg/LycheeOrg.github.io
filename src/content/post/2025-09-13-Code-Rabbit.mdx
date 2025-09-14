@@ -99,15 +99,15 @@ to security vulnerabilities or critical bugs.
 Here are the results of my analysis:
 ![](/blog/coderabbit/analysis.png)
 
-In summary, the distribution of the findings is as follows:
+In summary, the distribution of the findings is as follows (updated see PS):
 - 15% were useless
-- 20% were wrong assumptions
-- 18% were nitpicking,
-- 22% were thoughtful,
-- 25% were quality improvements
-- and 7% of those were security/critical findings.
+- 13% were wrong assumptions
+- 21% were nitpicking,
+- 13% were thoughtful,
+- 35% were quality improvements
+- and 3% of those were security/critical findings.
 
-Which means that 35% of the findings were not much interesting, but also that 65% of the findings were relevant, of which 3 over 4 brought actual value.
+Which means that 28% of the findings were not much interesting, but also that 72% of the findings were relevant, of which a bit less than 3 over 4 (51/72 =~ 71%) brought actual value.
 This is a very good ratio, and I am very happy with that. It means that the tool is not just spamming useless comments, but actually helps improve the code quality.
 
 ## Examples of findings
@@ -145,3 +145,5 @@ If you are an opensource maintainer, I highly recommend you give it a try. The f
 
 PS: I have not discussed about the fact that CodeRabbit does propose code changes directly in the PR, nor the fact that it also gives you prompt to use in your "AI-driven" IDE.
 Those are features I have not used, nor am I interested in using them. Therefore I cannot comment on that.
+
+PS: Thank to u/Asphias for double checking my basic Maths skills...
