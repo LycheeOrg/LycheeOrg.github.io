@@ -30,6 +30,36 @@
 
 ## Version 6
 
+### v6.9.2
+
+Released on Sep 19th, 2025
+
+#### Minor fixes
+
+Small release that should improve the handling of using Lychee in a "subfolder" setup (e.g. `example.com/lychee`).
+Note that this is **not a recommended setup** for security reasons as you will likely be leaking your logs _et al._
+without further hardening your installation.
+
+**We strongly recommend you use a subdomain instead (e.g. `photos.example.com`).**
+
+* `new` #3673 : Add documentation on how to had Oauth providers by @ildyria.
+  > We added a small section in our repository to explain how to add Oauth providers.
+  > This is not something that is visible to our users, but more of a developer/contributor documentation.
+* `new` #3684 : Add move to S3 command by @ildyria.
+  > A small request but with big impact. If you decide to move your photos to a S3 compatible storage,
+  > you no longer need to re-upload all your photos/create a new Lychee instance or other work around.
+  > You can now use the command `php artisan lychee:s3_migrate`, it will move your photos to the set up S3 storage.
+  > Note that we do not recommend doing this if you use "live photos" as those have slightly different handling and won't be handled properly.
+* `new` #3694 : Allow to disable import from server from server side  by @ildyria.
+  > This is a security measure. If you do not want your users (admin & owner included) to be able to use the import from server feature,
+  > you can now disable it via the `.env` file by setting `DISABLE_IMPORT_FROM_SERVER=true`. To preserve backward behaviour, this is set to `false` by default.
+* `fix` #3696 : Fix subfolder duplicate path behaviour by @ildyria.
+  > When using Lychee in a subfolder setup (e.g. `example.com/lychee`), we had feedback that the setup was no longer working as expected.
+  > While we do not recommend this setup, we still aim to help our users. This fix should improve the handling of this setup.
+  > As a reminder, you will need to set the `.env` variables `APP_DIR` and `APP_URL` accordingly: for `example.com/lychee/public`, it should be 
+  > `APP_DIR=/lychee/public` and `APP_URL=https://example.com`.
+
+
 ### v6.9.1
 
 Released on Aug 31, 2025
