@@ -42,7 +42,7 @@ without further hardening your installation.
 
 **We strongly recommend you use a subdomain instead (e.g. `photos.example.com`).**
 
-* `new` #3673 : Add documentation on how to had Oauth providers by @ildyria.
+* `new` #3673 : Add documentation on how to add Oauth providers by @ildyria.
   > We added a small section in our repository to explain how to add Oauth providers.
   > This is not something that is visible to our users, but more of a developer/contributor documentation.
 * `new` #3684 : Add move to S3 command by @ildyria.
