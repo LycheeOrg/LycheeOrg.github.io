@@ -30,6 +30,66 @@
 
 ## Version 6
 
+### v6.9.4
+
+Released on Oct 29th, 2025
+
+#### Signing process change and migration fixes
+
+This is a small update which contains a few quality of life improvements, bug fixes and light new features.
+More importantly, it fixes the migrations from any older versions so that you are not blocked anymore due to an error 500.
+
+One of the notable change, is that we are now creating `.sigstore.json` files instead of `.asc` files when signing the releases.
+This means that you will need to update your verification process accordingly. Please check out our [Code Signing documentation](https://github.com/LycheeOrg/Lychee/blob/master/docs/Code-signing.md).
+
+#### Our most notables changes are as follows
+
+* `fix` #3700 : Fix user group issues by @ildyria.
+* `klo` #3701 : Split test suite in hopes to speed things up. by @ildyria.
+  > We split the test suite in multiple jobs to speed up the overall test execution time.
+* `fix` #3720 : fix user-groups addresses by @ildyria.
+* `klo` #3721 : Avoid property drilling by @ildyria.
+  > This makes extension of components easier in the front-end and centralize some of the state data.
+* `SE` #3722 : Improve renamer with more rules by @ildyria.
+  > We added a few more rules to the renamer module for our Supporter Edition users.
+  > Those include adding trimming, and changing case (upper, lower, title).
+* `SE` #3702 : Add Webshop backend by @ildyria.
+  > Preparatory work for the webshop module, all functionalities are currently hidden behind a feature flag.
+  > This will allow us to test the webshop module in the wild before releasing it to our Supporter Edition users. 
+* `new` #3723 : Minor cosmetic changes to front-end by @ildyria.
+* `new` #3732 : Add listing of all orders by @ildyria.
+  > More preparatory work for the webshop module.
+* `SE` #3733 : Add photo / album dependant rules by @ildyria.
+  > It is now possible to decide if a renaming rule should be applied to photos, albums, or both.
+* `fix` #3734 : Fix updating without having the user_groups by @ildyria.
+  > This was a big issue when trying to update the code of Lychee from an older version.
+  > When trying to login, it was looking for a table that was not existing yet, preventing migrations to be run from the web interface.
+* `new` #3718 : Untagged Album: Add private untagged album by @PeterMMM.
+  > This new features adds a new smart albums "Untagged" which displays all photos without tags.
+  > Due to the large number of photos that could be contained, this albums also support pagination so that loading does not exhaust the server resources.
+* `new` #3743 : Update job list ever 2 seconds & auto scroll by @ildyria.
+  > Small quality of life improvement on the job list page.
+  > The job list is now updated every 2 seconds and auto-scrolls to the bottom when new jobs are added.
+* `new` #3744 : Adds public but hidden album option by @adriy-be.
+* `fix` #3746 : Handle negative (= unlimited) `memory_limit` during computation of upload chunk size by @schuetzm.
+  > When `memory_limit` is set to `-1` (unlimited) in `php.ini`, the computation of the upload chunk size was failing.
+  > That's a really good catch from @schuetzm!
+* `klo` #3754 : Speed up pre-commit hook by running one php-cs-fixer on all PHP files by @cdzombak.
+* `new` #3762 : Deduplicate top-level featured/pinned albums by @cdzombak.
+  > It is now optional to deduplicate featured/pinned albums from the top-level albums list.
+  > This option is available in the gallery settings.
+* `new` #3773 : create sigstore.json instead of .asc by @ildyria.
+  > As per the update of cosign, we are no longer creating `.asc` files but `.sigstore.json` files instead.
+  > Have a look at our [Code Signing documentation](https://github.com/LycheeOrg/Lychee/blob/master/docs/Code-signing.md) for more information.
+
+#### New Contributors
+
+* `new` #3718 : @PeterMMM made their first contribution.
+* `new` #3744 : @adriy-be made their first contribution.
+* `new` #3746 : @schuetzm made their first contribution.
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.9.2...v6.9.4
+
 ### v6.9.2
 
 Released on Sep 19th, 2025
