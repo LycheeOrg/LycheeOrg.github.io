@@ -36,7 +36,7 @@ Released on Oct 29th, 2025
 
 #### Signing process change and migration fixes
 
-This is a small updates which contains a few quality of life improvements, bug fixes and light new features.
+This is a small update which contains a few quality of life improvements, bug fixes and light new features.
 More importantly, it fixes the migrations from any older versions so that you are not blocked anymore due to an error 500.
 
 One of the notable change, is that we are now creating `.sigstore.json` files instead of `.asc` files when signing the releases.
