@@ -30,6 +30,41 @@
 
 ## Version 6
 
+### v6.9.4
+
+Released on Oct 29th, 2025
+
+## What's Changed
+
+* `fix` #3700 : Fix user group issues by @ildyria.
+* `klo` #3699 : Minor refactoring by @ildyria.
+* `klo` #3701 : Split test suite in hopes to speed things up. by @ildyria.
+* `klo` #3705 : Fix & speed up by @ildyria.
+* `klo` #3706 : Improve coverage with unit tests by @ildyria.
+* `fix` #3720 : fix user-groups addresses by @ildyria.
+* `klo` #3721 : Avoid property drilling by @ildyria.
+* `new` #3722 : Improve renamer with more rules by @ildyria.
+* `new` #3702 : Add Webshop backend by @ildyria.
+* `new` #3723 : Minor cosmetic changes to front-end by @ildyria.
+* `new` #3732 : Add listing of all orders by @ildyria.
+* `new` #3733 : Add photo / album dependant rules by @ildyria.
+* `fix` #3734 : Fix updating without having the user_groups by @ildyria.
+* `new` #3718 : Untagged Album: Add private untagged album by @PeterMMM.
+* `new` #3743 : Update job list ever 2 seconds & auto scroll by @ildyria.
+* `new` #3744 : Adds public but hidden album option by @adriy-be.
+* `fix` #3746 : Handle negative (= unlimited) `memory_limit` during computation of upload chunk size by @schuetzm.
+* `klo` #3754 : Speed up pre-commit hook by running one php-cs-fixer on all PHP files by @cdzombak.
+* `new` #3762 : Deduplicate top-level featured/pinned albums by @cdzombak.
+* `new` #3763 : Do not show anything related to webshop (yet) by @ildyria.
+* `new` #3773 : create sigstore.json instead of .asc by @ildyria.
+
+## New Contributors
+* `new` #3718 : @PeterMMM made their first contribution.
+* `new` #3744 : @adriy-be made their first contribution.
+* `new` #3746 : @schuetzm made their first contribution.
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.9.2...v6.9.4
+
 ### v6.9.2
 
 Released on Sep 19th, 2025
