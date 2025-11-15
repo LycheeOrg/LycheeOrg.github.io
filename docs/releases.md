@@ -30,6 +30,47 @@
 
 ## Version 6
 
+### v6.10.1
+
+Releaed on Nov 15th, 2025
+
+#### Fixes and dock full transparency option
+
+This is a small patch that brings a few fixes and improvements.
+
+#### Most notable changes
+
+* `new` 3804 : Add option to hide photo action dock instead of transparency by @ildyria.
+* `fix` 3803 : Resolve vite build warning in embed folder by @cdzombak.
+* `fix` 3807 : Do not crash Diagnostics on php-intl missing  by @ildyria.
+* `fix` 3805 : Fix delete not working in Dock by @ildyria.
+* `fix` 3808 : Fix search with Polish character by @ildyria.
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.10.0...v6.10.1
+
+### v6.10.0
+
+Releaed on Nov 10th, 2025
+
+#### Embed support and checksum in diagnostics
+
+This release brings one big new feature (hence the minor version bump), courtesy of @cdzombak: Javascript-based embed support.
+This allows you to embed your albums in websites with a small piece of code.
+You can access the functionality from each album views in the detail panel.
+
+We also added a checksum check in the diagnostic page, allowing you to verify the integrity of your installation.
+The checksum are computed as a merkle tree on all important the files in the code base. Obviously, those do not include your photos etc.
+With this we hope to make it easier to verify that the version run by you is indeed the version you intended to run.
+
+#### Most notable changes
+
+* `new` #3778 : Add Javascript-based embed support by @cdzombak.
+* `new` #3775 : Add checksum to diagnostics by @ildyria.
+* `fix` #3786 : Fix some situations where clicks were ignored by @cdzombak.
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.9.4...v6.10.0
+
+
 ### v6.9.4
 
 Released on Oct 29th, 2025
@@ -42,7 +83,11 @@ More importantly, it fixes the migrations from any older versions so that you ar
 One of the notable change, is that we are now creating `.sigstore.json` files instead of `.asc` files when signing the releases.
 This means that you will need to update your verification process accordingly. Please check out our [Code Signing documentation](https://github.com/LycheeOrg/Lychee/blob/master/docs/Code-signing.md).
 
-#### Our most notables changes are as follows
+#### Most notable changes
+
+`SE` refers to functionalities that are aimed at the Supporter Edition.  
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
 
 * `fix` #3700 : Fix user group issues by @ildyria.
 * `klo` #3701 : Split test suite in hopes to speed things up. by @ildyria.
@@ -102,6 +147,8 @@ without further hardening your installation.
 
 **We strongly recommend you use a subdomain instead (e.g. `photos.example.com`).**
 
+#### Most notable changes
+
 * `new` #3673 : Add documentation on how to add Oauth providers by @ildyria.
   > We added a small section in our repository to explain how to add Oauth providers.
   > This is not something that is visible to our users, but more of a developer/contributor documentation.
@@ -134,9 +181,7 @@ The parsing of the folders _etc_ will be fast, but the actual processing will al
 The execution of the command is no different than running `php artisan lychee:sync` from the command line.
 
 
-`SE` refers to functionalities that are aimed at the Supporter Edition.  
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-
+#### Most notable changes
 
 * `new` #3647 : Add import from server via Web UI by @ildyria.
   > It's back!
