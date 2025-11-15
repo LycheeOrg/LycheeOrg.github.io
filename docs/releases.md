@@ -32,7 +32,7 @@
 
 ### v6.10.1
 
-Releaed on Nov 15th, 2025
+Released on Nov 15th, 2025
 
 #### Fixes and dock full transparency option
 
@@ -50,7 +50,7 @@ This is a small patch that brings a few fixes and improvements.
 
 ### v6.10.0
 
-Releaed on Nov 10th, 2025
+Released on Nov 10th, 2025
 
 #### Embed support and checksum in diagnostics
 
