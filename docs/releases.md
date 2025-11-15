@@ -40,11 +40,11 @@ This is a small patch that brings a few fixes and improvements.
 
 #### Most notable changes
 
-* `new` 3804 : Add option to hide photo action dock instead of transparency by @ildyria.
-* `fix` 3803 : Resolve vite build warning in embed folder by @cdzombak.
-* `fix` 3807 : Do not crash Diagnostics on php-intl missing  by @ildyria.
-* `fix` 3805 : Fix delete not working in Dock by @ildyria.
-* `fix` 3808 : Fix search with Polish character by @ildyria.
+* `new` #3804 : Add option to hide photo action dock instead of transparency by @ildyria.
+* `fix` #3803 : Resolve vite build warning in embed folder by @cdzombak.
+* `fix` #3807 : Do not crash Diagnostics on php-intl missing  by @ildyria.
+* `fix` #3805 : Fix delete not working in Dock by @ildyria.
+* `fix` #3808 : Fix search with Polish character by @ildyria.
 
 **Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.10.0...v6.10.1
 
