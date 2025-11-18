@@ -30,6 +30,26 @@
 
 ## Version 6
 
+### v6.10.2
+
+Released on Nov 18th, 2025
+
+#### Translation of all settings and fixes
+
+This small patch will bring the translation of all settings in the admin panel.
+However, the supported language at the moment are only English and French.
+
+If you would like your language added, feel free to join the translations efforts:
+[https://weblate.lycheeorg.dev](https://weblate.lycheeorg.dev).
+
+#### Most notable changes
+
+* `new` #3812 : Support settings translations keys by @ildyria.
+* `fix` #3813 : Fix groups not loading in share dialog by @ildyria.
+* `fix` #3816 : Fix a SmartAlbum containing only portrait triggering errors by @ildyria.
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.10.1...v6.10.2
+
 ### v6.10.1
 
 Released on Nov 15th, 2025
