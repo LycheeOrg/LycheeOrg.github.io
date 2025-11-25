@@ -82,11 +82,7 @@ const metadata = {
             icon: 'tabler:plus',
           },
           {
-            description: 'Upload quota per user.',
-            icon: 'tabler:plus',
-          },
-          {
-            description: 'User groups.',
+            description: 'User groups & upload quotas.',
             icon: 'tabler:plus',
           },
           {
@@ -104,6 +100,14 @@ const metadata = {
           {
             description: 'Extended customizations.',
             icon: 'tabler:plus',
+          },
+          {
+            description: 'Webshop integration.',
+            icon: 'tabler:plus',
+            classes: {
+              icon_bg: 'bg-neutral-400',
+              icon: 'text-white',
+            },
           },
           {
             description: 'more to come...',
@@ -353,6 +357,36 @@ const metadata = {
       },
 
       {
+        feature: 'Webshop integration',
+        isHeader: true,
+        isSoon: true,
+      },
+      {
+        feature: 'Custom pricing (per size & license type)',
+        available: [false, true],
+      },
+      {
+        feature: 'Basket control flow',
+        available: [false, true],
+      },
+      {
+        feature: 'Mollie payment integration',
+        available: [false, true],
+      },
+      {
+        feature: 'Offline payment support',
+        available: [false, true],
+      },
+      {
+        feature: 'Order administration',
+        available: [false, true],
+      },
+      {
+        feature: 'Download links management',
+        available: [false, true],
+      },
+
+      {
         feature: 'Timeline',
         isHeader: true,
       },
@@ -483,7 +517,6 @@ const metadata = {
       {
         feature: 'Import via Web UI',
         available: [true, true],
-        isSoon: true,
       },
       {
         feature: 'Fast duplicate detection by filename/title',
