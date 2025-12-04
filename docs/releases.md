@@ -30,6 +30,21 @@
 
 ## Version 6
 
+### v6.10.3
+
+Released on Dec 4nd, 2025
+
+#### Video support in embedded galleries
+
+This patch is mostly the work of our great contributor [@cdzombak](https://github.com/cdzombak).
+He added video support to the embedded galleries, allowing you to showcase videos in your embedded albums.
+
+#### Most notable changes
+
+* `new` #3821 : Add video support to embedded galleries; fix gallery limit bug by @cdzombak.
+* `new` #3834 : Use translations in EmbedCodeDialog.vue by @cdzombak.
+* `fix` #3833 : fix: Use correct base URL for embedded galleries by @cdzombak.
+
 ### v6.10.2
 
 Released on Nov 18th, 2025
