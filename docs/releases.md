@@ -32,7 +32,7 @@
 
 ### v6.10.3
 
-Released on Dec 4nd, 2025
+Released on Dec 4th, 2025
 
 #### Video support in embedded galleries
 
@@ -44,6 +44,8 @@ He added video support to the embedded galleries, allowing you to showcase video
 * `new` #3821 : Add video support to embedded galleries; fix gallery limit bug by @cdzombak.
 * `new` #3834 : Use translations in EmbedCodeDialog.vue by @cdzombak.
 * `fix` #3833 : fix: Use correct base URL for embedded galleries by @cdzombak.
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v6.10.2...v6.10.3
 
 ### v6.10.2
 
