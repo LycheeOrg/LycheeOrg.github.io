@@ -36,9 +36,11 @@ Released on Dec 11th, 2025
 
 #### Minor Reflected SSRF fix
 
-We have been reported (CVE incomming) that a minor SSRF vulnerability was still present in Lychee.
-The patch from v6.6.13 did not fully mitigate the issue as an edge cases as not considered.
-The validation is done on the first URL, however if the URL is redirected, the redirection target was not validated against local network etc.
+We have been reported (CVE incoming) that a minor SSRF vulnerability was still present in Lychee.
+The patch from v6.6.13 did not fully mitigate the issue because an edge case had not been considered.
+Validation is done on the initial URL; however, if the URL is redirected, the redirection target was not validated against local network etc.
+To fix this, we added a new _expert_ configuration option in the admin section which disables following redirects when importing from URL.
+
 
 A big thanks to TableBasse, midfirewear, and petouha for reporting this vulnerability to us.
 
