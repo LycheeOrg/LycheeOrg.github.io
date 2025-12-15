@@ -25,3 +25,12 @@ LycheeOrg is committed to protecting the privacy of its users. This Privacy Poli
 Weblate is used to translate Lychee. It is a third-party service that is self-hosted by us.
 To the best of our knowledge, the Weblate software does not collect any personal data from its users aside from their email address
 which is required to create an account. Cookies are used to authenticate users and to store their preferences.
+
+
+#### On keygen.lycheeorg.dev
+
+Keygen is used to manage licenses for Lychee Supporter and Pro.
+The only information collected is obtained through your GitHub OAuth login. This is limited to your GitHub username and email address (if made public).
+
+You can delete that information at any time by deleting your account on keygen.lycheeorg.dev. Note that any subsequent login attempt will create a new account.
+Furthermore, that will revoke your existing active lifetime license if you have one.
