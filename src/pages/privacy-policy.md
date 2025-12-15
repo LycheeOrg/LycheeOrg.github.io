@@ -32,5 +32,5 @@ which is required to create an account. Cookies are used to authenticate users a
 Keygen is used to manage licenses for Lychee Supporter and Pro.
 The only information collected is obtained through your GitHub OAuth login. This is limited to your GitHub username and email address (if made public).
 
-You can delete that information at any time by deleting your account on keygen.lycheeorg.dev. Note that any subsequent login attempt will create a new account..
+You can delete that information at any time by deleting your account on keygen.lycheeorg.dev. Note that any subsequent login attempt will create a new account.
 Furthermore, that will revoke your existing active lifetime license if you have one.
