@@ -102,14 +102,6 @@ const metadata = {
             icon: 'tabler:plus',
           },
           {
-            description: 'Webshop integration.',
-            icon: 'tabler:plus',
-            classes: {
-              icon_bg: 'bg-neutral-400',
-              icon: 'text-white',
-            },
-          },
-          {
             description: 'more to come...',
             icon: 'tabler:question-mark',
             classes: {
@@ -126,7 +118,7 @@ const metadata = {
         },
         hasRibbon: true,
         ribbonTitle: 'popular',
-      }
+      },
     ]}
   />
 
@@ -136,7 +128,8 @@ const metadata = {
     products={['Free', 'Lychee <span class="text-sky-600 dark:text-sky-300">SE</span>']}
     extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the large amount of configurations available (250+).<br>\
     <sup>**</sup> Some languages are still untranslated. Any translations provided via <a class='text-sky-600 dark:text-sky-300 underline hover:text-sky-400 dark:hover:text-sky-500' href='https://weblate.lycheeorg.dev'>weblate</a> will be appreciated.<br>\
-    <sup>***</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden."
+    <sup>***</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden.<br>\
+    <sup>****</sup> This option requires the <span class='text-sky-600 dark:text-sky-300'>Pro</span> edition of Lychee which is targeted to users who wish to sell their pictures."
     specs={[
       {
         feature: 'Global',
@@ -361,36 +354,6 @@ const metadata = {
       },
 
       {
-        feature: 'Webshop integration',
-        isHeader: true,
-        isSoon: true,
-      },
-      {
-        feature: 'Custom pricing (per size & license type)',
-        available: [false, true],
-      },
-      {
-        feature: 'Basket control flow',
-        available: [false, true],
-      },
-      {
-        feature: 'Mollie payment integration',
-        available: [false, true],
-      },
-      {
-        feature: 'Offline payment support',
-        available: [false, true],
-      },
-      {
-        feature: 'Order administration',
-        available: [false, true],
-      },
-      {
-        feature: 'Download links management',
-        available: [false, true],
-      },
-
-      {
         feature: 'Timeline',
         isHeader: true,
       },
@@ -577,7 +540,49 @@ const metadata = {
         available: [false, true],
         isV6: true,
       },
-    ]}
+
+      {
+        feature: 'Webshop integration ****',
+        isHeader: true,
+        isSoon: true,
+        isPro: true,
+      },
+      {
+        feature: 'Custom pricing (per size & license type)',
+        available: [false, true],
+        isPro: true,
+      },
+      {
+        feature: 'Basket control flow',
+        available: [false, true],
+        isPro: true,
+      },
+      {
+        feature: 'Mollie payment integration',
+        available: [false, true],
+        isPro: true,
+      },
+      {
+        feature: 'PayPal payment integration',
+        available: [false, true],
+        isPro: true,
+      },
+      {
+        feature: 'Offline payment support',
+        available: [false, true],
+        isPro: true,
+      },
+      {
+        feature: 'Order administration',
+        available: [false, true],
+        isPro: true,
+      },
+      {
+        feature: 'Download links management',
+        available: [false, true],
+        isPro: true,
+      },
+]}
   />
 
   <FAQs
@@ -590,6 +595,12 @@ const metadata = {
       description:
         'The <span class="font-bold dark:text-neutral-200">Free</span> Edition is a great choice for personal use, offering unlimited albums, users, and photo uploads.<br/> \
         <span class="font-bold dark:text-neutral-200">Lychee</span> <span class="text-sky-600 dark:text-sky-300 font-bold">SE</span> includes all the features of the Free Edition, plus some exclusive features as a thank-you for supporting the development of Lychee.',
+    },
+    {
+      title: 'What is the Pro edition mentioned in the feature comparison table?',
+      description:
+        'The <span class="font-bold dark:text-neutral-200">Pro</span> edition is a small addon on top of <span class="font-bold dark:text-neutral-200">Lychee</span> <span class="text-sky-600 dark:text-sky-300 font-bold">SE</span> that is targeted towards professional photographers and businesses who wish to sell their pictures via a webshop integration.\
+        It includes all the features of the Supporter Edition plus few exclusive features to manage your webshop and sales. Depending on your support to Lychee, you may already have access to it.',
     },
     {
       title: 'I am running an old version of Lychee and I want to upgrade to version 6.<br>Will I be losing features if I do not use the Supporter Edition?',
@@ -605,7 +616,7 @@ const metadata = {
     {
       title: 'How do I get the Supporter Edition? How do I register it?',
       description:
-        "Once you support us via GitHub, you will get a personal license key that you can use in your Lychee instance to unlock the exclusive features.\
+        "Once you support us via GitHub, you will get a link to retrieve your personal license key that you can use in your Lychee instance to unlock the exclusive features.\
         If you support us directly via Open Collective, please contact us by mail or via discord to get your personal license key.<br/><br/>\
         Once you have your license key, just go into the <span class='font-semibold dark:text-neutral-300'>Left menu</span>, open the <span class='font-semibold dark:text-neutral-300'>About Lychee</span> dialog, and enter your license key in the dedicated field.",
     },
@@ -636,17 +647,17 @@ const metadata = {
       title: 'I no longer use Lychee, how do I stop my subscription?',
       description:
         'You can manage your sponsorship subscription directly on GitHub. Read more about it on the <a href="https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-sponsors/downgrading-a-sponsorship" class="text-default hover:text-sky-600 hover:dark:text-sky-300">GitHub documentation</a>.',
+    },
+    {
+      title: 'I lost my license key, how can I retrieve it?',
+      description:
+        'If you lost your license key, you can retrieve a new one at <a href="https://keygen.lycheeorg.dev" class="text-default hover:text-sky-600 hover:dark:text-sky-300">keygen.lycheeorg.dev</a>.',
+    },
+    {
+      title: 'I had a lifetime license, but I deleted my account on keygen.lycheeorg.dev, how can I retrieve it?',
+      description:
+        'We are fully GDPR compliant. <span class="text-default">If you deleted your account on keygen.lycheeorg.dev, your data has been permanently erased</span>. That includes all the records of your transactions. You will need to contact us directly via mail or discord to verify your previous support and retrieve a new license key.',
     }
-    // {
-    //   title: 'Do the plans come with customer support?',
-    //   description:
-    //     'Absolutely, all plans include access to our dedicated customer support to assist you with any queries or concerns.',
-    // },
-    // {
-    //   title: 'What payment methods do you accept?',
-    //   description:
-    //     'We accept major credit cards and online payment methods to ensure a convenient and secure transaction process.',
-    // },
   ]}
 />
 </Layout>

@@ -259,6 +259,7 @@ export interface Spec {
   isHeader?: boolean;
   isV6?: boolean;
   isSoon?: boolean;
+  isPro?: boolean;
   values?: string[];
   available?: boolean[];
 }
