@@ -28,6 +28,10 @@ export const headerData = {
       href: '/support',
     },
     {
+      text: 'Roadmap',
+      href: '/roadmap',
+    },
+    {
       text: 'Lychee <span class="text-sky-500 ml-1">SE</span>',
       href: '/get-supporter-edition',
     },

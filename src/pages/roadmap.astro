@@ -1,0 +1,399 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+
+const metadata = {
+  title: 'Roadmap - Lychee Release History',
+  description: 'Track the evolution of Lychee through our release history and upcoming features',
+};
+
+// Release data extracted from releases.md
+const releases = [
+  { version: 'v6.10.4', date: 'Dec 11, 2025', title: 'Minor Reflected SSRF fix', type: 'security', highlights: ['Fixed SSRF vulnerability with redirect validation', 'Added expert configuration to disable URL redirects'] },
+  { version: 'v6.10.3', date: 'Dec 4, 2025', title: 'Video support in embedded galleries', type: 'feature', highlights: ['Added video support to embedded galleries', 'Translations in EmbedCodeDialog', 'Fixed base URL for embedded galleries'] },
+  { version: 'v6.10.2', date: 'Nov 18, 2025', title: 'Translation updates and fixes', type: 'enhancement', highlights: ['Translation of all settings in admin panel', 'Fixed groups not loading in share dialog', 'Fixed SmartAlbum portrait errors'] },
+  { version: 'v6.10.1', date: 'Nov 15, 2025', title: 'Transparency option and fixes', type: 'enhancement', highlights: ['Option to hide photo action dock', 'Fixed delete in Dock', 'Fixed Polish character search'] },
+  { version: 'v6.10.0', date: 'Nov 10, 2025', title: 'Embed support & checksum', type: 'major', highlights: ['Javascript-based embed support', 'Checksum verification in diagnostics', 'Fixed click detection issues'] },
+  { version: 'v6.9.4', date: 'Oct 29, 2025', title: 'Signing & migration fixes', type: 'enhancement', highlights: ['Changed to .sigstore.json signing', 'Fixed user group issues', 'Untagged album feature', 'Webshop backend prep'] },
+  { version: 'v6.9.2', date: 'Sep 19, 2025', title: 'Minor fixes', type: 'bugfix', highlights: ['Improved subfolder setup', 'Move to S3 command', 'Option to disable server imports'] },
+  { version: 'v6.9.1', date: 'Aug 31, 2025', title: 'Import from server is back!', type: 'feature', highlights: ['Import from server via Web UI', 'Drag & select returned', 'Tag album and/or support'] },
+  { version: 'v6.9.0', date: 'Aug 27, 2025', title: 'Watermarking, Zip, Renamer', type: 'major', highlights: ['🌟 Watermarking (SE)', '🌟 Zip upload (SE)', '🌟 Renamer (SE)', 'Timeline page'] },
+  { version: 'v6.8.1', date: 'Aug 18, 2025', title: 'Migration fix', type: 'bugfix', highlights: ['Sync uses jobs', 'Tag albums and/or', 'Drag & select back', 'Fixed tag migration'] },
+  { version: 'v6.8.0', date: 'Aug 17, 2025', title: 'Tags refactoring', type: 'major', highlights: ['Tags system refactored', 'Tag autocomplete', 'Pinned albums', 'Custom copyright footer'] },
+  { version: 'v6.7.2', date: 'Aug 7, 2025', title: 'Login options', type: 'enhancement', highlights: ['Login throttling', 'Configurable login methods', 'Links module'] },
+  { version: 'v6.7.1', date: 'Jul 25, 2025', title: 'User groups (SE)', type: 'feature', highlights: ['🌟 User groups (SE)', 'RSS feed improvements', 'Swipe gesture options', 'Scrolling UX improved'] },
+  { version: 'v6.7.0', date: 'Jul 1, 2025', title: 'Flow, Sync, Multi-admin', type: 'major', highlights: ['Flow: social-friendly feed display', 'Sync revamped with reverse', '🌟 Multiple admins (SE)'] },
+  { version: 'v6.6.14', date: 'Jun 27, 2025', title: 'Cosmetic hotfix', type: 'bugfix', highlights: ['Fixed header display issue'] },
+  { version: 'v6.6.13', date: 'Jun 27, 2025', title: 'SSRF vulnerability fix', type: 'security', highlights: ['Fixed Server-Side Request Forgery', 'URL validation checks', 'Optional gallery header image'] },
+  { version: 'v6.6.12', date: 'Jun 26, 2025', title: 'Persian & RTL support', type: 'feature', highlights: ['Persian language', 'Right-to-Left support', 'Invite links', 'Fixed mobile header'] },
+  { version: 'v6.6.11', date: 'Jun 23, 2025', title: 'Photo edit fix', type: 'bugfix', highlights: ['Fixed photo editing'] },
+  { version: 'v6.6.10', date: 'Jun 18, 2025', title: 'Path traversal fix', type: 'security', highlights: ['Fixed critical path traversal', 'Defense in depth'] },
+  { version: 'v6.6.9', date: 'Jun 17, 2025', title: 'Small fixes', type: 'bugfix', highlights: ['Fixed smart album metrics', 'Imagick 7 support', 'Fixed header from album edit'] },
+  { version: 'v6.6.8', date: 'Jun 14, 2025', title: 'Cache refresh fix', type: 'bugfix', highlights: ['Fixed 500 on cache refresh'] },
+  { version: 'v6.6.7', date: 'Jun 13, 2025', title: 'Hotfixes', type: 'bugfix', highlights: ['Fixed download redirection', 'Fixed tag album preloading', 'Fixed search'] },
+  { version: 'v6.6.6', date: 'Jun 11, 2025', title: 'Photo-Album relationship', type: 'major', highlights: ['Photos in multiple albums', 'Arabic & Dutch support', 'Registration page', '🌟 Color extraction (SE)'] },
+  { version: 'v6.6.5', date: 'May 27, 2025', title: 'Link fixes', type: 'bugfix', highlights: ['Fixed temporary & secure links'] },
+  { version: 'v6.6.4', date: 'May 25, 2025', title: 'Timeline layout', type: 'feature', highlights: ['Timeline layout', 'LQ image placeholders', 'Login page', 'Animation improvements'] },
+  { version: 'v6.6.3', date: 'May 17, 2025', title: 'Hotlink fix', type: 'bugfix', highlights: ['Fixed hotlinking prevention'] },
+  { version: 'v6.6.2', date: 'May 15, 2025', title: 'iFrame support', type: 'feature', highlights: ['iFrame integration support', '#upload URL trigger'] },
+  { version: 'v6.6.1', date: 'May 12, 2025', title: 'Weblate & PDF support', type: 'feature', highlights: ['Weblate integration', 'PDF thumbnail support', '🌟 Live Metrics (SE)'] },
+  { version: 'v6.6.0', date: 'May 1, 2025', title: 'Legacy removed', type: 'major', highlights: ['Removed v4 legacy code', 'Signed URLs', '🌟 URL encryption (SE)'] },
+  { version: 'v6.5.3', date: 'Apr 27, 2025', title: 'Description in thumbs', type: 'feature', highlights: ['Description in thumbnails', 'Fixed favourites', 'Fixed metrics'] },
+  { version: 'v6.5.2', date: 'Apr 24, 2025', title: 'Minor fixes', type: 'bugfix', highlights: ['Fixed copy & tag operations', 'Fixed smart albums', 'Fixed date display'] },
+  { version: 'v6.5.1', date: 'Apr 21, 2025', title: 'Cache clear hotfix', type: 'bugfix', highlights: ['Force cache clear on update'] },
+  { version: 'v6.5.0', date: 'Apr 21, 2025', title: 'Sync speed & Statistics', type: 'major', highlights: ['10x faster sync', 'Bulk sharing', '🌟 Statistics (SE)', 'Job progress feedback'] },
+  { version: 'v6.4.2', date: 'Apr 4, 2025', title: 'New Settings page', type: 'feature', highlights: ['Refactored Settings', 'French & Russian translations', 'Changelog in menu', 'Maintenance page'] },
+  { version: 'v6.4.1', date: 'Mar 28, 2025', title: 'Fixes', type: 'bugfix', highlights: ['Fixed S3/symlink issues', 'Fixed download errors'] },
+  { version: 'v6.4.0', date: 'Mar 23, 2025', title: 'Snake_case refactoring', type: 'major', highlights: ['Full snake_case conversion', '🌟 Favourite support (SE)', 'Album page optimization'] },
+  { version: 'v6.3.5', date: 'Mar 19, 2025', title: 'PHPStan 2.0', type: 'enhancement', highlights: ['Migrated to PHPStan 2.0', 'Improved left menu', '🌟 Anonymous upload (SE)', 'Polish translations'] },
+  { version: 'v6.3.4', date: 'Feb 28, 2025', title: 'Changes', type: 'enhancement', highlights: ['Cache diagnostics', 'Scroll to top button', 'Simplified Chinese'] },
+  { version: 'v6.3.3', date: 'Feb 21, 2025', title: 'Changes', type: 'enhancement', highlights: ['Privacy options', 'Markdown support', '🌟 Punch card stats (SE)'] },
+  { version: 'v6.3.2', date: 'Feb 17, 2025', title: 'Fixes', type: 'bugfix', highlights: ['RSS feed enhancements', 'Translation fixes'] },
+  { version: 'v6.3.1', date: 'Feb 15, 2025', title: 'Redis fix', type: 'bugfix', highlights: ['Fixed Redis crash handling'] },
+  { version: 'v6.3.0', date: 'Feb 14, 2025', title: 'Localization & Caching', type: 'major', highlights: ['Localization reset', 'Redis caching support', '🌟 Duplicate finder', 'Authelia login support'] },
+  { version: 'v6.2.0', date: 'Dec 17, 2024', title: 'API documentation', type: 'feature', highlights: ['Live API documentation', 'Timeline layout', 'Password unlock middleware'] },
+  { version: 'v6.1.2', date: 'Nov 27, 2024', title: 'Fixes', type: 'bugfix', highlights: ['Fixed temporary links', 'Automated signed releases', 'Fixed timeline'] },
+  { version: 'v6.1.1', date: 'Nov 26, 2024', title: 'Fixes', type: 'bugfix', highlights: ['Fixed Authentik icon', 'Fixed smart albums', 'Fixed Tag album'] },
+  { version: 'v6.1.0', date: 'Nov 25, 2024', title: 'Timeline layout', type: 'major', highlights: ['Timeline layout', 'LQ image placeholders', 'Authentik OAuth support'] },
+  { version: 'v6.0.1', date: 'Oct 31, 2024', title: 'Fixes', type: 'bugfix', highlights: ['Fixed icons in subfolders', 'Fixed login menu', 'Security best practices'] },
+  { version: 'v6.0.0', date: 'Oct 26, 2024', title: 'Vue3 & Supporter Edition', type: 'major', highlights: ['Complete Vue3 rewrite', 'Lychee SE introduced', 'TALL stack', 'Chunked uploads'] },
+  { version: 'v5.5.1', date: 'Jul 5, 2024', title: 'Video & paths', type: 'bugfix', highlights: ['Fixed S3 video loading', 'php-exif path support'] },
+  { version: 'v5.5.0', date: 'Jun 26, 2024', title: 'Laravel 11', type: 'major', highlights: ['Migrated to Laravel 11', 'Smart album visibility', 'OAuth user creation'] },
+  { version: 'v5.4.0', date: 'Jun 17, 2024', title: 'Login required', type: 'feature', highlights: ['Login required option', 'Fixed apostrophes in names'] },
+  { version: 'v5.3.1', date: 'Jun 9, 2024', title: 'Fixes', type: 'bugfix', highlights: ['Fixed map updates', 'Fixed thumbnails', 'French translation'] },
+  { version: 'v5.3.0', date: 'Apr 29, 2024', title: 'S3 buckets', type: 'feature', highlights: ['S3 bucket support', 'Album copyright'] },
+  { version: 'v5.2.2', date: 'Apr 20, 2024', title: 'Header image', type: 'feature', highlights: ['Portrait/landscape header images'] },
+  { version: 'v5.2.1', date: 'Apr 19, 2024', title: 'Pipeline & OAuth', type: 'feature', highlights: ['Image processing pipeline', 'Keycloak OAuth', 'Per-album header'] },
+  { version: 'v5.2.0', date: 'Apr 6, 2024', title: 'Critical fixes', type: 'security', highlights: ['Fixed upload issues', 'Feature flags', 'Markdown support', 'Maintenance page'] },
+  { version: 'v5.1.1', date: 'Jan 22, 2024', title: 'Dropbox & redirects', type: 'feature', highlights: ['Import from Dropbox', 'Legacy link redirection'] },
+  { version: 'v5.1.0', date: 'Jan 18, 2024', title: 'OAuth support', type: 'feature', highlights: ['OAuth providers support', 'Amazon, Apple, Facebook, GitHub, Google, Mastodon, Microsoft, Nextcloud'] },
+  { version: 'v5.0.3', date: 'Jan 12, 2024', title: 'Subfolder support', type: 'feature', highlights: ['Subfolder hosting support', 'Compact album view', 'WebAuthn fixes'] },
+  { version: 'v5.0.2', date: 'Dec 28, 2023', title: 'SQL injection fix', type: 'security', highlights: ['Fixed SQL injection vulnerability'] },
+  { version: 'v5.0.1', date: 'Dec 27, 2023', title: 'Fixes', type: 'bugfix', highlights: ['Fixed blurred thumbs', 'Fixed unlock component', 'Improved diagnostics'] },
+  { version: 'v5.0.0', date: 'Dec 25, 2023', title: 'Livewire rewrite', type: 'major', highlights: ['Complete Livewire rewrite', 'TALL stack', 'Access rights refactored', 'Chunked uploads'] },
+  { version: 'v4.13.0', date: 'Sep 24, 2023', title: 'Final v4 release', type: 'major', highlights: ['License as enum', 'Unique config keys', 'Better livewire prep'] },
+  { version: 'v4.12.0', date: 'Sep 16, 2023', title: 'Enum types', type: 'enhancement', highlights: ['Layout & overlay enums', 'Better diagnostics', 'Fixed decorations'] },
+  { version: 'v4.11.1', date: 'Sep 3, 2023', title: 'Fixes', type: 'bugfix', highlights: ['Fixed diagnostics', 'Webauthn username support', 'Download fixes'] },
+  { version: 'v4.11.0', date: 'Aug 13, 2023', title: 'Hungarian & video config', type: 'feature', highlights: ['Hungarian language', 'Video thumbnail config', 'German translations'] },
+  { version: 'v4.10.0', date: 'Aug 1, 2023', title: 'Actions & integrity', type: 'enhancement', highlights: ['Actions pattern', 'DB integrity checks', 'Ratio support', 'OSM updates'] },
+  { version: 'v4.9.4', date: 'Jun 28, 2023', title: 'Speed improvements', type: 'enhancement', highlights: ['Better exception logging', 'Faster global table', 'Subfolder fixes'] },
+  { version: 'v4.9.3', date: 'Jun 25, 2023', title: 'External tracking', type: 'feature', highlights: ['Matomo & Google Analytics', 'CSP configuration', 'License editing fix'] },
+  { version: 'v4.9.2', date: 'May 22, 2023', title: 'CSP fix', type: 'bugfix', highlights: ['Fixed log-viewer CSP'] },
+  { version: 'v4.9.1', date: 'May 19, 2023', title: 'Log-viewer paths', type: 'bugfix', highlights: ['Fixed log-viewer paths'] },
+  { version: 'v4.9.0', date: 'May 18, 2023', title: 'Log-viewer', type: 'feature', highlights: ['Integrated log-viewer', 'Removed homemade logs'] },
+  { version: 'v4.8.1', date: 'May 15, 2023', title: 'Migration & API docs', type: 'feature', highlights: ['Better old migrations', 'API documentation', 'File last modified support'] },
+  { version: 'v4.8.0', date: 'May 5, 2023', title: 'Access permissions', type: 'major', highlights: ['New access permissions system'] },
+  { version: 'v4.7.4', date: 'May 4, 2023', title: 'Random images', type: 'feature', highlights: ['Random images without public/starred'] },
+  { version: 'v4.7.3', date: 'Apr 19, 2023', title: 'Jobs processing', type: 'feature', highlights: ['Job queue support', 'Job history', 'php-exif update'] },
+  { version: 'v4.7.2', date: 'Mar 8, 2023', title: 'Laravel 10', type: 'major', highlights: ['Migrated to Laravel 10', 'Auto image rotation', 'GdHandler improvements'] },
+  { version: 'v4.7.1', date: 'Feb 5, 2023', title: 'HTTPS & storage', type: 'feature', highlights: ['Force HTTPS option', 'Storage in storage/', 'On This Day public option'] },
+  { version: 'v4.7.0', date: 'Jan 4, 2023', title: 'PHP 8.1 & Enums', type: 'major', highlights: ['Requires PHP 8.1+', 'Enum types', 'Album decorations', 'Admin check on migrations'] },
+  { version: 'v4.6.5', date: 'Dec 26, 2022', title: 'Username changes', type: 'feature', highlights: ['Allow username changes', 'PostgreSQL fixes'] },
+  { version: 'v4.6.4', date: 'Dec 25, 2022', title: 'Unified Frontend', type: 'major', highlights: ['Merged gallery/view/frame', 'On This Day album', 'Multiple admins', 'Unix socket Redis'] },
+  { version: 'v4.6.2', date: 'Nov 12, 2022', title: 'WebAuthn upgrade', type: 'security', highlights: ['U2F credentials reset', 'Modern dialog', 'Laravel 9', 'Tag append option'] },
+  { version: 'v4.6.1', date: 'Oct 8, 2022', title: 'Security update', type: 'security', highlights: ['Fixed XSS vulnerability', 'Updated CSP', 'Dropped API key for tokens', 'Multi-path import'] },
+  { version: 'v4.6.0', date: 'Sep 4, 2022', title: 'Laravel Auth', type: 'major', highlights: ['Laravel Auth system', 'ASCII filename fallback', 'Fixed tag albums'] },
+  { version: 'v4.5.3', date: 'Aug 7, 2022', title: 'New ID scheme', type: 'major', highlights: ['144-bit random IDs', 'Deep directory structure', 'HiDPI folders', 'GPX tracks'] },
+  { version: 'v4.4.0', date: 'Dec 3, 2021', title: 'PHP 8 required', type: 'major', highlights: ['Requires PHP 8+', 'Composer upgrade'] },
+  { version: 'v4.3.6', date: 'Nov 23, 2021', title: 'Email notifications', type: 'feature', highlights: ['Photo upload notifications', 'Polish translation', 'Cache busting'] },
+  { version: 'v4.3.4', date: 'Jul 11, 2021', title: 'Timestamps & search', type: 'feature', highlights: ['Google Motion Photo', 'Extended search', 'Timestamp refactoring'] },
+  { version: 'v4.3.0', date: 'Apr 18, 2021', title: 'Touch & responsive', type: 'feature', highlights: ['Touch device support', 'Responsive design', 'Portuguese language'] },
+  { version: 'v4.2.2', date: 'Feb 16, 2021', title: 'Fixes', type: 'bugfix', highlights: ['Password album fixes', 'GPS direction option', 'Import limits'] },
+  { version: 'v4.2.1', date: 'Jan 24, 2021', title: 'Custom covers', type: 'feature', highlights: ['Custom album covers'] },
+  { version: 'v4.2.0', date: 'Jan 24, 2021', title: 'Livewire prep', type: 'major', highlights: ['Backend refactoring', 'Nested Set albums', 'Livewire foundation'] },
+  { version: 'v4.1.0', date: 'Dec 27, 2020', title: 'WebAuth & sensitive', type: 'feature', highlights: ['WebAuth/Yubikey support', 'Sensitive albums', 'Forced migrations'] },
+  { version: 'v4.0.8', date: 'Nov 19, 2020', title: 'PHP 7.4 required', type: 'major', highlights: ['Requires PHP 7.4', 'Per-album ordering', 'Firefo TV support'] },
+  { version: 'v4.0.7', date: 'Oct 9, 2020', title: 'Rotations & smart albums', type: 'feature', highlights: ['Picture rotation', 'Tag smart albums', 'Traditional Chinese', 'WebP support'] },
+  { version: 'v4.0.6', date: 'May 26, 2020', title: 'XMP & HEIC', type: 'feature', highlights: ['XMP sidecar support', 'HEIC file support', 'RSS feed', 'Debug bar'] },
+  { version: 'v4.0.5', date: 'May 15, 2020', title: 'RSS module', type: 'feature', highlights: ['RSS feed', 'Sync improvements', 'SQLite support'] },
+  { version: 'v4.0.4', date: 'May 11, 2020', title: 'SQLite & CDN', type: 'feature', highlights: ['Better SQLite', 'CDN support', 'Config migration from v3'] },
+  { version: 'v4.0.3', date: 'Apr 29, 2020', title: 'Diagnostics', type: 'enhancement', highlights: ['Improved diagnostics', 'Release channel'] },
+  { version: 'v4.0.2', date: 'Apr 22, 2020', title: 'Fixes', type: 'bugfix', highlights: ['Migration fixes', 'Installer fixes'] },
+  { version: 'v4.0.1', date: 'Apr 19, 2020', title: 'Archive size', type: 'bugfix', highlights: ['82% smaller archives', 'Fixed downloads'] },
+  { version: 'v4.0.0', date: 'Apr 18, 2020', title: 'Laravel & sub-albums', type: 'major', highlights: ['Laravel backend', 'Sub-albums', 'Multi-user', 'Frame module', 'Map with GPS'] },
+];
+
+const getReleaseTypeColor = (type: string) => {
+  const colors = {
+    major: 'bg-gradient-to-br from-purple-500 to-pink-500',
+    feature: 'bg-gradient-to-br from-blue-500 to-cyan-500',
+    enhancement: 'bg-gradient-to-br from-green-500 to-emerald-500',
+    bugfix: 'bg-gradient-to-br from-orange-500 to-amber-500',
+    security: 'bg-gradient-to-br from-red-500 to-rose-500',
+  };
+  return colors[type] || 'bg-gradient-to-br from-gray-500 to-slate-500';
+};
+
+const getReleaseTypeBadge = (type: string) => {
+  const badges = {
+    major: { text: 'Major Release', class: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' },
+    feature: { text: 'New Feature', class: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' },
+    enhancement: { text: 'Enhancement', class: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
+    bugfix: { text: 'Bug Fix', class: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200' },
+    security: { text: 'Security', class: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' },
+  };
+  return badges[type] || { text: 'Release', class: 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200' };
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Page Header -->
+  <section class="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
+          <span class="text-primary">Roadmap</span> & Release History
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Track the evolution of Lychee through our comprehensive release history. From security patches to major features,
+          see how we continuously improve your photo management experience.
+        </p>
+      </div>
+    </div>
+    <div class="mx-auto max-w-3xl pt-12 px-4 sm:px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="space-y-2">
+          <div class="text-4xl font-bold text-primary">6.10+</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Latest Version</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-4xl font-bold text-primary">121</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Total Releases</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-4xl font-bold text-primary">5.5</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Years Journey</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-4xl font-bold text-primary">Active</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Development</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Milestones Section -->
+  <section class="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <!-- Section Header -->
+      <div class="mb-12 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
+          Major Milestones
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-6xl mx-auto">
+          Key moments in Lychee's evolution
+        </p>
+      </div>
+
+      <!-- Milestones Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- v4.0.0 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-purple-500">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-purple-600 dark:text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-gray-900 dark:text-white">v4.0.0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">April 2020</div>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Laravel Backend</h3>
+          <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+            <li>• Laravel framework</li>
+            <li>• Sub-albums support</li>
+            <li>• Multi-user system</li>
+            <li>• GPS & Map integration</li>
+          </ul>
+        </div>
+
+        <!-- v5.0.0 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-gray-900 dark:text-white">v5.0.0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Dec 2023</div>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Livewire Rewrite</h3>
+          <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+            <li>• TALL stack</li>
+            <li>• Access rights refactored</li>
+            <li>• Chunked uploads</li>
+            <li>• OAuth support</li>
+          </ul>
+        </div>
+
+        <!-- v6.0.0 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-green-500">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-green-600 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-gray-900 dark:text-white">v6.0.0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Oct 2024</div>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Vue3 & SE</h3>
+          <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+            <li>• Complete Vue3 rewrite</li>
+            <li>• Supporter Edition</li>
+            <li>• Modern architecture</li>
+            <li>• Enhanced performance</li>
+          </ul>
+        </div>
+
+        <!-- v6.10.4 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-amber-500">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-amber-600 dark:text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-gray-900 dark:text-white">v6.10.4</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Dec 2025</div>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Latest</h3>
+          <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+            <li>• Embed galleries</li>
+            <li>• Watermarking (SE)</li>
+            <li>• Timeline view</li>
+            <li>• Security hardened</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Journey Stats -->
+      <div class="mt-12 text-center">
+        <div class="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-full">
+          <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+            From Laravel backend to Vue3 frontend — 5.5 years of continuous evolution
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="py-8 md:py-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <!-- Section Header -->
+      <div class="mb-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-3">
+          Release Timeline
+        </h2>
+        <p class="text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Following our commitment to transparency and continuous improvement
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative">
+        <!-- Timeline Line -->
+        <div class="absolute left-[10rem] top-4 bottom-0 w-0.5 bg-gradient-to-b from-primary to-blue-300 dark:from-primary dark:to-blue-700" aria-hidden="true"></div>
+
+        <!-- Timeline Items -->
+        <div class="space-y-4 md:space-y-6">
+          {releases.map((release, index) => (
+            <div class="relative flex items-start gap-6">
+              <!-- Date (Left Side) -->
+              <div class="w-32 text-right flex-shrink-0">
+                <time class="text-xs font-semibold text-gray-700 dark:text-gray-300">
+                  {release.date}
+                </time>
+              </div>
+
+              <!-- Timeline Dot -->
+              <div class="relative flex items-center justify-center flex-shrink-0 mt-1.5">
+                <div class={`w-4 h-4 rounded-full ${getReleaseTypeColor(release.type)} ring-3 ring-white dark:ring-gray-900 shadow-md flex items-center justify-center`}>
+                  <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                </div>
+              </div>
+
+              <!-- Content Card -->
+              <div class="flex-1">
+                <div class="pb-3">
+                  <!-- Title Row -->
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-lg font-bold text-gray-900 dark:text-white">{release.version}</span>
+                    <span class="text-base font-bold text-gray-400 dark:text-gray-600">—</span>
+                    <h3 class="text-base font-bold text-gray-900 dark:text-white flex-1">{release.title}</h3>
+                    <span class={`px-2 py-0.5 rounded-full text-xs font-semibold ${getReleaseTypeBadge(release.type).class}`}>
+                      {getReleaseTypeBadge(release.type).text}
+                    </span>
+                  </div>
+
+                  <!-- Highlights -->
+                  <div>
+                    <ul class="space-y-0">
+                      {release.highlights.map((highlight) => (
+                        <li class="flex items-start group/item">
+                          <svg class="w-4 h-4 text-primary mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                          </svg>
+                          <span class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-gray-900 dark:group-hover/item:text-white transition-colors">{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="mt-12 text-center">
+        <div class="inline-flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <a
+            href="https://github.com/LycheeOrg/Lychee/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            All Releases on GitHub
+          </a>
+          <a
+            href="/support"
+            class="btn bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-gray-600 hover:border-primary dark:hover:border-primary"
+          >
+            Support Development
+          </a>
+        </div>
+        <p class="mt-6 text-gray-600 dark:text-gray-400">
+          Want to contribute? Check out our <a href="https://github.com/LycheeOrg/Lychee" class="text-primary hover:underline">GitHub repository</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-secondary shadow-lg hover:shadow-xl;
+  }
+</style>
