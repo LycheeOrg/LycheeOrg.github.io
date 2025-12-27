@@ -1,6 +1,5 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
 
 const metadata = {
   title: 'Roadmap - Lychee Release History',
@@ -9,6 +8,7 @@ const metadata = {
 
 // Release data extracted from releases.md
 const releases = [
+  { version: 'v7.0.0', date: 'Soon...', title: 'Upcoming Major Release', type: 'major', highlights: ['Stay tuned for exciting new features and improvements!'] },
   { version: 'v6.10.4', date: 'Dec 11, 2025', title: 'Minor Reflected SSRF fix', type: 'security', highlights: ['Fixed SSRF vulnerability with redirect validation', 'Added expert configuration to disable URL redirects'] },
   { version: 'v6.10.3', date: 'Dec 4, 2025', title: 'Video support in embedded galleries', type: 'feature', highlights: ['Added video support to embedded galleries', 'Translations in EmbedCodeDialog', 'Fixed base URL for embedded galleries'] },
   { version: 'v6.10.2', date: 'Nov 18, 2025', title: 'Translation updates and fixes', type: 'enhancement', highlights: ['Translation of all settings in admin panel', 'Fixed groups not loading in share dialog', 'Fixed SmartAlbum portrait errors'] },

@@ -255,4 +255,53 @@ const metadata = {
 
     <Fragment slot="subtitle"> Deploy in a matter of seconds with our docker-compose file. </Fragment>
   </CallToAction>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const teaser = document.createElement('div');
+    teaser.id = 'teaser';
+    teaser.style.position = 'fixed';
+    teaser.style.top = '0';
+    teaser.style.left = '0';
+    teaser.style.width = '100%';
+    teaser.style.height = '100%';
+    teaser.style.backgroundColor = 'black';
+    teaser.style.display = 'flex';
+    teaser.style.justifyContent = 'center';
+    teaser.style.alignItems = 'center';
+    teaser.style.zIndex = '9999';
+    teaser.style.transition = 'opacity 3s ease-in';
+
+    const img = document.createElement('img');
+    img.src = '/Lychee-v7-teasing.png';
+    img.alt = 'Teaser Image';
+    img.style.maxWidth = '90%';
+    img.style.maxHeight = '90%';
+    img.style.transform = 'scale(1)';
+    img.style.opacity = '0';
+    img.style.transition = 'transform 6s ease-in-out, opacity 3s ease';
+
+    teaser.appendChild(img);
+    document.body.appendChild(teaser);
+
+    // Start the zoom animation
+    setTimeout(() => {
+      img.style.opacity = '1';
+      img.style.transform = 'scale(1.5)';
+    }, 0);
+
+    // Fade out the teaser after the zoom animation
+    setTimeout(() => {
+      teaser.style.opacity = '0';
+      img.style.opacity = '0';
+      setTimeout(() => {
+        teaser.remove();
+      }, 3000);
+    }, 3000);
+
+    teaser.addEventListener('click', () => {
+      teaser.remove();
+    });
+  });
+</script>
 </Layout>
