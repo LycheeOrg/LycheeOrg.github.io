@@ -28,6 +28,17 @@
 }
 </style>
 
+## Version 7
+
+### v7.0.0
+
+Released on Dec 31st, 2025
+
+#### Major release: Webshop, star ratings, and more!
+
+
+
+
 ## Version 6
 
 ### v6.10.4
