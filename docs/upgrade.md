@@ -1,94 +1,10 @@
-## Checking requirements
 
-Check that the server satisfifes the [requirements](installation.html#web-server-configuration). In particular pay attention the PHP extensions.
-You can display installed PHP extensions using `phpinfo()`.
 
-## Preparing the files
+## Upgrading Lychee docker installations from v6 to v7
 
-Assuming the following tree:
-```
-/var/
-  |- www/
-         |- html/
-              |- Lychee/
-              |- <you are here>
-```
+> {note} **Critical Breaking Changes**: Version 7 introduces significant architectural changes to the Docker setup. **You must update your docker-compose configuration** when upgrading from v6 to v7. Simply changing the image tag will not work.
 
-Rename Lychee into Lychee-v3:
-```bash
-mv Lychee Lychee-v3
-```
-
-Install Lychee files by either uploading the content of the released zip or cloning the repository:
-```bash
-git clone https://github.com/LycheeOrg/Lychee Lychee
-```
-
-Move the pictures from the version 3 to the newly created installation:
-```bash
-mv Lychee-v3/uploads/big/* Lychee/public/uploads/big/
-mv Lychee-v3/uploads/medium/* Lychee/public/uploads/medium/
-mv Lychee-v3/uploads/small/* Lychee/public/uploads/small/
-mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
-```
-
-## Preparing the server
-
-> {note} The big difference between Lychee version 3 and Lychee version 4 is the served directory, i.e. where you webserver needs to point to.
-
-- In the version 3, this was the root `.` of Lychee.
-- In the version 4, this is the `public` directory inside Lychee.
-
-### Using Apache
-
-**Make sure you have the module rewrite available and enabled: `a2enmod rewrite`**.
-
-Modify your `/etc/apache2/apache2.conf` to allow `.htaccess` to set up the rewrite rules:
-```apacheconf
-<Directory /var/www/html/Lychee>
-	Options Indexes FollowSymLinks
-	AllowOverride All
-	Require all granted
-</Directory>
-```
-
-Modify or create `example.com.conf` in `/etc/apache2/sites-available/` to point out the served directory:
-```apacheconf
-<VirtualHost *:80>
-	ServerName example.com
-
-	DocumentRoot /var/www/html/Lychee/public
-
-	ErrorLog ${APACHE_LOG_DIR}/error.log
-	CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-
-Enable the site:
-```bash
-a2ensite `example.com.conf`
-```
-
-Restart apache2:
-```bash
-systemctl restart apache2
-```
-
-Process with the 
-
-### Using Nginx
-
-If you are using Nginx, an example configuration can be found [here](installation.html#web-server-configuration).
-
-### Run the migrations
-
-Make sure you have `DB_OLD_LYCHEE_PREFIX` set in your `.env` to correspond the table prefix of your old database, then run `php artisan migrate`.
-
-## Upgrading from Lychee v6 to v7
-
-> {danger} **Critical Breaking Changes**: Version 7 introduces significant architectural changes to the Docker setup. **You must update your docker-compose configuration** when upgrading from v6 to v7. Simply changing the image tag will not work.
-
-### Major Changes in v7
+### Major Changes in Version 7
 
 Version 7 marks a fundamental shift in Lychee's Docker architecture:
 
@@ -99,7 +15,7 @@ Version 7 marks a fundamental shift in Lychee's Docker architecture:
 
 ### Volume Mount Changes
 
-#### v6 Volume Structure (OLD)
+#### Version 6 Volume Structure (OLD)
 ```yaml
 volumes:
   - ./lychee/conf:/conf
@@ -109,7 +25,7 @@ volumes:
   - ./lychee/tmp:/lychee-tmp
 ```
 
-#### v7 Volume Structure (NEW)
+#### Version 7 Volume Structure (NEW)
 ```yaml
 volumes:
   - ./lychee/uploads:/app/public/uploads
@@ -211,7 +127,7 @@ services:
       - lychee
 ```
 
-> {danger} **Critical**: When using worker services, you **must** set `QUEUE_CONNECTION=database` (or `redis` if using Redis) in **both** the API and worker services. Without this, jobs will not be processed properly.
+> {note} **Critical**: When using worker services, you **must** set `QUEUE_CONNECTION=database` (or `redis` if using Redis) in **both** the API and worker services. Without this, jobs will not be processed properly.
 
 ### Worker Service Benefits
 
@@ -333,3 +249,92 @@ Follow these steps to migrate from v6 to v7:
 - Check database service is healthy: `docker-compose ps lychee_db`
 
 For more help, visit our [GitHub Discussions](https://github.com/LycheeOrg/Lychee/discussions) or [Discord server](https://discord.gg/y4aUbnF).
+
+
+## Upgrading from Lychee v3 to v4
+
+### Checking requirements
+
+Check that the server satisfifes the [requirements](installation.html#web-server-configuration). In particular pay attention the PHP extensions.
+You can display installed PHP extensions using `phpinfo()`.
+
+### Preparing the files
+
+Assuming the following tree:
+```
+/var/
+  |- www/
+         |- html/
+              |- Lychee/
+              |- <you are here>
+```
+
+Rename Lychee into Lychee-v3:
+```bash
+mv Lychee Lychee-v3
+```
+
+Install Lychee files by either uploading the content of the released zip or cloning the repository:
+```bash
+git clone https://github.com/LycheeOrg/Lychee Lychee
+```
+
+Move the pictures from the version 3 to the newly created installation:
+```bash
+mv Lychee-v3/uploads/big/* Lychee/public/uploads/big/
+mv Lychee-v3/uploads/medium/* Lychee/public/uploads/medium/
+mv Lychee-v3/uploads/small/* Lychee/public/uploads/small/
+mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
+```
+
+### Preparing the server
+
+> {note} The big difference between Lychee version 3 and Lychee version 4 is the served directory, i.e. where you webserver needs to point to.
+
+- In the version 3, this was the root `.` of Lychee.
+- In the version 4, this is the `public` directory inside Lychee.
+
+#### Using Apache
+
+**Make sure you have the module rewrite available and enabled: `a2enmod rewrite`**.
+
+Modify your `/etc/apache2/apache2.conf` to allow `.htaccess` to set up the rewrite rules:
+```apacheconf
+<Directory /var/www/html/Lychee>
+	Options Indexes FollowSymLinks
+	AllowOverride All
+	Require all granted
+</Directory>
+```
+
+Modify or create `example.com.conf` in `/etc/apache2/sites-available/` to point out the served directory:
+```apacheconf
+<VirtualHost *:80>
+	ServerName example.com
+
+	DocumentRoot /var/www/html/Lychee/public
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Enable the site:
+```bash
+a2ensite `example.com.conf`
+```
+
+Restart apache2:
+```bash
+systemctl restart apache2
+```
+
+Process with the 
+
+#### Using Nginx
+
+If you are using Nginx, an example configuration can be found [here](installation.html#web-server-configuration).
+
+#### Run the migrations
+
+Make sure you have `DB_OLD_LYCHEE_PREFIX` set in your `.env` to correspond the table prefix of your old database, then run `php artisan migrate`.

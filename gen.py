@@ -48,7 +48,7 @@ pages_title['installation'] = 'Installation'
 pages_title['configuration'] = 'Configuration'
 pages_title['docker'] = 'Docker'
 pages_title['update'] = 'Update'
-pages_title['upgrade'] = 'Upgrade from v3'
+pages_title['upgrade'] = 'Upgrade Lychee'
 
 pages_title['settings'] = 'Settings'
 pages_title['keyboard'] = 'Keyboard Shortcuts'
