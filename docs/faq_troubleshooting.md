@@ -4,6 +4,10 @@ If Lychee is not working properly, try to open `https://lychee.example.com/Diagn
 
 Another way to see this screen is to use the command: `php artisan lychee:diagnostics`
 
+### When I update my .env with Lychee v7, the changes are not taken into account, what can I do?
+
+Lychee v7 with FrankenPHP requires a container restart to take into account changes made to the `.env` file.
+
 ### When I do X, I get an error API not found, what can I do?
 
 Open the dev modules of your browser (usually by pressing `F12`) and open the Network tab.

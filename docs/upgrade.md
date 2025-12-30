@@ -13,6 +13,9 @@ Version 7 marks a fundamental shift in Lychee's Docker architecture:
 3. **Optional worker service**: Background job processing can now be scaled independently
 4. **New environment variables**: Worker mode configuration requires specific settings
 
+Do note that this change also has consequences in the way Lychee reads your `.env`
+file. Updating values in the `.env` file will now require a container restart to take effect.
+
 ### Volume Mount Changes
 
 #### Version 6 Volume Structure (OLD)

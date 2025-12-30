@@ -23,13 +23,14 @@ Security remained a priority with multiple SSRF vulnerability fixes, ensuring yo
 
 ### Version 7: Our Most Ambitious Release Yet
 
-Version 7 marks a major architectural shift for Lychee. Our Docker release is now powered by FrankenPHP with Laravel Octane instead of the traditional nginx + PHP-FPM stack. This infrastructure keeps the framework in memory and reuses components across requests, eliminating the overhead of rebuilding the entire application on every page load. As a result, boot time drops from 40-60ms to just 4-6ms per request, with 3-4x better throughput and significantly reduced latency.
+Version 7 marks a major architectural shift for Lychee. Our Docker release is now powered by FrankenPHP with Laravel Octane instead of the traditional nginx + PHP-FPM stack. This infrastructure keeps the framework in memory and reuses components across requests, eliminating the overhead of rebuilding the entire application on every page load. As a result, boot time drops from 40-60ms to just 4-6ms per request, with 3-4x better throughput and significantly reduced latency. In May 2025, FrankenPHP gained official support from the PHP Foundation, cementing its position as the future of high-performance PHP applications.
 
-In May 2025, FrankenPHP gained official support from the PHP Foundation, cementing its position as the future of high-performance PHP applications.
-
-The new FrankenPHP-powered Docker image is available at `ghcr.io/lycheeorg/lychee:edge` and will become the default once version 7 is fully stable.
+The new FrankenPHP-powered Docker image is available at `ghcr.io/lycheeorg/lychee` and will become the default once version 7 is fully stable.
 
 This architectural change means you will need to update your Docker setup when upgrading from version 6 to version 7 with FrankenPHP. Please refer to our [upgrade documentation](https://lycheeorg.github.io/docs/upgrade.html) for detailed instructions.
+
+Do note that this change also has consequences in the way Lychee reads your `.env`
+file. Updating values in the `.env` file will now require a container restart to take effect.
 
 #### Performance Revolution
 
