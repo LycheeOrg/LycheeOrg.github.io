@@ -258,7 +258,7 @@ For more help, visit our [GitHub Discussions](https://github.com/LycheeOrg/Lyche
 
 ### Checking requirements
 
-Check that the server satisfifes the [requirements](installation.html#web-server-configuration). In particular pay attention the PHP extensions.
+Check that the server satisfies the [requirements](installation.html#web-server-configuration). In particular pay attention the PHP extensions.
 You can display installed PHP extensions using `phpinfo()`.
 
 ### Preparing the files
