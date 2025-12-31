@@ -174,60 +174,63 @@ lychee_worker_2:
 
 Follow these steps to migrate from v6 to v7:
 
-1. **Backup Everything**
-   ```bash
-   # Backup your database
-   docker exec lychee_db mysqldump -u lychee -p lychee > lychee_backup.sql
+#### 1. **Backup Everything**
 
-   # Backup your uploads and configuration
-   cp -r ./lychee ./lychee_backup
-   ```
+```bash
+# Backup your database
+docker exec lychee_db mysqldump -u lychee -p lychee > lychee_backup.sql
 
-2. **Stop Your Current v6 Services**
-   ```bash
-   docker-compose down
-   ```
+# Backup your uploads and configuration
+cp -r ./lychee ./lychee_backup
+```
 
-3. **Update Your docker-compose.yml**
+#### 2. **Stop Your Current v6 Services**
 
-   Replace your v6 docker-compose.yml with the v7 configuration. You can find the complete example at: [https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml](https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml)
+```bash
+docker-compose down
+```
 
-4. **Reorganize Your Volume Data** (if needed)
+#### 3. **Update Your docker-compose.yml**
 
-   If your current directory structure doesn't match the new volume mounts, reorganize:
-   ```bash
-   # The uploads directory structure should remain compatible
-   # Ensure your uploads are in ./lychee/uploads/
-   ```
+Replace your v6 docker-compose.yml with the v7 configuration. You can find the complete example at: [https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml](https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml)
 
-5. **Update Environment Variables**
+#### 4. **Reorganize Your Volume Data** (if needed)
 
-   Key changes to your environment configuration:
-   - If using workers: Add `QUEUE_CONNECTION=database` or `QUEUE_CONNECTION=redis`
-   - If using workers: Add `LYCHEE_MODE=worker` to worker service only
-   - Review other environment variables for any deprecated options
+If your current directory structure doesn't match the new volume mounts, reorganize:
+  
+```bash
+# The uploads directory structure should remain compatible
+# Ensure your uploads are in ./lychee/uploads/
+```
 
-6. **Start v7 Services**
-   ```bash
-   docker-compose up -d
-   ```
+#### 5. **Update Environment Variables**
 
-7. **Run Migrations**
-   ```bash
-   docker exec lychee php artisan migrate
-   ```
+Key changes to your environment configuration:
+- If using workers: Add `QUEUE_CONNECTION=database` or `QUEUE_CONNECTION=redis`
+- If using workers: Add `LYCHEE_MODE=worker` to worker service only
+- Review other environment variables for any deprecated options
 
-8. **Verify Installation**
+#### 6. **Start v7 Services**
+```bash
+docker-compose up -d
+```
 
-   Check that all services are running:
-   ```bash
-   docker-compose ps
-   ```
+#### 7. **Run Migrations**
+```bash
+docker exec lychee php artisan migrate
+```
 
-   Check logs for errors:
-   ```bash
-   docker-compose logs -f lychee
-   ```
+#### 8. **Verify Installation**
+
+Check that all services are running:
+```bash
+docker-compose ps
+```
+
+Check logs for errors:
+```bash
+docker-compose logs -f lychee
+```
 
 ### Troubleshooting
 
