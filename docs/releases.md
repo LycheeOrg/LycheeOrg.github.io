@@ -34,9 +34,48 @@
 
 Released on Dec 31st, 2025
 
+#### IMPORTANT NOTICE: BREAKING CHANGES AHEAD
+
+First and foremost, Version 7 is NOT compatible with php 8.3. The minimum required version is now php 8.4.
+If you are using the release build (with nginx/apache + PHP), please make sure to update your environment accordingly.
+
+Version 7 docker image is now powered by FrankenPHP with Laravel Octane instead of the traditional nginx + PHP-FPM stack. **Upgrading will require you to update your docker-compose setup.**
+
+Check the upgrade documentation for more information: [https://lycheeorg.dev/docs/upgrade.html](https://lycheeorg.dev/docs/upgrade.html)
+
 #### Major release: Webshop, star ratings, and more!
 
+Read more on our [blog post](https://lycheeorg.dev/2025-12-31-version-7/) about Version 7.
 
+#### Most notable changes
+
+`SE` refers to functionalities that are aimed at the Supporter/Pro Edition.  
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+
+* `klo` #3880 : Spec driven development support by @ildyria.
+* `new` #3881 : Add support for hprof in order to have profiling by @ildyria.
+  > This will help us to profile and optimize Lychee for speed and memory useage..
+* `new` #3879 : Add option to make the smart albums only consider photos of the user by @ildyria.
+* `SE` #3868 : Webshop by @ildyria.
+  > The biggest feature addition of 2025! After 6 months of intensive development, we're proud to introduce our fully-integrated webshop solution.
+* `new` #3889 : Switching to Octane with Frankenphp by @ildyria.
+  > Major architectural change: Our Docker release is now powered by FrankenPHP with Laravel Octane instead of the traditional nginx + PHP-FPM stack.
+* `fix` #3892 : Fix tag-pinned-shared albums not being reset by @ildyria.
+* `new` #3893 : Add avif support by @ildyria.
+  > Add native avif support using the imagick extension.
+* `new` #3896 : Support titles as dates for albums by @ildyria.
+  > If your album is titled with a date format, we will now integrate it in the timeline display.
+* `new` #3898 : PHP 8.3 is dead by @ildyria.
+  > As each year, we drop support for the oldest php version. This year, php8.3 is no longer supported.
+* `SE` #3899 : Add rating per user by @ildyria.
+  > We add ratings per user. Each user can now rate photos from 1 to 5 stars.
+  > Supporters have access to slightly more configurations options.
+* `new` #3903 : feat: add worker mode support for horizontal scaling by @ildyria.
+  > This allows to run Lychee in a horizontally scaled environment with multiple workers.
+  > In other words you can now process images in the background with multiple workers.
+* `new` #3905 : Add pre-computation of thumb images for improved speed by @ildyria.
+  > We now pre-compute the thumb album cover and min-max dates for albums to improve speed when loading albums.
 
 
 ## Version 6
@@ -153,10 +192,6 @@ One of the notable change, is that we are now creating `.sigstore.json` files in
 This means that you will need to update your verification process accordingly. Please check out our [Code Signing documentation](https://github.com/LycheeOrg/Lychee/blob/master/docs/Code-signing.md).
 
 #### Most notable changes
-
-`SE` refers to functionalities that are aimed at the Supporter Edition.  
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-
 
 * `fix` #3700 : Fix user group issues by @ildyria.
 * `klo` #3701 : Split test suite in hopes to speed things up. by @ildyria.

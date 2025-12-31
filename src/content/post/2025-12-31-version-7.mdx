@@ -25,11 +25,13 @@ Security remained a priority with multiple SSRF vulnerability fixes, ensuring yo
 
 Version 7 marks a major architectural shift for Lychee. Our Docker release is now powered by FrankenPHP with Laravel Octane instead of the traditional nginx + PHP-FPM stack. This infrastructure keeps the framework in memory and reuses components across requests, eliminating the overhead of rebuilding the entire application on every page load. As a result, boot time drops from 40-60ms to just 4-6ms per request, with 3-4x better throughput and significantly reduced latency. In May 2025, FrankenPHP gained official support from the PHP Foundation, cementing its position as the future of high-performance PHP applications.
 
-The new FrankenPHP-powered Docker image is available at `ghcr.io/lycheeorg/lychee` and will become the default once version 7 is fully stable.
+The new FrankenPHP-powered Docker image is available at `ghcr.io/lycheeorg/lychee` and has become the default now that Version 7 is fully stable.
 
-This architectural change means you will need to update your Docker setup when upgrading from version 6 to version 7 with FrankenPHP. Please refer to our [upgrade documentation](https://lycheeorg.github.io/docs/upgrade.html) for detailed instructions.
+This architectural change means you will need to update your Docker setup when upgrading from Version 6 to Version 7 with FrankenPHP. Please refer to our [upgrade documentation](https://lycheeorg.github.io/docs/upgrade.html) for detailed instructions.
 
-Do note that this change also has consequences in the way Lychee reads your `.env`
+**IMPORTANT: PHP 8.4 Required** - Version 7 requires PHP 8.4 or higher. If you are using the release build with nginx/apache + PHP (not Docker), ensure your environment is updated accordingly before upgrading.
+
+Do note that the FrankenPHP change also has consequences in the way Lychee reads your `.env`
 file. Updating values in the `.env` file will now require a container restart to take effect.
 
 #### Performance Revolution
@@ -37,7 +39,8 @@ file. Updating values in the `.env` file will now require a container restart to
 In addition to changing the PHP engine, we've implemented several key performance optimizations:
 
 - **Asymmetric Processing**: Intelligent parallel processing for photo imports, slashing the time needed to upload and process large photo collections
-- **Album Loading Optimization**: Deep refactoring of our codebase to handle large albums with grace, ensuring smooth browsing even with thousands of photos
+- **Worker Mode for Horizontal Scaling**: Ability to run Lychee with multiple workers for background image processing, enabling truly scalable deployments
+- **Album Pre-computation**: Smart caching of album covers and date ranges, dramatically improving album loading times
 
 #### New Features That Matter
 
@@ -51,7 +54,15 @@ In addition to changing the PHP engine, we've implemented several key performanc
 
 The Webshop empowers photographers to monetize their work without leaving their Lychee galleries, opening new revenue streams and simplifying the sales process. This feature is exclusive to Lychee Pro users.
 
-As a thank you to our loyal supporters, we've granted Lychee Pro access to all existing supporters at the $10/month tier or higher. This is our way of recognizing the community that makes Lychee possible.
+As a thank you to our loyal supporters, we've granted Lychee Pro access to all our existing supporters. It is now available at the $10/month tier or with any one-time support contribution. This is our way of recognizing the community that makes Lychee possible.
+
+**New License Key Delivery System**: We've streamlined the license activation process with a self-service solution! Instead of receiving keys by email, our new automated system at [keygen.lycheeorg.dev](https://keygen.lycheeorg.dev) automatically checks your supporter tier and instantly provides you with the appropriate license key for your level. Get your Lychee Pro key on-demand, whenever you need it.
+
+**Additional Features**:
+- **AVIF Support**: Native support for the AVIF image format using the imagick extension, bringing next-generation image compression to your galleries
+- **Timeline Enhancements**: Album titles formatted as dates now automatically integrate into the timeline display for better organization
+- **Smart Album Improvements**: New option to make smart albums only consider photos belonging to the specific user
+- **Profiling Support**: Added hprof support to enable detailed performance profiling and optimization
 
 ### Looking Ahead
 
