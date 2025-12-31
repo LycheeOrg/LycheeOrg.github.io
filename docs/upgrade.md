@@ -40,7 +40,7 @@ volumes:
   - ./conf/custom.js:/app/public/dist/custom.js # optional
 ```
 
-> {note} Notice the key changes: uploads are now at `/app/public/uploads`, storage at `/app/storage/app`, tmp at `/app/storage/tmp`, and the `.env` file is mounted read-only with the optionals .
+> {note} Notice the key changes: uploads are now at `/app/public/uploads`, storage at `/app/storage/app`, tmp at `/app/storage/tmp`, and the `.env` file is mounted read-only.
 
 ### Service Architecture Changes
 
@@ -334,8 +334,6 @@ Restart apache2:
 ```bash
 systemctl restart apache2
 ```
-
-Process with the 
 
 #### Using Nginx
 
