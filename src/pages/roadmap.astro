@@ -8,7 +8,7 @@ const metadata = {
 
 // Release data extracted from releases.md
 const releases = [
-  { version: 'v7.0.0', date: 'Soon...', title: 'Upcoming Major Release', type: 'major', highlights: ['Stay tuned for exciting new features and improvements!'] },
+  { version: 'v7.0.0', date: 'Dec 31, 2025', title: 'FrankenPHP, Webshop & Ratings', type: 'major', highlights: ['🌟 Webshop (Pro Edition)', 'Star rating system', 'FrankenPHP with Laravel Octane', 'Worker mode for horizontal scaling', 'AVIF support', 'PHP 8.4 required'] },
   { version: 'v6.10.4', date: 'Dec 11, 2025', title: 'Minor Reflected SSRF fix', type: 'security', highlights: ['Fixed SSRF vulnerability with redirect validation', 'Added expert configuration to disable URL redirects'] },
   { version: 'v6.10.3', date: 'Dec 4, 2025', title: 'Video support in embedded galleries', type: 'feature', highlights: ['Added video support to embedded galleries', 'Translations in EmbedCodeDialog', 'Fixed base URL for embedded galleries'] },
   { version: 'v6.10.2', date: 'Nov 18, 2025', title: 'Translation updates and fixes', type: 'enhancement', highlights: ['Translation of all settings in admin panel', 'Fixed groups not loading in share dialog', 'Fixed SmartAlbum portrait errors'] },
@@ -153,11 +153,11 @@ const getReleaseTypeBadge = (type: string) => {
     <div class="mx-auto max-w-3xl pt-12 px-4 sm:px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">6.10+</div>
+          <div class="text-4xl font-bold text-primary">7.0.0</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Latest Version</div>
         </div>
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">121</div>
+          <div class="text-4xl font-bold text-primary">104</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Total Releases</div>
         </div>
         <div class="space-y-2">
@@ -253,7 +253,7 @@ const getReleaseTypeBadge = (type: string) => {
           </ul>
         </div>
 
-        <!-- v6.10.4 -->
+        <!-- v7.0.0 -->
         <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-amber-500">
           <div class="flex items-center gap-3 mb-3">
             <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center">
@@ -262,16 +262,16 @@ const getReleaseTypeBadge = (type: string) => {
               </svg>
             </div>
             <div>
-              <div class="text-2xl font-bold text-gray-900 dark:text-white">v6.10.4</div>
-              <div class="text-sm text-gray-500 dark:text-gray-400">Dec 2025</div>
+              <div class="text-2xl font-bold text-gray-900 dark:text-white">v7.0.0</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Dec 31, 2025</div>
             </div>
           </div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Latest</h3>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">FrankenPHP</h3>
           <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-            <li>• Embed galleries</li>
-            <li>• Watermarking (SE)</li>
-            <li>• Timeline view</li>
-            <li>• Security hardened</li>
+            <li>• FrankenPHP & Octane</li>
+            <li>• Webshop (Pro)</li>
+            <li>• Star ratings</li>
+            <li>• Worker mode scaling</li>
           </ul>
         </div>
       </div>
@@ -283,7 +283,7 @@ const getReleaseTypeBadge = (type: string) => {
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
           </svg>
           <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">
-            From Laravel backend to Vue3 frontend — 5.5 years of continuous evolution
+            From Laravel backend to Vue3 frontend to FrankenPHP — 5.5 years of continuous evolution
           </span>
         </div>
       </div>
@@ -310,7 +310,7 @@ const getReleaseTypeBadge = (type: string) => {
 
         <!-- Timeline Items -->
         <div class="space-y-4 md:space-y-6">
-          {releases.map((release, index) => (
+          {releases.map((release) => (
             <div class="relative flex items-start gap-6">
               <!-- Date (Left Side) -->
               <div class="w-32 text-right flex-shrink-0">

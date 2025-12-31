@@ -10,6 +10,10 @@ export const headerData = {
           href: getBlogPermalink(),
         },
         {
+          text: 'Version 7 released!',
+          href: getPermalink('2025-12-31-version-7', 'post'),
+        },
+        {
           text: 'AI-assisted reviews, one month later...',
           href: getPermalink('2025-09-13-code-rabbit', 'post'),
         },
@@ -19,7 +23,7 @@ export const headerData = {
         },
         {
           text: 'Current developments',
-          href: getPermalink('v6', 'tag'),
+          href: getPermalink('v7', 'tag'),
         },
       ],
     },

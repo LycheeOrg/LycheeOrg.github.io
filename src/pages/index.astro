@@ -272,6 +272,9 @@ const metadata = {
     teaser.style.zIndex = '9999';
     teaser.style.transition = 'opacity 3s ease-in';
 
+    const a = document.createElement('a');
+    a.href = '/2025-12-31-version-7';
+
     const img = document.createElement('img');
     img.src = '/Lychee-v7-teasing.png';
     img.alt = 'Teaser Image';
@@ -281,7 +284,8 @@ const metadata = {
     img.style.opacity = '0';
     img.style.transition = 'transform 6s ease-in-out, opacity 3s ease';
 
-    teaser.appendChild(img);
+    a.appendChild(img);
+    teaser.appendChild(a);
     document.body.appendChild(teaser);
 
     // Start the zoom animation

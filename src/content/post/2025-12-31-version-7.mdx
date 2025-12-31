@@ -1,0 +1,78 @@
+---
+publishDate: 2025-12-31T23:00:00Z
+author: ildyria
+title: 'Version 7 released!'
+excerpt: 'Another year, another major release for Lychee! Version 7 is here with exciting new features and improvements.'
+image: /blog/Lychee7.jpg
+category: Release Notes
+tags:
+  - release
+  - v7
+  - lychee
+  - Webshop
+  - Rating
+---
+
+## 2025: A Year of Innovation and Growth for Lychee
+
+As we close out 2025, we're thrilled to celebrate another milestone year for Lychee! Our journey this year has been marked by significant technical achievements, expanded functionality, and a deepened commitment to our community. Throughout the year, we've shipped an impressive 41 releases packed with new features, performance improvements, and important security fixes. From introducing Flow (a social-friendly feed-like display) and Timeline views to adding powerful tools like watermarking, zip upload support, and the Renamer module, we've continuously enhanced what Lychee can do for photographers.
+
+We welcomed a new reviewer, [@JasonMillward](https://github.com/JasonMillward), who has been instrumental in maintaining code quality and ensuring that every release meets our high standards. We also had the pleasure of welcoming new contributor [@cdzombak](https://github.com/cdzombak), who brought fantastic UX improvements including pinned albums, embedded galleries with video support, and numerous usability enhancements.
+
+Security remained a priority with multiple SSRF vulnerability fixes, ensuring your self-hosted gallery stays safe. The foundation we built through tags refactoring, user groups, Flow and Sync improvements, and multiple admin support has culminated in our most ambitious release yet: Version 7.
+
+### Version 7: Our Most Ambitious Release Yet
+
+Version 7 marks a major architectural shift for Lychee. Our Docker release is now powered by FrankenPHP with Laravel Octane instead of the traditional nginx + PHP-FPM stack. This infrastructure keeps the framework in memory and reuses components across requests, eliminating the overhead of rebuilding the entire application on every page load. As a result, boot time drops from 40-60ms to just 4-6ms per request, with 3-4x better throughput and significantly reduced latency. In May 2025, FrankenPHP gained official support from the PHP Foundation, cementing its position as the future of high-performance PHP applications.
+
+The new FrankenPHP-powered Docker image is available at `ghcr.io/lycheeorg/lychee` and has become the default now that Version 7 is fully stable.
+
+This architectural change means you will need to update your Docker setup when upgrading from Version 6 to Version 7 with FrankenPHP. Please refer to our [upgrade documentation](https://lycheeorg.github.io/docs/upgrade.html) for detailed instructions.
+
+**IMPORTANT: PHP 8.4 Required** - Version 7 requires PHP 8.4 or higher. If you are using the release build with nginx/apache + PHP (not Docker), ensure your environment is updated accordingly before upgrading.
+
+Do note that the FrankenPHP change also has consequences in the way Lychee reads your `.env`
+file. Updating values in the `.env` file will now require a container restart to take effect.
+
+#### Performance Revolution
+
+In addition to changing the PHP engine, we've implemented several key performance optimizations:
+
+- **Asymmetric Processing**: Intelligent parallel processing for photo imports, slashing the time needed to upload and process large photo collections
+- **Worker Mode for Horizontal Scaling**: Ability to run Lychee with multiple workers for background image processing, enabling truly scalable deployments
+- **Album Pre-computation**: Smart caching of album covers and date ranges, dramatically improving album loading times
+
+#### New Features That Matter
+
+**Star Rating System**: We listened to your feedback! Users can now rate their photos from 1 to 5 stars. In the future, we will be adding smart albums related to ratings, filters, and more. Whether you're a professional photographer curating a portfolio or simply want to mark your favorites, this feature puts powerful organization tools at your fingertips to showcase your best work.
+
+**Webshop**: The biggest feature addition of 2025! After 6 months of intensive development, we're proud to introduce our fully-integrated webshop solution. This game-changing feature enables photographers to:
+- Sell prints, digital downloads, and photo products directly through Lychee
+- Process payments seamlessly via Mollie, PayPal, or offline methods
+- Manage product catalogs
+- Handle orders from creation through fulfillment
+
+The Webshop empowers photographers to monetize their work without leaving their Lychee galleries, opening new revenue streams and simplifying the sales process. This feature is exclusive to Lychee Pro users.
+
+As a thank you to our loyal supporters, we've granted Lychee Pro access to all our existing supporters. It is now available at the $10/month tier or with any one-time support contribution. This is our way of recognizing the community that makes Lychee possible.
+
+**New License Key Delivery System**: We've streamlined the license activation process with a self-service solution! Instead of receiving keys by email, our new automated system at [keygen.lycheeorg.dev](https://keygen.lycheeorg.dev) automatically checks your supporter tier and instantly provides you with the appropriate license key for your level. Get your Lychee Pro key on-demand, whenever you need it.
+
+**Additional Features**:
+- **AVIF Support**: Native support for the AVIF image format using the imagick extension, bringing next-generation image compression to your galleries
+- **Timeline Enhancements**: Album titles formatted as dates now automatically integrate into the timeline display for better organization
+- **Smart Album Improvements**: New option to make smart albums only consider photos belonging to the specific user
+- **Profiling Support**: Added hprof support to enable detailed performance profiling and optimization
+
+### Looking Ahead
+
+The innovations in Version 7 lay the groundwork for even more exciting developments. Our commitment remains unchanged: building the best self-hosted photo management/portfolio solution while respecting your privacy and giving you complete control over your images.
+
+Thank you to everyone who contributed to making 2025 such an extraordinary year for Lychee. Here's to another year of innovation, community, and beautiful photography!
+
+---
+
+**Ready to upgrade?** Visit our documentation to learn how to update to Version 7 and start experiencing these improvements today.
+
+
+
