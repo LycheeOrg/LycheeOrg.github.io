@@ -44,7 +44,7 @@ volumes:
 
 The `/sym` volume has been removed as Lychee no longer uses symbolic links for storage. This was a security features that originates from version 4, but is no longer necessary as the functionability has been killed.
 
-**Important:** With the 3 volumes under `/app/storage`, You may think you could simplify the configuration by specifying one single volume for `/app/storage` instead. This is incorrect. Doing so will make the app exit with the error The `/app/bootstrap/cache` directory must be present and writable.
+**Important:** With the 3 volumes under `/app/storage`, you may think you could simplify the configuration by specifying one single volume for `/app/storage` instead. This is incorrect. Doing so will make the app exit with the error "The `/app/bootstrap/cache` directory must be present and writable."
 
 ### Service Architecture Changes
 
