@@ -1,5 +1,14 @@
 ## Installation
 
+### Recommended Installation Method
+
+The recommended way to install Lychee is via Docker Compose. This provides the easiest and most reliable installation experience.
+
+You can use the official Docker Compose template available at:
+[https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml](https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml)
+
+For detailed Docker installation instructions, see the [Docker documentation](docker.html).
+
 ### Server Requirements
 
 The Lychee gallery has a few system requirements. You will need to make sure your server has the following:
