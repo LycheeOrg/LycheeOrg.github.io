@@ -27,6 +27,10 @@ If you discover a security vulnerability within Lychee, please contact us direct
 
 You may propose new features or improvements to existing Lychee behavior in the [issue board][1]. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
 
+## Lychee Documentation
+
+You will find a complete documentation in the original [repository](https://github.com/LycheeOrg/Lychee/tree/master/docs) under the `docs/` folder.
+
 ## Joining the Team
 
 You would like to support Lychee and help us push it further? Join the team!

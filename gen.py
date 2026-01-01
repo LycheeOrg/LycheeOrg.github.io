@@ -63,8 +63,6 @@ pages_title['faq_troubleshooting'] = 'Troubleshooting'
 pages_title['contributions'] = 'Contribution Guide'
 pages_title['api'] = 'API Documentation'
 pages_title['architecture'] = 'Lychee logic overview'
-pages_title['structure'] = 'Directory Structure'
-pages_title['frontend'] = 'Front-end'
 
 structure = [['Prologue',
               ['releases']]]
@@ -75,7 +73,7 @@ structure += [['Advanced Topics',
 structure += [['Frequently Asked Question',
                ['faq_general', 'faq_installation', 'faq_troubleshooting']]]
 structure += [['Contributing',
-               ['contributions', 'api', 'architecture', 'structure', 'frontend']]]
+               ['contributions', 'api', 'architecture']]]
 
 
 def gen_github_link(page):
