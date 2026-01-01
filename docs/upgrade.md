@@ -231,6 +231,16 @@ Check logs for errors:
 docker-compose logs -f lychee
 ```
 
+#### 8. **Fix the thumbnails**
+
+You will notice that after the upgrade, thumbnails are missing. You can regenerate them by running:
+```bash
+docker exec -it lychee php artisan lychee:backfill-album-fields
+```
+
+or by logging into the web interface and going to Settings &rArr; Maintenance &rArr; Album Precomputed Fields.
+
+
 ### Troubleshooting
 
 **Workers not processing jobs**
