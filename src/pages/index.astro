@@ -258,6 +258,17 @@ const metadata = {
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Check if teaser was already shown today
+    const lastShown = localStorage.getItem('teaserLastShown');
+    const today = new Date().toDateString();
+
+    if (lastShown === today) {
+      return; // Skip showing the teaser
+    }
+
+    // Mark teaser as shown today
+    localStorage.setItem('teaserLastShown', today);
+
     const teaser = document.createElement('div');
     teaser.id = 'teaser';
     teaser.style.position = 'fixed';
@@ -306,6 +317,15 @@ const metadata = {
     teaser.addEventListener('click', () => {
       teaser.remove();
     });
+
+    // Close teaser on Escape key
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        teaser.remove();
+        document.removeEventListener('keydown', handleEscape);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
   });
 </script>
 </Layout>
