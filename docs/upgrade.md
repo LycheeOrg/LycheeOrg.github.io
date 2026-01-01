@@ -42,7 +42,7 @@ volumes:
 
 > {note} Notice the key changes: uploads are now at `/app/public/uploads`, storage at `/app/storage/app`, tmp at `/app/storage/tmp`, and the `.env` file is mounted read-only.
 
-The `/sym` volume has been removed as Lychee no longer uses symbolic links for storage. This was a security features that originates from version 4, but is no longer necessary as the functionability has been killed.
+The `/sym` volume has been removed as Lychee no longer uses symbolic links for storage. This was a security feature that originated from version 4, but is no longer necessary as the functionality has been removed.
 
 **Important:** With the 3 volumes under `/app/storage`, you may think you could simplify the configuration by specifying one single volume for `/app/storage` instead. This is incorrect. Doing so will make the app exit with the error "The `/app/bootstrap/cache` directory must be present and writable."
 
