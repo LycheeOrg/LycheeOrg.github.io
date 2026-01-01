@@ -19,13 +19,17 @@ Those are the versions in which we accept vulnerability reports.
 |----------------|-----------|
 | master         | &#10004;  |
 | latest release | &#10004;  |
-| < 6.0          | &#10005;  |
+| < 7.0          | &#10005;  |
 
 If you discover a security vulnerability within Lychee, please contact us directly on [Discord][2]. All security vulnerabilities will be promptly addressed.
 
 ## Core Development Discussion
 
 You may propose new features or improvements to existing Lychee behavior in the [issue board][1]. If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
+
+## Lychee Documentation
+
+You will find a complete documentation in the original [repository](https://github.com/LycheeOrg/Lychee/tree/master/docs) under the `docs/` folder.
 
 ## Joining the Team
 
