@@ -458,6 +458,7 @@ For galleries with thousands of photos:
 ### FrankenPHP Benefits
 
 The FrankenPHP-powered Version 7 image provides significant performance improvements over Version 6:
+
 - **Faster boot times:** 4-6ms vs 40-60ms per request
 - **Better throughput:** 3-4x improvement in requests per second
 - **Lower latency:** Reduced response times across all operations
