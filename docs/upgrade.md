@@ -35,7 +35,7 @@ volumes:
   - ./lychee/storage/app:/app/storage/app
   - ./lychee/logs:/app/storage/logs
   - ./lychee/tmp:/app/storage/tmp  # so that uploads are not filling up the memory of the container
-  - ./lychee/conf/.env:/app/.env:ro
+  - ./lychee/conf/.env:/app/.env
   - ./conf/user.css:/app/public/dist/user.css # optional
   - ./conf/custom.js:/app/public/dist/custom.js # optional
 ```
@@ -264,6 +264,296 @@ or by logging into the web interface and going to Settings &rArr; Maintenance &r
 - Check database service is healthy: `docker-compose ps lychee_db`
 
 For more help, visit our [GitHub Discussions](https://github.com/LycheeOrg/Lychee/discussions) or [Discord server](https://discord.gg/y4aUbnF).
+
+
+## Migrating from Traditional Installation to Docker Compose
+
+This guide helps you migrate an existing Lychee installation from a traditional setup (e.g., `/var/www/html/Lychee`) to a Docker Compose deployment.
+
+### Prerequisites
+
+Before starting the migration, make sure you have docker compose installed. You can follow the instructions [here](https://docs.docker.com/compose/install/).
+
+### Migration Steps
+
+#### 1. **Backup Your Current Installation**
+
+> {note} **Critical**: Always create backups before migrating. This ensures you can restore your installation if anything goes wrong.
+
+```bash
+# Backup the database
+mysqldump -u your_db_user -p your_db_name > ~/lychee_db_backup.sql
+
+# Backup the entire Lychee directory
+cp -r /var/www/html/Lychee ~/lychee_backup
+
+# Backup your .env file specifically
+cp /var/www/html/Lychee/.env ~/lychee_env_backup
+```
+
+#### 2. **Create Docker Compose Directory Structure**
+
+Create a directory for your Docker Compose setup:
+
+```bash
+mkdir -p ~/lychee-docker
+cd ~/lychee-docker
+
+# Create directories for volume mounts
+mkdir -p lychee/uploads
+mkdir -p lychee/storage/app
+mkdir -p lychee/logs
+mkdir -p lychee/tmp
+mkdir -p lychee/conf
+```
+
+#### 3. **Copy Your Data**
+
+Move your existing uploads and configuration:
+
+```bash
+# Copy uploads (this may take time depending on your photo library size)
+sudo cp -r /var/www/html/Lychee/public/uploads/* ~/lychee-docker/lychee/uploads/
+
+# Copy your .env configuration
+sudo cp /var/www/html/Lychee/.env ~/lychee-docker/lychee/conf/.env
+
+# If you have custom CSS or JavaScript
+sudo cp /var/www/html/Lychee/public/dist/user.css ~/lychee-docker/conf/user.css 2>/dev/null || true
+sudo cp /var/www/html/Lychee/public/dist/custom.js ~/lychee-docker/conf/custom.js 2>/dev/null || true
+
+# Set appropriate permissions
+sudo chown -R $USER:$USER ~/lychee-docker/lychee
+chmod -R 755 ~/lychee-docker/lychee
+```
+
+#### 4. **Create docker-compose.yml**
+
+Create a `docker-compose.yml` file in `~/lychee-docker`:
+
+```yaml
+services:
+  lychee_db:
+    image: mariadb:11
+    container_name: lychee_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=lychee
+      - MYSQL_USER=lychee
+      - MYSQL_PASSWORD=lychee_password
+    volumes:
+      - ./lychee/lychee_db:/var/lib/mysql
+    networks:
+      - lychee
+    restart: unless-stopped
+
+  lychee_api:
+    image: ghcr.io/lycheeorg/lychee:latest
+    container_name: lychee
+    ports:
+      - "8000:8000"  # Change the first part XXXX:8000 this to your preferred port
+    env_file:
+      - ./lychee/conf/.env
+    volumes:
+      - ./lychee/uploads:/app/public/uploads
+      - ./lychee/storage/app:/app/storage/app
+      - ./lychee/logs:/app/storage/logs
+      - ./lychee/tmp:/app/storage/tmp
+      - ./lychee/conf/.env:/app/.env
+      # Optional: Uncomment if you have custom CSS/JS
+      # - ./conf/user.css:/app/public/dist/user.css
+      # - ./conf/custom.js:/app/public/dist/custom.js
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=lychee_db
+      - DB_PORT=3306
+      - DB_DATABASE=lychee
+      - DB_USERNAME=lychee
+      - DB_PASSWORD=lychee_password
+    depends_on:
+      - lychee_db
+    networks:
+      - lychee
+    restart: unless-stopped
+
+networks:
+  lychee:
+```
+
+#### 6. **Update Your .env File**
+
+Edit `~/lychee-docker/lychee/conf/.env` to update database connection settings:
+
+```bash
+# Update these values to match your docker-compose.yml
+DB_CONNECTION=mysql
+DB_HOST=lychee_db
+DB_PORT=3306
+DB_DATABASE=lychee
+DB_USERNAME=lychee
+DB_PASSWORD=lychee_password
+
+# Set the application URL
+APP_URL=http://your-domain.com:8000  # Update with your domain/IP
+```
+
+#### 7. **Import Your Database**
+
+Start the database container and import your data:
+
+```bash
+cd ~/lychee-docker
+
+# Start only the database service
+docker-compose up -d lychee_db
+
+# Wait for the database to be ready (about 10-20 seconds)
+sleep 20
+
+# Import your database backup
+docker exec -i lychee_db mysql -u lychee -plychee_password lychee < ~/lychee_db_backup.sql
+```
+
+#### 8. **Start Lychee**
+
+```bash
+# Start all services
+docker-compose up -d
+
+# Check logs to ensure everything started correctly
+docker-compose logs -f lychee
+```
+
+Press `Ctrl+C` to exit log viewing.
+
+#### 9. **Configure Reverse Proxy (Optional)**
+
+If you're using a reverse proxy (recommended for production), configure it to forward to the Docker container.
+
+**Nginx Example:**
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # For large photo uploads
+        client_max_body_size 100M;
+    }
+}
+```
+
+**Apache Example:**
+
+```apacheconf
+<VirtualHost *:80>
+    ServerName your-domain.com
+
+    ProxyPreserveHost On
+    ProxyPass / http://localhost:8000/
+    ProxyPassReverse / http://localhost:8000/
+
+    # For large photo uploads
+    LimitRequestBody 104857600
+</VirtualHost>
+```
+
+Enable required modules and restart:
+```bash
+# For Apache
+sudo a2enmod proxy proxy_http
+sudo systemctl restart apache2
+
+# For Nginx
+sudo systemctl restart nginx
+```
+
+#### 10. **Verify Migration**
+
+1. Access Lychee at `http://your-domain.com` (or `http://your-domain.com:8000` if not using reverse proxy)
+2. Log in with your existing credentials
+3. Verify your photos and albums are displayed correctly
+4. Check Settings &rArr; Diagnostics to ensure everything is working
+
+#### 11. **Optional: Add Worker Service**
+
+For better performance with large photo libraries, consider adding a worker service:
+
+```yaml
+  lychee_worker:
+    image: ghcr.io/lycheeorg/lychee:latest
+    container_name: lychee_worker
+    volumes:
+      - ./lychee/uploads:/app/public/uploads
+      - ./lychee/storage/app:/app/storage/app
+      - ./lychee/logs:/app/storage/logs
+      - ./lychee/tmp:/app/storage/tmp
+      - ./lychee/conf/.env:/app/.env:ro
+    environment:
+      - LYCHEE_MODE=worker
+      - DB_CONNECTION=mysql
+      - DB_HOST=lychee_db
+      - DB_PORT=3306
+      - DB_DATABASE=lychee
+      - DB_USERNAME=lychee
+      - DB_PASSWORD=lychee_password
+      - QUEUE_CONNECTION=database
+    depends_on:
+      - lychee_db
+      - lychee_api
+    networks:
+      - lychee
+    restart: unless-stopped
+```
+
+Also add `QUEUE_CONNECTION=database` to the `lychee_api` service environment variables, then restart:
+
+```bash
+docker-compose up -d
+```
+
+### Post-Migration Cleanup
+
+After confirming everything works correctly:
+
+```bash
+# Disable the old web server from starting on boot
+sudo systemctl disable apache2  # or nginx
+
+# You can remove the old installation (keep the backup!)
+# sudo rm -rf /var/www/html/Lychee  # Only after thorough testing!
+```
+
+### Troubleshooting
+
+**Cannot access Lychee**
+- Check if containers are running: `docker ps`
+- Check logs: `docker logs lychee`
+- Verify port 8000 is not blocked by firewall
+- If using reverse proxy, check proxy configuration
+
+**Photos not showing**
+- Verify uploads were copied correctly: `ls -la ~/lychee-docker/lychee/uploads/`
+- Check volume mount permissions
+- Verify file paths in database match new structure
+
+**Database connection errors**
+- Confirm database container is running: `docker ps lychee_db`
+- Verify credentials in `.env` match `docker-compose.yml`
+- Check database logs: `docker logs lychee_db`
+
+**Permission errors**
+- Fix ownership: `sudo chown -R 33:33 ~/lychee-docker/lychee/` (33 is www-data UID/GID but can also be 82 for alpine)
+- Or make directories writable: `chmod -R 777 ~/lychee-docker/lychee/` (less secure)
+
+For additional help, visit our [GitHub Discussions](https://github.com/LycheeOrg/Lychee/discussions) or [Discord server](https://discord.gg/y4aUbnF).
 
 
 ## Upgrading from Lychee v3 to v4

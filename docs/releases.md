@@ -30,6 +30,16 @@
 
 ## Version 7
 
+### v7.0.1
+
+Released on Jan 1st, 2026
+
+#### Minor fixes.
+
+We noticed some issues with the dark mode not being properly applied in some cases.
+
+* `fix` #3916 : Fix eternal darkmode by @ildyria.
+
 ### v7.0.0
 
 Released on Dec 31st, 2025
