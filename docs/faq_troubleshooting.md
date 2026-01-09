@@ -8,6 +8,91 @@ Another way to see this screen is to use the command: `php artisan lychee:diagno
 
 Lychee v7 with FrankenPHP requires a container restart to take into account changes made to the `.env` file.
 
+### My Docker container keeps restarting, what can I do?
+
+If your Lychee Docker container is continuously restarting, the most common cause is a missing or improperly configured `APP_KEY`.
+
+Verify that you have `APP_KEY` properly set in your `.env` file or `docker-compose.yml`. If the key is missing or invalid, you can generate a new one by running:
+
+```bash
+echo "APP_KEY=base64:$(openssl rand -base64 32)"
+```
+
+Copy the generated key and add it to your `.env` file or Docker Compose configuration, then restart the container.
+
+### My workers are not processing jobs, what should I check?
+
+If background job processing is not working in your Docker setup, verify the following settings:
+
+1. Ensure `QUEUE_CONNECTION=database` is set in both the API and worker services
+2. Verify `LYCHEE_MODE=worker` is set in the worker service configuration
+3. Check the worker logs for any errors:
+
+```bash
+docker-compose logs -f lychee_worker
+```
+
+Review the logs for any error messages that might indicate configuration issues or connection problems.
+
+### I'm having upload issues with Docker, what can I do?
+
+Upload problems in Docker deployments are typically related to volume mounting or permissions:
+
+1. Verify that your volume mounts point to the correct paths in your `docker-compose.yml`
+2. Check that file permissions on host directories allow the container user to write
+3. Ensure the uploads directory (typically `./lychee/uploads`) exists on the host and is writable
+
+You can check directory permissions on your host system with:
+
+```bash
+ls -la ./lychee/
+```
+
+If needed, adjust permissions to allow the container to write to the uploads directory.
+
+### I'm experiencing performance issues with Docker, what should I check?
+
+If your Dockerized Lychee instance is running slowly, consider the following:
+
+1. Add worker services for background processing of resource-intensive tasks
+2. Verify FrankenPHP is running correctly (you should see FrankenPHP mentioned in the logs, not nginx)
+3. Ensure `QUEUE_CONNECTION` is set to enable asynchronous job processing
+
+You can check your container logs to verify FrankenPHP is active:
+
+```bash
+docker-compose logs lychee
+```
+
+### I'm getting database connection errors in Docker, what can I do?
+
+Database connection issues in Docker are usually related to service configuration:
+
+1. Ensure the database service name in your `docker-compose.yml` matches the `DB_HOST` value in your configuration
+2. Verify database credentials (`DB_USERNAME`, `DB_PASSWORD`, `DB_DATABASE`) are correct and match between services
+3. Check that the database service is healthy and running:
+
+```bash
+docker-compose ps lychee_db
+```
+
+If the database service shows as unhealthy or restarting, check its logs for more details:
+
+```bash
+docker-compose logs lychee_db
+```
+
+### Since upgrading to Lychee v7, all my thumbnails are missing, what can I do?
+
+After upgrading to Lychee v7, if your thumbnails are missing, you may need to regenerate them. You can do this by running the following Artisan command inside your Lychee container:
+
+```bash
+docker exec -it lychee php artisan lychee:recompute-album-sizes
+docker exec -it lychee php artisan lychee:recompute-album-stats
+```
+
+Or log into the web interface and go to Settings &rArr; Maintenance &rArr; Album Precomputed Fields.
+
 ### When I do X, I get an error API not found, what can I do?
 
 Open the dev modules of your browser (usually by pressing `F12`) and open the Network tab.
