@@ -16,7 +16,13 @@ Version 7 marks a fundamental shift in Lychee's Docker architecture:
 Do note that this change also has consequences in the way Lychee reads your `.env`
 file. Updating values in the `.env` file will now require a container restart to take effect.
 
+### Port change
+
+Version 7 uses FrankenPHP which listens on port `8000` instead of the previous `80` used by nginx. Make sure to update your port mappings accordingly in your `docker-compose.yml`.
+
 ### Volume Mount Changes
+
+In order to avoid you running into issues while booting version 7, we are blocking the startup of the container if the old volume structure is detected.
 
 #### Version 6 Volume Structure (OLD)
 ```yaml
@@ -32,19 +38,19 @@ volumes:
 ```yaml
 volumes:
   - ./lychee/uploads:/app/public/uploads
-  - ./lychee/storage/app:/app/storage/app
   - ./lychee/logs:/app/storage/logs
   - ./lychee/tmp:/app/storage/tmp  # so that uploads are not filling up the memory of the container
-  - ./lychee/conf/.env:/app/.env
-  - ./conf/user.css:/app/public/dist/user.css # optional
-  - ./conf/custom.js:/app/public/dist/custom.js # optional
+  - ./lychee/conf/.env:/app/.env # OPTIONAL, you can manage your .env directly as variables in docker-compose.yml 
+  - ./lychee/storage/app:/app/storage/app # OPTIONAL: for persistent storage of app data
+  - ./conf/user.css:/app/public/dist/user.css # OPTIONAL
+  - ./conf/custom.js:/app/public/dist/custom.js # OPTIONAL
 ```
 
-> {note} Notice the key changes: uploads are now at `/app/public/uploads`, storage at `/app/storage/app`, tmp at `/app/storage/tmp`, and the `.env` file is mounted read-only.
+> {note} Notice the key changes: uploads are now at `/app/public/uploads`, logs at `/app/storage/logs`, tmp at `/app/storage/tmp`, and the `.env` file.
 
 The `/sym` volume has been removed as Lychee no longer uses symbolic links for storage. This was a security feature that originated from version 4, but is no longer necessary as the functionality has been removed.
 
-**Important:** With the 3 volumes under `/app/storage`, you may think you could simplify the configuration by specifying one single volume for `/app/storage` instead. This is incorrect. Doing so will make the app exit with the error "The `/app/bootstrap/cache` directory must be present and writable."
+**Important:** With multiple volumes under `/app/storage`, you may think you could simplify the configuration by specifying one single volume for `/app/storage` instead. This is incorrect. Doing so will make the app exit with the error "The `/app/bootstrap/cache` directory must be present and writable."
 
 ### Service Architecture Changes
 
@@ -235,13 +241,18 @@ docker-compose logs -f lychee
 
 You will notice that after the upgrade, thumbnails are missing. You can regenerate them by running:
 ```bash
-docker exec -it lychee php artisan lychee:backfill-album-fields
+docker exec -it lychee php artisan lychee:recompute-album-sizes
+docker exec -it lychee php artisan lychee:recompute-album-stats
 ```
 
 or by logging into the web interface and going to Settings &rArr; Maintenance &rArr; Album Precomputed Fields.
 
 
 ### Troubleshooting
+
+**Container keeps restarting**
+
+- Verify that you have APP_KEY properly set in your `.env` or `docker-compose.yml` if that is not the case you can run `echo "APP_KEY=base64:$(openssl rand -base64 32)"` to create a new one.
 
 **Workers not processing jobs**
 - Verify `QUEUE_CONNECTION=database` is set in both API and worker services
@@ -364,6 +375,7 @@ services:
       # - ./conf/user.css:/app/public/dist/user.css
       # - ./conf/custom.js:/app/public/dist/custom.js
     environment:
+      - APP_KEY=base64:YOUR_APP_KEY_HERE # Generate it with `openssl rand -base64 32`
       - DB_CONNECTION=mysql
       - DB_HOST=lychee_db
       - DB_PORT=3306
