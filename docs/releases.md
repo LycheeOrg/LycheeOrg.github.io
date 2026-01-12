@@ -30,6 +30,92 @@
 
 ## Version 7
 
+### v7.1.0
+
+Released on Jan 11th, 2026
+
+#### Back to Debian, More caching and Pagination,
+
+This release brings a major changes under the hood: We moved back from an Alpine-based docker image to a Debian-based one.
+This should solve some speed issues with php and stability issues with the musl libc used in Alpine. Combined with the ability to drop privileges
+for the php processes, this means that **you will likely need to double check the access rights of your volumes to make sure that they remain 
+readable and writable by the php processes.** We are aware that this change created issues for some Synology users, and we are investigating a fix.
+In the meantime, you can use the environment variable `RUN_AS_ROOT=yes` to run the php processes as root again as a workaround.
+
+Additionally, we added more precomputation mechanisms to improve the speed of Lychee. The thumbs are now pro-computed with the following caracteristics:
+If you select a photo as album cover, it will be visible to anyone. Otherwise, we pre-compute two thumbs covers: max privileges which is visible to admin and owner of the album, and min privileges which is visible to anyone. This is done by applying the previous logic that was used to select the thumb at runtime, but now pre-computed and stored in the database.
+
+Finally, we added pagination to the albums and photos view. This should greatly improve the speed of Lychee when having a large number of albums/photos.
+You can configure the number of items, the type of pagination (paginated, load more, infinite scroll), and the reactivity of the preloading in infinite scroll in your gallery settings.
+
+#### Most notable changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+
+* `fix` #3920 : Do not load duplicates directly, it crashes the DB... by @ildyria.
+  > When having a large number of photos, the duplicate query would hang and freeze the maintenance page.
+  > We now make it an action required by the user.
+* `new` #3921 : Album computed fields by @ildyria.
+  > Albums now have pre-computed fields for the cover thumb, and min/max dates. This improves speed when loading albums.
+  > Those fields are updated when photos are added/removed from albums.
+  > A maintenance action is also available to pre-compute those fields for existing albums.
+* `new` #3924 : Open keygen in a new page by @ildyria.
+  > Per request of one our users, a small quality of life improvement, the keygen website now opens
+  > in a new tab from the settings page when your SE key expired
+* `new` #3926 : Refactor thumb selection to avoid queries by @ildyria.
+  > Leveraging the pre-computed fields, we refactored the thumb selection to avoid queries when loading albums.
+  > This should furthermore increase the loading speed of Lychee.
+* `fix` #3927 : Fix unexpected password propagation behaviour by @ildyria.
+  > A small security fix. When entering a password for a shared album, it was being propagated to all other albuns.
+  > In a multi-user context, this could lead to unexpected access rights. A CVE has been raised for this issue,
+  > read more [here](https://github.com/LycheeOrg/Lychee/security/advisories/GHSA-jj56-2c54-4f25).
+* `new` #3922 : Precompute album sizes. by @ildyria.
+  > In addition to pre-computing the album thumb and min/max dates, we also pre-compute the album size.
+  > This improves speed when statistics of the album.
+* `fix` #3928 : Fix Cache config not existing in the handling of cache events by @ildyria.
+  > When running for the first time Lychee, the cache config was not existing yet, leading to errors when handling cache events.
+* `new` #3930 : Add view albums as lines instead of thumbs. by @ildyria.
+  > A small quality of life improvement, you can now view albums as lines instead of square thumbs.
+  > This is especially useful when you have a large number of albums and want to see the title as a single line to compare with your OS file explorer.
+* `fix` #3933 : Fix propagation not happening by @ildyria.
+  > When uploading an image, the propagation of the recomputation of statistics was not happenning. This is now fixed.
+* `new` #3932 : Create legacy image by @ildyria.
+  > Moving to FrankenPHP is a risky step. To mitigate potential issues, we also create a legacy image with nginx + php-fpm.
+  > It is available at the tag `latest-legacy` and `edge-legacy`, mirroring respectively the `latest` and `edge` tags.
+* `new` #3934 : Add query logging by @ildyria.
+  > To help us debug issues, we added query logging when the app is in debug mode. This will help us identify slow queries and optimize them.
+* `klo` #3936 : Fix deprecation warning by @ildyria.
+  > PHP 8.5 comes with a few deprecation warnings. We fixed those to ensure compatibility with future PHP versions.
+* `klo` #3937 : Segregate cache when building docker image by @ildyria.
+  > To avoid cache invalidation in our CICD pipeline, we now segregate the cache (legacy vs frankenphp) when building the docker image. 
+* `klo` #3938 : Add clean up on old packages by @ildyria.
+  > We added a CICD step to clean up old docker images that are unused in order to decrease our carbon footprint.
+* `new` #3939 : Add safety check to avoid breaking everything if the db query fails. by @ildyria.
+  > A small safety check to avoid breaking the entire app if a db query fails during migrations.
+* `new` #3945 : Add support for max execution time & memory limit by @ildyria.
+  > To help users with low resource environments, we added support for max execution time and memory limit in the `.env` file.
+* `new` #3954 : Alpine to Debian conversion by @ildyria.
+  > To improve compatibility with various systems, we moved from an Alpine-based docker image to a Debian-based one.
+  > This should also improve the stability of php and avoid known issues betten PHP and Alpine's musl libc.
+* `new` #3953 : Fix: Drop privileges for PHP processes in Docker entrypoint by @m3nu.
+  > Since version 7.0.0, Lychee's docker image runs PHP processes as root user, this is a security risk.
+  > @m3nu contributed a fix to drop the privileges to the `www-data` user when running the PHP processes.
+  > Unfortunately, this combined with the switch from Alpine to Debian means that you will probably need to update your volume ownership from 82 to 33 or to the PUID/GUID of the selected user.  
+  > 
+  > It is also known that Synology users are currently facing issues with this change. We are investigating a fix.
+  > As a work around, you can use `RUN_AS_ROOT=yes` in your environment to run the PHP processes as root again, but this is not recommended for security reasons, but a hopefully temporary workaround.
+* `fix` #3958 : Fix issue with variables not loaded where they should by @ildyria.
+  > We have been made aware that because the entrypoint was calling further bash scripts, those where not using the environment variables set in the docker-compose file. This is obviously a problem that we fixed.
+* `new` #3952 : Add pagination & refactoring to reduce the number of queries by @ildyria.
+  > To further improve the speed of Lychee, we added pagination to the albums and photos view. Note that this will have undefined behaviour if you are using sorting by title or description. In such case we added a new type of sorting: lexicographical sorting which is done at the database level instead of php. This does means that albums 1 2 10 will be sorted as 1 10 2, but at least they will be paginated without random order.
+
+#### New Contributors
+* @m3nu made their first contribution in https://github.com/LycheeOrg/Lychee/pull/3953
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v7.0.1...v7.1.0
+
+
 ### v7.0.1
 
 Released on Jan 1st, 2026
@@ -60,7 +146,6 @@ Read more on our [blog post](https://lycheeorg.dev/2025-12-31-version-7/) about 
 #### Most notable changes
 
 `SE` refers to functionalities that are aimed at the Supporter/Pro Edition.  
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 
 * `klo` #3880 : Spec driven development support by @ildyria.
