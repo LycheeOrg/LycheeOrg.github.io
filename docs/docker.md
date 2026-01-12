@@ -97,7 +97,7 @@ environment:
   - LOG_CHANNEL=stack              # Logging channel
 ```
 
-For the access rights.
+### Access Rights Configuration
 
 ```yaml
 environment:
