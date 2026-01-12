@@ -34,15 +34,15 @@
 
 Released on Jan 11th, 2026
 
-#### Back to Debian, More caching and Pagination,
+#### Back to Debian, More caching and Pagination
 
-This release brings a major changes under the hood: We moved back from an Alpine-based docker image to a Debian-based one.
+This release brings a major change under the hood: We moved back from an Alpine-based docker image to a Debian-based one.
 This should solve some speed issues with php and stability issues with the musl libc used in Alpine. Combined with the ability to drop privileges
-for the php processes, this means that **you will likely need to double check the access rights of your volumes to make sure that they remain 
+for the php processes, this means that **you will likely need to double-check the access rights of your volumes to make sure that they remain 
 readable and writable by the php processes.** We are aware that this change created issues for some Synology users, and we are investigating a fix.
 In the meantime, you can use the environment variable `RUN_AS_ROOT=yes` to run the php processes as root again as a workaround.
 
-Additionally, we added more precomputation mechanisms to improve the speed of Lychee. The thumbs are now pro-computed with the following caracteristics:
+Additionally, we added more precomputation mechanisms to improve the speed of Lychee. The thumbs are now pre-computed with the following characteristics:
 If you select a photo as album cover, it will be visible to anyone. Otherwise, we pre-compute two thumbs covers: max privileges which is visible to admin and owner of the album, and min privileges which is visible to anyone. This is done by applying the previous logic that was used to select the thumb at runtime, but now pre-computed and stored in the database.
 
 Finally, we added pagination to the albums and photos view. This should greatly improve the speed of Lychee when having a large number of albums/photos.
