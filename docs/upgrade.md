@@ -375,6 +375,7 @@ services:
       # - ./conf/user.css:/app/public/dist/user.css
       # - ./conf/custom.js:/app/public/dist/custom.js
     environment:
+      - APP_KEY=base64:YOUR_APP_KEY_HERE # Generate it with `openssl rand -base64 32`
       - DB_CONNECTION=mysql
       - DB_HOST=lychee_db
       - DB_PORT=3306

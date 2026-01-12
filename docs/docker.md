@@ -24,74 +24,11 @@ The following tags are available:
 
 ## Quick Start
 
-### Basic Setup with SQLite
-
-For the simplest setup using the built-in SQLite support:
-
-```bash
-docker run -d \
-  --name=lychee \
-  -p 8000:8000 \
-  -v ./lychee/uploads:/app/public/uploads \
-  -v ./lychee/database:/app/database/database.sqlite \
-  -v ./lychee/storage/app:/app/storage/app \
-  ghcr.io/lycheeorg/lychee:latest
-```
-
-Then visit `http://localhost:8000` to complete the installation.
-
 ### Docker Compose (Recommended)
 
 The recommended way to deploy Lychee is with Docker Compose. Use the official template as a starting point:
 
 [https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml](https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml)
-
-Basic example with MySQL database:
-
-```yaml
-version: '3'
-
-services:
-  lychee_db:
-    image: mariadb:11
-    container_name: lychee_db
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_DATABASE=lychee
-      - MYSQL_USER=lychee
-      - MYSQL_PASSWORD=lychee
-    volumes:
-      - ./lychee/mysql:/var/lib/mysql
-    networks:
-      - lychee
-
-  lychee:
-    image: ghcr.io/lycheeorg/lychee:latest
-    container_name: lychee
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./lychee/uploads:/app/public/uploads
-      - ./lychee/storage/app:/app/storage/app
-      - ./lychee/logs:/app/storage/logs
-      - ./lychee/tmp:/app/storage/tmp
-      - ./lychee/conf/.env:/app/.env:ro
-    environment:
-      - DB_CONNECTION=mysql
-      - DB_HOST=lychee_db
-      - DB_PORT=3306
-      - DB_DATABASE=lychee
-      - DB_USERNAME=lychee
-      - DB_PASSWORD=lychee
-      - TIMEZONE=America/New_York
-    depends_on:
-      - lychee_db
-    networks:
-      - lychee
-
-networks:
-  lychee:
-```
 
 Start the services:
 
@@ -155,21 +92,19 @@ Common environment variables:
 environment:
   - APP_URL=http://localhost:8000  # Your public URL
   - APP_DEBUG=false                # Enable debug mode (development only)
+  - APP_KEY=base64:YOUR_APP_KEY_HERE  # Application encryption key (generate with `php artisan key:generate --show` or use `openssl rand -base64 32`)
   - TIMEZONE=UTC                   # Server timezone
   - LOG_CHANNEL=stack              # Logging channel
 ```
 
-### Docker-Specific Variables (Legacy Image)
-
-These variables are specific to the legacy nginx + PHP-FPM image:
+For the access rights.
 
 ```yaml
 environment:
   - PUID=1000          # User ID for file permissions
   - PGID=1000          # Group ID for file permissions
-  - USER=lychee        # Username
   - PHP_TZ=UTC         # PHP timezone
-  - STARTUP_DELAY=0    # Delay before starting services
+  #- RUN_AS_ROOT=yes    # Run PHP processes as root (yes/no), disabled by default for security
 ```
 
 ## Advanced Features
@@ -280,7 +215,7 @@ lychee_worker_2:
   # ... rest of configuration
 ```
 
-### Docker Secrets [TODO DOUBLE CHECK]
+### Docker Secrets
 
 For sensitive information, use Docker secrets instead of environment variables:
 
@@ -290,30 +225,35 @@ services:
     image: ghcr.io/lycheeorg/lychee:latest
     environment:
       - DB_PASSWORD_FILE=/run/secrets/db_password
-      - REDIS_PASSWORD_FILE=/run/secrets/redis_password
-      - MAIL_PASSWORD_FILE=/run/secrets/mail_password
+      - APP_KEY_FILE=/run/secrets/app_key
+      # - REDIS_PASSWORD_FILE=/run/secrets/redis_password
+      # - MAIL_PASSWORD_FILE=/run/secrets/mail_password
       - ADMIN_PASSWORD_FILE=/run/secrets/admin_password
     secrets:
       - db_password
-      - redis_password
-      - mail_password
+      - app_key
+      # - redis_password
+      # - mail_password
       - admin_password
 
 secrets:
+  app_key:
+    file: ./secrets/app_key.txt
   db_password:
     file: ./secrets/db_password.txt
-  redis_password:
-    file: ./secrets/redis_password.txt
-  mail_password:
-    file: ./secrets/mail_password.txt
+  # redis_password:
+  #   file: ./secrets/redis_password.txt
+  # mail_password:
+  #   file: ./secrets/mail_password.txt
   admin_password:
     file: ./secrets/admin_password.txt
 ```
 
 Supported `_FILE` variables:
+- `APP_KEY_FILE`
 - `DB_PASSWORD_FILE`
-- `REDIS_PASSWORD_FILE`
-- `MAIL_PASSWORD_FILE`
+<!-- - `REDIS_PASSWORD_FILE` -->
+<!-- - `MAIL_PASSWORD_FILE` -->
 - `ADMIN_PASSWORD_FILE`
 
 ## Configuration Management
@@ -476,7 +416,7 @@ These improvements are automatic when using Version 7 - no additional configurat
 6. **Restrict network access** using Docker networks
 7. **Use specific version tags** instead of `latest` in production for reproducible deployments
 
-## Example: Complete Production Setup
+<!-- ## Example: Complete Production Setup
 
 A complete production-ready setup with MySQL, Redis, workers, and TLS:
 
@@ -583,4 +523,4 @@ secrets:
     file: ./secrets/mysql_password.txt
 ```
 
-Run behind a reverse proxy (nginx, Traefik, or Caddy) to handle TLS termination and expose the service on port 443.
+Run behind a reverse proxy (nginx, Traefik, or Caddy) to handle TLS termination and expose the service on port 443. -->
