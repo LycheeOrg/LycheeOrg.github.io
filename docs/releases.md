@@ -67,12 +67,12 @@ You can configure the number of items, the type of pagination (paginated, load m
   > Leveraging the pre-computed fields, we refactored the thumb selection to avoid queries when loading albums.
   > This should furthermore increase the loading speed of Lychee.
 * `fix` #3927 : Fix unexpected password propagation behaviour by @ildyria.
-  > A small security fix. When entering a password for a shared album, it was being propagated to all other albuns.
+  > A small security fix. When entering a password for a shared album, it was being propagated to all other albums.
   > In a multi-user context, this could lead to unexpected access rights. A CVE has been raised for this issue,
   > read more [here](https://github.com/LycheeOrg/Lychee/security/advisories/GHSA-jj56-2c54-4f25).
 * `new` #3922 : Precompute album sizes. by @ildyria.
   > In addition to pre-computing the album thumb and min/max dates, we also pre-compute the album size.
-  > This improves speed when statistics of the album.
+  > This improves speed when computing statistics of the album.
 * `fix` #3928 : Fix Cache config not existing in the handling of cache events by @ildyria.
   > When running for the first time Lychee, the cache config was not existing yet, leading to errors when handling cache events.
 * `new` #3930 : Add view albums as lines instead of thumbs. by @ildyria.
@@ -97,7 +97,7 @@ You can configure the number of items, the type of pagination (paginated, load m
   > To help users with low resource environments, we added support for max execution time and memory limit in the `.env` file.
 * `new` #3954 : Alpine to Debian conversion by @ildyria.
   > To improve compatibility with various systems, we moved from an Alpine-based docker image to a Debian-based one.
-  > This should also improve the stability of php and avoid known issues betten PHP and Alpine's musl libc.
+  > This should also improve the stability of php and avoid known issues between PHP and Alpine's musl libc.
 * `new` #3953 : Fix: Drop privileges for PHP processes in Docker entrypoint by @m3nu.
   > Since version 7.0.0, Lychee's docker image runs PHP processes as root user, this is a security risk.
   > @m3nu contributed a fix to drop the privileges to the `www-data` user when running the PHP processes.
