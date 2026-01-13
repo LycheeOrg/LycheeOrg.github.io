@@ -8,6 +8,7 @@ const metadata = {
 
 // Release data extracted from releases.md
 const releases = [
+  { version: 'v7.1.1', date: 'Jan 13, 2026', title: 'Synology & Menu fixes', type: 'bugfix', highlights: ['Fixed Synology write permission issues', 'Fixed context-menu not appearing' ] },
   { version: 'v7.1.0', date: 'Jan 11, 2026', title: 'Back to Debian, Caching & Pagination', type: 'major', highlights: ['Moved from Alpine to Debian docker', 'Pre-computed album covers & stats', 'Pagination for albums & photos', 'Drop privileges for PHP processes', 'Improved loading speed', 'Lexicographical sorting'] },
   { version: 'v7.0.1', date: 'Jan 1, 2026', title: 'Minor fixes', type: 'bugfix', highlights: ['Fixed eternal darkmode issue'] },
   { version: 'v7.0.0', date: 'Dec 31, 2025', title: 'FrankenPHP, Webshop & Ratings', type: 'major', highlights: ['🌟 Webshop (Pro Edition)', 'Star rating system', 'FrankenPHP with Laravel Octane', 'Worker mode for horizontal scaling', 'AVIF support', 'PHP 8.4 required'] },
@@ -155,11 +156,11 @@ const getReleaseTypeBadge = (type: string) => {
     <div class="mx-auto max-w-3xl pt-12 px-4 sm:px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">7.1.0</div>
+          <div class="text-4xl font-bold text-primary">7.1.1</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Latest Version</div>
         </div>
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">106</div>
+          <div class="text-4xl font-bold text-primary">107</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Total Releases</div>
         </div>
         <div class="space-y-2">

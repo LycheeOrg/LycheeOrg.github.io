@@ -30,6 +30,19 @@
 
 ## Version 7
 
+### v7.1.1
+
+Released on Jan 13th, 2026
+
+#### Hot fixes: Synology & menu issues
+
+Small but important release to fix two important issues that were reported by our users. On Synology, the container kept rebooting due to write permission issues in dropped privilege mode. We fixed this by ensuring that the entrypoint script creates the necessary directories with the correct permissions. On the front-end the context menu was not appearing on the photos, this is also resolved.
+
+* `fix` #3962 : Fixed Synology issues by @ildyria.
+* `fix` #3971 : Fix menu not appearing by @ildyria.
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v7.1.0...v7.1.1
+
 ### v7.1.0
 
 Released on Jan 11th, 2026
