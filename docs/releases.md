@@ -30,6 +30,79 @@
 
 ## Version 7
 
+### v7.2.0
+
+Released on Jan 21st, 2026
+
+#### Speed improvement and minor UI updates
+
+This release brings a few new features. We added the ability to order photos by star rating and new smart albums based on ratings (1-5 stars, Best pictures).
+Additionally, we also added the ability to move shared albums to a separate tab to reduce clutter.
+
+One test instance database supports more than 3 million size variants and 400,000 photos in 4,000 albums. We noticed significant slowness when computing spaces, and somes actions such as deleting photos or albums where timing out completely, rendering them impossible to use. We refactored those parts of the code to improve the speed and avoid timeouts. This should greatly improve the experience of users with large galleries.
+
+#### Most notable changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+
+* `fix` 3980 : Fix #3714 by @ildyria.
+  > We fix the issue that sub-albums were not supporting the set aspect ratio.
+* `new` 3981 : Add support for hidden display of shared albums by @ildyria.
+  > We got feedback that having the list of all the public albums under your own albums may be a bit overwhelming.
+  > As a result we added an option which allows the admin to set those albums in a different tab instead of the main albums view.
+  > Users have the possibility to override this setting in their own gallery settings.
+* `new` 3984 : Add ordering by stars, add rating smart albums by @ildyria.
+  > We added the possibility to order photos by their star rating. We also added a few new smart albums:
+  > 1 stars, 2 stars, 3+ stars, 4+ stars, 5 stars, Best pictures.
+  > The later is only available to the Supporter Edition users. It allows to select the X best rated photos
+  > where X is configurable in the gallery settings.
+* `klo` 3985 : Speed-up space computation, at the cost no data from Unsorted by @ildyria.
+  > To improve the speed of Lychee, we changed the way we compute the used space.
+  > One of our test gallery has more than 3 millions size variants and 400 thousands photos in respectively 4000 albums.
+  > As a result, computing the used space was taking more than 30 seconds.
+* `new` 3991 : Add localization support for categories by @ildyria.
+  > Categories can now be localized. We added support for english and french; other languages will need your support.
+* `new` 3990 : Add possibility to hide exif data + fix tag list display by @ildyria.
+  > You can now hide the exif data from the photo detail panel if you wish so. This is available in the gallery settings.
+* `klo` 3992 : Refactor photo data to have standalone fps and duration by @ildyria.
+  > Internally in the database we were reusing the field aperture and focal length to store fps and duration for videos.
+  > We resolved semantic issue.
+* `klo` 3999 : Decrease complexity on fixTree by @ildyria.
+  > When updating the album tree with fixTree, we were sending all the albums in one go.
+  > We now only send the changed albums to decrease the complexity of the operation.
+  > We also refactored the front-end to reduce the complexity from O(n^2) to O(n).
+* `klo` 3993 : Refactor deletion by @ildyria.
+  > Our test instance revealed that in cases with large number of photos and size variants, the deletion process was timing out
+  > and ended up not being executed at all. We refactored the deletion to speed up the SQL queries and avoid timeouts.
+* `klo` 4003 : Harden tests scenarios for deletion by @ildyria.
+  > In addition to refactoring 3993, we also added more tests to cover edge cases and ensure that no data
+  > that should not be deleted are impacted.
+
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v7.1.2...v7.2.0
+
+### v7.1.2
+
+Released on Jan 14th, 2026
+
+#### Hot fixes and HEIF support
+
+Small release to fix a few issues that were reported by our users. Additionally, @nbalkandzhiyski added support for HEIF images by converting them to JPEG using the imagick extension.
+
+* `fix` #3975 : Fix ordering by converting to proper type by @ildyria
+  > Small fix to ensure that ordering works properly when using lexicographical sorting.
+* `fix` #3976 : Fix chown breaking by @ildyria
+  > The fixes on Synology was not working on the other platform. This is not resolved.
+* `new` #3946 : feat: ability to upload  and work with HEIF images by convert them to JPEG  by @nbalkandzhiyski
+  > We now support uploading HEIF images by converting them to JPEG using the imagick extension.
+
+#### New Contributors
+
+* @nbalkandzhiyski made their first contribution in https://github.com/LycheeOrg/Lychee/pull/3946
+
+**Full Changelog**: https://github.com/LycheeOrg/Lychee/compare/v7.1.1...v7.1.2
+
 ### v7.1.1
 
 Released on Jan 13th, 2026
@@ -62,9 +135,6 @@ Finally, we added pagination to the albums and photos view. This should greatly 
 You can configure the number of items, the type of pagination (paginated, load more, infinite scroll), and the reactivity of the preloading in infinite scroll in your gallery settings.
 
 #### Most notable changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-
 
 * `fix` #3920 : Do not load duplicates directly, it crashes the DB... by @ildyria.
   > When having a large number of photos, the duplicate query would hang and freeze the maintenance page.
