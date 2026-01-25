@@ -56,8 +56,8 @@ A small patch to fix a few issues. We also added the ability to filter photos by
   > The testing of renaming rules in the renamer module was not working due to missing parameters. This is now fixed.
 * `fix` #4015 : Hide more warnings by @ildyria.
   > When using the docker image and queues, some of the warnings do not make sense anymore. We now hide them to avoid confusion.
-* `fix` #4017 : Fix issue with filesize being 0 and add more coverage by @ildyria.
-  > In some edge cases, the filesize of a photo was 0, leading to when displaying sizes. This is now fixed.
+* `fix` `#4017` : Fix issue with filesize being 0 and add more coverage by `@ildyria`.
+  > In some edge cases, the filesize of a photo was 0, leading to errors when displaying sizes. This is now fixed.
 * `new` #3978 : Filtering on rating by @ildyria.
   > You can now filter photos by their rating in the album view.
 
