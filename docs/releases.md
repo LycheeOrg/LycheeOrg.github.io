@@ -30,6 +30,37 @@
 
 ## Version 7
 
+### v7.2.1
+
+Released on Jan 24th, 2026
+
+#### Fixes and small features
+
+A small patch to fix a few issues. We also added the ability to filter photos by their star rating in the album view.
+
+#### Most notable changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+
+
+* `klo` #4004 : Improve docker compose template by @ildyria.
+  > Improve the docker-compose template use yaml template to avoid duplication.
+  > Added a minimal running example to help users dry test Lychee locally.
+* `fix` #4005 : Fix downloading image directly from smart album by @ildyria.
+  > Fix the issue that downloading an image directly from a smart album was not working as expected.
+* `fix` #4007 : Hide list button if there are no albums by @ildyria.
+  > When there are no albums, it does not make sense to display the list view button. We now hide it in such case.
+* `klo` #4014 : Add documentation on tuning the timeouts in docker-compose.yaml by @ildyria.
+  > We added a small section in our documentation to explain how to tune the timeouts in the docker-compose file.
+* `fix` #4012 : Fix renamer rule test by @ildyria.
+  > The testing of renaming rules in the renamer module was not working due to missing parameters. This is now fixed.
+* `fix` #4015 : Hide more warnings by @ildyria.
+  > When using the docker image and queues, some of the warnings do not make sense anymore. We now hide them to avoid confusion.
+* `fix` #4017 : Fix issue with filesize being 0 and add more coverage by @ildyria.
+  > In some edge cases, the filesize of a photo was 0, leading to when displaying sizes. This is now fixed.
+* `new` #3978 : Filtering on rating by @ildyria.
+  > You can now filter photos by their rating in the album view.
+
 ### v7.2.0
 
 Released on Jan 21st, 2026
@@ -42,9 +73,6 @@ Additionally, we also added the ability to move shared albums to a separate tab 
 One test instance database supports more than 3 million size variants and 400,000 photos in 4,000 albums. We noticed significant slowness when computing spaces, and somes actions such as deleting photos or albums where timing out completely, rendering them impossible to use. We refactored those parts of the code to improve the speed and avoid timeouts. This should greatly improve the experience of users with large galleries.
 
 #### Most notable changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-
 
 * `fix` 3980 : Fix #3714 by @ildyria.
   > We fix the issue that sub-albums were not supporting the set aspect ratio.
