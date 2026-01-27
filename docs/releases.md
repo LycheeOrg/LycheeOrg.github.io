@@ -30,6 +30,34 @@
 
 ## Version 7
 
+### v7.3.0
+
+Released on Jan 27th, 2026
+
+#### LDAP/AD support is here!
+
+As usual, minor release, new functionalities! We add LDAP and Active Directory support for user authentication.
+As this is more an enterprise feature, it is only available to Supporter Edition users. Aside from that,
+we also added a new setting which allows to have the photo details drawer open by default when opening a photo.
+
+#### Most notable changes
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+`SE` refers to functionalities that are aimed at the Supporter/Pro Edition.  
+
+* `klo` #4006 : Add more contributions guides by @ildyria.
+  > Documentation has been improved to help new contributors get started.
+* `klo` #4019 : Clarify album rights propagation by @ildyria.
+  > We added some documentation to clarify how album rights propagation works when creating an album.
+* `SE` #4020 : Add LDAP support by @ildyria.
+  > Full LDAP support, this will allow you to synchronize your users from your LDAP/Active Directory server.
+  > They will be created on first login. When using LDAP, onboarded users are not able to change their username/password from Lychee.
+* `fix` #4029 : Fix ugly header bar in light mode when showing photo details by @ildyria.
+  > In light mode, when opening the photo details drawer, the header bar creating an ugly shadow.
+* `fix` #4028 : Migration breaking on some installations by @ildyria.
+  > We got report that users of version 7 and 7.1 having rated already some pictures were facing issues
+  > when migrating to 7.2. This fixes those issues. 
+
 ### v7.2.1
 
 Released on Jan 24th, 2026
@@ -39,8 +67,6 @@ Released on Jan 24th, 2026
 A small patch to fix a few issues. We also added the ability to filter photos by their star rating in the album view.
 
 #### Most notable changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
 
 
 * `klo` #4004 : Improve docker compose template by @ildyria.
@@ -255,8 +281,6 @@ Check the upgrade documentation for more information: [https://lycheeorg.dev/doc
 Read more on our [blog post](https://lycheeorg.dev/2025-12-31-version-7/) about Version 7.
 
 #### Most notable changes
-
-`SE` refers to functionalities that are aimed at the Supporter/Pro Edition.  
 
 
 * `klo` #3880 : Spec driven development support by @ildyria.

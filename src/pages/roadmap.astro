@@ -8,6 +8,7 @@ const metadata = {
 
 // Release data extracted from releases.md
 const releases = [
+  { version: 'v7.3.0', date: 'Jan 27, 2026', title: 'LDAP/AD support & UI improvements', type: 'feature', highlights: ['🌟 LDAP/Active Directory support (SE)', 'Photo details drawer open by default option', 'Fixed migration issues'] },
   { version: 'v7.2.1', date: 'Jan 24, 2026', title: 'Fixes and small features', type: 'bugfix', highlights: ['Filter photos by star rating', 'Fixed downloading from smart albums', 'Fixed renamer rule test', 'Hide warnings in docker with queues'] },
   { version: 'v7.2.0', date: 'Jan 21, 2026', title: 'Speed improvement and UI updates', type: 'major', highlights: ['Order photos by star rating', 'Rating smart albums (1-5 stars, Best pictures)', 'Hidden display of shared albums', 'Refactored deletion for large galleries'] },
   { version: 'v7.1.2', date: 'Jan 14, 2026', title: 'Hot fixes and HEIF support', type: 'feature', highlights: ['HEIF image support (convert to JPEG)', 'Fixed lexicographical sorting', 'Fixed chown issues'] },
@@ -159,11 +160,11 @@ const getReleaseTypeBadge = (type: string) => {
     <div class="mx-auto max-w-3xl pt-12 px-4 sm:px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">7.2.1</div>
+          <div class="text-4xl font-bold text-primary">7.3.0</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Latest Version</div>
         </div>
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">110</div>
+          <div class="text-4xl font-bold text-primary">111</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Total Releases</div>
         </div>
         <div class="space-y-2">
