@@ -30,6 +30,16 @@
 
 ## Version 7
 
+### v7.3.1
+
+Released on Jan 28th, 2026
+
+#### Hotfix - Docker
+
+Small hotfix to add the missing `php-ldap` dependency to the docker image. Sorry. :(
+
+* `fix` #4033 : Fix missing dependency: ldap by @ildyria.
+
 ### v7.3.0
 
 Released on Jan 27th, 2026
