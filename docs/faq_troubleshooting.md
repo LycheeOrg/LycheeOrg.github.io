@@ -64,6 +64,10 @@ You can check your container logs to verify FrankenPHP is active:
 docker-compose logs lychee
 ```
 
+### I just updated to 7.3+ and I get PHP Fatal error: Uncaught RuntimeException: A facade root has not been set.
+
+This error is misleading. Version 7.3 added support for LDAP, which requires the `php-ldap` extension.
+Verify that you have all the required PHP extensions installed.
 ### I'm getting database connection errors in Docker, what can I do?
 
 Database connection issues in Docker are usually related to service configuration:

@@ -29,6 +29,7 @@ The Lychee gallery has a few system requirements. You will need to make sure you
 	- imagick (optional &mdash; to generate better thumbnails)
 	- json
 	- libxml
+	- ldap (**new since 7.3**)
 	- mbstring
 	- openssl
 	- pcre
