@@ -30,6 +30,19 @@
 
 ## Version 7
 
+### v7.3.2
+
+Released on Jan 29th, 2026
+
+#### Hotfix - Album interactions & migration
+
+Adding a few hotfixes to fix issues that were reported by our users.
+Nothing really critical but keeps improving the QoL.
+
+* `fix` 4040 : Exclude random from requiring XSRF token by @ildyria.
+* `fix` 4043 : Fix logic about de-duplication by @ildyria.
+* `fix` 4044 : Fix event propagation by @ildyria.
+
 ### v7.3.1
 
 Released on Jan 28th, 2026
