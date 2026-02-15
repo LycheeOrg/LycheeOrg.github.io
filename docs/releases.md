@@ -30,6 +30,37 @@
 
 ## Version 7
 
+### v7.3.3
+
+Released on Feb 15th, 2026
+
+#### Bulgarian language, fixes and improvements
+
+This is a small patch which brings a few fixes and improvements. The most notable one is the addition of Bulgarian translations, thanks to our new contributor `@tkulev`. Additionally, `@cdzombak` added the possibility to filter embedded albums/streams by author using the data-author attribute.
+We also propose two new smart albums: "My rated pictures" and "My best rated pictures". The first one contains all the photos that you have rated, while the second one contains the best rated photos by you. Those albums are only visible to you and are a great way to quickly access your favorite photos.
+
+This patch also contains a FrankenPHP update to fix some security issues. You can read more about it [here](https://github.com/php/frankenphp/releases/tag/v1.11.2)
+
+#### Most notable changes
+
+* `new` #4041 : Add 2 new smart albums: "My rated pictures" and "My best rated pictures" by @ildyria. 
+* `new` #4046 : Add setting to also hide GPS data by @ildyria. 
+* `fix` #4048 : Fix settings not being set for default album protection policy by @ildyria. 
+* `fix` #4049 : Fix delete warning in tags albums by @ildyria. 
+* `fix` #4070 : Fix migration failing when rerun by @ildyria. 
+* `new` #4080 : Adding Bulgarian translations by @tkulev. 
+* `fix` #4084 : Copy built album-embed assets into Docker images by @cdzombak. 
+* `new` #4083 : Allow filtering embedded albums/streams by author using data-author attribute by @cdzombak. 
+* `klo` #4085 : Move notes on embeds feature from .ai to docs/specs/4-architecture/feature by @cdzombak. 
+* `fix` #4086 : Bump frankenphp by @ildyria.
+* `klo` #4091 : Fix docker compose in readme by @ildyria. 
+* `fix` #4092 : Fix zip first install by @ildyria. 
+
+#### New Contributors
+
+* @tkulev made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4080
+
+
 ### v7.3.2
 
 Released on Jan 29th, 2026
