@@ -32,14 +32,14 @@
 
 ### v7.3.3
 
-Relased on Feb 15th, 2026
+Released on Feb 15th, 2026
 
 #### Bulgarian language, fixes and improvements
 
-This is a small patch which brings a few fixes and improvements. The most notable one is the addition of Bulgarian translations, thanks to our new contributor @tkulev. Additionally, @cdzombak added the possibility to filter embedded albums/streams by author using the data-author attribute.
+This is a small patch which brings a few fixes and improvements. The most notable one is the addition of Bulgarian translations, thanks to our new contributor `@tkulev`. Additionally, `@cdzombak` added the possibility to filter embedded albums/streams by author using the data-author attribute.
 We also propose two new smart albums: "My rated pictures" and "My best rated pictures". The first one contains all the photos that you have rated, while the second one contains the best rated photos by you. Those albums are only visible to you and are a great way to quickly access your favorite photos.
 
-This patch also contains a frankenphp update to fix some security issues. You can read more about it [here](https://github.com/php/frankenphp/releases/tag/v1.11.2)
+This patch also contains a FrankenPHP update to fix some security issues. You can read more about it [here](https://github.com/php/frankenphp/releases/tag/v1.11.2)
 
 #### Most notable changes
 
