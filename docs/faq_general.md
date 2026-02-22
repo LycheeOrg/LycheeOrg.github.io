@@ -10,6 +10,43 @@ Lychee supports major image formats, and since version 3.2.1 some video formats 
 
 If you're uploading video files, make sure to increase your upload limits in `php.ini`.  See the [Installation](installation.html) section for more information.
 
+### How to mass import photos?
+
+Lychee supports mass import of photos via the command line. You can use the following command to import photos from a given path:
+
+```bash
+php artisan lychee:sync /path/to/import
+```
+
+This command will import all photos from the specified path, creating albums for each folder and subfolder. You can also specify an album ID to import photos into a specific album:
+
+```bash
+php artisan lychee:sync /path/to/import --album_id="album ID"
+```
+
+If you want to do this within docker, then we recommend you mount the volume containing the photos to be imported to a temporary location in the container, for example `/tmp/import`, and then run the command:
+
+```bash
+docker exec -it <container_name> php artisan lychee:sync /tmp/import
+```
+
+This will create an album `import` in which all the photos will be imported. You can then move the photos to the desired albums using the web interface. Note that this import is recursive, so any subfolders will be imported as subalbums.
+
+Note that `lychee:sync` has a few options:
+
+- `--album_id[=ALBUM_ID]`: Album ID to import to.
+- `--owner_id[=OWNER_ID]`: Owner ID of imported photos [default: "1"]
+- `--resync_metadata[=RESYNC_METADATA]`: Re-sync metadata of existing files [default: "1"]
+- `--delete_imported[=DELETE_IMPORTED]`: Delete the original files [default: "1"]
+- `--import_via_symlink[=IMPORT_VIA_SYMLINK]`: Import photos via symlink instead of copying the files [default: "0"]
+- `--skip_duplicates[=SKIP_DUPLICATES]`: Skip photos and albums if they already exist in the gallery [default: "0"]
+- `--delete_missing_photos[=DELETE_MISSING_PHOTOS]`: Delete photos in the album that are not present in the synced directory [default: "0"]
+- `--delete_missing_albums[=DELETE_MISSING_ALBUMS]`: Delete albums in the parent album that are not present in the synced directory [default: "0"]
+- `--dry_run[=DRY_RUN]`: Run the delete photos process but do not make any changes [default: "1"]
+
+We strongly recommend to specify those or at least run `php artisan lychee:sync --help` to understand the default values of those options as they are specified with your configuration. The `--delete_xxx` can have disastrous consequences if you are not careful.
+
+
 ### What is new?
 
 Take a look at the [Release Notes](releases.html) to see what's new.
