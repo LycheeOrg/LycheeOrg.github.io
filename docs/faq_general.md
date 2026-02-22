@@ -32,7 +32,7 @@ docker exec -it <container_name> php artisan lychee:sync /tmp/import
 
 This will create an album `import` in which all the photos will be imported. You can then move the photos to the desired albums using the web interface. Note that this import is recursive, so any subfolders will be imported as subalbums.
 
-Note that `lychee:sync` as a few options:
+Note that `lychee:sync` has a few options:
 
 - `--album_id[=ALBUM_ID]`: Album ID to import to.
 - `--owner_id[=OWNER_ID]`: Owner ID of imported photos [default: "1"]
@@ -44,7 +44,7 @@ Note that `lychee:sync` as a few options:
 - `--delete_missing_albums[=DELETE_MISSING_ALBUMS]`: Delete albums in the parent album that are not present in the synced directory [default: "0"]
 - `--dry_run[=DRY_RUN]`: Run the delete photos process but do not make any changes [default: "1"]
 
-We strongly recommend to specify those or at least run `lychee:sync --help` to understand the default values of those options as they are specified with your configuration. The `--delete_xxx` can have disastrous consequences if you are not careful.
+We strongly recommend to specify those or at least run `php artisan lychee:sync --help` to understand the default values of those options as they are specified with your configuration. The `--delete_xxx` can have disastrous consequences if you are not careful.
 
 
 ### What is new?
