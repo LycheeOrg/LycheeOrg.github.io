@@ -73,7 +73,7 @@ For all users, this version introduces full RAW image support with automatic JPE
 * `SE` #4132 : feat: Contact Form (Feature 022) — backend & frontend by @ildyria
   > This is a major feature addition for our Supporter Edition users! You can now add a contact form to your gallery, allowing visitors to send you messages directly from the gallery. This is especially useful for photographers who want to allow their customers to reach out to them easily. For our pro users, the contact form is fully customizable, you can choose the labels and titles.
 
-## New Contributors
+#### New Contributors
 
 * @FredPraca made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4125
 
