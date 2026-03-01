@@ -30,6 +30,54 @@
 
 ## Version 7
 
+### v7.4.0
+
+Released on Mar 1st, 2026
+
+#### Contact form, Raw support, and Quality of Life improvements
+
+This release brings major new features across all editions! Supporter Edition users get a contact form allowing visitors to send messages directly from galleries (with full customization for Pro users), slugs as album IDs for prettier SEO-friendly URLs, mass rename functionality to apply renaming rules to photo/album selections, and watermark upload controls to choose between immediate or on-demand watermarking. Pro users gain the ability to let clients highlight photos without authentication—perfect for client galleries—plus revamped album headers with customizable positioning, colors, and focus point control for hero images.
+
+For all users, this version introduces full RAW image support with automatic JPEG conversion while preserving originals, size-selectable zip downloads (small, medium, large, or original), and "remember me" login functionality for extended sessions. Additional improvements include a new photo list view, mass license editing, the ability to see which albums contain a photo, "starred" renamed to "highlight" for clarity, Lychee v3 album redirect fixes, and legacy code cleanup for improved performance.
+
+* `Pro` #4082 : Allow non-authenticated users to highlight photo (by admin option) by @tkulev
+  > This functionality is targetted to our pro photographers, giving them the ability to provide a gallery to their customer where they can highlight their favorite photos without the need to create an account for them.
+* `klo` #4106 : Starred to highlight by @ildyria
+  > To make it more obvious the difference between starred and photo rating (which also uses stars), we renamed the "starred" feature to "highlight". This is purely a naming change, no functionality has been changed.
+* `new` #4113 : Add photo list display by @ildyria
+  > A small quality of life improvement, we added a list view of photos, similar to the one available for albums. This allows you to see more photos at once and quickly access the photo details.
+* `SE` #4114 : Add option to disable watermarking at upload time. by @ildyria
+  > This is a small feature, but this allows you to disable watermarking at upload time. This is especially useful if you have a large gallery and want to avoid the overhead of watermarking all photos at upload time. You can still watermark photos later on demand.
+* `new` #4120 : Mass edit license by @ildyria
+  > By request, we added the possibility to mass edit the license of photos. This is accessible via right click after selection.
+* `SE` #4121 : Mass rename on album view by @ildyria
+  > It is now possible to apply renaming rules on a selection of photos/albums. This no longer something that is applied only at creation.
+* `new` #4122 : Add link to owning albums. by @ildyria
+  > When viewing the details of a photo, we now display in which albums it is contained.
+* `klo` #4124 : Remove endpoint to fetch all data in one go for an album by @ildyria
+  > This endpoing has been replaced with the head, photos, albums endpoints. This change allowed us to paginate the photos & albums. Now we no longer need it, so let's get rid of this legacy code. 
+* `SE` #4123 : Slugs as album ids by @ildyria
+  > To have prettier URLs, we added the possibility to use slugs as album IDs instead of the default UUIDs. The slug is unique for the full Lychee installation, but you can chose yourself exactly which to slug to use for each album.
+* `fix` #4125 : add inner transactions to avoid aborting (#4072) by @FredPraca
+  > On rare occasions, one of the migrations was failing. @FredPraca added some failsafes to avoid a cascade of failure in such cases.
+* `new` #4130 : Raw support by @ildyria
+  > Instead of uploading jpeg, yoy can now directly upload your raw files. They will be converted to jpeg using the imagick extension and the raw file will be kept as original. This allows you to keep the best quality of your photos while still being able to easily share them. Note that this kind of conversion does not have noise reduction, so the resulting jpeg will likely be quite noisy as opposed to the output of the leader in the fields.
+* `fix` #4126 : Lychee v3 redirect by @tkulev
+  > A small fix to ensure that album ids from version 3 are properly redirected to the new format. This is important for old photographers which are moving from version 3 to version 7 to ensure that their old links are not broken.
+* `new` #4133 : Medium zip download by @ildyria
+  > We now provide the possibility to download albums as zip archive of a specified size. Instead of fully downloading the original photos, you can now select smaller sizes.
+* `pro` #4105 : Album header improvements by @tkulev
+  > The album header has been revamped, you can now select the position of the title and its color. You are also able to fix the focus point of the hero image, ensuring a better display of the album header image.
+* `new` #4134 : feat: implement remember-me login (Feature 023) by @ildyria
+  > Small feature that was requested, by ticking the remember me, on login you will be logged in for a longer period of time (set by env variable, default is 4 weeks).
+* `SE` #4132 : feat: Contact Form (Feature 022) — backend & frontend by @ildyria
+  > This is a major feature addition for our Supporter Edition users! You can now add a contact form to your gallery, allowing visitors to send you messages directly from the gallery. This is especially useful for photographers who want to allow their customers to reach out to them easily. For our pro users, the contact form is fully customizable, you can choose the labels and titles.
+
+## New Contributors
+
+* @FredPraca made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4125
+
+
 ### v7.3.3
 
 Released on Feb 15th, 2026
