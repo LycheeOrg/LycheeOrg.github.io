@@ -61,7 +61,7 @@ For all users, this version introduces full RAW image support with automatic JPE
 * `fix` #4125 : add inner transactions to avoid aborting (#4072) by @FredPraca
   > On rare occasions, one of the migrations was failing. @FredPraca added some failsafes to avoid a cascade of failure in such cases.
 * `new` #4130 : Raw support by @ildyria
-  > Instead of uploading jpeg, yoy can now directly upload your raw files. They will be converted to jpeg using the imagick extension and the raw file will be kept as original. This allows you to keep the best quality of your photos while still being able to easily share them. Note that this kind of conversion does not have noise reduction, so the resulting jpeg will likely be quite noisy as opposed to the output of the leader in the fields.
+  > Instead of uploading jpeg, you can now directly upload your raw files. They will be converted to jpeg using the imagick extension and the raw file will be kept as original. This allows you to keep the best quality of your photos while still being able to easily share them. Note that this kind of conversion does not have noise reduction, so the resulting jpeg will likely be quite noisy as opposed to the output of the leader in the fields.
 * `fix` #4126 : Lychee v3 redirect by @tkulev
   > A small fix to ensure that album ids from version 3 are properly redirected to the new format. This is important for old photographers which are moving from version 3 to version 7 to ensure that their old links are not broken.
 * `new` #4133 : Medium zip download by @ildyria
