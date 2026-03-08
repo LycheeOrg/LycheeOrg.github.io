@@ -8,6 +8,7 @@ const metadata = {
 
 // Release data extracted from releases.md
 const releases = [
+  { version: 'v7.4.1', date: 'Mar 8, 2026', title: 'Fixes and minor improvements', type: 'bugfix', highlights: ['Fixed potential crash related to missing configurations', 'Added error message for missing ldap extension', 'Allow passing individual file paths to lychee:sync command'] },
   { version: 'v7.4.0', date: 'Mar 1, 2026', title: 'Contact form, Raw support & QoL', type: 'major', highlights: ['🌟 Contact form (SE)', 'RAW image support', 'Remember me', '🌟 Improved album header (Pro Edition)', '🌟 Slugs as album IDs (SE)'] },
   { version: 'v7.3.3', date: 'Feb 15, 2026', title: 'Bulgarian and small features', type: 'bugfix', highlights: ['Bulgarian language', 'Rated smart albums', 'embed filters'] },
   { version: 'v7.3.2', date: 'Jan 29, 2026', title: 'Hotfix - Album interactions & migration', type: 'bugfix', highlights: ['Album interactions', 'Edge case of Migrations not applied'] },
@@ -164,11 +165,11 @@ const getReleaseTypeBadge = (type: string) => {
     <div class="mx-auto max-w-3xl pt-12 px-4 sm:px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">7.4.0</div>
+          <div class="text-4xl font-bold text-primary">7.4.1</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Latest Version</div>
         </div>
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">115</div>
+          <div class="text-4xl font-bold text-primary">116</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Total Releases</div>
         </div>
         <div class="space-y-2">
