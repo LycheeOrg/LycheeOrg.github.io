@@ -30,6 +30,45 @@
 
 ## Version 7
 
+### v7.4.1
+
+Released on Mar 8th, 2026
+
+#### Fixes and minor improvements
+
+This release brings a few fixes and minor improvements to the version 7.4.0. The most notable one is the fix of a potential crash when initializing the watermarker when some migrations are not run yet. We also added an error message to clarify the requirement of the ldap extension when enabling ldap support. Additionally, we added the possibility to pass individual file paths to the lychee:sync command, in addition to directories. This allows for more flexibility when syncing photos from the command line. We also added dynamic background modes with enum config, allowing for a more dynamic background on the landing page. Finally, we improved the message notification in the admin panel when a message is sent from the contact form.
+
+
+* `fix` #4138 : Do not die when initializing the watermarker by @ildyria.
+  > When some migrations are not run yet there was a rare case of the watermarker trying to fetch a configuration value.
+  > The strictness of Lychee enforces the existence of configs in the database, so it was throwing an error and breaking the app.
+  > We now catch this error and log it, but we do not break the app as it is not critical.
+* `new` #4139 : add error message for ldap requirement by @ildyria.
+  > In light of the obscure crash about Facade, it was not clear to the user that they were missing a dependency.
+* `new` #4143 : feat: lychee:sync accepts individual file paths alongside directories by @Copilot.
+  > By request, we added the possibility to pass individual file paths to the lychee:sync command, in addition to directories.
+  > This allows for more flexibility when syncing photos from the command line.
+* `new` #4144 : Add dynamic background modes with enum config  by @ildyria.
+  > By request, it is now possible to have a more dynamic background on the landing page.
+* `new` #4148 : Improve message notification by @ildyria.
+  > When a message is sent from the contact form, we now display a notification in the admin panel to notify the admin that a new message has been received.
+* `fix` #4151 : Solution to #4146 : Adding the option to specify the Microsoft Tenant… by @agademer.
+* `fix` #4155 : Fix #4117 - Fix going back to selected tag page. by @ildyria.
+  > When clicking on the back button having opened a photo on a tag page, the user was redirected to the main tags list instead of the previous page. This is now fixed. 
+* `klo` #4156 : Add db migration existence check by @ildyria.
+  > If a user mounts app/database as a volume, the migrations are no longer accessible. This breaks the database initialization.
+  > We added a check at the startup of the docker container.
+* `fix` #4158 : Fix security headers by @ildyria.
+  > The sha-256 for the script using the old v4 redirection was not correct. This is now fixed.
+* `fix` #4159 : Fix(csp): remove unsafe-eval requirement for Vue3 production builds by @ildyria.
+  > This is a major security improvement, Vue3 production builds do not require unsafe-eval anymore, so we can remove it from our CSP policy.
+  > This will prevent some potential XSS vulnerabilities.
+
+
+#### New Contributors
+* @agademer made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4151
+
+
 ### v7.4.0
 
 Released on Mar 1st, 2026
