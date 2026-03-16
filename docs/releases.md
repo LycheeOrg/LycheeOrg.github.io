@@ -30,6 +30,24 @@
 
 ## Version 7
 
+### v7.5.0
+
+Released on Mar 16th, 2026
+
+
+
+### v7.4.2
+
+Released on Mar 12th, 2026
+
+#### Hotfixes
+
+Just a few hotfixes
+
+* `fix` #4161 : Fix Connect src csp by @ildyria.
+* `fix` #4170 : fix(csp): add 'self' to connect-src so API calls to own origin are allowed by @cdzombak.
+
+
 ### v7.4.1
 
 Released on Mar 8th, 2026
