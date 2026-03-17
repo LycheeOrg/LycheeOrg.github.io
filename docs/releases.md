@@ -36,7 +36,7 @@ Released on Mar 16th, 2026
 
 #### New Search and tag filters
 
-This release brings a major rework of the search of Lychee, as we reworked the tags, the search has been deactivated for them. They are back, furthermore we added possibility to search by landscape/portrait, filter the results based on exif data for more targetted results.
+This release brings a major rework of the search of Lychee, as we reworked the tags, the search has been deactivated for them. They are back, furthermore we added possibility to search by landscape/portrait, filter the results based on exif data for more targeted results.
 
 * `new` #4179 : Refactor search by @ildyria
   > A complete rewrite of the search capabilities of Lychee, new UI, new UX.
@@ -47,7 +47,7 @@ This release brings a major rework of the search of Lychee, as we reworked the t
   > We now disable the button completely as there are no work around.
 * `fix` #4184 : Fix Masonry (and other layout not being respected) by @ildyria
   > It has been brought to our attention that the photo layout was not being applied as per saved in the album setting. This is now fixed.
-* `fix` #4188 : Fix missing migration is_starred -> is_highligted by @ildyria
+* `fix` #4188 : Fix missing migration is_starred -> is_highlighted by @ildyria
   > If some of your albums had the ordering set by highlight, the migration was missing on version 7.4.0.
   > This is now fixed.
 * `fix` #4189 : Unfortunately, we have to enable unsafe-inline if we are using Paypal by @ildyria
