@@ -34,7 +34,28 @@
 
 Released on Mar 16th, 2026
 
+#### New Search and tag filters
 
+This release brings a major rework of the search of Lychee, as we reworked the tags, the search has been deactivated for them. They are back, furthermore we added possibility to search by landscape/portrait, filter the results based on exif data for more targetted results.
+
+* `new` #4179 : Refactor search by @ildyria
+  > A complete rewrite of the search capabilities of Lychee, new UI, new UX.
+* `new` #4163 : Album filter by @ildyria
+  > It is now possible to filter the photo results in albums by their tags.
+* `fix` #4180 : Prevent copy in non secure context by @ildyria
+  > When using http, the diagnostic button was not working because missing the secure context.
+  > We now disable the button completely as there are no work around.
+* `fix` #4184 : Fix Masonry (and other layout not being respected) by @ildyria
+  > It has been brought to our attention that the photo layout was not being applied as per saved in the album setting. This is now fixed.
+* `fix` #4188 : Fix missing migration is_starred -> is_highligted by @ildyria
+  > If some of your albums had the ordering set by highlight, the migration was missing on version 7.4.0.
+  > This is now fixed.
+* `fix` #4189 : Unfortunately, we have to enable unsafe-inline if we are using Paypal by @ildyria
+  > This is not great, but in order to use paypal jdk, we have to disable the CSP. As a consequence,
+  > the CSP will be disabled if the PAYPAL_CLIENT_ID is set.
+* `fix` #4190 : Fix loading photos on paginated by @ildyria
+  > When switching to a picture after loading some infinite pagination, the album was reloading the photos.
+  > As a consequence, the photoId could not be found in the list. This is now fixed.
 
 ### v7.4.2
 
