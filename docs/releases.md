@@ -36,10 +36,10 @@ Released on Mar 22nd, 2026
 
 #### Support camera capture and hotfix
 
-In addition to loading pictures from memory, we now also our front-end to support the camera view. This allows to take pictures directly and instantly upload them to Lychee, a feature that will be welcomed by our mobile users.
+In addition to loading pictures from memory, we now also support camera capture in the front-end. This allows users to take pictures directly and instantly upload them to Lychee, a feature that will be welcomed by our mobile users.
 
 * `new` #4213 : feat: add Camera Capture feature (Feature 029) by @mitpjones.
-* `fix` #4214 : Fix dns-resolving to localip by @ildyria.
+* `fix` #4214 : Fix DNS resolving to local IP by @ildyria.
   > Fixes SSRF bypass via DNS rebinding. Read more [here](https://github.com/LycheeOrg/Lychee/security/advisories/GHSA-5245-4p8c-jwff)
 
 Thanks to @morimori-dev for reporting the SSRF issue.
@@ -55,11 +55,11 @@ Released on Mar 21st, 2026
 
 #### Hotfixes
 
-* `fix` #4208 : Make ldap optional by @ildyria.
-  > Due to popular demand, we made the ldap extension optional. If you do not have it installed, the ldap features will be disabled, but the rest of the app will work as expected. This is especially useful for users who do not need ldap support and want to avoid installing the extension.
+* `fix` #4208 : Make LDAP optional by @ildyria.
+  > Due to popular demand, we made the LDAP extension optional. If you do not have it installed, the LDAP features will be disabled, but the rest of the app will work as expected. This is especially useful for users who do not need LDAP support and want to avoid installing the extension.
 * `fix` #4207 : Fix tag album ordering by @ildyria.
   > Photos in Tag albums were not ordered. Fixed. 
-* `fix` #4205 : Fix ssrf lookback edge case by @ildyria.
+* `fix` #4205 : Fix SSRF loopback edge case by @ildyria.
   > Read more [here](https://github.com/LycheeOrg/Lychee/security/advisories/GHSA-vq6w-prpf-h287)
 
 Thanks to @offensiveee for reporting the SSRF issue.
