@@ -30,6 +30,24 @@
 
 ## Version 7
 
+### v7.5.3
+
+Released on Mar 23rd, 2026
+
+#### Fix XSS in RSS feed
+
+Another day, another patch. A bit depressing... but so is the life of a maintainer. This patch fixes a potential XSS vulnerability in the RSS feed. The issue was that the description of the photos was not properly escaped, allowing for potential XSS attacks if they contained malicious code.
+
+* `fix` #4218 : Fix XSS in /feed by @ildyria.
+* `new` #4217 : Added and improved German translations by @hyazinthh.
+
+Once again, thanks to @morimori-dev for reporting the XSS issue.
+
+#### New Contributors
+
+@hyazinthh made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4217
+
+
 ### v7.5.2
 
 Released on Mar 22nd, 2026
