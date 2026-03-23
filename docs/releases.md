@@ -36,7 +36,7 @@ Released on Mar 23rd, 2026
 
 #### Fix XSS in RSS feed
 
-Another day, another patch. A bit depressing... but so is the life of a maintainer. This patch fixes a potential XSS vulnerability in the RSS feed. The issue was that the description of the photos were not properly escaped, allowing for potential XSS attacks if they contained malicious code.
+Another day, another patch. A bit depressing... but so is the life of a maintainer. This patch fixes a potential XSS vulnerability in the RSS feed. The issue was that the description of the photos was not properly escaped, allowing for potential XSS attacks if they contained malicious code.
 
 * `fix` #4218 : Fix XSS in /feed by @ildyria.
 * `new` #4217 : Added and improved German translations by @hyazinthh.
