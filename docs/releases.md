@@ -30,6 +30,40 @@
 
 ## Version 7
 
+### v7.5.4
+
+Released on Apr 8th, 2026
+
+#### Vulnerability live check and fixes.
+
+As we are working on some new features, those take time. However we got report of a new vulnerability in the latest version of Lychee,
+and as it should we are providing a patch & fix for it.
+
+Lychee beeing currently audited by external security researchers, it is possible (though hopefully unlikely) that they find more issues in the future.
+As a consequence, in order to improve the security posture of our users, we are proud to be among the first open-source projects to implement a live check
+for advisories related to our project. When you log in, Lychee queries the GitHub security advisories and checks if any are applicable to your version. If there are,
+a modal will be displayed advising you to update your installation.
+
+This behavior is enabled by default but if you are running Lychee offline, you can disabled it by setting your environment variable `VULNERABILITY_CHECK_ENABLED` to `false`.
+
+* `new` #4263 : feat(032): Security Advisories Check by @ildyria
+* `fix` #4264 : Fix sharing a bit too much info by @ildyria
+* `fix` #4226 : Add disabling preloading check in FixTree console by @ildyria
+* `fix` #4231 : Fixing syntaxError: [sprintf] unexpected placeholder… by @TheBullRing
+* `fix` #4225 : Fix MySQL error 1390 (too many placeholders) in album/photo deletion path by @Copilot
+* `new` #4239 : Enhance German translation by @hyazinthh
+* `new` #4241 : Finalize German translation by @hyazinthh
+* `klo` #4251 : Trivy ignore update by @ildyria
+* `new` #4253 : Add turkish template by @ildyria
+* `fix` #4255 : Fix notifications by @hyazinthh
+* `fix` #4256 : Fix 'rename' string and make ellipses consistent for German by @hyazinthh
+* `klo` #4261 : Ignore CVE which does not apply to us by @ildyria
+
+#### New Contributors
+
+@TheBullRing made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4231
+
+
 ### v7.5.3
 
 Released on Mar 23rd, 2026
