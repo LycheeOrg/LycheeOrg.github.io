@@ -79,7 +79,13 @@ This update will be the one you have to use if you are following the Release cha
 
 1. Download the [newest Version](https://github.com/LycheeOrg/Lychee/releases)
 2. Replace all existing files, excluding `public/uploads/`, `public/dist/user.css` and `.env` (and `database/database.sqlite` if using **SQLite** as your database)
-3. Go into the `Diagnostic` page and click on the `Apply migration` button.
+3. Go into the `Diagnostic` page (this will mostly happen automatically) and click on the `Apply migration` button.
+
+Note: if using `rsync` to upload stuff to the WebServer, something like this might be used: 
+
+```bash
+rsync -vrtz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude=public/uploads/ --exclude=public/dist/user.css --exclude=.env Lychee/ user@web.server.web:~/www/your_path_to/lychee/
+```
 
 
 ## Update via the GUI
