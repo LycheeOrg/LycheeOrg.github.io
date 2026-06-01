@@ -84,7 +84,7 @@ This update will be the one you have to use if you are following the Release cha
 Note: if using `rsync` to upload stuff to the WebServer, something like this might be used: 
 
 ```bash
-rsync -vrtz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude=public/uploads/ --exclude=public/dist/user.css --exclude=.env Lychee/ user@web.server.web:~/www/your_path_to/lychee/
+rsync -vrtz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude=public/uploads/ --exclude=public/dist/user.css --exclude=.env --exclude=database/database.sqlite Lychee/ user@web.server.web:~/www/your_path_to/lychee/
 ```
 
 
