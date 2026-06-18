@@ -32,13 +32,13 @@
 
 ### v7.6.0
 
-Releaed on June 17th, 2026
+Released on June 17th, 2026
 
 #### Chunked download, moderation, bulk edit, custom print sizes and more
 
 It has been quite a while since the last release, our month of May has been busy and we haven't had much time to work on Lychee.
 However, we are back with a new version! We added quite a few new features, worked our way through the backlog of issues and
-fixed quite a few bugs, small requests and vulnerabilties.
+fixed quite a few bugs, small requests and vulnerabilities.
 
 At the moment, we are also working on some new functionalities which have been never seen in any other photo management software.
 Stay tuned for the next major version!
@@ -63,7 +63,7 @@ Stay tuned for the next major version!
 * `new` #4316 : Add setting to disable embed endpoints and UI. by @ildyria.
   > Per request, we added a setting to disable the embed endpoints and the embed UI. This is especially useful for users who do not want to allow embedding of their albums.
 * `new` #4312 : Improved admin panel by @ildyria.
-  > As more and more features are added to the admin capabilities, the left menu was starting to be to small.
+  > As more and more features are added to the admin capabilities, the left menu was starting to be too small.
   > We now have a new admin panel which allows to have a better overview of the settings and capabilities of the admin.
 * `SE` #4335 : White-label: hide Lychee SE / version branding on login form and all public surfaces by @ildyria.
   > This is a feature that was requested by our Supporter Edition users. It allows to hide the Lychee branding on the login form and all public surfaces.
@@ -122,7 +122,7 @@ Stay tuned for the next major version!
 * `klo` #4413 : Pin -rc releases by @ildyria.
 * `klo` #4419 : Avoid further complaint on api/v2/diagnostics endpoint by @ildyria.
   > We got a few reports that the diagnostic endpoint is leaking information about the server configuration.
-  > Those information anonymyzed and not useful to an attacker, as a result we added explicit information to
+  > Those information anonymized and not useful to an attacker, as a result we added explicit information to
   > inform security scanners that this is not a vulnerability but the intended behaviour.
 * `klo` #4426 : Do not re-run full CI if not necessary on PR by @ildyria.
   > Lychee is a large project with extensive tests (90% code coverage), as a result our CICD pipeline (continuous integration and continuous deployment) takes about 50 minutes per run. This change allows us to skip the javascript tests when the PR does not touch any javascript files, and similarly on the PHP side. This allows us to save some time and resources on our CI/CD pipeline.
