@@ -30,6 +30,110 @@
 
 ## Version 7
 
+### v7.6.0
+
+Released on June 17th, 2026
+
+#### Chunked download, moderation, bulk edit, custom print sizes and more
+
+It has been quite a while since the last release, our month of May has been busy and we haven't had much time to work on Lychee.
+However, we are back with a new version! We added quite a few new features, worked our way through the backlog of issues and
+fixed quite a few bugs, small requests and vulnerabilities.
+
+At the moment, we are also working on some new functionalities which have been never seen in any other photo management software.
+Stay tuned for the next major version!
+
+
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+`SE` refers to functionalities that are aimed at the Supporter Edition.  
+`Pro` refers to functionalities that are aimed at the Pro Edition.
+
+
+* `new` #4300 : Chunked Archive Download by @ildyria.
+  > When trying to download albums with a large number of photos, the download was failing due to timeout.
+  > We now split the zip file into chunks and download them one by one.
+  > This allows to download albums with a large number of photos without any issues.
+  > Note that each zip is independent and the chunking is done on the number of pictures instead.
+* `new` #4296 : Add bulk album edit by @ildyria.
+  > Added a new page which allows to edit the settings of multiple albums at once.
+* `new` #4282 : Add admin check for uploads by @ildyria.
+  > Each user can have different trust level: `trusted`, `monitor` (for future use) and `check`.
+  > When a user with `check` trust level uploads a photo, it will be flagged and will not be visible to other users until an admin approves it.
+  > This allows to have a better control on the content of the gallery in case of a public gallery where users can upload photos.
+* `new` #4316 : Add setting to disable embed endpoints and UI. by @ildyria.
+  > Per request, we added a setting to disable the embed endpoints and the embed UI. This is especially useful for users who do not want to allow embedding of their albums.
+* `new` #4312 : Improved admin panel by @ildyria.
+  > As more and more features are added to the admin capabilities, the left menu was starting to be too small.
+  > We now have a new admin panel which allows to have a better overview of the settings and capabilities of the admin.
+* `SE` #4335 : White-label: hide Lychee SE / version branding on login form and all public surfaces by @ildyria.
+  > This is a feature that was requested by our Supporter Edition users. It allows to hide the Lychee branding on the login form and all public surfaces.
+  > This is especially useful for photographers who want to provide a gallery to their customers without any branding.
+* `new` #4362 : Disable response caching functionality by @ildyria.
+  > There are two hard problem in computer science: naming things, cache invalidation. With the refactoring and increased speed of Lychee, the server-side cache is no longer necessary. As it was often causing issues, we decided to remove it.
+* `new` #4383 : Add option to have timeline only at root level by @ildyria.
+  > Some users requested to have the timeline only at the root level and not in all sub-albums. This is now feasible with a single toggle.
+* `new` #4385 : supply title/description at upload time; return expected_id in response by @ildyria.
+  > It is now possible to supply title and description at upload time. Additionally, the response now returns the expected_id of the photo which allows to have a better integration with external tools.
+* `new` #4406 : Add option to disable the switch photo effect by @ildyria.
+  > The small swipe effect from right to left/left to right when switching photos can now be disabled.
+* `Pro` #4388 : Add print & pixel size support (feature 043) by @ildyria.
+  > It is now possible to specify the print size & paper, and the exact pixel size of photos for your customer.
+  > Note that those are set to be processing outside of Lychee, we do not provide printing services nor resizing to the pixel size chosen.
+* `Pro` #4411 : Add webshop order item display by @ildyria.
+  > Improve the information of the pictures purchased in the webshop. We now also provide a link to the photo, and the title of the containing album.
+* `new` #4416 : Add support for toggle select on mobile view by @ildyria.
+  > Long time requested, we added a toggle select on views with touch screen. This will allow to select multiple photos/albums on mobile devices.
+* `new` #4417 : Add support for uploading folders by drag&drop by @ildyria.
+  > Long time requested, you can now drag and drop folders to upload them. The folder structure will be preserved and the photos will be uploaded in the corresponding albums.
+  > If the folder matches an existing album in the view, then the photos will be uploaded in that album, otherwise a new album will be created with the name of the folder.
+* `new` #4412 : Add better feedback on upload failures by @ildyria.
+  > When uploading photos, if some of them fail, we now provide a better feedback on which photos failed and why. This allows to quickly identify the issue and fix it.
+* `fix` #4275 : Async reverse-geocoding, configurable rate limit, remove Wikimedia map provider by @ildyria.
+  > We add proper rate limiting in reverse geocoding to avoid being blocked by the provider. Additionally, we removed the Wikimedia map provider as it was not reliable and often blocked.
+* `fix` #4279 : Fixes the wrong name of aspect_ratio 16by9 to 1byx9 in all translations. by @mhepp63.
+* `fix` #4292 : Remove user constraint on decoding Limiter by @ildyria.
+* `fix` #4283 : Avoid spamming the server for auditories when we don't have the rights by @ildyria.
+* `fix` #4294 : Fix direct photo links in large paginated albums via ?page=N by @ildyria.
+  > When opening a photo in a large paginated album, the photo was not found as the pagination was not taken into account. This is now fixed.
+* `fix` #4295 : Show Back Home button on tablets and phones by @ildyria.
+* `fix` #4297 : Ldap is no longer required by @ildyria.
+* `fix` #4303 : Fixes the Czech translation, part II by @mhepp63.
+* `fix` #4311 : Search other pages when photo not found in suggested page by @ildyria.
+  > When opening a photo in a large paginated album, if the ?page=N is not provided, we now load each and every page until we find the photo.
+  > This is to ensure that legacy link still works with pagination.
+* `fix` #4317 : Improved support for group authorization for Album delete & edit by @ildyria.
+* `fix` #4328 : Deduplicate photos in tag album listings by @ildyria.
+* `fix` #4329 : Optimistic UI update for album pin/unpin by @ildyria.
+* `fix` #4334 : Use file path instead of stream for PDF thumbnail generation by @mitpjones.
+* `fix` #4344 : Fix SSRF on TOCTOU by @ildyria.
+  > We fixed a TOCTOU (Time of Check to Time of Use) vulnerability in the SSRF protection.
+  > We are now using curl instead of fopen to ensure that the ip address resolved at the time of check is the same as the one at the time of request.
+* `fix` #4353 : Fixes the Czech translation, part III by @mhepp63.
+* `fix` #4365 : Fix not loading settings first page anymore by @ildyria.
+* `fix` #4377 : Update Markdown configuration to a more secure practice by @ildyria.
+  > The default configuration provided by GrahamCampbell/Laravel-Markdown is subject to XSS. We have hardened the settings to avoid this issue.
+* `fix` #4384 : Only call advisory after being logged in by @ildyria.
+* `fix` #4387 : Fix hidden albums leaking via "present in albums" list by @ildyria.
+* `fix` #4389 : Display Camera Make in PhotoDetails Exif Data by @rschumm.
+* `fix` #4415 : Fix mb strings for our chinese users by @ildyria.
+  > Our chinese users reported that some photos were breaking the app due to string encoding.
+  > We are now using mbstring to ensure that proper byte length are respected before serializing in the database.
+* `klo` #4378 : Remove vulnerabilities by dropping some dependencies. by @ildyria.
+* `klo` #4413 : Pin -rc releases by @ildyria.
+* `klo` #4419 : Avoid further complaint on api/v2/diagnostics endpoint by @ildyria.
+  > We got a few reports that the diagnostic endpoint is leaking information about the server configuration.
+  > Those information anonymized and not useful to an attacker, as a result we added explicit information to
+  > inform security scanners that this is not a vulnerability but the intended behaviour.
+* `klo` #4426 : Do not re-run full CI if not necessary on PR by @ildyria.
+  > Lychee is a large project with extensive tests (90% code coverage), as a result our CICD pipeline (continuous integration and continuous deployment) takes about 50 minutes per run. This change allows us to skip the javascript tests when the PR does not touch any javascript files, and similarly on the PHP side. This allows us to save some time and resources on our CI/CD pipeline.
+
+Thanks to @geo-chen for reporting the XSS in markdown.  
+Thanks to @zveua for reporting the DNS rebinding issue.
+
+#### New Contributors
+* @mhepp63 made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4279
+* @rschumm made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4389
+
 ### v7.5.4
 
 Released on Apr 8th, 2026
@@ -50,7 +154,7 @@ This behavior is enabled by default but if you are running Lychee offline, you c
 * `fix` #4264 : Fix sharing a bit too much info by @ildyria
 * `fix` #4226 : Add disabling preloading check in FixTree console by @ildyria
 * `fix` #4231 : Fixing syntaxError: [sprintf] unexpected placeholder… by @TheBullRing
-* `fix` #4225 : Fix MySQL error 1390 (too many placeholders) in album/photo deletion path by @Copilot
+* `fix` #4225 : Fix MySQL error 1390 (too many placeholders) in album/photo deletion path by @ildyria
 * `new` #4239 : Enhance German translation by @hyazinthh
 * `new` #4241 : Finalize German translation by @hyazinthh
 * `klo` #4251 : Trivy ignore update by @ildyria
@@ -308,9 +412,6 @@ As this is more an enterprise feature, it is only available to Supporter Edition
 we also added a new setting which allows to have the photo details drawer open by default when opening a photo.
 
 #### Most notable changes
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-`SE` refers to functionalities that are aimed at the Supporter/Pro Edition.  
 
 * `klo` #4006 : Add more contributions guides by @ildyria.
   > Documentation has been improved to help new contributors get started.

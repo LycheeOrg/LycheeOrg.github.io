@@ -8,6 +8,7 @@ const metadata = {
 
 // Release data extracted from releases.md
 const releases = [
+  { version: 'v7.6.0', date: 'Jun 17, 2026', title: 'Moderation, Custom print sizes and more', type: 'major', highlights: ['Chunked download', 'Moderation features', 'folder upload', '🌟 Custom print sizes (SE)', '🌟 White-label (SE)'] },
   { version: 'v7.5.4', date: 'Apr 8, 2026', title: 'Hotfix', type: 'enhancement', highlights: ['Live vulnerability check', 'Fix listing of shared albums vulnerability'] },
   { version: 'v7.5.3', date: 'Mar 23, 2026', title: 'Hotfix', type: 'security', highlights: ['Fix XSS in RSS feed'] },
   { version: 'v7.5.2', date: 'Mar 22, 2026', title: 'Camera support & hotfix', type: 'enhancement', highlights: ['Upload from camera support from Frontend', 'Fix SSRF on name resolution to reserved ip space'] },
@@ -171,15 +172,15 @@ const getReleaseTypeBadge = (type: string) => {
     <div class="mx-auto max-w-3xl pt-12 px-4 sm:px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">7.5.4</div>
+          <div class="text-4xl font-bold text-primary">7.6.0</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Latest Version</div>
         </div>
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">122</div>
+          <div class="text-4xl font-bold text-primary">123</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Total Releases</div>
         </div>
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">5.5</div>
+          <div class="text-4xl font-bold text-primary">6</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Years Journey</div>
         </div>
         <div class="space-y-2">
