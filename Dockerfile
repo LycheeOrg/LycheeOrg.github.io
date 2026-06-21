@@ -11,7 +11,7 @@ ENV PHP_TZ=UTC
 
 # Multi-stage build: Build static assets
 # This allows us to not include Python within the final container
-FROM python:3.14-rc-bookworm AS python_builder
+FROM python:3.14-trixie AS python_builder
 
 WORKDIR /usr/src/app
 
@@ -27,7 +27,7 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 
 # Multi-stage build: Build static assets
 # This allows us to not include Node within the final container
-FROM node:20 AS node_builder
+FROM node:24 AS node_builder
 
 RUN mkdir -p  /app/dist
 
