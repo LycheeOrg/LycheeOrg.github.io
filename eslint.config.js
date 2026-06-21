@@ -54,6 +54,13 @@ export default [
     },
   },
   {
+    files: ['src/components/common/Analytics.astro', 'src/components/common/Analytics.astro/**'],
+    rules: {
+      'prefer-rest-params': 'off',
+      'no-var': 'off',
+    },
+  },
+  {
     ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro'],
   },
 ];

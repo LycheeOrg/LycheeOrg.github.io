@@ -5,7 +5,7 @@ all: assets
 .PHONY: assets docs
 
 node_modules:
-	npm install
+	npm ci
 
 astro: node_modules
 	npm run build
