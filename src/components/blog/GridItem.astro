@@ -17,7 +17,9 @@ const image = await findImage(post.image);
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 ---
 
-<article class="mb-6 transition">
+<article
+  class="mb-6 transition intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+>
   <div class="relative md:h-64 bg-gray-400 dark:bg-slate-700 rounded shadow-lg mb-6">
     {
       image &&
@@ -25,13 +27,13 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
           <a href={link}>
             <Image
               src={image}
-              class="w-full md:h-full rounded shadow-lg object-cover bg-gray-400 dark:bg-slate-700"
+              class="w-full md:h-full object-cover rounded shadow-lg bg-gray-400 dark:bg-slate-700"
               widths={[400, 900]}
-              width={400}
+              width={900}
+              height={506}
               sizes="(max-width: 900px) 400px, 900px"
               alt={post.title}
-              aspectRatio="16:9"
-              layout="cover"
+              format="webp"
               loading="lazy"
               decoding="async"
             />
@@ -39,13 +41,13 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
         ) : (
           <Image
             src={image}
-            class="w-full md:h-full rounded shadow-lg object-cover bg-gray-400 dark:bg-slate-700"
+            class="w-full md:h-full object-cover rounded shadow-lg bg-gray-400 dark:bg-slate-700"
             widths={[400, 900]}
-            width={400}
+            width={900}
+            height={506}
             sizes="(max-width: 900px) 400px, 900px"
             alt={post.title}
-            aspectRatio="16:9"
-            layout="cover"
+            format="webp"
             loading="lazy"
             decoding="async"
           />
