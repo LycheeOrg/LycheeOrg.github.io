@@ -37,7 +37,7 @@ COPY src /app/src
 COPY public /app/public
 COPY vendor /app/vendor
 COPY .npmrc /app/package.json
-COPY astro.config.mjs /app/astro.config.mjs
+COPY astro.config.ts /app/astro.config.ts
 COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
 COPY tailwind.config.cjs /app/tailwind.config.cjs
