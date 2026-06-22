@@ -7,7 +7,8 @@ const metadata = {
 };
 
 // Release data extracted from releases.md
-const releases = [
+export const releases = [
+  { version: 'v7.6.1', date: 'Jun 22, 2026', title: 'Hotfix', type: 'security', highlights: ['🌟 License key auto-rotations', 'Fix brute force attack on unlock'] },
   { version: 'v7.6.0', date: 'Jun 17, 2026', title: 'Moderation, Custom print sizes and more', type: 'major', highlights: ['Chunked download', 'Moderation features', 'folder upload', '🌟 Custom print sizes (SE)', '🌟 White-label (SE)'] },
   { version: 'v7.5.4', date: 'Apr 8, 2026', title: 'Hotfix', type: 'enhancement', highlights: ['Live vulnerability check', 'Fix listing of shared albums vulnerability'] },
   { version: 'v7.5.3', date: 'Mar 23, 2026', title: 'Hotfix', type: 'security', highlights: ['Fix XSS in RSS feed'] },
@@ -157,7 +158,7 @@ const getReleaseTypeBadge = (type: string) => {
 
 <Layout metadata={metadata}>
   <!-- Page Header -->
-  <section class="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+  <section class="py-16 md:py-20 bg-linear-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
     <div class="mx-auto max-w-3xl px-4 sm:px-6">
       <div class="text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
@@ -172,11 +173,12 @@ const getReleaseTypeBadge = (type: string) => {
     <div class="mx-auto max-w-3xl pt-12 px-4 sm:px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">7.6.0</div>
+          <div class="text-4xl font-bold text-primary">{releases[0].version.substring(1)}</div>
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Latest Version</div>
         </div>
         <div class="space-y-2">
-          <div class="text-4xl font-bold text-primary">123</div>
+          <div class="text-4xl font-bold text-primary">{releases.length + 17}</div>
+          <!-- 17 releases on version 3 by us. -->
           <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">Total Releases</div>
         </div>
         <div class="space-y-2">
@@ -192,7 +194,7 @@ const getReleaseTypeBadge = (type: string) => {
   </section>
 
   <!-- Milestones Section -->
-  <section class="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+  <section class="py-16 md:py-20 bg-linear-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <!-- Section Header -->
       <div class="mb-12 text-center">
@@ -310,7 +312,7 @@ const getReleaseTypeBadge = (type: string) => {
   </section>
 
   <!-- Timeline Section -->
-  <section class="py-8 md:py-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+  <section class="py-8 md:py-12 bg-linear-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
     <div class="mx-auto max-w-3xl px-4 sm:px-6">
       <!-- Section Header -->
       <div class="mb-8 text-center">
@@ -325,21 +327,21 @@ const getReleaseTypeBadge = (type: string) => {
       <!-- Timeline -->
       <div class="relative">
         <!-- Timeline Line -->
-        <div class="absolute left-[10rem] top-4 bottom-0 w-0.5 bg-gradient-to-b from-primary to-blue-300 dark:from-primary dark:to-blue-700" aria-hidden="true"></div>
+        <div class="absolute left-40 top-4 bottom-0 w-0.5 bg-linear-to-b from-primary to-blue-300 dark:from-primary dark:to-blue-700" aria-hidden="true"></div>
 
         <!-- Timeline Items -->
         <div class="space-y-4 md:space-y-6">
           {releases.map((release) => (
             <div class="relative flex items-start gap-6">
               <!-- Date (Left Side) -->
-              <div class="w-32 text-right flex-shrink-0">
+              <div class="w-32 text-right shrink-0">
                 <time class="text-xs font-semibold text-gray-700 dark:text-gray-300">
                   {release.date}
                 </time>
               </div>
 
               <!-- Timeline Dot -->
-              <div class="relative flex items-center justify-center flex-shrink-0 mt-1.5">
+              <div class="relative flex items-center justify-center shrink-0 mt-1.5">
                 <div class={`w-4 h-4 rounded-full ${getReleaseTypeColor(release.type)} ring-3 ring-white dark:ring-gray-900 shadow-md flex items-center justify-center`}>
                   <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
                 </div>
@@ -363,7 +365,7 @@ const getReleaseTypeBadge = (type: string) => {
                     <ul class="space-y-0">
                       {release.highlights.map((highlight) => (
                         <li class="flex items-start group/item">
-                          <svg class="w-4 h-4 text-primary mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <svg class="w-4 h-4 text-primary mt-0.5 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                           </svg>
                           <span class="text-sm text-gray-700 dark:text-gray-300 group-hover/item:text-gray-900 dark:group-hover/item:text-white transition-colors">{highlight}</span>

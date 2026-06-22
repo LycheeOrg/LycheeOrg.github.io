@@ -30,6 +30,29 @@
 
 ## Version 7
 
+### v7.6.1
+
+Released on June 22nd, 2026
+
+#### Auto rotation of the license key and hot-fixes
+
+This is a hotfix, but it brings a new feature. You can know create a auth token in keygen.lycheeorg.dev and use it in your .env file to automatically rotate your license key.
+This is especially useful for our SE and Pro users who want to automate the license key rotation. No longer need to manually update that key when it expires, Lychee will do it for you.
+
+* `new` #4442 : Add auto rotation of the license key provided KEYGEN_API_KEY by @ildyria.
+* `fix` #4450 : Add fallback if crypto.randomUUID() is not available by @ildyria.
+  > In rare cases where users were using Lychee on an ip without https, the upload would not work.
+  > This is now fixed.
+* `fix` #4446 : Fix shared hosting tmp folder issue by @ildyria.
+  > In some shared hosting environments, the system tmp folder is not writable by the user.
+  > We provide an alternative temp directory in the storage folder which is writable by the user.
+* `fix` #4448 : 10 unlock request per minute by @ildyria.
+  > A missing rate limit on unlock album was allowing to brute force the unlock code. We now limit the number of requests to 10 per minute.
+* `fix` #4449 : Ensure that the user is able to see the photo they are setting as highlighted by @ildyria.
+  > Provided the attacker knew a photo id, and that the admin had set the configuration to allow highlighting photos without authentication, the attacker could set a photo as highlighted without being able to see it. This is now fixed.
+
+Thanks to @de3erve-hunter for reporting the brute-force and the highlight vulnerability.  
+
 ### v7.6.0
 
 Released on June 17th, 2026
