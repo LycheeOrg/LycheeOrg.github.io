@@ -58,7 +58,7 @@ const metadata = {
             description: 'Unlimited photo upload.',
           },
           {
-            description: '',
+            description: 'Facial recognition.',
           },
         ],
         callToAction: {
@@ -126,7 +126,7 @@ const metadata = {
     title="Full comparison<sup class='text-xl'>*</sup>"
     tagline="the essentials and a few more"
     products={['Free', 'Lychee <span class="text-sky-600 dark:text-sky-300">SE</span>']}
-    extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the large amount of configurations available (250+).<br>\
+    extra="<sup>*</sup> This table is summary of Lychee's functionalities and does not represent the very large amount of configurations available (350+).<br>\
     <sup>**</sup> Some languages are still untranslated. Any translations provided via <a class='text-sky-600 dark:text-sky-300 underline hover:text-sky-400 dark:hover:text-sky-500' href='https://weblate.lycheeorg.dev'>weblate</a> will be appreciated.<br>\
     <sup>***</sup> This option is not available on <span class='text-sky-600 dark:text-sky-300'>SE</span> as they are already hidden.<br>\
     <sup>****</sup> This option requires the <span class='text-sky-600 dark:text-sky-300'>Pro</span> edition of Lychee which is targeted to users who wish to sell their pictures."
@@ -164,6 +164,12 @@ const metadata = {
         feature: 'Hide Lychee <span class="text-sky-600 dark:text-sky-300">SE</span> call for actions <sup>*</sup><sup>*</sup><sup>*</sup>',
         available: [true, false],
       },
+      {
+        feature: 'White label option (remove all mentions of Lychee)',
+        available: [false, true],
+        isV7: true,
+      },
+
 
       {
         feature: 'Photo management',
@@ -219,6 +225,7 @@ const metadata = {
         available: [false, true],
       },
 
+
       {
         feature: 'Album management',
         isHeader: true,
@@ -269,6 +276,7 @@ const metadata = {
         available: [false, true],
       },
 
+
       {
         feature: 'Per Album customizations',
         isHeader: true,
@@ -297,6 +305,7 @@ const metadata = {
         feature: 'Customizable timeline',
         available: [false, true],
       },
+
 
       {
         feature: 'Flow (display albums in a feed like manner)',
@@ -328,6 +337,7 @@ const metadata = {
         available: [false, true],
       },
 
+
       {
         feature: 'Tagging',
         isHeader: true,
@@ -352,6 +362,7 @@ const metadata = {
         feature: 'Display tags on album view',
         available: [false, true],
       },
+
 
       {
         feature: 'Watermarking',
@@ -391,6 +402,7 @@ const metadata = {
         available: [false, true],
       },
 
+
       {
         feature: 'User management',
         isHeader: true,
@@ -416,6 +428,11 @@ const metadata = {
         available: [true, true],
       },
       {
+        feature: 'Trust level per users',
+        available: [true, true],
+        isV7: true,
+      },
+      {
         feature: 'Space usage per user',
         available: [false, true],
       },
@@ -431,6 +448,7 @@ const metadata = {
         feature: 'Multi-admin support',
         available: [false, true],
       },
+
 
       {
         feature: 'User groups',
@@ -478,6 +496,12 @@ const metadata = {
         available: [true, true],
       },
       {
+        feature: 'Facial Recognition',
+        available: [true, true],
+        isSoon: true,
+        isV8: true,
+      },
+      {
         feature: 'Personal favourites',
         available: [false, true],
       },
@@ -485,6 +509,18 @@ const metadata = {
         feature: 'Renaming rules on import/upload',
         available: [false, true],
       },
+      {
+        feature: 'Contact form',
+        available: [false, true],
+        isV7: true,
+      },
+      {
+        feature: 'Sensitive content detection',
+        available: [false, true],
+        isSoon: true,
+        isV8: true,
+      },
+
 
       {
         feature: 'Sync with local directories',
@@ -549,6 +585,11 @@ const metadata = {
         available: [true, true],
       },
       {
+        feature: 'Upload moderation',
+        available: [true, true],
+        isV7: true,
+      },
+      {
         feature: 'Statistics on your installation',
         available: [false, true],
       },
@@ -560,7 +601,17 @@ const metadata = {
         isV7: true,
       },
       {
-        feature: 'Custom pricing (per size & license type)',
+        feature: 'Custom pricing',
+        available: [false, true],
+        isPro: true,
+      },
+      {
+        feature: 'Custom sizes & license type',
+        available: [false, true],
+        isPro: true,
+      },
+      {
+        feature: 'Support prints (no integration with printing services)',
         available: [false, true],
         isPro: true,
       },
