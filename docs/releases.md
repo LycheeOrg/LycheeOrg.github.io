@@ -30,6 +30,23 @@
 
 ## Version 7
 
+
+<!-- Release notes generated using configuration in .github/release.yml at v7.6.2 -->
+
+## What's Changed
+
+### v7.6.2
+
+Released on June 22nd, 2026
+
+#### Revert validate-env.sh
+
+While running the docker image, the validate-env.sh script was failing for obscure reasons.
+It works totally fine on the demo docker image but is failing on different set-ups. Reverting the change to avoid breaking the docker image for our users.
+We will investigate the issue and re-apply the change in a future release.
+
+* `fix` #4453 : Revert validate-env.sh  by @ildyria.
+
 ### v7.6.1
 
 Released on June 22nd, 2026
