@@ -35,6 +35,27 @@
 
 ## What's Changed
 
+### v7.6.3
+
+Released on June 24th, 2026
+
+#### Fixes major vulnerability on album passwords
+
+I cannot believe that this went undetected for so long. The zip endpoint was checking if the album was set as downloadable, but it was not checking if the album was accessible or not. As a consequence, if you knew the id of an album, you could download it without knowing the password.
+
+If you are protecting your albums by password, please update to this version as soon as possible. This is a critical vulnerability and should be fixed immediately.
+If you are using the stronger approach, namely "public + hidden", then you are entirely safe. The album id are cryptographically generated and cannot be guessed, as opposed to password which are weak against dictionary attacks.
+
+* `fix` #4459 : Fix download bypass on password protected albums by @ildyria.
+* `fix` #4462 : Do not display errors when feature is disabled by @ildyria.
+  > Just a convience fix. We are working on some secret features for v8. ;)
+* `fix` #4458 : Hardcode sqlite migration key-drop fix by @ildyria.
+  > An old fix, but if you are using sqlite and migrating from version before 7.4.0, you might have a crash, at migration requiring you to modify the database by hand.
+  > This is now fixed.
+
+Thanks to @5ud0er for reporting the zip password bypass vulnerability.  
+
+
 ### v7.6.2
 
 Released on June 22nd, 2026
