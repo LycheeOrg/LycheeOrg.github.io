@@ -24,6 +24,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
+  site: 'https://lycheeorg.dev',
   output: 'static',
 
   redirects: {
@@ -60,6 +61,7 @@ export default defineConfig({
         },
         {
           label: 'Supporter Edition',
+          badge: { text: 'SE', variant: 'tip' },
           items: [{ autogenerate: { directory: 'docs/se' } }],
         },
         {

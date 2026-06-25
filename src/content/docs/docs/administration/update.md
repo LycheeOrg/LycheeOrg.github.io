@@ -8,8 +8,7 @@ sidebar:
 The way you can update Lychee depends of how you did your installation:
 
 * If you used the release channel (downloading a zip file), go to [Update manually](#update-manually)
-* If you installed via `git clone` then you can either use a [similar process](#update-using-git) or do it directly online via the [Graphical User Interface](#update-via-the-gui) of Lychee.
-
+* If you installed via `git clone`, go to [Update using Git](#update-using-git)
 
 - Your system must comply with the latest [system requirements](/docs/getting-started/installation/) of the latest version of Lychee.
 - Ensure that you are using the version 4 of Lychee. Updates from older version of Lychee are more complex.
@@ -97,57 +96,3 @@ rsync -vrtz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude=public
 ```
 
 
-## Update via the GUI
-
-This requires:
-
--  `git` to be installed
-- write access for your web user (`www-data` for apache2) to all the folders, files **and `.git/`**.
-- `exec` to be available as a php function.
-- `allow_online_git_pull` has to be set to `1`
-
-#### 1. Go to your Diagnostic page and check for updates
-
-Notice that *Lychee version (git)* tells you:
-
-- the commit number &mdash; *"dfad796"*,
-- which branch you are on &mdash; *"master"*,
-- you do not have information if you are up to date or not &mdash; *"Data not in Cache"*.
-
-However you should see a "check for Updates" button:
-
-![](/docs/img/update/update_1.png)
-
-If you click on it, it will ask your server to check how far behind you are from the bleeding edge version of Lychee:
-
-![](/docs/img/update/update_2.png)
-
-#### 2. Refresh your Diagnostic page
-
-Notice that *Lychee version (git)* now tells you:
-
-- that you are behind &mdash; "*1 commits behind master (dc5f03a)*"
-- that the last check for update was done some times ago &mdash; "*(9 seconds ago)*"
-
-![](/docs/img/update/update_3.png)
-
-#### 3. Apply the update
-
-By clicking on *"Update available"* this will trigger server side a `git pull` and `artisan migrate`.
-
-![](/docs/img/update/update_4.png)
-
-You can see the log result of the command line printed above the diagnostic information.
-By default composer calls are disabled.
-
-![](/docs/img/update/update_5.png)
-
-#### 4. Check for updates
-
-We can once again check for updates:
-
-![](/docs/img/update/update_6.png)
-
-![](/docs/img/update/update_7.png)
-
-And we are done.

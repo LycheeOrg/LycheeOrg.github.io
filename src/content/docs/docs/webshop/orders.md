@@ -15,7 +15,11 @@ Access the orders page from the **left menu** in Lychee. The orders list shows:
 - **Pending orders** — awaiting payment or fulfillment
 - **Completed orders** — paid and fulfilled
 
+![Admin orders list](/docs/img/webshop/admin-orders.png)
+
 Each order displays the customer details, selected photos with their sizes, and the payment status.
+
+![Order detail with line items](/docs/img/webshop/admin-order-detail.png)
 
 ## Fulfilling Orders
 
@@ -27,6 +31,8 @@ When **auto-fulfillment** is enabled in the webshop settings and the customer or
 2. Makes the link available to the customer.
 
 No manual action is needed for these orders.
+
+![Auto-fulfilled order with download link](/docs/img/webshop/admin-fulfilled.png)
 
 ### Manual Fulfillment
 
@@ -45,6 +51,10 @@ For **offline payments** or when you need to manually confirm payment:
 2. Click **Mark as paid**.
 3. If auto-fulfillment is enabled, download links are generated automatically.
 
+![Mark as paid](/docs/img/webshop/admin-mark-paid.png)
+
+![Order marked as paid](/docs/img/webshop/admin-paid.png)
+
 For **PayPal** and **Mollie** payments, the payment status is updated automatically via the payment gateway.
 
 ## Customer Download Experience
@@ -54,3 +64,7 @@ Once an order is fulfilled:
 1. The customer receives a **shareable download link**.
 2. Clicking the link opens a download page where they can retrieve their purchased photos.
 3. Admins can copy the download link from the order details to share it directly.
+
+![Guest order view](/docs/img/webshop/guest-order.png)
+
+![Customer download page](/docs/img/webshop/guest-download.png)

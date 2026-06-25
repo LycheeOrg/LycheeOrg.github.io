@@ -41,7 +41,7 @@ export const headerData = {
     },
     {
       text: 'Docs',
-      href: '/docs/',
+      href: '/docs/getting-started/installation/',
     },
   ],
   position: 'right',

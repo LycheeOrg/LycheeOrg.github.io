@@ -1,14 +1,8 @@
-all: assets
-	@echo ""
-	@python3 gen.py
+# all: assets
+# 	@echo ""
+# 	@python3 gen.py
 
 .PHONY: assets docs
-
-node_modules:
-	npm ci
-
-astro: node_modules
-	npm run build
 
 assets: astro
 	mkdir -p dist/docs
@@ -16,6 +10,12 @@ assets: astro
 	cp -r docs/fonts dist/docs/
 	cp -r docs/img dist/docs/
 	cp -r docs/js dist/docs/
+
+node_modules:
+	npm ci
+
+astro: node_modules
+	npm run build
 
 test: assets
 	@echo ""

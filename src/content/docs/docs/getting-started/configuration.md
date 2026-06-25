@@ -24,6 +24,11 @@ For non-core options (for example UI options), take a look at [Settings](/docs/g
 | `TRUSTED_PROXIES`    | Trusted proxy IP addresses                                                             | `null`                      |
 | `LOG_VIEWER_ENABLED` | Enable log viewer inside Lychee instead of through CLI.                                | `true`                      |
 | `LEGACY_API_ENABLED` | Enable the Legacy API. It will also be enabled if `VUEJS_ENABLED` is set to `false`.        | `false`                     | 
+| `WHITE_LABEL_ENABLED` | Hide all Lychee branding from the UI. Requires a valid [SE licence](/docs/se/white-label/).  | `false`                     |
+
+:::caution[Docker users]
+If you are using the Docker image, changes to environment variables require a container restart, as the server loads and caches the configuration at startup.
+:::
 
 :::note
 `APP_URL` must only contain the hostname up to the Top Level Domain (tld) _e.g._ .com, .org etc.

@@ -76,9 +76,7 @@ From [#311](https://github.com/LycheeOrg/Lychee/issues/311)
 
 Short answer: Lychee will work without a writable `app/` folder.
 
-However, if you want to be able to update your Lychee installation with a click of a button in the web browser (though it's disabled by default), your whole Lychee installation tree (and not just `app/`) must be http-writable.
-
-As far as I know, the minimum set of directories that need to be http-writable is as follows:
+The minimum set of directories that need to be http-writable is as follows:
 ```
 storage/
 public/uploads/small
@@ -89,22 +87,6 @@ public/uploads/import
 public/dist
 ```
 
-### Is it possible to do the update directly from the GUI? How?
-
-You go to `Diagnostics` &Rarr; `Check for Updates`  
-Once done you need to update the `Diagnostic` page (click on it again in the left menu) 
-You will see a `Apply Update` button on the top. Click on it and done.
-If it breaks (error 500) you can still go back to command line and do your `git pull`, migrate etc...
-
-There are some securities that you need to disable via the advanced settings menu:
-
-- you need to allow update if your `.env` specify `production`:  
-  `force_migration_in_production = 1`
-- you need to allow composer :  
-  `apply_composer_update = 1` (optional)
-
-The second one is really optional if updates don't need the composer (like 90% of the time) then it can just stay at `0`.
-
 ### Can I migrate from a 64-bit system to a 32-bit system?
 
 Yes, but it's not trivial or recommended. After copying the database:
@@ -114,16 +96,8 @@ Yes, but it's not trivial or recommended. After copying the database:
 
 This will only work on top-level albums. Subalbums will require [manual intervention](https://github.com/LycheeOrg/Lychee/issues/406#issuecomment-571378073).
 
-### Why can't I see the *check for update* button in the GUI?
-
-- Make sure you are using a `git` installation and not a downloaded release
-- Make sure you are on the `master` branch
-- Make sure your web user has read and write access to `.git`
-- Check that `exec` is available.
-- Check that `allow_online_git_pull` setting is set to `1`
-
 ### How can I stop `artisan migrate` and `composer` from running after every `git pull`?
 
 We've set composer to install git `pre-commit` and `post-merge` hooks by default.
 - The pre-commit is to help developers by checking and fixing and code style problems before they hit our testing. If you aren't committing and changes, this will not be run.
-- The post-merge ensures that your dependencies and database version are kept current. This can be disabled by creating a file `.NO_AUTO_COMPOSER_MIGRATE` in your Lychee root and deleting (if necessary) `.git/hooks/post-merge`. If you disable this script, you will need to run `composer` and `artisan migrate` manually. Alternatively, the Update UI can be set to handle this if you run your updates there.
+- The post-merge ensures that your dependencies and database version are kept current. This can be disabled by creating a file `.NO_AUTO_COMPOSER_MIGRATE` in your Lychee root and deleting (if necessary) `.git/hooks/post-merge`. If you disable this script, you will need to run `composer` and `artisan migrate` manually.
