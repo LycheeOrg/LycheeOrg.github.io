@@ -4,13 +4,13 @@ import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 
 import { unified } from '@astrojs/markdown-remark';
-
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
+import starlight from '@astrojs/starlight';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
@@ -26,9 +26,65 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
 
+  redirects: {
+    '/docs/': '/docs/getting-started/installation/',
+  },
+
   integrations: [
-    sitemap(),
-    mdx(),
+    starlight({
+      title: 'Lychee',
+      logo: {
+        src: './src/assets/images/logo.png',
+      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/LycheeOrg/Lychee' },
+        { icon: 'discord', label: 'Discord', href: 'https://discord.gg/JMPvuRQcTf' },
+      ],
+      editLink: {
+        baseUrl: 'https://github.com/LycheeOrg/LycheeOrg.github.io/edit/master/',
+      },
+      customCss: ['./src/styles/starlight.css'],
+      disable404Route: true,
+      sidebar: [
+        {
+          label: 'Getting Started',
+          items: [{ autogenerate: { directory: 'docs/getting-started' } }],
+        },
+        {
+          label: 'Usage',
+          items: [{ autogenerate: { directory: 'docs/usage' } }],
+        },
+        {
+          label: 'Features',
+          items: [{ autogenerate: { directory: 'docs/features' } }],
+        },
+        {
+          label: 'Supporter Edition',
+          items: [{ autogenerate: { directory: 'docs/se' } }],
+        },
+        {
+          label: 'Webshop',
+          badge: { text: 'Pro', variant: 'caution' },
+          items: [{ autogenerate: { directory: 'docs/webshop' } }],
+        },
+        {
+          label: 'Administration',
+          items: [{ autogenerate: { directory: 'docs/administration' } }],
+        },
+        {
+          label: 'Development',
+          items: [{ autogenerate: { directory: 'docs/development' } }],
+        },
+        {
+          label: 'FAQ',
+          items: [{ autogenerate: { directory: 'docs/faq' } }],
+        },
+        {
+          label: 'Releases',
+          items: [{ autogenerate: { directory: 'docs/releases' } }],
+        },
+      ],
+    }),
     icon({
       include: {
         tabler: ['*'],

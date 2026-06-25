@@ -2,7 +2,7 @@ site:
   name: Lychee
   site: 'https://lycheeorg.dev'
   base: '/'
-  trailingSlash: false
+  trailingSlash: ignore
 
   # googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
