@@ -42,7 +42,7 @@ Released on June 26th, 2026
 #### Fixes a high vulnerability on temporary images link
 
 This one is quite stupid and came from the assumption that `Storage::disk('local')->path($path)` would always apply the normalization and return the canonical path.
-We have set mitigatios against path traversal, but the normalization was not applied, allowing for a path traversal attack on the temporary image link.
+We have set mitigations against path traversal, but the normalization was not applied, allowing for a path traversal attack on the temporary image link.
 
 So the bad news: If you have enabled **temporary links and** have **extra users (non-guest)** you will want to update ASAP and rotate your secrets, I'm so sorry.
 
