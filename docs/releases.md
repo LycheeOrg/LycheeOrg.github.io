@@ -35,6 +35,27 @@
 
 ## What's Changed
 
+### v7.6.4
+
+Released on June 26th, 2026
+
+#### Fixes a high vulnerability on temporary images link
+
+This one is quite stupid and came from the assumption that `Storage::disk('local')->path($path)` would always apply the normalization and return the canonical path.
+We have set mitigatios against path traversal, but the normalization was not applied, allowing for a path traversal attack on the temporary image link.
+
+So the bad news: If you have enabled **temporary links and** have **extra users (non-guest)** you will want to update ASAP and rotate your secrets, I'm so sorry.
+
+Now the good news, you are safe if any of the following applies to your installation: 
+- you are running docker and did not mount .env (in other words using environment variables instead of files)
+- you did not have the temporary link functionality enabled
+- you had the temporary link functionality enabled but also have it enabled for normal users (non-guest).
+- you are using encrypted paths (SE users only)
+
+If you have been impacted, we recommend you to rotate your `APP_KEY` and other secrets in your .env file.
+
+* `fix` #4465 : Fix path traversal on temporary image link by @ildyria.
+
 ### v7.6.3
 
 Released on June 24th, 2026
