@@ -56,6 +56,9 @@ If you have been impacted, we recommend you to rotate your `APP_KEY` and other s
 
 * `fix` #4465 : Fix path traversal on temporary image link by @ildyria.
 
+Thanks to @luuhung1217 for reporting this path traversal vulnerability.  
+
+
 ### v7.6.3
 
 Released on June 24th, 2026
