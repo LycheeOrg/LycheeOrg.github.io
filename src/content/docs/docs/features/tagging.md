@@ -2,7 +2,7 @@
 title: Tagging
 description: Organize photos with tags for easy filtering and smart album creation.
 sidebar:
-  order: 2
+  order: 3
 ---
 
 Tags provide a flexible way to categorize and find photos across your entire library.
