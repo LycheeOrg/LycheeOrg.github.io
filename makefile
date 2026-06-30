@@ -8,7 +8,7 @@ astro: node_modules
 	npm run build
 
 node_modules:
-	npm ci
+	npm ci --force
 
 clean: 
 	@rm -fr dist
