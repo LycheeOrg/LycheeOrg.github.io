@@ -18,16 +18,6 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Setup Python
-        uses: actions/setup-python@v5.5.0 # v5.5.0
-        with:
-          python-version: '3.13' 
-
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install -r requirements.txt
-
       - name: Tests
         run: |
-          make test
+          make astro
