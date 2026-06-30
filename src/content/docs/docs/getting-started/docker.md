@@ -53,7 +53,6 @@ volumes:
   - ./lychee/storage/app:/app/storage/app          # Application storage
   - ./lychee/logs:/app/storage/logs                # Log files
   - ./lychee/tmp:/app/storage/tmp                  # Temporary files
-  - ./lychee/conf/.env:/app/.env:ro                # Environment config (read-only)
   - ./conf/user.css:/app/public/dist/user.css      # Optional: Custom CSS
   - ./conf/custom.js:/app/public/dist/custom.js    # Optional: Custom JavaScript
 ```
