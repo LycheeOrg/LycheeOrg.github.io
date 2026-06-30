@@ -7,6 +7,7 @@ sidebar:
 
 The way you can update Lychee depends of how you did your installation:
 
+* If you used Docker, go to [Using Docker compose](#using-docker-compose)
 * If you used the release channel (downloading a zip file), go to [Update manually](#update-manually)
 * If you installed via `git clone`, go to [Update using Git](#update-using-git)
 
@@ -14,28 +15,6 @@ The way you can update Lychee depends of how you did your installation:
 - Ensure that you are using the version 4 of Lychee. Updates from older version of Lychee are more complex.
 
 Don't forget to take a look at the [Changelog](/docs/releases/) to see what's new and to check for any actions that may be required.
-
-## Update using Git
-
-Fully updating Lychee with `git` is the easiest way:
-
-```bash
-# download the lastest files
-git pull
-# update composer dependencies
-composer install --no-dev
-# apply the database migration
-php artisan migrate
-# update Node.js dependencies
-npm install
-# generate frontend assets
-npm run build
-```
-
-If you have the `post-merge` hook set up the following is enough:
-```bash
-git pull
-```
 
 ## Using Docker compose
 
@@ -51,8 +30,7 @@ When using docker, a version rollback is difficult to apply: it requires to bash
 This procedure is for those following one of those tags:
 
 - `latest` &mdash; the last official release
-- `nightly` or `dev` &mdash; the last build from the `master` branch (peer reviewed)
-- `alpha` &mdash; the last build from the `alpha` branch (no peer review)
+- `edge` or `master` &mdash; the last build from the `master` branch
 
 Simply run the following.
 ```bash
@@ -95,4 +73,24 @@ Note: if using `rsync` to upload stuff to the WebServer, something like this mig
 rsync -vrtz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude=public/uploads/ --exclude=public/dist/user.css --exclude=.env --exclude=database/database.sqlite Lychee/ user@web.server.web:~/www/your_path_to/lychee/
 ```
 
+## Update using Git
 
+Fully updating Lychee with `git` is the easiest way:
+
+```bash
+# download the lastest files
+git pull
+# update composer dependencies
+composer install --no-dev
+# apply the database migration
+php artisan migrate
+# update Node.js dependencies
+npm install
+# generate frontend assets
+npm run build
+```
+
+If you have the `post-merge` hook set up the following is enough:
+```bash
+git pull
+```

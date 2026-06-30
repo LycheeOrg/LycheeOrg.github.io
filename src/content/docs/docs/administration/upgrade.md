@@ -1,5 +1,5 @@
 ---
-title: "Upgrading Between Versions"
+title: "Upgrading to version 7"
 description: "Migration guides for upgrading between major Lychee versions."
 sidebar:
   order: 2
@@ -46,7 +46,6 @@ volumes:
   - ./lychee/uploads:/app/public/uploads
   - ./lychee/logs:/app/storage/logs
   - ./lychee/tmp:/app/storage/tmp  # so that uploads are not filling up the memory of the container
-  - ./lychee/conf/.env:/app/.env # OPTIONAL, you can manage your .env directly as variables in docker-compose.yml 
   - ./lychee/storage/app:/app/storage/app # OPTIONAL: for persistent storage of app data
   - ./conf/user.css:/app/public/dist/user.css # OPTIONAL
   - ./conf/custom.js:/app/public/dist/custom.js # OPTIONAL
@@ -78,10 +77,8 @@ services:
       - "${APP_PORT:-8000}:8000"
     volumes:
       - ./lychee/uploads:/app/public/uploads
-      - ./lychee/storage/app:/app/storage/app
       - ./lychee/logs:/app/storage/logs
       - ./lychee/tmp:/app/storage/tmp
-      - .env:/app/.env:ro
     environment:
       - DB_CONNECTION=mysql
       - DB_HOST=lychee_db
@@ -109,10 +106,8 @@ services:
       - "${APP_PORT:-8000}:8000"
     volumes:
       - ./lychee/uploads:/app/public/uploads
-      - ./lychee/storage/app:/app/storage/app
       - ./lychee/logs:/app/storage/logs
       - ./lychee/tmp:/app/storage/tmp
-      - .env:/app/.env:ro
     environment:
       - DB_CONNECTION=mysql
       - DB_HOST=lychee_db
@@ -128,10 +123,8 @@ services:
     container_name: lychee_worker
     volumes:
       - ./lychee/uploads:/app/public/uploads
-      - ./lychee/storage/app:/app/storage/app
       - ./lychee/logs:/app/storage/logs
       - ./lychee/tmp:/app/storage/tmp
-      - .env:/app/.env:ro
     environment:
       - LYCHEE_MODE=worker  # CRITICAL: Tells container to run in worker mode
       - DB_CONNECTION=mysql
