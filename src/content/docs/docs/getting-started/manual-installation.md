@@ -107,7 +107,7 @@ Enable `mod_rewrite` so the included `public/.htaccess` is honored. Also check t
 
 If the default `.htaccess` does not work, try this alternative:
 
-```apacheconf
+```apache
 Options +FollowSymLinks -Indexes
 RewriteEngine On
 

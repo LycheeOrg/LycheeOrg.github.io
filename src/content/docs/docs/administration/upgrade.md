@@ -479,7 +479,7 @@ server {
 
 **Apache Example:**
 
-```apacheconf
+```apache
 <VirtualHost *:80>
     ServerName your-domain.com
 
@@ -634,7 +634,7 @@ The big difference between Lychee version 3 and Lychee version 4 is the served d
 **Make sure you have the module rewrite available and enabled: `a2enmod rewrite`**.
 
 Modify your `/etc/apache2/apache2.conf` to allow `.htaccess` to set up the rewrite rules:
-```apacheconf
+```apache
 <Directory /var/www/html/Lychee>
 	Options Indexes FollowSymLinks
 	AllowOverride All
@@ -643,7 +643,7 @@ Modify your `/etc/apache2/apache2.conf` to allow `.htaccess` to set up the rewri
 ```
 
 Modify or create `example.com.conf` in `/etc/apache2/sites-available/` to point out the served directory:
-```apacheconf
+```apache
 <VirtualHost *:80>
 	ServerName example.com
 

@@ -83,7 +83,7 @@ Edit your `/etc/hosts` to contain:
 
 Create configuration files in `/etc/apache2/sites-available`: `001-lychee-test.conf` and `002-lycheeorg-test.conf`
 
-```apacheconf
+```apache
 <VirtualHost *:80>
 	ServerName lychee.test
 
@@ -95,7 +95,7 @@ Create configuration files in `/etc/apache2/sites-available`: `001-lychee-test.c
 </VirtualHost>
 ```
 and
-```apacheconf
+```apache
 <VirtualHost *:80>
 	ServerName lycheeorg.test
 
@@ -125,7 +125,7 @@ git clone git@github.con:LycheeOrg/LycheeOrg.github.io /var/www/html/LycheeOrg.g
 
 Similarily in `/etc/apache2/sites-available` create 2 configuration files: `001-lychee.conf` and `002-lycheeorg.conf`
 
-```apacheconf
+```apache
 <VirtualHost *:80>
 	ServerName lychee.test
 
@@ -136,7 +136,7 @@ Similarily in `/etc/apache2/sites-available` create 2 configuration files: `001-
 </VirtualHost>
 ```
 and
-```apacheconf
+```apache
 <VirtualHost *:80>
 	ServerName lycheeorg.test
 
@@ -346,7 +346,7 @@ sudo -u www-data php composer.phar install --no-dev
 Link `https://my.url/photos/` to `/var/www/Lychee/public` by adding the following to your Apache configuration for Aliases.
 In Apache 2.4 running on Debian, the correct configuration file is `/etc/apache2/mods-available/alias.conf`.
 
-```apacheconf
+```apache
 Alias /photos /var/www/Lychee/public
 
 <Directory /var/www/Lychee/public>

@@ -29,15 +29,15 @@ export const headerData = {
     },
     {
       text: 'About us',
-      href: '/support',
+      href: '/support/',
     },
     {
       text: 'Roadmap',
-      href: '/roadmap',
+      href: '/roadmap/',
     },
     {
       text: 'Lychee <span class="text-sky-500 ml-1">SE</span>',
-      href: '/get-supporter-edition',
+      href: '/get-supporter-edition/',
     },
     {
       text: 'Docs',
