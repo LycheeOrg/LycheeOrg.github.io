@@ -111,7 +111,10 @@ export default defineConfig({
     ),
 
     compress({
-      CSS: true,
+      // csso doesn't understand Tailwind v4's `@media (width >= ...)` range
+      // syntax and silently drops those blocks, breaking all responsive
+      // styles in the production build. lightningcss handles it correctly.
+      CSS: { csso: false, lightningcss: {} },
       HTML: {
         'html-minifier-terser': {
           removeAttributeQuotes: false,
