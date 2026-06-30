@@ -14,7 +14,7 @@ The way you can update Lychee depends of how you did your installation:
 - Your system must comply with the latest [system requirements](/docs/getting-started/installation/) of the latest version of Lychee.
 - Ensure that you are using the version 4 of Lychee. Updates from older version of Lychee are more complex.
 
-Don't forget to take a look at the [Changelog](/docs/releases/) to see what's new and to check for any actions that may be required.
+Don't forget to take a look at the [Changelog](/docs/getting-started/releases/) to see what's new and to check for any actions that may be required.
 
 ## Using Docker compose
 

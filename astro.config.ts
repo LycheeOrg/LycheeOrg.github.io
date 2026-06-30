@@ -74,16 +74,8 @@ export default defineConfig({
           items: [{ autogenerate: { directory: 'docs/administration' } }],
         },
         {
-          label: 'Development',
-          items: [{ autogenerate: { directory: 'docs/development' } }],
-        },
-        {
           label: 'FAQ',
           items: [{ autogenerate: { directory: 'docs/faq' } }],
-        },
-        {
-          label: 'Releases',
-          items: [{ autogenerate: { directory: 'docs/releases' } }],
         },
       ],
     }),

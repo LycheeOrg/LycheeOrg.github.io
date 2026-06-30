@@ -56,7 +56,7 @@ We strongly recommend to specify those or at least run `php artisan lychee:sync 
 
 ### What is new?
 
-Take a look at the [Release Notes](/docs/releases/) to see what's new.
+Take a look at the [Release Notes](/docs/getting-started/releases/) to see what's new.
 
 ### How can I easily contact the LycheeOrg organization?
 

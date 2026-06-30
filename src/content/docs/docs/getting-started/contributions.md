@@ -2,7 +2,7 @@
 title: "Contributing"
 description: "Guidelines for contributing to the Lychee project."
 sidebar:
-  order: 2
+  order: 6
 ---
 
 To encourage active collaboration, Lychee strongly encourages pull requests, not just bug reports. "Bug reports" may also be sent in the form of a pull request containing a failing test.
@@ -34,7 +34,7 @@ You may propose new features or improvements to existing Lychee behavior in the 
 
 ## Lychee Documentation
 
-You will find a complete documentation in the original [repository](https://github.com/LycheeOrg/Lychee/tree/master/docs) under the `docs/` folder.
+This site covers using and configuring Lychee. For developer-facing documentation (architecture notes, specs, and other internals), see the [`docs/` folder of the main repository](https://github.com/LycheeOrg/Lychee/tree/master/docs).
 
 ## Joining the Team
 
@@ -131,12 +131,12 @@ As follows, we present a simple pull request modifying the `readme.md`.
 <ol>
 <li>Fork the repository.
 
-<p><img alt="Screenshot" src="img/contribute1.png" /></p>
+<p><img alt="Screenshot" src="/docs/img/contribute1.png" /></p>
 </li>
 
 <li>Select your own account as the destination of the fork.
 
-<p><img alt="Screenshot" src="img/contribute2.png" /></p>
+<p><img alt="Screenshot" src="/docs/img/contribute2.png" /></p>
 </li>
 
 <li>Create a new branch.
@@ -147,29 +147,29 @@ As follows, we present a simple pull request modifying the `readme.md`.
 <li>Click <strong>Create branch:...</strong>.</li>
 </ol>
 
-<p><img alt="Screenshot" src="img/contribute3.png" /></p>
+<p><img alt="Screenshot" src="/docs/img/contribute3.png" /></p>
 </li>
 
 <li>Make sure the new branch is selected.
 
-<p><img alt="Screenshot" src="img/contribute4.png" /></p>
+<p><img alt="Screenshot" src="/docs/img/contribute4.png" /></p>
 </li>
 
 <li>Edit the desired files.
 
-<p><img alt="Screenshot" src="img/contribute5.png" /></p>
+<p><img alt="Screenshot" src="/docs/img/contribute5.png" /></p>
 </li>
 
 <li>Commit the changes.
 
 If possible, provide a summary of the changes done by the commit in the description before clicking <strong>Commit changes</strong>
 
-<p><img alt="Screenshot" src="img/contribute6.png" /></p>
+<p><img alt="Screenshot" src="/docs/img/contribute6.png" /></p>
 </li>
 
 <li>Create a new pull request.
 
-<p><img alt="Screenshot" src="img/contribute7.png" /></p>
+<p><img alt="Screenshot" src="/docs/img/contribute7.png" /></p>
 </li>
 
 <li>Fill in and submit the pull request.
@@ -181,7 +181,7 @@ If possible, provide a summary of the changes done by the commit in the descript
 <li>Submit the pull request.</li>
 </ol>
 
-<p><img alt="Screenshot" src="img/contribute8.png" /></p>
+<p><img alt="Screenshot" src="/docs/img/contribute8.png" /></p>
 </li>
 
 <li>Wait for the team to get back at you and review the PR.</li>

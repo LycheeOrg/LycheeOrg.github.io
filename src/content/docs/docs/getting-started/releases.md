@@ -5,6 +5,12 @@ sidebar:
   order: 1
 ---
 
+`klo` refers to *Keep the Light On*. In other words, basic software updates.  
+`SE` refers to functionalities that are aimed at the Supporter Edition.  
+`Pro` refers to functionalities that are aimed at the Pro Edition.
+
+
+
 ## Version 7
 
 ### v7.6.4
@@ -100,11 +106,6 @@ fixed quite a few bugs, small requests and vulnerabilities.
 
 At the moment, we are also working on some new functionalities which have been never seen in any other photo management software.
 Stay tuned for the next major version!
-
-
-`klo` refers to *Keep the Light On*. In other words, basic software updates.  
-`SE` refers to functionalities that are aimed at the Supporter Edition.  
-`Pro` refers to functionalities that are aimed at the Pro Edition.
 
 
 * `new` #4300 : Chunked Archive Download by @ildyria.
