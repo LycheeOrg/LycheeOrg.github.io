@@ -79,7 +79,7 @@ export const footerData = {
     {
       title: 'Security',
       links: [
-        { text: 'Cosign key', href: getPermalink('lychee-cosign.pub') },
+        { text: 'Cosign key', href: getAsset('lychee-cosign.pub') },
       ]
     }
   ],

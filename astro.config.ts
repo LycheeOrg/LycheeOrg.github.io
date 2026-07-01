@@ -79,6 +79,8 @@ export default defineConfig({
         },
       ],
     }),
+    mdx(),
+    sitemap(),
     icon({
       include: {
         tabler: ['*'],
