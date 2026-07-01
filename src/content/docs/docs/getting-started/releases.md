@@ -2659,7 +2659,7 @@ Those files are however provided in the release zip file.
   > Similar functionalities have been added for pictures too.
 * `new` #1253 : Change album's Top Right menu behavior when selecting some pictures
   > Top right action menu behaviour has enhanced to increase visibility and intent in the album view.
-  > It now depends of the selected elements.
+  > It now depends on the selected elements.
 * `new` #1462 : Access Rights management: Users and Albums
   > Major refactoring the access rights, user can now give read, upload, edit, delete access to others.
 * `fixes` #1676 : Unable to open sidebar, can't navigate away from log/diagnostic/setting page

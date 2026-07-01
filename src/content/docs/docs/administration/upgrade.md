@@ -615,7 +615,7 @@ mv Lychee-v3/uploads/thumb/* Lychee/public/uploads/thumb/
 ### Preparing the server
 
 :::note
-The big difference between Lychee version 3 and Lychee version 4 is the served directory, i.e. where you webserver needs to point to.
+The big difference between Lychee version 3 and Lychee version 4 is the served directory, i.e. where you web server needs to point to.
 :::
 
 

@@ -125,7 +125,7 @@ Instead of doing `php -S 127.0.0.1:8888` inside `Lychee/public` do `php artisan 
 This will ensure that the paths and routes are correctly followed.
 
 :::note
-Note that the `serve` command should only be used for testing and debuging. It should not be used on a production server.
+Note that the `serve` command should only be used for testing and debugging. It should not be used on a production server.
 :::
 
 

@@ -5,7 +5,7 @@ sidebar:
   order: 1
 ---
 
-The way you can update Lychee depends of how you did your installation:
+The way you can update Lychee depends on how you did your installation:
 
 * If you used Docker, go to [Using Docker compose](#using-docker-compose)
 * If you used the release channel (downloading a zip file), go to [Update manually](#update-manually)
@@ -67,7 +67,7 @@ This update will be the one you have to use if you are following the Release cha
 2. Replace all existing files, excluding `public/uploads/`, `public/dist/user.css` and `.env` (and `database/database.sqlite` if using **SQLite** as your database)
 3. Go into the `Diagnostic` page (this will mostly happen automatically) and click on the `Apply migration` button.
 
-Note: if using `rsync` to upload stuff to the WebServer, something like this might be used: 
+Note: if using `rsync` to upload stuff to the web server, something like this might be used: 
 
 ```bash
 rsync -vrtz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude=public/uploads/ --exclude=public/dist/user.css --exclude=.env --exclude=database/database.sqlite Lychee/ user@web.server.web:~/www/your_path_to/lychee/
@@ -78,7 +78,7 @@ rsync -vrtz --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude=public
 Fully updating Lychee with `git` is the easiest way:
 
 ```bash
-# download the lastest files
+# download the lastst files
 git pull
 # update composer dependencies
 composer install --no-dev

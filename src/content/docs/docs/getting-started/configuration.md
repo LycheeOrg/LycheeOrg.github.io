@@ -23,7 +23,7 @@ If you are using the Docker image, changes to environment variables require a co
 | `APP_DIR`            | The subfolder path part of the URL, for installs hosted under a sub-path instead of a domain root. We do not recommend its use, see [below](#app_url-and-app_dir). | _empty_                     |
 | `APP_KEY`            | Your app key which is used for encryption (set during installation)                    | `null`                      |
 | `ASSET_URL`          | Overrides the base URL used to load built JS/CSS assets. Rarely needed.                | `null`                      |
-| `TIMEZONE`           | The timezone of your photos., requires a named timezone identifier like `Europe/Paris` | system timezone of server   |
+| `TIMEZONE`           | The timezone of your photos, requires a named timezone identifier like `Europe/Paris` | system timezone of server   |
 | `LYCHEE_UPLOADS`     | Path to uploads directory                                                              | `uploads/` inside `public/` |
 | `LYCHEE_UPLOADS_DIR` | Subfolder name used to build `LYCHEE_UPLOADS` and its URL when `LYCHEE_UPLOADS` is unset | `uploads/`                 |
 | `LYCHEE_UPLOADS_URL` | URL to uploads directory, better left empty                                            | `/uploads`                  |
@@ -114,7 +114,7 @@ The configuration is exactly the same for both systems.
 | `DB_DATABASE`       | The name of the database                                                                                |
 | `DB_USERNAME`       | Username of the database user                                                                           |
 | `DB_PASSWORD`       | Password of the database user                                                                           |
-| `DB_SOCKET`         | UNIX socket to DB server, replaces `DB_HOST` and `DP_PORT`                                              |
+| `DB_SOCKET`         | UNIX socket to DB server, replaces `DB_HOST` and `DB_PORT`                                              |
 | `MYSQL_ATTR_SSL_CA` | Optional and only used when using the `pdo_mysql` extension, file path to the SSL certificate authority |
 | `DB_POOL_MIN`       | Minimum number of pooled connections (Octane only)                                                       | 1 |
 | `DB_POOL_MAX`       | Maximum number of pooled connections (Octane only)                                                       | 10 |
