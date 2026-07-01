@@ -31,7 +31,12 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}) => {
           site: SITE.site,
           base: SITE.base,
 
-          trailingSlash: SITE.trailingSlash ? 'always' : 'never',
+          trailingSlash:
+            SITE.trailingSlash === 'always' || SITE.trailingSlash === 'never' || SITE.trailingSlash === 'ignore'
+              ? SITE.trailingSlash
+              : SITE.trailingSlash
+                ? 'always'
+                : 'never',
 
           vite: {
             plugins: [

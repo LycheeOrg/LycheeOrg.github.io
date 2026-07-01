@@ -1,0 +1,141 @@
+:root,
+::backdrop {
+  --sl-color-accent-low: #082f49;
+  --sl-color-accent: #0ea5e9;
+  --sl-color-accent-high: #e0f2fe;
+
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #e2e8f0;
+  --sl-color-gray-2: #cbd5e1;
+  --sl-color-gray-3: #94a3b8;
+  --sl-color-gray-4: #475569;
+  --sl-color-gray-5: #334155;
+  --sl-color-gray-6: #1e293b;
+  --sl-color-gray-7: #0f172a;
+  --sl-color-black: #020617;
+
+  --sl-font: 'InterVariable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+.sl-markdown-content h2,
+.sl-markdown-content h3 {
+  position: relative;
+}
+
+.sl-markdown-content h2::before {
+  font-size: 2.5rem;
+  margin-left: -30px;
+  margin-top: -4px;
+}
+.sl-markdown-content h3::before {
+  font-size: 2rem;
+  margin-left: -25px;
+  margin-top: -2px;
+}
+
+.sl-markdown-content h2::before,
+.sl-markdown-content h3::before {
+  content: '#';
+  font-weight: 400;
+  position: absolute;
+  color: var(--sl-color-accent);
+}
+
+.se-tag,
+.pro-tag,
+.expert-tag {
+  display: inline-block;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding: 0 0.5rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+  margin-left: 0.25rem;
+  vertical-align: middle;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* SE = sky */
+.se-tag {
+  color: #fff;
+  background-color: #0284c7;
+}
+
+[data-theme='dark'] .se-tag {
+  color: #e5e7eb;
+  background-color: #075985;
+}
+
+/* Expert = violet */
+.expert-tag {
+  color: #fff;
+  background-color: #7c3aed;
+}
+
+[data-theme='dark'] .expert-tag {
+  color: #e5e7eb;
+  background-color: #5b21b6;
+}
+
+/* Pro = caution variant (amber) */
+.pro-tag {
+  color: #fff;
+  background-color: #d97706;
+}
+
+[data-theme='dark'] .pro-tag {
+  color: #e5e7eb;
+  background-color: #92400e;
+}
+
+/* Sidebar badge overrides — align built-in badge variants with inline tag colours.
+   Overrides --sl-badge-* variables set by the Badge component.
+   :root = dark (Starlight default); :root[data-theme='light'] = light. */
+:root {
+  /* SE (variant: tip) → sky blue */
+  --sl-badge-tip-bg: #075985;
+  --sl-badge-tip-border: #0284c7;
+  --sl-badge-tip-text: #e5e7eb;
+
+  /* Pro (variant: caution) → amber */
+  --sl-badge-caution-bg: #92400e;
+  --sl-badge-caution-border: #d97706;
+  --sl-badge-caution-text: #e5e7eb;
+
+  /* v8 (variant: note) → emerald green */
+  --sl-badge-note-bg: #065f46;
+  --sl-badge-note-border: #059669;
+  --sl-badge-note-text: #d1fae5;
+}
+
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+  --sl-color-accent-low: #e0f2fe;
+  --sl-color-accent: #0284c7;
+  --sl-color-accent-high: #0c4a6e;
+
+  --sl-color-white: #020617;
+  --sl-color-gray-1: #0f172a;
+  --sl-color-gray-2: #1e293b;
+  --sl-color-gray-3: #475569;
+  --sl-color-gray-4: #94a3b8;
+  --sl-color-gray-5: #cbd5e1;
+  --sl-color-gray-6: #e2e8f0;
+  --sl-color-gray-7: #f1f5f9;
+  --sl-color-black: #ffffff;
+
+  /* Badge light-mode overrides */
+  --sl-badge-tip-bg: #e0f2fe;
+  --sl-badge-tip-border: #0284c7;
+  --sl-badge-tip-text: #075985;
+
+  --sl-badge-caution-bg: #fef3c7;
+  --sl-badge-caution-border: #d97706;
+  --sl-badge-caution-text: #92400e;
+
+  --sl-badge-note-bg: #d1fae5;
+  --sl-badge-note-border: #059669;
+  --sl-badge-note-text: #065f46;
+}

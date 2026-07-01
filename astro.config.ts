@@ -4,13 +4,13 @@ import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 
 import { unified } from '@astrojs/markdown-remark';
-
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
+import starlight from '@astrojs/starlight';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
@@ -24,11 +24,63 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
+  site: 'https://lycheeorg.dev',
   output: 'static',
 
+  redirects: {
+    '/docs/': '/docs/getting-started/installation/',
+  },
+
   integrations: [
-    sitemap(),
+    starlight({
+      title: 'Lychee',
+      logo: {
+        src: './src/assets/images/logo.png',
+      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/LycheeOrg/Lychee' },
+        { icon: 'discord', label: 'Discord', href: 'https://discord.gg/JMPvuRQcTf' },
+      ],
+      editLink: {
+        baseUrl: 'https://github.com/LycheeOrg/LycheeOrg.github.io/edit/master/',
+      },
+      customCss: ['./src/styles/starlight.css'],
+      disable404Route: true,
+      sidebar: [
+        {
+          label: 'Getting Started',
+          items: [{ autogenerate: { directory: 'docs/getting-started' } }],
+        },
+        {
+          label: 'Usage',
+          items: [{ autogenerate: { directory: 'docs/usage' } }],
+        },
+        {
+          label: 'Features',
+          items: [{ autogenerate: { directory: 'docs/features' } }],
+        },
+        {
+          label: 'Supporter Edition',
+          badge: { text: 'SE', variant: 'tip' },
+          items: [{ autogenerate: { directory: 'docs/se' } }],
+        },
+        {
+          label: 'Webshop',
+          badge: { text: 'Pro', variant: 'caution' },
+          items: [{ autogenerate: { directory: 'docs/webshop' } }],
+        },
+        {
+          label: 'Administration',
+          items: [{ autogenerate: { directory: 'docs/administration' } }],
+        },
+        {
+          label: 'FAQ',
+          items: [{ autogenerate: { directory: 'docs/faq' } }],
+        },
+      ],
+    }),
     mdx(),
+    sitemap(),
     icon({
       include: {
         tabler: ['*'],
@@ -53,7 +105,10 @@ export default defineConfig({
     ),
 
     compress({
-      CSS: true,
+      // csso doesn't understand Tailwind v4's `@media (width >= ...)` range
+      // syntax and silently drops those blocks, breaking all responsive
+      // styles in the production build. lightningcss handles it correctly.
+      CSS: { csso: false, lightningcss: {} },
       HTML: {
         'html-minifier-terser': {
           removeAttributeQuotes: false,

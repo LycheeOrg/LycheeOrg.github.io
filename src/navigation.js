@@ -29,19 +29,19 @@ export const headerData = {
     },
     {
       text: 'About us',
-      href: '/support',
+      href: '/support/',
     },
     {
       text: 'Roadmap',
-      href: '/roadmap',
+      href: '/roadmap/',
     },
     {
       text: 'Lychee <span class="text-sky-500 ml-1">SE</span>',
-      href: '/get-supporter-edition',
+      href: '/get-supporter-edition/',
     },
     {
       text: 'Docs',
-      href: '/docs',
+      href: '/docs/getting-started/installation/',
     },
   ],
   position: 'right',
@@ -54,15 +54,15 @@ export const footerData = {
       title: 'About',
       links: [
         { text: 'Code of Conduct', href: getPermalink('/code-of-conduct') },
-        { text: 'Release Notes', href: getPermalink('/docs/releases.html') },
-        { text: 'PR Dashboard', href: 'https://pr.lycheeorg.dev/' },
+        { text: 'Release Notes', href: getPermalink('/docs/getting-started/releases/') },
+        // { text: 'PR Dashboard', href: 'https://pr.lycheeorg.dev/' },
         { text: 'Issue trakcer', href: 'https://github.com/LycheeOrg/Lychee/issues' },
       ]
     },
     {
       title: 'Need help?',
       links: [
-        { text: 'Read the Docs', href: '/docs' },
+        { text: 'Read the Docs', href: '/docs/' },
         { text: 'Community Forum', href: 'https://github.com/LycheeOrg/Lychee/discussions' },
         { text: 'Join our discord', href: 'https://discord.gg/JMPvuRQcTf' },
       ],
@@ -79,7 +79,7 @@ export const footerData = {
     {
       title: 'Security',
       links: [
-        { text: 'Cosign key', href: getPermalink('lychee-cosign.pub') },
+        { text: 'Cosign key', href: getAsset('lychee-cosign.pub') },
       ]
     }
   ],
