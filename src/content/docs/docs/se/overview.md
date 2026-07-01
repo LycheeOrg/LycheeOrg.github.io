@@ -13,10 +13,6 @@ The **Lychee Supporter Edition (SE)** includes all features of the Free Edition,
 2. Retrieve your personal license key from [keygen.lycheeorg.dev](https://keygen.lycheeorg.dev)
 3. In Lychee, open the **Left menu** → **About Lychee** dialog → enter your license key
 
-:::tip
-Your license key works on unlimited Lychee instances. There is no restriction on the number of installations.
-:::
-
 ## Exclusive Features
 
 | Feature | Description |
