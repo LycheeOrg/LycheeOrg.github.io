@@ -64,7 +64,7 @@ There is a discord associated with the project, feel free to join us there: http
 
 ### How can I set thumbnails for my albums?
 
-Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the [Settings](/docs/getting-started/settings/#sorting). _Precedence is given to starred photos_. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.
+Thumbnails are selected automatically from the photos inside the album (and any subalbums) based on the photo sorting order specified in the [Settings](/docs/getting-started/settings/#sorting_photos_col). _Precedence is given to starred photos_. In practical terms, if only one photo inside an album is starred, that photo is guaranteed to be the top thumbnail.
 
 ### Is it possible to create folders inside another folder? If so, how to do that?
 
@@ -77,7 +77,7 @@ Either press `n` (as **N**ew) or use the add menu.
 In order to bypass the CSRF protection, you can set up the `api_key` setting to a secret value and send that value over in the `Authorization` header.  
 Note that `api_key` only disables the CSRF protection, you still need to authenticate to the server.
 
-In order to authenticate, use [Session::login](https://lycheeorg.dev/docs/api.html#apisessionlogin) and pass the returned `lychee_session` cookie to all subsequent requests.
+In order to authenticate, use [Session::login](https://demo.lycheeorg.dev/docs/api) and pass the returned `lychee_session` cookie to all subsequent requests.
 
 The related code is available [here](https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/VerifyCsrfToken.php#L55)
 
@@ -222,15 +222,10 @@ Edit the `custom.js` file in `/path/to/lychee/public/dist/` or use the _"Persona
 
 ### How is the upload folder protected?
 
-From [#304](https://github.com/LycheeOrg/Lychee/issues/304)
+There are now two possibilities:
 
-Short version: It's not protected
-
-Long answer: [#295](https://github.com/LycheeOrg/Lychee/pull/295) added some protection through symlinking, so that the URLs used are temporary.
-
-Right now, the protection is basically through the use of difficult to guess names (it's an MD5 checksum of the system time at the time of upload). [#295](https://github.com/LycheeOrg/Lychee/pull/295) not only made those names temporary (this needs to be enabled in the Settings, BTW) but it also provided optional support for hiding the full-size version (this is only effective with symlinking as without it the URL can be derived from that of intermediate-size images).
-
-[@ildyria](https://github.com/ildyria) recently posted the following link on how a more effective protection could be implemented: https://bedigit.com/blog/laravel-5-how-to-access-image-uploaded-in-storage-within-view/. He didn't go down that route himself due to performance concerns but we agree that if somebody contributed a clean implementation as an option, we'd probably accept it.
+- Use signed URLs to access the photos and avoid hot-linking, via the [`temporary_image_link_enabled`](/docs/getting-started/settings/#temporary_image_link_enabled) setting.
+- Use AES encrypted URLs, via the [`secure_image_link_enabled`](/docs/getting-started/settings/#secure_image_link_enabled) setting (only available for SE users).
 
 ### My login is timing out after two hours, how can this be changed?
 
@@ -238,7 +233,7 @@ You can edit your `.env` and modify the `SESSION_LIFETIME=120` part (in minutes)
 
 ### How can I see the correct client IP address when running Lychee behind Cloudflare?
 
-Please see [https://github.com/monicahq/laravel-cloudflare](https://github.com/monicahq/laravel-cloudflare). The Lychee file that needs changing can be found [here](https://github.com/LycheeOrg/Lychee/blob/master/app/Http/Middleware/TrustProxies.php).
+Please see [https://github.com/monicahq/laravel-cloudflare](https://github.com/monicahq/laravel-cloudflare). The Lychee file that needs changing can be found [here](https://github.com/LycheeOrg/Lychee/blob/master/config/trustedproxy.php).
 
 ### Can I set up Lychee to watch a folder for new images and automatically add them to albums?
 
@@ -259,10 +254,3 @@ For example:
 ![](/docs/img/special-right-click-missing.png)
 
 No this is normal. This user does not have the ownership of that Album, so the right click is not available. You can see _sharing_ as a _read_ permission.
-
-### The divider h1 shows the text "Admin" when logged in with an ordinary user. Shouln't this be "Albums"?
-
-Actually no, this is because the user does not have any albums (yet). The `h1` divider is to show who is the owner of those albums. See below.
-![2020-02-19_3840x1080_12:29:19](https://user-images.githubusercontent.com/627094/74830496-92c3a200-5313-11ea-9065-60cb8090c7ac.png)
-And yes the right-click menu is available on the _PhD Defenses_ part but not in the _Admin_ parts.
-Also because this user has upload right, he can see the _Unsorted, Public, Starred, Recent_ smart albums.

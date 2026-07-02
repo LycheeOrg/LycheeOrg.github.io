@@ -1103,7 +1103,7 @@ Show GPS coordinates to anonymous users.
 #### `rss_enable`
 _(boolean; default: `0`)_
 
-Enable the RSS feed at `/rss`.
+Enable the RSS feed at `/feed`.
 
 #### `rss_max_items`
 _(positive integer; default: `100`)_

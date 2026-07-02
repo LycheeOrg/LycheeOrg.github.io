@@ -24,7 +24,7 @@ Facial recognition processes biometric data, which is subject to strict legal re
 
 - **Auto-scan on upload** — newly uploaded photos are automatically queued for face detection once both AI Vision and facial recognition are enabled.
 - **Detection** — the AI Vision service finds faces in each photo and returns bounding boxes plus an embedding (a numeric "fingerprint") for each face.
-- **Clustering** — faces that aren't yet linked to a person are grouped into clusters of similar-looking faces, so you can label a whole group at once instead of one face at a time.
+- **Clustering** — faces that aren't yet linked to a person are grouped into clusters of similar-looking faces, so you can label a whole group at once instead of one face at a time. Clustering can be re-run at any time from _Settings &rArr; Maintenance &rArr; Run Clustering_ (visible whenever unclustered faces exist) — useful after changing the microservice's `VISION_FACE_CLUSTER_EPS` if the resulting clusters aren't grouping people as expected. It only affects faces not yet assigned to a person; already-labelled faces are left untouched.
 - **Overlays** — when viewing a photo, detected faces are shown as overlays. Press `P` to toggle their visibility.
 
 ## People and Person Albums
@@ -169,3 +169,46 @@ The container exposes interactive API docs at `/docs` and a health check at `/he
 |---------------------------------------------|----------------------------------------------------------------------------------|
 | `php artisan lychee:scan-faces`          | Enqueue all unscanned photos for face detection. Use `--album={id}` to limit to the direct photos of one album. |
 | `php artisan lychee:rescan-failed-faces` | Re-enqueue photos whose scan previously failed. Add `--stuck-pending` (with `--older-than=<minutes>`, default 60) to also reset scans stuck in "pending" back to unscanned. |
+
+## Troubleshooting
+
+**Facial recognition options don't appear in Settings:**
+- Check that `ai_vision_enabled` and `ai_vision_face_enabled` are both turned on. Facial recognition is disabled by default and requires both.
+
+**Diagnostics reports the AI Vision service as unreachable:**
+- Verify `AI_VISION_FACE_URL` and `AI_VISION_FACE_API_KEY` are set in Lychee's `.env` and match the `VISION_FACE_API_KEY` configured on the microservice side.
+- Confirm the microservice container is running and reachable from Lychee (`docker-compose logs` on the facial-recognition service, or check its `/health` endpoint).
+- If Lychee and the microservice are on different hosts/networks, make sure firewalls and Docker networks allow the connection.
+
+**Photos are never scanned / stay stuck on "pending":**
+- Confirm a Lychee queue worker is running — face scans are processed asynchronously like other jobs.
+- Run `php artisan lychee:rescan-failed-faces --stuck-pending` to reset scans that have been stuck in "pending" for longer than `--older-than` minutes (default 60).
+- Check the microservice logs for `429 Too Many Requests`, which means its job queue (`VISION_FACE_QUEUE_MAX_SIZE`) is full; either wait for it to drain or increase the limit.
+
+**Some faces in a photo are detected but others are missed:**
+- Check `VISION_FACE_DETECTION_THRESHOLD` (default `0.5`) on the microservice — faces below this confidence are dropped; lower it to catch more faces at the cost of more false positives.
+- Small, angled, or partially occluded faces are the most likely to be missed. `VISION_FACE_MIN_FACE_SIZE_PIXELS` (default `0`, i.e. no filter) can be raising the bar further if set above zero — make sure it isn't filtering out legitimately small faces.
+- Blurry faces are discarded via `VISION_FACE_BLUR_THRESHOLD` (default `0.5`, Laplacian variance) — lower it if sharp-enough faces are still being rejected.
+- `VISION_FACE_MAX_FACES_PER_PHOTO` (default `10`) caps how many faces are returned per photo; group photos with more people than this will only have the top matches included.
+- Try a different `VISION_FACE_DETECTOR_BACKEND` (`retinaface`, `mtcnn`, `opencv`, `ssd`) — detectors vary in recall depending on pose, lighting, and image resolution.
+
+**Clustering groups unrelated faces together, or fails to group similar faces:**
+- Clustering is controlled by `VISION_FACE_CLUSTER_EPS` (default `0.6`), the DBSCAN epsilon (maximum cosine distance) allowed within a cluster. Lower it if dissimilar people are being grouped together; raise it if the same person is being split across multiple clusters.
+- To apply a new value: update `VISION_FACE_CLUSTER_EPS` in the microservice's `.env`, restart the microservice so it picks up the change, then re-trigger clustering from _Settings &rArr; Maintenance &rArr; Run Clustering_ in Lychee. This re-clusters every currently unassigned face with the new epsilon — repeat with a different value if the result still isn't right.
+- The `VISION_FACE_MODEL_NAME` (default `ArcFace`) recognition model determines embedding quality — a different model may produce more consistent embeddings for your photo set, but changing it does not retroactively update existing embeddings.
+- Poor detections (blurry, low-confidence, or partial faces — see above) produce noisy embeddings that cluster poorly; fixing detection quality often improves clustering as a side effect.
+- Clusters are only formed from faces not yet linked to a person; once a face is assigned to a person it's removed from the pool of unclustered faces.
+
+**Faces are detected but nothing shows up when opening a photo:**
+- Press `P` to toggle overlay visibility — they may just be hidden.
+- Check `ai_vision_face_overlay_enabled` and `ai_vision_face_overlay_default_visibility`.
+- Overlays and the People page are gated by `ai_vision_face_permission_mode` — see [Permission modes](#permission-modes); as an ordinary user you may simply lack the rights to view them.
+
+**Selfie claim doesn't match the right person:**
+- The match confidence must exceed `ai_vision_face_selfie_confidence_threshold` (default `0.8`). Lower it if legitimate matches are being rejected, or raise it if false positives occur.
+- Make sure the person you expect to match has enough labelled faces for a reliable embedding average.
+
+**The microservice fails to start:**
+- Missing required environment variables (`VISION_FACE_LYCHEE_API_URL`, `VISION_FACE_API_KEY`) produce a formatted error at startup — check the container logs for which variable is missing.
+- If using self-signed certificates for the Lychee callback URL, set `VISION_FACE_VERIFY_SSL=false`.
+- For local development without a reachable Lychee instance, set `VISION_FACE_SKIP_LYCHEE_CHECK=true`.
