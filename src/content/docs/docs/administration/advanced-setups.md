@@ -112,6 +112,14 @@ Feel free to open an [Issue](https://github.com/breuerfelix/lychee-helmchart/iss
 
 [Marius Bogdan Lixandru](https://mariushosting.com/author/marius/) made a great post of how to set up your Lychee installation on your Synology NAS with Portainer. Read at it [here](https://mariushosting.com/how-to-install-lychee-on-your-synology-nas/).
 
+### With Zenith (Paid)
+
+Zenith provides one-click managed hosting for open-source apps, so you can bring up a fully managed Lychee instance in minutes without any server setup.
+
+[![Deploy with Zenith](https://cdn.zenith.hosting/buttons/deploy-with-zenith.svg)](https://zenith.hosting/host/lychee)
+
+You can find their Lychee offering [here](https://zenith.hosting/host/lychee).
+
 ## Implementing Object Storage 
 
 An S3-compatible object storage solution is designed to store, manage, and access unstructured data in the cloud. 
