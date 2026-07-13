@@ -13,6 +13,53 @@ sidebar:
 
 ## Version 7
 
+### v7.7.0
+
+Released on July 13th, 2026
+
+#### Fixes vulnerabilities, bugs and adds a few new features
+
+If we were only fixing vulnerabilities, this would have been a simple patch release. However, we also added a few new features and fixed some bugs: you can now choose which thumb to use as the cover for your tag albums, disable the second line on album thumbs (usually a date), and customize the title and description of the RSS feed. We also fixed two major issues related to group access rights and the propagation algorithm.
+
+Users of the webshop should update to this version as soon as possible, as one of the validation mechanisms was not working properly and could allow for some freebies.
+
+* `new` #4469 : Add option to disable the second line on album thumbs by @ildyria.
+  > This is a small quality of life improvement, some users requested to have the second line on album thumbs disabled. This is now possible via a setting in the admin panel.
+* `new` #4470 : Add cover to tag albums by @ildyria.
+  > By request, we added the possibility to choose which photo to use as the cover for tag albums. This allows to have a better representation of the tag album.
+* `new` #4468 : Make the tags clickable in the photo details by @ildyria.
+  > By request, we made the tags clickable in the photo details. This allows to quickly navigate to the tag album and see all photos with the same tag. Note that this is only available to logged-in users.
+* `new` #4484 : Support 2 lines titles on thumbs with disabled second line by @ildyria.
+  > When the second line is disabled, the title of albums will be displayed on two lines if necessary.
+* `new` #4501 : Allow customizing RSS feed title & description by @cdzombak.
+  > Our very own @cdzombak added the possibility to customize the title and description of the RSS feed. This allows to have a better representation of the feed in RSS readers.
+* `new` #4500 : RSS Feed includes one <item> per photo by @cdzombak.
+* `new` #4503 : Add option to configure cache file path by @ildyria.
+  > A small request, we added the possibility to configure the cache file path. This allows to have a better control on the cache files and avoid potential issues with permissions.
+* `fix` #4480 : Update changelog url by @ildyria.
+  > With the migration to astro Starlight, the changelog url was not updated. This is now fixed.
+* `fix` #4481 : Fix propagation error by @ildyria.
+  > When propagating access rights to sub-albums we were faced with a combinatory explosion. This is now fixed.
+* `fix` #4482 : Fixes access rights with multiple groups by @ildyria.
+  > When a user was part of multiple groups, only the first policy was used to determine the access rights to an album. This is now fixed.
+* `fix` #4486 : Fix nsfw warning not being displayed by @ildyria.
+  > When an album is marked as NSFW, the warning was not displayed on the album page. This is now fixed.
+* `fix` #4499 : Fix photos appearing multiple times per-album in RSS feed by @cdzombak.
+  > Chris also fixed the duplicates presentation in the RSS feed: one photo in multiple albums will now only appear once in the feed.
+* `fix` #4507 : Fix dummy validation when processing requests by @ildyria.
+  > Major vulnerability, @UmutCPP reported that the validation of the requests was not properly done, allowing for some bypasses. This is now fixed.
+* `fix` #4510 : Add middleware and caching for docs API by @ildyria.
+  > The docs API takes a few seconds to generates, an attacker could spam the endpoint and cause a denial of service. We added a middleware to cache the response and avoid this issue. Issue reported by @UmutCPP.
+* `fix` #4511 : Avoid large malicious uploads and wasting CPU cycles by @ildyria.
+  > A malicious user with upload rights could upload a small pdf and cause the server to waste CPU cycles and memory by converting it to a large image. We now limit the size of the uploaded files and avoid this issue. Issue reported by @UmutCPP.
+* `klo` #4489 : Fixes HEIC processing in CICD by @ildyria.
+* `klo` #4466 : Improve demo workflow by @ildyria.
+* `klo` #4512 : Improve Readme by @ildyria.
+* `klo` #4508 : Please do not report fopen DNS rebinding issues by @ildyria.
+
+Thanks to @UmutCPP for reporting those three vulnerabilities.  
+
+
 ### v7.6.4
 
 Released on June 26th, 2026

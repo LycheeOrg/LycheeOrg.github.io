@@ -279,6 +279,18 @@ const getReleaseTypeBadge = (type: "major" | "feature" | "enhancement" | "bugfix
           Want to contribute? Check out our <a href="https://github.com/LycheeOrg/Lychee" class="text-primary hover:underline">GitHub repository</a>
         </p>
       </div>
+
+      <!-- Release Type Legend -->
+      <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-left">
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">What do the release badges mean?</p>
+        <div class="flex flex-col gap-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <span><span class={`px-2 py-0.5 rounded-full text-xs font-semibold ${getReleaseTypeBadge('major').class}`}>Major Release</span> — a significant version bringing substantial new features</span>
+          <span><span class={`px-2 py-0.5 rounded-full text-xs font-semibold ${getReleaseTypeBadge('feature').class}`}>New Feature</span> — a brand-new capability</span>
+          <span><span class={`px-2 py-0.5 rounded-full text-xs font-semibold ${getReleaseTypeBadge('enhancement').class}`}>Enhancement</span> — an improvement to existing functionality</span>
+          <span><span class={`px-2 py-0.5 rounded-full text-xs font-semibold ${getReleaseTypeBadge('bugfix').class}`}>Bug Fix</span> — a fix for reported issues</span>
+          <span><span class={`px-2 py-0.5 rounded-full text-xs font-semibold ${getReleaseTypeBadge('security').class}`}>Security</span> — a patch for a reported vulnerability</span>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>
