@@ -21,7 +21,7 @@ Released on July 13th, 2026
 
 If we were only fixing vulnerabilities, this would have been a simple patch release. However, we also added a few new features and fixed some bugs: you can now choose which thumb to use as the cover for your tag albums, disable the second line on album thumbs (usually a date), and customize the title and description of the RSS feed. We also fixed two major issues related to group access rights and the propagation algorithm.
 
-User of the webshop should update to this version as soon as possible, as one of the validation mecahnisms was not working properly and could allow for some freebies.
+Users of the webshop should update to this version as soon as possible, as one of the validation mechanisms was not working properly and could allow for some freebies.
 
 * `new` #4469 : Add option to disable the second line on album thumbs by @ildyria.
   > This is a small quality of life improvement, some users requested to have the second line on album thumbs disabled. This is now possible via a setting in the admin panel.
