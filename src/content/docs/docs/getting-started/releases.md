@@ -27,6 +27,8 @@ Which means we need to ship a fix ASAP.
 * `fix` #4516 : Fix Sqlite bug on virtual columns by @ildyria.
   > When using sqlite, the virtual columns were not properly handled. This is now fixed.
 
+Thanks to @5ud0er for reporting the bypass vulnerability on pricing.  
+
 
 ### v7.7.0
 
