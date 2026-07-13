@@ -8,6 +8,7 @@ export interface Release {
 
 // Release data extracted from releases.md
 export const releases: Release[] = [
+  { version: 'v7.7.1', date: 'Jul 13, 2026', title: 'Hotfix', type: 'security', highlights: ['Fixes a mojor vulnerability in the webshop', 'minor sqlite fix'] },
   { version: 'v7.7.0', date: 'Jul 13, 2026', title: 'Album thumbs, and RSS feed customization', type: 'feature', highlights: ['Add cover to tag albums', 'Add option to disable the second line on album thumbs', 'Allow customizing RSS feed title & description', 'Fixes access rights with multiple groups', 'Fixes webshop bypass vulnerability (8.3)'] },
   { version: 'v7.6.4', date: 'Jun 26, 2026', title: 'Hotfix', type: 'security', highlights: ['Fixes a path traversal vulnerability (8.9)'] },
   { version: 'v7.6.3', date: 'Jun 24, 2026', title: 'Hotfix', type: 'security', highlights: ['Fixes a major vulnerability', 'minor fixes'] },
