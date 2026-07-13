@@ -13,6 +13,23 @@ sidebar:
 
 ## Version 7
 
+### v7.7.1
+
+Released on July 13th, 2026
+
+#### Hotfixes 
+
+Just when you publish a new release, there is another vulnerability reported...
+Which means we need to ship a fix ASAP.
+
+* `fix` #4514 : Hotfix on webshop by @ildyria.
+  > A user can craft a post request and get discounted prices on the webshop. This is now fixed.
+* `fix` #4516 : Fix Sqlite bug on virtual columns by @ildyria.
+  > When using sqlite, the virtual columns were not properly handled. This is now fixed.
+
+Thanks to @5ud0er for reporting the bypass vulnerability on pricing.  
+
+
 ### v7.7.0
 
 Released on July 13th, 2026
