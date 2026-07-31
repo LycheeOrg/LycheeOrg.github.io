@@ -42,9 +42,9 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="font-semibold">Lychee</span> is a free photo-management tool, which runs on your server or web-space.
-      Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with
-      everything you need and all your photos are stored securely.
+      <span class="font-semibold">Lychee</span> is a free photo-management tool, which runs on your server or web-space. Installing
+      is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything
+      you need and all your photos are stored securely.
     </Fragment>
 
     <Fragment slot="bg">
@@ -81,13 +81,7 @@ const metadata = {
                 >
               </div>
             </div>
-            <Image
-              src={showcase}
-              alt="Screenshot of Lychee"
-              class={'window__content'}
-              width="1194"
-              height="525"
-            />
+            <Image src={showcase} alt="Screenshot of Lychee" class={'window__content'} width="1194" height="525" />
           </div>
         </div>
       </div>
@@ -179,7 +173,6 @@ const metadata = {
     ]}
   />
 
-
   <Content classes={{ container: 'max-w-6xl' }}>
     <Fragment slot="bg">
       <div class="madefor__bg"></div>
@@ -246,6 +239,12 @@ const metadata = {
         href: 'https://github.com/LycheeOrg/Lychee-Docker/blob/master/docker-compose.yml',
         target: '_blank',
         icon: 'tabler:download',
+      },
+      {
+        variant: 'secondary',
+        text: 'Docker Compose Wizard',
+        href: '/wizard/',
+        icon: 'tabler:wand',
       },
     ]}
   >

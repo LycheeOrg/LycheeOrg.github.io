@@ -1,0 +1,692 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Footer from '~/components/widgets/Footer.astro';
+import { footerData } from '~/navigation';
+
+const metadata = {
+  title: 'Docker Compose Wizard',
+  description:
+    'Generate a ready-to-run docker-compose.yaml and .env for Lychee, right in your browser. Same questions as the Lychee Wizard CLI, no install required.',
+};
+
+const inputClass =
+  'py-2.5 px-4 block w-full text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary disabled:opacity-50';
+const selectClass = inputClass;
+const labelClass = 'block text-sm font-medium mb-1';
+const descClass = 'text-xs text-gray-500 dark:text-gray-400 mt-1';
+const fieldsetClass = 'rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-slate-900';
+const legendClass = 'px-2 text-lg font-semibold flex items-center';
+const checkboxRowClass = 'flex items-start gap-3';
+const checkboxClass =
+  'mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary';
+const badgeClass =
+  'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
+---
+
+<Layout metadata={metadata}>
+  <section class="py-4 border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/40">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
+      <div>
+        <h1 class="text-lg font-bold leading-tight">
+          Docker Compose <span class="text-primary">Wizard</span>
+        </h1>
+        <p class="text-xs text-gray-500 dark:text-gray-400">
+          Generates <code>docker-compose.yaml</code> and <code>.env</code> for Lychee, entirely in your browser &mdash; nothing
+          is sent to any server. Prefer a terminal? Same wizard as a
+          <a
+            class="text-primary hover:underline"
+            href="https://github.com/LycheeOrg/Wizard"
+            target="_blank"
+            rel="noopener noreferrer">standalone CLI</a
+          >.
+        </p>
+      </div>
+      <p id="template-source" class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
+        Loading the latest templates&hellip;
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-16 md:pb-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-start pt-8">
+      <!-- Form ************************************************************* -->
+      <form id="wizard-form" class="space-y-6" novalidate>
+        <fieldset class={fieldsetClass}>
+          <legend class={legendClass}>General</legend>
+          <div class="space-y-4 mt-2">
+            <div>
+              <label for="appName" class={labelClass}>Application name</label>
+              <input id="appName" name="appName" type="text" class={inputClass} value="Lychee" />
+            </div>
+            <div>
+              <label for="appUrl" class={labelClass}>Application URL</label>
+              <input id="appUrl" name="appUrl" type="text" class={inputClass} value="http://localhost" />
+              <p class={descClass}>The host name up to the TLD, e.g. https://photos.example.com</p>
+            </div>
+            <div>
+              <label for="appPort" class={labelClass}>Port to expose Lychee on</label>
+              <input id="appPort" name="appPort" type="text" inputmode="numeric" class={inputClass} value="8000" />
+              <p class={descClass} data-error="appPort"></p>
+            </div>
+            <div class={checkboxRowClass}>
+              <input id="appForceHttps" name="appForceHttps" type="checkbox" class={checkboxClass} />
+              <label for="appForceHttps" class="text-sm cursor-pointer select-none">Force HTTPS</label>
+            </div>
+            <div>
+              <label for="timezone" class={labelClass}>Timezone</label>
+              <input id="timezone" name="timezone" type="text" class={inputClass} value="UTC" />
+              <p class={descClass}>A named timezone identifier, e.g. Europe/Paris</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class={fieldsetClass}>
+          <legend class={legendClass}>Database</legend>
+          <div class="space-y-4 mt-2">
+            <div>
+              <label for="dbEngine" class={labelClass}>Database engine</label>
+              <select id="dbEngine" name="dbEngine" class={selectClass}>
+                <option value="mariadb">MariaDB / MySQL</option>
+                <option value="pgsql">PostgreSQL</option>
+                <option value="sqlite">SQLite</option>
+              </select>
+            </div>
+
+            <div id="dbLocationGroup">
+              <label for="dbLocation" class={labelClass}>Where should it run?</label>
+              <select id="dbLocation" name="dbLocation" class={selectClass}>
+                <option value="docker">In this docker-compose (recommended)</option>
+                <option value="external">Connect to an existing server</option>
+              </select>
+            </div>
+            <p id="dbPgsqlNote" class={`${descClass} hidden`}>
+              Lychee's official Docker packaging only ships a MariaDB container. For PostgreSQL, connect to a server you
+              already run.
+            </p>
+
+            <div id="dbHostPortFields" class="hidden">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="dbHost" class={labelClass}>Database host</label>
+                  <input id="dbHost" name="dbHost" type="text" class={inputClass} placeholder="db.example.com" />
+                </div>
+                <div>
+                  <label for="dbPort" class={labelClass}>Database port</label>
+                  <input
+                    id="dbPort"
+                    name="dbPort"
+                    type="text"
+                    inputmode="numeric"
+                    class={inputClass}
+                    placeholder="3306"
+                  />
+                  <p class={descClass} data-error="dbPort"></p>
+                </div>
+              </div>
+            </div>
+
+            <div id="dbCredentialFields" class="space-y-4">
+              <div>
+                <label for="dbDatabase" class={labelClass}>Database name</label>
+                <input id="dbDatabase" name="dbDatabase" type="text" class={inputClass} value="lychee" />
+              </div>
+              <div>
+                <label for="dbUsername" class={labelClass}>Database username</label>
+                <input id="dbUsername" name="dbUsername" type="text" class={inputClass} value="lychee" />
+              </div>
+              <div class={checkboxRowClass}>
+                <input id="generatePasswords" name="generatePasswords" type="checkbox" class={checkboxClass} checked />
+                <label for="generatePasswords" class="text-sm cursor-pointer select-none"
+                  >Generate secure database passwords for me</label
+                >
+              </div>
+              <div id="dbPasswordField" class="hidden">
+                <label for="dbPassword" class={labelClass}>Database password</label>
+                <input
+                  id="dbPassword"
+                  name="dbPassword"
+                  type="password"
+                  autocomplete="new-password"
+                  class={inputClass}
+                />
+              </div>
+              <div id="dbRootPasswordField" class="hidden">
+                <label for="dbRootPassword" class={labelClass}>Database root password</label>
+                <input
+                  id="dbRootPassword"
+                  name="dbRootPassword"
+                  type="password"
+                  autocomplete="new-password"
+                  class={inputClass}
+                />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class={fieldsetClass}>
+          <legend class={legendClass}>Secrets handling <span class={badgeClass}>Recommended</span></legend>
+          <div class="mt-2">
+            <div class={checkboxRowClass}>
+              <input id="useDockerSecrets" name="useDockerSecrets" type="checkbox" class={checkboxClass} checked />
+              <label for="useDockerSecrets" class="text-sm cursor-pointer select-none">
+                Use Docker secrets (file-based) for <code>APP_KEY</code> / <code>DB_PASSWORD</code> /
+                <code>DB_ROOT_PASSWORD</code>
+              </label>
+            </div>
+            <p class={descClass}>Recommended: keeps sensitive values out of .env, in ./secrets/ files instead.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class={fieldsetClass}>
+          <legend class={legendClass}>Optional services</legend>
+          <div class="space-y-4 mt-2">
+            <div id="phpMyAdminField" class={checkboxRowClass}>
+              <input id="enablePhpMyAdmin" name="enablePhpMyAdmin" type="checkbox" class={checkboxClass} />
+              <label for="enablePhpMyAdmin" class="text-sm cursor-pointer select-none">Enable phpMyAdmin</label>
+            </div>
+
+            <div class={checkboxRowClass}>
+              <input id="enableAiVision" name="enableAiVision" type="checkbox" class={checkboxClass} checked />
+              <label for="enableAiVision" class="text-sm cursor-pointer select-none">Enable AI facial recognition</label
+              >
+            </div>
+            <div id="aiVisionKeyToggle" class={checkboxRowClass}>
+              <input id="customAiVisionKey" name="customAiVisionKey" type="checkbox" class={checkboxClass} />
+              <label for="customAiVisionKey" class="text-sm cursor-pointer select-none"
+                >Set your own AI Vision API key</label
+              >
+            </div>
+            <div id="aiVisionKeyField" class="hidden">
+              <label for="aiVisionApiKey" class={labelClass}>AI Vision API key</label>
+              <input id="aiVisionApiKey" name="aiVisionApiKey" type="text" class={inputClass} />
+              <p class={descClass}>Otherwise one is generated for you.</p>
+            </div>
+
+            <div class={checkboxRowClass}>
+              <input id="enableNsfw" name="enableNsfw" type="checkbox" class={checkboxClass} />
+              <label for="enableNsfw" class="text-sm cursor-pointer select-none"
+                >Enable NSFW content classification</label
+              >
+            </div>
+            <p class={descClass}>
+              Flags or blocks explicit photos using a separate <a
+                class="text-primary hover:underline"
+                href="https://github.com/LycheeOrg/Lychee-NSFW-Classification"
+                target="_blank"
+                rel="noopener noreferrer">classification service</a
+              >.
+            </p>
+            <div id="nsfwKeyToggle" class={checkboxRowClass}>
+              <input id="customNsfwKey" name="customNsfwKey" type="checkbox" class={checkboxClass} />
+              <label for="customNsfwKey" class="text-sm cursor-pointer select-none">Set your own NSFW API key</label>
+            </div>
+            <div id="nsfwKeyField" class="hidden">
+              <label for="nsfwApiKey" class={labelClass}>NSFW API key</label>
+              <input id="nsfwApiKey" name="nsfwApiKey" type="text" class={inputClass} />
+              <p class={descClass}>Otherwise one is generated for you.</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class={fieldsetClass}>
+          <legend class={legendClass}>System</legend>
+          <div class="space-y-4 mt-2">
+            <div>
+              <label for="puid" class={labelClass}>PUID</label>
+              <input id="puid" name="puid" type="text" inputmode="numeric" class={inputClass} value="1000" />
+              <p class={descClass}>
+                User ID that will own files written by the container. <span data-error="puid"></span>
+              </p>
+            </div>
+            <div>
+              <label for="pgid" class={labelClass}>PGID</label>
+              <input id="pgid" name="pgid" type="text" inputmode="numeric" class={inputClass} value="1000" />
+              <p class={descClass}>
+                Group ID that will own files written by the container. <span data-error="pgid"></span>
+              </p>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+      <!-- Output ************************************************************* -->
+      <div class="lg:sticky lg:top-24 space-y-4">
+        <div
+          id="warnings"
+          class="hidden rounded-lg border border-amber-300 bg-amber-50 dark:border-amber-700 dark:bg-amber-950 p-4 text-sm text-amber-800 dark:text-amber-200"
+        >
+        </div>
+
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 overflow-hidden">
+          <nav class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700" role="tablist">
+            <div class="flex">
+              <button type="button" class="wizard-tab" data-tab="compose" role="tab">docker-compose.yaml</button>
+              <button type="button" class="wizard-tab" data-tab="env" role="tab">.env</button>
+              <button type="button" id="secretsTabBtn" class="wizard-tab hidden" data-tab="secrets" role="tab"
+                >secrets/</button
+              >
+            </div>
+            <button type="button" id="regenerateSecrets" class="wizard-toolbtn mr-3">Regenerate secrets</button>
+          </nav>
+
+          <div data-panel="compose">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+              <span class="text-xs text-gray-500 dark:text-gray-400">docker-compose.yaml</span>
+              <div class="flex gap-2">
+                <button type="button" class="wizard-toolbtn" data-copy="compose">Copy</button>
+                <button type="button" class="wizard-toolbtn" data-download="compose" data-filename="docker-compose.yaml"
+                  >Download</button
+                >
+              </div>
+            </div>
+            <pre class="wizard-pre"><code id="output-compose" class="language-yaml" /></pre>
+          </div>
+
+          <div data-panel="env" class="hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+              <span class="text-xs text-gray-500 dark:text-gray-400">.env</span>
+              <div class="flex gap-2">
+                <button type="button" class="wizard-toolbtn" data-copy="env">Copy</button>
+                <button type="button" class="wizard-toolbtn" data-download="env" data-filename=".env">Download</button>
+              </div>
+            </div>
+            <pre class="wizard-pre"><code id="output-env" class="language-ini" /></pre>
+          </div>
+
+          <div data-panel="secrets" class="hidden">
+            <div id="output-secrets" class="divide-y divide-gray-200 dark:divide-gray-700"></div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 p-6">
+          <h2 class="text-lg font-semibold mb-3">Next steps</h2>
+          <ol id="instructions" class="list-decimal list-inside space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style is:global>
+    .wizard-tab {
+      padding: 0.625rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--aw-color-text-muted, #64748b);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+    }
+    .wizard-tab[aria-selected='true'] {
+      color: var(--aw-color-primary, #2563eb);
+      border-bottom-color: var(--aw-color-primary, #2563eb);
+    }
+    .wizard-toolbtn {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: 0.375rem;
+      border: 1px solid;
+      cursor: pointer;
+      color: inherit;
+      background: none;
+    }
+    .wizard-pre {
+      margin: 0;
+      max-height: 26rem;
+      overflow: auto;
+      padding: 1rem;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      white-space: pre;
+    }
+
+    /* Prism token colors, tuned for this page's light/dark palette. */
+    .wizard-pre .token.comment {
+      color: #6b7280;
+      font-style: italic;
+    }
+    .dark .wizard-pre .token.comment {
+      color: #9ca3af;
+    }
+    .wizard-pre .token.key,
+    .wizard-pre .token.atrule,
+    .wizard-pre .token.attr-name,
+    .wizard-pre .token.property {
+      color: #2563eb;
+    }
+    .dark .wizard-pre .token.key,
+    .dark .wizard-pre .token.atrule,
+    .dark .wizard-pre .token.attr-name,
+    .dark .wizard-pre .token.property {
+      color: #60a5fa;
+    }
+    .wizard-pre .token.string,
+    .wizard-pre .token.value,
+    .wizard-pre .token.attr-value,
+    .wizard-pre .token.inner-value {
+      color: #059669;
+    }
+    .dark .wizard-pre .token.string,
+    .dark .wizard-pre .token.value,
+    .dark .wizard-pre .token.attr-value,
+    .dark .wizard-pre .token.inner-value {
+      color: #34d399;
+    }
+    .wizard-pre .token.boolean,
+    .wizard-pre .token.number,
+    .wizard-pre .token.important {
+      color: #d97706;
+    }
+    .dark .wizard-pre .token.boolean,
+    .dark .wizard-pre .token.number,
+    .dark .wizard-pre .token.important {
+      color: #fbbf24;
+    }
+    .wizard-pre .token.punctuation {
+      color: #9ca3af;
+    }
+    .dark .wizard-pre .token.punctuation {
+      color: #6b7280;
+    }
+    .wizard-pre .token.tag {
+      color: #7c3aed;
+    }
+    .dark .wizard-pre .token.tag {
+      color: #a78bfa;
+    }
+    .wizard-pre .token.section,
+    .wizard-pre .token.section-name,
+    .wizard-pre .token.selector {
+      color: #db2777;
+    }
+    .dark .wizard-pre .token.section,
+    .dark .wizard-pre .token.section-name,
+    .dark .wizard-pre .token.selector {
+      color: #f472b6;
+    }
+  </style>
+
+  <script>
+    import Prism from 'prismjs';
+    import 'prismjs/components/prism-yaml';
+    import 'prismjs/components/prism-ini';
+    import { needsDbService, type WizardAnswers } from '~/utils/wizard/answers';
+    import { generate, type GeneratedSecrets, type GenerateResult } from '~/utils/wizard/generator';
+    import { generateAppKey, generateSecret } from '~/utils/wizard/secrets';
+    import { validatePort, validateOptionalPort, validateUint } from '~/utils/wizard/validate';
+    import { loadTemplates } from '~/utils/wizard/templates';
+    import fallbackCompose from '~/data/wizard/docker-compose.yaml?raw';
+    import fallbackEnvExample from '~/data/wizard/env.example?raw';
+
+    const DB_DEFAULT_PORT: Record<WizardAnswers['dbEngine'], string> = {
+      mariadb: '3306',
+      pgsql: '5432',
+      sqlite: '',
+    };
+
+    const form = document.getElementById('wizard-form') as HTMLFormElement;
+    const dbLocationGroup = document.getElementById('dbLocationGroup')!;
+    const dbPgsqlNote = document.getElementById('dbPgsqlNote')!;
+    const dbHostPortFields = document.getElementById('dbHostPortFields')!;
+    const dbCredentialFields = document.getElementById('dbCredentialFields')!;
+    const dbPasswordField = document.getElementById('dbPasswordField')!;
+    const dbRootPasswordField = document.getElementById('dbRootPasswordField')!;
+    const phpMyAdminField = document.getElementById('phpMyAdminField')!;
+    const aiVisionKeyToggle = document.getElementById('aiVisionKeyToggle')!;
+    const aiVisionKeyField = document.getElementById('aiVisionKeyField')!;
+    const nsfwKeyToggle = document.getElementById('nsfwKeyToggle')!;
+    const nsfwKeyField = document.getElementById('nsfwKeyField')!;
+    const warningsBox = document.getElementById('warnings')!;
+    const secretsTabBtn = document.getElementById('secretsTabBtn')!;
+    const outputCompose = document.getElementById('output-compose')!;
+    const outputEnv = document.getElementById('output-env')!;
+    const outputSecrets = document.getElementById('output-secrets')!;
+    const instructions = document.getElementById('instructions')!;
+    const templateSourceNote = document.getElementById('template-source')!;
+
+    function newSecrets(): GeneratedSecrets {
+      return {
+        appKey: generateAppKey(),
+        dbPassword: generateSecret(24),
+        dbRootPassword: generateSecret(24),
+        aiVisionApiKey: generateSecret(24),
+        nsfwApiKey: generateSecret(24),
+      };
+    }
+
+    let secrets = newSecrets();
+    let templates = { envExample: fallbackEnvExample, compose: fallbackCompose };
+    let lastResult: GenerateResult | null = null;
+
+    function field<T extends HTMLInputElement | HTMLSelectElement>(name: string): T {
+      return form.elements.namedItem(name) as T;
+    }
+
+    function readAnswers(): WizardAnswers {
+      return {
+        appName: field('appName').value,
+        appUrl: field('appUrl').value,
+        appPort: field('appPort').value,
+        appForceHttps: field<HTMLInputElement>('appForceHttps').checked,
+        timezone: field('timezone').value,
+        dbEngine: field('dbEngine').value as WizardAnswers['dbEngine'],
+        dbLocation: field('dbLocation').value as WizardAnswers['dbLocation'],
+        dbHost: field('dbHost').value,
+        dbPort: field('dbPort').value,
+        dbDatabase: field('dbDatabase').value,
+        dbUsername: field('dbUsername').value,
+        generatePasswords: field<HTMLInputElement>('generatePasswords').checked,
+        dbPassword: field('dbPassword').value,
+        dbRootPassword: field('dbRootPassword').value,
+        useDockerSecrets: field<HTMLInputElement>('useDockerSecrets').checked,
+        enablePhpMyAdmin: field<HTMLInputElement>('enablePhpMyAdmin').checked,
+        enableAiVision: field<HTMLInputElement>('enableAiVision').checked,
+        customAiVisionKey: field<HTMLInputElement>('customAiVisionKey').checked,
+        aiVisionApiKey: field('aiVisionApiKey').value,
+        enableNsfw: field<HTMLInputElement>('enableNsfw').checked,
+        customNsfwKey: field<HTMLInputElement>('customNsfwKey').checked,
+        nsfwApiKey: field('nsfwApiKey').value,
+        puid: field('puid').value,
+        pgid: field('pgid').value,
+      };
+    }
+
+    function setError(name: string, message: string | null) {
+      const el = document.querySelector(`[data-error="${name}"]`);
+      if (el) el.textContent = message ?? '';
+    }
+
+    function updateVisibility(a: WizardAnswers) {
+      const isSqlite = a.dbEngine === 'sqlite';
+      const isPgsql = a.dbEngine === 'pgsql';
+
+      // Postgres has no bundled Lychee container to run it in, so force
+      // "external" and hide the (now single-choice) location selector.
+      if (isPgsql && field('dbLocation').value !== 'external') {
+        field('dbLocation').value = 'external';
+        a.dbLocation = 'external';
+      }
+      dbLocationGroup.classList.toggle('hidden', isSqlite || isPgsql);
+      dbPgsqlNote.classList.toggle('hidden', !isPgsql);
+
+      const needsDb = needsDbService(a);
+      dbHostPortFields.classList.toggle('hidden', needsDb || isSqlite);
+      if (!isSqlite) {
+        field<HTMLInputElement>('dbPort').placeholder = DB_DEFAULT_PORT[a.dbEngine];
+      }
+
+      dbCredentialFields.classList.toggle('hidden', isSqlite);
+      dbPasswordField.classList.toggle('hidden', a.generatePasswords || isSqlite);
+      dbRootPasswordField.classList.toggle('hidden', a.generatePasswords || !needsDb);
+
+      if (!needsDb && field<HTMLInputElement>('enablePhpMyAdmin').checked) {
+        field<HTMLInputElement>('enablePhpMyAdmin').checked = false;
+        a.enablePhpMyAdmin = false;
+      }
+      phpMyAdminField.classList.toggle('hidden', !needsDb);
+
+      aiVisionKeyToggle.classList.toggle('hidden', !a.enableAiVision);
+      aiVisionKeyField.classList.toggle('hidden', !a.enableAiVision || !a.customAiVisionKey);
+      nsfwKeyToggle.classList.toggle('hidden', !a.enableNsfw);
+      nsfwKeyField.classList.toggle('hidden', !a.enableNsfw || !a.customNsfwKey);
+    }
+
+    function renderSecretsPanel(result: GenerateResult) {
+      outputSecrets.innerHTML = '';
+      for (const s of result.secretFiles) {
+        const row = document.createElement('div');
+        row.className = 'px-4 py-3';
+        row.innerHTML = `
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-gray-500 dark:text-gray-400">secrets/${s.key}</span>
+            <div class="flex gap-2">
+              <button type="button" class="wizard-toolbtn" data-copy-text="${encodeURIComponent(s.value)}">Copy</button>
+              <button type="button" class="wizard-toolbtn" data-download-text="${encodeURIComponent(s.value)}" data-filename="${s.key}">Download</button>
+            </div>
+          </div>
+          <code class="block text-xs break-all">${s.value}</code>
+        `;
+        outputSecrets.appendChild(row);
+      }
+    }
+
+    function render() {
+      const a = readAnswers();
+      updateVisibility(a);
+
+      const portError = validatePort(a.appPort);
+      const dbPortError = validateOptionalPort(a.dbPort);
+      const puidError = validateUint(a.puid);
+      const pgidError = validateUint(a.pgid);
+      setError('appPort', portError);
+      setError('dbPort', dbPortError);
+      setError('puid', puidError);
+      setError('pgid', pgidError);
+      if (portError || dbPortError || puidError || pgidError) return;
+
+      const result = generate(templates.envExample, templates.compose, a, secrets);
+      lastResult = result;
+
+      outputCompose.innerHTML = Prism.highlight(result.compose, Prism.languages.yaml, 'yaml');
+      outputEnv.innerHTML = Prism.highlight(result.env, Prism.languages.ini, 'ini');
+      secretsTabBtn.classList.toggle('hidden', !result.secretsUsed);
+      renderSecretsPanel(result);
+
+      if (result.warnings.length > 0) {
+        warningsBox.classList.remove('hidden');
+        warningsBox.innerHTML = result.warnings.map((w) => `<p>${w}</p>`).join('');
+      } else {
+        warningsBox.classList.add('hidden');
+        warningsBox.innerHTML = '';
+      }
+
+      renderInstructions(result);
+    }
+
+    function renderInstructions(result: GenerateResult) {
+      const steps: string[] = [
+        'Create a folder for your Lychee install (e.g. <code>mkdir lychee && cd lychee</code>).',
+        'Download <code>docker-compose.yaml</code> and <code>.env</code> into that folder using the buttons above.',
+      ];
+      if (result.secretsUsed) {
+        steps.push(
+          'Create a <code>secrets/</code> subfolder and download each secret file from the "secrets/" tab into it. Keep this folder out of version control.'
+        );
+      }
+      steps.push('Run <code>docker compose up -d</code>.');
+      steps.push(
+        `Open <code>${escapeHtml(result.appUrl)}</code> (port ${escapeHtml(field('appPort').value)}) in your browser.`
+      );
+      instructions.innerHTML = steps.map((s) => `<li>${s}</li>`).join('');
+    }
+
+    function escapeHtml(s: string): string {
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    function download(filename: string, content: string) {
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function copy(text: string, button: HTMLElement) {
+      await navigator.clipboard.writeText(text);
+      const original = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(() => {
+        button.textContent = original;
+      }, 1500);
+    }
+
+    // Tabs
+    document.querySelectorAll<HTMLButtonElement>('.wizard-tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab!;
+        document
+          .querySelectorAll<HTMLButtonElement>('.wizard-tab')
+          .forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
+        document
+          .querySelectorAll<HTMLElement>('[data-panel]')
+          .forEach((p) => p.classList.toggle('hidden', p.dataset.panel !== tab));
+      });
+    });
+    document.querySelector<HTMLButtonElement>('.wizard-tab[data-tab="compose"]')?.setAttribute('aria-selected', 'true');
+
+    // Copy / download for the two main panels
+    document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const which = btn.dataset.copy;
+        const text = which === 'compose' ? lastResult?.compose : lastResult?.env;
+        if (text) copy(text, btn);
+      });
+    });
+    document.querySelectorAll<HTMLButtonElement>('[data-download]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const which = btn.dataset.download;
+        const text = which === 'compose' ? lastResult?.compose : lastResult?.env;
+        if (text) download(btn.dataset.filename!, text);
+      });
+    });
+
+    // Copy / download for dynamically rendered secret files (event delegation)
+    outputSecrets.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const copyBtn = target.closest<HTMLElement>('[data-copy-text]');
+      if (copyBtn) {
+        copy(decodeURIComponent(copyBtn.dataset.copyText!), copyBtn);
+        return;
+      }
+      const downloadBtn = target.closest<HTMLElement>('[data-download-text]');
+      if (downloadBtn) {
+        download(downloadBtn.dataset.filename!, decodeURIComponent(downloadBtn.dataset.downloadText!));
+      }
+    });
+
+    form.addEventListener('input', render);
+    form.addEventListener('change', render);
+
+    document.getElementById('regenerateSecrets')?.addEventListener('click', () => {
+      secrets = newSecrets();
+      render();
+    });
+
+    render();
+
+    loadTemplates(fallbackEnvExample, fallbackCompose).then((t) => {
+      templates = { envExample: t.envExample, compose: t.compose };
+      templateSourceNote.textContent = t.fromLive
+        ? 'Using the latest templates fetched live from LycheeOrg/Lychee@master.'
+        : "Couldn't reach GitHub — using a bundled offline snapshot instead.";
+      render();
+    });
+  </script>
+
+  <Footer {...footerData} />
+</Layout>
