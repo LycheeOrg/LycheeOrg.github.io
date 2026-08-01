@@ -7,6 +7,9 @@
 import { enableDockerSecrets } from './dockerSecrets';
 import { removeDbService, addSqliteVolume } from './dbCompose';
 import { insertNsfwService } from './nsfwService';
+import { removeWorkerService } from './workerCompose';
+import { addTraefikLabels } from './traefikCompose';
+import { removeEnvFileReferences, removePhpMyAdminProfileGate, inlineEnvVars } from './envFileCompose';
 import { needsDbService, type WizardAnswers } from './answers';
 
 interface KV {
@@ -35,6 +38,7 @@ export interface GenerateResult {
   secretFiles: KV[];
   warnings: string[];
   secretsUsed: boolean;
+  envFileUsed: boolean;
   appUrl: string;
 }
 
@@ -63,6 +67,18 @@ function formatKV(key: string, value: string): string {
 
 function boolStr(b: boolean): string {
   return b ? 'true' : 'false';
+}
+
+// extractHost pulls just the hostname out of the wizard's Application URL
+// answer, for use in a Traefik Host() rule (which doesn't want a scheme,
+// port, or path). Falls back to a best-effort strip if the URL doesn't
+// parse (e.g. mid-edit while typing).
+function extractHost(appUrl: string): string {
+  try {
+    return new URL(appUrl).hostname || appUrl;
+  } catch {
+    return appUrl.replace(/^[a-z][a-z0-9+.-]*:\/\//i, '').split(/[/:]/)[0];
+  }
 }
 
 // buildEnv produces the final .env content: envExample with envSets values
@@ -141,6 +157,26 @@ export function generate(
       );
     }
   }
+  if (!a.useWorker) {
+    const { compose: patched, removed } = removeWorkerService(compose);
+    compose = patched;
+    if (!removed) {
+      warnings.push('could not remove the queue worker service automatically; please remove `lychee_worker` by hand');
+    }
+  }
+  let traefikAdded = false;
+  if (a.enableTraefik) {
+    const { compose: patched, added } = addTraefikLabels(compose, {
+      hostname: extractHost(a.appUrl),
+      entrypoint: a.traefikEntrypoint,
+      certResolver: a.traefikCertResolver,
+    });
+    compose = patched;
+    traefikAdded = added;
+    if (!added) {
+      warnings.push('could not add Traefik labels automatically; add them to docker-compose.yaml by hand');
+    }
+  }
 
   let secretsUsed = false;
   if (a.useDockerSecrets) {
@@ -168,6 +204,7 @@ export function generate(
     { key: 'APP_FORCE_HTTPS', value: boolStr(a.appForceHttps) },
     { key: 'TIMEZONE', value: a.timezone },
     { key: 'DB_CONNECTION', value: DB_CONNECTION_VALUE[a.dbEngine] },
+    { key: 'QUEUE_CONNECTION', value: a.useWorker ? 'database' : 'sync' },
   ];
   if (a.dbEngine !== 'sqlite') {
     envSets.push({ key: 'DB_DATABASE', value: a.dbDatabase }, { key: 'DB_USERNAME', value: a.dbUsername });
@@ -217,7 +254,36 @@ export function generate(
     );
   }
 
-  const env = buildEnv(envExample, envSets, overrides);
+  if (a.useWorker) {
+    overrides.push({ key: 'WORKER_REPLICAS', value: a.workerCount });
+  }
+  if (a.enableTraefik && traefikAdded) {
+    overrides.push({ key: 'TRAEFIK_NETWORK', value: a.traefikNetwork });
+  }
 
-  return { env, compose, secretFiles, warnings, secretsUsed, appUrl: a.appUrl };
+  let env = '';
+  if (a.useEnvFile) {
+    env = buildEnv(envExample, envSets, overrides);
+  } else {
+    const { compose: patched, removed } = removeEnvFileReferences(compose);
+    compose = patched;
+    if (!removed) {
+      warnings.push('could not remove the env_file reference automatically; please remove it from docker-compose.yaml by hand');
+    }
+    if (a.enablePhpMyAdmin && needsDb) {
+      const { compose: patched2, removed: gateRemoved } = removePhpMyAdminProfileGate(compose);
+      compose = patched2;
+      if (!gateRemoved) {
+        warnings.push(
+          'could not enable phpMyAdmin without a .env file automatically; remove its `profiles:` entry from docker-compose.yaml by hand, or it will stay off'
+        );
+      }
+    }
+    const values: Record<string, string> = {};
+    for (const kv of [...envSets, ...overrides]) values[kv.key] = kv.value;
+    compose = inlineEnvVars(compose, values);
+    compose = compose.replace(/\n{3,}/g, '\n\n');
+  }
+
+  return { env, compose, secretFiles, warnings, secretsUsed, envFileUsed: a.useEnvFile, appUrl: a.appUrl };
 }

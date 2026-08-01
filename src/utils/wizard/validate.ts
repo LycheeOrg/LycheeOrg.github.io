@@ -24,3 +24,11 @@ export function validateUint(s: string): string | null {
   }
   return null;
 }
+
+export function validatePositiveInt(s: string): string | null {
+  const n = Number(s);
+  if (!Number.isInteger(n) || n < 1) {
+    return 'Must be a positive integer (1 or more).';
+  }
+  return null;
+}

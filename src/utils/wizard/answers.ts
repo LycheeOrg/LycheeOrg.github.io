@@ -23,6 +23,9 @@ export interface WizardAnswers {
   dbPassword: string;
   dbRootPassword: string;
 
+  // Configuration delivery
+  useEnvFile: boolean;
+
   // Secrets handling
   useDockerSecrets: boolean;
 
@@ -34,6 +37,16 @@ export interface WizardAnswers {
   enableNsfw: boolean;
   customNsfwKey: boolean;
   nsfwApiKey: string;
+
+  // Queue worker
+  useWorker: boolean;
+  workerCount: string;
+
+  // Traefik reverse proxy
+  enableTraefik: boolean;
+  traefikEntrypoint: string;
+  traefikCertResolver: string;
+  traefikNetwork: string;
 
   // System
   puid: string;
@@ -56,6 +69,7 @@ export function defaultAnswers(): WizardAnswers {
     generatePasswords: true,
     dbPassword: '',
     dbRootPassword: '',
+    useEnvFile: true,
     useDockerSecrets: true,
     enablePhpMyAdmin: false,
     enableAiVision: true,
@@ -64,6 +78,12 @@ export function defaultAnswers(): WizardAnswers {
     enableNsfw: false,
     customNsfwKey: false,
     nsfwApiKey: '',
+    useWorker: true,
+    workerCount: '1',
+    enableTraefik: false,
+    traefikEntrypoint: 'websecure',
+    traefikCertResolver: 'letsencrypt',
+    traefikNetwork: 'traefik',
     puid: '1000',
     pgid: '1000',
   };

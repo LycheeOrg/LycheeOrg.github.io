@@ -457,14 +457,25 @@ services:
       start_period: 30s
 
   ##########################################################################################
-  # Queue Worker Service (disabled by default)
+  # Queue Worker Service
   ##########################################################################################
   #
-  # Uncomment to enable horizontal scaling of background job processing
-  # THIS IS PRETTY MUCH THE SAME CONFIGURATION AS lychee_api WITH A SINGLE MINOR MODIFICATIONS
+  # Processes background jobs (imports, thumbnail generation, etc.) so lychee_api
+  # can respond immediately instead of blocking on them. Requires QUEUE_CONNECTION
+  # to be 'database' or 'redis' above — with the default 'sync' this container
+  # would have nothing to do. Remove this service entirely if you'd rather run
+  # without a worker (and set QUEUE_CONNECTION back to 'sync').
+  #
+  # THIS IS PRETTY MUCH THE SAME CONFIGURATION AS lychee_api WITH A FEW MINOR MODIFICATIONS
+  #
+  # No container_name here (unlike the other services): `scale` starts more than
+  # one container from this same service definition, which requires Compose to
+  # name them itself.
   lychee_worker:
     <<: *base-lychee-setup
-    container_name: lychee-worker
+    # Number of worker containers to run. Increase for more parallel job
+    # processing on multi-core hosts with a lot of queued work.
+    scale: ${WORKER_REPLICAS:-1}
     environment:
       <<: *common-env
       ##########################################################################################
