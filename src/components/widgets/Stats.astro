@@ -22,8 +22,8 @@ const {
   <div class="flex flex-wrap justify-center -m-4 text-center">
     {
       stats &&
-        stats.map(({ amount, title, icon }) => (
-          <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r md:last:border-none dark:md:border-slate-500">
+        stats.map(({ amount, title, icon, disclaimer }) => (
+          <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-55 text-center md:border-r md:last:border-none dark:md:border-slate-500">
             {icon && (
               <div class="flex items-center justify-center mx-auto mb-4 text-primary">
                 <Icon name={icon} class="w-10 h-10" />
@@ -38,6 +38,9 @@ const {
               <div class="text-sm font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-base">
                 {title}
               </div>
+            )}
+            { disclaimer && (
+              <div class="text-xxs text-gray-600 dark:text-slate-500">{disclaimer}</div>
             )}
           </div>
         ))

@@ -250,11 +250,11 @@ export function generate(
     }
   }
 
-  const overrides: KV[] = [
-    { key: 'PUID', value: a.puid },
-    { key: 'PGID', value: a.pgid },
-    { key: 'APP_PORT', value: a.appPort },
-  ];
+  const overrides: KV[] = [{ key: 'APP_PORT', value: a.appPort }];
+  // docker-compose.yaml already falls back to 1000 for both (`${PUID:-1000}`),
+  // so only emit them when the user actually changed the default.
+  if (a.puid !== '1000') overrides.push({ key: 'PUID', value: a.puid });
+  if (a.pgid !== '1000') overrides.push({ key: 'PGID', value: a.pgid });
   if (needsDb && !secretsUsed) {
     overrides.push({ key: 'DB_ROOT_PASSWORD', value: dbRootPassword });
   }

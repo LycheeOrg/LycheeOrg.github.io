@@ -16,9 +16,20 @@ const descClass = 'text-xs text-gray-500 dark:text-gray-400 mt-1';
 const fieldsetClass = 'bg-white dark:bg-slate-900';
 const checkboxRowClass = 'flex items-start gap-3';
 const checkboxClass =
-  'mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary';
+  'h-4 w-4 shrink-0 cursor-pointer rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary';
 const badgeClass =
   'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
+// Service card status badges — like badgeClass, but without its ml-2 (these
+// sit in a flex row with its own gap, not inline after label text).
+const statusOkClass =
+  'px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
+const statusWarnClass =
+  'px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+// Small tags next to a service card's title (AI, SE).
+const tagAiClass =
+  'px-1.5 py-0.5 rounded text-xxs font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200';
+const tagSeClass =
+  'px-1.5 py-0.5 rounded text-xxs font-semibold bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200';
 ---
 
 <Layout metadata={metadata}>
@@ -344,6 +355,111 @@ const badgeClass =
           <span id="stepIndicator" class="text-xs text-gray-500 dark:text-gray-400">Step 1 of 8</span>
           <button type="button" id="stepNext" class="wizard-toolbtn">Next</button>
         </div>
+
+        <!-- Templates for content the script below builds at runtime (service
+             cards, the add-service menu, secret rows) — cloned and filled in
+             via DOM APIs rather than assembled as HTML strings in JS, so
+             markup/styling stays here in one place instead of being
+             duplicated across the frontmatter and the script. -->
+        <template id="tpl-field-row">
+          <div>
+            <div class={fieldRowClass}>
+              <label class={labelClass}></label>
+              <input class={inputClass} autocomplete="off" />
+            </div>
+            <p class={descClass}></p>
+          </div>
+        </template>
+
+        <template id="tpl-checkbox-row">
+          <div class={checkboxRowClass}>
+            <input type="checkbox" class={checkboxClass} />
+            <label class="text-xs cursor-pointer select-none"></label>
+          </div>
+        </template>
+
+        <template id="tpl-desc-paragraph">
+          <p class={descClass}></p>
+        </template>
+
+        <template id="tpl-nsfw-desc">
+          <p class={descClass}>
+            Flags or blocks explicit photos using a separate <a
+              class="text-primary hover:underline"
+              href="https://github.com/LycheeOrg/Lychee-NSFW-Classification"
+              target="_blank"
+              rel="noopener noreferrer">classification service</a
+            >. Requires a <a class="text-primary hover:underline" href="/docs/se/overview/">Supporter Edition</a> license
+            key.
+          </p>
+        </template>
+
+        <template id="tpl-tag-ai">
+          <span class={tagAiClass}>AI</span>
+        </template>
+        <template id="tpl-tag-se">
+          <span class={tagSeClass}>SE</span>
+        </template>
+        <template id="tpl-badge-ok">
+          <span class={statusOkClass}>Configured</span>
+        </template>
+        <template id="tpl-badge-warn">
+          <span class={statusWarnClass}>To be configured</span>
+        </template>
+
+        <template id="tpl-service-card">
+          <div class="rounded-lg bg-gray-50 dark:bg-slate-800/60">
+            <div class="flex items-center justify-between gap-2 px-3 py-2" data-card-header>
+              <div class="flex items-center gap-1.5" data-card-title-row>
+                <span class="text-xs font-medium" data-card-title></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span data-card-status></span>
+                <button
+                  type="button"
+                  class="p-1 rounded text-gray-400 hover:text-red-600 hover:cursor-pointer dark:text-gray-500 dark:hover:text-red-400"
+                  data-card-remove
+                  aria-label="Remove service"
+                >
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 7h12M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m2 0l-.867 12.142A2 2 0 0115.138 21H8.862a2 2 0 01-1.995-1.858L6 7h12z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="hidden space-y-3 px-3 pb-3" data-card-fields></div>
+          </div>
+        </template>
+
+        <template id="tpl-menu-group">
+          <div class="px-3 pt-2 pb-1 text-xxs font-semibold uppercase tracking-wide text-gray-400"></div>
+        </template>
+        <template id="tpl-menu-item">
+          <button
+            type="button"
+            class="block w-full px-3 py-1.5 text-left text-xs hover:bg-gray-100 dark:hover:bg-slate-800"
+          ></button>
+        </template>
+        <template id="tpl-menu-empty">
+          <p class={descClass}>All services added.</p>
+        </template>
+
+        <template id="tpl-secret-row">
+          <div class="px-4 py-3">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-500 dark:text-gray-400" data-secret-label></span>
+              <div class="flex gap-2">
+                <button type="button" class="wizard-toolbtn" data-secret-copy>Copy</button>
+                <button type="button" class="wizard-toolbtn" data-secret-download>Download</button>
+              </div>
+            </div>
+            <code class="block text-xs break-all" data-secret-value></code>
+          </div>
+        </template>
       </form>
 
       <!-- Output ************************************************************* -->
@@ -658,98 +774,98 @@ const badgeClass =
     }));
     const ALL_SERVICE_ENTRIES: ServiceEntry[] = [...BUILTIN_SERVICE_ENTRIES, ...OAUTH_SERVICE_ENTRIES];
 
-    // Duplicated from the frontmatter's inputClass/labelClass/fieldRowClass/
-    // descClass/checkboxRowClass/checkboxClass — this script is a separate
-    // module and can't reach into Astro's server-side frontmatter scope, so
-    // card markup (built client-side) needs its own copy. Keep in sync with
-    // the frontmatter constants at the top of this file.
-    const JS_INPUT_CLASS =
-      'py-2 px-3 block w-full flex-1 min-w-0 text-xs rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary disabled:opacity-50';
-    const JS_LABEL_CLASS = 'text-xs font-medium sm:w-40 sm:shrink-0';
-    const JS_FIELD_ROW_CLASS = 'flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4';
-    const JS_DESC_CLASS = 'text-xs text-gray-500 dark:text-gray-400 mt-1';
-    const JS_CHECKBOX_ROW_CLASS = 'flex items-start gap-3';
-    const JS_CHECKBOX_CLASS =
-      'mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary';
-    const JS_BADGE_OK_CLASS =
-      'px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
-    const JS_BADGE_WARN_CLASS =
-      'px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-    const JS_TAG_AI_CLASS =
-      'px-1.5 py-0.5 rounded text-[0.65rem] font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200';
-    const JS_TAG_SE_CLASS =
-      'px-1.5 py-0.5 rounded text-[0.65rem] font-semibold bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200';
-
-    // Small tags shown right next to a service's title in its card header —
-    // "AI" for the two on-device AI microservices, "SE" for the one that
-    // additionally requires a Supporter Edition license.
-    function serviceTagsHtml(id: string): string {
-      const tags: string[] = [];
-      if (id === 'facial-recognition' || id === 'nsfw') tags.push(`<span class="${JS_TAG_AI_CLASS}">AI</span>`);
-      if (id === 'nsfw') tags.push(`<span class="${JS_TAG_SE_CLASS}">SE</span>`);
-      return tags.join('');
+    // Clones a <template>'s single root element. All markup/styling for
+    // content this script builds at runtime lives in those templates (see
+    // the bottom of the <form> above) — this function, and the small
+    // "build" functions below it, only ever fill in text/attributes on
+    // cloned real elements, never assemble HTML strings.
+    function cloneTemplate<T extends Element>(id: string): T {
+      const tpl = document.getElementById(id) as HTMLTemplateElement;
+      return tpl.content.firstElementChild!.cloneNode(true) as T;
     }
 
-    function escapeAttr(s: string): string {
-      return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    function buildFieldRow(opts: {
+      id: string;
+      label: string;
+      type?: string;
+      placeholder?: string;
+      desc?: string;
+    }): HTMLElement {
+      const row = cloneTemplate<HTMLElement>('tpl-field-row');
+      const label = row.querySelector('label')!;
+      const input = row.querySelector('input')!;
+      label.htmlFor = opts.id;
+      label.textContent = opts.label;
+      input.id = opts.id;
+      input.name = opts.id;
+      input.type = opts.type ?? 'text';
+      if (opts.placeholder) input.placeholder = opts.placeholder;
+      const desc = row.querySelector('p')!;
+      if (opts.desc) desc.textContent = opts.desc;
+      else desc.remove();
+      return row;
     }
 
-    function cardFieldRow(name: string, label: string, opts: { placeholder?: string; type?: string } = {}): string {
-      return `
-        <div class="${JS_FIELD_ROW_CLASS}">
-          <label for="${name}" class="${JS_LABEL_CLASS}">${label}</label>
-          <input id="${name}" name="${name}" type="${opts.type ?? 'text'}" class="${JS_INPUT_CLASS}" placeholder="${escapeAttr(opts.placeholder ?? '')}" autocomplete="off" />
-        </div>`;
+    function buildCheckboxRow(opts: { id: string; label: string }): HTMLElement {
+      const row = cloneTemplate<HTMLElement>('tpl-checkbox-row');
+      const input = row.querySelector('input')!;
+      const label = row.querySelector('label')!;
+      input.id = opts.id;
+      input.name = opts.id;
+      label.htmlFor = opts.id;
+      label.textContent = opts.label;
+      return row;
     }
 
-    function facialRecognitionFieldsHtml(): string {
-      return `
-        <div class="${JS_CHECKBOX_ROW_CLASS}">
-          <input id="customAiVisionKey" name="customAiVisionKey" type="checkbox" class="${JS_CHECKBOX_CLASS}" />
-          <label for="customAiVisionKey" class="text-xs cursor-pointer select-none">Set your own AI Vision API key</label>
-        </div>
-        <div id="aiVisionKeyField" class="hidden">
-          ${cardFieldRow('aiVisionApiKey', 'AI Vision API key')}
-          <p class="${JS_DESC_CLASS}">Otherwise one is generated for you.</p>
-        </div>`;
+    function buildFacialRecognitionFields(): HTMLElement[] {
+      const toggle = buildCheckboxRow({ id: 'customAiVisionKey', label: 'Set your own AI Vision API key' });
+      const wrap = document.createElement('div');
+      wrap.id = 'aiVisionKeyField';
+      wrap.className = 'hidden';
+      wrap.appendChild(
+        buildFieldRow({ id: 'aiVisionApiKey', label: 'AI Vision API key', desc: 'Otherwise one is generated for you.' })
+      );
+      return [toggle, wrap];
     }
 
-    function nsfwFieldsHtml(): string {
-      return `
-        <p class="${JS_DESC_CLASS}">
-          Flags or blocks explicit photos using a separate
-          <a class="text-primary hover:underline" href="https://github.com/LycheeOrg/Lychee-NSFW-Classification" target="_blank" rel="noopener noreferrer">classification service</a>.
-          Requires a <a class="text-primary hover:underline" href="/docs/se/overview/">Supporter Edition</a> license key.
-        </p>
-        <div class="${JS_CHECKBOX_ROW_CLASS}">
-          <input id="customNsfwKey" name="customNsfwKey" type="checkbox" class="${JS_CHECKBOX_CLASS}" />
-          <label for="customNsfwKey" class="text-xs cursor-pointer select-none">Set your own NSFW API key</label>
-        </div>
-        <div id="nsfwKeyField" class="hidden">
-          ${cardFieldRow('nsfwApiKey', 'NSFW API key')}
-          <p class="${JS_DESC_CLASS}">Otherwise one is generated for you.</p>
-        </div>`;
+    function buildNsfwFields(): HTMLElement[] {
+      const desc = cloneTemplate<HTMLElement>('tpl-nsfw-desc');
+      const toggle = buildCheckboxRow({ id: 'customNsfwKey', label: 'Set your own NSFW API key' });
+      const wrap = document.createElement('div');
+      wrap.id = 'nsfwKeyField';
+      wrap.className = 'hidden';
+      wrap.appendChild(
+        buildFieldRow({ id: 'nsfwApiKey', label: 'NSFW API key', desc: 'Otherwise one is generated for you.' })
+      );
+      return [desc, toggle, wrap];
     }
 
-    function oauthFieldsHtml(provider: OAuthProviderDef): string {
-      const desc = provider.description ? `<p class="${JS_DESC_CLASS}">${provider.description}</p>` : '';
-      const fields = provider.fields
-        .map((f) =>
-          cardFieldRow(`oauth_${provider.id}_${f.key}`, f.label, {
+    function buildOAuthFields(provider: OAuthProviderDef): HTMLElement[] {
+      const nodes: HTMLElement[] = [];
+      if (provider.description) {
+        const p = cloneTemplate<HTMLElement>('tpl-desc-paragraph');
+        p.textContent = provider.description;
+        nodes.push(p);
+      }
+      for (const f of provider.fields) {
+        nodes.push(
+          buildFieldRow({
+            id: `oauth_${provider.id}_${f.key}`,
+            label: f.label,
             placeholder: f.placeholder,
             type: /secret/i.test(f.key) ? 'password' : 'text',
           })
-        )
-        .join('');
-      return desc + fields;
+        );
+      }
+      return nodes;
     }
 
-    function fieldsHtmlFor(id: string): string {
-      if (id === 'phpmyadmin') return '';
-      if (id === 'facial-recognition') return facialRecognitionFieldsHtml();
-      if (id === 'nsfw') return nsfwFieldsHtml();
+    function fieldNodesFor(id: string): HTMLElement[] {
+      if (id === 'phpmyadmin') return [];
+      if (id === 'facial-recognition') return buildFacialRecognitionFields();
+      if (id === 'nsfw') return buildNsfwFields();
       const provider = OAUTH_PROVIDERS.find((p) => p.id === id);
-      return provider ? oauthFieldsHtml(provider) : '';
+      return provider ? buildOAuthFields(provider) : [];
     }
 
     function isServiceConfigured(id: string): boolean {
@@ -769,36 +885,42 @@ const badgeClass =
 
     // Cards render collapsed to a single summary row by default — with
     // several services added at once (a handful of OAuth providers, say)
-    // full cards would make the list unwieldy. "Configure" expands the
-    // fields inline; startExpanded is used only for the card just added, so
-    // the user isn't forced to click twice to start filling it in.
-    function renderServiceCard(id: string, label: string, startExpanded = false): string {
-      const fields = fieldsHtmlFor(id);
-      const toggleBtn = fields
-        ? `<button type="button" class="wizard-toolbtn" data-toggle-service="${id}">${startExpanded ? 'Collapse' : 'Configure'}</button>`
-        : '';
-      return `
-        <div class="rounded-lg bg-gray-50 dark:bg-slate-800/60" data-service-card="${id}">
-          <div class="flex items-center justify-between gap-2 px-3 py-2">
-            <div class="flex items-center gap-1.5">
-              <span class="text-xs font-medium">${label}</span>
-              ${serviceTagsHtml(id)}
-            </div>
-            <div class="flex items-center gap-2">
-              <span data-status-for="${id}"></span>
-              ${toggleBtn}
-              <button type="button" class="wizard-toolbtn" data-remove-service="${id}">Remove</button>
-            </div>
-          </div>
-          ${fields ? `<div class="${startExpanded ? '' : 'hidden'} space-y-3 px-3 pb-3" data-fields-for="${id}">${fields}</div>` : ''}
-        </div>`;
+    // full cards would make the list unwieldy. Clicking the header row
+    // expands the fields inline. Whether a freshly added card starts
+    // expanded or collapsed depends on isServiceConfigured, which needs the
+    // card's fields connected to the form — so that check happens in
+    // addService, after this card is appended to the DOM.
+    function buildServiceCard(id: string, label: string): HTMLElement {
+      const card = cloneTemplate<HTMLElement>('tpl-service-card');
+      card.dataset.serviceCard = id;
+      card.querySelector<HTMLElement>('[data-card-title]')!.textContent = label;
+
+      const titleRow = card.querySelector<HTMLElement>('[data-card-title-row]')!;
+      if (id === 'facial-recognition' || id === 'nsfw') titleRow.appendChild(cloneTemplate('tpl-tag-ai'));
+      if (id === 'nsfw') titleRow.appendChild(cloneTemplate('tpl-tag-se'));
+
+      card.querySelector<HTMLElement>('[data-card-status]')!.dataset.statusFor = id;
+      card.querySelector<HTMLButtonElement>('[data-card-remove]')!.dataset.removeService = id;
+
+      const fields = fieldNodesFor(id);
+      const fieldsContainer = card.querySelector<HTMLElement>('[data-card-fields]')!;
+      const header = card.querySelector<HTMLElement>('[data-card-header]')!;
+      if (fields.length > 0) {
+        fields.forEach((n) => fieldsContainer.appendChild(n));
+        header.classList.add('hover:cursor-pointer');
+        header.dataset.toggleService = id;
+      } else {
+        fieldsContainer.remove();
+      }
+      return card;
     }
 
     function updateServiceStatusBadges() {
       document.querySelectorAll<HTMLElement>('[data-status-for]').forEach((el) => {
-        const ok = isServiceConfigured(el.dataset.statusFor!);
-        el.className = ok ? JS_BADGE_OK_CLASS : JS_BADGE_WARN_CLASS;
-        el.textContent = ok ? 'Configured' : 'To be configured';
+        const id = el.dataset.statusFor!;
+        const badge = cloneTemplate<HTMLElement>(isServiceConfigured(id) ? 'tpl-badge-ok' : 'tpl-badge-warn');
+        badge.dataset.statusFor = id;
+        el.replaceWith(badge);
       });
     }
 
@@ -811,11 +933,10 @@ const badgeClass =
     function renderAddServiceMenu() {
       const active = new Set(activeServiceIds());
       const needsDb = needsDbService(readAnswers());
-      const available = ALL_SERVICE_ENTRIES.filter(
-        (s) => !active.has(s.id) && (s.id !== 'phpmyadmin' || needsDb)
-      );
+      const available = ALL_SERVICE_ENTRIES.filter((s) => !active.has(s.id) && (s.id !== 'phpmyadmin' || needsDb));
+      addServiceMenu.innerHTML = '';
       if (available.length === 0) {
-        addServiceMenu.innerHTML = `<p class="px-3 py-2 text-xs text-gray-500 dark:text-gray-400">All services added.</p>`;
+        addServiceMenu.appendChild(cloneTemplate('tpl-menu-empty'));
         return;
       }
       const groups = new Map<string, ServiceEntry[]>();
@@ -823,24 +944,26 @@ const badgeClass =
         if (!groups.has(s.group)) groups.set(s.group, []);
         groups.get(s.group)!.push(s);
       }
-      addServiceMenu.innerHTML = Array.from(groups.entries())
-        .map(
-          ([group, items]) => `
-            <div class="px-3 pt-2 pb-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-400">${group}</div>
-            ${items
-              .map(
-                (s) =>
-                  `<button type="button" class="block w-full px-3 py-1.5 text-left text-xs hover:bg-gray-100 dark:hover:bg-slate-800" data-add-service="${s.id}">${s.label}</button>`
-              )
-              .join('')}`
-        )
-        .join('');
+      for (const [group, items] of groups) {
+        const groupEl = cloneTemplate<HTMLElement>('tpl-menu-group');
+        groupEl.textContent = group;
+        addServiceMenu.appendChild(groupEl);
+        for (const s of items) {
+          const btn = cloneTemplate<HTMLButtonElement>('tpl-menu-item');
+          btn.textContent = s.label;
+          btn.dataset.addService = s.id;
+          addServiceMenu.appendChild(btn);
+        }
+      }
     }
 
     function addService(id: string) {
       const entry = ALL_SERVICE_ENTRIES.find((s) => s.id === id);
       if (!entry || serviceCards.querySelector(`[data-service-card="${id}"]`)) return;
-      serviceCards.insertAdjacentHTML('beforeend', renderServiceCard(id, entry.label, true));
+      const card = serviceCards.appendChild(buildServiceCard(id, entry.label));
+      // isServiceConfigured reads the card's own fields via form.elements, so
+      // it only sees them once the card is connected to the DOM (above).
+      card.querySelector('[data-card-fields]')?.classList.toggle('hidden', isServiceConfigured(id));
       renderAddServiceMenu();
       render();
     }
@@ -873,14 +996,10 @@ const badgeClass =
         removeService(removeBtn.dataset.removeService!);
         return;
       }
-      const toggleBtn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-toggle-service]');
-      if (toggleBtn) {
-        const id = toggleBtn.dataset.toggleService!;
-        const fieldsEl = serviceCards.querySelector(`[data-fields-for="${id}"]`);
-        if (fieldsEl) {
-          const nowHidden = fieldsEl.classList.toggle('hidden');
-          toggleBtn.textContent = nowHidden ? 'Configure' : 'Collapse';
-        }
+      const header = (e.target as HTMLElement).closest<HTMLElement>('[data-toggle-service]');
+      if (header) {
+        const fieldsEl = header.closest('[data-service-card]')?.querySelector('[data-card-fields]');
+        fieldsEl?.classList.toggle('hidden');
       }
     });
 
@@ -976,18 +1095,13 @@ const badgeClass =
     function renderSecretsPanel(result: GenerateResult) {
       outputSecrets.innerHTML = '';
       for (const s of result.secretFiles) {
-        const row = document.createElement('div');
-        row.className = 'px-4 py-3';
-        row.innerHTML = `
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs text-gray-500 dark:text-gray-400">secrets/${s.key}</span>
-            <div class="flex gap-2">
-              <button type="button" class="wizard-toolbtn" data-copy-text="${encodeURIComponent(s.value)}">Copy</button>
-              <button type="button" class="wizard-toolbtn" data-download-text="${encodeURIComponent(s.value)}" data-filename="${s.key}">Download</button>
-            </div>
-          </div>
-          <code class="block text-xs break-all">${s.value}</code>
-        `;
+        const row = cloneTemplate<HTMLElement>('tpl-secret-row');
+        row.querySelector<HTMLElement>('[data-secret-label]')!.textContent = `secrets/${s.key}`;
+        row.querySelector<HTMLElement>('[data-secret-value]')!.textContent = s.value;
+        row.querySelector<HTMLButtonElement>('[data-secret-copy]')!.dataset.copyText = encodeURIComponent(s.value);
+        const downloadBtn = row.querySelector<HTMLButtonElement>('[data-secret-download]')!;
+        downloadBtn.dataset.downloadText = encodeURIComponent(s.value);
+        downloadBtn.dataset.filename = s.key;
         outputSecrets.appendChild(row);
       }
     }
