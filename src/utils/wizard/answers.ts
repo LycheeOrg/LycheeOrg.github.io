@@ -38,6 +38,12 @@ export interface WizardAnswers {
   customNsfwKey: boolean;
   nsfwApiKey: string;
 
+  // OAuth login providers — ids of providers the user has added a card for
+  // (see oauthProviders.ts), and their filled-in field values, keyed
+  // `${providerId}:${fieldKey}`.
+  activeOAuthProviders: string[];
+  oauthFieldValues: Record<string, string>;
+
   // Queue worker
   useWorker: boolean;
   workerCount: string;
@@ -72,12 +78,14 @@ export function defaultAnswers(): WizardAnswers {
     useEnvFile: true,
     useDockerSecrets: true,
     enablePhpMyAdmin: false,
-    enableAiVision: true,
+    enableAiVision: false,
     customAiVisionKey: false,
     aiVisionApiKey: '',
     enableNsfw: false,
     customNsfwKey: false,
     nsfwApiKey: '',
+    activeOAuthProviders: [],
+    oauthFieldValues: {},
     useWorker: true,
     workerCount: '1',
     enableTraefik: false,

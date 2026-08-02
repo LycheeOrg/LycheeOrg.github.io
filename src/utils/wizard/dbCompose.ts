@@ -61,12 +61,14 @@ export interface AddSqliteVolumeResult {
   added: boolean;
 }
 
-// addSqliteVolume mounts a host directory onto /app/database, right after
-// the existing uploads/logs/tmp mounts in the shared x-base-lychee-setup
-// anchor (so both lychee_api and lychee_worker inherit it). Without this,
-// SQLite's database.sqlite (Laravel's database_path() default — see
-// config/database.php) lives only inside the container's writable layer and
-// is lost on `docker compose down` / container recreation.
+// addSqliteVolume mounts the SQLite database file onto /app/database, right
+// after the existing uploads/logs/tmp mounts in the shared
+// x-base-lychee-setup anchor (so both lychee_api and lychee_worker inherit
+// it). Without this, SQLite's database.sqlite (Laravel's database_path()
+// default — see config/database.php) lives only inside the container's
+// writable layer and is lost on `docker compose down` / container
+// recreation. Mounting the file itself (not the whole directory) avoids
+// masking anything else Lychee may keep under /app/database.
 export function addSqliteVolume(compose: string): AddSqliteVolumeResult {
   const lines = compose.split('\n');
   const anchor = '    - ./lychee/tmp:/app/storage/tmp';
@@ -76,7 +78,7 @@ export function addSqliteVolume(compose: string): AddSqliteVolumeResult {
   const insertion = [
     '    # Database: where the SQLite database file is stored, so it persists',
     '    # across container restarts/recreation.',
-    '    - ./lychee/database:/app/database',
+    '    - ./lychee/database/database.sqlite:/app/database/database.sqlite',
   ];
   const newLines = [...lines.slice(0, idx + 1), ...insertion, ...lines.slice(idx + 1)];
   return { compose: newLines.join('\n'), added: true };

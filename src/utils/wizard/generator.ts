@@ -9,7 +9,9 @@ import { removeDbService, addSqliteVolume } from './dbCompose';
 import { insertNsfwService } from './nsfwService';
 import { removeWorkerService } from './workerCompose';
 import { addTraefikLabels } from './traefikCompose';
+import { removePhpMyAdminService } from './phpMyAdminCompose';
 import { removeEnvFileReferences, removePhpMyAdminProfileGate, inlineEnvVars } from './envFileCompose';
+import { OAUTH_PROVIDERS } from './oauthProviders';
 import { needsDbService, type WizardAnswers } from './answers';
 
 interface KV {
@@ -144,7 +146,7 @@ export function generate(
     compose = patched;
     if (!added) {
       warnings.push(
-        'could not add a persistent volume for the SQLite database automatically; add `./lychee/database:/app/database` under lychee_api/lychee_worker by hand, or your data will be lost when the container is recreated'
+        'could not add a persistent volume for the SQLite database automatically; add `./lychee/database/database.sqlite:/app/database/database.sqlite` under lychee_api/lychee_worker by hand, or your data will be lost when the container is recreated'
       );
     }
   }
@@ -164,6 +166,20 @@ export function generate(
       warnings.push('could not remove the queue worker service automatically; please remove `lychee_worker` by hand');
     }
   }
+  if (a.enablePhpMyAdmin && needsDb) {
+    const { compose: patched, removed } = removePhpMyAdminProfileGate(compose);
+    compose = patched;
+    if (!removed) {
+      warnings.push('could not enable phpMyAdmin automatically; remove its `profiles:` entry from docker-compose.yaml by hand, or it will stay off');
+    }
+  } else {
+    const { compose: patched, removed } = removePhpMyAdminService(compose);
+    compose = patched;
+    if (!removed) {
+      warnings.push('could not remove the phpMyAdmin service automatically; please remove `phpmyadmin` by hand');
+    }
+  }
+
   let traefikAdded = false;
   if (a.enableTraefik) {
     const { compose: patched, added } = addTraefikLabels(compose, {
@@ -205,9 +221,19 @@ export function generate(
     { key: 'TIMEZONE', value: a.timezone },
     { key: 'DB_CONNECTION', value: DB_CONNECTION_VALUE[a.dbEngine] },
     { key: 'QUEUE_CONNECTION', value: a.useWorker ? 'database' : 'sync' },
+    // Traefik sits in front of Lychee on the same Docker network, so its
+    // requests need to be trusted for X-Forwarded-* headers to be honored.
+    { key: 'TRUSTED_PROXIES', value: a.enableTraefik ? '*' : 'null' },
   ];
   if (a.dbEngine !== 'sqlite') {
     envSets.push({ key: 'DB_DATABASE', value: a.dbDatabase }, { key: 'DB_USERNAME', value: a.dbUsername });
+  }
+  for (const providerId of a.activeOAuthProviders) {
+    const provider = OAUTH_PROVIDERS.find((p) => p.id === providerId);
+    if (!provider) continue;
+    for (const field of provider.fields) {
+      envSets.push({ key: field.envKey, value: a.oauthFieldValues[`${providerId}:${field.key}`] ?? '' });
+    }
   }
 
   let secretFiles: KV[] = [];
@@ -238,14 +264,10 @@ export function generate(
       { key: 'DB_PORT', value: a.dbPort || DB_DEFAULT_PORT[a.dbEngine] }
     );
   }
-  if (a.enablePhpMyAdmin && needsDb) {
-    overrides.push({ key: 'COMPOSE_PROFILES', value: 'phpmyadmin' });
-  }
-
   const aiVisionEnabled = a.enableAiVision || a.enableNsfw;
   overrides.push({ key: 'AI_VISION_ENABLED', value: boolStr(aiVisionEnabled) });
   if (a.enableAiVision) {
-    overrides.push({ key: 'AI_VISION_API_KEY', value: aiVisionApiKey });
+    overrides.push({ key: 'AI_VISION_FACE_API_KEY', value: aiVisionApiKey });
   }
   if (a.enableNsfw) {
     overrides.push(
@@ -269,15 +291,6 @@ export function generate(
     compose = patched;
     if (!removed) {
       warnings.push('could not remove the env_file reference automatically; please remove it from docker-compose.yaml by hand');
-    }
-    if (a.enablePhpMyAdmin && needsDb) {
-      const { compose: patched2, removed: gateRemoved } = removePhpMyAdminProfileGate(compose);
-      compose = patched2;
-      if (!gateRemoved) {
-        warnings.push(
-          'could not enable phpMyAdmin without a .env file automatically; remove its `profiles:` entry from docker-compose.yaml by hand, or it will stay off'
-        );
-      }
     }
     const values: Record<string, string> = {};
     for (const kv of [...envSets, ...overrides]) values[kv.key] = kv.value;

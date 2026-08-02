@@ -261,7 +261,11 @@ x-common-env:
   # MAIL_FROM_NAME:
   # MAIL_FROM_ADDRESS:
 
-  # TRUSTED_PROXIES=null
+  # Trusted proxy IPs (or CIDR ranges) sitting in front of Lychee, so it uses
+  # their X-Forwarded-* headers for the real client IP/scheme instead of the
+  # proxy's own. If you're behind Traefik (or any reverse proxy) on the same
+  # Docker network, set this to "*" to trust all of them.
+  TRUSTED_PROXIES: "${TRUSTED_PROXIES:-null}"
 
   # Disable Basic Auth. This means that the only way to authenticate is via the API token or Oauth.
   # This should only be toggled AFTER having set up the admin account and bound the Oauth client.
@@ -323,63 +327,63 @@ x-common-env:
   # LDAP_CONNECTION_TIMEOUT=5
 
   # Oauth token data
-  # XXX_REDIRECT_URI should be left as default unless you know exactly what you do.
+  # *_REDIRECT_URI should be left as default unless you know exactly what you do.
 
-  # AMAZON_SIGNIN_CLIENT_ID=
-  # AMAZON_SIGNIN_SECRET=
-  # AMAZON_SIGNIN_REDIRECT_URI=/auth/amazon/redirect
+  AMAZON_SIGNIN_CLIENT_ID: "${AMAZON_SIGNIN_CLIENT_ID:-}"
+  AMAZON_SIGNIN_SECRET: "${AMAZON_SIGNIN_SECRET:-}"
+  AMAZON_SIGNIN_REDIRECT_URI: "${AMAZON_SIGNIN_REDIRECT_URI:-/auth/amazon/redirect}"
 
   # https://developer.okta.com/blog/2019/06/04/what-the-heck-is-sign-in-with-apple
   # Note: the client secret used for "Sign In with Apple" is a JWT token that can have a maximum lifetime of 6 months.
   # The article above explains how to generate the client secret on demand and you'll need to update this every 6 months.
   # To generate the client secret for each request, see Generating A Client Secret For Sign In With Apple On Each Request.
   # https://bannister.me/blog/generating-a-client-secret-for-sign-in-with-apple-on-each-request
-  # APPLE_CLIENT_ID=
-  # APPLE_CLIENT_SECRET=
-  # APPLE_REDIRECT_URI=/auth/apple/redirect
+  APPLE_CLIENT_ID: "${APPLE_CLIENT_ID:-}"
+  APPLE_CLIENT_SECRET: "${APPLE_CLIENT_SECRET:-}"
+  APPLE_REDIRECT_URI: "${APPLE_REDIRECT_URI:-/auth/apple/redirect}"
 
-  # FACEBOOK_CLIENT_ID=
-  # FACEBOOK_CLIENT_SECRET=
-  # FACEBOOK_REDIRECT_URI=/auth/facebook/redirect
+  FACEBOOK_CLIENT_ID: "${FACEBOOK_CLIENT_ID:-}"
+  FACEBOOK_CLIENT_SECRET: "${FACEBOOK_CLIENT_SECRET:-}"
+  FACEBOOK_REDIRECT_URI: "${FACEBOOK_REDIRECT_URI:-/auth/facebook/redirect}"
 
-  # GITHUB_CLIENT_ID=
-  # GITHUB_CLIENT_SECRET=
-  # GITHUB_REDIRECT_URI=/auth/github/redirect
+  GITHUB_CLIENT_ID: "${GITHUB_CLIENT_ID:-}"
+  GITHUB_CLIENT_SECRET: "${GITHUB_CLIENT_SECRET:-}"
+  GITHUB_REDIRECT_URI: "${GITHUB_REDIRECT_URI:-/auth/github/redirect}"
 
-  # GOOGLE_CLIENT_ID=
-  # GOOGLE_CLIENT_SECRET=
-  # GOOGLE_REDIRECT_URI=/auth/google/redirect
+  GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID:-}"
+  GOOGLE_CLIENT_SECRET: "${GOOGLE_CLIENT_SECRET:-}"
+  GOOGLE_REDIRECT_URI: "${GOOGLE_REDIRECT_URI:-/auth/google/redirect}"
 
-  # MASTODON_DOMAIN=https://mastodon.social
-  # MASTODON_ID=
-  # MASTODON_SECRET=
-  # MASTODON_REDIRECT_URI=/auth/mastodon/redirect
+  MASTODON_DOMAIN: "${MASTODON_DOMAIN:-https://mastodon.social}"
+  MASTODON_ID: "${MASTODON_ID:-}"
+  MASTODON_SECRET: "${MASTODON_SECRET:-}"
+  MASTODON_REDIRECT_URI: "${MASTODON_REDIRECT_URI:-/auth/mastodon/redirect}"
 
-  # MICROSOFT_CLIENT_ID=
-  # MICROSOFT_CLIENT_SECRET=
-  # MICROSOFT_REDIRECT_URI=/auth/microsoft/redirect
-  # MICROSOFT_TENANT_ID=
+  MICROSOFT_CLIENT_ID: "${MICROSOFT_CLIENT_ID:-}"
+  MICROSOFT_CLIENT_SECRET: "${MICROSOFT_CLIENT_SECRET:-}"
+  MICROSOFT_REDIRECT_URI: "${MICROSOFT_REDIRECT_URI:-/auth/microsoft/redirect}"
+  MICROSOFT_TENANT_ID: "${MICROSOFT_TENANT_ID:-}"
 
-  # NEXTCLOUD_CLIENT_ID=
-  # NEXTCLOUD_CLIENT_SECRET=
-  # NEXTCLOUD_REDIRECT_URI=/auth/nextcloud/redirect
-  # NEXTCLOUD_BASE_URI=
+  NEXTCLOUD_CLIENT_ID: "${NEXTCLOUD_CLIENT_ID:-}"
+  NEXTCLOUD_CLIENT_SECRET: "${NEXTCLOUD_CLIENT_SECRET:-}"
+  NEXTCLOUD_REDIRECT_URI: "${NEXTCLOUD_REDIRECT_URI:-/auth/nextcloud/redirect}"
+  NEXTCLOUD_BASE_URI: "${NEXTCLOUD_BASE_URI:-}"
 
-  # KEYCLOAK_CLIENT_ID=
-  # KEYCLOAK_CLIENT_SECRET=
-  # KEYCLOAK_REDIRECT_URI=/auth/keycloak/redirect
-  # KEYCLOAK_BASE_URL=
-  # KEYCLOAK_REALM=
+  KEYCLOAK_CLIENT_ID: "${KEYCLOAK_CLIENT_ID:-}"
+  KEYCLOAK_CLIENT_SECRET: "${KEYCLOAK_CLIENT_SECRET:-}"
+  KEYCLOAK_REDIRECT_URI: "${KEYCLOAK_REDIRECT_URI:-/auth/keycloak/redirect}"
+  KEYCLOAK_BASE_URL: "${KEYCLOAK_BASE_URL:-}"
+  KEYCLOAK_REALM: "${KEYCLOAK_REALM:-}"
 
-  # AUTHENTIK_BASE_URL=
-  # AUTHENTIK_CLIENT_ID=
-  # AUTHENTIK_CLIENT_SECRET=
-  # AUTHENTIK_REDIRECT_URI=/auth/authentik/redirect
+  AUTHENTIK_BASE_URL: "${AUTHENTIK_BASE_URL:-}"
+  AUTHENTIK_CLIENT_ID: "${AUTHENTIK_CLIENT_ID:-}"
+  AUTHENTIK_CLIENT_SECRET: "${AUTHENTIK_CLIENT_SECRET:-}"
+  AUTHENTIK_REDIRECT_URI: "${AUTHENTIK_REDIRECT_URI:-/auth/authentik/redirect}"
 
-  # AUTHELIA_BASE_URL=
-  # AUTHELIA_CLIENT_ID=
-  # AUTHELIA_CLIENT_SECRET=
-  # AUTHELIA_REDIRECT_URI=/auth/authelia/redirect
+  AUTHELIA_BASE_URL: "${AUTHELIA_BASE_URL:-}"
+  AUTHELIA_CLIENT_ID: "${AUTHELIA_CLIENT_ID:-}"
+  AUTHELIA_CLIENT_SECRET: "${AUTHELIA_CLIENT_SECRET:-}"
+  AUTHELIA_REDIRECT_URI: "${AUTHELIA_REDIRECT_URI:-/auth/authelia/redirect}"
 
   # AWS support data
 
@@ -420,7 +424,7 @@ x-common-env:
   # Facial recognition                                              #
   ###################################################################
   AI_VISION_ENABLED: "${AI_VISION_ENABLED:-true}"
-  AI_VISION_FACE_API_KEY: "${AI_VISION_API_KEY:-changeme}"
+  AI_VISION_FACE_API_KEY: "${AI_VISION_FACE_API_KEY:-changeme}"
   AI_VISION_FACE_URL: "http://lychee_facial_recognition:8000"
 
 services:
@@ -579,7 +583,7 @@ services:
       # Lychee instance base URL (no trailing slash)
       VISION_FACE_LYCHEE_API_URL: "http://lychee_api:8000"
       # Shared API key — must match AI_VISION_FACE_API_KEY in Lychee's .env
-      VISION_FACE_API_KEY: "${AI_VISION_API_KEY:-changeme}"
+      VISION_FACE_API_KEY: "${AI_VISION_FACE_API_KEY:-changeme}"
       # Set to false for development environments with self-signed certificates
       VISION_FACE_VERIFY_SSL: "${AI_VISION_VERIFY_SSL:-true}"
       # Skip the Lychee connectivity check at startup (useful for local dev)

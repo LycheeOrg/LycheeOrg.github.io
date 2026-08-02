@@ -8,11 +8,12 @@ const metadata = {
 };
 
 const inputClass =
-  'py-2.5 px-4 block w-full text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary disabled:opacity-50';
+  'py-2 px-3 block w-full flex-1 min-w-0 text-xs rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary disabled:opacity-50';
 const selectClass = inputClass;
-const labelClass = 'block text-sm font-medium mb-1';
+const labelClass = 'text-xs font-medium sm:w-40 sm:shrink-0';
+const fieldRowClass = 'flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4';
 const descClass = 'text-xs text-gray-500 dark:text-gray-400 mt-1';
-const fieldsetClass = 'rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-slate-900';
+const fieldsetClass = 'bg-white dark:bg-slate-900';
 const checkboxRowClass = 'flex items-start gap-3';
 const checkboxClass =
   'mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary';
@@ -21,39 +22,46 @@ const badgeClass =
 ---
 
 <Layout metadata={metadata}>
-  <section>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 mb-8">
-      <h1 class="text-lg font-bold leading-tight">
-        Docker Compose <span class="text-primary">Wizard</span>
-      </h1>
-      <p class="text-xs text-gray-500 dark:text-gray-400">
-        Generates <code>docker-compose.yaml</code> and <code>.env</code> for Lychee, entirely in your browser &mdash; nothing
-        is sent to any server.<br>
-      </p>
-      <p id="template-source" class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
-        Loading the latest templates&hellip;
-      </p>
-    </div>
-
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-start">
+  <section class="lg:h-screen lg:overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-8 grid gap-8 lg:grid-cols-2 lg:h-full w-full">
       <!-- Form ************************************************************* -->
-      <form id="wizard-form" class="space-y-6 pb-8" novalidate>
-        <ol id="wizard-stepper" class="flex flex-wrap gap-2" role="tablist">
-          <li><button type="button" class="wizard-step-btn" data-step-btn="0" aria-selected="true">1. General</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="1">2. Database</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="2">3. Secrets</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="3">4. Services</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="4">5. Workers &amp; Proxy</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="5">6. System</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="6">7. Next Steps</button></li>
+      <form id="wizard-form" class="space-y-6 pb-8 lg:flex lg:h-full lg:min-h-0 lg:flex-col" novalidate>
+        <ol id="wizard-stepper" class="flex flex-wrap gap-2 lg:shrink-0" role="tablist">
+          <li><button type="button" class="wizard-step-btn" data-step-btn="0" aria-selected="true">1. Welcome</button></li>
+          <li><button type="button" class="wizard-step-btn" data-step-btn="1">2. General</button></li>
+          <li><button type="button" class="wizard-step-btn" data-step-btn="2">3. Database</button></li>
+          <li><button type="button" class="wizard-step-btn" data-step-btn="3">4. Secrets</button></li>
+          <li><button type="button" class="wizard-step-btn" data-step-btn="4">5. Services</button></li>
+          <li><button type="button" class="wizard-step-btn" data-step-btn="5">6. Workers &amp; Proxy</button></li>
+          <li><button type="button" class="wizard-step-btn" data-step-btn="6">7. System</button></li>
+          <li><button type="button" class="wizard-step-btn" data-step-btn="7">8. Deploy</button></li>
         </ol>
 
+        <div class="lg:flex-1 lg:min-h-0 lg:overflow-y-auto overflow-x-hidden space-y-6">
         <div class="wizard-step" data-step="0">
+        <fieldset class={fieldsetClass}>
+          <div class="space-y-4 mt-2">
+            <h1 class="text-xl font-bold leading-tight">
+              Docker Compose <span class="text-primary">Wizard</span>
+            </h1>
+            <p class="text-xs text-gray-600 dark:text-gray-300">
+              Answer a few questions and we'll generate a ready-to-run <code>docker-compose.yaml</code> and <code
+                >.env</code
+              > for Lychee &mdash; entirely in your browser, nothing is sent to any server. Click <strong>Next</strong> to get started.
+            </p>
+            <p id="template-source" class="text-xs text-gray-500 dark:text-gray-400">
+              Loading the latest templates&hellip;
+            </p>
+          </div>
+        </fieldset>
+        </div>
+
+        <div class="wizard-step hidden" data-step="1">
         <fieldset class={fieldsetClass}>
           <div class="space-y-4 mt-2">
             <div class={checkboxRowClass}>
               <input id="useEnvFile" name="useEnvFile" type="checkbox" class={checkboxClass} checked />
-              <label for="useEnvFile" class="text-sm cursor-pointer select-none">Use a separate .env file</label>
+              <label for="useEnvFile" class="text-xs cursor-pointer select-none">Use a separate .env file</label>
               <span class={badgeClass}>Recommended</span>
             </div>
             <p class={descClass}>
@@ -64,37 +72,43 @@ const badgeClass =
 
             <hr class="border-gray-200 dark:border-gray-700" />
 
-            <div>
+            <div class={fieldRowClass}>
               <label for="appName" class={labelClass}>Application name</label>
               <input id="appName" name="appName" type="text" class={inputClass} value="Lychee" />
             </div>
             <div>
-              <label for="appUrl" class={labelClass}>Application URL</label>
-              <input id="appUrl" name="appUrl" type="text" class={inputClass} value="http://localhost" />
+              <div class={fieldRowClass}>
+                <label for="appUrl" class={labelClass}>Application URL</label>
+                <input id="appUrl" name="appUrl" type="text" class={inputClass} value="http://localhost" />
+              </div>
               <p class={descClass}>The host name up to the TLD, e.g. https://photos.example.com</p>
             </div>
             <div>
-              <label for="appPort" class={labelClass}>Port to expose Lychee on</label>
-              <input id="appPort" name="appPort" type="text" inputmode="numeric" class={inputClass} value="8000" />
+              <div class={fieldRowClass}>
+                <label for="appPort" class={labelClass}>Port to expose Lychee on</label>
+                <input id="appPort" name="appPort" type="text" inputmode="numeric" class={inputClass} value="8000" />
+              </div>
               <p class={descClass} data-error="appPort"></p>
             </div>
             <div class={checkboxRowClass}>
               <input id="appForceHttps" name="appForceHttps" type="checkbox" class={checkboxClass} />
-              <label for="appForceHttps" class="text-sm cursor-pointer select-none">Force HTTPS</label>
+              <label for="appForceHttps" class="text-xs cursor-pointer select-none">Force HTTPS</label>
             </div>
             <div>
-              <label for="timezone" class={labelClass}>Timezone</label>
-              <input id="timezone" name="timezone" type="text" class={inputClass} value="UTC" />
+              <div class={fieldRowClass}>
+                <label for="timezone" class={labelClass}>Timezone</label>
+                <input id="timezone" name="timezone" type="text" class={inputClass} value="UTC" />
+              </div>
               <p class={descClass}>A named timezone identifier, e.g. Europe/Paris</p>
             </div>
           </div>
         </fieldset>
         </div>
 
-        <div class="wizard-step hidden" data-step="1">
+        <div class="wizard-step hidden" data-step="2">
         <fieldset class={fieldsetClass}>
           <div class="space-y-4 mt-2">
-            <div>
+            <div class={fieldRowClass}>
               <label for="dbEngine" class={labelClass}>Database engine</label>
               <select id="dbEngine" name="dbEngine" class={selectClass}>
                 <option value="mariadb">MariaDB / MySQL</option>
@@ -103,7 +117,7 @@ const badgeClass =
               </select>
             </div>
 
-            <div id="dbLocationGroup">
+            <div id="dbLocationGroup" class={fieldRowClass}>
               <label for="dbLocation" class={labelClass}>Where should it run?</label>
               <select id="dbLocation" name="dbLocation" class={selectClass}>
                 <option value="docker">In this docker-compose (recommended)</option>
@@ -118,11 +132,11 @@ const badgeClass =
             <div id="dbHostPortFields" class="hidden">
               <div class="grid grid-cols-2 gap-4">
                 <div>
-                  <label for="dbHost" class={labelClass}>Database host</label>
+                  <label for="dbHost" class="block text-xs font-medium mb-1">Database host</label>
                   <input id="dbHost" name="dbHost" type="text" class={inputClass} placeholder="db.example.com" />
                 </div>
                 <div>
-                  <label for="dbPort" class={labelClass}>Database port</label>
+                  <label for="dbPort" class="block text-xs font-medium mb-1">Database port</label>
                   <input
                     id="dbPort"
                     name="dbPort"
@@ -137,21 +151,21 @@ const badgeClass =
             </div>
 
             <div id="dbCredentialFields" class="space-y-4">
-              <div>
+              <div class={fieldRowClass}>
                 <label for="dbDatabase" class={labelClass}>Database name</label>
                 <input id="dbDatabase" name="dbDatabase" type="text" class={inputClass} value="lychee" />
               </div>
-              <div>
+              <div class={fieldRowClass}>
                 <label for="dbUsername" class={labelClass}>Database username</label>
                 <input id="dbUsername" name="dbUsername" type="text" class={inputClass} value="lychee" />
               </div>
               <div class={checkboxRowClass}>
                 <input id="generatePasswords" name="generatePasswords" type="checkbox" class={checkboxClass} checked />
-                <label for="generatePasswords" class="text-sm cursor-pointer select-none"
+                <label for="generatePasswords" class="text-xs cursor-pointer select-none"
                   >Generate secure database passwords for me</label
                 >
               </div>
-              <div id="dbPasswordField" class="hidden">
+              <div id="dbPasswordField" class={`hidden ${fieldRowClass}`}>
                 <label for="dbPassword" class={labelClass}>Database password</label>
                 <input
                   id="dbPassword"
@@ -161,7 +175,7 @@ const badgeClass =
                   class={inputClass}
                 />
               </div>
-              <div id="dbRootPasswordField" class="hidden">
+              <div id="dbRootPasswordField" class={`hidden ${fieldRowClass}`}>
                 <label for="dbRootPassword" class={labelClass}>Database root password</label>
                 <input
                   id="dbRootPassword"
@@ -176,12 +190,12 @@ const badgeClass =
         </fieldset>
         </div>
 
-        <div class="wizard-step hidden" data-step="2">
+        <div class="wizard-step hidden" data-step="3">
         <fieldset class={fieldsetClass}>
           <div class="mt-2">
             <div class={checkboxRowClass}>
               <input id="useDockerSecrets" name="useDockerSecrets" type="checkbox" class={checkboxClass} checked />
-              <label for="useDockerSecrets" class="text-sm cursor-pointer select-none">
+              <label for="useDockerSecrets" class="text-xs cursor-pointer select-none">
                 Use Docker secrets (file-based) for <code>APP_KEY</code> / <code>DB_PASSWORD</code> /
                 <code>DB_ROOT_PASSWORD</code>
               </label>
@@ -192,66 +206,35 @@ const badgeClass =
         </fieldset>
         </div>
 
-        <div class="wizard-step hidden" data-step="3">
+        <div class="wizard-step hidden" data-step="4">
         <fieldset class={fieldsetClass}>
           <div class="space-y-4 mt-2">
-            <div id="phpMyAdminField" class={checkboxRowClass}>
-              <input id="enablePhpMyAdmin" name="enablePhpMyAdmin" type="checkbox" class={checkboxClass} />
-              <label for="enablePhpMyAdmin" class="text-sm cursor-pointer select-none">Enable phpMyAdmin</label>
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <p class="text-xs font-medium">Services</p>
+                <p class={descClass}>phpMyAdmin, facial recognition, NSFW classification, or an OAuth login provider.</p>
+              </div>
+              <div class="relative shrink-0">
+                <button type="button" id="addServiceBtn" class="wizard-toolbtn">+ Add service</button>
+                <div
+                  id="addServiceMenu"
+                  class="hidden absolute right-0 z-10 mt-1 max-h-72 w-64 overflow-y-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow-lg"
+                >
+                </div>
+              </div>
             </div>
 
-            <div class={checkboxRowClass}>
-              <input id="enableAiVision" name="enableAiVision" type="checkbox" class={checkboxClass} checked />
-              <label for="enableAiVision" class="text-sm cursor-pointer select-none">Enable AI facial recognition</label
-              >
-            </div>
-            <div id="aiVisionKeyToggle" class={checkboxRowClass}>
-              <input id="customAiVisionKey" name="customAiVisionKey" type="checkbox" class={checkboxClass} />
-              <label for="customAiVisionKey" class="text-sm cursor-pointer select-none"
-                >Set your own AI Vision API key</label
-              >
-            </div>
-            <div id="aiVisionKeyField" class="hidden">
-              <label for="aiVisionApiKey" class={labelClass}>AI Vision API key</label>
-              <input id="aiVisionApiKey" name="aiVisionApiKey" type="text" class={inputClass} />
-              <p class={descClass}>Otherwise one is generated for you.</p>
-            </div>
-
-            <div class={checkboxRowClass}>
-              <input id="enableNsfw" name="enableNsfw" type="checkbox" class={checkboxClass} />
-              <label for="enableNsfw" class="text-sm cursor-pointer select-none"
-                >Enable NSFW content classification</label
-              >
-              <span class={badgeClass}>Requires SE</span>
-            </div>
-            <p class={descClass}>
-              Flags or blocks explicit photos using a separate <a
-                class="text-primary hover:underline"
-                href="https://github.com/LycheeOrg/Lychee-NSFW-Classification"
-                target="_blank"
-                rel="noopener noreferrer">classification service</a
-              >. Requires a <a class="text-primary hover:underline" href="/docs/se/overview/">Supporter Edition</a> license
-              key — the service will refuse to classify photos without one.
-            </p>
-            <div id="nsfwKeyToggle" class={checkboxRowClass}>
-              <input id="customNsfwKey" name="customNsfwKey" type="checkbox" class={checkboxClass} />
-              <label for="customNsfwKey" class="text-sm cursor-pointer select-none">Set your own NSFW API key</label>
-            </div>
-            <div id="nsfwKeyField" class="hidden">
-              <label for="nsfwApiKey" class={labelClass}>NSFW API key</label>
-              <input id="nsfwApiKey" name="nsfwApiKey" type="text" class={inputClass} />
-              <p class={descClass}>Otherwise one is generated for you.</p>
-            </div>
+            <div id="serviceCards" class="space-y-2"></div>
           </div>
         </fieldset>
         </div>
 
-        <div class="wizard-step hidden" data-step="4">
+        <div class="wizard-step hidden" data-step="5">
         <fieldset class={fieldsetClass}>
           <div class="space-y-4 mt-2">
             <div class={checkboxRowClass}>
               <input id="useWorker" name="useWorker" type="checkbox" class={checkboxClass} checked />
-              <label for="useWorker" class="text-sm cursor-pointer select-none">Run a background queue worker</label>
+              <label for="useWorker" class="text-xs cursor-pointer select-none">Run a background queue worker</label>
               <span class={badgeClass}>Recommended</span>
             </div>
             <p class={descClass}>
@@ -261,15 +244,17 @@ const badgeClass =
               inline).
             </p>
             <div id="workerCountField">
-              <label for="workerCount" class={labelClass}>Number of workers</label>
-              <input
-                id="workerCount"
-                name="workerCount"
-                type="text"
-                inputmode="numeric"
-                class={inputClass}
-                value="1"
-              />
+              <div class={fieldRowClass}>
+                <label for="workerCount" class={labelClass}>Number of workers</label>
+                <input
+                  id="workerCount"
+                  name="workerCount"
+                  type="text"
+                  inputmode="numeric"
+                  class={inputClass}
+                  value="1"
+                />
+              </div>
               <p class={descClass} data-error="workerCount"></p>
             </div>
 
@@ -277,7 +262,7 @@ const badgeClass =
 
             <div class={checkboxRowClass}>
               <input id="enableTraefik" name="enableTraefik" type="checkbox" class={checkboxClass} />
-              <label for="enableTraefik" class="text-sm cursor-pointer select-none"
+              <label for="enableTraefik" class="text-xs cursor-pointer select-none"
                 >Integrate with Traefik reverse proxy</label
               >
             </div>
@@ -286,7 +271,7 @@ const badgeClass =
               hostname from your Application URL above.
             </p>
             <div id="traefikFields" class="hidden space-y-4">
-              <div>
+              <div class={fieldRowClass}>
                 <label for="traefikEntrypoint" class={labelClass}>Entry point</label>
                 <input
                   id="traefikEntrypoint"
@@ -297,19 +282,23 @@ const badgeClass =
                 />
               </div>
               <div>
-                <label for="traefikCertResolver" class={labelClass}>Certificate resolver</label>
-                <input
-                  id="traefikCertResolver"
-                  name="traefikCertResolver"
-                  type="text"
-                  class={inputClass}
-                  value="letsencrypt"
-                />
+                <div class={fieldRowClass}>
+                  <label for="traefikCertResolver" class={labelClass}>Certificate resolver</label>
+                  <input
+                    id="traefikCertResolver"
+                    name="traefikCertResolver"
+                    type="text"
+                    class={inputClass}
+                    value="letsencrypt"
+                  />
+                </div>
                 <p class={descClass}>Leave blank to skip TLS certificate resolution (e.g. handled elsewhere).</p>
               </div>
               <div>
-                <label for="traefikNetwork" class={labelClass}>Traefik Docker network name</label>
-                <input id="traefikNetwork" name="traefikNetwork" type="text" class={inputClass} value="traefik" />
+                <div class={fieldRowClass}>
+                  <label for="traefikNetwork" class={labelClass}>Traefik Docker network name</label>
+                  <input id="traefikNetwork" name="traefikNetwork" type="text" class={inputClass} value="traefik" />
+                </div>
                 <p class={descClass}>Must already exist — the external network your Traefik container is on.</p>
               </div>
             </div>
@@ -317,19 +306,23 @@ const badgeClass =
         </fieldset>
         </div>
 
-        <div class="wizard-step hidden" data-step="5">
+        <div class="wizard-step hidden" data-step="6">
         <fieldset class={fieldsetClass}>
           <div class="space-y-4 mt-2">
             <div>
-              <label for="puid" class={labelClass}>PUID</label>
-              <input id="puid" name="puid" type="text" inputmode="numeric" class={inputClass} value="1000" />
+              <div class={fieldRowClass}>
+                <label for="puid" class={labelClass}>PUID</label>
+                <input id="puid" name="puid" type="text" inputmode="numeric" class={inputClass} value="1000" />
+              </div>
               <p class={descClass}>
                 User ID that will own files written by the container. <span data-error="puid"></span>
               </p>
             </div>
             <div>
-              <label for="pgid" class={labelClass}>PGID</label>
-              <input id="pgid" name="pgid" type="text" inputmode="numeric" class={inputClass} value="1000" />
+              <div class={fieldRowClass}>
+                <label for="pgid" class={labelClass}>PGID</label>
+                <input id="pgid" name="pgid" type="text" inputmode="numeric" class={inputClass} value="1000" />
+              </div>
               <p class={descClass}>
                 Group ID that will own files written by the container. <span data-error="pgid"></span>
               </p>
@@ -338,25 +331,26 @@ const badgeClass =
         </fieldset>
         </div>
 
-        <div class="wizard-step hidden" data-step="6">
+        <div class="wizard-step hidden" data-step="7">
         <fieldset class={fieldsetClass}>
-          <ol id="instructions" class="list-decimal list-inside space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <ol id="instructions" class="list-decimal list-inside space-y-2 text-xs text-gray-600 dark:text-gray-400">
           </ol>
         </fieldset>
         </div>
+        </div>
 
-        <div class="flex items-center justify-between pt-2">
+        <div class="flex items-center justify-between pt-2 lg:shrink-0">
           <button type="button" id="stepBack" class="wizard-toolbtn" disabled>Back</button>
-          <span id="stepIndicator" class="text-xs text-gray-500 dark:text-gray-400">Step 1 of 7</span>
+          <span id="stepIndicator" class="text-xs text-gray-500 dark:text-gray-400">Step 1 of 8</span>
           <button type="button" id="stepNext" class="wizard-toolbtn">Next</button>
         </div>
       </form>
 
       <!-- Output ************************************************************* -->
-      <div id="wizard-output-column" class="lg:sticky lg:top-8 lg:h-[calc(100vh-4rem)] flex flex-col gap-4">
+      <div id="wizard-output-column" class="flex flex-col gap-4 lg:min-h-0">
         <div
           id="warnings"
-          class="hidden rounded-lg border border-amber-300 bg-amber-50 dark:border-amber-700 dark:bg-amber-950 p-4 text-sm text-amber-800 dark:text-amber-200"
+          class="hidden rounded-lg border border-amber-300 bg-amber-50 dark:border-amber-700 dark:bg-amber-950 p-4 text-xs text-amber-800 dark:text-amber-200"
         >
         </div>
 
@@ -408,8 +402,8 @@ const badgeClass =
 
   <style is:global>
     .wizard-tab {
-      padding: 0.625rem 1rem;
-      font-size: 0.8rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: var(--aw-color-text-muted, #64748b);
       border-bottom: 2px solid transparent;
@@ -420,8 +414,8 @@ const badgeClass =
       border-bottom-color: var(--aw-color-primary, #2563eb);
     }
     .wizard-toolbtn {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.625rem;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 0.375rem;
       border: 1px solid;
       cursor: pointer;
@@ -433,8 +427,8 @@ const badgeClass =
       cursor: not-allowed;
     }
     .wizard-step-btn {
-      padding: 0.375rem 0.75rem;
-      font-size: 0.75rem;
+      padding: 0.3rem 0.625rem;
+      font-size: 0.7rem;
       font-weight: 500;
       border-radius: 9999px;
       border: 1px solid var(--aw-color-text-muted, #cbd5e1);
@@ -447,20 +441,47 @@ const badgeClass =
       background: var(--aw-color-primary, #2563eb);
       border-color: var(--aw-color-primary, #2563eb);
     }
+    /* Slide+fade in whenever a step goes from hidden to shown — CSS
+       animations restart automatically on that transition, so no JS timing
+       is needed, just a direction hint (see --wizard-step-dir, set in
+       showStep()) for which side it slides in from. */
+    .wizard-step {
+      animation: wizard-step-in 0.22s ease-out;
+    }
+    @keyframes wizard-step-in {
+      from {
+        opacity: 0;
+        transform: translateX(calc(var(--wizard-step-dir, 1) * 16px));
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wizard-step {
+        animation: none;
+      }
+    }
     .wizard-pre {
       margin: 0;
       max-height: 26rem;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       padding: 1rem;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       line-height: 1.4;
-      white-space: pre;
+      /* Wrap long lines instead of scrolling horizontally — a long comment
+         or image reference on one tab but not another otherwise makes a
+         horizontal scrollbar appear/disappear as you switch tabs. */
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
-    /* At lg+, #wizard-output-column is pinned to the viewport height (minus
-       the 2rem top offset it's stuck at plus a matching 2rem at the bottom —
-       see its lg:h-[calc(100vh-4rem)] class), so it's always fully visible
-       without scrolling the page. Let the active panel's <pre> grow to fill
-       that instead of stopping at a fixed height. */
+    /* At lg+, the page itself doesn't scroll (see the section's lg:h-screen
+       lg:overflow-hidden below) — the grid fills the remaining viewport
+       height after the header, and both columns stretch to match it, each
+       scrolling internally instead. Let the active panel's <pre> grow to
+       fill that instead of stopping at a fixed height. */
     @media (min-width: 1024px) {
       .wizard-pre {
         flex: 1 1 auto;
@@ -556,6 +577,7 @@ const badgeClass =
     import { generateAppKey, generateSecret } from '~/utils/wizard/secrets';
     import { validatePort, validateOptionalPort, validateUint, validatePositiveInt } from '~/utils/wizard/validate';
     import { loadTemplates } from '~/utils/wizard/templates';
+    import { OAUTH_PROVIDERS, type OAuthProviderDef } from '~/utils/wizard/oauthProviders';
     import fallbackCompose from '~/data/wizard/docker-compose.yaml?raw';
     import fallbackEnvExample from '~/data/wizard/env.example?raw';
 
@@ -572,11 +594,9 @@ const badgeClass =
     const dbCredentialFields = document.getElementById('dbCredentialFields')!;
     const dbPasswordField = document.getElementById('dbPasswordField')!;
     const dbRootPasswordField = document.getElementById('dbRootPasswordField')!;
-    const phpMyAdminField = document.getElementById('phpMyAdminField')!;
-    const aiVisionKeyToggle = document.getElementById('aiVisionKeyToggle')!;
-    const aiVisionKeyField = document.getElementById('aiVisionKeyField')!;
-    const nsfwKeyToggle = document.getElementById('nsfwKeyToggle')!;
-    const nsfwKeyField = document.getElementById('nsfwKeyField')!;
+    const serviceCards = document.getElementById('serviceCards')!;
+    const addServiceBtn = document.getElementById('addServiceBtn') as HTMLButtonElement;
+    const addServiceMenu = document.getElementById('addServiceMenu')!;
     const workerCountField = document.getElementById('workerCountField')!;
     const traefikFields = document.getElementById('traefikFields')!;
     const warningsBox = document.getElementById('warnings')!;
@@ -606,7 +626,275 @@ const badgeClass =
       return form.elements.namedItem(name) as T;
     }
 
+    // fieldOpt is field() for inputs that only exist in the DOM while their
+    // service card is rendered (see the service-card module below) — plain
+    // field() assumes non-null, which doesn't hold for those.
+    function fieldOpt<T extends HTMLInputElement>(name: string): T | null {
+      return (form.elements.namedItem(name) as T | null) ?? null;
+    }
+
+    // ---- Services (facial recognition / NSFW / OAuth providers) --------
+    // These live behind an "Add service" menu instead of being static
+    // checkboxes: each addition renders a card (with its own fields) into
+    // #serviceCards, and removal deletes the card. A service is "active" —
+    // for readAnswers(), for the add-menu's available list, for the
+    // configured/to-be-configured badge — purely by whether its card
+    // currently exists in the DOM; there's no separate tracking state.
+    interface ServiceEntry {
+      id: string;
+      label: string;
+      group: string;
+    }
+
+    const BUILTIN_SERVICE_ENTRIES: ServiceEntry[] = [
+      { id: 'phpmyadmin', label: 'phpMyAdmin', group: 'Database tools' },
+      { id: 'facial-recognition', label: 'Facial Recognition', group: 'AI services' },
+      { id: 'nsfw', label: 'NSFW Classification', group: 'AI services' },
+    ];
+    const OAUTH_SERVICE_ENTRIES: ServiceEntry[] = OAUTH_PROVIDERS.map((p) => ({
+      id: p.id,
+      label: p.label,
+      group: 'OAuth login providers',
+    }));
+    const ALL_SERVICE_ENTRIES: ServiceEntry[] = [...BUILTIN_SERVICE_ENTRIES, ...OAUTH_SERVICE_ENTRIES];
+
+    // Duplicated from the frontmatter's inputClass/labelClass/fieldRowClass/
+    // descClass/checkboxRowClass/checkboxClass — this script is a separate
+    // module and can't reach into Astro's server-side frontmatter scope, so
+    // card markup (built client-side) needs its own copy. Keep in sync with
+    // the frontmatter constants at the top of this file.
+    const JS_INPUT_CLASS =
+      'py-2 px-3 block w-full flex-1 min-w-0 text-xs rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary disabled:opacity-50';
+    const JS_LABEL_CLASS = 'text-xs font-medium sm:w-40 sm:shrink-0';
+    const JS_FIELD_ROW_CLASS = 'flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4';
+    const JS_DESC_CLASS = 'text-xs text-gray-500 dark:text-gray-400 mt-1';
+    const JS_CHECKBOX_ROW_CLASS = 'flex items-start gap-3';
+    const JS_CHECKBOX_CLASS =
+      'mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary';
+    const JS_BADGE_OK_CLASS =
+      'px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
+    const JS_BADGE_WARN_CLASS =
+      'px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+    const JS_TAG_AI_CLASS =
+      'px-1.5 py-0.5 rounded text-[0.65rem] font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200';
+    const JS_TAG_SE_CLASS =
+      'px-1.5 py-0.5 rounded text-[0.65rem] font-semibold bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200';
+
+    // Small tags shown right next to a service's title in its card header —
+    // "AI" for the two on-device AI microservices, "SE" for the one that
+    // additionally requires a Supporter Edition license.
+    function serviceTagsHtml(id: string): string {
+      const tags: string[] = [];
+      if (id === 'facial-recognition' || id === 'nsfw') tags.push(`<span class="${JS_TAG_AI_CLASS}">AI</span>`);
+      if (id === 'nsfw') tags.push(`<span class="${JS_TAG_SE_CLASS}">SE</span>`);
+      return tags.join('');
+    }
+
+    function escapeAttr(s: string): string {
+      return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    }
+
+    function cardFieldRow(name: string, label: string, opts: { placeholder?: string; type?: string } = {}): string {
+      return `
+        <div class="${JS_FIELD_ROW_CLASS}">
+          <label for="${name}" class="${JS_LABEL_CLASS}">${label}</label>
+          <input id="${name}" name="${name}" type="${opts.type ?? 'text'}" class="${JS_INPUT_CLASS}" placeholder="${escapeAttr(opts.placeholder ?? '')}" autocomplete="off" />
+        </div>`;
+    }
+
+    function facialRecognitionFieldsHtml(): string {
+      return `
+        <div class="${JS_CHECKBOX_ROW_CLASS}">
+          <input id="customAiVisionKey" name="customAiVisionKey" type="checkbox" class="${JS_CHECKBOX_CLASS}" />
+          <label for="customAiVisionKey" class="text-xs cursor-pointer select-none">Set your own AI Vision API key</label>
+        </div>
+        <div id="aiVisionKeyField" class="hidden">
+          ${cardFieldRow('aiVisionApiKey', 'AI Vision API key')}
+          <p class="${JS_DESC_CLASS}">Otherwise one is generated for you.</p>
+        </div>`;
+    }
+
+    function nsfwFieldsHtml(): string {
+      return `
+        <p class="${JS_DESC_CLASS}">
+          Flags or blocks explicit photos using a separate
+          <a class="text-primary hover:underline" href="https://github.com/LycheeOrg/Lychee-NSFW-Classification" target="_blank" rel="noopener noreferrer">classification service</a>.
+          Requires a <a class="text-primary hover:underline" href="/docs/se/overview/">Supporter Edition</a> license key.
+        </p>
+        <div class="${JS_CHECKBOX_ROW_CLASS}">
+          <input id="customNsfwKey" name="customNsfwKey" type="checkbox" class="${JS_CHECKBOX_CLASS}" />
+          <label for="customNsfwKey" class="text-xs cursor-pointer select-none">Set your own NSFW API key</label>
+        </div>
+        <div id="nsfwKeyField" class="hidden">
+          ${cardFieldRow('nsfwApiKey', 'NSFW API key')}
+          <p class="${JS_DESC_CLASS}">Otherwise one is generated for you.</p>
+        </div>`;
+    }
+
+    function oauthFieldsHtml(provider: OAuthProviderDef): string {
+      const desc = provider.description ? `<p class="${JS_DESC_CLASS}">${provider.description}</p>` : '';
+      const fields = provider.fields
+        .map((f) =>
+          cardFieldRow(`oauth_${provider.id}_${f.key}`, f.label, {
+            placeholder: f.placeholder,
+            type: /secret/i.test(f.key) ? 'password' : 'text',
+          })
+        )
+        .join('');
+      return desc + fields;
+    }
+
+    function fieldsHtmlFor(id: string): string {
+      if (id === 'phpmyadmin') return '';
+      if (id === 'facial-recognition') return facialRecognitionFieldsHtml();
+      if (id === 'nsfw') return nsfwFieldsHtml();
+      const provider = OAUTH_PROVIDERS.find((p) => p.id === id);
+      return provider ? oauthFieldsHtml(provider) : '';
+    }
+
+    function isServiceConfigured(id: string): boolean {
+      if (id === 'phpmyadmin') return true; // nothing to configure
+      if (id === 'facial-recognition') {
+        const custom = fieldOpt<HTMLInputElement>('customAiVisionKey')?.checked ?? false;
+        return !custom || !!fieldOpt('aiVisionApiKey')?.value.trim();
+      }
+      if (id === 'nsfw') {
+        const custom = fieldOpt<HTMLInputElement>('customNsfwKey')?.checked ?? false;
+        return !custom || !!fieldOpt('nsfwApiKey')?.value.trim();
+      }
+      const provider = OAUTH_PROVIDERS.find((p) => p.id === id);
+      if (!provider) return false;
+      return provider.fields.every((f) => !f.required || !!fieldOpt(`oauth_${id}_${f.key}`)?.value.trim());
+    }
+
+    // Cards render collapsed to a single summary row by default — with
+    // several services added at once (a handful of OAuth providers, say)
+    // full cards would make the list unwieldy. "Configure" expands the
+    // fields inline; startExpanded is used only for the card just added, so
+    // the user isn't forced to click twice to start filling it in.
+    function renderServiceCard(id: string, label: string, startExpanded = false): string {
+      const fields = fieldsHtmlFor(id);
+      const toggleBtn = fields
+        ? `<button type="button" class="wizard-toolbtn" data-toggle-service="${id}">${startExpanded ? 'Collapse' : 'Configure'}</button>`
+        : '';
+      return `
+        <div class="rounded-lg bg-gray-50 dark:bg-slate-800/60" data-service-card="${id}">
+          <div class="flex items-center justify-between gap-2 px-3 py-2">
+            <div class="flex items-center gap-1.5">
+              <span class="text-xs font-medium">${label}</span>
+              ${serviceTagsHtml(id)}
+            </div>
+            <div class="flex items-center gap-2">
+              <span data-status-for="${id}"></span>
+              ${toggleBtn}
+              <button type="button" class="wizard-toolbtn" data-remove-service="${id}">Remove</button>
+            </div>
+          </div>
+          ${fields ? `<div class="${startExpanded ? '' : 'hidden'} space-y-3 px-3 pb-3" data-fields-for="${id}">${fields}</div>` : ''}
+        </div>`;
+    }
+
+    function updateServiceStatusBadges() {
+      document.querySelectorAll<HTMLElement>('[data-status-for]').forEach((el) => {
+        const ok = isServiceConfigured(el.dataset.statusFor!);
+        el.className = ok ? JS_BADGE_OK_CLASS : JS_BADGE_WARN_CLASS;
+        el.textContent = ok ? 'Configured' : 'To be configured';
+      });
+    }
+
+    function activeServiceIds(): string[] {
+      return Array.from(serviceCards.querySelectorAll<HTMLElement>('[data-service-card]')).map(
+        (el) => el.dataset.serviceCard!
+      );
+    }
+
+    function renderAddServiceMenu() {
+      const active = new Set(activeServiceIds());
+      const needsDb = needsDbService(readAnswers());
+      const available = ALL_SERVICE_ENTRIES.filter(
+        (s) => !active.has(s.id) && (s.id !== 'phpmyadmin' || needsDb)
+      );
+      if (available.length === 0) {
+        addServiceMenu.innerHTML = `<p class="px-3 py-2 text-xs text-gray-500 dark:text-gray-400">All services added.</p>`;
+        return;
+      }
+      const groups = new Map<string, ServiceEntry[]>();
+      for (const s of available) {
+        if (!groups.has(s.group)) groups.set(s.group, []);
+        groups.get(s.group)!.push(s);
+      }
+      addServiceMenu.innerHTML = Array.from(groups.entries())
+        .map(
+          ([group, items]) => `
+            <div class="px-3 pt-2 pb-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-400">${group}</div>
+            ${items
+              .map(
+                (s) =>
+                  `<button type="button" class="block w-full px-3 py-1.5 text-left text-xs hover:bg-gray-100 dark:hover:bg-slate-800" data-add-service="${s.id}">${s.label}</button>`
+              )
+              .join('')}`
+        )
+        .join('');
+    }
+
+    function addService(id: string) {
+      const entry = ALL_SERVICE_ENTRIES.find((s) => s.id === id);
+      if (!entry || serviceCards.querySelector(`[data-service-card="${id}"]`)) return;
+      serviceCards.insertAdjacentHTML('beforeend', renderServiceCard(id, entry.label, true));
+      renderAddServiceMenu();
+      render();
+    }
+
+    function removeService(id: string) {
+      serviceCards.querySelector(`[data-service-card="${id}"]`)?.remove();
+      renderAddServiceMenu();
+      render();
+    }
+
+    addServiceBtn.addEventListener('click', () => {
+      renderAddServiceMenu();
+      addServiceMenu.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if (e.target !== addServiceBtn && !addServiceMenu.contains(e.target as Node)) {
+        addServiceMenu.classList.add('hidden');
+      }
+    });
+    addServiceMenu.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-add-service]');
+      if (btn) {
+        addService(btn.dataset.addService!);
+        addServiceMenu.classList.add('hidden');
+      }
+    });
+    serviceCards.addEventListener('click', (e) => {
+      const removeBtn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-remove-service]');
+      if (removeBtn) {
+        removeService(removeBtn.dataset.removeService!);
+        return;
+      }
+      const toggleBtn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-toggle-service]');
+      if (toggleBtn) {
+        const id = toggleBtn.dataset.toggleService!;
+        const fieldsEl = serviceCards.querySelector(`[data-fields-for="${id}"]`);
+        if (fieldsEl) {
+          const nowHidden = fieldsEl.classList.toggle('hidden');
+          toggleBtn.textContent = nowHidden ? 'Configure' : 'Collapse';
+        }
+      }
+    });
+
     function readAnswers(): WizardAnswers {
+      const activeOAuthProviders: string[] = [];
+      const oauthFieldValues: Record<string, string> = {};
+      for (const provider of OAUTH_PROVIDERS) {
+        if (!serviceCards.querySelector(`[data-service-card="${provider.id}"]`)) continue;
+        activeOAuthProviders.push(provider.id);
+        for (const f of provider.fields) {
+          oauthFieldValues[`${provider.id}:${f.key}`] = fieldOpt(`oauth_${provider.id}_${f.key}`)?.value ?? '';
+        }
+      }
+
       return {
         appName: field('appName').value,
         appUrl: field('appUrl').value,
@@ -624,13 +912,15 @@ const badgeClass =
         dbRootPassword: field('dbRootPassword').value,
         useEnvFile: field<HTMLInputElement>('useEnvFile').checked,
         useDockerSecrets: field<HTMLInputElement>('useDockerSecrets').checked,
-        enablePhpMyAdmin: field<HTMLInputElement>('enablePhpMyAdmin').checked,
-        enableAiVision: field<HTMLInputElement>('enableAiVision').checked,
-        customAiVisionKey: field<HTMLInputElement>('customAiVisionKey').checked,
-        aiVisionApiKey: field('aiVisionApiKey').value,
-        enableNsfw: field<HTMLInputElement>('enableNsfw').checked,
-        customNsfwKey: field<HTMLInputElement>('customNsfwKey').checked,
-        nsfwApiKey: field('nsfwApiKey').value,
+        enablePhpMyAdmin: !!serviceCards.querySelector('[data-service-card="phpmyadmin"]'),
+        enableAiVision: !!serviceCards.querySelector('[data-service-card="facial-recognition"]'),
+        customAiVisionKey: fieldOpt<HTMLInputElement>('customAiVisionKey')?.checked ?? false,
+        aiVisionApiKey: fieldOpt('aiVisionApiKey')?.value ?? '',
+        enableNsfw: !!serviceCards.querySelector('[data-service-card="nsfw"]'),
+        customNsfwKey: fieldOpt<HTMLInputElement>('customNsfwKey')?.checked ?? false,
+        nsfwApiKey: fieldOpt('nsfwApiKey')?.value ?? '',
+        activeOAuthProviders,
+        oauthFieldValues,
         useWorker: field<HTMLInputElement>('useWorker').checked,
         workerCount: field('workerCount').value,
         enableTraefik: field<HTMLInputElement>('enableTraefik').checked,
@@ -670,16 +960,14 @@ const badgeClass =
       dbPasswordField.classList.toggle('hidden', a.generatePasswords || isSqlite);
       dbRootPasswordField.classList.toggle('hidden', a.generatePasswords || !needsDb);
 
-      if (!needsDb && field<HTMLInputElement>('enablePhpMyAdmin').checked) {
-        field<HTMLInputElement>('enablePhpMyAdmin').checked = false;
+      if (!needsDb && a.enablePhpMyAdmin) {
+        serviceCards.querySelector('[data-service-card="phpmyadmin"]')?.remove();
         a.enablePhpMyAdmin = false;
       }
-      phpMyAdminField.classList.toggle('hidden', !needsDb);
 
-      aiVisionKeyToggle.classList.toggle('hidden', !a.enableAiVision);
-      aiVisionKeyField.classList.toggle('hidden', !a.enableAiVision || !a.customAiVisionKey);
-      nsfwKeyToggle.classList.toggle('hidden', !a.enableNsfw);
-      nsfwKeyField.classList.toggle('hidden', !a.enableNsfw || !a.customNsfwKey);
+      document.getElementById('aiVisionKeyField')?.classList.toggle('hidden', !a.customAiVisionKey);
+      document.getElementById('nsfwKeyField')?.classList.toggle('hidden', !a.customNsfwKey);
+      updateServiceStatusBadges();
 
       workerCountField.classList.toggle('hidden', !a.useWorker);
       traefikFields.classList.toggle('hidden', !a.enableTraefik);
@@ -808,7 +1096,9 @@ const badgeClass =
     let currentStep = 0;
 
     function showStep(i: number) {
+      const dir = i > currentStep ? 1 : -1;
       currentStep = Math.max(0, Math.min(wizardSteps.length - 1, i));
+      wizardSteps[currentStep].style.setProperty('--wizard-step-dir', String(dir));
       wizardSteps.forEach((el, idx) => el.classList.toggle('hidden', idx !== currentStep));
       stepButtons.forEach((btn, idx) => btn.setAttribute('aria-selected', String(idx === currentStep)));
       stepBackBtn.disabled = currentStep === 0;
@@ -930,6 +1220,11 @@ const badgeClass =
       puid: (a) => envTarget('PUID', a),
       pgid: (a) => envTarget('PGID', a),
     };
+    for (const provider of OAUTH_PROVIDERS) {
+      for (const f of provider.fields) {
+        FIELD_TARGETS[`oauth_${provider.id}_${f.key}`] = (a) => envTarget(f.envKey, a);
+      }
+    }
 
     let flashClearTimer: ReturnType<typeof setTimeout> | undefined;
 
