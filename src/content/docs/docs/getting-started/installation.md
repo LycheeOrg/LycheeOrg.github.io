@@ -21,7 +21,7 @@ Lychee is now running at [http://localhost:8000](http://localhost:8000).
 On first visit, you will be prompted to create an admin account.
 
 :::tip
-For a more complete setup with custom volumes, environment variables, and worker services, see the [Docker documentation](/docs/getting-started/docker/).
+For a more complete setup with custom volumes, environment variables, and worker services, use the [Docker Compose Wizard](/wizard/) to generate a tailored `docker-compose.yaml` and `.env`, or see the [Docker documentation](/docs/getting-started/docker/).
 :::
 
 ## What's Included
@@ -44,7 +44,7 @@ For production deployments, you should:
 
 - Set a proper `APP_URL` and `APP_KEY` — see [Configuration](/docs/getting-started/configuration/)
 - Put Lychee behind a reverse proxy with TLS (nginx, Traefik, or Caddy)
-- Use the [full Docker Compose template](https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml) with workers for better performance
+- Use the [Docker Compose Wizard](/wizard/) or the [full Docker Compose template](https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml) with workers for better performance
 
 ## Alternative: Manual Installation
 

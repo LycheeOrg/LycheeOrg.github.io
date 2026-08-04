@@ -165,13 +165,15 @@ To migrate from Lychee v3 you *must* use the same MySQL/MariaDB server as v3.
 
 ### Mailer options
 
-Supported mailers are `smtp`, `ses`, `mailgun`, `postmark` or `sendmail`, which you can set using `MAIL_DRIVER`.
+Mail is required if you want to use the [`new_photos_notification`](/docs/getting-started/settings/#new_photos_notification) setting, which emails users a weekly digest when new photos are added to albums shared with them.
+
+Supported mailers are `smtp`, `ses`, `mailgun`, `postmark` or `sendmail`, which you can set using `MAIL_DRIVER`. There is also a `log` driver (see [Testing your configuration](#testing-your-configuration) below).
 
 #### General options
 
 | Option              | Description    |
 |---------------------|----------------|
-| `MAIL_DRIVER`       | Mailer type    |
+| `MAIL_DRIVER`       | Mailer type: `smtp`, `ses`, `mailgun`, `postmark`, `sendmail` or `log` |
 | `MAIL_FROM_ADDRESS` | "From" address |
 | `MAIL_FROM_NAME`    | "From" name (defaults to `APP_NAME`) |
 | `MAIL_EHLO_DOMAIN`  | Local domain announced in the SMTP `EHLO`/`HELO` command. Advanced, rarely needed. |
@@ -182,9 +184,11 @@ Supported mailers are `smtp`, `ses`, `mailgun`, `postmark` or `sendmail`, which 
 |-------------------|----------------------------------------------|
 | `MAIL_HOST`       | Host of SMTP server                        |
 | `MAIL_PORT`       | Port of SMTP server (default 587)          |
-| `MAIL_ENCRYPTION` | Encryption for SMTP server (default `tls`) |
+| `MAIL_ENCRYPTION` | Encryption for SMTP server: `tls` (STARTTLS, default), `ssl` (implicit TLS, typically used with port 465), or left empty for no encryption |
 | `MAIL_USERNAME`   | Username of SMTP server                    |
 | `MAIL_PASSWORD`   | Password of SMTP server                    |
+
+Most providers (Gmail, Outlook/Office 365, your ISP...) publish the exact `MAIL_HOST`, `MAIL_PORT` and `MAIL_ENCRYPTION` values to use for SMTP on their support pages — search for "\<provider\> SMTP settings".
 
 #### SES
 
@@ -209,6 +213,20 @@ SES can be configured using AWS settings. See [AWS configuration](#aws).
 | Option              | Description                                  | Default                          |
 |---------------------|-------------------------------------------------|-----------------------------------|
 | `MAIL_SENDMAIL_PATH` | Path (and arguments) to the local `sendmail` binary | `/usr/sbin/sendmail -bs -i` |
+
+#### Testing your configuration
+
+Set `MAIL_DRIVER=log` to write outgoing emails to `storage/logs/laravel.log` instead of actually sending them. This lets you confirm that Lychee is attempting to send mail (and inspect its contents) without needing a fully working SMTP setup or risking spamming real users while you experiment with the other `MAIL_` options.
+
+Once configured, you can trigger the notification job manually to test end-to-end instead of waiting for its weekly schedule:
+
+```bash
+php artisan lychee:photos_added_notification
+```
+
+:::note
+Notification emails are only sent by [Laravel's task scheduler](https://laravel.com/docs/scheduling#running-the-scheduler), which itself must be invoked once a minute by a system `cron` job (or systemd timer) pointing at `php artisan schedule:run`. See the [FAQ](/docs/faq/general/) for an example. Without this, `new_photos_notification` will never trigger on its own even if mail sending itself works.
+:::
 
 ### Cache options
 
