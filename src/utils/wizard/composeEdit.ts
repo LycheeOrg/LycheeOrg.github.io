@@ -57,7 +57,14 @@ export function activateEnvLines(compose: string, keys: string[]): { compose: st
 // following line that's indented deeper than it, i.e. its whole nested
 // block. A single blank line immediately before the block is swallowed too,
 // so removal doesn't leave a double blank line behind.
-export function removeIndentedBlock(lines: string[], startLineRegex: RegExp): string[] {
+//
+// eatPrecedingComment additionally swallows a contiguous run of same-indent
+// `#` comment lines directly above the block (e.g. a banner header
+// describing it) — off by default, since not every such comment is actually
+// specific to the block being removed. envFileCompose.ts's env_file:
+// removal, for instance, sits right under a general "how to configure
+// Lychee" comment that should stay even once env_file: is gone.
+export function removeIndentedBlock(lines: string[], startLineRegex: RegExp, eatPrecedingComment = false): string[] {
   const start = lines.findIndex((l) => startLineRegex.test(l));
   if (start === -1) return lines;
 
@@ -72,6 +79,12 @@ export function removeIndentedBlock(lines: string[], startLineRegex: RegExp): st
   }
 
   let removeStart = start;
-  if (start > 0 && lines[start - 1].trim() === '') removeStart = start - 1;
+  if (eatPrecedingComment) {
+    const commentRe = new RegExp(`^ {${indent}}#`);
+    while (removeStart > 0 && commentRe.test(lines[removeStart - 1])) {
+      removeStart -= 1;
+    }
+  }
+  if (removeStart > 0 && lines[removeStart - 1].trim() === '') removeStart -= 1;
   return [...lines.slice(0, removeStart), ...lines.slice(end)];
 }

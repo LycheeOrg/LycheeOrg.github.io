@@ -48,16 +48,14 @@ const wizardStepLabels = [
     <div class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-8 grid gap-8 lg:grid-cols-2 lg:h-full w-full">
       <!-- Form ************************************************************* -->
       <form id="wizard-form" class="gap-y-6 lg:flex lg:h-full lg:min-h-0 lg:flex-col" novalidate>
-        <ol id="wizard-stepper" class="wizard-stepper lg:shrink-0 pt-1" role="tablist">
+        <ol id="wizard-stepper" class="wizard-stepper lg:shrink-0 pt-1">
           {wizardStepLabels.map((label, i) => (
             <>
               <li class="wizard-stepper-item">
                 <button
                   type="button"
-                  role="tab"
                   class="wizard-step-btn"
                   data-step-btn={i}
-                  aria-selected={i === 0 ? 'true' : 'false'}
                   aria-label={`Step ${i + 1}: ${label}`}
                 >
                   <span class="wizard-step-circle">
@@ -1430,6 +1428,16 @@ const wizardStepLabels = [
         .join('\n');
     }
 
+    // Disables the output panel's Copy/Download buttons (both the main
+    // compose/env ones and any already-rendered per-secret-file ones) while
+    // the form is invalid — otherwise they'd keep serving the last valid
+    // generation, silently out of sync with what the form now shows.
+    function setOutputActionsEnabled(enabled: boolean) {
+      document
+        .querySelectorAll<HTMLButtonElement>('[data-copy], [data-download], [data-copy-text], [data-download-text]')
+        .forEach((b) => (b.disabled = !enabled));
+    }
+
     function render() {
       const a = readAnswers();
       updateVisibility(a);
@@ -1483,8 +1491,11 @@ const wizardStepLabels = [
         aiVisionQueueMaxSizeError ||
         aiVisionThreadPoolSizeError ||
         aiVisionWorkersError
-      )
+      ) {
+        setOutputActionsEnabled(false);
         return;
+      }
+      setOutputActionsEnabled(true);
 
       const result = generate(templates.envExample, templates.compose, a, secrets);
       lastResult = result;
@@ -1570,7 +1581,13 @@ const wizardStepLabels = [
       wizardSteps[currentStep].style.setProperty('--wizard-step-dir', String(dir));
       wizardSteps.forEach((el, idx) => el.classList.toggle('hidden', idx !== currentStep));
       stepButtons.forEach((btn, idx) => {
-        btn.setAttribute('aria-selected', String(idx === currentStep));
+        // This is a linear step indicator, not a tab panel — aria-current
+        // (the breadcrumb/stepper pattern) is the correct ARIA semantics
+        // here, not aria-selected/role="tab" (which need a role="tablist"
+        // parent with `tab` as its *direct* owned children, not children
+        // wrapped in <li>s).
+        if (idx === currentStep) btn.setAttribute('aria-current', 'step');
+        else btn.removeAttribute('aria-current');
         btn.dataset.state = idx < currentStep ? 'completed' : idx === currentStep ? 'active' : 'upcoming';
       });
       stepConnectors.forEach((el, idx) => {

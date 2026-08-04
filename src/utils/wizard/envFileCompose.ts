@@ -18,12 +18,16 @@ export function removeEnvFileReferences(compose: string): RemoveEnvFileReference
   let lines = compose.split('\n');
   let removedAny = false;
 
-  // There are exactly two occurrences; removeIndentedBlock only strips the
-  // first match per call, so run it once per occurrence.
-  for (let i = 0; i < 2; i++) {
+  // removeIndentedBlock only strips the first match per call; keep calling
+  // it until no more env_file: blocks are found (normally two: the one in
+  // x-base-lychee-setup and the one on lychee_db, but this stays correct
+  // even if that count ever changes — this project fetches the *live*
+  // upstream template by default, not just the bundled snapshot).
+  while (true) {
     const before = lines.length;
     lines = removeIndentedBlock(lines, /^\s*env_file:\s*$/);
-    if (lines.length !== before) removedAny = true;
+    if (lines.length === before) break;
+    removedAny = true;
   }
 
   return { compose: lines.join('\n'), removed: removedAny };

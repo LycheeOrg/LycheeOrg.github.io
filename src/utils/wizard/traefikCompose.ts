@@ -51,22 +51,32 @@ export interface AddTraefikResult {
 }
 
 export function addTraefikLabels(compose: string, o: TraefikOptions): AddTraefikResult {
-  let lines = compose.split('\n');
+  const lines = compose.split('\n');
 
   const portsAnchor = '      - "${APP_PORT:-8000}:8000"';
   const portsIdx = lines.indexOf(portsAnchor);
   if (portsIdx === -1) return { compose, added: false };
 
-  lines = [
+  const withLabels = [
     ...lines.slice(0, portsIdx + 1),
     ...buildLabelLines(o),
     ...API_NETWORKS_LINES,
     ...lines.slice(portsIdx + 1),
   ];
 
-  const networksIdx = lines.findIndex((l) => /^networks:\s*$/.test(l));
-  if (networksIdx === -1) return { compose: lines.join('\n'), added: false };
-  lines = [...lines.slice(0, networksIdx + 1), ...TOP_LEVEL_NETWORK_LINES, ...lines.slice(networksIdx + 1)];
+  const networksIdx = withLabels.findIndex((l) => /^networks:\s*$/.test(l));
+  // Bail out to the original, untouched compose (not withLabels) when this
+  // anchor is missing — otherwise the service-level labels/networks: added
+  // above would reference a `traefik` network that never actually gets
+  // declared at the top level, silently breaking `docker compose up` even
+  // though this reports added: false.
+  if (networksIdx === -1) return { compose, added: false };
 
-  return { compose: lines.join('\n'), added: true };
+  const withNetwork = [
+    ...withLabels.slice(0, networksIdx + 1),
+    ...TOP_LEVEL_NETWORK_LINES,
+    ...withLabels.slice(networksIdx + 1),
+  ];
+
+  return { compose: withNetwork.join('\n'), added: true };
 }

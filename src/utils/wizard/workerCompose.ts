@@ -12,7 +12,11 @@ export interface RemoveWorkerServiceResult {
 
 export function removeWorkerService(compose: string): RemoveWorkerServiceResult {
   const lines = compose.split('\n');
-  const patched = removeIndentedBlock(lines, /^ {2}lychee_worker:\s*$/);
+  // eatPrecedingComment: docker-compose.yaml's queue-worker banner comment
+  // (the "##### Queue Worker Service #####" header) sits directly above
+  // lychee_worker: and describes only this service, so it should go with it
+  // — otherwise it's left as an orphaned comment in the generated file.
+  const patched = removeIndentedBlock(lines, /^ {2}lychee_worker:\s*$/, true);
   return { compose: patched.join('\n'), removed: patched.length !== lines.length };
 }
 

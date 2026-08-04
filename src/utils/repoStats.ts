@@ -9,6 +9,11 @@ import { dirname, join } from 'node:path';
 // tree, so a path derived from it wouldn't survive between builds.
 const CACHE_FILE = join(process.cwd(), '.cache/repo-stats.json');
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+// A stalled upstream (GitHub/Docker Hub) shouldn't be able to hang the
+// static build — one shared deadline covers the whole fetch, including every
+// page of fetchGitHubReleaseDownloads' pagination loop, not just each
+// individual request.
+const FETCH_TIMEOUT_MS = 10_000;
 
 const GITHUB_REPO_URL = 'https://api.github.com/repos/LycheeOrg/Lychee';
 const GITHUB_RELEASES_URL = 'https://api.github.com/repos/LycheeOrg/Lychee/releases?per_page=100';
@@ -42,19 +47,19 @@ function formatCount(n: number): string {
   return String(n);
 }
 
-async function fetchGitHubRepo(): Promise<{ stars: number; forks: number }> {
-  const res = await fetch(GITHUB_REPO_URL, { headers: { Accept: 'application/vnd.github+json' } });
+async function fetchGitHubRepo(signal: AbortSignal): Promise<{ stars: number; forks: number }> {
+  const res = await fetch(GITHUB_REPO_URL, { headers: { Accept: 'application/vnd.github+json' }, signal });
   if (!res.ok) throw new Error(`GitHub repo request failed: ${res.status}`);
   const data = await res.json();
   return { stars: data.stargazers_count, forks: data.forks_count };
 }
 
-async function fetchGitHubReleaseDownloads(): Promise<number> {
+async function fetchGitHubReleaseDownloads(signal: AbortSignal): Promise<number> {
   let total = 0;
   let url: string | null = GITHUB_RELEASES_URL;
 
   while (url) {
-    const res: Response = await fetch(url, { headers: { Accept: 'application/vnd.github+json' } });
+    const res: Response = await fetch(url, { headers: { Accept: 'application/vnd.github+json' }, signal });
     if (!res.ok) throw new Error(`GitHub releases request failed: ${res.status}`);
     const releases: { assets: { download_count: number }[] }[] = await res.json();
     for (const release of releases) {
@@ -71,10 +76,10 @@ async function fetchGitHubReleaseDownloads(): Promise<number> {
   return total;
 }
 
-async function fetchDockerPulls(): Promise<number> {
+async function fetchDockerPulls(signal: AbortSignal): Promise<number> {
   const counts = await Promise.all(
     DOCKER_HUB_URLS.map(async (url) => {
-      const res = await fetch(url);
+      const res = await fetch(url, { signal });
       if (!res.ok) throw new Error(`Docker Hub request failed for ${url}: ${res.status}`);
       const data = await res.json();
       return data.pull_count as number;
@@ -111,10 +116,11 @@ export async function getRepoStats(): Promise<RepoStats> {
   const cached = readCache();
   if (cached) return cached;
 
+  const signal = AbortSignal.timeout(FETCH_TIMEOUT_MS);
   const [repo, downloads, dockerPulls] = await Promise.all([
-    fetchGitHubRepo().catch(() => ({ stars: FALLBACK.stars, forks: FALLBACK.forks })),
-    fetchGitHubReleaseDownloads().catch(() => FALLBACK.downloads),
-    fetchDockerPulls().catch(() => FALLBACK.dockerPulls),
+    fetchGitHubRepo(signal).catch(() => ({ stars: FALLBACK.stars, forks: FALLBACK.forks })),
+    fetchGitHubReleaseDownloads(signal).catch(() => FALLBACK.downloads),
+    fetchDockerPulls(signal).catch(() => FALLBACK.dockerPulls),
   ]);
 
   const stats: RepoStats = {

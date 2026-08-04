@@ -6,6 +6,9 @@
 
 const ENV_EXAMPLE_URL = 'https://raw.githubusercontent.com/LycheeOrg/Lychee/master/.env.example';
 const COMPOSE_URL = 'https://raw.githubusercontent.com/LycheeOrg/Lychee/master/docker-compose.yaml';
+// A slow/hanging GitHub response shouldn't stall the wizard indefinitely —
+// bound both requests so the bundled-snapshot fallback kicks in either way.
+const FETCH_TIMEOUT_MS = 8_000;
 
 export interface Templates {
   envExample: string;
@@ -15,9 +18,10 @@ export interface Templates {
 
 export async function loadTemplates(fallbackEnvExample: string, fallbackCompose: string): Promise<Templates> {
   try {
+    const signal = AbortSignal.timeout(FETCH_TIMEOUT_MS);
     const [envRes, composeRes] = await Promise.all([
-      fetch(ENV_EXAMPLE_URL, { cache: 'no-store' }),
-      fetch(COMPOSE_URL, { cache: 'no-store' }),
+      fetch(ENV_EXAMPLE_URL, { cache: 'no-store', signal }),
+      fetch(COMPOSE_URL, { cache: 'no-store', signal }),
     ]);
     if (!envRes.ok || !composeRes.ok) {
       throw new Error('non-200 response fetching upstream templates');
