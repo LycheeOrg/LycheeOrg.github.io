@@ -33,6 +33,7 @@
     "astro-seo": "^1.1.0",
     "limax": "4.2.3",
     "lodash.merge": "^4.6.2",
+    "prismjs": "^1.30.0",
     "unpic": "^4.2.2"
   },
   "devDependencies": {
@@ -47,6 +48,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.merge": "^4.6.9",
     "@types/mdx": "^2.0.13",
+    "@types/prismjs": "^1.26.5",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
     "@typescript-eslint/parser": "^8.60.0",
     "astro-compress": "^2.4.1",

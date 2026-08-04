@@ -27,3 +27,6 @@ pnpm-lock.yaml
 
 .astro
 *.old
+
+# build-time data caches
+.cache/

@@ -57,12 +57,13 @@ export const footerData = {
         { text: 'Release Notes', href: getPermalink('/docs/getting-started/releases/') },
         // { text: 'PR Dashboard', href: 'https://pr.lycheeorg.dev/' },
         { text: 'Issue trakcer', href: 'https://github.com/LycheeOrg/Lychee/issues' },
-      ]
+      ],
     },
     {
       title: 'Need help?',
       links: [
         { text: 'Read the Docs', href: '/docs/' },
+        { text: 'Docker Compose Wizard', href: '/wizard/' },
         { text: 'Community Forum', href: 'https://github.com/LycheeOrg/Lychee/discussions' },
         { text: 'Join our discord', href: 'https://discord.gg/JMPvuRQcTf' },
       ],
@@ -70,7 +71,10 @@ export const footerData = {
     {
       title: 'Support  Lychee',
       links: [
-        { text: 'Get Lychee <span class="text-sky-500">SE</span>', href: 'https://lycheeorg.dev/get-supporter-edition' },
+        {
+          text: 'Get Lychee <span class="text-sky-500">SE</span>',
+          href: 'https://lycheeorg.dev/get-supporter-edition',
+        },
         { text: 'GitHub sponsor', href: 'https://github.com/sponsors/LycheeOrg' },
         { text: 'Open Collective', href: 'https://opencollective.com/LycheeOrg' },
         { text: 'Translations', href: 'https://weblate.lycheeorg.dev' },
@@ -78,18 +82,16 @@ export const footerData = {
     },
     {
       title: 'Security',
-      links: [
-        { text: 'Cosign key', href: getAsset('lychee-cosign.pub') },
-      ]
-    }
+      links: [{ text: 'Cosign key', href: getAsset('lychee-cosign.pub') }],
+    },
   ],
   secondaryLinks: [
     { text: 'License', href: getPermalink('/license') },
     { text: 'Privacy Policy', href: getPermalink('/privacy-policy') },
   ],
   socialLinks: [
-      { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-      { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/LycheeOrg/Lychee' },
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/LycheeOrg/Lychee' },
   ],
   footNote: `Maintained by <a class="text-sky-500" href="https://github.com/LycheeOrg">LycheeOrg</a> &mdash; Built with <a class="text-sky-500" href="https://astro.build">Astro</a> & <a class="text-sky-500" href="https://tailwindcss.com">Tailwind CSS</a>`,
 };

@@ -1,0 +1,1843 @@
+---
+import Layout from '~/layouts/Layout.astro';
+
+const metadata = {
+  title: 'Docker Compose Wizard',
+  description:
+    'Generate a ready-to-run docker-compose.yaml and .env for Lychee, right in your browser. Same questions as the Lychee Wizard CLI, no install required.',
+};
+
+const inputClass =
+  'py-2 px-3 block w-full flex-1 min-w-0 text-xs rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary disabled:opacity-50';
+const selectClass = inputClass;
+const labelClass = 'text-xs font-medium sm:w-40 sm:shrink-0';
+const fieldRowClass = 'flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4';
+const descClass = 'text-xs text-gray-500 dark:text-gray-400 mt-1';
+const fieldsetClass = 'bg-white dark:bg-slate-900';
+const checkboxRowClass = 'flex items-start gap-3';
+const checkboxClass =
+  'h-4 w-4 shrink-0 cursor-pointer rounded border-gray-300 dark:border-gray-600 text-primary focus:ring-primary';
+const badgeClass =
+  'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
+// Service card status badges — like badgeClass, but without its ml-2 (these
+// sit in a flex row with its own gap, not inline after label text).
+const statusOkClass =
+  'px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
+const statusWarnClass =
+  'px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+// Small tags next to a service card's title (AI, SE).
+const tagAiClass =
+  'px-1.5 py-0.5 rounded text-xxs font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200';
+const tagSeClass =
+  'px-1.5 py-0.5 rounded text-xxs font-semibold bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200';
+
+const wizardStepLabels = [
+  'Welcome',
+  'General',
+  'Database',
+  'Secrets',
+  'Services',
+  'Workers & Proxy',
+  'System',
+  'Deploy',
+];
+---
+
+<Layout metadata={metadata}>
+  <section class="lg:h-screen lg:overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-8 grid gap-8 lg:grid-cols-2 lg:h-full w-full">
+      <!-- Form ************************************************************* -->
+      <form id="wizard-form" class="gap-y-6 lg:flex lg:h-full lg:min-h-0 lg:flex-col" novalidate>
+        <ol id="wizard-stepper" class="wizard-stepper lg:shrink-0 pt-1">
+          {wizardStepLabels.map((label, i) => (
+            <>
+              <li class="wizard-stepper-item">
+                <button
+                  type="button"
+                  class="wizard-step-btn"
+                  data-step-btn={i}
+                  aria-label={`Step ${i + 1}: ${label}`}
+                >
+                  <span class="wizard-step-circle">
+                    <span class="wizard-step-num">{i + 1}</span>
+                    <svg class="wizard-step-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.704 5.29a1 1 0 010 1.415l-7.09 7.09a1 1 0 01-1.415 0L4.296 9.89a1 1 0 111.415-1.414l3.09 3.09 6.383-6.384a1 1 0 011.415 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span class="wizard-step-label">{label}</span>
+                </button>
+              </li>
+              {i < wizardStepLabels.length - 1 && (
+                <li class="wizard-stepper-connector" data-step-connector={i} aria-hidden="true"></li>
+              )}
+            </>
+          ))}
+        </ol>
+
+        <div class="lg:flex-1 lg:min-h-0 lg:overflow-y-auto overflow-x-hidden space-y-6">
+        <div class="wizard-step" data-step="0">
+        <fieldset class={fieldsetClass}>
+          <div class="space-y-4 mt-2">
+            <h1 class="text-xl font-bold leading-tight">
+              Docker Compose <span class="text-primary">Wizard</span>
+            </h1>
+            <p class="text-xs text-gray-600 dark:text-gray-300">
+              Answer a few questions and we'll generate a ready-to-run <code>docker-compose.yaml</code> and <code
+                >.env</code
+              > for Lychee &mdash; entirely in your browser, nothing is sent to any server. Click <strong>Next</strong> to get started.
+            </p>
+            <p id="template-source" class="text-xs text-gray-500 dark:text-gray-400">
+              Loading the latest templates&hellip;
+            </p>
+
+            <hr class="border-gray-200 dark:border-gray-700" />
+
+            <div class={checkboxRowClass}>
+              <input id="useEnvFile" name="useEnvFile" type="checkbox" class={checkboxClass} checked />
+              <label for="useEnvFile" class="text-xs cursor-pointer select-none">Use a separate .env file</label>
+              <span class={badgeClass}>Recommended</span>
+            </div>
+            <p class={descClass}>
+              Keeps configuration in one place, easy to change later without touching <code>docker-compose.yaml</code>.
+              Turn this off to bake every value directly into <code>docker-compose.yaml</code> instead — only one file
+              to manage, but changing settings afterwards means editing the compose file itself.
+            </p>
+          </div>
+        </fieldset>
+        </div>
+
+        <div class="wizard-step hidden" data-step="1">
+        <fieldset class={fieldsetClass}>
+          <div class="space-y-4 mt-2">
+            <div class={fieldRowClass}>
+              <label for="appName" class={labelClass}>Application name</label>
+              <input id="appName" name="appName" type="text" class={inputClass} value="Lychee" />
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="appUrl" class={labelClass}>Application URL</label>
+                <input id="appUrl" name="appUrl" type="text" class={inputClass} value="http://localhost" />
+              </div>
+              <p class={descClass}>The host name up to the TLD, e.g. https://photos.example.com</p>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="appPort" class={labelClass}>Port to expose Lychee on</label>
+                <input id="appPort" name="appPort" type="text" inputmode="numeric" class={inputClass} value="8000" />
+              </div>
+              <p class={descClass} data-error="appPort"></p>
+            </div>
+            <div class={checkboxRowClass}>
+              <input id="appForceHttps" name="appForceHttps" type="checkbox" class={checkboxClass} />
+              <label for="appForceHttps" class="text-xs cursor-pointer select-none">Force HTTPS</label>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="timezone" class={labelClass}>Timezone</label>
+                <input id="timezone" name="timezone" type="text" class={inputClass} value="UTC" />
+              </div>
+              <p class={descClass}>A named timezone identifier, e.g. Europe/Paris</p>
+            </div>
+
+            <hr class="border-gray-200 dark:border-gray-700" />
+
+            <div>
+              <div class={fieldRowClass}>
+                <label for="trustedProxies" class={labelClass}>Trusted proxies</label>
+                <input id="trustedProxies" name="trustedProxies" type="text" class={inputClass} placeholder="null" />
+              </div>
+              <p class={descClass}>
+                IPs (or CIDR ranges) of reverse proxies in front of Lychee, so their <code>X-Forwarded-*</code> headers
+                are trusted for the real client IP/scheme. Leave blank for <code>null</code> (no proxy trusted) — or <code
+                  >*</code
+                > once Traefik is enabled below — otherwise a comma-separated list of IPs, or <code>*</code> to trust
+                any proxy.
+              </p>
+            </div>
+          </div>
+        </fieldset>
+        </div>
+
+        <div class="wizard-step hidden" data-step="2">
+        <fieldset class={fieldsetClass}>
+          <div class="space-y-4 mt-2">
+            <div class={fieldRowClass}>
+              <label for="dbEngine" class={labelClass}>Database engine</label>
+              <select id="dbEngine" name="dbEngine" class={selectClass}>
+                <option value="mariadb">MariaDB / MySQL</option>
+                <option value="pgsql">PostgreSQL</option>
+                <option value="sqlite">SQLite</option>
+              </select>
+            </div>
+
+            <div id="dbLocationGroup" class={fieldRowClass}>
+              <label for="dbLocation" class={labelClass}>Where should it run?</label>
+              <select id="dbLocation" name="dbLocation" class={selectClass}>
+                <option value="docker">In this docker-compose (recommended)</option>
+                <option value="external">Connect to an existing server</option>
+              </select>
+            </div>
+            <p id="dbPgsqlNote" class={`${descClass} hidden`}>
+              Lychee's official Docker packaging only ships a MariaDB container. For PostgreSQL, connect to a server you
+              already run.
+            </p>
+
+            <div id="dbHostPortFields" class="hidden">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="dbHost" class="block text-xs font-medium mb-1">Database host</label>
+                  <input id="dbHost" name="dbHost" type="text" class={inputClass} placeholder="db.example.com" />
+                </div>
+                <div>
+                  <label for="dbPort" class="block text-xs font-medium mb-1">Database port</label>
+                  <input
+                    id="dbPort"
+                    name="dbPort"
+                    type="text"
+                    inputmode="numeric"
+                    class={inputClass}
+                    placeholder="3306"
+                  />
+                  <p class={descClass} data-error="dbPort"></p>
+                </div>
+              </div>
+            </div>
+
+            <div id="dbCredentialFields" class="space-y-4">
+              <div class={fieldRowClass}>
+                <label for="dbDatabase" class={labelClass}>Database name</label>
+                <input id="dbDatabase" name="dbDatabase" type="text" class={inputClass} value="lychee" />
+              </div>
+              <div class={fieldRowClass}>
+                <label for="dbUsername" class={labelClass}>Database username</label>
+                <input id="dbUsername" name="dbUsername" type="text" class={inputClass} value="lychee" />
+              </div>
+              <div class={checkboxRowClass}>
+                <input id="generatePasswords" name="generatePasswords" type="checkbox" class={checkboxClass} checked />
+                <label for="generatePasswords" class="text-xs cursor-pointer select-none"
+                  >Generate secure database passwords for me</label
+                >
+              </div>
+              <div id="dbPasswordField" class={`hidden ${fieldRowClass}`}>
+                <label for="dbPassword" class={labelClass}>Database password</label>
+                <input
+                  id="dbPassword"
+                  name="dbPassword"
+                  type="password"
+                  autocomplete="new-password"
+                  class={inputClass}
+                />
+              </div>
+              <div id="dbRootPasswordField" class={`hidden ${fieldRowClass}`}>
+                <label for="dbRootPassword" class={labelClass}>Database root password</label>
+                <input
+                  id="dbRootPassword"
+                  name="dbRootPassword"
+                  type="password"
+                  autocomplete="new-password"
+                  class={inputClass}
+                />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        </div>
+
+        <div class="wizard-step hidden" data-step="3">
+        <fieldset class={fieldsetClass}>
+          <div class="mt-2">
+            <div class={checkboxRowClass}>
+              <input id="useDockerSecrets" name="useDockerSecrets" type="checkbox" class={checkboxClass} checked />
+              <label for="useDockerSecrets" class="text-xs cursor-pointer select-none">
+                Use Docker secrets (file-based) for <code>APP_KEY</code> / <code>DB_PASSWORD</code> /
+                <code>DB_ROOT_PASSWORD</code> and other sensitive values
+              </label>
+              <span class={badgeClass}>Recommended</span>
+            </div>
+            <p class={descClass}>
+              Keeps sensitive values out of .env, in ./secrets/ files instead. Also applies to any OAuth client
+              secrets and AI service API keys configured below, in the Services step.
+            </p>
+          </div>
+        </fieldset>
+        </div>
+
+        <div class="wizard-step hidden" data-step="4">
+        <fieldset class={fieldsetClass}>
+          <div class="space-y-4 mt-2">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <p class="text-xs font-medium">Services</p>
+                <p class={descClass}>phpMyAdmin, facial recognition, NSFW classification, or an OAuth login provider.</p>
+              </div>
+              <div class="relative shrink-0">
+                <button type="button" id="addServiceBtn" class="wizard-toolbtn">+ Add service</button>
+                <div
+                  id="addServiceMenu"
+                  class="hidden absolute right-0 z-10 mt-1 max-h-72 w-64 overflow-y-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow-lg"
+                >
+                </div>
+              </div>
+            </div>
+
+            <div id="serviceCards" class="space-y-2"></div>
+          </div>
+        </fieldset>
+        </div>
+
+        <div class="wizard-step hidden" data-step="5">
+        <fieldset class={fieldsetClass}>
+          <div class="space-y-4 mt-2">
+            <div class={checkboxRowClass}>
+              <input id="useWorker" name="useWorker" type="checkbox" class={checkboxClass} checked />
+              <label for="useWorker" class="text-xs cursor-pointer select-none">Run a background queue worker</label>
+              <span class={badgeClass}>Recommended</span>
+            </div>
+            <p class={descClass}>
+              Processes imports and thumbnail generation in the background instead of blocking requests. Sets <code
+                >QUEUE_CONNECTION</code
+              > to <code>database</code>; turning this off falls back to <code>sync</code> (jobs run immediately,
+              inline).
+            </p>
+            <div id="workerCountField">
+              <div class={fieldRowClass}>
+                <label for="workerCount" class={labelClass}>Number of workers</label>
+                <input
+                  id="workerCount"
+                  name="workerCount"
+                  type="text"
+                  inputmode="numeric"
+                  class={inputClass}
+                  value="1"
+                />
+              </div>
+              <p class={descClass} data-error="workerCount"></p>
+            </div>
+
+            <hr class="border-gray-200 dark:border-gray-700" />
+
+            <div class={checkboxRowClass}>
+              <input id="enableTraefik" name="enableTraefik" type="checkbox" class={checkboxClass} />
+              <label for="enableTraefik" class="text-xs cursor-pointer select-none"
+                >Integrate with Traefik reverse proxy</label
+              >
+            </div>
+            <p class={descClass}>
+              Adds routing labels to Lychee and attaches it to an externally managed Traefik network. Routes on the
+              hostname from your Application URL above.
+            </p>
+            <div id="traefikFields" class="hidden space-y-4">
+              <div class={fieldRowClass}>
+                <label for="traefikEntrypoint" class={labelClass}>Entry point</label>
+                <input
+                  id="traefikEntrypoint"
+                  name="traefikEntrypoint"
+                  type="text"
+                  class={inputClass}
+                  value="websecure"
+                />
+              </div>
+              <div>
+                <div class={fieldRowClass}>
+                  <label for="traefikCertResolver" class={labelClass}>Certificate resolver</label>
+                  <input
+                    id="traefikCertResolver"
+                    name="traefikCertResolver"
+                    type="text"
+                    class={inputClass}
+                    value="letsencrypt"
+                  />
+                </div>
+                <p class={descClass}>Leave blank to skip TLS certificate resolution (e.g. handled elsewhere).</p>
+              </div>
+              <div>
+                <div class={fieldRowClass}>
+                  <label for="traefikNetwork" class={labelClass}>Traefik Docker network name</label>
+                  <input id="traefikNetwork" name="traefikNetwork" type="text" class={inputClass} value="traefik" />
+                </div>
+                <p class={descClass}>Must already exist — the external network your Traefik container is on.</p>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        </div>
+
+        <div class="wizard-step hidden" data-step="6">
+        <fieldset class={fieldsetClass}>
+          <div class="space-y-4 mt-2">
+            <div>
+              <div class={fieldRowClass}>
+                <label for="puid" class={labelClass}>PUID</label>
+                <input id="puid" name="puid" type="text" inputmode="numeric" class={inputClass} value="1000" />
+              </div>
+              <p class={descClass}>
+                User ID that will own files written by the container. <span data-error="puid"></span>
+              </p>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="pgid" class={labelClass}>PGID</label>
+                <input id="pgid" name="pgid" type="text" inputmode="numeric" class={inputClass} value="1000" />
+              </div>
+              <p class={descClass}>
+                Group ID that will own files written by the container. <span data-error="pgid"></span>
+              </p>
+            </div>
+
+            <hr class="border-gray-200 dark:border-gray-700" />
+
+            <div>
+              <p class="text-xs font-medium">Storage locations</p>
+              <p class={descClass}>
+                Host-side paths for Lychee's persistent data — relative paths resolve next to <code
+                  >docker-compose.yaml</code
+                >.
+              </p>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="volumeUploads" class={labelClass}>Uploads path</label>
+                <input id="volumeUploads" name="volumeUploads" type="text" class={inputClass} value="./lychee/uploads" />
+              </div>
+              <p class={descClass}>Where your photos and videos are stored. <span data-error="volumeUploads"></span></p>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="volumeLogs" class={labelClass}>Logs path</label>
+                <input id="volumeLogs" name="volumeLogs" type="text" class={inputClass} value="./lychee/logs" />
+              </div>
+              <p class={descClass}>Application logs. <span data-error="volumeLogs"></span></p>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="volumeTmp" class={labelClass}>Temporary files path</label>
+                <input id="volumeTmp" name="volumeTmp" type="text" class={inputClass} value="./lychee/tmp" />
+              </div>
+              <p class={descClass}>
+                Uploads in progress, while waiting for background jobs to process them.
+                <span data-error="volumeTmp"></span>
+              </p>
+            </div>
+            <div id="volumeDatabaseField" class="hidden">
+              <div class={fieldRowClass}>
+                <label for="volumeDatabase" class={labelClass}>SQLite database path</label>
+                <input
+                  id="volumeDatabase"
+                  name="volumeDatabase"
+                  type="text"
+                  class={inputClass}
+                  value="./lychee/database/database.sqlite"
+                />
+              </div>
+              <p class={descClass}>Only used with the SQLite database engine. <span data-error="volumeDatabase"></span></p>
+            </div>
+          </div>
+        </fieldset>
+        </div>
+
+        <div class="wizard-step hidden" data-step="7">
+        <fieldset class={fieldsetClass}>
+          <ol id="instructions" class="list-decimal list-inside space-y-2 text-xs text-gray-600 dark:text-gray-400">
+          </ol>
+        </fieldset>
+        </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-2 lg:shrink-0">
+          <button type="button" id="stepBack" class="wizard-toolbtn" disabled>Back</button>
+          <span id="stepIndicator" class="text-xs text-gray-500 dark:text-gray-400">Step 1 of 8</span>
+          <button type="button" id="stepNext" class="wizard-toolbtn">Next</button>
+        </div>
+
+        <!-- Templates for content the script below builds at runtime (service
+             cards, the add-service menu, secret rows) — cloned and filled in
+             via DOM APIs rather than assembled as HTML strings in JS, so
+             markup/styling stays here in one place instead of being
+             duplicated across the frontmatter and the script. -->
+        <template id="tpl-field-row">
+          <div>
+            <div class={fieldRowClass}>
+              <label class={labelClass}></label>
+              <input class={inputClass} autocomplete="off" />
+            </div>
+            <p class={descClass}></p>
+          </div>
+        </template>
+
+        <template id="tpl-checkbox-row">
+          <div class={checkboxRowClass}>
+            <input type="checkbox" class={checkboxClass} />
+            <label class="text-xs cursor-pointer select-none"></label>
+          </div>
+        </template>
+
+        <template id="tpl-desc-paragraph">
+          <p class={descClass}></p>
+        </template>
+
+        <template id="tpl-nsfw-desc">
+          <p class={descClass}>
+            Flags or blocks explicit photos using a separate <a
+              class="text-primary hover:underline"
+              href="https://github.com/LycheeOrg/Lychee-NSFW-Classification"
+              target="_blank"
+              rel="noopener noreferrer">classification service</a
+            >. Requires a <a class="text-primary hover:underline" href="/docs/se/overview/">Supporter Edition</a> license
+            key.
+          </p>
+        </template>
+
+        <template id="tpl-tag-ai">
+          <span class={tagAiClass}>AI</span>
+        </template>
+        <template id="tpl-tag-se">
+          <span class={tagSeClass}>SE</span>
+        </template>
+        <template id="tpl-badge-ok">
+          <span class={statusOkClass}>Configured</span>
+        </template>
+        <template id="tpl-badge-warn">
+          <span class={statusWarnClass}>To be configured</span>
+        </template>
+
+        <template id="tpl-service-card">
+          <div class="rounded-lg bg-gray-50 dark:bg-slate-800/60">
+            <div class="flex items-center justify-between gap-2 px-3 py-2" data-card-header>
+              <div class="flex items-center gap-1.5" data-card-title-row>
+                <span class="text-xs font-medium" data-card-title></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span data-card-status></span>
+                <button
+                  type="button"
+                  class="p-1 rounded text-gray-400 hover:text-red-600 hover:cursor-pointer dark:text-gray-500 dark:hover:text-red-400"
+                  data-card-remove
+                  aria-label="Remove service"
+                >
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 7h12M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m2 0l-.867 12.142A2 2 0 0115.138 21H8.862a2 2 0 01-1.995-1.858L6 7h12z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="hidden space-y-3 px-3 pb-3" data-card-fields></div>
+          </div>
+        </template>
+
+        <template id="tpl-menu-group">
+          <div class="px-3 pt-2 pb-1 text-xxs font-semibold uppercase tracking-wide text-gray-400"></div>
+        </template>
+        <template id="tpl-menu-item">
+          <button
+            type="button"
+            class="block w-full px-3 py-1.5 text-left text-xs hover:bg-gray-100 dark:hover:bg-slate-800"
+          ></button>
+        </template>
+        <template id="tpl-menu-empty">
+          <p class={descClass}>All services added.</p>
+        </template>
+
+        <template id="tpl-secret-row">
+          <div class="px-4 py-3">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-500 dark:text-gray-400" data-secret-label></span>
+              <div class="flex gap-2">
+                <button type="button" class="wizard-toolbtn" data-secret-copy>Copy</button>
+                <button type="button" class="wizard-toolbtn" data-secret-download>Download</button>
+              </div>
+            </div>
+            <code class="block text-xs break-all" data-secret-value></code>
+          </div>
+        </template>
+      </form>
+
+      <!-- Output ************************************************************* -->
+      <div id="wizard-output-column" class="flex flex-col gap-4 lg:min-h-0">
+        <div
+          id="warnings"
+          class="hidden rounded-lg border border-amber-300 bg-amber-50 dark:border-amber-700 dark:bg-amber-950 p-4 text-xs text-amber-800 dark:text-amber-200"
+        >
+        </div>
+
+        <div
+          class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 overflow-hidden flex-1 flex flex-col min-h-0"
+        >
+          <nav class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700" role="tablist">
+            <div class="flex">
+              <button type="button" class="wizard-tab" data-tab="compose" role="tab">docker-compose.yaml</button>
+              <button type="button" id="envTabBtn" class="wizard-tab" data-tab="env" role="tab">.env</button>
+              <button type="button" id="secretsTabBtn" class="wizard-tab hidden" data-tab="secrets" role="tab"
+                >secrets/</button
+              >
+            </div>
+            <button type="button" id="regenerateSecrets" class="wizard-toolbtn mr-3">Regenerate secrets</button>
+          </nav>
+
+          <div data-panel="compose" class="flex-1 flex flex-col min-h-0">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+              <span class="text-xs text-gray-500 dark:text-gray-400">docker-compose.yaml</span>
+              <div class="flex gap-2">
+                <button type="button" class="wizard-toolbtn" data-copy="compose">Copy</button>
+                <button type="button" class="wizard-toolbtn" data-download="compose" data-filename="docker-compose.yaml"
+                  >Download</button
+                >
+              </div>
+            </div>
+            <pre class="wizard-pre"><code id="output-compose" class="language-yaml" /></pre>
+          </div>
+
+          <div data-panel="env" class="hidden flex flex-1 flex-col min-h-0">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+              <span class="text-xs text-gray-500 dark:text-gray-400">.env</span>
+              <div class="flex gap-2">
+                <button type="button" class="wizard-toolbtn" data-copy="env">Copy</button>
+                <button type="button" class="wizard-toolbtn" data-download="env" data-filename=".env">Download</button>
+              </div>
+            </div>
+            <pre class="wizard-pre"><code id="output-env" class="language-ini" /></pre>
+          </div>
+
+          <div data-panel="secrets" class="hidden flex flex-1 flex-col min-h-0 overflow-auto">
+            <div id="output-secrets" class="divide-y divide-gray-200 dark:divide-gray-700"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style is:global>
+    .wizard-tab {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--aw-color-text-muted, #64748b);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+    }
+    .wizard-tab[aria-selected='true'] {
+      color: var(--aw-color-primary, #2563eb);
+      border-bottom-color: var(--aw-color-primary, #2563eb);
+    }
+    .wizard-toolbtn {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.375rem;
+      border: 1px solid;
+      cursor: pointer;
+      color: inherit;
+      background: none;
+    }
+    .wizard-toolbtn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    /* Stepper: a row of numbered circles connected by lines, styled after
+       https://ui.nuxt.com/docs/components/stepper. Each step button's
+       data-state ("upcoming" | "active" | "completed", set in showStep())
+       drives the circle/label/connector colors below. */
+    .wizard-stepper {
+      display: flex;
+      align-items: flex-start;
+      overflow-x: auto;
+      padding-bottom: 0.125rem;
+    }
+    .wizard-stepper-item {
+      flex: none;
+      width: 3.5rem;
+    }
+    .wizard-stepper-connector {
+      flex: 1 1 auto;
+      /* Steps are centered in a 3.5rem-wide item around a 1.5rem circle,
+         leaving 1rem of empty space on each side — pull the connector into
+         that space so its line reaches the circle's edge on both sides
+         instead of stopping at the item boundary. */
+      min-width: calc(0.375rem + 2rem);
+      margin-left: -1rem;
+      margin-right: -1rem;
+      height: 2px;
+      margin-top: 0.6875rem;
+      background: var(--aw-color-border, #e2e8f0);
+      transition: background-color 0.15s ease-out;
+    }
+    .dark .wizard-stepper-connector {
+      background: #334155;
+    }
+    .wizard-stepper-connector[data-state='completed'] {
+      background: var(--aw-color-primary, #2563eb);
+    }
+    .wizard-step-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: inherit;
+    }
+    .wizard-step-circle {
+      position: relative;
+      width: 1.5rem;
+      height: 1.5rem;
+      flex: none;
+      border-radius: 9999px;
+      border: 2px solid var(--aw-color-text-muted, #cbd5e1);
+      color: var(--aw-color-text-muted, #94a3b8);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background-color 0.15s ease-out,
+        border-color 0.15s ease-out,
+        color 0.15s ease-out;
+    }
+    .dark .wizard-step-circle {
+      background: #0f172a;
+      border-color: #475569;
+      color: #64748b;
+    }
+    .wizard-step-num,
+    .wizard-step-check {
+      font-size: 0.7rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .wizard-step-check {
+      display: none;
+      width: 0.85rem;
+      height: 0.85rem;
+    }
+    .wizard-step-label {
+      font-size: 0.6rem;
+      line-height: 1.15;
+      font-weight: 500;
+      text-align: center;
+      color: var(--aw-color-text-muted, #94a3b8);
+      transition: color 0.15s ease-out;
+    }
+    .wizard-step-btn[data-state='active'] .wizard-step-circle {
+      border-color: var(--aw-color-primary, #2563eb);
+      background: var(--aw-color-primary, #2563eb);
+      color: #fff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+    }
+    .wizard-step-btn[data-state='active'] .wizard-step-label {
+      color: var(--aw-color-primary, #2563eb);
+      font-weight: 600;
+    }
+    .wizard-step-btn[data-state='completed'] .wizard-step-circle {
+      border-color: var(--aw-color-primary, #2563eb);
+      background: var(--aw-color-primary, #2563eb);
+      color: #fff;
+    }
+    .wizard-step-btn[data-state='completed'] .wizard-step-num {
+      display: none;
+    }
+    .wizard-step-btn[data-state='completed'] .wizard-step-check {
+      display: block;
+    }
+    .wizard-step-btn[data-state='completed'] .wizard-step-label {
+      color: var(--aw-color-text-page, #334155);
+    }
+    .dark .wizard-step-btn[data-state='completed'] .wizard-step-label {
+      color: #cbd5e1;
+    }
+    /* Slide+fade in whenever a step goes from hidden to shown — CSS
+       animations restart automatically on that transition, so no JS timing
+       is needed, just a direction hint (see --wizard-step-dir, set in
+       showStep()) for which side it slides in from. */
+    .wizard-step {
+      animation: wizard-step-in 0.22s ease-out;
+    }
+    @keyframes wizard-step-in {
+      from {
+        opacity: 0;
+        transform: translateX(calc(var(--wizard-step-dir, 1) * 16px));
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wizard-step {
+        animation: none;
+      }
+    }
+    .wizard-pre {
+      margin: 0;
+      max-height: 26rem;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 1rem;
+      font-size: 0.7rem;
+      line-height: 1.4;
+      /* Wrap long lines instead of scrolling horizontally — a long comment
+         or image reference on one tab but not another otherwise makes a
+         horizontal scrollbar appear/disappear as you switch tabs. */
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    /* At lg+, the page itself doesn't scroll (see the section's lg:h-screen
+       lg:overflow-hidden below) — the grid fills the remaining viewport
+       height after the header, and both columns stretch to match it, each
+       scrolling internally instead. Let the active panel's <pre> grow to
+       fill that instead of stopping at a fixed height. */
+    @media (min-width: 1024px) {
+      .wizard-pre {
+        flex: 1 1 auto;
+        min-height: 12rem;
+        max-height: none;
+      }
+    }
+    .wizard-line-flash {
+      background: rgba(37, 99, 235, 0.18);
+      border-radius: 2px;
+      transition: background 1.1s ease-out;
+    }
+
+    /* Prism token colors, tuned for this page's light/dark palette. */
+    .wizard-pre .token.comment {
+      color: #6b7280;
+      font-style: italic;
+    }
+    .dark .wizard-pre .token.comment {
+      color: #9ca3af;
+    }
+    .wizard-pre .token.key,
+    .wizard-pre .token.atrule,
+    .wizard-pre .token.attr-name,
+    .wizard-pre .token.property {
+      color: #2563eb;
+    }
+    .dark .wizard-pre .token.key,
+    .dark .wizard-pre .token.atrule,
+    .dark .wizard-pre .token.attr-name,
+    .dark .wizard-pre .token.property {
+      color: #60a5fa;
+    }
+    .wizard-pre .token.string,
+    .wizard-pre .token.value,
+    .wizard-pre .token.attr-value,
+    .wizard-pre .token.inner-value {
+      color: #059669;
+    }
+    .dark .wizard-pre .token.string,
+    .dark .wizard-pre .token.value,
+    .dark .wizard-pre .token.attr-value,
+    .dark .wizard-pre .token.inner-value {
+      color: #34d399;
+    }
+    .wizard-pre .token.boolean,
+    .wizard-pre .token.number,
+    .wizard-pre .token.important {
+      color: #d97706;
+    }
+    .dark .wizard-pre .token.boolean,
+    .dark .wizard-pre .token.number,
+    .dark .wizard-pre .token.important {
+      color: #fbbf24;
+    }
+    .wizard-pre .token.punctuation {
+      color: #9ca3af;
+    }
+    .dark .wizard-pre .token.punctuation {
+      color: #6b7280;
+    }
+    .wizard-pre .token.tag {
+      color: #7c3aed;
+    }
+    .dark .wizard-pre .token.tag {
+      color: #a78bfa;
+    }
+    .wizard-pre .token.section,
+    .wizard-pre .token.section-name,
+    .wizard-pre .token.selector {
+      color: #db2777;
+    }
+    .dark .wizard-pre .token.section,
+    .dark .wizard-pre .token.section-name,
+    .dark .wizard-pre .token.selector {
+      color: #f472b6;
+    }
+  </style>
+
+  <script>
+    import Prism from 'prismjs';
+    import 'prismjs/components/prism-yaml';
+    import 'prismjs/components/prism-ini';
+
+    // We highlight manually via Prism.highlight() below — without this,
+    // Prism's own auto-highlight (on DOMContentLoaded/rAF) re-highlights every
+    // <code class="language-*"> element from raw textContent shortly after our
+    // own render, silently stripping the per-line <span> wrapper renderHighlighted
+    // adds (needed for scroll-to-line) since it doesn't know about it.
+    Prism.manual = true;
+    import { needsDbService, type WizardAnswers } from '~/utils/wizard/answers';
+    import { generate, type GeneratedSecrets, type GenerateResult } from '~/utils/wizard/generator';
+    import { generateAppKey, generateSecret } from '~/utils/wizard/secrets';
+    import {
+      validatePort,
+      validateOptionalPort,
+      validateUint,
+      validatePositiveInt,
+      validatePath,
+      validateNonNegativeFloat,
+    } from '~/utils/wizard/validate';
+    import { loadTemplates } from '~/utils/wizard/templates';
+    import { OAUTH_PROVIDERS, type OAuthProviderDef } from '~/utils/wizard/oauthProviders';
+    import fallbackCompose from '~/data/wizard/docker-compose.yaml?raw';
+    import fallbackEnvExample from '~/data/wizard/env.example?raw';
+
+    const DB_DEFAULT_PORT: Record<WizardAnswers['dbEngine'], string> = {
+      mariadb: '3306',
+      pgsql: '5432',
+      sqlite: '',
+    };
+
+    const form = document.getElementById('wizard-form') as HTMLFormElement;
+    const dbLocationGroup = document.getElementById('dbLocationGroup')!;
+    const dbPgsqlNote = document.getElementById('dbPgsqlNote')!;
+    const dbHostPortFields = document.getElementById('dbHostPortFields')!;
+    const dbCredentialFields = document.getElementById('dbCredentialFields')!;
+    const dbPasswordField = document.getElementById('dbPasswordField')!;
+    const dbRootPasswordField = document.getElementById('dbRootPasswordField')!;
+    const serviceCards = document.getElementById('serviceCards')!;
+    const addServiceBtn = document.getElementById('addServiceBtn') as HTMLButtonElement;
+    const addServiceMenu = document.getElementById('addServiceMenu')!;
+    const workerCountField = document.getElementById('workerCountField')!;
+    const traefikFields = document.getElementById('traefikFields')!;
+    const warningsBox = document.getElementById('warnings')!;
+    const secretsTabBtn = document.getElementById('secretsTabBtn')!;
+    const envTabBtn = document.getElementById('envTabBtn')!;
+    const outputCompose = document.getElementById('output-compose')!;
+    const outputEnv = document.getElementById('output-env')!;
+    const outputSecrets = document.getElementById('output-secrets')!;
+    const instructions = document.getElementById('instructions')!;
+    const templateSourceNote = document.getElementById('template-source')!;
+
+    function newSecrets(): GeneratedSecrets {
+      return {
+        appKey: generateAppKey(),
+        dbPassword: generateSecret(24),
+        dbRootPassword: generateSecret(24),
+        aiVisionApiKey: generateSecret(24),
+        nsfwApiKey: generateSecret(24),
+      };
+    }
+
+    let secrets = newSecrets();
+    let templates = { envExample: fallbackEnvExample, compose: fallbackCompose };
+    let lastResult: GenerateResult | null = null;
+
+    function field<T extends HTMLInputElement | HTMLSelectElement>(name: string): T {
+      return form.elements.namedItem(name) as T;
+    }
+
+    // fieldOpt is field() for inputs that only exist in the DOM while their
+    // service card is rendered (see the service-card module below) — plain
+    // field() assumes non-null, which doesn't hold for those.
+    function fieldOpt<T extends HTMLInputElement>(name: string): T | null {
+      return (form.elements.namedItem(name) as T | null) ?? null;
+    }
+
+    // ---- Services (facial recognition / NSFW / OAuth providers) --------
+    // These live behind an "Add service" menu instead of being static
+    // checkboxes: each addition renders a card (with its own fields) into
+    // #serviceCards, and removal deletes the card. A service is "active" —
+    // for readAnswers(), for the add-menu's available list, for the
+    // configured/to-be-configured badge — purely by whether its card
+    // currently exists in the DOM; there's no separate tracking state.
+    interface ServiceEntry {
+      id: string;
+      label: string;
+      group: string;
+    }
+
+    const BUILTIN_SERVICE_ENTRIES: ServiceEntry[] = [
+      { id: 'phpmyadmin', label: 'phpMyAdmin', group: 'Database tools' },
+      { id: 'facial-recognition', label: 'Facial Recognition', group: 'AI services' },
+      { id: 'nsfw', label: 'NSFW Classification', group: 'AI services' },
+      { id: 'geo-decoding', label: 'Local Reverse Geo-Decoding', group: 'Other services' },
+    ];
+    const OAUTH_SERVICE_ENTRIES: ServiceEntry[] = OAUTH_PROVIDERS.map((p) => ({
+      id: p.id,
+      label: p.label,
+      group: 'OAuth login providers',
+    }));
+    const ALL_SERVICE_ENTRIES: ServiceEntry[] = [...BUILTIN_SERVICE_ENTRIES, ...OAUTH_SERVICE_ENTRIES];
+
+    // Clones a <template>'s single root element. All markup/styling for
+    // content this script builds at runtime lives in those templates (see
+    // the bottom of the <form> above) — this function, and the small
+    // "build" functions below it, only ever fill in text/attributes on
+    // cloned real elements, never assemble HTML strings.
+    function cloneTemplate<T extends Element>(id: string): T {
+      const tpl = document.getElementById(id) as HTMLTemplateElement;
+      return tpl.content.firstElementChild!.cloneNode(true) as T;
+    }
+
+    function buildFieldRow(opts: {
+      id: string;
+      label: string;
+      type?: string;
+      inputmode?: 'text' | 'numeric' | 'decimal';
+      placeholder?: string;
+      value?: string;
+      desc?: string;
+    }): HTMLElement {
+      const row = cloneTemplate<HTMLElement>('tpl-field-row');
+      const label = row.querySelector('label')!;
+      const input = row.querySelector('input')!;
+      label.htmlFor = opts.id;
+      label.textContent = opts.label;
+      input.id = opts.id;
+      input.name = opts.id;
+      input.type = opts.type ?? 'text';
+      if (opts.inputmode) input.inputMode = opts.inputmode;
+      if (opts.placeholder) input.placeholder = opts.placeholder;
+      if (opts.value !== undefined) input.value = opts.value;
+      const desc = row.querySelector('p')!;
+      if (opts.desc) {
+        desc.textContent = opts.desc + ' ';
+        const errorSpan = document.createElement('span');
+        errorSpan.dataset.error = opts.id;
+        desc.appendChild(errorSpan);
+      } else {
+        desc.remove();
+      }
+      return row;
+    }
+
+    function buildCheckboxRow(opts: { id: string; label: string }): HTMLElement {
+      const row = cloneTemplate<HTMLElement>('tpl-checkbox-row');
+      const input = row.querySelector('input')!;
+      const label = row.querySelector('label')!;
+      input.id = opts.id;
+      input.name = opts.id;
+      label.htmlFor = opts.id;
+      label.textContent = opts.label;
+      return row;
+    }
+
+    // Detection/matching tuning knobs for the facial-recognition sidecar —
+    // see github.com/LycheeOrg/Lychee-Facial-Recognition's VISION_FACE_* env
+    // vars. Defaults here must match docker-compose.yaml's own
+    // `${VISION_FACE_*:-default}` fallbacks (see generator.ts), since only
+    // values that differ from them get written out at all.
+    const AI_VISION_TUNING_FIELDS: {
+      id: string;
+      label: string;
+      value: string;
+      inputmode: 'numeric' | 'decimal';
+      desc: string;
+    }[] = [
+      {
+        id: 'aiVisionMaxFacesPerPhoto',
+        label: 'Max faces per photo',
+        value: '10',
+        inputmode: 'numeric',
+        desc: 'Caps how many faces are kept per photo (top matches by confidence). Higher values catch more faces in group shots, at the cost of processing time.',
+      },
+      {
+        id: 'aiVisionMinFaceSizePixels',
+        label: 'Min face size (px)',
+        value: '0',
+        inputmode: 'numeric',
+        desc: "Faces smaller than this, measured on the bounding box's longest side, are ignored. 0 disables the filter; raising it skips small/background faces but may miss distant subjects.",
+      },
+      {
+        id: 'aiVisionBlurThreshold',
+        label: 'Blur threshold',
+        value: '0.5',
+        inputmode: 'decimal',
+        desc: 'Faces blurrier than this Laplacian-variance score are discarded. Lower is more permissive (keeps blurrier faces); higher is stricter.',
+      },
+      {
+        id: 'aiVisionClusterEps',
+        label: 'Clustering distance',
+        value: '0.3',
+        inputmode: 'decimal',
+        desc: 'Maximum distance between faces for the clustering algorithm to group them as the same person. Lower values make tighter, more numerous clusters; higher values merge more faces together.',
+      },
+      {
+        id: 'aiVisionQueueMaxSize',
+        label: 'Max queued jobs',
+        value: '0',
+        inputmode: 'numeric',
+        desc: 'Pending recognition jobs beyond this are rejected instead of queued. 0 means unlimited.',
+      },
+      {
+        id: 'aiVisionThreadPoolSize',
+        label: 'Inference thread pool size',
+        value: '1',
+        inputmode: 'numeric',
+        desc: 'CPU threads used for face-recognition inference. Higher values speed up processing on multi-core hosts, at the cost of CPU/RAM usage.',
+      },
+      {
+        id: 'aiVisionWorkers',
+        label: 'Worker processes',
+        value: '1',
+        inputmode: 'numeric',
+        desc: 'Uvicorn worker processes serving the facial recognition API. More workers handle more concurrent requests, at the cost of multiplying memory usage.',
+      },
+    ];
+
+    function buildFacialRecognitionFields(): HTMLElement[] {
+      const toggle = buildCheckboxRow({ id: 'customAiVisionKey', label: 'Set your own AI Vision API key' });
+      const wrap = document.createElement('div');
+      wrap.id = 'aiVisionKeyField';
+      wrap.className = 'hidden';
+      wrap.appendChild(
+        buildFieldRow({ id: 'aiVisionApiKey', label: 'AI Vision API key', desc: 'Otherwise one is generated for you.' })
+      );
+
+      const hr = document.createElement('hr');
+      hr.className = 'border-gray-200 dark:border-gray-700';
+      const heading = document.createElement('p');
+      heading.className = 'text-xs font-medium';
+      heading.textContent = 'Detection & matching';
+      const tuningFields = AI_VISION_TUNING_FIELDS.map((f) => buildFieldRow(f));
+
+      return [toggle, wrap, hr, heading, ...tuningFields];
+    }
+
+    function buildNsfwFields(): HTMLElement[] {
+      const desc = cloneTemplate<HTMLElement>('tpl-nsfw-desc');
+      const toggle = buildCheckboxRow({ id: 'customNsfwKey', label: 'Set your own NSFW API key' });
+      const wrap = document.createElement('div');
+      wrap.id = 'nsfwKeyField';
+      wrap.className = 'hidden';
+      wrap.appendChild(
+        buildFieldRow({ id: 'nsfwApiKey', label: 'NSFW API key', desc: 'Otherwise one is generated for you.' })
+      );
+      return [desc, toggle, wrap];
+    }
+
+    function buildGeoDecodingFields(): HTMLElement[] {
+      const p = cloneTemplate<HTMLElement>('tpl-desc-paragraph');
+      p.textContent =
+        "Self-hosted, so it isn't rate limited like the public Nominatim service — but resolution is limited to city-level precision, not street-level.";
+      return [p];
+    }
+
+    function buildOAuthFields(provider: OAuthProviderDef): HTMLElement[] {
+      const nodes: HTMLElement[] = [];
+      if (provider.description) {
+        const p = cloneTemplate<HTMLElement>('tpl-desc-paragraph');
+        p.textContent = provider.description;
+        nodes.push(p);
+      }
+      for (const f of provider.fields) {
+        nodes.push(
+          buildFieldRow({
+            id: `oauth_${provider.id}_${f.key}`,
+            label: f.label,
+            placeholder: f.placeholder,
+            type: /secret/i.test(f.key) ? 'password' : 'text',
+          })
+        );
+      }
+      return nodes;
+    }
+
+    function fieldNodesFor(id: string): HTMLElement[] {
+      if (id === 'phpmyadmin') return [];
+      if (id === 'facial-recognition') return buildFacialRecognitionFields();
+      if (id === 'nsfw') return buildNsfwFields();
+      if (id === 'geo-decoding') return buildGeoDecodingFields();
+      const provider = OAUTH_PROVIDERS.find((p) => p.id === id);
+      return provider ? buildOAuthFields(provider) : [];
+    }
+
+    function isServiceConfigured(id: string): boolean {
+      if (id === 'phpmyadmin') return true; // nothing to configure
+      if (id === 'geo-decoding') return true; // nothing to configure
+      if (id === 'facial-recognition') {
+        const custom = fieldOpt<HTMLInputElement>('customAiVisionKey')?.checked ?? false;
+        return !custom || !!fieldOpt('aiVisionApiKey')?.value.trim();
+      }
+      if (id === 'nsfw') {
+        const custom = fieldOpt<HTMLInputElement>('customNsfwKey')?.checked ?? false;
+        return !custom || !!fieldOpt('nsfwApiKey')?.value.trim();
+      }
+      const provider = OAUTH_PROVIDERS.find((p) => p.id === id);
+      if (!provider) return false;
+      return provider.fields.every((f) => !f.required || !!fieldOpt(`oauth_${id}_${f.key}`)?.value.trim());
+    }
+
+    // Cards render collapsed to a single summary row by default — with
+    // several services added at once (a handful of OAuth providers, say)
+    // full cards would make the list unwieldy. Clicking the header row
+    // expands the fields inline. Whether a freshly added card starts
+    // expanded or collapsed depends on isServiceConfigured, which needs the
+    // card's fields connected to the form — so that check happens in
+    // addService, after this card is appended to the DOM.
+    function buildServiceCard(id: string, label: string): HTMLElement {
+      const card = cloneTemplate<HTMLElement>('tpl-service-card');
+      card.dataset.serviceCard = id;
+      card.querySelector<HTMLElement>('[data-card-title]')!.textContent = label;
+
+      const titleRow = card.querySelector<HTMLElement>('[data-card-title-row]')!;
+      if (id === 'facial-recognition' || id === 'nsfw') titleRow.appendChild(cloneTemplate('tpl-tag-ai'));
+      if (id === 'nsfw') titleRow.appendChild(cloneTemplate('tpl-tag-se'));
+
+      card.querySelector<HTMLElement>('[data-card-status]')!.dataset.statusFor = id;
+      card.querySelector<HTMLButtonElement>('[data-card-remove]')!.dataset.removeService = id;
+
+      const fields = fieldNodesFor(id);
+      const fieldsContainer = card.querySelector<HTMLElement>('[data-card-fields]')!;
+      const header = card.querySelector<HTMLElement>('[data-card-header]')!;
+      if (fields.length > 0) {
+        fields.forEach((n) => fieldsContainer.appendChild(n));
+        header.classList.add('hover:cursor-pointer');
+        header.dataset.toggleService = id;
+      } else {
+        fieldsContainer.remove();
+      }
+      return card;
+    }
+
+    function updateServiceStatusBadges() {
+      document.querySelectorAll<HTMLElement>('[data-status-for]').forEach((el) => {
+        const id = el.dataset.statusFor!;
+        const badge = cloneTemplate<HTMLElement>(isServiceConfigured(id) ? 'tpl-badge-ok' : 'tpl-badge-warn');
+        badge.dataset.statusFor = id;
+        el.replaceWith(badge);
+      });
+    }
+
+    function activeServiceIds(): string[] {
+      return Array.from(serviceCards.querySelectorAll<HTMLElement>('[data-service-card]')).map(
+        (el) => el.dataset.serviceCard!
+      );
+    }
+
+    function renderAddServiceMenu() {
+      const active = new Set(activeServiceIds());
+      const needsDb = needsDbService(readAnswers());
+      const available = ALL_SERVICE_ENTRIES.filter((s) => !active.has(s.id) && (s.id !== 'phpmyadmin' || needsDb));
+      addServiceMenu.innerHTML = '';
+      if (available.length === 0) {
+        addServiceMenu.appendChild(cloneTemplate('tpl-menu-empty'));
+        return;
+      }
+      const groups = new Map<string, ServiceEntry[]>();
+      for (const s of available) {
+        if (!groups.has(s.group)) groups.set(s.group, []);
+        groups.get(s.group)!.push(s);
+      }
+      for (const [group, items] of groups) {
+        const groupEl = cloneTemplate<HTMLElement>('tpl-menu-group');
+        groupEl.textContent = group;
+        addServiceMenu.appendChild(groupEl);
+        for (const s of items) {
+          const btn = cloneTemplate<HTMLButtonElement>('tpl-menu-item');
+          btn.textContent = s.label;
+          btn.dataset.addService = s.id;
+          addServiceMenu.appendChild(btn);
+        }
+      }
+    }
+
+    function addService(id: string) {
+      const entry = ALL_SERVICE_ENTRIES.find((s) => s.id === id);
+      if (!entry || serviceCards.querySelector(`[data-service-card="${id}"]`)) return;
+      const card = serviceCards.appendChild(buildServiceCard(id, entry.label));
+      // isServiceConfigured reads the card's own fields via form.elements, so
+      // it only sees them once the card is connected to the DOM (above).
+      card.querySelector('[data-card-fields]')?.classList.toggle('hidden', isServiceConfigured(id));
+      renderAddServiceMenu();
+      render();
+    }
+
+    function removeService(id: string) {
+      serviceCards.querySelector(`[data-service-card="${id}"]`)?.remove();
+      renderAddServiceMenu();
+      render();
+    }
+
+    addServiceBtn.addEventListener('click', () => {
+      renderAddServiceMenu();
+      addServiceMenu.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if (e.target !== addServiceBtn && !addServiceMenu.contains(e.target as Node)) {
+        addServiceMenu.classList.add('hidden');
+      }
+    });
+    addServiceMenu.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-add-service]');
+      if (btn) {
+        addService(btn.dataset.addService!);
+        addServiceMenu.classList.add('hidden');
+      }
+    });
+    serviceCards.addEventListener('click', (e) => {
+      const removeBtn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-remove-service]');
+      if (removeBtn) {
+        removeService(removeBtn.dataset.removeService!);
+        return;
+      }
+      const header = (e.target as HTMLElement).closest<HTMLElement>('[data-toggle-service]');
+      if (header) {
+        const fieldsEl = header.closest('[data-service-card]')?.querySelector('[data-card-fields]');
+        fieldsEl?.classList.toggle('hidden');
+      }
+    });
+
+    function readAnswers(): WizardAnswers {
+      const activeOAuthProviders: string[] = [];
+      const oauthFieldValues: Record<string, string> = {};
+      for (const provider of OAUTH_PROVIDERS) {
+        if (!serviceCards.querySelector(`[data-service-card="${provider.id}"]`)) continue;
+        activeOAuthProviders.push(provider.id);
+        for (const f of provider.fields) {
+          oauthFieldValues[`${provider.id}:${f.key}`] = fieldOpt(`oauth_${provider.id}_${f.key}`)?.value ?? '';
+        }
+      }
+
+      return {
+        appName: field('appName').value,
+        appUrl: field('appUrl').value,
+        appPort: field('appPort').value,
+        appForceHttps: field<HTMLInputElement>('appForceHttps').checked,
+        timezone: field('timezone').value,
+        trustedProxies: field('trustedProxies').value,
+        dbEngine: field('dbEngine').value as WizardAnswers['dbEngine'],
+        dbLocation: field('dbLocation').value as WizardAnswers['dbLocation'],
+        dbHost: field('dbHost').value,
+        dbPort: field('dbPort').value,
+        dbDatabase: field('dbDatabase').value,
+        dbUsername: field('dbUsername').value,
+        generatePasswords: field<HTMLInputElement>('generatePasswords').checked,
+        dbPassword: field('dbPassword').value,
+        dbRootPassword: field('dbRootPassword').value,
+        useEnvFile: field<HTMLInputElement>('useEnvFile').checked,
+        useDockerSecrets: field<HTMLInputElement>('useDockerSecrets').checked,
+        enablePhpMyAdmin: !!serviceCards.querySelector('[data-service-card="phpmyadmin"]'),
+        enableAiVision: !!serviceCards.querySelector('[data-service-card="facial-recognition"]'),
+        customAiVisionKey: fieldOpt<HTMLInputElement>('customAiVisionKey')?.checked ?? false,
+        aiVisionApiKey: fieldOpt('aiVisionApiKey')?.value ?? '',
+        aiVisionMaxFacesPerPhoto: fieldOpt('aiVisionMaxFacesPerPhoto')?.value ?? '10',
+        aiVisionMinFaceSizePixels: fieldOpt('aiVisionMinFaceSizePixels')?.value ?? '0',
+        aiVisionBlurThreshold: fieldOpt('aiVisionBlurThreshold')?.value ?? '0.5',
+        aiVisionClusterEps: fieldOpt('aiVisionClusterEps')?.value ?? '0.3',
+        aiVisionQueueMaxSize: fieldOpt('aiVisionQueueMaxSize')?.value ?? '0',
+        aiVisionThreadPoolSize: fieldOpt('aiVisionThreadPoolSize')?.value ?? '1',
+        aiVisionWorkers: fieldOpt('aiVisionWorkers')?.value ?? '1',
+        enableNsfw: !!serviceCards.querySelector('[data-service-card="nsfw"]'),
+        customNsfwKey: fieldOpt<HTMLInputElement>('customNsfwKey')?.checked ?? false,
+        nsfwApiKey: fieldOpt('nsfwApiKey')?.value ?? '',
+        enableGeoDecoding: !!serviceCards.querySelector('[data-service-card="geo-decoding"]'),
+        activeOAuthProviders,
+        oauthFieldValues,
+        useWorker: field<HTMLInputElement>('useWorker').checked,
+        workerCount: field('workerCount').value,
+        enableTraefik: field<HTMLInputElement>('enableTraefik').checked,
+        traefikEntrypoint: field('traefikEntrypoint').value,
+        traefikCertResolver: field('traefikCertResolver').value,
+        traefikNetwork: field('traefikNetwork').value,
+        puid: field('puid').value,
+        pgid: field('pgid').value,
+        volumeUploadsPath: field('volumeUploads').value,
+        volumeLogsPath: field('volumeLogs').value,
+        volumeTmpPath: field('volumeTmp').value,
+        volumeDatabasePath: field('volumeDatabase').value,
+      };
+    }
+
+    function setError(name: string, message: string | null) {
+      const el = document.querySelector(`[data-error="${name}"]`);
+      if (el) el.textContent = message ?? '';
+    }
+
+    function updateVisibility(a: WizardAnswers) {
+      const isSqlite = a.dbEngine === 'sqlite';
+      const isPgsql = a.dbEngine === 'pgsql';
+
+      // Postgres has no bundled Lychee container to run it in, so force
+      // "external" and hide the (now single-choice) location selector.
+      if (isPgsql && field('dbLocation').value !== 'external') {
+        field('dbLocation').value = 'external';
+        a.dbLocation = 'external';
+      }
+      dbLocationGroup.classList.toggle('hidden', isSqlite || isPgsql);
+      dbPgsqlNote.classList.toggle('hidden', !isPgsql);
+
+      const needsDb = needsDbService(a);
+      dbHostPortFields.classList.toggle('hidden', needsDb || isSqlite);
+      if (!isSqlite) {
+        field<HTMLInputElement>('dbPort').placeholder = DB_DEFAULT_PORT[a.dbEngine];
+      }
+
+      dbCredentialFields.classList.toggle('hidden', isSqlite);
+      dbPasswordField.classList.toggle('hidden', a.generatePasswords || isSqlite);
+      dbRootPasswordField.classList.toggle('hidden', a.generatePasswords || !needsDb);
+
+      if (!needsDb && a.enablePhpMyAdmin) {
+        serviceCards.querySelector('[data-service-card="phpmyadmin"]')?.remove();
+        a.enablePhpMyAdmin = false;
+      }
+
+      document.getElementById('aiVisionKeyField')?.classList.toggle('hidden', !a.customAiVisionKey);
+      document.getElementById('nsfwKeyField')?.classList.toggle('hidden', !a.customNsfwKey);
+      updateServiceStatusBadges();
+
+      workerCountField.classList.toggle('hidden', !a.useWorker);
+      traefikFields.classList.toggle('hidden', !a.enableTraefik);
+
+      // Mirrors generator.ts's own blank-value fallback, so the field shows
+      // what it'll actually resolve to before the user types anything.
+      field<HTMLInputElement>('trustedProxies').placeholder = a.enableTraefik ? '*' : 'null';
+
+      document.getElementById('volumeDatabaseField')?.classList.toggle('hidden', !isSqlite);
+    }
+
+    function renderSecretsPanel(result: GenerateResult) {
+      outputSecrets.innerHTML = '';
+      for (const s of result.secretFiles) {
+        const row = cloneTemplate<HTMLElement>('tpl-secret-row');
+        row.querySelector<HTMLElement>('[data-secret-label]')!.textContent = `secrets/${s.key}`;
+        row.querySelector<HTMLElement>('[data-secret-value]')!.textContent = s.value;
+        row.querySelector<HTMLButtonElement>('[data-secret-copy]')!.dataset.copyText = encodeURIComponent(s.value);
+        const downloadBtn = row.querySelector<HTMLButtonElement>('[data-secret-download]')!;
+        downloadBtn.dataset.downloadText = encodeURIComponent(s.value);
+        downloadBtn.dataset.filename = s.key;
+        outputSecrets.appendChild(row);
+      }
+    }
+
+    // Wraps each highlighted line in its own <span>, so scrollToNeedle()
+    // (below) can find and scroll to the specific line a form field affects.
+    function renderHighlighted(container: HTMLElement, code: string, grammar: Prism.Grammar, lang: string) {
+      const html = Prism.highlight(code, grammar, lang);
+      container.innerHTML = html
+        .split('\n')
+        .map((line) => `<span class="wizard-line">${line}</span>`)
+        .join('\n');
+    }
+
+    // Disables the output panel's Copy/Download buttons (both the main
+    // compose/env ones and any already-rendered per-secret-file ones) while
+    // the form is invalid — otherwise they'd keep serving the last valid
+    // generation, silently out of sync with what the form now shows.
+    function setOutputActionsEnabled(enabled: boolean) {
+      document
+        .querySelectorAll<HTMLButtonElement>('[data-copy], [data-download], [data-copy-text], [data-download-text]')
+        .forEach((b) => (b.disabled = !enabled));
+    }
+
+    function render() {
+      const a = readAnswers();
+      updateVisibility(a);
+
+      const portError = validatePort(a.appPort);
+      const dbPortError = validateOptionalPort(a.dbPort);
+      const puidError = validateUint(a.puid);
+      const pgidError = validateUint(a.pgid);
+      const workerCountError = a.useWorker ? validatePositiveInt(a.workerCount) : null;
+      const volumeUploadsError = validatePath(a.volumeUploadsPath);
+      const volumeLogsError = validatePath(a.volumeLogsPath);
+      const volumeTmpError = validatePath(a.volumeTmpPath);
+      const volumeDatabaseError = a.dbEngine === 'sqlite' ? validatePath(a.volumeDatabasePath) : null;
+      const aiVisionMaxFacesError = a.enableAiVision ? validateUint(a.aiVisionMaxFacesPerPhoto) : null;
+      const aiVisionMinFaceSizeError = a.enableAiVision ? validateUint(a.aiVisionMinFaceSizePixels) : null;
+      const aiVisionBlurThresholdError = a.enableAiVision ? validateNonNegativeFloat(a.aiVisionBlurThreshold) : null;
+      const aiVisionClusterEpsError = a.enableAiVision ? validateNonNegativeFloat(a.aiVisionClusterEps) : null;
+      const aiVisionQueueMaxSizeError = a.enableAiVision ? validateUint(a.aiVisionQueueMaxSize) : null;
+      const aiVisionThreadPoolSizeError = a.enableAiVision ? validatePositiveInt(a.aiVisionThreadPoolSize) : null;
+      const aiVisionWorkersError = a.enableAiVision ? validatePositiveInt(a.aiVisionWorkers) : null;
+      setError('appPort', portError);
+      setError('dbPort', dbPortError);
+      setError('puid', puidError);
+      setError('pgid', pgidError);
+      setError('workerCount', workerCountError);
+      setError('volumeUploads', volumeUploadsError);
+      setError('volumeLogs', volumeLogsError);
+      setError('volumeTmp', volumeTmpError);
+      setError('volumeDatabase', volumeDatabaseError);
+      setError('aiVisionMaxFacesPerPhoto', aiVisionMaxFacesError);
+      setError('aiVisionMinFaceSizePixels', aiVisionMinFaceSizeError);
+      setError('aiVisionBlurThreshold', aiVisionBlurThresholdError);
+      setError('aiVisionClusterEps', aiVisionClusterEpsError);
+      setError('aiVisionQueueMaxSize', aiVisionQueueMaxSizeError);
+      setError('aiVisionThreadPoolSize', aiVisionThreadPoolSizeError);
+      setError('aiVisionWorkers', aiVisionWorkersError);
+      if (
+        portError ||
+        dbPortError ||
+        puidError ||
+        pgidError ||
+        workerCountError ||
+        volumeUploadsError ||
+        volumeLogsError ||
+        volumeTmpError ||
+        volumeDatabaseError ||
+        aiVisionMaxFacesError ||
+        aiVisionMinFaceSizeError ||
+        aiVisionBlurThresholdError ||
+        aiVisionClusterEpsError ||
+        aiVisionQueueMaxSizeError ||
+        aiVisionThreadPoolSizeError ||
+        aiVisionWorkersError
+      ) {
+        setOutputActionsEnabled(false);
+        return;
+      }
+      setOutputActionsEnabled(true);
+
+      const result = generate(templates.envExample, templates.compose, a, secrets);
+      lastResult = result;
+
+      renderHighlighted(outputCompose, result.compose, Prism.languages.yaml, 'yaml');
+      renderHighlighted(outputEnv, result.env, Prism.languages.ini, 'ini');
+      secretsTabBtn.classList.toggle('hidden', !result.secretsUsed);
+      envTabBtn.classList.toggle('hidden', !result.envFileUsed);
+      if (document.querySelector('.wizard-tab[aria-selected="true"]')?.classList.contains('hidden')) {
+        switchTab('compose');
+      }
+      renderSecretsPanel(result);
+
+      if (result.warnings.length > 0) {
+        warningsBox.classList.remove('hidden');
+        warningsBox.innerHTML = result.warnings.map((w) => `<p>${w}</p>`).join('');
+      } else {
+        warningsBox.classList.add('hidden');
+        warningsBox.innerHTML = '';
+      }
+
+      renderInstructions(result);
+    }
+
+    function renderInstructions(result: GenerateResult) {
+      const steps: string[] = ['Create a folder for your Lychee install (e.g. <code>mkdir lychee && cd lychee</code>).'];
+      steps.push(
+        result.envFileUsed
+          ? 'Download <code>docker-compose.yaml</code> and <code>.env</code> into that folder using the buttons above.'
+          : 'Download <code>docker-compose.yaml</code> into that folder using the button above — every value is baked in, no <code>.env</code> needed.'
+      );
+      if (result.secretsUsed) {
+        steps.push(
+          'Create a <code>secrets/</code> subfolder and download each secret file from the "secrets/" tab into it. Keep this folder out of version control.'
+        );
+      }
+      steps.push('Run <code>docker compose up -d</code>.');
+      steps.push(
+        `Open <code>${escapeHtml(result.appUrl)}</code> (port ${escapeHtml(field('appPort').value)}) in your browser.`
+      );
+      instructions.innerHTML = steps.map((s) => `<li>${s}</li>`).join('');
+    }
+
+    function escapeHtml(s: string): string {
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    function download(filename: string, content: string) {
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function copy(text: string, button: HTMLElement) {
+      await navigator.clipboard.writeText(text);
+      const original = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(() => {
+        button.textContent = original;
+      }, 1500);
+    }
+
+    // Stepper: breaks the long form into steps. The live preview on the
+    // right stays driven by the full form regardless of which step is
+    // visible — hidden fields keep their values and still fire input/change.
+    const wizardSteps = Array.from(document.querySelectorAll<HTMLElement>('.wizard-step'));
+    const stepButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-step-btn]'));
+    const stepConnectors = Array.from(document.querySelectorAll<HTMLElement>('[data-step-connector]'));
+    const stepBackBtn = document.getElementById('stepBack') as HTMLButtonElement;
+    const stepNextBtn = document.getElementById('stepNext') as HTMLButtonElement;
+    const stepIndicator = document.getElementById('stepIndicator')!;
+    let currentStep = 0;
+
+    function showStep(i: number) {
+      const dir = i > currentStep ? 1 : -1;
+      currentStep = Math.max(0, Math.min(wizardSteps.length - 1, i));
+      wizardSteps[currentStep].style.setProperty('--wizard-step-dir', String(dir));
+      wizardSteps.forEach((el, idx) => el.classList.toggle('hidden', idx !== currentStep));
+      stepButtons.forEach((btn, idx) => {
+        // This is a linear step indicator, not a tab panel — aria-current
+        // (the breadcrumb/stepper pattern) is the correct ARIA semantics
+        // here, not aria-selected/role="tab" (which need a role="tablist"
+        // parent with `tab` as its *direct* owned children, not children
+        // wrapped in <li>s).
+        if (idx === currentStep) btn.setAttribute('aria-current', 'step');
+        else btn.removeAttribute('aria-current');
+        btn.dataset.state = idx < currentStep ? 'completed' : idx === currentStep ? 'active' : 'upcoming';
+      });
+      stepConnectors.forEach((el, idx) => {
+        el.dataset.state = idx < currentStep ? 'completed' : 'upcoming';
+      });
+      stepBackBtn.disabled = currentStep === 0;
+      stepNextBtn.disabled = currentStep === wizardSteps.length - 1;
+      stepIndicator.textContent = `Step ${currentStep + 1} of ${wizardSteps.length}`;
+    }
+
+    stepButtons.forEach((btn, idx) => btn.addEventListener('click', () => showStep(idx)));
+    stepBackBtn.addEventListener('click', () => showStep(currentStep - 1));
+    stepNextBtn.addEventListener('click', () => showStep(currentStep + 1));
+    showStep(0);
+
+    // Tabs
+    function switchTab(tab: string) {
+      document
+        .querySelectorAll<HTMLButtonElement>('.wizard-tab')
+        .forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+      document
+        .querySelectorAll<HTMLElement>('[data-panel]')
+        .forEach((p) => p.classList.toggle('hidden', p.dataset.panel !== tab));
+    }
+    document.querySelectorAll<HTMLButtonElement>('.wizard-tab').forEach((btn) => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab!));
+    });
+    switchTab('compose');
+
+    // Copy / download for the two main panels
+    document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const which = btn.dataset.copy;
+        const text = which === 'compose' ? lastResult?.compose : lastResult?.env;
+        if (text) copy(text, btn);
+      });
+    });
+    document.querySelectorAll<HTMLButtonElement>('[data-download]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const which = btn.dataset.download;
+        const text = which === 'compose' ? lastResult?.compose : lastResult?.env;
+        if (text) download(btn.dataset.filename!, text);
+      });
+    });
+
+    // Copy / download for dynamically rendered secret files (event delegation)
+    outputSecrets.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const copyBtn = target.closest<HTMLElement>('[data-copy-text]');
+      if (copyBtn) {
+        copy(decodeURIComponent(copyBtn.dataset.copyText!), copyBtn);
+        return;
+      }
+      const downloadBtn = target.closest<HTMLElement>('[data-download-text]');
+      if (downloadBtn) {
+        download(downloadBtn.dataset.filename!, decodeURIComponent(downloadBtn.dataset.downloadText!));
+      }
+    });
+
+    // Scroll-to-line: after a field changes, jump the output panel to the
+    // line it affects, so e.g. editing the Application URL visibly scrolls
+    // to (and briefly highlights) the APP_URL line on the right.
+    interface ScrollTarget {
+      panel: 'compose' | 'env';
+      needle: string;
+      // Match only at the start of the (trimmed) line rather than anywhere
+      // in it — needed for KEY=/KEY: needles, since e.g. env.example has a
+      // commented-out "# Set APP_URL=https://lychee.test" example elsewhere
+      // in the file that would otherwise false-match a plain substring search.
+      exact?: boolean;
+    }
+
+    // envTarget covers the common case: a field that maps 1:1 onto an env
+    // var, shown as `KEY=` in .env or `KEY:` in docker-compose.yaml
+    // (environment: block keys survive value-inlining, since only the
+    // `${...}` part of the value gets replaced — see envFileCompose.ts).
+    function envTarget(key: string, a: WizardAnswers): ScrollTarget {
+      return a.useEnvFile
+        ? { panel: 'env', needle: `${key}=`, exact: true }
+        : { panel: 'compose', needle: `${key}:`, exact: true };
+    }
+
+    const FIELD_TARGETS: Record<string, (a: WizardAnswers) => ScrollTarget | null> = {
+      appName: (a) => envTarget('APP_NAME', a),
+      appUrl: (a) => envTarget('APP_URL', a),
+      appPort: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'APP_PORT=', exact: true }
+          : { panel: 'compose', needle: `${a.appPort}:8000` },
+      appForceHttps: (a) => envTarget('APP_FORCE_HTTPS', a),
+      timezone: (a) => envTarget('TIMEZONE', a),
+      trustedProxies: (a) => envTarget('TRUSTED_PROXIES', a),
+      dbEngine: (a) => envTarget('DB_CONNECTION', a),
+      dbLocation: (a) => envTarget('DB_HOST', a),
+      dbHost: (a) => envTarget('DB_HOST', a),
+      dbPort: (a) => envTarget('DB_PORT', a),
+      dbDatabase: (a) => envTarget('DB_DATABASE', a),
+      dbUsername: (a) => envTarget('DB_USERNAME', a),
+      generatePasswords: (a) => envTarget('DB_PASSWORD', a),
+      dbPassword: (a) => envTarget('DB_PASSWORD', a),
+      dbRootPassword: (a) => envTarget('DB_ROOT_PASSWORD', a),
+      useEnvFile: () => ({ panel: 'compose', needle: 'env_file' }),
+      useDockerSecrets: () => ({ panel: 'compose', needle: 'APP_KEY_FILE' }),
+      enablePhpMyAdmin: () => ({ panel: 'compose', needle: 'phpmyadmin:' }),
+      // The .env var is AI_VISION_API_KEY, but docker-compose.yaml's own key
+      // for it is still AI_VISION_FACE_API_KEY (only the var it reads from
+      // was renamed) — envTarget can't be used for the compose-panel case.
+      enableAiVision: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'AI_VISION_API_KEY=', exact: true }
+          : { panel: 'compose', needle: 'AI_VISION_FACE_API_KEY:', exact: true },
+      customAiVisionKey: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'AI_VISION_API_KEY=', exact: true }
+          : { panel: 'compose', needle: 'AI_VISION_FACE_API_KEY:', exact: true },
+      aiVisionApiKey: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'AI_VISION_API_KEY=', exact: true }
+          : { panel: 'compose', needle: 'AI_VISION_FACE_API_KEY:', exact: true },
+      // These only ever land in docker-compose.yaml's environment: block for
+      // lychee_facial_recognition (never in Lychee's own env.example), and
+      // are only written out at all when changed from their default — see
+      // generator.ts. envTarget still does the right thing: it points at
+      // the .env "Docker Compose overrides" line when one was written, or
+      // the compose panel otherwise (where scrollToNeedle harmlessly finds
+      // nothing if the value is untouched and at its default).
+      aiVisionMaxFacesPerPhoto: (a) => envTarget('VISION_FACE_MAX_FACES_PER_PHOTO', a),
+      aiVisionMinFaceSizePixels: (a) => envTarget('VISION_FACE_MIN_FACE_SIZE_PIXELS', a),
+      aiVisionBlurThreshold: (a) => envTarget('VISION_FACE_BLUR_THRESHOLD', a),
+      aiVisionClusterEps: (a) => envTarget('VISION_FACE_CLUSTER_EPS', a),
+      aiVisionQueueMaxSize: (a) => envTarget('VISION_FACE_QUEUE_MAX_SIZE', a),
+      aiVisionThreadPoolSize: (a) => envTarget('VISION_FACE_THREAD_POOL_SIZE', a),
+      aiVisionWorkers: (a) => envTarget('VISION_FACE_WORKERS', a),
+      enableNsfw: () => ({ panel: 'compose', needle: 'lychee_nsfw_classification:' }),
+      customNsfwKey: (a) => envTarget('AI_VISION_NSFW_API_KEY', a),
+      nsfwApiKey: (a) => envTarget('AI_VISION_NSFW_API_KEY', a),
+      enableGeoDecoding: (a) => envTarget('LOCAL_GEO_DECODING_URL', a),
+      useWorker: () => ({ panel: 'compose', needle: 'lychee_worker:' }),
+      workerCount: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'WORKER_REPLICAS=', exact: true }
+          : { panel: 'compose', needle: 'scale:', exact: true },
+      enableTraefik: () => ({ panel: 'compose', needle: 'traefik.enable=true' }),
+      traefikEntrypoint: () => ({ panel: 'compose', needle: 'entrypoints=' }),
+      traefikCertResolver: () => ({ panel: 'compose', needle: 'certresolver=' }),
+      traefikNetwork: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'TRAEFIK_NETWORK=', exact: true }
+          : { panel: 'compose', needle: `name: "${a.traefikNetwork}"` },
+      puid: (a) => envTarget('PUID', a),
+      pgid: (a) => envTarget('PGID', a),
+      volumeUploads: () => ({ panel: 'compose', needle: ':/app/public/uploads' }),
+      volumeLogs: () => ({ panel: 'compose', needle: ':/app/storage/logs' }),
+      volumeTmp: () => ({ panel: 'compose', needle: ':/app/storage/tmp' }),
+      volumeDatabase: () => ({ panel: 'compose', needle: ':/app/database/database.sqlite' }),
+    };
+    for (const provider of OAUTH_PROVIDERS) {
+      for (const f of provider.fields) {
+        FIELD_TARGETS[`oauth_${provider.id}_${f.key}`] = (a) => envTarget(f.envKey, a);
+      }
+    }
+
+    let flashClearTimer: ReturnType<typeof setTimeout> | undefined;
+
+    function scrollToNeedle(panel: 'compose' | 'env', needle: string, exact?: boolean) {
+      if (panel === 'env' && envTabBtn.classList.contains('hidden')) return;
+      switchTab(panel);
+      const container = panel === 'compose' ? outputCompose : outputEnv;
+      // Search from the bottom up: a key can appear twice in the generated
+      // .env (an unset template line plus its actual value in the appended
+      // "Docker Compose overrides" section) — the later one is the real value.
+      const lines = Array.from(container.querySelectorAll<HTMLElement>('.wizard-line')).reverse();
+      for (const line of lines) {
+        const text = line.textContent ?? '';
+        const isMatch = exact ? text.trimStart().startsWith(needle) : text.includes(needle);
+        if (isMatch) {
+          line.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          // Only one line should ever carry the flash at a time — clear any
+          // previous one (compose and env both, since either could be stale).
+          clearTimeout(flashClearTimer);
+          outputCompose.querySelectorAll('.wizard-line-flash').forEach((el) => el.classList.remove('wizard-line-flash'));
+          outputEnv.querySelectorAll('.wizard-line-flash').forEach((el) => el.classList.remove('wizard-line-flash'));
+          void line.offsetWidth; // restart the CSS transition
+          line.classList.add('wizard-line-flash');
+          flashClearTimer = setTimeout(() => line.classList.remove('wizard-line-flash'), 1200);
+          return;
+        }
+      }
+    }
+
+    function scrollForFieldName(name: string) {
+      const get = FIELD_TARGETS[name];
+      if (!get) return;
+      const t = get(readAnswers());
+      if (t) scrollToNeedle(t.panel, t.needle, t.exact);
+    }
+
+    function scrollToField(target: EventTarget | null) {
+      const name = (target as HTMLElement | null)?.getAttribute('name');
+      if (name) scrollForFieldName(name);
+    }
+
+    form.addEventListener('input', (e) => {
+      render();
+      scrollToField(e.target);
+    });
+    form.addEventListener('change', (e) => {
+      render();
+      scrollToField(e.target);
+    });
+
+    // Hovering a setting (its input/select or label) previews where it
+    // lands in the output too, without having to change the value first.
+    // Debounced so sweeping the cursor down the form doesn't scroll-storm
+    // the preview pane, and deduped so moving within the same field's
+    // input/label pair doesn't keep re-triggering it.
+    function fieldNameFromHover(el: HTMLElement | null): string | null {
+      const control = el?.closest<HTMLElement>('input[name], select[name], label[for]');
+      if (!control) return null;
+      return control instanceof HTMLLabelElement ? control.getAttribute('for') : control.getAttribute('name');
+    }
+
+    let hoverTimer: ReturnType<typeof setTimeout> | undefined;
+    let lastHoveredName: string | null = null;
+
+    form.addEventListener('mouseover', (e) => {
+      const name = fieldNameFromHover(e.target as HTMLElement);
+      if (!name || name === lastHoveredName || !FIELD_TARGETS[name]) return;
+      lastHoveredName = name;
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(() => scrollForFieldName(name), 150);
+    });
+    form.addEventListener('mouseleave', () => {
+      lastHoveredName = null;
+      clearTimeout(hoverTimer);
+    });
+
+    document.getElementById('regenerateSecrets')?.addEventListener('click', () => {
+      secrets = newSecrets();
+      render();
+    });
+
+    render();
+
+    loadTemplates(fallbackEnvExample, fallbackCompose).then((t) => {
+      templates = { envExample: t.envExample, compose: t.compose };
+      templateSourceNote.textContent = t.fromLive
+        ? 'Using the latest templates fetched live from LycheeOrg/Lychee@master.'
+        : "Couldn't reach GitHub — using a bundled offline snapshot instead.";
+      render();
+    });
+  </script>
+</Layout>

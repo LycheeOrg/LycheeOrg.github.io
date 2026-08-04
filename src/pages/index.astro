@@ -13,11 +13,14 @@ import show0 from '~/assets/images/showcase/0.jpg';
 import show1 from '~/assets/images/showcase/1.jpg';
 import show2 from '~/assets/images/showcase/2.jpg';
 import show3 from '~/assets/images/showcase/3.jpg';
+import { getRepoStats } from '~/utils/repoStats';
 
 const metadata = {
   title: 'LycheeOrg — Self-hosted photo-management done right.',
   ignoreTitleTemplate: true,
 };
+
+const repoStats = await getRepoStats();
 ---
 
 <Layout metadata={metadata}>
@@ -42,9 +45,9 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="font-semibold">Lychee</span> is a free photo-management tool, which runs on your server or web-space.
-      Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with
-      everything you need and all your photos are stored securely.
+      <span class="font-semibold">Lychee</span> is a free photo-management tool, which runs on your server or web-space. Installing
+      is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything
+      you need and all your photos are stored securely.
     </Fragment>
 
     <Fragment slot="bg">
@@ -81,13 +84,7 @@ const metadata = {
                 >
               </div>
             </div>
-            <Image
-              src={showcase}
-              alt="Screenshot of Lychee"
-              class={'window__content'}
-              width="1194"
-              height="525"
-            />
+            <Image src={showcase} alt="Screenshot of Lychee" class={'window__content'} width="1194" height="525" />
           </div>
         </div>
       </div>
@@ -179,7 +176,6 @@ const metadata = {
     ]}
   />
 
-
   <Content classes={{ container: 'max-w-6xl' }}>
     <Fragment slot="bg">
       <div class="madefor__bg"></div>
@@ -229,10 +225,10 @@ const metadata = {
 
   <Stats
     stats={[
-      { title: 'Downloads', amount: '32K' },
-      { title: 'Stars', amount: '3.8K' },
-      { title: 'Forks', amount: '340' },
-      { title: 'Docker pulls', amount: '3.6M' },
+      { title: 'Downloads', amount: repoStats.downloads },
+      { title: 'Stars', amount: repoStats.stars },
+      { title: 'Forks', amount: repoStats.forks },
+      { title: 'Docker pulls', amount: repoStats.dockerPulls, disclaimer: 'LinuxServer & LycheeOrg combined' },
     ]}
   />
 
@@ -246,6 +242,12 @@ const metadata = {
         href: 'https://github.com/LycheeOrg/Lychee-Docker/blob/master/docker-compose.yml',
         target: '_blank',
         icon: 'tabler:download',
+      },
+      {
+        variant: 'secondary',
+        text: 'Docker Compose Wizard',
+        href: '/wizard/',
+        icon: 'tabler:wand',
       },
     ]}
   >
