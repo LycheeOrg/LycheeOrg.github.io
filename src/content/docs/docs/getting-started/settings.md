@@ -75,6 +75,8 @@ _(boolean; default: `0`)_ <span class="expert-tag">Expert</span>
 
 Send notifications when new photos are uploaded.
 
+Requires mail to be configured (see [Mailer options](/docs/getting-started/configuration/#mailer-options)) and Laravel's scheduler to be running via `cron` or a systemd timer, otherwise the weekly notification job never fires.
+
 ---
 
 ## Lychee SE

@@ -31,7 +31,13 @@ The following tags are available:
 
 ### Docker Compose (Recommended)
 
-The recommended way to deploy Lychee is with Docker Compose. Use the official template as a starting point:
+The recommended way to deploy Lychee is with Docker Compose.
+
+:::tip
+Not sure which options you need? Use the [**Docker Compose Wizard**](/wizard/) to generate a ready-to-run `docker-compose.yaml` and `.env` tailored to your setup (database, workers, reverse proxy, OAuth, and more) — right in your browser, no install required.
+:::
+
+Alternatively, use the official template as a starting point and edit it by hand:
 
 [https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml](https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml)
 
