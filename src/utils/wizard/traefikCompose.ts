@@ -1,8 +1,8 @@
 // Adds Traefik reverse-proxy integration (routing labels + the external
 // network Traefik itself runs on) to the lychee_api service. Unlike
 // dockerSecrets.ts, this isn't a patch to pre-existing upstream text — Lychee's
-// compose file doesn't ship Traefik wiring, so this synthesizes a block,
-// mirroring the approach in nsfwService.ts.
+// compose file doesn't ship Traefik wiring, so this synthesizes a block from
+// scratch.
 
 export interface TraefikOptions {
   // Host() rule value — the hostname the router matches on. Derived by the

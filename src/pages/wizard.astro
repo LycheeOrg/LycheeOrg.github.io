@@ -30,22 +30,53 @@ const tagAiClass =
   'px-1.5 py-0.5 rounded text-xxs font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200';
 const tagSeClass =
   'px-1.5 py-0.5 rounded text-xxs font-semibold bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200';
+
+const wizardStepLabels = [
+  'Welcome',
+  'General',
+  'Database',
+  'Secrets',
+  'Services',
+  'Workers & Proxy',
+  'System',
+  'Deploy',
+];
 ---
 
 <Layout metadata={metadata}>
   <section class="lg:h-screen lg:overflow-hidden">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-8 grid gap-8 lg:grid-cols-2 lg:h-full w-full">
       <!-- Form ************************************************************* -->
-      <form id="wizard-form" class="space-y-6 pb-8 lg:flex lg:h-full lg:min-h-0 lg:flex-col" novalidate>
-        <ol id="wizard-stepper" class="flex flex-wrap gap-2 lg:shrink-0" role="tablist">
-          <li><button type="button" class="wizard-step-btn" data-step-btn="0" aria-selected="true">1. Welcome</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="1">2. General</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="2">3. Database</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="3">4. Secrets</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="4">5. Services</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="5">6. Workers &amp; Proxy</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="6">7. System</button></li>
-          <li><button type="button" class="wizard-step-btn" data-step-btn="7">8. Deploy</button></li>
+      <form id="wizard-form" class="gap-y-6 lg:flex lg:h-full lg:min-h-0 lg:flex-col" novalidate>
+        <ol id="wizard-stepper" class="wizard-stepper lg:shrink-0 pt-1" role="tablist">
+          {wizardStepLabels.map((label, i) => (
+            <>
+              <li class="wizard-stepper-item">
+                <button
+                  type="button"
+                  role="tab"
+                  class="wizard-step-btn"
+                  data-step-btn={i}
+                  aria-selected={i === 0 ? 'true' : 'false'}
+                  aria-label={`Step ${i + 1}: ${label}`}
+                >
+                  <span class="wizard-step-circle">
+                    <span class="wizard-step-num">{i + 1}</span>
+                    <svg class="wizard-step-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.704 5.29a1 1 0 010 1.415l-7.09 7.09a1 1 0 01-1.415 0L4.296 9.89a1 1 0 111.415-1.414l3.09 3.09 6.383-6.384a1 1 0 011.415 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span class="wizard-step-label">{label}</span>
+                </button>
+              </li>
+              {i < wizardStepLabels.length - 1 && (
+                <li class="wizard-stepper-connector" data-step-connector={i} aria-hidden="true"></li>
+              )}
+            </>
+          ))}
         </ol>
 
         <div class="lg:flex-1 lg:min-h-0 lg:overflow-y-auto overflow-x-hidden space-y-6">
@@ -63,13 +94,9 @@ const tagSeClass =
             <p id="template-source" class="text-xs text-gray-500 dark:text-gray-400">
               Loading the latest templates&hellip;
             </p>
-          </div>
-        </fieldset>
-        </div>
 
-        <div class="wizard-step hidden" data-step="1">
-        <fieldset class={fieldsetClass}>
-          <div class="space-y-4 mt-2">
+            <hr class="border-gray-200 dark:border-gray-700" />
+
             <div class={checkboxRowClass}>
               <input id="useEnvFile" name="useEnvFile" type="checkbox" class={checkboxClass} checked />
               <label for="useEnvFile" class="text-xs cursor-pointer select-none">Use a separate .env file</label>
@@ -80,9 +107,13 @@ const tagSeClass =
               Turn this off to bake every value directly into <code>docker-compose.yaml</code> instead — only one file
               to manage, but changing settings afterwards means editing the compose file itself.
             </p>
+          </div>
+        </fieldset>
+        </div>
 
-            <hr class="border-gray-200 dark:border-gray-700" />
-
+        <div class="wizard-step hidden" data-step="1">
+        <fieldset class={fieldsetClass}>
+          <div class="space-y-4 mt-2">
             <div class={fieldRowClass}>
               <label for="appName" class={labelClass}>Application name</label>
               <input id="appName" name="appName" type="text" class={inputClass} value="Lychee" />
@@ -111,6 +142,22 @@ const tagSeClass =
                 <input id="timezone" name="timezone" type="text" class={inputClass} value="UTC" />
               </div>
               <p class={descClass}>A named timezone identifier, e.g. Europe/Paris</p>
+            </div>
+
+            <hr class="border-gray-200 dark:border-gray-700" />
+
+            <div>
+              <div class={fieldRowClass}>
+                <label for="trustedProxies" class={labelClass}>Trusted proxies</label>
+                <input id="trustedProxies" name="trustedProxies" type="text" class={inputClass} placeholder="null" />
+              </div>
+              <p class={descClass}>
+                IPs (or CIDR ranges) of reverse proxies in front of Lychee, so their <code>X-Forwarded-*</code> headers
+                are trusted for the real client IP/scheme. Leave blank for <code>null</code> (no proxy trusted) — or <code
+                  >*</code
+                > once Traefik is enabled below — otherwise a comma-separated list of IPs, or <code>*</code> to trust
+                any proxy.
+              </p>
             </div>
           </div>
         </fieldset>
@@ -208,11 +255,14 @@ const tagSeClass =
               <input id="useDockerSecrets" name="useDockerSecrets" type="checkbox" class={checkboxClass} checked />
               <label for="useDockerSecrets" class="text-xs cursor-pointer select-none">
                 Use Docker secrets (file-based) for <code>APP_KEY</code> / <code>DB_PASSWORD</code> /
-                <code>DB_ROOT_PASSWORD</code>
+                <code>DB_ROOT_PASSWORD</code> and other sensitive values
               </label>
               <span class={badgeClass}>Recommended</span>
             </div>
-            <p class={descClass}>Keeps sensitive values out of .env, in ./secrets/ files instead.</p>
+            <p class={descClass}>
+              Keeps sensitive values out of .env, in ./secrets/ files instead. Also applies to any OAuth client
+              secrets and AI service API keys configured below, in the Services step.
+            </p>
           </div>
         </fieldset>
         </div>
@@ -337,6 +387,54 @@ const tagSeClass =
               <p class={descClass}>
                 Group ID that will own files written by the container. <span data-error="pgid"></span>
               </p>
+            </div>
+
+            <hr class="border-gray-200 dark:border-gray-700" />
+
+            <div>
+              <p class="text-xs font-medium">Storage locations</p>
+              <p class={descClass}>
+                Host-side paths for Lychee's persistent data — relative paths resolve next to <code
+                  >docker-compose.yaml</code
+                >.
+              </p>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="volumeUploads" class={labelClass}>Uploads path</label>
+                <input id="volumeUploads" name="volumeUploads" type="text" class={inputClass} value="./lychee/uploads" />
+              </div>
+              <p class={descClass}>Where your photos and videos are stored. <span data-error="volumeUploads"></span></p>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="volumeLogs" class={labelClass}>Logs path</label>
+                <input id="volumeLogs" name="volumeLogs" type="text" class={inputClass} value="./lychee/logs" />
+              </div>
+              <p class={descClass}>Application logs. <span data-error="volumeLogs"></span></p>
+            </div>
+            <div>
+              <div class={fieldRowClass}>
+                <label for="volumeTmp" class={labelClass}>Temporary files path</label>
+                <input id="volumeTmp" name="volumeTmp" type="text" class={inputClass} value="./lychee/tmp" />
+              </div>
+              <p class={descClass}>
+                Uploads in progress, while waiting for background jobs to process them.
+                <span data-error="volumeTmp"></span>
+              </p>
+            </div>
+            <div id="volumeDatabaseField" class="hidden">
+              <div class={fieldRowClass}>
+                <label for="volumeDatabase" class={labelClass}>SQLite database path</label>
+                <input
+                  id="volumeDatabase"
+                  name="volumeDatabase"
+                  type="text"
+                  class={inputClass}
+                  value="./lychee/database/database.sqlite"
+                />
+              </div>
+              <p class={descClass}>Only used with the SQLite database engine. <span data-error="volumeDatabase"></span></p>
             </div>
           </div>
         </fieldset>
@@ -542,20 +640,119 @@ const tagSeClass =
       opacity: 0.4;
       cursor: not-allowed;
     }
-    .wizard-step-btn {
-      padding: 0.3rem 0.625rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      border-radius: 9999px;
-      border: 1px solid var(--aw-color-text-muted, #cbd5e1);
-      color: var(--aw-color-text-muted, #64748b);
-      cursor: pointer;
-      background: none;
+    /* Stepper: a row of numbered circles connected by lines, styled after
+       https://ui.nuxt.com/docs/components/stepper. Each step button's
+       data-state ("upcoming" | "active" | "completed", set in showStep())
+       drives the circle/label/connector colors below. */
+    .wizard-stepper {
+      display: flex;
+      align-items: flex-start;
+      overflow-x: auto;
+      padding-bottom: 0.125rem;
     }
-    .wizard-step-btn[aria-selected='true'] {
-      color: #fff;
+    .wizard-stepper-item {
+      flex: none;
+      width: 3.5rem;
+    }
+    .wizard-stepper-connector {
+      flex: 1 1 auto;
+      /* Steps are centered in a 3.5rem-wide item around a 1.5rem circle,
+         leaving 1rem of empty space on each side — pull the connector into
+         that space so its line reaches the circle's edge on both sides
+         instead of stopping at the item boundary. */
+      min-width: calc(0.375rem + 2rem);
+      margin-left: -1rem;
+      margin-right: -1rem;
+      height: 2px;
+      margin-top: 0.6875rem;
+      background: var(--aw-color-border, #e2e8f0);
+      transition: background-color 0.15s ease-out;
+    }
+    .dark .wizard-stepper-connector {
+      background: #334155;
+    }
+    .wizard-stepper-connector[data-state='completed'] {
       background: var(--aw-color-primary, #2563eb);
+    }
+    .wizard-step-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: inherit;
+    }
+    .wizard-step-circle {
+      position: relative;
+      width: 1.5rem;
+      height: 1.5rem;
+      flex: none;
+      border-radius: 9999px;
+      border: 2px solid var(--aw-color-text-muted, #cbd5e1);
+      color: var(--aw-color-text-muted, #94a3b8);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background-color 0.15s ease-out,
+        border-color 0.15s ease-out,
+        color 0.15s ease-out;
+    }
+    .dark .wizard-step-circle {
+      background: #0f172a;
+      border-color: #475569;
+      color: #64748b;
+    }
+    .wizard-step-num,
+    .wizard-step-check {
+      font-size: 0.7rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .wizard-step-check {
+      display: none;
+      width: 0.85rem;
+      height: 0.85rem;
+    }
+    .wizard-step-label {
+      font-size: 0.6rem;
+      line-height: 1.15;
+      font-weight: 500;
+      text-align: center;
+      color: var(--aw-color-text-muted, #94a3b8);
+      transition: color 0.15s ease-out;
+    }
+    .wizard-step-btn[data-state='active'] .wizard-step-circle {
       border-color: var(--aw-color-primary, #2563eb);
+      background: var(--aw-color-primary, #2563eb);
+      color: #fff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+    }
+    .wizard-step-btn[data-state='active'] .wizard-step-label {
+      color: var(--aw-color-primary, #2563eb);
+      font-weight: 600;
+    }
+    .wizard-step-btn[data-state='completed'] .wizard-step-circle {
+      border-color: var(--aw-color-primary, #2563eb);
+      background: var(--aw-color-primary, #2563eb);
+      color: #fff;
+    }
+    .wizard-step-btn[data-state='completed'] .wizard-step-num {
+      display: none;
+    }
+    .wizard-step-btn[data-state='completed'] .wizard-step-check {
+      display: block;
+    }
+    .wizard-step-btn[data-state='completed'] .wizard-step-label {
+      color: var(--aw-color-text-page, #334155);
+    }
+    .dark .wizard-step-btn[data-state='completed'] .wizard-step-label {
+      color: #cbd5e1;
     }
     /* Slide+fade in whenever a step goes from hidden to shown — CSS
        animations restart automatically on that transition, so no JS timing
@@ -691,7 +888,14 @@ const tagSeClass =
     import { needsDbService, type WizardAnswers } from '~/utils/wizard/answers';
     import { generate, type GeneratedSecrets, type GenerateResult } from '~/utils/wizard/generator';
     import { generateAppKey, generateSecret } from '~/utils/wizard/secrets';
-    import { validatePort, validateOptionalPort, validateUint, validatePositiveInt } from '~/utils/wizard/validate';
+    import {
+      validatePort,
+      validateOptionalPort,
+      validateUint,
+      validatePositiveInt,
+      validatePath,
+      validateNonNegativeFloat,
+    } from '~/utils/wizard/validate';
     import { loadTemplates } from '~/utils/wizard/templates';
     import { OAUTH_PROVIDERS, type OAuthProviderDef } from '~/utils/wizard/oauthProviders';
     import fallbackCompose from '~/data/wizard/docker-compose.yaml?raw';
@@ -766,6 +970,7 @@ const tagSeClass =
       { id: 'phpmyadmin', label: 'phpMyAdmin', group: 'Database tools' },
       { id: 'facial-recognition', label: 'Facial Recognition', group: 'AI services' },
       { id: 'nsfw', label: 'NSFW Classification', group: 'AI services' },
+      { id: 'geo-decoding', label: 'Local Reverse Geo-Decoding', group: 'Other services' },
     ];
     const OAUTH_SERVICE_ENTRIES: ServiceEntry[] = OAUTH_PROVIDERS.map((p) => ({
       id: p.id,
@@ -788,7 +993,9 @@ const tagSeClass =
       id: string;
       label: string;
       type?: string;
+      inputmode?: 'text' | 'numeric' | 'decimal';
       placeholder?: string;
+      value?: string;
       desc?: string;
     }): HTMLElement {
       const row = cloneTemplate<HTMLElement>('tpl-field-row');
@@ -799,10 +1006,18 @@ const tagSeClass =
       input.id = opts.id;
       input.name = opts.id;
       input.type = opts.type ?? 'text';
+      if (opts.inputmode) input.inputMode = opts.inputmode;
       if (opts.placeholder) input.placeholder = opts.placeholder;
+      if (opts.value !== undefined) input.value = opts.value;
       const desc = row.querySelector('p')!;
-      if (opts.desc) desc.textContent = opts.desc;
-      else desc.remove();
+      if (opts.desc) {
+        desc.textContent = opts.desc + ' ';
+        const errorSpan = document.createElement('span');
+        errorSpan.dataset.error = opts.id;
+        desc.appendChild(errorSpan);
+      } else {
+        desc.remove();
+      }
       return row;
     }
 
@@ -817,6 +1032,69 @@ const tagSeClass =
       return row;
     }
 
+    // Detection/matching tuning knobs for the facial-recognition sidecar —
+    // see github.com/LycheeOrg/Lychee-Facial-Recognition's VISION_FACE_* env
+    // vars. Defaults here must match docker-compose.yaml's own
+    // `${VISION_FACE_*:-default}` fallbacks (see generator.ts), since only
+    // values that differ from them get written out at all.
+    const AI_VISION_TUNING_FIELDS: {
+      id: string;
+      label: string;
+      value: string;
+      inputmode: 'numeric' | 'decimal';
+      desc: string;
+    }[] = [
+      {
+        id: 'aiVisionMaxFacesPerPhoto',
+        label: 'Max faces per photo',
+        value: '10',
+        inputmode: 'numeric',
+        desc: 'Caps how many faces are kept per photo (top matches by confidence). Higher values catch more faces in group shots, at the cost of processing time.',
+      },
+      {
+        id: 'aiVisionMinFaceSizePixels',
+        label: 'Min face size (px)',
+        value: '0',
+        inputmode: 'numeric',
+        desc: "Faces smaller than this, measured on the bounding box's longest side, are ignored. 0 disables the filter; raising it skips small/background faces but may miss distant subjects.",
+      },
+      {
+        id: 'aiVisionBlurThreshold',
+        label: 'Blur threshold',
+        value: '0.5',
+        inputmode: 'decimal',
+        desc: 'Faces blurrier than this Laplacian-variance score are discarded. Lower is more permissive (keeps blurrier faces); higher is stricter.',
+      },
+      {
+        id: 'aiVisionClusterEps',
+        label: 'Clustering distance',
+        value: '0.3',
+        inputmode: 'decimal',
+        desc: 'Maximum distance between faces for the clustering algorithm to group them as the same person. Lower values make tighter, more numerous clusters; higher values merge more faces together.',
+      },
+      {
+        id: 'aiVisionQueueMaxSize',
+        label: 'Max queued jobs',
+        value: '0',
+        inputmode: 'numeric',
+        desc: 'Pending recognition jobs beyond this are rejected instead of queued. 0 means unlimited.',
+      },
+      {
+        id: 'aiVisionThreadPoolSize',
+        label: 'Inference thread pool size',
+        value: '1',
+        inputmode: 'numeric',
+        desc: 'CPU threads used for face-recognition inference. Higher values speed up processing on multi-core hosts, at the cost of CPU/RAM usage.',
+      },
+      {
+        id: 'aiVisionWorkers',
+        label: 'Worker processes',
+        value: '1',
+        inputmode: 'numeric',
+        desc: 'Uvicorn worker processes serving the facial recognition API. More workers handle more concurrent requests, at the cost of multiplying memory usage.',
+      },
+    ];
+
     function buildFacialRecognitionFields(): HTMLElement[] {
       const toggle = buildCheckboxRow({ id: 'customAiVisionKey', label: 'Set your own AI Vision API key' });
       const wrap = document.createElement('div');
@@ -825,7 +1103,15 @@ const tagSeClass =
       wrap.appendChild(
         buildFieldRow({ id: 'aiVisionApiKey', label: 'AI Vision API key', desc: 'Otherwise one is generated for you.' })
       );
-      return [toggle, wrap];
+
+      const hr = document.createElement('hr');
+      hr.className = 'border-gray-200 dark:border-gray-700';
+      const heading = document.createElement('p');
+      heading.className = 'text-xs font-medium';
+      heading.textContent = 'Detection & matching';
+      const tuningFields = AI_VISION_TUNING_FIELDS.map((f) => buildFieldRow(f));
+
+      return [toggle, wrap, hr, heading, ...tuningFields];
     }
 
     function buildNsfwFields(): HTMLElement[] {
@@ -838,6 +1124,13 @@ const tagSeClass =
         buildFieldRow({ id: 'nsfwApiKey', label: 'NSFW API key', desc: 'Otherwise one is generated for you.' })
       );
       return [desc, toggle, wrap];
+    }
+
+    function buildGeoDecodingFields(): HTMLElement[] {
+      const p = cloneTemplate<HTMLElement>('tpl-desc-paragraph');
+      p.textContent =
+        "Self-hosted, so it isn't rate limited like the public Nominatim service — but resolution is limited to city-level precision, not street-level.";
+      return [p];
     }
 
     function buildOAuthFields(provider: OAuthProviderDef): HTMLElement[] {
@@ -864,12 +1157,14 @@ const tagSeClass =
       if (id === 'phpmyadmin') return [];
       if (id === 'facial-recognition') return buildFacialRecognitionFields();
       if (id === 'nsfw') return buildNsfwFields();
+      if (id === 'geo-decoding') return buildGeoDecodingFields();
       const provider = OAUTH_PROVIDERS.find((p) => p.id === id);
       return provider ? buildOAuthFields(provider) : [];
     }
 
     function isServiceConfigured(id: string): boolean {
       if (id === 'phpmyadmin') return true; // nothing to configure
+      if (id === 'geo-decoding') return true; // nothing to configure
       if (id === 'facial-recognition') {
         const custom = fieldOpt<HTMLInputElement>('customAiVisionKey')?.checked ?? false;
         return !custom || !!fieldOpt('aiVisionApiKey')?.value.trim();
@@ -1020,6 +1315,7 @@ const tagSeClass =
         appPort: field('appPort').value,
         appForceHttps: field<HTMLInputElement>('appForceHttps').checked,
         timezone: field('timezone').value,
+        trustedProxies: field('trustedProxies').value,
         dbEngine: field('dbEngine').value as WizardAnswers['dbEngine'],
         dbLocation: field('dbLocation').value as WizardAnswers['dbLocation'],
         dbHost: field('dbHost').value,
@@ -1035,9 +1331,17 @@ const tagSeClass =
         enableAiVision: !!serviceCards.querySelector('[data-service-card="facial-recognition"]'),
         customAiVisionKey: fieldOpt<HTMLInputElement>('customAiVisionKey')?.checked ?? false,
         aiVisionApiKey: fieldOpt('aiVisionApiKey')?.value ?? '',
+        aiVisionMaxFacesPerPhoto: fieldOpt('aiVisionMaxFacesPerPhoto')?.value ?? '10',
+        aiVisionMinFaceSizePixels: fieldOpt('aiVisionMinFaceSizePixels')?.value ?? '0',
+        aiVisionBlurThreshold: fieldOpt('aiVisionBlurThreshold')?.value ?? '0.5',
+        aiVisionClusterEps: fieldOpt('aiVisionClusterEps')?.value ?? '0.3',
+        aiVisionQueueMaxSize: fieldOpt('aiVisionQueueMaxSize')?.value ?? '0',
+        aiVisionThreadPoolSize: fieldOpt('aiVisionThreadPoolSize')?.value ?? '1',
+        aiVisionWorkers: fieldOpt('aiVisionWorkers')?.value ?? '1',
         enableNsfw: !!serviceCards.querySelector('[data-service-card="nsfw"]'),
         customNsfwKey: fieldOpt<HTMLInputElement>('customNsfwKey')?.checked ?? false,
         nsfwApiKey: fieldOpt('nsfwApiKey')?.value ?? '',
+        enableGeoDecoding: !!serviceCards.querySelector('[data-service-card="geo-decoding"]'),
         activeOAuthProviders,
         oauthFieldValues,
         useWorker: field<HTMLInputElement>('useWorker').checked,
@@ -1048,6 +1352,10 @@ const tagSeClass =
         traefikNetwork: field('traefikNetwork').value,
         puid: field('puid').value,
         pgid: field('pgid').value,
+        volumeUploadsPath: field('volumeUploads').value,
+        volumeLogsPath: field('volumeLogs').value,
+        volumeTmpPath: field('volumeTmp').value,
+        volumeDatabasePath: field('volumeDatabase').value,
       };
     }
 
@@ -1090,6 +1398,12 @@ const tagSeClass =
 
       workerCountField.classList.toggle('hidden', !a.useWorker);
       traefikFields.classList.toggle('hidden', !a.enableTraefik);
+
+      // Mirrors generator.ts's own blank-value fallback, so the field shows
+      // what it'll actually resolve to before the user types anything.
+      field<HTMLInputElement>('trustedProxies').placeholder = a.enableTraefik ? '*' : 'null';
+
+      document.getElementById('volumeDatabaseField')?.classList.toggle('hidden', !isSqlite);
     }
 
     function renderSecretsPanel(result: GenerateResult) {
@@ -1125,12 +1439,52 @@ const tagSeClass =
       const puidError = validateUint(a.puid);
       const pgidError = validateUint(a.pgid);
       const workerCountError = a.useWorker ? validatePositiveInt(a.workerCount) : null;
+      const volumeUploadsError = validatePath(a.volumeUploadsPath);
+      const volumeLogsError = validatePath(a.volumeLogsPath);
+      const volumeTmpError = validatePath(a.volumeTmpPath);
+      const volumeDatabaseError = a.dbEngine === 'sqlite' ? validatePath(a.volumeDatabasePath) : null;
+      const aiVisionMaxFacesError = a.enableAiVision ? validateUint(a.aiVisionMaxFacesPerPhoto) : null;
+      const aiVisionMinFaceSizeError = a.enableAiVision ? validateUint(a.aiVisionMinFaceSizePixels) : null;
+      const aiVisionBlurThresholdError = a.enableAiVision ? validateNonNegativeFloat(a.aiVisionBlurThreshold) : null;
+      const aiVisionClusterEpsError = a.enableAiVision ? validateNonNegativeFloat(a.aiVisionClusterEps) : null;
+      const aiVisionQueueMaxSizeError = a.enableAiVision ? validateUint(a.aiVisionQueueMaxSize) : null;
+      const aiVisionThreadPoolSizeError = a.enableAiVision ? validatePositiveInt(a.aiVisionThreadPoolSize) : null;
+      const aiVisionWorkersError = a.enableAiVision ? validatePositiveInt(a.aiVisionWorkers) : null;
       setError('appPort', portError);
       setError('dbPort', dbPortError);
       setError('puid', puidError);
       setError('pgid', pgidError);
       setError('workerCount', workerCountError);
-      if (portError || dbPortError || puidError || pgidError || workerCountError) return;
+      setError('volumeUploads', volumeUploadsError);
+      setError('volumeLogs', volumeLogsError);
+      setError('volumeTmp', volumeTmpError);
+      setError('volumeDatabase', volumeDatabaseError);
+      setError('aiVisionMaxFacesPerPhoto', aiVisionMaxFacesError);
+      setError('aiVisionMinFaceSizePixels', aiVisionMinFaceSizeError);
+      setError('aiVisionBlurThreshold', aiVisionBlurThresholdError);
+      setError('aiVisionClusterEps', aiVisionClusterEpsError);
+      setError('aiVisionQueueMaxSize', aiVisionQueueMaxSizeError);
+      setError('aiVisionThreadPoolSize', aiVisionThreadPoolSizeError);
+      setError('aiVisionWorkers', aiVisionWorkersError);
+      if (
+        portError ||
+        dbPortError ||
+        puidError ||
+        pgidError ||
+        workerCountError ||
+        volumeUploadsError ||
+        volumeLogsError ||
+        volumeTmpError ||
+        volumeDatabaseError ||
+        aiVisionMaxFacesError ||
+        aiVisionMinFaceSizeError ||
+        aiVisionBlurThresholdError ||
+        aiVisionClusterEpsError ||
+        aiVisionQueueMaxSizeError ||
+        aiVisionThreadPoolSizeError ||
+        aiVisionWorkersError
+      )
+        return;
 
       const result = generate(templates.envExample, templates.compose, a, secrets);
       lastResult = result;
@@ -1204,6 +1558,7 @@ const tagSeClass =
     // visible — hidden fields keep their values and still fire input/change.
     const wizardSteps = Array.from(document.querySelectorAll<HTMLElement>('.wizard-step'));
     const stepButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-step-btn]'));
+    const stepConnectors = Array.from(document.querySelectorAll<HTMLElement>('[data-step-connector]'));
     const stepBackBtn = document.getElementById('stepBack') as HTMLButtonElement;
     const stepNextBtn = document.getElementById('stepNext') as HTMLButtonElement;
     const stepIndicator = document.getElementById('stepIndicator')!;
@@ -1214,7 +1569,13 @@ const tagSeClass =
       currentStep = Math.max(0, Math.min(wizardSteps.length - 1, i));
       wizardSteps[currentStep].style.setProperty('--wizard-step-dir', String(dir));
       wizardSteps.forEach((el, idx) => el.classList.toggle('hidden', idx !== currentStep));
-      stepButtons.forEach((btn, idx) => btn.setAttribute('aria-selected', String(idx === currentStep)));
+      stepButtons.forEach((btn, idx) => {
+        btn.setAttribute('aria-selected', String(idx === currentStep));
+        btn.dataset.state = idx < currentStep ? 'completed' : idx === currentStep ? 'active' : 'upcoming';
+      });
+      stepConnectors.forEach((el, idx) => {
+        el.dataset.state = idx < currentStep ? 'completed' : 'upcoming';
+      });
       stepBackBtn.disabled = currentStep === 0;
       stepNextBtn.disabled = currentStep === wizardSteps.length - 1;
       stepIndicator.textContent = `Step ${currentStep + 1} of ${wizardSteps.length}`;
@@ -1301,6 +1662,7 @@ const tagSeClass =
           : { panel: 'compose', needle: `${a.appPort}:8000` },
       appForceHttps: (a) => envTarget('APP_FORCE_HTTPS', a),
       timezone: (a) => envTarget('TIMEZONE', a),
+      trustedProxies: (a) => envTarget('TRUSTED_PROXIES', a),
       dbEngine: (a) => envTarget('DB_CONNECTION', a),
       dbLocation: (a) => envTarget('DB_HOST', a),
       dbHost: (a) => envTarget('DB_HOST', a),
@@ -1313,12 +1675,39 @@ const tagSeClass =
       useEnvFile: () => ({ panel: 'compose', needle: 'env_file' }),
       useDockerSecrets: () => ({ panel: 'compose', needle: 'APP_KEY_FILE' }),
       enablePhpMyAdmin: () => ({ panel: 'compose', needle: 'phpmyadmin:' }),
-      enableAiVision: (a) => envTarget('AI_VISION_ENABLED', a),
-      customAiVisionKey: (a) => envTarget('AI_VISION_API_KEY', a),
-      aiVisionApiKey: (a) => envTarget('AI_VISION_API_KEY', a),
+      // The .env var is AI_VISION_API_KEY, but docker-compose.yaml's own key
+      // for it is still AI_VISION_FACE_API_KEY (only the var it reads from
+      // was renamed) — envTarget can't be used for the compose-panel case.
+      enableAiVision: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'AI_VISION_API_KEY=', exact: true }
+          : { panel: 'compose', needle: 'AI_VISION_FACE_API_KEY:', exact: true },
+      customAiVisionKey: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'AI_VISION_API_KEY=', exact: true }
+          : { panel: 'compose', needle: 'AI_VISION_FACE_API_KEY:', exact: true },
+      aiVisionApiKey: (a) =>
+        a.useEnvFile
+          ? { panel: 'env', needle: 'AI_VISION_API_KEY=', exact: true }
+          : { panel: 'compose', needle: 'AI_VISION_FACE_API_KEY:', exact: true },
+      // These only ever land in docker-compose.yaml's environment: block for
+      // lychee_facial_recognition (never in Lychee's own env.example), and
+      // are only written out at all when changed from their default — see
+      // generator.ts. envTarget still does the right thing: it points at
+      // the .env "Docker Compose overrides" line when one was written, or
+      // the compose panel otherwise (where scrollToNeedle harmlessly finds
+      // nothing if the value is untouched and at its default).
+      aiVisionMaxFacesPerPhoto: (a) => envTarget('VISION_FACE_MAX_FACES_PER_PHOTO', a),
+      aiVisionMinFaceSizePixels: (a) => envTarget('VISION_FACE_MIN_FACE_SIZE_PIXELS', a),
+      aiVisionBlurThreshold: (a) => envTarget('VISION_FACE_BLUR_THRESHOLD', a),
+      aiVisionClusterEps: (a) => envTarget('VISION_FACE_CLUSTER_EPS', a),
+      aiVisionQueueMaxSize: (a) => envTarget('VISION_FACE_QUEUE_MAX_SIZE', a),
+      aiVisionThreadPoolSize: (a) => envTarget('VISION_FACE_THREAD_POOL_SIZE', a),
+      aiVisionWorkers: (a) => envTarget('VISION_FACE_WORKERS', a),
       enableNsfw: () => ({ panel: 'compose', needle: 'lychee_nsfw_classification:' }),
       customNsfwKey: (a) => envTarget('AI_VISION_NSFW_API_KEY', a),
       nsfwApiKey: (a) => envTarget('AI_VISION_NSFW_API_KEY', a),
+      enableGeoDecoding: (a) => envTarget('LOCAL_GEO_DECODING_URL', a),
       useWorker: () => ({ panel: 'compose', needle: 'lychee_worker:' }),
       workerCount: (a) =>
         a.useEnvFile
@@ -1333,6 +1722,10 @@ const tagSeClass =
           : { panel: 'compose', needle: `name: "${a.traefikNetwork}"` },
       puid: (a) => envTarget('PUID', a),
       pgid: (a) => envTarget('PGID', a),
+      volumeUploads: () => ({ panel: 'compose', needle: ':/app/public/uploads' }),
+      volumeLogs: () => ({ panel: 'compose', needle: ':/app/storage/logs' }),
+      volumeTmp: () => ({ panel: 'compose', needle: ':/app/storage/tmp' }),
+      volumeDatabase: () => ({ panel: 'compose', needle: ':/app/database/database.sqlite' }),
     };
     for (const provider of OAUTH_PROVIDERS) {
       for (const f of provider.fields) {

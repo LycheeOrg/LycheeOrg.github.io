@@ -115,7 +115,7 @@ The service is configured independently, via its own `.env` file (copy `.env.exa
 | `VISION_FACE_MAX_FACES_PER_PHOTO`   | `10`    | Maximum faces included in a callback payload.                           |
 | `VISION_FACE_MIN_FACE_SIZE_PIXELS`  | `0`     | Minimum face size in pixels; `0` disables this filter.                  |
 | `VISION_FACE_BLUR_THRESHOLD`        | `0.5`   | Laplacian variance threshold; blurry faces below this are discarded.    |
-| `VISION_FACE_CLUSTER_EPS`           | `0.6`   | DBSCAN epsilon (max cosine distance) used for face clustering.          |
+| `VISION_FACE_CLUSTER_EPS`           | `0.3`   | DBSCAN epsilon (max cosine distance) used for face clustering.          |
 
 ### Storage
 
@@ -193,7 +193,7 @@ The container exposes interactive API docs at `/docs` and a health check at `/he
 - Try a different `VISION_FACE_DETECTOR_BACKEND` (`retinaface`, `mtcnn`, `opencv`, `ssd`) — detectors vary in recall depending on pose, lighting, and image resolution.
 
 **Clustering groups unrelated faces together, or fails to group similar faces:**
-- Clustering is controlled by `VISION_FACE_CLUSTER_EPS` (default `0.6`), the DBSCAN epsilon (maximum cosine distance) allowed within a cluster. Lower it if dissimilar people are being grouped together; raise it if the same person is being split across multiple clusters.
+- Clustering is controlled by `VISION_FACE_CLUSTER_EPS` (default `0.3`), the DBSCAN epsilon (maximum cosine distance) allowed within a cluster. Lower it if dissimilar people are being grouped together; raise it if the same person is being split across multiple clusters.
 - To apply a new value: update `VISION_FACE_CLUSTER_EPS` in the microservice's `.env`, restart the microservice so it picks up the change, then re-trigger clustering from _Settings &rArr; Maintenance &rArr; Run Clustering_ in Lychee. This re-clusters every currently unassigned face with the new epsilon — repeat with a different value if the result still isn't right.
 - The `VISION_FACE_MODEL_NAME` (default `ArcFace`) recognition model determines embedding quality — a different model may produce more consistent embeddings for your photo set, but changing it does not retroactively update existing embeddings.
 - Poor detections (blurry, low-confidence, or partial faces — see above) produce noisy embeddings that cluster poorly; fixing detection quality often improves clustering as a side effect.

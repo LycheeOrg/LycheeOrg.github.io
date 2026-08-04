@@ -10,6 +10,13 @@ export interface OAuthFieldDef {
   label: string;
   placeholder?: string;
   required: boolean;
+  // Set only on the one credential-ish field per provider that
+  // docker-compose.yaml ships a "<envKey>_FILE" Docker-secrets variant for
+  // (the client/app secret — never the client ID or a public base
+  // URL/realm/tenant). Value is the secret's file name under ./secrets/,
+  // matching the "/run/secrets/<name>" path in that _FILE line. See
+  // dockerSecrets.ts's additional-secrets wiring.
+  secretFile?: string;
 }
 
 export interface OAuthProviderDef {
@@ -25,7 +32,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
     label: 'Amazon',
     fields: [
       { key: 'clientId', envKey: 'AMAZON_SIGNIN_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'secret', envKey: 'AMAZON_SIGNIN_SECRET', label: 'Secret', required: true },
+      { key: 'secret', envKey: 'AMAZON_SIGNIN_SECRET', label: 'Secret', required: true, secretFile: 'amazon_signin_secret' },
     ],
   },
   {
@@ -35,7 +42,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
       "The client secret is a JWT with a maximum 6-month lifetime — you'll need to regenerate and update it periodically.",
     fields: [
       { key: 'clientId', envKey: 'APPLE_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'APPLE_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'APPLE_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'apple_client_secret' },
     ],
   },
   {
@@ -43,7 +50,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
     label: 'Facebook',
     fields: [
       { key: 'clientId', envKey: 'FACEBOOK_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'FACEBOOK_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'FACEBOOK_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'facebook_client_secret' },
     ],
   },
   {
@@ -51,7 +58,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
     label: 'GitHub',
     fields: [
       { key: 'clientId', envKey: 'GITHUB_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'GITHUB_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'GITHUB_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'github_client_secret' },
     ],
   },
   {
@@ -59,7 +66,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
     label: 'Google',
     fields: [
       { key: 'clientId', envKey: 'GOOGLE_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'GOOGLE_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'GOOGLE_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'google_client_secret' },
     ],
   },
   {
@@ -74,7 +81,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
         required: true,
       },
       { key: 'id', envKey: 'MASTODON_ID', label: 'Client ID', required: true },
-      { key: 'secret', envKey: 'MASTODON_SECRET', label: 'Client secret', required: true },
+      { key: 'secret', envKey: 'MASTODON_SECRET', label: 'Client secret', required: true, secretFile: 'mastodon_secret' },
     ],
   },
   {
@@ -82,7 +89,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
     label: 'Microsoft',
     fields: [
       { key: 'clientId', envKey: 'MICROSOFT_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'MICROSOFT_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'MICROSOFT_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'microsoft_client_secret' },
       { key: 'tenantId', envKey: 'MICROSOFT_TENANT_ID', label: 'Tenant ID', required: true },
     ],
   },
@@ -91,7 +98,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
     label: 'Nextcloud',
     fields: [
       { key: 'clientId', envKey: 'NEXTCLOUD_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'NEXTCLOUD_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'NEXTCLOUD_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'nextcloud_client_secret' },
       {
         key: 'baseUri',
         envKey: 'NEXTCLOUD_BASE_URI',
@@ -106,7 +113,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
     label: 'Keycloak',
     fields: [
       { key: 'clientId', envKey: 'KEYCLOAK_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'KEYCLOAK_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'KEYCLOAK_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'keycloak_client_secret' },
       {
         key: 'baseUrl',
         envKey: 'KEYCLOAK_BASE_URL',
@@ -129,7 +136,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
         required: true,
       },
       { key: 'clientId', envKey: 'AUTHENTIK_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'AUTHENTIK_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'AUTHENTIK_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'authentik_client_secret' },
     ],
   },
   {
@@ -144,7 +151,7 @@ export const OAUTH_PROVIDERS: OAuthProviderDef[] = [
         required: true,
       },
       { key: 'clientId', envKey: 'AUTHELIA_CLIENT_ID', label: 'Client ID', required: true },
-      { key: 'clientSecret', envKey: 'AUTHELIA_CLIENT_SECRET', label: 'Client secret', required: true },
+      { key: 'clientSecret', envKey: 'AUTHELIA_CLIENT_SECRET', label: 'Client secret', required: true, secretFile: 'authelia_client_secret' },
     ],
   },
 ];

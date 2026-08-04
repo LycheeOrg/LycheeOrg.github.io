@@ -5,9 +5,12 @@
 // get strings back to display, copy, or download. Extended with database
 // engine/location and NSFW classification, which the CLI doesn't offer.
 import { enableDockerSecrets } from './dockerSecrets';
+import { activateEnvLines } from './composeEdit';
 import { removeDbService, addSqliteVolume } from './dbCompose';
-import { insertNsfwService } from './nsfwService';
-import { removeWorkerService } from './workerCompose';
+import { setVolumePaths } from './volumesCompose';
+import { removeNsfwProfileGate, removeNsfwService } from './nsfwCompose';
+import { removeGeoDecodingProfileGate, removeGeoDecodingService, ensureGeoDecodingUrlVar } from './geoDecodingCompose';
+import { removeWorkerService, ensureWorkerScale } from './workerCompose';
 import { addTraefikLabels } from './traefikCompose';
 import { removePhpMyAdminService } from './phpMyAdminCompose';
 import { removeEnvFileReferences, removePhpMyAdminProfileGate, inlineEnvVars } from './envFileCompose';
@@ -142,21 +145,60 @@ export function generate(
     }
   }
   if (a.dbEngine === 'sqlite') {
-    const { compose: patched, added } = addSqliteVolume(compose);
+    const { compose: patched, added } = addSqliteVolume(compose, a.volumeDatabasePath);
     compose = patched;
     if (!added) {
       warnings.push(
-        'could not add a persistent volume for the SQLite database automatically; add `./lychee/database/database.sqlite:/app/database/database.sqlite` under lychee_api/lychee_worker by hand, or your data will be lost when the container is recreated'
+        `could not add a persistent volume for the SQLite database automatically; add \`${a.volumeDatabasePath}:/app/database/database.sqlite\` under lychee_api/lychee_worker by hand, or your data will be lost when the container is recreated`
       );
     }
   }
-  if (a.enableNsfw) {
-    const { compose: patched, inserted } = insertNsfwService(compose);
+  {
+    const { compose: patched, found } = setVolumePaths(compose, {
+      uploads: a.volumeUploadsPath,
+      logs: a.volumeLogsPath,
+      tmp: a.volumeTmpPath,
+    });
     compose = patched;
-    if (!inserted) {
-      warnings.push(
-        'could not add the NSFW classification service automatically; add it to docker-compose.yaml by hand'
-      );
+    if (!found.uploads) {
+      warnings.push('could not find the uploads volume mount in docker-compose.yaml to customize; add it by hand');
+    }
+    if (!found.logs) {
+      warnings.push('could not find the logs volume mount in docker-compose.yaml to customize; add it by hand');
+    }
+    if (!found.tmp) {
+      warnings.push('could not find the tmp volume mount in docker-compose.yaml to customize; add it by hand');
+    }
+  }
+  if (a.enableNsfw) {
+    const { compose: patched, removed } = removeNsfwProfileGate(compose);
+    compose = patched;
+    if (!removed) {
+      warnings.push('could not enable the NSFW classification service automatically; remove its `profiles:` entry from docker-compose.yaml by hand, or it will stay off');
+    }
+  } else {
+    const { compose: patched, removed } = removeNsfwService(compose);
+    compose = patched;
+    if (!removed) {
+      warnings.push('could not remove the NSFW classification service automatically; please remove `lychee_nsfw_classification` by hand');
+    }
+  }
+  if (a.enableGeoDecoding) {
+    const { compose: patched, removed } = removeGeoDecodingProfileGate(compose);
+    compose = patched;
+    if (!removed) {
+      warnings.push('could not enable the local reverse geo-decoding service automatically; remove its `profiles:` entry from docker-compose.yaml by hand, or it will stay off');
+    }
+    const { compose: withUrlVar, ensured } = ensureGeoDecodingUrlVar(compose);
+    compose = withUrlVar;
+    if (!ensured) {
+      warnings.push('could not add LOCAL_GEO_DECODING_URL to docker-compose.yaml automatically; add it under x-common-env by hand, or the service will run unused');
+    }
+  } else {
+    const { compose: patched, removed } = removeGeoDecodingService(compose);
+    compose = patched;
+    if (!removed) {
+      warnings.push('could not remove the local reverse geo-decoding service automatically; please remove `lychee_geo_decoding` by hand');
     }
   }
   if (!a.useWorker) {
@@ -164,6 +206,12 @@ export function generate(
     compose = patched;
     if (!removed) {
       warnings.push('could not remove the queue worker service automatically; please remove `lychee_worker` by hand');
+    }
+  } else {
+    const { compose: patched, ensured } = ensureWorkerScale(compose);
+    compose = patched;
+    if (!ensured) {
+      warnings.push('could not make the queue worker scalable automatically; the WORKER_REPLICAS setting will have no effect until you replace `lychee_worker`\'s `container_name:` with `scale: ${WORKER_REPLICAS:-1}` by hand');
     }
   }
   if (a.enablePhpMyAdmin && needsDb) {
@@ -194,25 +242,79 @@ export function generate(
     }
   }
 
-  let secretsUsed = false;
-  if (a.useDockerSecrets) {
-    const { patched, ok, reason } = enableDockerSecrets(compose);
-    if (ok) {
-      compose = patched;
-      secretsUsed = true;
-    } else {
-      warnings.push(`could not enable Docker secrets automatically (${reason}); falling back to plain .env values`);
-    }
+  // loadTemplates() normally fetches the *live* upstream template rather
+  // than the bundled fallback snapshot, and upstream ships TRUSTED_PROXIES,
+  // every OAuth var, and the NSFW AI-vision vars as inert comments (either
+  // "# KEY: value" or a bare "# KEY=default" reminder) rather than active
+  // YAML — unlike AI_VISION_FACE_*, which upstream already ships active.
+  // Activate exactly what this generation actually needs before anything
+  // below (docker secrets, envSets, inlining) assumes it's live.
+  const keysToActivate = ['TRUSTED_PROXIES'];
+  for (const providerId of a.activeOAuthProviders) {
+    const provider = OAUTH_PROVIDERS.find((p) => p.id === providerId);
+    if (!provider) continue;
+    keysToActivate.push(...provider.fields.map((f) => f.envKey));
   }
-
-  // Collapse blank-line runs left behind by removeDbService/insertNsfwService.
-  compose = compose.replace(/\n{3,}/g, '\n\n');
+  if (a.enableNsfw) {
+    keysToActivate.push('AI_VISION_NSFW_URL', 'AI_VISION_NSFW_API_KEY');
+  }
+  const { compose: activated, missing: missingEnvLines } = activateEnvLines(compose, keysToActivate);
+  compose = activated;
+  for (const key of missingEnvLines) {
+    warnings.push(`could not find "${key}" in docker-compose.yaml to activate; add it under x-common-env by hand`);
+  }
 
   const appKey = secrets.appKey;
   const dbPassword = a.generatePasswords ? secrets.dbPassword : a.dbPassword;
   const dbRootPassword = a.generatePasswords ? secrets.dbRootPassword : a.dbRootPassword;
   const aiVisionApiKey = a.enableAiVision && !a.customAiVisionKey ? secrets.aiVisionApiKey : a.aiVisionApiKey;
   const nsfwApiKey = a.enableNsfw && !a.customNsfwKey ? secrets.nsfwApiKey : a.nsfwApiKey;
+
+  // Every OAuth client secret and AI-vision API key currently in play is a
+  // candidate for its own Docker secret, alongside the essential app_key/
+  // db_password/db_root_password ones — matching the "<VAR>_FILE" convention
+  // docker-compose.yaml documents for every credential, not just those
+  // three. Blank values are skipped: nothing sensitive to protect, and it'd
+  // otherwise create an empty, pointless secrets file.
+  const additionalSecrets: (KV & { composeKey: string })[] = [];
+  for (const providerId of a.activeOAuthProviders) {
+    const provider = OAUTH_PROVIDERS.find((p) => p.id === providerId);
+    if (!provider) continue;
+    for (const field of provider.fields) {
+      if (!field.secretFile) continue;
+      const value = a.oauthFieldValues[`${providerId}:${field.key}`] ?? '';
+      if (value.trim() === '') continue;
+      additionalSecrets.push({ key: field.secretFile, composeKey: field.envKey, value });
+    }
+  }
+  if (a.enableAiVision && aiVisionApiKey.trim() !== '') {
+    additionalSecrets.push({ key: 'ai_vision_face_api_key', composeKey: 'AI_VISION_FACE_API_KEY', value: aiVisionApiKey });
+  }
+  if (a.enableNsfw && nsfwApiKey.trim() !== '') {
+    additionalSecrets.push({ key: 'ai_vision_nsfw_api_key', composeKey: 'AI_VISION_NSFW_API_KEY', value: nsfwApiKey });
+  }
+
+  let secretsUsed = false;
+  let wired: Set<string> = new Set();
+  if (a.useDockerSecrets) {
+    const { patched, ok, reason, wired: w, failed } = enableDockerSecrets(
+      compose,
+      additionalSecrets.map((s) => ({ name: s.key, composeKey: s.composeKey }))
+    );
+    if (ok) {
+      compose = patched;
+      secretsUsed = true;
+      wired = w;
+      for (const name of failed) {
+        warnings.push(`could not enable a Docker secret for "${name}" automatically; it was written to .env in plain text instead`);
+      }
+    } else {
+      warnings.push(`could not enable Docker secrets automatically (${reason}); falling back to plain .env values`);
+    }
+  }
+
+  // Collapse blank-line runs left behind by removeDbService/removeNsfwService.
+  compose = compose.replace(/\n{3,}/g, '\n\n');
 
   const envSets: KV[] = [
     { key: 'APP_NAME', value: a.appName },
@@ -221,17 +323,23 @@ export function generate(
     { key: 'TIMEZONE', value: a.timezone },
     { key: 'DB_CONNECTION', value: DB_CONNECTION_VALUE[a.dbEngine] },
     { key: 'QUEUE_CONNECTION', value: a.useWorker ? 'database' : 'sync' },
-    // Traefik sits in front of Lychee on the same Docker network, so its
-    // requests need to be trusted for X-Forwarded-* headers to be honored.
-    { key: 'TRUSTED_PROXIES', value: a.enableTraefik ? '*' : 'null' },
+    // An explicit value on the General step always wins. Left blank, fall
+    // back to the same automatic default as before: Traefik sits in front of
+    // Lychee on the same Docker network, so its requests need to be trusted
+    // for X-Forwarded-* headers to be honored once it's enabled.
+    { key: 'TRUSTED_PROXIES', value: a.trustedProxies.trim() || (a.enableTraefik ? '*' : 'null') },
   ];
   if (a.dbEngine !== 'sqlite') {
     envSets.push({ key: 'DB_DATABASE', value: a.dbDatabase }, { key: 'DB_USERNAME', value: a.dbUsername });
+  }
+  if (a.enableGeoDecoding) {
+    envSets.push({ key: 'LOCAL_GEO_DECODING_URL', value: 'http://lychee_geo_decoding:8080' });
   }
   for (const providerId of a.activeOAuthProviders) {
     const provider = OAUTH_PROVIDERS.find((p) => p.id === providerId);
     if (!provider) continue;
     for (const field of provider.fields) {
+      if (field.secretFile && wired.has(field.secretFile)) continue;
       envSets.push({ key: field.envKey, value: a.oauthFieldValues[`${providerId}:${field.key}`] ?? '' });
     }
   }
@@ -242,6 +350,7 @@ export function generate(
       { key: 'app_key', value: appKey },
       { key: 'db_password', value: dbPassword },
       { key: 'db_master_password', value: dbRootPassword },
+      ...additionalSecrets.filter((s) => wired.has(s.key)).map((s) => ({ key: s.key, value: s.value })),
     ];
   } else {
     envSets.push({ key: 'APP_KEY', value: appKey });
@@ -264,16 +373,40 @@ export function generate(
       { key: 'DB_PORT', value: a.dbPort || DB_DEFAULT_PORT[a.dbEngine] }
     );
   }
-  const aiVisionEnabled = a.enableAiVision || a.enableNsfw;
-  overrides.push({ key: 'AI_VISION_ENABLED', value: boolStr(aiVisionEnabled) });
+  if (a.enableAiVision && !wired.has('ai_vision_face_api_key')) {
+    overrides.push({ key: 'AI_VISION_API_KEY', value: aiVisionApiKey });
+  }
   if (a.enableAiVision) {
-    overrides.push({ key: 'AI_VISION_FACE_API_KEY', value: aiVisionApiKey });
+    // docker-compose.yaml already falls back to these same defaults (e.g.
+    // `${VISION_FACE_MAX_FACES_PER_PHOTO:-10}`), so only emit an override
+    // when the user actually changed one.
+    if (a.aiVisionMaxFacesPerPhoto !== '10') {
+      overrides.push({ key: 'VISION_FACE_MAX_FACES_PER_PHOTO', value: a.aiVisionMaxFacesPerPhoto });
+    }
+    if (a.aiVisionMinFaceSizePixels !== '0') {
+      overrides.push({ key: 'VISION_FACE_MIN_FACE_SIZE_PIXELS', value: a.aiVisionMinFaceSizePixels });
+    }
+    if (a.aiVisionBlurThreshold !== '0.5') {
+      overrides.push({ key: 'VISION_FACE_BLUR_THRESHOLD', value: a.aiVisionBlurThreshold });
+    }
+    if (a.aiVisionClusterEps !== '0.3') {
+      overrides.push({ key: 'VISION_FACE_CLUSTER_EPS', value: a.aiVisionClusterEps });
+    }
+    if (a.aiVisionQueueMaxSize !== '0') {
+      overrides.push({ key: 'VISION_FACE_QUEUE_MAX_SIZE', value: a.aiVisionQueueMaxSize });
+    }
+    if (a.aiVisionThreadPoolSize !== '1') {
+      overrides.push({ key: 'VISION_FACE_THREAD_POOL_SIZE', value: a.aiVisionThreadPoolSize });
+    }
+    if (a.aiVisionWorkers !== '1') {
+      overrides.push({ key: 'VISION_FACE_WORKERS', value: a.aiVisionWorkers });
+    }
   }
   if (a.enableNsfw) {
-    overrides.push(
-      { key: 'AI_VISION_NSFW_URL', value: 'http://lychee_nsfw_classification:8000' },
-      { key: 'AI_VISION_NSFW_API_KEY', value: nsfwApiKey }
-    );
+    overrides.push({ key: 'AI_VISION_NSFW_URL', value: 'http://lychee_nsfw_classification:8000' });
+    if (!wired.has('ai_vision_nsfw_api_key')) {
+      overrides.push({ key: 'AI_VISION_NSFW_API_KEY', value: nsfwApiKey });
+    }
   }
 
   if (a.useWorker) {

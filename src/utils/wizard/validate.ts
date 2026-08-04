@@ -32,3 +32,20 @@ export function validatePositiveInt(s: string): string | null {
   }
   return null;
 }
+
+export function validateNonNegativeFloat(s: string): string | null {
+  const n = Number(s);
+  if (!Number.isFinite(n) || n < 0) {
+    return 'Must be a non-negative number.';
+  }
+  return null;
+}
+
+// validatePath is deliberately loose — it only rules out a blank value
+// (which would produce an invalid, empty bind-mount source in
+// docker-compose.yaml) rather than trying to fully validate filesystem path
+// syntax across host OSes.
+export function validatePath(s: string): string | null {
+  if (s.trim() === '') return 'Must not be empty.';
+  return null;
+}

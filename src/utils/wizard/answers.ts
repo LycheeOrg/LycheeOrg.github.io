@@ -11,6 +11,10 @@ export interface WizardAnswers {
   appPort: string;
   appForceHttps: boolean;
   timezone: string;
+  // IPs/CIDR ranges of reverse proxies to trust X-Forwarded-* headers from.
+  // Blank means "use the automatic default" — see generator.ts's TRUSTED_PROXIES
+  // envSet, which falls back to '*' when Traefik is enabled, else 'null'.
+  trustedProxies: string;
 
   // Database
   dbEngine: DbEngine;
@@ -34,9 +38,19 @@ export interface WizardAnswers {
   enableAiVision: boolean;
   customAiVisionKey: boolean;
   aiVisionApiKey: string;
+  // Facial recognition detection/matching tuning — see
+  // github.com/LycheeOrg/Lychee-Facial-Recognition's VISION_FACE_* env vars.
+  aiVisionMaxFacesPerPhoto: string;
+  aiVisionMinFaceSizePixels: string;
+  aiVisionBlurThreshold: string;
+  aiVisionClusterEps: string;
+  aiVisionQueueMaxSize: string;
+  aiVisionThreadPoolSize: string;
+  aiVisionWorkers: string;
   enableNsfw: boolean;
   customNsfwKey: boolean;
   nsfwApiKey: string;
+  enableGeoDecoding: boolean;
 
   // OAuth login providers — ids of providers the user has added a card for
   // (see oauthProviders.ts), and their filled-in field values, keyed
@@ -57,6 +71,13 @@ export interface WizardAnswers {
   // System
   puid: string;
   pgid: string;
+
+  // Volumes — host-side paths for Lychee's persistent bind mounts.
+  // volumeDatabasePath only applies when dbEngine is 'sqlite'.
+  volumeUploadsPath: string;
+  volumeLogsPath: string;
+  volumeTmpPath: string;
+  volumeDatabasePath: string;
 }
 
 export function defaultAnswers(): WizardAnswers {
@@ -66,6 +87,7 @@ export function defaultAnswers(): WizardAnswers {
     appPort: '8000',
     appForceHttps: false,
     timezone: 'UTC',
+    trustedProxies: '',
     dbEngine: 'mariadb',
     dbLocation: 'docker',
     dbHost: '',
@@ -81,9 +103,17 @@ export function defaultAnswers(): WizardAnswers {
     enableAiVision: false,
     customAiVisionKey: false,
     aiVisionApiKey: '',
+    aiVisionMaxFacesPerPhoto: '10',
+    aiVisionMinFaceSizePixels: '0',
+    aiVisionBlurThreshold: '0.5',
+    aiVisionClusterEps: '0.3',
+    aiVisionQueueMaxSize: '0',
+    aiVisionThreadPoolSize: '1',
+    aiVisionWorkers: '1',
     enableNsfw: false,
     customNsfwKey: false,
     nsfwApiKey: '',
+    enableGeoDecoding: false,
     activeOAuthProviders: [],
     oauthFieldValues: {},
     useWorker: true,
@@ -94,6 +124,10 @@ export function defaultAnswers(): WizardAnswers {
     traefikNetwork: 'traefik',
     puid: '1000',
     pgid: '1000',
+    volumeUploadsPath: './lychee/uploads',
+    volumeLogsPath: './lychee/logs',
+    volumeTmpPath: './lychee/tmp',
+    volumeDatabasePath: './lychee/database/database.sqlite',
   };
 }
 

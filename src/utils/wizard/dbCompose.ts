@@ -69,7 +69,10 @@ export interface AddSqliteVolumeResult {
 // writable layer and is lost on `docker compose down` / container
 // recreation. Mounting the file itself (not the whole directory) avoids
 // masking anything else Lychee may keep under /app/database.
-export function addSqliteVolume(compose: string): AddSqliteVolumeResult {
+export function addSqliteVolume(
+  compose: string,
+  hostPath: string = './lychee/database/database.sqlite'
+): AddSqliteVolumeResult {
   const lines = compose.split('\n');
   const anchor = '    - ./lychee/tmp:/app/storage/tmp';
   const idx = lines.findIndex((l) => l === anchor);
@@ -78,7 +81,7 @@ export function addSqliteVolume(compose: string): AddSqliteVolumeResult {
   const insertion = [
     '    # Database: where the SQLite database file is stored, so it persists',
     '    # across container restarts/recreation.',
-    '    - ./lychee/database/database.sqlite:/app/database/database.sqlite',
+    `    - ${hostPath}:/app/database/database.sqlite`,
   ];
   const newLines = [...lines.slice(0, idx + 1), ...insertion, ...lines.slice(idx + 1)];
   return { compose: newLines.join('\n'), added: true };
