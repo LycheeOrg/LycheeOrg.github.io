@@ -13,6 +13,50 @@ sidebar:
 
 ## Version 7
 
+### v7.7.2
+
+Released on August 6th, 2026
+
+#### Fixes
+
+A few fixes and the usual maintenance of the codebase. At the moment we are focusing our efforts on the next major version.
+
+* `new` #4581 : Add secret-file support by @ildyria.
+  > Instead of having your OAuth secrets in the .env file, you can now have them in a separate file. This allows to have a better security posture and avoid leaking secrets in the .env file. Only works with the LycheeOrd docker image.
+* `new` #4553 : Add table relation cache for smart albums by @ildyria.
+  > We now support caching the thumbnails of smart albums. This will improve the performance of the gallery page in cases of a large number of photos.
+* `fix` #4535 : Mitigate Zip Bombs by @ildyria.
+  > Add stronger protection against zip bombs. We limit the number of files and the total size of uncompressed files.
+  > This is both done before the extraction and monitored during the extraction to ensure that even in the case of manipulated metadata this is not exploding.
+* `fix` #4563 : Fix inheritance issue on album creation by @ildyria.
+  > When creating a new album, if the propagation was set to inherit, the request was crashing. This is now fixed.
+* `fix` #4568 : Do not watermark placeholders by @ildyria.
+  > When using the watermark feature, the placeholders were also considered as candidates, which is stupid and was crashing the job.
+  > Placeholders are now excluded from watermarking.
+* `fix` #4579 : Update README.md - Fix URL for upgrade process from v6 > v7 by @jessienab.
+* `fix` #4580 : Fix access rights by @ildyria.
+  > the custom css and js were not having the correct access rights when using docker.
+* `fix` #4589 : Fix LinuxServer.io base path (though, they should fix their env) by @ildyria.
+  > LinuxServer.io uses `/pictures` as a base path instead of `/app/public/uploads`. This was breaking when using temporary and encrypted links.
+
+* `klo` #4536 : Improve security posture by not dumping secrets all the time... by @ildyria.
+* `klo` #4540 : Improved Security.md by @ildyria.
+  > We are getting more reports which are AI slops and waste our time and resources.
+  > We added a section to explain our 3 strikes policy and some false positives which are not vulnerabilities.
+* `klo` #4550 : Add support for WASM even when CSP is active. by @ildyria.
+  > WASM was blocked by the CSP, we will require it for the new front-end.
+* `klo` #4590 : Notes on sorting: Lexicographic vs Natural by @ildyria.
+  > Add explanations on the difference between lexicographic and natural sorting, and the consequences of choosing one over another.
+
+* `klo` #4529 : Improved support for Persian by @ildyria.
+  > Thanks to @sarvins for the reviews.
+* `klo` #4538 : Improve support for French by @ildyria.
+* `klo` #4547 : Improve support for Norwegian by @ildyria.
+* `klo` #4552 : Improve support for Arabic by @ildyria.
+* `klo` #4537 : Improve support for Dutch by @ildyria.
+
+
+
 ### v7.7.1
 
 Released on July 13th, 2026
