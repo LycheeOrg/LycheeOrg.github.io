@@ -135,7 +135,7 @@ const metadata = {
 
 
   <CallToAction2
-    classes={{container: 'bg-sky-400/10 !max-w-full', headline: 'bg-white'}}
+    classes={{container: 'bg-sky-400/10 dark:bg-sky-100/5 !max-w-full', headline: 'bg-white dark:bg-slate-800/50'}}
     title="Support us!"
     subtitle="If you are using Lychee, a small token of gratitude will go a long way. You can support further development of Lychee on GitHub."
     actions={[
@@ -354,10 +354,17 @@ const metadata = {
           alt: 'de3erve-hunter',
         },
       },
+      {
+        title: 'Alpastx (Alpesh Bhagwatkar)',
+        image: {
+          src: 'https://avatars.githubusercontent.com/u/93777011?v=4',
+          alt: 'Alpastx',
+        },
+      }
     ]}
   />
 
-    <div class=`max-w-3xl mx-auto text-center p-6 rounded-md dark:shadow-none dark:border dark:border-slate-600`>
+    <div class=`max-w-3xl mb-6 mx-auto text-center p-6 rounded-md dark:shadow-none dark:border dark:border-slate-600`>
       <div class="mb-4 md:mb-8 text-center max-w-3xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading" set:html={'Translation efforts'} />
         <div class="mt-2 md:mt-3 mx-auto text-xl text-gray-500 dark:text-slate-400 font-medium" set:html={'It only takes a little bit of your time, but it greatly helps us.'} />
