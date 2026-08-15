@@ -13,6 +13,44 @@ sidebar:
 
 ## Version 7
 
+### v7.7.3
+
+Released on August 15th, 2026
+
+#### Fixes
+
+A few fixes and some quality of life improvements from @jphuguet
+
+* `new` #4607 : Add bit size informations by @ildyria.
+  > Small debugging info on the diagnostic page which will help us figuring out if the users are running a 32 or 64 bits version of php.
+  > This is quite important when dealing with file sizes for example.
+* `new` #4614 : Close menu once a left-menu item is clicked by @jphuguet.
+  > Someone got annoyed with the left menu not closing when clicking on an item.
+* `new` #4613 : Keep image selection and position when many images are selected by @jphuguet.
+  > When selecting many images and doing an actions, once completed the selection was lost.
+  > We now keep the current selection in case the user wants to do further actions.
+* `new` #4612 : Show existing tags when tagging images by @jphuguet.
+  > When mass editing tags, we now show the existing tags on the selected photos. 
+* `fix` #4593 : Avoid alert() in titles by @ildyria.
+  > There was a potential XSS vulnerability in the titles of albums on a very specific part of the UI.
+  > However, the length of the title displayed was limited to 20 characters, so the best an attacker could do was 
+  > to display an alert() box. This is now fixed.
+* `fix` #4592 : Fix slipery zip extraction by @ildyria.
+  > A nice discovery by @Alpastx, a user could change the filename of the zip file at upload time and 
+  > as a consequence be able to extract files outside of the Lychee folder.
+* `fix` #4608 : Fixes per_page by @ildyria.
+  > We got word that the per_page setting was broken on the Bulk Edit page. This is now fixed.
+* `fix` #4619 : Fix caching issue on tree global update by @ildyria.
+  > When a broken album tree is fixed, the cache was not properly cleared, as a result actions which requires a clean tree
+  > were still blocking. This is now fixed.
+* `fix` #4620 : Just print the message and die by @ildyria.
+  > In the rare case where the user has a broken configuration, it was possible that Lychee crashes before that the logging components
+  > were loaded. We now handle this case by printing the original error message and die.
+  > Note that this dump will reveal the path of your Lychee installation.
+
+Thanks to @Alpastx for reporting the bypass vulnerability on zip extraction.  
+
+
 ### v7.7.2
 
 Released on August 6th, 2026
