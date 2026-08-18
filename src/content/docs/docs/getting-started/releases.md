@@ -15,7 +15,7 @@ sidebar:
 
 ### v7.7.4
 
-Released on August 19nd, 2026
+Released on August 19th, 2026
 
 #### Fixes
 
