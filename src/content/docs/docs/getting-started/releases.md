@@ -13,6 +13,34 @@ sidebar:
 
 ## Version 7
 
+### v7.7.4
+
+Released on August 19nd, 2026
+
+#### Fixes
+
+A quick release containing mainly a security fix and a few minor new additions.
+As we are currently working towards the next major version, we are collecting feedback and bug reports
+from our canary users. If you are interested in joining the beta, please reach out to us on our discord.
+
+* `new` #4625 : Improve feedback on mail notification command by @ildyria.
+  > When running the mail notification command, if there are no mails to be sent, we no longer
+  > return silently.
+* `new` #4624 : Fix wrong frame detection by @ildyria.
+  > The frame detection was not using the correct value to select the frame, this is now fixed.
+  > Additionally we added a configuration option which allows the admin to chose at which time 
+  > the frame should be picted: beginning, middle or custom.
+* `fix` #4630 : Add failsafe on wrong version style from advisories by @ildyria.
+  > In the case of advisories using a wrong version style, we now have a failsafe to avoid
+  > computing the wrong ranges.
+* `fix` #4629 : Fix sneaky guest users by @ildyria.
+  > A guest user could trick the server into returning the basket of another user.
+  > This was reported by @d3do-23 and is now fixed.
+
+First we would like to thank @d3do-23 for reporting the guest user bypass vulnerability.
+As we are working towards the next major version, we also would like to extend our gratitude to 
+@skeletonsec for their audit of the code base, catching a vulnerability before it made it live.
+
 ### v7.7.3
 
 Released on August 15th, 2026
