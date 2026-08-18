@@ -28,8 +28,8 @@ from our canary users. If you are interested in joining the beta, please reach o
   > return silently.
 * `new` #4624 : Fix wrong frame detection by @ildyria.
   > The frame detection was not using the correct value to select the frame, this is now fixed.
-  > Additionally we added a configuration option which allows the admin to chose at which time 
-  > the frame should be picted: beginning, middle or custom.
+  > Additionally we added a configuration option which allows the admin to choose at which time 
+  > the frame should be picked: beginning, middle or custom.
 * `fix` #4630 : Add failsafe on wrong version style from advisories by @ildyria.
   > In the case of advisories using a wrong version style, we now have a failsafe to avoid
   > computing the wrong ranges.
@@ -559,7 +559,7 @@ For all users, this version introduces full RAW image support with automatic JPE
 * `klo` #4124 : Remove endpoint to fetch all data in one go for an album by @ildyria
   > This endpoing has been replaced with the head, photos, albums endpoints. This change allowed us to paginate the photos & albums. Now we no longer need it, so let's get rid of this legacy code. 
 * `SE` #4123 : Slugs as album ids by @ildyria
-  > To have prettier URLs, we added the possibility to use slugs as album IDs instead of the default UUIDs. The slug is unique for the full Lychee installation, but you can chose yourself exactly which to slug to use for each album.
+  > To have prettier URLs, we added the possibility to use slugs as album IDs instead of the default UUIDs. The slug is unique for the full Lychee installation, but you can choose yourself exactly which to slug to use for each album.
 * `fix` #4125 : add inner transactions to avoid aborting (#4072) by @FredPraca
   > On rare occasions, one of the migrations was failing. @FredPraca added some failsafes to avoid a cascade of failure in such cases.
 * `new` #4130 : Raw support by @ildyria
@@ -3459,8 +3459,8 @@ Released Nov 19, 2020
 - `new` #764 : Add Diagnotics warnings if the php init values are too low (less than 30M). 
 - `new` #757 : Add limits on the number of logs seen.
   > Too many logs lines where crashing php by using too much memory.
-- `new` #758 : Add the possibility to chose the picture ordering per album
-  > the admin can now chose whether to order by name etc per album instead of globally.
+- `new` #758 : Add the possibility to choose the picture ordering per album
+  > the admin can now choose whether to order by name etc per album instead of globally.
 
 ### v4.0.7
 
