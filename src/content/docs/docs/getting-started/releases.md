@@ -13,6 +13,34 @@ sidebar:
 
 ## Version 7
 
+### v7.7.4
+
+Released on August 19th, 2026
+
+#### Fixes
+
+A quick release containing mainly a security fix and a few minor new additions.
+As we are currently working towards the next major version, we are collecting feedback and bug reports
+from our canary users. If you are interested in joining the beta, please reach out to us on our discord.
+
+* `new` #4625 : Improve feedback on mail notification command by @ildyria.
+  > When running the mail notification command, if there are no mails to be sent, we no longer
+  > return silently.
+* `new` #4624 : Fix wrong frame detection by @ildyria.
+  > The frame detection was not using the correct value to select the frame, this is now fixed.
+  > Additionally we added a configuration option which allows the admin to choose at which time 
+  > the frame should be picked: beginning, middle or custom.
+* `fix` #4630 : Add failsafe on wrong version style from advisories by @ildyria.
+  > In the case of advisories using a wrong version style, we now have a failsafe to avoid
+  > computing the wrong ranges.
+* `fix` #4629 : Fix sneaky guest users by @ildyria.
+  > A guest user could trick the server into returning the basket of another user.
+  > This was reported by @d3do-23 and is now fixed.
+
+First we would like to thank @d3do-23 for reporting the guest user bypass vulnerability.
+As we are working towards the next major version, we also would like to extend our gratitude to 
+@skeletonsec for their audit of the code base, catching a vulnerability before it made it live.
+
 ### v7.7.3
 
 Released on August 15th, 2026
@@ -531,7 +559,7 @@ For all users, this version introduces full RAW image support with automatic JPE
 * `klo` #4124 : Remove endpoint to fetch all data in one go for an album by @ildyria
   > This endpoing has been replaced with the head, photos, albums endpoints. This change allowed us to paginate the photos & albums. Now we no longer need it, so let's get rid of this legacy code. 
 * `SE` #4123 : Slugs as album ids by @ildyria
-  > To have prettier URLs, we added the possibility to use slugs as album IDs instead of the default UUIDs. The slug is unique for the full Lychee installation, but you can chose yourself exactly which to slug to use for each album.
+  > To have prettier URLs, we added the possibility to use slugs as album IDs instead of the default UUIDs. The slug is unique for the full Lychee installation, but you can choose yourself exactly which to slug to use for each album.
 * `fix` #4125 : add inner transactions to avoid aborting (#4072) by @FredPraca
   > On rare occasions, one of the migrations was failing. @FredPraca added some failsafes to avoid a cascade of failure in such cases.
 * `new` #4130 : Raw support by @ildyria
@@ -3431,8 +3459,8 @@ Released Nov 19, 2020
 - `new` #764 : Add Diagnotics warnings if the php init values are too low (less than 30M). 
 - `new` #757 : Add limits on the number of logs seen.
   > Too many logs lines where crashing php by using too much memory.
-- `new` #758 : Add the possibility to chose the picture ordering per album
-  > the admin can now chose whether to order by name etc per album instead of globally.
+- `new` #758 : Add the possibility to choose the picture ordering per album
+  > the admin can now choose whether to order by name etc per album instead of globally.
 
 ### v4.0.7
 
