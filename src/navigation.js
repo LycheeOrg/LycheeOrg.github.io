@@ -56,7 +56,7 @@ export const footerData = {
         { text: 'Code of Conduct', href: getPermalink('/code-of-conduct') },
         { text: 'Release Notes', href: getPermalink('/docs/getting-started/releases/') },
         // { text: 'PR Dashboard', href: 'https://pr.lycheeorg.dev/' },
-        { text: 'Issue trakcer', href: 'https://github.com/LycheeOrg/Lychee/issues' },
+        { text: 'Issue tracker', href: 'https://github.com/LycheeOrg/Lychee/issues' },
       ],
     },
     {
