@@ -9,9 +9,30 @@ sidebar:
 `SE` refers to functionalities that are aimed at the Supporter Edition.  
 `Pro` refers to functionalities that are aimed at the Pro Edition.
 
-
-
 ## Version 7
+
+### v7.7.5
+
+Released on August 23rd, 2026
+
+#### Fixes
+
+A small release, with small quality of life fixes.
+
+* `fix` #4641 : Fix display the warning-misconfiguration.blade.php by @jphuguet.
+  > On slower connection, the warning about misconfiguration was flashing to the visitor,
+  > creating confusion.
+* `fix` #4646 : Fix time always changing when editing pictures. by @ildyria.
+  > When updating the time of a photo, there was some timezone conversion which was not properly handled,
+  > resulting in the time being changed to a different value.
+* `fix` #4647 : Fix missing support for livekit by @ildyria.
+  > When using the livephoto features, they were not displayed properly, this should be fixed.
+* `fix` #4658 : Mitigate crashes when the album sizes is larger than 2GB by @ildyria.
+  > When album sizes are larger than 2GB, the server was crashing due to an overflow.
+  > We were not able to reproduce the bug, but added mitigations and logs which should handle this error.
+* `fix` #4642 : Fix bug on unreleased feature by @jphuguet.
+  > Secret stuff that are in testing for the next version were a bit broken. Not anymore.
+
 
 ### v7.7.4
 
