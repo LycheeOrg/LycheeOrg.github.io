@@ -11,6 +11,35 @@ sidebar:
 
 ## Version 7
 
+### v7.8.0
+
+Released on August 29th, 2026
+
+#### Dropping support for ordering by Descriptions
+
+This release comes with two nice changes. First, we are improving the support for title ordering. In the past we had to either use:
+lexicographical ordering which was applied in the database or natural ordering which was applied on the server side.
+The later combined with pagination would often produce unexpected results. This is now fixed: every title is split interally into two parts: the prefix and the numbering.
+For example `My photo 1` will have `My photo` as the prefix and `1` as the numbering. The prefix is ordered lexicographically and the numbering is ordered numerically.
+This allows to have a better ordering of titles with numbers and remove the need to prefix them with zeros.
+With this change we are also dropping the sort by description. Configuration with this setting are migrated to sort by title.
+
+The second change, which has been requested for a long while is the writing of tags and information back into the image.
+This functionality is accessible in Image Processing in Expert mode.
+It is disabled by default (as it modifies the originals) and requires exiftool to be installed to work.
+Do note that only the raw/original files will be modified, and that the change is not retro-active: pre-existing images will not be modified: only new updates will be persisted.
+
+* `new` #4677 : Dropping description sorting, merging natural and lexicographic by @ildyria.
+* `new` #4678 : Saving metadata (tags, rating etc) into photos when editing by @ildyria.
+* `new` #4665 : Show inline error for wrong album password instead of opening login by @matthewbolding.
+* `fix` #4668 : AWS crash fix by @ildyria.
+* `fix` #4675 : Improve wording on upload modal by @ildyria.
+
+#### New Contributors
+* @matthewbolding made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4665
+
+
+
 ### v7.7.5
 
 Released on August 23rd, 2026
