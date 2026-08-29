@@ -19,10 +19,10 @@ Released on August 29th, 2026
 
 This release comes with two nice changes. First, we are improving the support for title ordering. In the past we had to either use:
 lexicographical ordering which was applied in the database or natural ordering which was applied on the server side.
-The later combined with pagination would often produce unexpected results. This is now fixed: every title is split interally into two parts: the prefix and the numbering.
+The latter combined with pagination would often produce unexpected results. This is now fixed: every title is split internally into two parts: the prefix and the numbering.
 For example `My photo 1` will have `My photo` as the prefix and `1` as the numbering. The prefix is ordered lexicographically and the numbering is ordered numerically.
 This allows to have a better ordering of titles with numbers and remove the need to prefix them with zeros.
-With this change we are also dropping the sort by description. Configuration with this setting are migrated to sort by title.
+With this change we are also dropping the sort by description. Configurations with this setting are migrated to sort by title.
 
 The second change, which has been requested for a long while is the writing of tags and information back into the image.
 This functionality is accessible in Image Processing in Expert mode.
@@ -760,7 +760,7 @@ One test instance database supports more than 3 million size variants and 400,00
 * `new` 3984 : Add ordering by stars, add rating smart albums by @ildyria.
   > We added the possibility to order photos by their star rating. We also added a few new smart albums:
   > 1 stars, 2 stars, 3+ stars, 4+ stars, 5 stars, Best pictures.
-  > The later is only available to the Supporter Edition users. It allows to select the X best rated photos
+  > The latter is only available to the Supporter Edition users. It allows to select the X best rated photos
   > where X is configurable in the gallery settings.
 * `klo` 3985 : Speed-up space computation, at the cost no data from Unsorted by @ildyria.
   > To improve the speed of Lychee, we changed the way we compute the used space.
