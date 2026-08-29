@@ -8,6 +8,7 @@ export interface Release {
 
 // Release data extracted from releases.md
 export const releases: Release[] = [
+  { version: 'v7.8.0', date: 'Aug 29, 2026', title: 'Dropping ordering by Descriptions', type: 'enhancement', highlights: ['Improved support for title ordering', 'Dropped sort by description', 'Metadata persistence in photos files'] },
   { version: 'v7.7.5', date: 'Aug 23, 2026', title: 'Fixes', type: 'bugfix', highlights: ['Fixes overflow on album size computation', 'fixes timezone confusion while saving dates'] },
   { version: 'v7.7.4', date: 'Aug 19, 2026', title: 'Fixes', type: 'security', highlights: ['Fix video frame detection', 'Fix security issue'] },
   { version: 'v7.7.3', date: 'Aug 15, 2026', title: 'Fixes', type: 'security', highlights: ['Small QoL improvements', 'Minor bug fixes'] },
