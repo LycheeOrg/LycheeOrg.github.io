@@ -11,6 +11,26 @@ sidebar:
 
 ## Version 7
 
+### v7.8.2
+
+Released on August 30th, 2026
+
+#### Hotfix
+
+This is the second hotfix of the previous release... If you had the title ordering set to lexicographic on phtoos in an album (not global config), you would not be able to open those albums.
+
+* `fix` #4685 : Fix photo ordering on albums by @ildyria.
+
+### v7.8.1
+
+Released on August 30th, 2026
+
+#### Hotfix
+
+This is a hotfix of the previous release. If you had the title ordering set to lexicographic on sub-albums in an album (not global config), you would not be able to open those albums.
+
+* `fix` #4682 : Fix missing album migration by @ildyria.
+
 ### v7.8.0
 
 Released on August 29th, 2026
