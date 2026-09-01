@@ -15,7 +15,7 @@ sidebar:
 
 Released on September 1st, 2026
 
-### Security Fixes
+#### Security Fixes
 
 A group of researchers from the University of Sydney had some fun trying to find ways to break Lychee.
 They found a few vulnerabilities and reported them to us. These issues are classified as moderate/high severity, but their real-world impact is limited: most require that the attacker already have upload rights, a prerequisite that doesn't apply to most Lychee deployments.
