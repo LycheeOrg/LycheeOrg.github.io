@@ -11,6 +11,29 @@ sidebar:
 
 ## Version 7
 
+### v7.8.3
+
+Released on September 1st, 2026
+
+### Security Fixes
+
+A group of researchers from the University of Sydney had some fun trying to find ways to break Lychee.
+They found a few vulnerabilities and reported them to us. These issues are classified as moderate/high severity, but their real-world impact is limited: most require that the attacker already have upload rights, a prerequisite that doesn't apply to most Lychee deployments.
+Nevertheless, as a commitment to security, we have fixed these issues in a timely manner and are releasing this hotfix to address them.
+
+* `fix` #4687 : Avoid naughty pdf uploaders by @ildyria.
+  > A user could upload a pdf crafted to exhaust the computational power of the server and cause a denial of service. This is now fixed.
+  > There was already mitigations in place, but they were not sufficient to avoid this issue.
+* `fix` #4696 : Fix replay upload in the same chunk by @ildyria.
+  > A malicious user with upload access could replay the upload of chunks and subsequently fill the storage of the server without limit.
+  > We now ensure that the chunks are processed in order and that the same chunk cannot be uploaded twice. 
+* `fix` #4698 : Avoid email oracle on registration by @ildyria.
+  > When regitration page is disabled, a user could still send requests to the endpoint and try url. As the check for the authorization of the
+  > request was after the check of uniqueness of the email, an attacker could infer whether the email was used or not. This is now fixed.
+* `fix` #4700 : Prevent editing pictures if they are not validated yet by @ildyria.
+  > When a photo is flagged for moderation, a user could still send a request to put the unvalidated photo as a cover of an album.
+  > This is now fixed.
+
 ### v7.8.2
 
 Released on August 30th, 2026
