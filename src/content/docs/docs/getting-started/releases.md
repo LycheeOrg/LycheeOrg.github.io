@@ -11,6 +11,23 @@ sidebar:
 
 ## Version 7
 
+### v7.8.4
+
+Released on September 17th, 2026
+
+### Improved support of cards and cover albums on password-protected albums
+
+While this release may seem small, it contains the usual set of dependencies updates. For brievity, we do not list them here.
+That being said, @matthewbolding added a nice small feature. You can enabled it in your settings page: password protected albums are now able to show the cover even if the album is still locked.
+
+As per a request of one of our sponsor, we improved the support for embed cards: they should now be displayed in a larger format.
+
+* `new` #4704 : Show album cover art while password-protected by @matthewbolding.
+* `new` #4752 : Add Width and Height to the meta info when loading a page by @ildyria.
+* `fix` #4736 : Fix folder multi processing by @ildyria.
+* `fix` #4739 : Send the origin on openstreetmap.org by @ildyria.
+
+
 ### v7.8.3
 
 Released on September 1st, 2026
