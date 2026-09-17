@@ -15,7 +15,7 @@ sidebar:
 
 Released on September 17th, 2026
 
-### Improved support for embed cards and album covers on password-protected albums
+#### Improved support for embed cards and album covers on password-protected albums
 
 While this release may seem small, it contains the usual set of dependency updates. For brevity, we do not list them here.
 That being said, @matthewbolding added a nice small feature. You can enable it in your settings page: password-protected albums are now able to show the cover even if the album is still locked.
