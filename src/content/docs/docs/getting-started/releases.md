@@ -11,6 +11,16 @@ sidebar:
 
 ## Version 7
 
+### v7.8.5
+
+Released on September 18th, 2026
+
+#### Fixes translations not applied
+
+A race condition was occuring that caused translations not to be applied correctly.
+
+* `fix` #4757 : Fix language by @ildyria
+
 ### v7.8.4
 
 Released on September 17th, 2026
