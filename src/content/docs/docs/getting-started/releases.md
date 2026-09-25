@@ -17,11 +17,11 @@ Released on September 25th, 2026
 
 #### New Features and security fixes
 
-As we are getting closer to the next major version, we are not limiting ourselves to simple patch releases as we believe that our contributors deserves their changes to be made available without much delays. As such, this release introduces 3 new features.
+As we are getting closer to the next major version, we are not limiting ourselves to simple patch releases as we believe that our contributors deserve their changes to be made available without much delay. As such, this release introduces 3 new features.
 
 First of all the ability to set a prefix on your S3 buckets paths, this aims to help you sharing the same bucket but having different Lychee backend. Secondly, @haydenmc added the Kanidm OAuth Provider, and finally @matthewbolding added the setting to show the highest-quality image in the full-screen viewer.
 
-Aside from those, we fixed quite a few vulnerabilities that have been reported to us by @adrbogacz and @
+Aside from those, we fixed quite a few vulnerabilities that have been reported to us. They will be published shortly with their respective GHSA.
 
 * `new` #4759 : Add support for S3 object prefixes by @hyperdefined.
 * `new` #4762 : Add Kanidm OAuth Provider by @haydenmc.
