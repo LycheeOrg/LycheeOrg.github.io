@@ -8,6 +8,7 @@ export interface Release {
 
 // Release data extracted from releases.md
 export const releases: Release[] = [
+  { version: 'v7.9.0', date: 'Sep 25, 2026', title: 'Features and fixes', type: 'feature', highlights: ['Added support for S3 object prefixes', 'Kanidm OAuth Provider', 'Setting to show highest-quality image in full-screen viewer'] },
   { version: 'v7.8.5', date: 'Sep 18, 2026', title: 'Fixes', type: 'bugfix', highlights: ['Fixes translations not applied'] },
   { version: 'v7.8.4', date: 'Sep 17, 2026', title: 'Fixes', type: 'bugfix', highlights: ['Cover for locked albums', 'improved embeddings'] },
   { version: 'v7.8.3', date: 'Sep 1, 2026', title: 'Hotfix', type: 'security', highlights: ['Fixes four vulnerabilities reported by researchers from the University of Sydney'] },

@@ -11,6 +11,38 @@ sidebar:
 
 ## Version 7
 
+### v7.9.0
+
+Released on September 25th, 2026
+
+#### New Features and security fixes
+
+As we are getting closer to the next major version, we are not limiting ourselves to simple patch releases as we believe that our contributors deserve their changes to be made available without much delay. As such, this release introduces 3 new features.
+
+First of all the ability to set a prefix on your S3 buckets paths, this aims to help you sharing the same bucket but having different Lychee backend. Secondly, @haydenmc added the Kanidm OAuth Provider, and finally @matthewbolding added the setting to show the highest-quality image in the full-screen viewer.
+
+Aside from those, we fixed quite a few vulnerabilities that have been reported to us. They will be published shortly with their respective GHSA.
+
+* `new` #4759 : Add support for S3 object prefixes by @hyperdefined.
+* `new` #4762 : Add Kanidm OAuth Provider by @haydenmc.
+* `new` #4780 : Add setting to show highest-quality image in the full-screen viewer by @matthewbolding.
+* `fix` #4758 : Fix browser tab title getting stuck on a photo's filename by @matthewbolding.
+* `fix` #4761 : Fix map on first sidebar load by @ildyria.
+* `fix` #4766 : Do not make unvalidated photos downloadable by @ildyria.
+* `fix` #4767 : Fix Editing photos from the unsorted which are not your own by @ildyria.
+* `fix` #4765 : Fix remaining links when removing an Access Permission by @ildyria.
+* `fix` #4778 : Fix IODR on Webauthn aliases by @ildyria.
+* `fix` #4777 : Implement search v3 + fixes search v2 by @ildyria.
+* `fix` #4783 : Fix leaky rss by @ildyria.
+
+First we would like to thank @WojciechCiemski and @adrbogacz for reporting a vulnerabilies in our eco-system.
+We are working hard to keep Lychee secure and their invisible help is greatly appreciated.
+
+#### New Contributors
+* @hyperdefined made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4759
+* @haydenmc made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4762
+
+
 ### v7.8.5
 
 Released on September 18th, 2026
