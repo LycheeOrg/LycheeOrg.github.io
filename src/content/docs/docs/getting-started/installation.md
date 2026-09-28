@@ -46,6 +46,12 @@ For production deployments, you should:
 - Put Lychee behind a reverse proxy with TLS (nginx, Traefik, or Caddy)
 - Use the [Docker Compose Wizard](/wizard/) or the [full Docker Compose template](https://github.com/LycheeOrg/Lychee/blob/master/docker-compose.yaml) with workers for better performance
 
+## Alternative: Easypanel
+
+[Easypanel](https://easypanel.io) is a self-hosted Docker deployment platform, and it maintains a one-click deployment template for Lychee:
+
+[![Deploy on Easypanel](https://easypanel.io/img/deploy-on-easypanel-40.svg)](https://easypanel.io/templates/lychee)
+
 ## Alternative: Manual Installation
 
 If you cannot use Docker, Lychee can be installed manually on a server with PHP, a web server, and a database. See the [Manual Installation](/docs/getting-started/manual-installation/) guide.
