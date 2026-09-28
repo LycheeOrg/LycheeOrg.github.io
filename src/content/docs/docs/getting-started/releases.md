@@ -11,6 +11,41 @@ sidebar:
 
 ## Version 7
 
+
+### v7.10.0
+
+#### Global password, WebP, Video loop and security fixes
+
+What? A new release already? How comes? Well... @WojciechCiemski has been busy poking small holes in our code, and we gotta patch them up.
+
+However, this does not mean that the release is only about fixes; we also have some exciting new features to share. For starters, we added 
+the possibility to set a global password on your full Lychee instance. Done with having the same password for each albums, one password to rule them all.
+Of course, if you have an account, you can always login directly and bypass the screen.
+
+We also have our first contribution from @NikitaTH. They added the possibility to configure the amount of compression on the size variants and also the support
+for WebP format. This is disabled by default to keep the existing behavior. Just know that it is now an option.
+
+We got a small request to add support for the video loop attribute, which has now been implemented. Furthermore, due to the discoveries for @WojciechCiemski,
+we have decided to separate the EDIT rights from the MOVE rights. A smart user with EDIT rights in an album without the full size access could move the photos
+to an album they owned and thus gained access to the original. Fun trick right? So to fix this, we added the CAN_MOVE rights which is now required to move/merge albums (and photos). We also tighten the requirement on the destinations albums. This makes the permissions a bit stricter so that users cannot bypass restrictions as easily.
+
+* `new` #4799 : Global password gallery setting by @ildyria.
+* `new` #4790 : Configurable size variant format (WebP) and lossless quality by @NikitaTH.
+* `new` #4787 : Add CAN_MOVE rights by @ildyria.
+* `new` #4807 : Add support for video loop attribute by @ildyria.
+* `fix` #4789 : Strip completely at the php level to avoid xss by @ildyria.
+* `fix` #4791 : block all IPv6-transition spellings that embed an internal IPv4 by @anzal1.
+* `fix` #4798 : Fixes advisories crash when on internal network without internet access by @ildyria.
+* `fix` #4804 : Avoid XSS in GPX tracks by @ildyria.
+* `fix` #4806 : Fix dock being visible when user has not edit rights by @ildyria.
+* `fix` #4805 : Avoid uploading a picture of another user and getting extra perks by @ildyria.
+* `fix` #4808 : Fix video player? by @ildyria.
+
+#### New Contributors
+* @anzal1 made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4791
+* @NikitaTH made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4790
+
+
 ### v7.9.0
 
 Released on September 25th, 2026
