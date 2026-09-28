@@ -41,7 +41,7 @@ to an album they owned and thus gained access to the original. Fun trick right? 
 * `fix` #4805 : Avoid uploading a picture of another user and getting extra perks by @ildyria.
 * `fix` #4808 : Fix video player? by @ildyria.
 
-## New Contributors
+#### New Contributors
 * @anzal1 made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4791
 * @NikitaTH made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4790
 
