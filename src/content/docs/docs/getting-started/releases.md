@@ -16,7 +16,7 @@ sidebar:
 
 #### Global password, WebP, Video loop and security fixes
 
-What a new release already? How come? Well... @WojciechCiemski has been busy poking small holes in our code, and we gotta patch them up.
+What? A new release already? How comes? Well... @WojciechCiemski has been busy poking small holes in our code, and we gotta patch them up.
 
 However, this does not mean that the release is only about fixes; we also have some exciting new features to share. For starters, we added 
 the possibility to set a global password on your full Lychee instance. Done with having the same password for each albums, one password to rule them all.
