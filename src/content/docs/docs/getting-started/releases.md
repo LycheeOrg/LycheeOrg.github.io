@@ -11,8 +11,9 @@ sidebar:
 
 ## Version 7
 
-
 ### v7.10.0
+
+Released on September 29th, 2026
 
 #### Global password, WebP, Video loop and security fixes
 
