@@ -1533,8 +1533,11 @@ const wizardStepLabels = [
         );
       }
       steps.push('Run <code>docker compose up -d</code>.');
+      // Behind Traefik, the proxy serves APP_URL directly and forwards to the container — the exposed port is irrelevant.
       steps.push(
-        `Open <code>${escapeHtml(result.appUrl)}</code> (port ${escapeHtml(field('appPort').value)}) in your browser.`
+        field<HTMLInputElement>('enableTraefik').checked
+          ? `Open <code>${escapeHtml(result.appUrl)}</code> in your browser.`
+          : `Open <code>${escapeHtml(result.appUrl)}</code> (port ${escapeHtml(field('appPort').value)}) in your browser.`
       );
       instructions.innerHTML = steps.map((s) => `<li>${s}</li>`).join('');
     }
