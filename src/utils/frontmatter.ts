@@ -1,37 +1,45 @@
 import getReadingTime from 'reading-time';
-import { toString } from 'mdast-util-to-string';
-import type { RehypePlugin, RemarkPlugin } from '@astrojs/markdown-remark';
+import { defineHastPlugin, defineMdastPlugin } from 'satteri';
+import type {} from '@astrojs/markdown-satteri';
 
-export const readingTimeRemarkPlugin: RemarkPlugin = () => {
-  return function (tree, file) {
-    const textOnPage = toString(tree);
-    const readingTime = Math.ceil(getReadingTime(textOnPage).minutes);
+// Factory so the code-block buffer is fresh for every document.
+export const readingTimeMdastPlugin = () => {
+  // ctx.textContent() skips fenced code blocks, so collect them separately.
+  const codeBlocks: string[] = [];
 
-    if (typeof file?.data?.astro?.frontmatter !== 'undefined') {
-      file.data.astro.frontmatter.readingTime = readingTime;
-    }
-  };
-};
+  return defineMdastPlugin({
+    name: 'reading-time',
+    code(node) {
+      codeBlocks.push(node.value);
+    },
+    after(root, ctx) {
+      const textOnPage = [ctx.textContent(root, { includeImageAlt: true, includeHtml: true }), ...codeBlocks].join(
+        '\n'
+      );
+      const readingTime = Math.ceil(getReadingTime(textOnPage).minutes);
 
-export const responsiveTablesRehypePlugin: RehypePlugin = () => {
-  return function (tree) {
-    if (!tree.children) return;
-
-    for (let i = 0; i < tree.children.length; i++) {
-      const child = tree.children[i];
-
-      if (child.type === 'element' && child.tagName === 'table') {
-        tree.children[i] = {
-          type: 'element',
-          tagName: 'div',
-          properties: {
-            style: 'overflow:auto',
-          },
-          children: [child],
-        };
-
-        i++;
+      if (typeof ctx.data.astro?.frontmatter !== 'undefined') {
+        ctx.data.astro.frontmatter.readingTime = readingTime;
       }
-    }
-  };
+    },
+  });
 };
+
+export const responsiveTablesHastPlugin = defineHastPlugin({
+  name: 'responsive-tables',
+  element: {
+    filter: ['table'],
+    visit(node, ctx) {
+      if (ctx.parent(node).type !== 'root') return;
+
+      ctx.wrapNode(node, {
+        type: 'element',
+        tagName: 'div',
+        properties: {
+          style: 'overflow:auto',
+        },
+        children: [],
+      });
+    },
+  },
+});
