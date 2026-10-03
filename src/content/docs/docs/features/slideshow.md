@@ -12,6 +12,7 @@ Lychee includes a built-in slideshow mode that auto-advances through a set of ph
 - Photos advance automatically every `slideshow_timeout` seconds (default: `5`).
 - Reaching the last photo loops back to the first (and vice versa) if `photos_wraparound` is enabled — otherwise the slideshow simply stops there.
 - Videos are not skipped: the slideshow waits for a video to finish playing before advancing, rather than switching after the usual timeout.
+
   :::caution
   This wait relies on the video actually starting to play. If `autoplay_enabled` is turned off, a video reached during a slideshow will never autoplay and therefore never fire its "ended" event — the slideshow will appear to hang on that video until you manually skip past it.
   :::

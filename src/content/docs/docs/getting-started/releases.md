@@ -3574,7 +3574,6 @@ Released Jan 24, 2021
   >      * Group Factories
   >      * use `trait` on album for smaller dedicated operations
   >      * add Nested Set theory to Album to allow access to all descendants  
-  > 
   > * fixes #843 
   > * fixes #846
   > * fixes #858
