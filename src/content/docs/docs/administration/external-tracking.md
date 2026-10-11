@@ -16,7 +16,7 @@ Set the following env vars:
 
 ```ini
 SECURITY_HEADER_SCRIPT_SRC_ALLOW=https://analytics.example.com/matomo.js
-SECURITY_HEADER_CSP_CONNECT_SRC=https://analytics.example.com/matomo.js
+SECURITY_HEADER_CSP_CONNECT_SRC=https://analytics.example.com/matomo.php
 ```
 
 ### Add custom JavaScript
