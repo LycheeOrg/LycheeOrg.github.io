@@ -11,6 +11,75 @@ sidebar:
 
 ## Version 7
 
+### v7.11.0
+
+Released on October 12th, 2026
+
+#### Jobs priorities, memory exhaustion and fixes. 
+
+As we are focusing on the version 8, this release mainly includes changes from external contributors and fixes.
+We have noticed yesterday that when uploading a large number of photos (3000+) in a single album, the worker would 
+crash due to memory exhaustion. Similarly, each processing photo would trigger at least 10 subsequent jobs,
+ranging from various statistics & thumbnails computations. The current behaviour was checking whether a new job
+was existing for that task and skip it. This would still eat about 15 to 50ms depending of the installation.
+
+When processing such a large number of photos, the queue would grow rapidly, leading to a large number of meaningless pending jobs. 
+To solve this created two queues. The `default` queue handles the main processing tasks, while the `low` queue is used for less critical
+jobs. We also added a limit of how many times a job can appear over an hour. The two combined will ensure that statistics and thumbs selection
+are properly handled.
+
+This change however is impactful for you if you are not using the lychee docker images, or you specified yourself the queue for the workers.
+You will need to adjust your configuration to make sure that both the `default` and `low` queues are properly set up for your workers.
+For users of the LycheeOrg docker image, this is already setup properly.
+
+* `new` #4855 : Improve the album unlock dialog by @matthewbolding.
+  > When using the propagation of unlocking, the UI seemed unresponsive for a few seconds.
+  > This change adds a user feedback, indicating that the unlocking process is in progress.
+* `klo` #4818 : Laravel 13 by @ildyria.
+  > KLO changes mostly.
+* `fix` #4822 : Fix concurency on album creation ordering by @ildyria.
+  > When uploading two folders simultaneously, the thumbs were not correctly selected. This is now resolved.
+* `fix` #4821 : Don't show sensitive photos in landing by @hyperdefined.
+  > Sensitive photos will no longer be displayed on the landing page, enhancing privacy.
+* `fix` #4823 : Let the browser pick 1x/2x variants by rendered size by @NikitaTH.
+  > Improve the loading performance of images on high-resolution displays.
+* `fix` #4824 : Fix unsanized description of photos by @ildyria.
+  > A small possible XSS vulnerability on the map. This has now been fixed.
+* `fix` #4830 : Update endpoint refactoring by @ildyria.
+  > Refactoring the way updates and versions are checked.
+  > We are also dropping the support for update via the web interface.
+  > The recommended way to use Lychee is via docker, as it makes it easier to manage dependencies etc.
+* `fix` #4834 : fix: make PDF /MediaBox match limit configurable by @mitpjones.
+  > It is now possible to support more than 25 /MediaBox items in a single pdf.
+  > The limit is now set via configuration by the admin.
+* `fix` #4837 : Fix Tag renaming & listing by @ildyria.
+  > One of the issue with tags and database with case insensitivity was that capitalizing an existing tag was not working.
+  > This should now be fixed.
+* `fix` #4843 : Insert missing statistics by @ildyria.
+  > This ensures that all relevant statistics are correctly recorded and displayed.
+  > This also aims to prevent error 500 to show up when statistics were missing.
+* `new` #4847 : Show album names in browser tab titles by @koonweee.
+  > Long over due, navigating an album will now update the browser tab title to reflect the current album name.
+  > This improves the user experience by providing context in the browser tab.
+* `fix` #4852 : Add Pocket ID OAuth provider by @tinuh.
+  > Another Oauth provider support. :)
+* `fix` #4598 : Adding OpenTelemetry and provide traces by @FredPraca.
+  > This was on the whish list of some of our users and Fred decided to tackle it. We are now providing 4 docker images depending of the desired flavour:
+  > 1. lychee:edge
+  > 2. lychee:edge-telemetry
+  > 3. lychee:edge-legacy
+  > 4. lychee:edge-legacy-telemetry
+* `fix` #4856 : Fix sprintf vulnerability by @ildyria.
+  > We migrated out of sprintf library to implement our own version. This avoids having to deal with another transitive CVE.
+* `fix` #4863 : Fix memory leak when uploading 3000 photos at the same time by @ildyria.
+  > When uploading a photo in an album with a large number of photos, the relations of the album would be loaded in memory, this also includes the relations of the relations etc...
+  > As a result uploading a photo in an album with already 2000 would cause memory exhaustion and simply... kill the php process.
+* `fix` #4864 : Jobs: change processing priorities by @ildyria.
+
+#### New Contributors
+* @koonweee made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4847
+* @tinuh made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4852
+
 ### v7.10.0
 
 Released on September 29th, 2026
