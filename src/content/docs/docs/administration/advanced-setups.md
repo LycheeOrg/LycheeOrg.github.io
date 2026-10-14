@@ -120,6 +120,14 @@ Zenith provides one-click managed hosting for open-source apps, so you can bring
 
 You can find their Lychee offering [here](https://zenith.hosting/host/lychee).
 
+### With Pethost (Paid)
+
+Pethost runs Lychee from a one-click template on a server of your own plan, with SQLite in a volume and nightly backups.
+
+[![Deploy on Pethost](https://pethost.dev/button.svg)](https://pethost.dev/templates/lychee/)
+
+You can find the template [here](https://pethost.dev/templates/lychee/).
+
 ## Implementing Object Storage 
 
 An S3-compatible object storage solution is designed to store, manage, and access unstructured data in the cloud. 
