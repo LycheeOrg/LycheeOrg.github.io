@@ -122,7 +122,7 @@ You can find their Lychee offering [here](https://zenith.hosting/host/lychee).
 
 ### With Pethost (Paid)
 
-Pethost runs Lychee from a one-click template on a server of your own plan, with SQLite in a volume and nightly backups.
+Pethost runs Lychee from a one-click template on a server of your own plan, with MariaDB and the uploads in volumes, backed up nightly when the machine's backups are on.
 
 [![Deploy on Pethost](https://pethost.dev/button.svg)](https://pethost.dev/templates/lychee/)
 
