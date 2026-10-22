@@ -11,6 +11,48 @@ sidebar:
 
 ## Version 7
 
+### v7.12.0
+
+Released on October 22nd, 2026
+
+#### Php2shell mitigations, Google motion photos and JPEG XL
+
+While this release is quite slim with mostly KLO changes, the php2shell vulnerability was necessary and could not wait.
+As such in addition to upgrading both docker images (`latest` and `latest-legacy`) to php 8.5.12, we added a few more features.
+Those are the support for Google motion photos which are now extracted from the Jpeg data and the support for JPEG XL images.
+
+Additionally this release celebrate the arrival of a new member to LycheeOrg: @mlapaglia who decided to
+focus on building an android/apple app! We are looking forward to having it running.
+
+* `fix` #4913 : Fixes PHP RCE CVE-2026-109618 and CVE-2026-109619 in the Docker image by @timo-reymann.
+  > php2shell evil vulnerability have been fixed in all our docker images.
+* `new` #4900 : Google Motion Photos: Android 11+ format and grid hover playback by @mlapaglia.
+  > We supported livephotos from Apple devices, however the support from Google motion as quite limited.
+  > This is now fixed thanks to @mlpaglia.
+* `new` #4871 : Add support for email login by @ildyria.
+  > If the user register with an email it is now possible to login with that email in addition to the username.
+  > This is a setting that needs to be enabled in the users section.
+* `new` #4915 : Migrate from debian-slim to php base image by @ildyria.
+  > With php2shell, we were waiting for the arm64 build of the debian package to be published.
+  > In the end we decided to switch to the php base image to avoid waiting any longer.
+* `fix` #4885 : Translations [AI GENERATED] by @ildyria.
+  > All translations keys have been updated. However we cannot guarantee their accuracy and completeness.
+  > If you are native speaker, we do accept pull requests. ;)
+* `klo` #4891 : Support Vite+ by @ildyria.
+  > Not impactful for the user, but standard development practice. We migrated to vite+ which uses rust under the
+  > hood on formatting and typechecking. 
+* `fix` #4899 : Jxl support by @ildyria.
+  > Now that jpeg xl starts to be more and more deployed, we added the support for it in our application.
+
+### v7.11.1
+
+Released on October 13th, 2026
+
+#### Version bump missing in 7.11.0
+
+Missing version bump was preventing the automated migration page to show up.
+This is fixed.
+
 ### v7.11.0
 
 Released on October 12th, 2026
