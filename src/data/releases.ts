@@ -8,8 +8,8 @@ export interface Release {
 
 // Release data extracted from releases.md
 export const releases: Release[] = [
-  { version: 'v7.12.0', date: 'Oct 12, 2026', title: 'Php2shell mitigations', type: 'security', highlights: ['Php2shell mitigations', 'Google motion photos support', 'JPEG XL support'] },
-  { version: 'v7.11.1', date: 'Oct 12, 2026', title: 'Fixes', type: 'bugfix', highlights: ['version bump missing in 7.11.0'] },
+  { version: 'v7.12.0', date: 'Oct 22, 2026', title: 'Php2shell mitigations', type: 'security', highlights: ['Php2shell mitigations', 'Google motion photos support', 'JPEG XL support'] },
+  { version: 'v7.11.1', date: 'Oct 13, 2026', title: 'Fixes', type: 'bugfix', highlights: ['version bump missing in 7.11.0'] },
   { version: 'v7.11.0', date: 'Oct 12, 2026', title: 'Jobs priorities, OOM and fixes', type: 'enhancement', highlights: ['Split jobs into `default` and `low` queues', 'Hourly limit on duplicate jobs', 'Fix memory exhaustion on large uploads'] },
   { version: 'v7.10.0', date: 'Sep 29, 2026', title: 'Global password, WebP and video loop', type: 'feature', highlights: ['Global password gallery setting', 'Configurable size variant format (WebP) and lossless quality', 'Various security and bug fixes'] },
   { version: 'v7.9.0', date: 'Sep 25, 2026', title: 'Features and fixes', type: 'feature', highlights: ['Added support for S3 object prefixes', 'Kanidm OAuth Provider', 'Setting to show highest-quality image in full-screen viewer'] },
