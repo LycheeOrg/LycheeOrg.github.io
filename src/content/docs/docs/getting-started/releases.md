@@ -11,6 +11,18 @@ sidebar:
 
 ## Version 7
 
+### v7.12.0
+
+Released on October 22nd, 2026
+
+#### JPEG XL, live image and support
+
+
+
+
+
+
+
 ### v7.11.0
 
 Released on October 12th, 2026
