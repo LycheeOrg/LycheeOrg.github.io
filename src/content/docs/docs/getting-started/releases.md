@@ -11,6 +11,40 @@ sidebar:
 
 ## Version 7
 
+### v7.12.1
+
+Released on Nov 3, 2026
+
+#### Index, caches and lightbox
+
+This release brings to you a few improvements, nothing ground breaking but still useful for everyday use.
+
+* `new` #4940 : Make caching on client side optional by @ildyria.
+  > Caching on client side is now optional, this is useful if you are using multiple laptops to a single server during 
+  > a sport competition and you want to display the photos per album while constantly updating them.
+* `fix` #4941 : feat(smart-albums): index On This Day by month and day by @ildyria.
+  > We moved the computation of the "On This Day" index to be based on the month and day, rather than the full date
+  > to improve the speed of the smart album.
+* `new` #4933 : feat(lightbox): play live photos from a dock button in v7 and v8 by @mlapaglia.
+  > Hide the LivePhotosKit LIVE badge in the main lightbox and add a play/stop toggle to the dock.
+  > While on, a muted looping video of the clip plays over the still until the button is turned off.
+  > Viewers without edit rights get a dock with only this button. Flow and Moderation keep the native controls.
+* `fix` #4918 : Maintenance & queues by @ildyria.
+  > Added a maintenance action to recompute timeline buckets for albums and photos, with progress and success or error feedback.
+  > Queued album-size recalculations now display a clear status message.
+* `fix` #4932 : fix(auth): clear front-end stores on login and logout instead of Clear-Site-Data by @ildyria.
+  > This is in response to issues with browser which do not support the clear site data directive.
+  > This was triggering extremely slow login/logout experiences.
+* `klo` #4934 : ci: add an always-running PHP tests result check by @mlapaglia.
+  > Improve CICD by having a single php check instead of not running durning JS changes.
+* `fix` #4942 : feat(diagnostics): check album size statistics and taken date ranges by @ildyria.
+  > Added diagnostics to check album size statistics and the ranges of taken dates for photos within albums.
+  > This helps in identifying potential issues with albums ordering.
+
+
+Additionally we would like to thank @lml20000827 for reporting a vulnerabilies in a feature which is not live yet.
+It is always better when such issues are found before going live.
+
 ### v7.12.0
 
 Released on October 22nd, 2026
