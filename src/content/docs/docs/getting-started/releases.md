@@ -36,13 +36,13 @@ This release brings to you a few improvements, nothing ground breaking but still
   > This is in response to issues with browser which do not support the clear site data directive.
   > This was triggering extremely slow login/logout experiences.
 * `klo` #4934 : ci: add an always-running PHP tests result check by @mlapaglia.
-  > Improve CICD by having a single php check instead of not running durning JS changes.
+  > Improve CICD by having a single php check instead of not running during JS changes.
 * `fix` #4942 : feat(diagnostics): check album size statistics and taken date ranges by @ildyria.
   > Added diagnostics to check album size statistics and the ranges of taken dates for photos within albums.
   > This helps in identifying potential issues with albums ordering.
 
 
-Additionally we would like to thank @lml20000827 for reporting a vulnerabilies in a feature which is not live yet.
+Additionally we would like to thank @lml20000827 for reporting a vulnerability in a feature which is not live yet.
 It is always better when such issues are found before going live.
 
 ### v7.12.0
