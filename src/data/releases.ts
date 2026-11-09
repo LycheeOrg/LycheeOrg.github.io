@@ -8,6 +8,7 @@ export interface Release {
 
 // Release data extracted from releases.md
 export const releases: Release[] = [
+  { version: 'v7.13.0', date: 'Nov 9, 2026', title: 'Version 8 release candidate', type: 'enhancement', highlights: ['Version 8 opt-in preview', 'Struct-of-Arrays & virtual scrolling', 'Album tile size and gap configuration', 'Inline feedback for throttled login password', 'SSRF hardening'] },
   { version: 'v7.12.1', date: 'Nov 3, 2026', title: 'Fixes', type: 'bugfix', highlights: ['On this day index', 'client side caching', 'improved support of live photos'] },
   { version: 'v7.12.0', date: 'Oct 22, 2026', title: 'Php2shell mitigations', type: 'security', highlights: ['Php2shell mitigations', 'Google motion photos support', 'JPEG XL support'] },
   { version: 'v7.11.1', date: 'Oct 13, 2026', title: 'Fixes', type: 'bugfix', highlights: ['version bump missing in 7.11.0'] },

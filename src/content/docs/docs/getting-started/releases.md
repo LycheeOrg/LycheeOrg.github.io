@@ -11,6 +11,45 @@ sidebar:
 
 ## Version 7
 
+### v7.13.0 - (v8.0.0-rc1)
+
+Released on Nov 9, 2026
+
+#### Version 8 release candidate
+
+Not a very exciting release, but... this is the first step in the direction of Version 8.
+As you know, we are working with feature flags in Lychee, this allows us to ensure upgrade
+continuity, fallback mechanisms, A/B testing and canary deployments.
+
+If you are interested in testing the new Version 8 and taking part in the beta review,
+you can do so by simply adding `V8_ENABLED=true` to your `.env` file configuration.
+This will enable the brand new front-end, and a lot of improved features we have been
+working on over the last few months.
+
+If you notice issues, you are more than welcome to report them [here](https://github.com/LycheeOrg/Lychee/discussions).
+Please make sure to tag them with `[v8]` for easier tracking.
+
+* `new` #4962 : Configurable album tile size and gap with live size preview by @ildyria.
+  > We added a configuration panel which allows the admin to adjust the size of the album thumbnails and gaps.
+  > In order to facilitate configuration, a preview-page has also been added to get a feel of the changes in real-time.
+* `new` #4961 : Use Struct-of-Arrays approach by default by @ildyria.
+  > This has been a large undertaking over the past few months to improve the speed of Lychee.
+  > The Struct-of-Arrays approach, combined with a lot of SQL optimizations should significantly improve the performance of Lychee.
+  > This also enables virtual scrolling on your albums making pagination a thing of the past!
+* `new` #4964 : Show inline feedback for throttled password logins by @dangu.
+  > One of the frustrations encountered during password login throttling was the lack of immediate feedback to the user.
+  > This update introduces the missing feedback, making it clear when login attempts are being throttled.
+* `fix` #4965 : avoid obscure SSRF IP scenarios by @ildyria.
+  > Lychee's SSRF protection on import via links is quite comprehensive, but we have been made aware that certain IP patterns were still slipping through.
+  > We once again hardened the IP validation to prevent this attack pattern.
+
+Additionally, we would like to thank @gudangkantong (0xpack) for reporting the SSRF vulnerability.
+
+#### New Contributors
+
+* @dangu made their first contribution in https://github.com/LycheeOrg/Lychee/pull/4964
+
+
 ### v7.12.1
 
 Released on Nov 3, 2026
