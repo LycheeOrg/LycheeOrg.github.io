@@ -128,6 +128,14 @@ Pethost runs Lychee from a one-click template on a server of your own plan, with
 
 You can find the template [here](https://pethost.dev/templates/lychee/).
 
+### With Hostim (Paid)
+
+Hostim runs the official Lychee image from a one-click template, with a managed MySQL database, the uploads and app storage on volumes, HTTPS on a free subdomain, and the admin account created at the first start.
+
+[![Deploy on Hostim](https://hostim.dev/img/deploy-button.svg)](https://console.hostim.dev/dashboard?preview=1&modal=1&template=lychee)
+
+You can find the guide [here](https://hostim.dev/docs/templates/lychee/).
+
 ## Implementing Object Storage 
 
 An S3-compatible object storage solution is designed to store, manage, and access unstructured data in the cloud. 
