@@ -136,6 +136,14 @@ Hostim runs the official Lychee image from a one-click template, with a managed 
 
 You can find the guide [here](https://hostim.dev/docs/templates/lychee/).
 
+### With Simafri (Paid)
+
+Simafri runs managed VPS that you keep root access to, and publishes a tested guide to install Lychee on them with the official Docker image, MariaDB, a queue worker and Caddy for HTTPS.
+
+[![Self-host on Simafri](https://www.simafri.com/assets/img/self-host-on-simafri.svg)](https://www.simafri.com/en/guides/self-host-lychee/)
+
+You can find the guide [here](https://www.simafri.com/en/guides/self-host-lychee/).
+
 ## Implementing Object Storage 
 
 An S3-compatible object storage solution is designed to store, manage, and access unstructured data in the cloud. 
